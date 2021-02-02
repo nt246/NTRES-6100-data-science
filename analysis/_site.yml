@@ -42,6 +42,8 @@ navbar:
       href: lesson15-functions.html
     - text: "Lesson 16: Factors"
       href: lesson16-factors.html
+    - text: "Lesson 17: Wrapping up and looking ahead"
+      href: lesson17-wrapup.html
   - text: Assignments
     href: assignments.html    
 output: 
