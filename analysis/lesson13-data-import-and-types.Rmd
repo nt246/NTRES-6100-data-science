@@ -7,7 +7,7 @@ output:
 ---
   
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "/Users/mariaakopyan/Github/NTRES6940-data-science/docs")
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
 knitr::opts_chunk$set(echo = TRUE, fig.path="lesson13-files/")
 ```
 
@@ -367,7 +367,7 @@ coronavirus %>%
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()
   
-ggsave(filename = "../img/daily_casecounts_plot.png")
+ggsave(filename = "assets/daily_casecounts_plot.png")
 
 ```
 
