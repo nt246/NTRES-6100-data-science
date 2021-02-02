@@ -23,6 +23,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -67,6 +76,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -369,7 +379,7 @@ $(document).ready(function () {
 <p>Getting help, or really helping you help yourself, means moving beyond “it’s not working” and towards solution-oriented approaches. Part of this is the mindset where you <strong>expect that someone has encountered this problem before</strong> and that <strong>most likely the problem is your typo or misuse</strong>, and not that R is broken or hates you.</p>
 </blockquote>
 <p>There is excellent advice for trouble-shooting R-code and how to get help in <a href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management</a> by Allison Horst.</p>
-<p>Also check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not subsettable” at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
+<p>Also check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan's talk &quot;Object of type ‘closure’ is not subsettable&quot; at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
 <p><br></p>
 </div>
 </div>
@@ -383,7 +393,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
