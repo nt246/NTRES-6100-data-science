@@ -1,9 +1,13 @@
 ---
 title: "Lesson 17: Wrapping up and looking ahead"
-output: github_document
+output: 
+  html_document:
+    keep_md: yes 
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 ```
@@ -55,7 +59,7 @@ Make sure to frequently re-start R as you're working, as elaborated on by Jenny 
 Also, if you haven't already, follow the [instructions from r4ds](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) on how ensure that RStudio does not restore your workspace between sessions, so you start with a clean environment every time. Make sure this option is selected under your RStudio preferences:
 
 ```{r  out.width = "50%", echo = FALSE}
-include_graphics("../img/rstudio-workspace.png") 
+include_graphics("assets/rstudio-workspace.png") 
 ```
    
 <br>
@@ -64,13 +68,13 @@ include_graphics("../img/rstudio-workspace.png")
 
 Slides from [Deep thoughts](https://www.slideshare.net/jenniferbryan5811/cm002-deep-thoughts) by Jenny Bryan:
 
-![](../img/small-mistake.png)
+![](assets/small-mistake.png)
 
 <br>
 <br>
 
 
-![](../img/redo-analysis.png)
+![](assets/redo-analysis.png)
 
 <br>
 
