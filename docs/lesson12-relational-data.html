@@ -23,6 +23,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -67,6 +76,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -361,12 +371,12 @@ $(document).ready(function () {
 <p><br></p>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p><a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in 'R for Data Science'</a> by Hadley Wickham &amp; Garrett Grolemund</p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
-<p>Jenny Bryan’s <a href="https://stat545.com/multiple-tibbles.html">STAT545 Chapter 14 When one tibble is not enough</a></p>
+<p>Jenny Bryan's <a href="https://stat545.com/multiple-tibbles.html">STAT545 Chapter 14 When one tibble is not enough</a></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -375,16 +385,16 @@ $(document).ready(function () {
 <ul>
 <li>Thanks for the mid-semester feedback</li>
 <li>Reminder that we will have short students presentations during our final class on November 11 (details <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/misc/student_presentations.md#end-of-class-student-presentations">here</a>) - start thinking about what you want to show the class</li>
-<li>Homework 5 due tonight - it sounds like people have struggled with this one. As long as you demonstrate some effort, we won’t subtract credit if you don’t get all the way on each question</li>
+<li>Homework 5 due tonight - it sounds like people have struggled with this one. As long as you demonstrate some effort, we won't subtract credit if you don't get all the way on each question</li>
 <li>Homework 6 will be posted later today</li>
 </ul>
 <p><br> <br></p>
 </div>
 <div id="plan-for-today-and-learning-objectives" class="section level2">
 <h2>Plan for today and learning objectives</h2>
-<p>First, we’ll do a quick follow-up to Erika’s lecture on getting help last week. We’ll work through slides from <a href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management</a> taught at UCSB by Allison Horst.</p>
+<p>First, we'll do a quick follow-up to Erika's lecture on getting help last week. We'll work through slides from <a href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management</a> taught at UCSB by Allison Horst.</p>
 <p><br></p>
-<p>Then we’ll switch gears to talk about relational data. By the end of today’s class, you should be able to:</p>
+<p>Then we'll switch gears to talk about relational data. By the end of today's class, you should be able to:</p>
 <ul>
 <li>Combine information from multiple tables into one</li>
 <li>Describe the difference between the four <code>join</code> and two <code>filter</code> functions in <code>dplyr</code></li>
@@ -413,12 +423,12 @@ library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
 <li><p><a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins"><strong>Filtering joins</strong></a>, which filter observations from one data frame based on whether or not they match an observation in the other table</p></li>
 <li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
 </ul>
-<p>We will only cover the first three today. Let’s click on the links to work through the corresponding section in Jenny Bryan’s STAT 545 notes or Grolemund and Wickham’s R for Data Science.</p>
+<p>We will only cover the first three today. Let's click on the links to work through the corresponding section in Jenny Bryan's STAT 545 notes or Grolemund and Wickham's R for Data Science.</p>
 <p><br></p>
 <div id="row-and-columns-binding" class="section level3">
 <h3>Row and columns binding</h3>
-<p>We’ll play around with the <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Lord of the Rings Data</a> that we also used in our Tidy Data lecture.</p>
-<p>Let’s load it in</p>
+<p>We'll play around with the <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan's Lord of the Rings Data</a> that we also used in our Tidy Data lecture.</p>
+<p>Let's load it in</p>
 <pre class="r"><code>fship &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv&quot;)
 
 ttow &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv&quot;)
@@ -431,17 +441,17 @@ rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/m
 lotr_untidy &lt;- dplyr::bind_rows(fship, ttow, rking)
 lotr_untidy &lt;- base::rbind(fship, ttow, rking)</code></pre>
 <p><br></p>
-<p>Then we’ll review Jenny Bryan’s overview of <a href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tasks">binding</a></p>
+<p>Then we'll review Jenny Bryan's overview of <a href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tasks">binding</a></p>
 <p><br></p>
 </div>
 <div id="join-functions" class="section level3">
 <h3>Join functions</h3>
-<p>To practice the <code>join</code> functions, we’ll subset the <code>flights</code> dataframe as follows</p>
+<p>To practice the <code>join</code> functions, we'll subset the <code>flights</code> dataframe as follows</p>
 <pre class="r"><code>flights2 &lt;- flights %&gt;% 
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2</code></pre>
 <p><br></p>
-<p>Then we’ll review Wickham and Grolemund’s overview of <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_lesson12_relational_data.pdf">slides</a></p>
+<p>Then we'll review Wickham and Grolemund's overview of <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_lesson12_relational_data.pdf">slides</a></p>
 <p><br></p>
 <div id="key-point" class="section level4">
 <h4>Key point</h4>
@@ -453,7 +463,7 @@ flights2</code></pre>
 <h3>Optional exercises (from the R for Data Science chapter)</h3>
 <p><br></p>
 <ol style="list-style-type: decimal">
-<li><p>Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</p>
+<li><p>Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here's an easy way to draw a map of the United States:</p>
 <pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
 airports %&gt;%
@@ -462,12 +472,12 @@ airports %&gt;%
     borders(&quot;state&quot;) +
     geom_point() +
     coord_quickmap()</code></pre>
-<p>(Don’t worry if you don’t understand what <code>semi_join()</code> does — you’ll learn about it next.)</p>
+<p>(Don't worry if you don't understand what <code>semi_join()</code> does --- you'll learn about it next.)</p>
 <p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p></li>
 </ol>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
+<li>Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
 </ol>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
@@ -485,7 +495,7 @@ airports %&gt;%
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
