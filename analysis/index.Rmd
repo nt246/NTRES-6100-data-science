@@ -1,0 +1,51 @@
+---
+title: "Collaborative and Reproducible Data Science in R"
+date: "`r Sys.Date()`"
+output: html_document
+site: workflowr::wflow_site
+---
+
+![](assets/logo.png){width=50%}  
+
+### NTRES 6940, Lec 001 
+
+#### Cornell University, Fall 2020
+
+
+This website complements the class [Canvas](https://canvas.cornell.edu/courses/21578) site.  
+
+***
+
+**Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com)
+&nbsp;
+**TA**: PhD Student [Maria Akopyan](https://www.makopyan.com)
+
+***
+#### Meeting times
+
+Mondays and Wednesdays 2:55pm - 4:10pm  
+(September 14 - November 11, 2020)
+
+**Optional**: "Hacky hour" Fridays 12:20-2:15pm  
+Meetup to work on problem sets or your own projects  
+
+
+
+***
+
+#### Course description    
+As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and will be structured around hands-on (the keyboard) learning.  
+
+**By the end of this course, students will be able to:**  
+
+* Describe strategies for ensuring that their data analysis is reproducible  
+* Demonstrate best practices for coding and project-oriented workflows in RStudio  
+* Import and clean messy data files using a variety of packages and functions in R  
+* Subset, reorganize, and merge diverse datasets in R  
+* Effectively explore and visualize patterns in complex datasets with ggplot in R  
+* Write simple functions/programs and data analysis pipelines in R  
+* Automate repeated analysis tasks in R  
+* Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub  
+* Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations  
+
+<span style="color: goldenrod;">NOTE:&nbsp; This webpage is currently under construction, and will evolve over the next few weeks.&nbsp; <br>

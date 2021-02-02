@@ -1,0 +1,195 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+gss_cat
+
+gss_cat %>% 
+  count(race)
+
+gss_cat %>% 
+  ggplot(aes(race)) +
+  geom_bar() +
+  scale_x_discrete(drop = FALSE)
+
+levels(gss_cat$race)
+
+```
+
+Exercise: Explore data
+```{r}
+
+ggplot(gss_cat, aes(rincome)) +
+  geom_bar() +
+  coord_flip()
+
+gss_cat %>% 
+  count(relig) %>% 
+  arrange(-n)
+
+gss_cat %>% 
+  count(partyid) %>% 
+  arrange(-n)
+  
+
+```
+
+Modifying a factor level
+```{r}
+relig_summary <- 
+  gss_cat %>% 
+  group_by(relig) %>% 
+  summarize(tvhours = mean(tvhours, na.rm = TRUE))
+
+ggplot(relig_summary, aes(tvhours, relig)) +
+  geom_point()
+
+ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
+  geom_point()
+
+relig_summary %>%
+```
+
+
+```{r}
+mutate(relig = fct_reorder(relig, tvhours)) %>% 
+  ggplot(aes(tvhours, relig)) +
+  geom_point()
+
+
+
+```
+
+rincome exercise
+```{r}
+
+rincome_summary <- 
+  gss_cat %>% 
+  group_by(rincome) %>% 
+  summarize(age = mean(age, na.rm = TRUE))
+
+ggplot(rincome_summary, aes(age, fct_reorder(rincome, age))) +
+  geom_point()
+
+ggplot(rincome_summary, aes(age, rincome)) +
+  geom_point()
+
+ggplot(rincome_summary, aes(age, fct_relevel(rincome, "Not applicable"))) +
+  geom_point()
+
+
+```
+
+```{r}
+
+gss_cat %>% 
+  count(age, marital) %>% 
+  ggplot(aes(age, n, color = marital)) +
+  geom_line()
+
+
+gss_cat %>% 
+  count(age, marital) %>% 
+  ggplot(aes(age, n, color = fct_reorder2(marital, age, n))) +
+  geom_line()
+
+
+gss_cat %>% 
+  ggplot(aes(marital)) +
+  geom_bar()
+
+gss_cat %>% 
+  ggplot(aes(fct_infreq(marital))) +
+  geom_bar()
+
+
+?fct_infreq
+```
+
+
+
+Re-naming levels
+```{r}
+
+gss_cat %>% count(partyid)
+
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+    "Republican, strong"    = "Strong republican",
+    "Republican, weak"      = "Not str republican",
+    "Independent, near rep" = "Ind,near rep",
+    "Independent, near dem" = "Ind,near dem",
+    "Democrat, weak"        = "Not str democrat",
+    "Democrat, strong"      = "Strong democrat"
+  )) %>%
+  count(partyid)
+
+
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+    "Republican, strong"    = "Strong republican",
+    "Republican, weak"      = "Not str republican",
+    "Independent, near rep" = "Ind,near rep",
+    "Independent, near dem" = "Ind,near dem",
+    "Democrat, weak"        = "Not str democrat",
+    "Democrat, strong"      = "Strong democrat",
+    "Other"                 = "No answer",
+    "Other"                 = "Don't know",
+    "Other"                 = "Other party"
+  )) %>%
+  count(partyid)
+
+
+gss_cat %>%
+  mutate(partyid = fct_collapse(partyid,
+    other = c("No answer", "Don't know", "Other party"),
+    rep = c("Strong republican", "Not str republican"),
+    ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+    dem = c("Not str democrat", "Strong democrat")
+  )) %>%
+  count(partyid)
+
+
+gss_cat %>%
+  mutate(partyid = fct_collapse(partyid,
+    other = c("No answer", "Don't know", "Other party"),
+    rep = c("Strong republican", "Not str republican"),
+    ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+    dem = c("Not str democrat", "Strong democrat")
+  )) %>%
+  count(year, partyid) %>% 
+  group_by(year) %>% 
+  summarize(prop = )
+
+
+library(gapminder)
+
+
+```
+
+
+
+```{r}
+
+songs <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/songs.csv")
+locations <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/loc.csv")
+
+```
+
+
+## Joins and filters
+
+```{r}
+flights
+airlines
+
+```
+

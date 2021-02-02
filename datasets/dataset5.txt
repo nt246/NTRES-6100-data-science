@@ -1,0 +1,4 @@
+"Name" "Expiration Date" "Time"
+"apple" "September 26, 2018" 1:00am
+"orange" "October 2, 2018" 1:00pm
+"durian" "October 21, 2018" 11:00am

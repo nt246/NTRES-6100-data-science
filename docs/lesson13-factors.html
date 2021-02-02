@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 13: Factors</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version Control</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating and Making Websites</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot, part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling, part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling, part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot, part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy data</a>
+    </li>
+    <li>
+      <a href="lesson11-debugging-getting-help.html">Lesson 11: Good coding practices and debugging</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-data-import-and-types.html">Lesson 13: Data import and types</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 13: Factors</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<p><strong>Required</strong>:</p>
+<p><a href="https://r4ds.had.co.nz/factors.html">Chapter 15 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><br></p>
+</div>
+<div id="learning-objectives" class="section level2">
+<h2>Learning objectives</h2>
+<p><br></p>
+</div>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p>Load the tidyverse</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p><br> ## Factors in R</p>
+<p>In R, factors are used to work with categorical variables, variables that have a fixed and known set of possible values. They are also useful when you want to display character vectors in a non-alphabetical order. The values a factor can take on are called the levels. When working with factors, the two most common operations are changing the order of the levels, and changing the values (names) of the levels.</p>
+<p>To work with factors, we’ll use the <code>forcats</code> package, which is part of the core <code>tidyverse</code>. It provides tools for dealing with <strong>cat</strong>egorical variables (and it’s an anagram of factors!) using a wide range of helpers for working with factors.</p>
+<p><br></p>
+</div>
+<div id="creating-factors" class="section level2">
+<h2>Creating factors</h2>
+<p>Imagine that you have a variable that records month:</p>
+<pre class="r"><code>x1 &lt;- c(&quot;Dec&quot;, &quot;Apr&quot;, &quot;Jan&quot;, &quot;Mar&quot;)</code></pre>
+<p>Using a string to record this variable has two problems:</p>
+<ol style="list-style-type: decimal">
+<li>There are only twelve possible months, and there’s nothing saving you from typos:</li>
+</ol>
+<pre class="r"><code>x2 &lt;- c(&quot;Dec&quot;, &quot;Apr&quot;, &quot;Jam&quot;, &quot;Mar&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>It doesn’t sort in a useful way:</li>
+</ol>
+<pre class="r"><code>sort(x1)</code></pre>
+<pre><code>## [1] &quot;Apr&quot; &quot;Dec&quot; &quot;Jan&quot; &quot;Mar&quot;</code></pre>
+<p>You can fix both of these problems with a factor. To create a factor you must start by creating a list of the valid <strong>levels</strong>:</p>
+<pre class="r"><code>month_levels &lt;- c(
+  &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, 
+  &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;
+)</code></pre>
+<p>Now you can create a factor:</p>
+<pre class="r"><code>y1 &lt;- factor(x1, levels = month_levels)
+y1</code></pre>
+<pre><code>## [1] Dec Apr Jan Mar
+## Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
+<pre class="r"><code>sort(y1)</code></pre>
+<pre><code>## [1] Jan Mar Apr Dec
+## Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
+<p>And any values not in the set will be silently converted to NA:</p>
+<pre class="r"><code>y2 &lt;- factor(x2, levels = month_levels)
+y2</code></pre>
+<pre><code>## [1] Dec  Apr  &lt;NA&gt; Mar 
+## Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
+<p>If you want a warning, you can use <code>readr::parse_factor()</code>:</p>
+<pre class="r"><code>y2 &lt;- parse_factor(x2, levels = month_levels)</code></pre>
+<pre><code>## Warning: 1 parsing failure.
+## row col           expected actual
+##   3  -- value in level set    Jam</code></pre>
+<p>If you omit the levels, they’ll be taken from the data in alphabetical order:</p>
+<pre class="r"><code>factor(x1)</code></pre>
+<pre><code>## [1] Dec Apr Jan Mar
+## Levels: Apr Dec Jan Mar</code></pre>
+<p>Sometimes you’d prefer that the order of the levels match the order of the first appearance in the data. You can do that when creating the factor by setting levels to <code>unique(x)</code>, or after the fact, with <code>fct_inorder()</code>:</p>
+<pre class="r"><code>f1 &lt;- factor(x1, levels = unique(x1))
+f1</code></pre>
+<pre><code>## [1] Dec Apr Jan Mar
+## Levels: Dec Apr Jan Mar</code></pre>
+<pre class="r"><code>f2 &lt;- x1 %&gt;% factor() %&gt;% fct_inorder()
+f2</code></pre>
+<pre><code>## [1] Dec Apr Jan Mar
+## Levels: Dec Apr Jan Mar</code></pre>
+<p>If you ever need to access the set of valid levels directly, you can do so with <code>levels()</code>:</p>
+<pre class="r"><code>levels(f2)</code></pre>
+<pre><code>## [1] &quot;Dec&quot; &quot;Apr&quot; &quot;Jan&quot; &quot;Mar&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="general-social-survey" class="section level2">
+<h2>General Social Survey</h2>
+<p>As an example, we’re going to focus on <code>forcats::gss_cat</code>. It’s a sample of data from the <a href="http://gss.norc.org">General Social Survey</a>, which is a long-running US survey conducted by the independent research organization NORC at the University of Chicago. The survey has thousands of questions, so in <code>gss_cat</code> we’ve selected a handful that will illustrate some common challenges you’ll encounter when working with factors.</p>
+<pre class="r"><code>gss_cat</code></pre>
+<pre><code>## # A tibble: 21,483 x 9
+##     year marital     age race  rincome    partyid     relig     denom    tvhours
+##    &lt;int&gt; &lt;fct&gt;     &lt;int&gt; &lt;fct&gt; &lt;fct&gt;      &lt;fct&gt;       &lt;fct&gt;     &lt;fct&gt;      &lt;int&gt;
+##  1  2000 Never ma…    26 White $8000 to … Ind,near r… Protesta… Souther…      12
+##  2  2000 Divorced     48 White $8000 to … Not str re… Protesta… Baptist…      NA
+##  3  2000 Widowed      67 White Not appli… Independent Protesta… No deno…       2
+##  4  2000 Never ma…    39 White Not appli… Ind,near r… Orthodox… Not app…       4
+##  5  2000 Divorced     25 White Not appli… Not str de… None      Not app…       1
+##  6  2000 Married      25 White $20000 - … Strong dem… Protesta… Souther…      NA
+##  7  2000 Never ma…    36 White $25000 or… Not str re… Christian Not app…       3
+##  8  2000 Divorced     44 White $7000 to … Ind,near d… Protesta… Luthera…      NA
+##  9  2000 Married      44 White $25000 or… Not str de… Protesta… Other          0
+## 10  2000 Married      47 White $25000 or… Strong rep… Protesta… Souther…       3
+## # … with 21,473 more rows</code></pre>
+<p>(Remember, since this dataset is provided by a package, you can get more information about the variables with <code>?gss_cat</code>.)</p>
+<p>When factors are stored in a tibble, you can’t see their levels so easily. One way to see them is with <code>count()</code>:</p>
+<pre class="r"><code>gss_cat %&gt;%
+  count(race)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   race      n
+##   &lt;fct&gt; &lt;int&gt;
+## 1 Other  1959
+## 2 Black  3129
+## 3 White 16395</code></pre>
+<p>Or with a bar chart:</p>
+<pre class="r"><code>ggplot(gss_cat, aes(race)) +
+  geom_bar()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-14-1.png" /><!-- --></p>
+<p>By default, ggplot2 will drop levels that don’t have any values. You can force them to display with:</p>
+<pre class="r"><code>ggplot(gss_cat, aes(race)) +
+  geom_bar() +
+  scale_x_discrete(drop = FALSE)</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-15-1.png" /><!-- --></p>
+<p>These levels represent valid values that simply did not occur in this dataset. Unfortunately, dplyr doesn’t yet have a <code>drop</code> option, but it will in the future.</p>
+<p>When working with factors, the two most common operations are changing the order of the levels, and changing the values of the levels. Those operations are described in the sections below.</p>
+<p><br></p>
+</div>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<ol style="list-style-type: decimal">
+<li><p>Explore the distribution of <code>rincome</code> (reported income). What makes the default bar chart hard to understand? How could you improve the plot?</p></li>
+<li><p>What is the most common <code>relig</code> in this survey? What’s the most common <code>partyid</code>?</p></li>
+<li><p>Which <code>relig</code> does <code>denom</code> (denomination) apply to? How can you find out with a table? How can you find out with a visualisation?</p></li>
+</ol>
+<p><br></p>
+<p><a href="https://jrnold.github.io/r4ds-exercise-solutions/factors.html#general-social-survey">Click here for solutions</a></p>
+<p><br></p>
+</div>
+<div id="modifying-factor-order" class="section level2">
+<h2>Modifying factor order</h2>
+<p>It’s often useful to change the order of the factor levels in a visualisation. For example, imagine you want to explore the average number of hours spent watching TV per day across religions:</p>
+<pre class="r"><code>relig_summary &lt;- gss_cat %&gt;%
+  group_by(relig) %&gt;%
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(relig_summary, aes(tvhours, relig)) + geom_point()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-16-1.png" /><!-- --></p>
+<p>It is difficult to interpret this plot because there’s no overall pattern. We can improve it by reordering the levels of <code>relig</code> using <code>fct_reorder()</code>. <code>fct_reorder()</code> takes three arguments:</p>
+<ul>
+<li><code>f</code>, the factor whose levels you want to modify.</li>
+<li><code>x</code>, a numeric vector that you want to use to reorder the levels.</li>
+<li>Optionally, <code>fun</code>, a function that’s used if there are multiple values of <code>x</code> for each value of <code>f</code>. The default value is <code>median</code>.</li>
+</ul>
+<pre class="r"><code>ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
+  geom_point()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-17-1.png" /><!-- --></p>
+<p>Reordering religion makes it much easier to see that people in the “Don’t know” category watch much more TV, and Hinduism &amp; Other Eastern religions watch much less.</p>
+<p>As you start making more complicated transformations, I’d recommend moving them out of <code>aes()</code> and into a separate <code>mutate()</code> step. For example, you could rewrite the plot above as:</p>
+<pre class="r"><code>relig_summary %&gt;%
+  mutate(relig = fct_reorder(relig, tvhours)) %&gt;%
+  ggplot(aes(tvhours, relig)) +
+    geom_point()</code></pre>
+<p>What if we create a similar plot looking at how average age varies across reported income level?</p>
+<pre class="r"><code>rincome_summary &lt;- gss_cat %&gt;%
+  group_by(rincome) %&gt;%
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(rincome_summary, aes(age, fct_reorder(rincome, age))) + geom_point()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-19-1.png" /><!-- --></p>
+<p>Here, arbitrarily reordering the levels isn’t a good idea! That’s because <code>rincome</code> already has a principled order that we shouldn’t mess with. Reserve <code>fct_reorder()</code> for factors whose levels are arbitrarily ordered.</p>
+<p>However, it does make sense to pull “Not applicable” to the front with the other special levels. You can use <code>fct_relevel()</code>. It takes a factor, <code>f</code>, and then any number of levels that you want to move to the front of the line.</p>
+<pre class="r"><code>ggplot(rincome_summary, aes(age, fct_relevel(rincome, &quot;Not applicable&quot;))) +
+  geom_point()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-20-1.png" /><!-- --></p>
+<p>Why do you think the average age for “Not applicable” is so high?</p>
+<p>Another type of reordering is useful when you are colouring the lines on a plot. <code>fct_reorder2()</code> reorders the factor by the <code>y</code> values associated with the largest <code>x</code> values. This makes the plot easier to read because the line colours line up with the legend.</p>
+<pre class="r"><code>by_age &lt;- gss_cat %&gt;%
+  filter(!is.na(age)) %&gt;%
+  count(age, marital) %&gt;%
+  group_by(age) %&gt;%
+  mutate(prop = n / sum(n))
+
+ggplot(by_age, aes(age, prop, colour = marital)) +
+  geom_line(na.rm = TRUE)</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-21-1.png" width="50%" /></p>
+<pre class="r"><code>ggplot(by_age, aes(age, prop, colour = fct_reorder2(marital, age, prop))) +
+  geom_line() +
+  labs(colour = &quot;marital&quot;)</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-21-2.png" width="50%" /></p>
+<p>Finally, for bar plots, you can use <code>fct_infreq()</code> to order levels in increasing frequency: this is the simplest type of reordering because it doesn’t need any extra variables. You may want to combine with <code>fct_rev()</code>.</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(marital = marital %&gt;% fct_infreq() %&gt;% fct_rev()) %&gt;%
+  ggplot(aes(marital)) +
+    geom_bar()</code></pre>
+<p><img src="lesson13-files/unnamed-chunk-22-1.png" /><!-- --></p>
+<p><br></p>
+</div>
+<div id="exercise-2" class="section level2">
+<h2>Exercise 2</h2>
+<ol style="list-style-type: decimal">
+<li><p>There are some suspiciously high numbers in <code>tvhours</code>. Is the mean a good summary?</p></li>
+<li><p>For each factor in <code>gss_cat</code> identify whether the order of the levels is arbitrary or principled.</p></li>
+<li><p>Why did moving “Not applicable” to the front of the levels move it to the bottom of the plot?</p></li>
+</ol>
+<p><br></p>
+<p><a href="https://jrnold.github.io/r4ds-exercise-solutions/factors.html#modifying-factor-order">Click here for solutions</a></p>
+<p><br></p>
+</div>
+<div id="modifying-factor-levels" class="section level2">
+<h2>Modifying factor levels</h2>
+<p>More powerful than changing the orders of the levels is changing their values. This allows you to clarify labels for publication, and collapse levels for high-level displays. The most general and powerful tool is <code>fct_recode()</code>. It allows you to recode, or change, the value of each level. For example, take the <code>gss_cat$partyid</code>:</p>
+<pre class="r"><code>gss_cat %&gt;% count(partyid)</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    partyid                n
+##    &lt;fct&gt;              &lt;int&gt;
+##  1 No answer            154
+##  2 Don&#39;t know             1
+##  3 Other party          393
+##  4 Strong republican   2314
+##  5 Not str republican  3032
+##  6 Ind,near rep        1791
+##  7 Independent         4119
+##  8 Ind,near dem        2499
+##  9 Not str democrat    3690
+## 10 Strong democrat     3490</code></pre>
+<p>The levels are terse and inconsistent. Let’s tweak them to be longer and use a parallel construction.</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(partyid = fct_recode(partyid,
+    &quot;Republican, strong&quot;    = &quot;Strong republican&quot;,
+    &quot;Republican, weak&quot;      = &quot;Not str republican&quot;,
+    &quot;Independent, near rep&quot; = &quot;Ind,near rep&quot;,
+    &quot;Independent, near dem&quot; = &quot;Ind,near dem&quot;,
+    &quot;Democrat, weak&quot;        = &quot;Not str democrat&quot;,
+    &quot;Democrat, strong&quot;      = &quot;Strong democrat&quot;
+  )) %&gt;%
+  count(partyid)</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    partyid                   n
+##    &lt;fct&gt;                 &lt;int&gt;
+##  1 No answer               154
+##  2 Don&#39;t know                1
+##  3 Other party             393
+##  4 Republican, strong     2314
+##  5 Republican, weak       3032
+##  6 Independent, near rep  1791
+##  7 Independent            4119
+##  8 Independent, near dem  2499
+##  9 Democrat, weak         3690
+## 10 Democrat, strong       3490</code></pre>
+<p><code>fct_recode()</code> will leave levels that aren’t explicitly mentioned as is, and will warn you if you accidentally refer to a level that doesn’t exist.</p>
+<p>To combine groups, you can assign multiple old levels to the same new level:</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(partyid = fct_recode(partyid,
+    &quot;Republican, strong&quot;    = &quot;Strong republican&quot;,
+    &quot;Republican, weak&quot;      = &quot;Not str republican&quot;,
+    &quot;Independent, near rep&quot; = &quot;Ind,near rep&quot;,
+    &quot;Independent, near dem&quot; = &quot;Ind,near dem&quot;,
+    &quot;Democrat, weak&quot;        = &quot;Not str democrat&quot;,
+    &quot;Democrat, strong&quot;      = &quot;Strong democrat&quot;,
+    &quot;Other&quot;                 = &quot;No answer&quot;,
+    &quot;Other&quot;                 = &quot;Don&#39;t know&quot;,
+    &quot;Other&quot;                 = &quot;Other party&quot;
+  )) %&gt;%
+  count(partyid)</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##   partyid                   n
+##   &lt;fct&gt;                 &lt;int&gt;
+## 1 Other                   548
+## 2 Republican, strong     2314
+## 3 Republican, weak       3032
+## 4 Independent, near rep  1791
+## 5 Independent            4119
+## 6 Independent, near dem  2499
+## 7 Democrat, weak         3690
+## 8 Democrat, strong       3490</code></pre>
+<p>You must use this technique with care: if you group together categories that are truly different you will end up with misleading results.</p>
+<p>If you want to collapse a lot of levels, <code>fct_collapse()</code> is a useful variant of <code>fct_recode()</code>. For each new variable, you can provide a vector of old levels:</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(partyid = fct_collapse(partyid,
+    other = c(&quot;No answer&quot;, &quot;Don&#39;t know&quot;, &quot;Other party&quot;),
+    rep = c(&quot;Strong republican&quot;, &quot;Not str republican&quot;),
+    ind = c(&quot;Ind,near rep&quot;, &quot;Independent&quot;, &quot;Ind,near dem&quot;),
+    dem = c(&quot;Not str democrat&quot;, &quot;Strong democrat&quot;)
+  )) %&gt;%
+  count(partyid)</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   partyid     n
+##   &lt;fct&gt;   &lt;int&gt;
+## 1 other     548
+## 2 rep      5346
+## 3 ind      8409
+## 4 dem      7180</code></pre>
+<p>Sometimes you just want to lump together all the small groups to make a plot or table simpler. That’s the job of <code>fct_lump()</code>:</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(relig = fct_lump(relig)) %&gt;%
+  count(relig)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   relig          n
+##   &lt;fct&gt;      &lt;int&gt;
+## 1 Protestant 10846
+## 2 Other      10637</code></pre>
+<p>The default behaviour is to progressively lump together the smallest groups, ensuring that the aggregate is still the smallest group. In this case it’s not very helpful: it is true that the majority of Americans in this survey are Protestant, but we’ve probably over collapsed.</p>
+<p>Instead, we can use the <code>n</code> parameter to specify how many groups (excluding other) we want to keep:</p>
+<pre class="r"><code>gss_cat %&gt;%
+  mutate(relig = fct_lump(relig, n = 10)) %&gt;%
+  count(relig, sort = TRUE) %&gt;%
+  print(n = Inf)</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    relig                       n
+##    &lt;fct&gt;                   &lt;int&gt;
+##  1 Protestant              10846
+##  2 Catholic                 5124
+##  3 None                     3523
+##  4 Christian                 689
+##  5 Other                     458
+##  6 Jewish                    388
+##  7 Buddhism                  147
+##  8 Inter-nondenominational   109
+##  9 Moslem/islam              104
+## 10 Orthodox-christian         95</code></pre>
+<p><br></p>
+<div id="exercise-3" class="section level3">
+<h3>Exercise 3</h3>
+<ol style="list-style-type: decimal">
+<li>How have the proportions of people identifying as Democrat, Republican, andIndependent changed over time?</li>
+<li>How could you collapse <code>rincome</code> into a small set of categories?</li>
+</ol>
+<p><br></p>
+<p><a href="https://jrnold.github.io/r4ds-exercise-solutions/factors.html#modifying-factor-levels">Click here for solutions</a></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

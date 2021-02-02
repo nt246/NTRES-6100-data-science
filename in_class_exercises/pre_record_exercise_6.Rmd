@@ -1,0 +1,47 @@
+---
+title: "Lesson 6 exercises"
+author: "Nina"
+date: "4/7/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Exercise
+
+Add a new variable that shows the *proportion of confirmed cases* for which the outcome is still unknown (i.e. not counted as dead or recovered) for each country, and show only countries with more than 20,000 confirmed cases. 
+
+Which country has the lowest proportion of undetermined outcomes? Why?
+
+<br>
+<br>
+
+When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push)
+
+## Exercise
+
+How many countries have suffered more than 3,000 deaths so far, and which three countries have recorded the highest death counts?
+
+
+## Exercise
+
+Go back to our original dataset `coronavirus` and identify where and when the highest death count in a single day was observed. Hint: you can either use or `base::max` or `dplyr::arrange()`...  
+<br>
+The first case was confirmed in the US on [January 20 2020](https://www.nejm.org/doi/full/10.1056/NEJMoa2001191), marking the earliest day included in this dataset. When was the first confirmed case recorded in Denmark?
+
+<br>  
+
+<br>  
+
+When you're done, knit your RMarkdown file, and sync it to GitHub (pull, stage, commit, push)
+
+
+## Exercise
+Which day has had the highest total death count globally so far?
+
+
+## Optional exercise - if you have time
+The `month()` function from the package `lubridate` extracts the month from a date. How many countries already have > 1000 deaths in April?
+

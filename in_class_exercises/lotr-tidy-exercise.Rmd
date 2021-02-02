@@ -1,0 +1,80 @@
+---
+title: "Untitled"
+author: "Nina"
+date: "4/15/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+female <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Female.csv")
+male <- read.csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Male.csv")
+
+lotr_tidy <- bind_rows(female, male) %>% 
+  pivot_longer(c("Elf", "Hobbit", "Man"), names_to = "Race", values_to = "Words") %>% 
+  select(Film, Gender, Race, Words)
+
+write_csv(lotr_tidy, path = "lotr_tidy.csv")
+
+female
+
+
+
+# The total number of words spoken by each race across the entire trilogy
+
+#Based on untidy data
+races <- c("Elf", "Hobbit", "Man")
+sum <- apply(female[,races], 2, FUN = function(x) sum(x)) + apply(male[,races], 2, FUN = function(x) sum(x))
+
+#Based on tidy data
+lotr_tidy %>% 
+  group_by(Race) %>% 
+  summarize(total_words <- sum(Words))
+
+# or
+lotr_tidy %>% 
+  count(Race, wt = Words)
+
+
+# Now summarize by film
+
+sum <- apply(female[order(female$Film),races], 1, FUN = function(x) sum(x)) + apply(male[order(female$Film),races], 1, FUN = function(x) sum(x))
+
+
+lotr_tidy %>% 
+  count(Film, wt = Words)
+
+```
+# Coronavirus example
+```{r}
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus-csv/master/coronavirus_dataset.csv', col_types = cols(Province.State = col_character()))
+
+corona_wide <- coronavirus %>% 
+  pivot_wider(names_from = type, values_from = cases)
+
+corona_wide %>% 
+  filter(Country.Region == "US") %>% 
+  ggplot() +
+  geom_line(aes(x = date, y = death)) +
+  geom_line(aes(x = date, y = confirmed), col = "red")
+
+
+```
+
+Unite and separate
+```{r}
+coronavirus_sepdate <- coronavirus %>% 
+  separate(date, into = c("year", "month", "day"), sep = "-")
+
+
+coronavirus_sepdate %>% 
+  unite("month-day", month, day, sep = "-")
+
+
+```
+

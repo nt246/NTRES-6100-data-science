@@ -1,0 +1,94 @@
+---
+title: "In-class exercise - lesson 9: Relational data"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Practicing `join` functions
+
+#### This exercise is borrowed from the [STAT545 course at UBC](https://stat545guidebook.netlify.app/tibble-joins.html)
+
+For this exercise, we will need two data files from Joey Bernhardt's R package `singer`. We have to first load the `tidyverse` library, then we can load these datasets from the STAT545 GitHub repo with the following lines of code:
+
+
+<!---The following chunk allows errors when knitting--->
+
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+## Exercise 1: `singer`
+
+The package `singer` comes with two smallish data frames about songs. Let's first import them and take a look at them (after minor modifications by renaming and shuffling):
+
+Import the data
+```{r}
+
+library(tidyverse)
+
+songs <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/songs.csv")
+locations <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/loc.csv")
+
+```
+
+```{r}
+(time <- as_tibble(songs) %>% 
+   rename(song = title))
+```
+
+```{r}
+(album <- as_tibble(locations) %>% 
+   select(title, everything()) %>% 
+   rename(album = release,
+          song  = title))
+```
+
+
+1. We really care about the songs in `time`. But, which of those songs do we know its corresponding album?
+
+```{r}
+time %>% 
+  FILL_THIS_IN(album, by = FILL_THIS_IN)
+```
+
+2. Go ahead and add the corresponding albums to the `time` tibble, being sure to preserve rows even if album info is not readily available.
+
+```{r}
+time %>% 
+  FILL_THIS_IN(album, by = FILL_THIS_IN)
+```
+
+3. Which songs do we have "year", but not album info?
+
+```{r}
+time %>% 
+  FILL_THIS_IN(album, by = "song")
+```
+
+4. Which artists are in `time`, but not in `album`?
+
+```{r}
+time %>% 
+  anti_join(album, by = "FILL_THIS_IN")
+```
+
+5. You've come across these two tibbles, and just wish all the info was available in one tibble. What would you do?
+
+```{r}
+FILL_THIS_IN %>% 
+  FILL_THIS_IN(FILL_THIS_IN, by = "song")
+```
+
+
+## Exercise 2: Exploring the `nycflights13` datasets
+
+Is there a relationship between the age of a plane and its delays? Talk through how you would address this question, then start writing code. Make sure to load the nycflights13 package (install it first if you don't already have it) so you can examine the datasets.
+
+Hints: The `flights` dataset has information about all flights that departed NYC in 2013. Have a look at the variable names. The dataset `planes` has a variable named year, with the year in which the plane was built.
+
+
+

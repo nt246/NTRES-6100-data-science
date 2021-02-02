@@ -1,0 +1,165 @@
+---
+title: "Pre-course survey results"
+output: 
+  github_document: 
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load required packages
+
+```{r message=F, warning=F}
+library(tidyverse)
+library(cowplot)
+library(knitr)
+library(googlesheets4)
+library(janitor)
+library(ggwordcloud)
+library(stopwords)
+library(viridis)
+```
+
+## Read in the data from Google Sheet
+
+```{r message=F, warning=F, results='hide'}
+survey_url <- "https://docs.google.com/spreadsheets/d/1grWdJmZ2y1F9t8r4W_jtxcKVXu59JO9yeT5fmKMpY8k/edit#gid=1474005795"
+survey_raw <- read_sheet(survey_url) %>% select(-(1:2))
+```
+
+## Show first few rows of raw data
+
+```{r message=F, warning=F}
+survey_raw %>% head(n=2) %>% kable()
+```
+
+## Data tidying and transformation
+
+```{r message=F, warning=F}
+## clean column names, remove one duplicated entry, parce certain columns, factor relevel the degree program column, and clean the department column
+survey <- survey_raw %>% 
+  clean_names() %>%
+  rename(department=department_optional, 
+         year_in_your_program_or_position = year_in_your_program_position, 
+         ntres_6600=did_you_take_the_ntres_6600_research_data_management_seminar_this_winter) %>%
+  filter(department != "CALS" | is.na(department)) %>%
+  mutate(year_in_your_program_or_position=as.character(year_in_your_program_or_position)) %>%
+  mutate(degree_program_or_position=fct_relevel(degree_program_or_position, levels = c("Bachelor", "Master", "PhD", "Postdoc", "Faculty"))) %>%
+  mutate(department=ifelse(department %in% c("DNR", "NR"), "Natural Resources", department)) %>%
+  mutate(department=ifelse(department %in% c("Department of Ecology and Evolutionary Biology"), "EEB", department)) %>%
+  mutate(department=ifelse(department %in% c("Molecular Biology and Genetics", "Molecular biology and genetics (MBG)"), "MBG", department)) %>%
+  mutate(department=ifelse(department %in% c("Biological and Environmental Engineering"), "BEE", department))
+
+## show the first few rows
+survey %>% head(n=2) %>% kable()
+
+## pivot longer with regard to experience level columns, add a column to differentiate general vs. r experience, shorten some strings, and factor relevel the experience level column
+survey_longer <- pivot_longer(survey, cols = 5:14, names_to = "experience",  values_to = "experience_level") %>%
+  mutate(experience_type=ifelse(str_detect(experience, "please_describe_your_experience_level_with_"), "general_experience", "r_experience")) %>%
+  mutate(experience=str_remove(experience, "please_describe_your_experience_level_with_")) %>%
+  mutate(experience=str_remove(experience, "how_would_you_describe_your_experience_level_with_performing_the_following_tasks_in_r_")) %>%
+  mutate(experience_level=fct_relevel(experience_level, levels = c("None", "Novice", "Intermediate", "Advanced"))) %>%
+  mutate(experience=fct_relevel(experience, levels = c("any_programming_language", "r", "r_studio", "tidyverse_packages_in_r", "r_markdown", "git_and_git_hub", "data_wrangling", "data_visualization", "data_analysis", "programming")))
+
+## show the first few rows
+survey_longer %>% head(n=2) %>% kable()
+```
+
+## Class stats
+
+#### Department
+
+```{r message=F, warning=F}
+count(survey, department) %>% filter(!is.na(department)) %>% 
+  ggplot(aes(x=department, y=n, label=n)) +
+  geom_col() +
+  geom_label(aes(y=n+0.3)) +
+  coord_flip() +
+  theme_cowplot()
+```
+
+#### Degree program / position
+
+```{r message=F, warning=F}
+count(survey, degree_program_or_position) %>%
+  ggplot(aes(x=degree_program_or_position, y=n, label=n)) +
+  geom_col() +
+  geom_label(aes(y=n+1)) +
+  coord_flip() +
+  theme_cowplot()
+```
+
+#### Year in degree program / position
+
+```{r message=F, warning=F, fig.width=8, fig.height=2}
+count(survey, degree_program_or_position, year_in_your_program_or_position) %>%
+  rename(year=year_in_your_program_or_position) %>%
+  ggplot(aes(x=year, y=n, label=n)) +
+  geom_col(aes(fill=year)) +
+  geom_text(aes(y=n+0.5)) +
+  ylim(c(0,7)) +
+  facet_wrap(~degree_program_or_position, nrow = 1) +
+  scale_fill_viridis_d() +
+  theme_cowplot()
+```
+
+#### NTRES 6600
+
+```{r message=F, warning=F, fig.width=5, fig.height=5}
+count(survey, ntres_6600) %>%
+ggplot(aes(x="", y=n, label=paste(ntres_6600, "=", n))) +
+  geom_bar(width = 1, aes(fill=ntres_6600), stat = "identity") +
+  geom_label(aes(y=n-3)) +
+  coord_polar("y", start=0) +
+  scale_fill_viridis_d() +
+  theme_void()
+```
+
+## General experience level
+
+```{r message=F, warning=F, fig.width=9, fig.height=6}
+## write a function to automate this kind of plot
+bar_plot_experience_level <- function(x, nrow=1){
+  x %>%
+    count(experience_level, experience) %>%
+    ggplot(aes(x=experience_level, y=n, fill=experience_level)) +
+    geom_col(position="dodge") +
+    geom_text(position="dodge", aes(label=n, y=n+1)) +
+    facet_wrap(~experience, nrow = nrow) +
+    scale_fill_viridis_d() +
+    theme_cowplot() +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+}
+filter(survey_longer, experience_type=="general_experience") %>%
+  bar_plot_experience_level(nrow=2)
+```
+
+## R experience level
+
+```{r message=F, warning=F, fig.width=12, fig.height=3}
+## Reuse the previous function
+filter(survey_longer, experience_type=="r_experience") %>%
+  bar_plot_experience_level()
+```
+
+## Motivation
+
+```{r message=F, warning=F, fig.width=10, fig.height=8}
+set.seed(42)
+survey$why_do_you_want_to_take_this_class %>%
+  str_split(pattern = "[^a-zA-Z]") %>%
+  as_vector() %>%
+  str_to_lower() %>%
+  tibble(word=.) %>%
+  count(word) %>%
+  filter(! word %in% c("", "s", "ve", "can", "also", "want", "use", "used", "know", "even", "like", "get", "using", "around", stopwords(language = "english")), n>1) %>%
+  ggplot(aes(label=word, size=log(n), color=as.character(n))) +
+  geom_text_wordcloud_area(shape = "diamond", eccentricity=0.6) +
+  scale_size_area(max_size = 24) +
+  scale_color_viridis_d() +
+  theme_minimal()
+```
+

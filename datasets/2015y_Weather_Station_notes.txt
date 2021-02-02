@@ -1,0 +1,16 @@
+Item-Unit-Description
+AMB_TEMP-Celsius-Ambient air temperature
+CO-ppm-Carbon monoxide
+NO-ppb-Nitric oxide
+NO2-ppb-Nitrogen dioxide
+NOx-ppb-Nitrogen oxides
+O3-ppb-Ozone
+PM10-μg/m3-Particulate matter with a diameter between 2.5 and 10 μm
+PM2.5-μg/m3-Particulate matter with a diameter of 2.5 μm or less
+RAINFALL-mm-Rainfall
+RH-%-Relative humidity
+SO2-ppb-Sulfur dioxide
+WD_HR-degress-Wind direction (The average of hour)
+WIND_DIREC-degress-Wind direction (The average of last ten minutes per hour)
+WIND_SPEED-m/sec-Wind speed (The average of last ten minutes per hour)
+WS_HR-m/sec-Wind speed (The average of hour)

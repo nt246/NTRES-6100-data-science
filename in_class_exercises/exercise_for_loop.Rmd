@@ -1,0 +1,134 @@
+---
+title: "In class exercise: iteration with for loop"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r echo = TRUE, eval=TRUE, message=F, warning=F}
+library(tidyverse)
+library(gapminder)
+```
+
+#### 1. Write a script that loops through the gapminder data by continent and prints out whether the mean life expectancy is smaller or larger than 50 years.
+
+Solution 1.
+
+```{r}
+continent_gapminder <- gapminder %>%
+  group_by(continent) %>%
+  summarize(mean_lifeExp = mean(lifeExp))
+continent_list <- unique(gapminder$continent)
+for (cont in continent_list) {
+  each_continent <- filter(continent_gapminder, continent == cont)$mean_lifeExp
+  if (each_continent > 50) {
+  print(paste("Average life expectancy in", cont, "is greater than 50", sep = " "))
+  }
+  else {
+    print(paste("Average life expectancy in", cont, "is less than 50", sep = " "))
+  }
+}
+```
+
+Solution 2.
+
+```{r}
+continents <- unique(gapminder$continent)
+for (cont in continents) {
+  temp <- gapminder %>% 
+    filter(continent == cont) %>% 
+    summarize(mean_lifeExp = mean(lifeExp))
+  if (temp$mean_lifeExp < 50) {
+    print(paste("Average Life Expectancy in", cont, "is < 50"))
+  } else {
+    print(paste("Average Life Expectancy in", cont, "is > 50"))
+  }
+}
+```
+
+Solution 3.
+
+```{r}
+for (c in unique(gapminder$continent)){
+  mean_life_exp <- filter(gapminder, continent == c) %>%
+    .$lifeExp %>%
+    mean()
+  if (mean_life_exp < 50){
+    cat("Average life expectancy in", c, "is less than 50. \n")
+  } else {
+    cat("Average life expectancy in", c, "is greater than 50. \n")
+  }
+}
+```
+
+#### 2. Modify the script from above to loop over each country. This time print out whether the life expectancy is smaller than 50, between 50 and 70, or greater than 70.
+
+Solution 1.
+
+```{r}
+country_list <- unique(gapminder$country)
+
+for (cont in country_list) {  
+  temp <- gapminder %>% 
+    filter(country == cont) %>% 
+    summarize(mean_lifeExp = mean(lifeExp))
+  
+  if (temp$mean_lifeExp < 50) {
+    print(paste("Average Life Expectancy in", cont, "is <50"))
+  } else if (temp$mean_lifeExp >= 50 & temp$mean_lifeExp < 70) {
+    print(paste("Average Life Expectancy in", cont, "is between 50 and 70")) 
+  } else {
+    print(paste("Average Life Expectancy in", cont, "is >70")) 
+  }
+}
+```
+
+Solution 2. 
+
+```{r eval=FALSE}
+for (c in unique(gapminder$country)){
+  mean_life_exp <- filter(gapminder, country == c) %>%
+    .$lifeExp %>%
+    mean()
+  if (mean_life_exp < 50){
+    cat("Average life expectancy in", c, "is less than 50. \n")
+  } else if (mean_life_exp >= 50 & mean_life_exp < 70) {
+    cat("Average life expectancy in", c, "is between 50 and 70. \n")
+    } else {
+    cat("Average life expectancy in", c, "is more than 70. \n")
+  }
+}
+```
+
+#### 3. Use an if() statement to print a suitable message reporting whether there are any records from 2002 in the gapminder dataset. Now do the same for 2012.
+
+Solution 1.
+
+```{r}
+yr <- 2002
+if (nrow(filter(gapminder, year == yr)) > 0) {
+  print(paste("The gapminder does have records from", yr))
+} else {
+  print(paste("The gapminder does not have records from", yr))
+}
+yr <- 2012
+if (nrow(filter(gapminder, year == yr)) > 0) {
+  print(paste("The gapminder does have records from", yr))
+} else {
+  print(paste("The gapminder does not have records from", yr))
+}
+```
+
+Solution 2.
+
+```{r}
+for (year in c(2002, 2012)) {
+  if (year %in% gapminder$year){
+    cat("Record(s) for the year ", year, " found.\n")
+  } else {
+    cat("Record(s) for the year ", year, " not found.\n")
+}
+}
+```

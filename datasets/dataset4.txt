@@ -1,0 +1,4 @@
+Name Weight Price
+apple 1kg 2,9€ / This is a comment
+orange 2kg 4,9€
+durian 10kg 19,9€

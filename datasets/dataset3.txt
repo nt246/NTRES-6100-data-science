@@ -1,0 +1,6 @@
+Table of fruits
+09/25/18
+/Name/;/Weight/;/Price/
+/apple/;1;2.9
+/orange/;2;Not Available
+/durian/;?;19.9

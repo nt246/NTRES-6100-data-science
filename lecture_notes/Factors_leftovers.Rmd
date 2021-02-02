@@ -1,0 +1,32 @@
+---
+title: "Factors leftovers"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Learning objectives 
+
+Re-order the levels of a factor
+Re-name and combine the levels of a factor
+
+
+## Part 2: Factors in R
+
+In R, factors are used to work with categorical variables, variables that have a fixed and known set of possible values. They are also useful when you want to display character vectors in a non-alphabetical order. The values a factor can take on are called the levels. When working with factors, the two most common operations are changing the order of the levels, and changing the values (names) of the levels. 
+
+To work with factors, we’ll use the `forcats` package, which is part of the core `tidyverse`. It provides tools for dealing with **cat**egorical variables (and it’s an anagram of factors!) using a wide range of helpers for working with factors.
+
+We'll work through [Chapters 15.3-15.6 of R for Data Science](https://r4ds.had.co.nz/factors.html#general-social-survey) to explore some of the functionality.
+
+<br>
+
+### Optional exercises (from R for Data Science)
+
+1.  How have the proportions of people identifying as Democrat, Republican, and
+    Independent changed over time?
+1.  How could you collapse `rincome` into a small set of categories?
+
+

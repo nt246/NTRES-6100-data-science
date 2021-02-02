@@ -1,0 +1,2332 @@
+date,province,country,lat,long,type,cases
+2020-01-22,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-23,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-24,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-25,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-26,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-27,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-28,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-29,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-30,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-01-31,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-01,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-02,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-03,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-04,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-05,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-06,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-07,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-08,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-09,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-10,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-11,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-12,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-13,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-14,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-15,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-16,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-17,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-18,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-19,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-20,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-21,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-22,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-23,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-24,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-25,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-26,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-27,NA,Denmark,56.2639,9.5018,confirmed,1
+2020-02-28,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-02-29,NA,Denmark,56.2639,9.5018,confirmed,2
+2020-03-01,NA,Denmark,56.2639,9.5018,confirmed,1
+2020-03-02,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-03-03,NA,Denmark,56.2639,9.5018,confirmed,2
+2020-03-04,NA,Denmark,56.2639,9.5018,confirmed,4
+2020-03-05,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-03-06,NA,Denmark,56.2639,9.5018,confirmed,13
+2020-03-07,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-03-08,NA,Denmark,56.2639,9.5018,confirmed,12
+2020-03-09,NA,Denmark,56.2639,9.5018,confirmed,55
+2020-03-10,NA,Denmark,56.2639,9.5018,confirmed,172
+2020-03-11,NA,Denmark,56.2639,9.5018,confirmed,180
+2020-03-12,NA,Denmark,56.2639,9.5018,confirmed,173
+2020-03-13,NA,Denmark,56.2639,9.5018,confirmed,186
+2020-03-14,NA,Denmark,56.2639,9.5018,confirmed,26
+2020-03-15,NA,Denmark,56.2639,9.5018,confirmed,37
+2020-03-16,NA,Denmark,56.2639,9.5018,confirmed,50
+2020-03-17,NA,Denmark,56.2639,9.5018,confirmed,63
+2020-03-18,NA,Denmark,56.2639,9.5018,confirmed,80
+2020-03-19,NA,Denmark,56.2639,9.5018,confirmed,94
+2020-03-20,NA,Denmark,56.2639,9.5018,confirmed,104
+2020-03-21,NA,Denmark,56.2639,9.5018,confirmed,71
+2020-03-22,NA,Denmark,56.2639,9.5018,confirmed,69
+2020-03-23,NA,Denmark,56.2639,9.5018,confirmed,55
+2020-03-24,NA,Denmark,56.2639,9.5018,confirmed,141
+2020-03-25,NA,Denmark,56.2639,9.5018,confirmed,133
+2020-03-26,NA,Denmark,56.2639,9.5018,confirmed,153
+2020-03-27,NA,Denmark,56.2639,9.5018,confirmed,169
+2020-03-28,NA,Denmark,56.2639,9.5018,confirmed,155
+2020-03-29,NA,Denmark,56.2639,9.5018,confirmed,194
+2020-03-30,NA,Denmark,56.2639,9.5018,confirmed,182
+2020-03-31,NA,Denmark,56.2639,9.5018,confirmed,283
+2020-04-01,NA,Denmark,56.2639,9.5018,confirmed,247
+2020-04-02,NA,Denmark,56.2639,9.5018,confirmed,279
+2020-04-03,NA,Denmark,56.2639,9.5018,confirmed,371
+2020-04-04,NA,Denmark,56.2639,9.5018,confirmed,320
+2020-04-05,NA,Denmark,56.2639,9.5018,confirmed,292
+2020-04-06,NA,Denmark,56.2639,9.5018,confirmed,312
+2020-04-07,NA,Denmark,56.2639,9.5018,confirmed,390
+2020-04-08,NA,Denmark,56.2639,9.5018,confirmed,331
+2020-04-09,NA,Denmark,56.2639,9.5018,confirmed,233
+2020-04-10,NA,Denmark,56.2639,9.5018,confirmed,184
+2020-04-11,NA,Denmark,56.2639,9.5018,confirmed,177
+2020-04-12,NA,Denmark,56.2639,9.5018,confirmed,178
+2020-04-13,NA,Denmark,56.2639,9.5018,confirmed,144
+2020-04-14,NA,Denmark,56.2639,9.5018,confirmed,193
+2020-04-15,NA,Denmark,56.2639,9.5018,confirmed,170
+2020-04-16,NA,Denmark,56.2639,9.5018,confirmed,198
+2020-04-17,NA,Denmark,56.2639,9.5018,confirmed,194
+2020-04-18,NA,Denmark,56.2639,9.5018,confirmed,169
+2020-04-19,NA,Denmark,56.2639,9.5018,confirmed,142
+2020-04-20,NA,Denmark,56.2639,9.5018,confirmed,131
+2020-04-21,NA,Denmark,56.2639,9.5018,confirmed,180
+2020-04-22,NA,Denmark,56.2639,9.5018,confirmed,217
+2020-04-23,NA,Denmark,56.2639,9.5018,confirmed,161
+2020-04-24,NA,Denmark,56.2639,9.5018,confirmed,137
+2020-04-25,NA,Denmark,56.2639,9.5018,confirmed,235
+2020-04-26,NA,Denmark,56.2639,9.5018,confirmed,130
+2020-04-27,NA,Denmark,56.2639,9.5018,confirmed,123
+2020-04-28,NA,Denmark,56.2639,9.5018,confirmed,153
+2020-04-29,NA,Denmark,56.2639,9.5018,confirmed,157
+2020-04-30,NA,Denmark,56.2639,9.5018,confirmed,150
+2020-05-01,NA,Denmark,56.2639,9.5018,confirmed,153
+2020-05-02,NA,Denmark,56.2639,9.5018,confirmed,96
+2020-05-03,NA,Denmark,56.2639,9.5018,confirmed,116
+2020-05-04,NA,Denmark,56.2639,9.5018,confirmed,147
+2020-05-05,NA,Denmark,56.2639,9.5018,confirmed,151
+2020-05-06,NA,Denmark,56.2639,9.5018,confirmed,117
+2020-05-07,NA,Denmark,56.2639,9.5018,confirmed,145
+2020-05-08,NA,Denmark,56.2639,9.5018,confirmed,135
+2020-05-09,NA,Denmark,56.2639,9.5018,confirmed,101
+2020-05-10,NA,Denmark,56.2639,9.5018,confirmed,110
+2020-05-11,NA,Denmark,56.2639,9.5018,confirmed,84
+2020-05-12,NA,Denmark,56.2639,9.5018,confirmed,78
+2020-05-13,NA,Denmark,56.2639,9.5018,confirmed,76
+2020-05-14,NA,Denmark,56.2639,9.5018,confirmed,46
+2020-05-15,NA,Denmark,56.2639,9.5018,confirmed,78
+2020-05-16,NA,Denmark,56.2639,9.5018,confirmed,67
+2020-05-17,NA,Denmark,56.2639,9.5018,confirmed,69
+2020-05-18,NA,Denmark,56.2639,9.5018,confirmed,41
+2020-05-19,NA,Denmark,56.2639,9.5018,confirmed,76
+2020-05-20,NA,Denmark,56.2639,9.5018,confirmed,73
+2020-05-21,NA,Denmark,56.2639,9.5018,confirmed,65
+2020-05-22,NA,Denmark,56.2639,9.5018,confirmed,48
+2020-05-23,NA,Denmark,56.2639,9.5018,confirmed,59
+2020-05-24,NA,Denmark,56.2639,9.5018,confirmed,71
+2020-05-25,NA,Denmark,56.2639,9.5018,confirmed,27
+2020-05-26,NA,Denmark,56.2639,9.5018,confirmed,41
+2020-05-27,NA,Denmark,56.2639,9.5018,confirmed,52
+2020-05-28,NA,Denmark,56.2639,9.5018,confirmed,32
+2020-05-29,NA,Denmark,56.2639,9.5018,confirmed,81
+2020-05-30,NA,Denmark,56.2639,9.5018,confirmed,40
+2020-05-31,NA,Denmark,56.2639,9.5018,confirmed,36
+2020-06-01,NA,Denmark,56.2639,9.5018,confirmed,30
+2020-06-02,NA,Denmark,56.2639,9.5018,confirmed,35
+2020-06-03,NA,Denmark,56.2639,9.5018,confirmed,37
+2020-06-04,NA,Denmark,56.2639,9.5018,confirmed,40
+2020-06-05,NA,Denmark,56.2639,9.5018,confirmed,64
+2020-06-06,NA,Denmark,56.2639,9.5018,confirmed,49
+2020-06-07,NA,Denmark,56.2639,9.5018,confirmed,24
+2020-06-08,NA,Denmark,56.2639,9.5018,confirmed,14
+2020-06-09,NA,Denmark,56.2639,9.5018,confirmed,39
+2020-06-10,NA,Denmark,56.2639,9.5018,confirmed,15
+2020-06-11,NA,Denmark,56.2639,9.5018,confirmed,19
+2020-06-12,NA,Denmark,56.2639,9.5018,confirmed,64
+2020-06-13,NA,Denmark,56.2639,9.5018,confirmed,40
+2020-06-14,NA,Denmark,56.2639,9.5018,confirmed,54
+2020-06-15,NA,Denmark,56.2639,9.5018,confirmed,24
+2020-06-16,NA,Denmark,56.2639,9.5018,confirmed,33
+2020-06-17,NA,Denmark,56.2639,9.5018,confirmed,44
+2020-06-18,NA,Denmark,56.2639,9.5018,confirmed,50
+2020-06-19,NA,Denmark,56.2639,9.5018,confirmed,47
+2020-06-20,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-06-21,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-06-22,NA,Denmark,56.2639,9.5018,confirmed,136
+2020-06-23,NA,Denmark,56.2639,9.5018,confirmed,34
+2020-06-24,NA,Denmark,56.2639,9.5018,confirmed,54
+2020-06-25,NA,Denmark,56.2639,9.5018,confirmed,21
+2020-06-26,NA,Denmark,56.2639,9.5018,confirmed,39
+2020-06-27,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-06-28,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-06-29,NA,Denmark,56.2639,9.5018,confirmed,76
+2020-06-30,NA,Denmark,56.2639,9.5018,confirmed,17
+2020-07-01,NA,Denmark,56.2639,9.5018,confirmed,26
+2020-07-02,NA,Denmark,56.2639,9.5018,confirmed,21
+2020-07-03,NA,Denmark,56.2639,9.5018,confirmed,17
+2020-07-04,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-05,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-06,NA,Denmark,56.2639,9.5018,confirmed,46
+2020-07-07,NA,Denmark,56.2639,9.5018,confirmed,10
+2020-07-08,NA,Denmark,56.2639,9.5018,confirmed,12
+2020-07-09,NA,Denmark,56.2639,9.5018,confirmed,16
+2020-07-10,NA,Denmark,56.2639,9.5018,confirmed,30
+2020-07-11,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-12,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-13,NA,Denmark,56.2639,9.5018,confirmed,91
+2020-07-14,NA,Denmark,56.2639,9.5018,confirmed,24
+2020-07-15,NA,Denmark,56.2639,9.5018,confirmed,31
+2020-07-16,NA,Denmark,56.2639,9.5018,confirmed,32
+2020-07-17,NA,Denmark,56.2639,9.5018,confirmed,49
+2020-07-18,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-19,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-20,NA,Denmark,56.2639,9.5018,confirmed,89
+2020-07-21,NA,Denmark,56.2639,9.5018,confirmed,40
+2020-07-22,NA,Denmark,56.2639,9.5018,confirmed,48
+2020-07-23,NA,Denmark,56.2639,9.5018,confirmed,40
+2020-07-24,NA,Denmark,56.2639,9.5018,confirmed,48
+2020-07-25,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-26,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-07-27,NA,Denmark,56.2639,9.5018,confirmed,109
+2020-07-28,NA,Denmark,56.2639,9.5018,confirmed,30
+2020-07-29,NA,Denmark,56.2639,9.5018,confirmed,57
+2020-07-30,NA,Denmark,56.2639,9.5018,confirmed,91
+2020-07-31,NA,Denmark,56.2639,9.5018,confirmed,64
+2020-08-01,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-08-02,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-08-03,NA,Denmark,56.2639,9.5018,confirmed,207
+2020-08-04,NA,Denmark,56.2639,9.5018,confirmed,77
+2020-08-05,NA,Denmark,56.2639,9.5018,confirmed,112
+2020-08-06,NA,Denmark,56.2639,9.5018,confirmed,121
+2020-08-07,NA,Denmark,56.2639,9.5018,confirmed,136
+2020-08-08,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-08-09,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-08-10,NA,Denmark,56.2639,9.5018,confirmed,373
+2020-08-11,NA,Denmark,56.2639,9.5018,confirmed,144
+2020-08-12,NA,Denmark,56.2639,9.5018,confirmed,111
+2020-08-13,NA,Denmark,56.2639,9.5018,confirmed,144
+2020-08-14,NA,Denmark,56.2639,9.5018,confirmed,165
+2020-08-15,NA,Denmark,56.2639,9.5018,confirmed,104
+2020-08-16,NA,Denmark,56.2639,9.5018,confirmed,134
+2020-08-17,NA,Denmark,56.2639,9.5018,confirmed,123
+2020-08-18,NA,Denmark,56.2639,9.5018,confirmed,115
+2020-08-19,NA,Denmark,56.2639,9.5018,confirmed,85
+2020-08-20,NA,Denmark,56.2639,9.5018,confirmed,116
+2020-08-21,NA,Denmark,56.2639,9.5018,confirmed,71
+2020-08-22,NA,Denmark,56.2639,9.5018,confirmed,112
+2020-08-23,NA,Denmark,56.2639,9.5018,confirmed,78
+2020-08-24,NA,Denmark,56.2639,9.5018,confirmed,80
+2020-08-25,NA,Denmark,56.2639,9.5018,confirmed,83
+2020-08-26,NA,Denmark,56.2639,9.5018,confirmed,57
+2020-08-27,NA,Denmark,56.2639,9.5018,confirmed,90
+2020-08-28,NA,Denmark,56.2639,9.5018,confirmed,73
+2020-08-29,NA,Denmark,56.2639,9.5018,confirmed,79
+2020-08-30,NA,Denmark,56.2639,9.5018,confirmed,112
+2020-08-31,NA,Denmark,56.2639,9.5018,confirmed,94
+2020-09-01,NA,Denmark,56.2639,9.5018,confirmed,99
+2020-09-02,NA,Denmark,56.2639,9.5018,confirmed,111
+2020-09-03,NA,Denmark,56.2639,9.5018,confirmed,179
+2020-09-04,NA,Denmark,56.2639,9.5018,confirmed,173
+2020-09-05,NA,Denmark,56.2639,9.5018,confirmed,189
+2020-09-06,NA,Denmark,56.2639,9.5018,confirmed,147
+2020-09-07,NA,Denmark,56.2639,9.5018,confirmed,230
+2020-09-08,NA,Denmark,56.2639,9.5018,confirmed,243
+2020-09-09,NA,Denmark,56.2639,9.5018,confirmed,251
+2020-09-10,NA,Denmark,56.2639,9.5018,confirmed,317
+2020-09-11,NA,Denmark,56.2639,9.5018,confirmed,292
+2020-09-12,NA,Denmark,56.2639,9.5018,confirmed,341
+2020-09-13,NA,Denmark,56.2639,9.5018,confirmed,333
+2020-09-14,NA,Denmark,56.2639,9.5018,confirmed,347
+2020-09-15,NA,Denmark,56.2639,9.5018,confirmed,334
+2020-09-16,NA,Denmark,56.2639,9.5018,confirmed,0
+2020-09-17,NA,Denmark,56.2639,9.5018,confirmed,822
+2020-09-18,NA,Denmark,56.2639,9.5018,confirmed,454
+2020-09-19,NA,Denmark,56.2639,9.5018,confirmed,589
+2020-09-20,NA,Denmark,56.2639,9.5018,confirmed,469
+2020-09-21,NA,Denmark,56.2639,9.5018,confirmed,418
+2020-09-22,NA,Denmark,56.2639,9.5018,confirmed,476
+2020-09-23,NA,Denmark,56.2639,9.5018,confirmed,558
+2020-09-24,NA,Denmark,56.2639,9.5018,confirmed,559
+2020-09-25,NA,Denmark,56.2639,9.5018,confirmed,678
+2020-09-26,NA,Denmark,56.2639,9.5018,confirmed,619
+2020-09-27,NA,Denmark,56.2639,9.5018,confirmed,424
+2020-09-28,NA,Denmark,56.2639,9.5018,confirmed,435
+2020-09-29,NA,Denmark,56.2639,9.5018,confirmed,392
+2020-09-30,NA,Denmark,56.2639,9.5018,confirmed,534
+2020-10-01,NA,Denmark,56.2639,9.5018,confirmed,398
+2020-10-02,NA,Denmark,56.2639,9.5018,confirmed,536
+2020-10-03,NA,Denmark,56.2639,9.5018,confirmed,370
+2020-10-04,NA,Denmark,56.2639,9.5018,confirmed,378
+2020-10-05,NA,Denmark,56.2639,9.5018,confirmed,377
+2020-10-06,NA,Denmark,56.2639,9.5018,confirmed,322
+2020-01-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-31,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-02-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-03-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-03-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-03-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-03-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,6
+2020-03-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-03-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,7
+2020-03-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,29
+2020-03-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,11
+2020-03-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,14
+2020-03-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,8
+2020-03-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,12
+2020-03-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,23
+2020-03-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-03-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-03-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,10
+2020-03-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,8
+2020-03-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-03-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,11
+2020-03-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-03-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,9
+2020-03-31,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-04-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-04-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-04-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-04-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-04-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-04-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-04-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-04-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-04-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-04-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-05-31,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-06-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-07-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-07-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-07-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,22
+2020-07-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,6
+2020-07-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-07-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-07-31,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-08-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,14
+2020-08-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,25
+2020-08-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,25
+2020-08-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-08-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,8
+2020-08-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-08-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,12
+2020-08-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,21
+2020-08-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,23
+2020-08-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-08-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-08-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-08-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-08-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-08-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-08-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-08-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-08-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,26
+2020-08-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-08-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-08-31,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-07,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-08,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-09,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-10,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-11,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-12,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-09-13,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-09-14,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-15,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-09-16,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-17,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-18,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-19,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-09-20,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-09-21,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-09-22,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,11
+2020-09-23,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-09-24,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-09-25,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-09-26,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,2
+2020-09-27,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-28,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-09-29,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,3
+2020-09-30,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,4
+2020-10-01,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,5
+2020-10-02,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-10-03,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-10-04,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-10-05,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,1
+2020-10-06,Faroe Islands,Denmark,61.8926,-6.9118,confirmed,0
+2020-01-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-31,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-02-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-16,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-03-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-19,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-03-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-22,Greenland,Denmark,71.7069,-42.6043,confirmed,2
+2020-03-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-24,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-03-25,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-03-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-27,Greenland,Denmark,71.7069,-42.6043,confirmed,4
+2020-03-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-03-31,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-04,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-04-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-04-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-24,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-05-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-27,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-05-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-05-31,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-06-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-27,Greenland,Denmark,71.7069,-42.6043,confirmed,1
+2020-07-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-07-31,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-08-31,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-07,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-08,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-09,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-10,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-11,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-12,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-13,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-14,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-15,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-16,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-17,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-18,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-19,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-20,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-21,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-22,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-23,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-24,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-25,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-26,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-27,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-28,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-29,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-09-30,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-01,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-02,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-03,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-04,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-05,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-10-06,Greenland,Denmark,71.7069,-42.6043,confirmed,0
+2020-01-22,NA,Denmark,56.2639,9.5018,death,0
+2020-01-23,NA,Denmark,56.2639,9.5018,death,0
+2020-01-24,NA,Denmark,56.2639,9.5018,death,0
+2020-01-25,NA,Denmark,56.2639,9.5018,death,0
+2020-01-26,NA,Denmark,56.2639,9.5018,death,0
+2020-01-27,NA,Denmark,56.2639,9.5018,death,0
+2020-01-28,NA,Denmark,56.2639,9.5018,death,0
+2020-01-29,NA,Denmark,56.2639,9.5018,death,0
+2020-01-30,NA,Denmark,56.2639,9.5018,death,0
+2020-01-31,NA,Denmark,56.2639,9.5018,death,0
+2020-02-01,NA,Denmark,56.2639,9.5018,death,0
+2020-02-02,NA,Denmark,56.2639,9.5018,death,0
+2020-02-03,NA,Denmark,56.2639,9.5018,death,0
+2020-02-04,NA,Denmark,56.2639,9.5018,death,0
+2020-02-05,NA,Denmark,56.2639,9.5018,death,0
+2020-02-06,NA,Denmark,56.2639,9.5018,death,0
+2020-02-07,NA,Denmark,56.2639,9.5018,death,0
+2020-02-08,NA,Denmark,56.2639,9.5018,death,0
+2020-02-09,NA,Denmark,56.2639,9.5018,death,0
+2020-02-10,NA,Denmark,56.2639,9.5018,death,0
+2020-02-11,NA,Denmark,56.2639,9.5018,death,0
+2020-02-12,NA,Denmark,56.2639,9.5018,death,0
+2020-02-13,NA,Denmark,56.2639,9.5018,death,0
+2020-02-14,NA,Denmark,56.2639,9.5018,death,0
+2020-02-15,NA,Denmark,56.2639,9.5018,death,0
+2020-02-16,NA,Denmark,56.2639,9.5018,death,0
+2020-02-17,NA,Denmark,56.2639,9.5018,death,0
+2020-02-18,NA,Denmark,56.2639,9.5018,death,0
+2020-02-19,NA,Denmark,56.2639,9.5018,death,0
+2020-02-20,NA,Denmark,56.2639,9.5018,death,0
+2020-02-21,NA,Denmark,56.2639,9.5018,death,0
+2020-02-22,NA,Denmark,56.2639,9.5018,death,0
+2020-02-23,NA,Denmark,56.2639,9.5018,death,0
+2020-02-24,NA,Denmark,56.2639,9.5018,death,0
+2020-02-25,NA,Denmark,56.2639,9.5018,death,0
+2020-02-26,NA,Denmark,56.2639,9.5018,death,0
+2020-02-27,NA,Denmark,56.2639,9.5018,death,0
+2020-02-28,NA,Denmark,56.2639,9.5018,death,0
+2020-02-29,NA,Denmark,56.2639,9.5018,death,0
+2020-03-01,NA,Denmark,56.2639,9.5018,death,0
+2020-03-02,NA,Denmark,56.2639,9.5018,death,0
+2020-03-03,NA,Denmark,56.2639,9.5018,death,0
+2020-03-04,NA,Denmark,56.2639,9.5018,death,0
+2020-03-05,NA,Denmark,56.2639,9.5018,death,0
+2020-03-06,NA,Denmark,56.2639,9.5018,death,0
+2020-03-07,NA,Denmark,56.2639,9.5018,death,0
+2020-03-08,NA,Denmark,56.2639,9.5018,death,0
+2020-03-09,NA,Denmark,56.2639,9.5018,death,0
+2020-03-10,NA,Denmark,56.2639,9.5018,death,0
+2020-03-11,NA,Denmark,56.2639,9.5018,death,0
+2020-03-12,NA,Denmark,56.2639,9.5018,death,0
+2020-03-13,NA,Denmark,56.2639,9.5018,death,0
+2020-03-14,NA,Denmark,56.2639,9.5018,death,1
+2020-03-15,NA,Denmark,56.2639,9.5018,death,1
+2020-03-16,NA,Denmark,56.2639,9.5018,death,1
+2020-03-17,NA,Denmark,56.2639,9.5018,death,1
+2020-03-18,NA,Denmark,56.2639,9.5018,death,0
+2020-03-19,NA,Denmark,56.2639,9.5018,death,2
+2020-03-20,NA,Denmark,56.2639,9.5018,death,3
+2020-03-21,NA,Denmark,56.2639,9.5018,death,4
+2020-03-22,NA,Denmark,56.2639,9.5018,death,0
+2020-03-23,NA,Denmark,56.2639,9.5018,death,11
+2020-03-24,NA,Denmark,56.2639,9.5018,death,8
+2020-03-25,NA,Denmark,56.2639,9.5018,death,2
+2020-03-26,NA,Denmark,56.2639,9.5018,death,7
+2020-03-27,NA,Denmark,56.2639,9.5018,death,11
+2020-03-28,NA,Denmark,56.2639,9.5018,death,13
+2020-03-29,NA,Denmark,56.2639,9.5018,death,7
+2020-03-30,NA,Denmark,56.2639,9.5018,death,5
+2020-03-31,NA,Denmark,56.2639,9.5018,death,13
+2020-04-01,NA,Denmark,56.2639,9.5018,death,14
+2020-04-02,NA,Denmark,56.2639,9.5018,death,19
+2020-04-03,NA,Denmark,56.2639,9.5018,death,16
+2020-04-04,NA,Denmark,56.2639,9.5018,death,22
+2020-04-05,NA,Denmark,56.2639,9.5018,death,18
+2020-04-06,NA,Denmark,56.2639,9.5018,death,8
+2020-04-07,NA,Denmark,56.2639,9.5018,death,16
+2020-04-08,NA,Denmark,56.2639,9.5018,death,15
+2020-04-09,NA,Denmark,56.2639,9.5018,death,19
+2020-04-10,NA,Denmark,56.2639,9.5018,death,10
+2020-04-11,NA,Denmark,56.2639,9.5018,death,13
+2020-04-12,NA,Denmark,56.2639,9.5018,death,13
+2020-04-13,NA,Denmark,56.2639,9.5018,death,12
+2020-04-14,NA,Denmark,56.2639,9.5018,death,14
+2020-04-15,NA,Denmark,56.2639,9.5018,death,10
+2020-04-16,NA,Denmark,56.2639,9.5018,death,12
+2020-04-17,NA,Denmark,56.2639,9.5018,death,15
+2020-04-18,NA,Denmark,56.2639,9.5018,death,10
+2020-04-19,NA,Denmark,56.2639,9.5018,death,9
+2020-04-20,NA,Denmark,56.2639,9.5018,death,9
+2020-04-21,NA,Denmark,56.2639,9.5018,death,6
+2020-04-22,NA,Denmark,56.2639,9.5018,death,14
+2020-04-23,NA,Denmark,56.2639,9.5018,death,10
+2020-04-24,NA,Denmark,56.2639,9.5018,death,9
+2020-04-25,NA,Denmark,56.2639,9.5018,death,15
+2020-04-26,NA,Denmark,56.2639,9.5018,death,4
+2020-04-27,NA,Denmark,56.2639,9.5018,death,5
+2020-04-28,NA,Denmark,56.2639,9.5018,death,7
+2020-04-29,NA,Denmark,56.2639,9.5018,death,9
+2020-04-30,NA,Denmark,56.2639,9.5018,death,9
+2020-05-01,NA,Denmark,56.2639,9.5018,death,8
+2020-05-02,NA,Denmark,56.2639,9.5018,death,15
+2020-05-03,NA,Denmark,56.2639,9.5018,death,9
+2020-05-04,NA,Denmark,56.2639,9.5018,death,9
+2020-05-05,NA,Denmark,56.2639,9.5018,death,10
+2020-05-06,NA,Denmark,56.2639,9.5018,death,3
+2020-05-07,NA,Denmark,56.2639,9.5018,death,8
+2020-05-08,NA,Denmark,56.2639,9.5018,death,8
+2020-05-09,NA,Denmark,56.2639,9.5018,death,4
+2020-05-10,NA,Denmark,56.2639,9.5018,death,3
+2020-05-11,NA,Denmark,56.2639,9.5018,death,4
+2020-05-12,NA,Denmark,56.2639,9.5018,death,-6
+2020-05-13,NA,Denmark,56.2639,9.5018,death,6
+2020-05-14,NA,Denmark,56.2639,9.5018,death,4
+2020-05-15,NA,Denmark,56.2639,9.5018,death,0
+2020-05-16,NA,Denmark,56.2639,9.5018,death,6
+2020-05-17,NA,Denmark,56.2639,9.5018,death,4
+2020-05-18,NA,Denmark,56.2639,9.5018,death,1
+2020-05-19,NA,Denmark,56.2639,9.5018,death,3
+2020-05-20,NA,Denmark,56.2639,9.5018,death,3
+2020-05-21,NA,Denmark,56.2639,9.5018,death,7
+2020-05-22,NA,Denmark,56.2639,9.5018,death,0
+2020-05-23,NA,Denmark,56.2639,9.5018,death,0
+2020-05-24,NA,Denmark,56.2639,9.5018,death,1
+2020-05-25,NA,Denmark,56.2639,9.5018,death,1
+2020-05-26,NA,Denmark,56.2639,9.5018,death,0
+2020-05-27,NA,Denmark,56.2639,9.5018,death,2
+2020-05-28,NA,Denmark,56.2639,9.5018,death,3
+2020-05-29,NA,Denmark,56.2639,9.5018,death,0
+2020-05-30,NA,Denmark,56.2639,9.5018,death,3
+2020-05-31,NA,Denmark,56.2639,9.5018,death,3
+2020-06-01,NA,Denmark,56.2639,9.5018,death,2
+2020-06-02,NA,Denmark,56.2639,9.5018,death,4
+2020-06-03,NA,Denmark,56.2639,9.5018,death,0
+2020-06-04,NA,Denmark,56.2639,9.5018,death,2
+2020-06-05,NA,Denmark,56.2639,9.5018,death,4
+2020-06-06,NA,Denmark,56.2639,9.5018,death,1
+2020-06-07,NA,Denmark,56.2639,9.5018,death,2
+2020-06-08,NA,Denmark,56.2639,9.5018,death,4
+2020-06-09,NA,Denmark,56.2639,9.5018,death,0
+2020-06-10,NA,Denmark,56.2639,9.5018,death,0
+2020-06-11,NA,Denmark,56.2639,9.5018,death,0
+2020-06-12,NA,Denmark,56.2639,9.5018,death,1
+2020-06-13,NA,Denmark,56.2639,9.5018,death,3
+2020-06-14,NA,Denmark,56.2639,9.5018,death,0
+2020-06-15,NA,Denmark,56.2639,9.5018,death,1
+2020-06-16,NA,Denmark,56.2639,9.5018,death,0
+2020-06-17,NA,Denmark,56.2639,9.5018,death,0
+2020-06-18,NA,Denmark,56.2639,9.5018,death,2
+2020-06-19,NA,Denmark,56.2639,9.5018,death,0
+2020-06-20,NA,Denmark,56.2639,9.5018,death,0
+2020-06-21,NA,Denmark,56.2639,9.5018,death,0
+2020-06-22,NA,Denmark,56.2639,9.5018,death,2
+2020-06-23,NA,Denmark,56.2639,9.5018,death,1
+2020-06-24,NA,Denmark,56.2639,9.5018,death,0
+2020-06-25,NA,Denmark,56.2639,9.5018,death,0
+2020-06-26,NA,Denmark,56.2639,9.5018,death,1
+2020-06-27,NA,Denmark,56.2639,9.5018,death,0
+2020-06-28,NA,Denmark,56.2639,9.5018,death,0
+2020-06-29,NA,Denmark,56.2639,9.5018,death,1
+2020-06-30,NA,Denmark,56.2639,9.5018,death,0
+2020-07-01,NA,Denmark,56.2639,9.5018,death,1
+2020-07-02,NA,Denmark,56.2639,9.5018,death,0
+2020-07-03,NA,Denmark,56.2639,9.5018,death,0
+2020-07-04,NA,Denmark,56.2639,9.5018,death,0
+2020-07-05,NA,Denmark,56.2639,9.5018,death,0
+2020-07-06,NA,Denmark,56.2639,9.5018,death,1
+2020-07-07,NA,Denmark,56.2639,9.5018,death,2
+2020-07-08,NA,Denmark,56.2639,9.5018,death,0
+2020-07-09,NA,Denmark,56.2639,9.5018,death,0
+2020-07-10,NA,Denmark,56.2639,9.5018,death,0
+2020-07-11,NA,Denmark,56.2639,9.5018,death,0
+2020-07-12,NA,Denmark,56.2639,9.5018,death,0
+2020-07-13,NA,Denmark,56.2639,9.5018,death,1
+2020-07-14,NA,Denmark,56.2639,9.5018,death,0
+2020-07-15,NA,Denmark,56.2639,9.5018,death,0
+2020-07-16,NA,Denmark,56.2639,9.5018,death,0
+2020-07-17,NA,Denmark,56.2639,9.5018,death,1
+2020-07-18,NA,Denmark,56.2639,9.5018,death,0
+2020-07-19,NA,Denmark,56.2639,9.5018,death,0
+2020-07-20,NA,Denmark,56.2639,9.5018,death,0
+2020-07-21,NA,Denmark,56.2639,9.5018,death,0
+2020-07-22,NA,Denmark,56.2639,9.5018,death,0
+2020-07-23,NA,Denmark,56.2639,9.5018,death,1
+2020-07-24,NA,Denmark,56.2639,9.5018,death,1
+2020-07-25,NA,Denmark,56.2639,9.5018,death,0
+2020-07-26,NA,Denmark,56.2639,9.5018,death,0
+2020-07-27,NA,Denmark,56.2639,9.5018,death,0
+2020-07-28,NA,Denmark,56.2639,9.5018,death,0
+2020-07-29,NA,Denmark,56.2639,9.5018,death,1
+2020-07-30,NA,Denmark,56.2639,9.5018,death,1
+2020-07-31,NA,Denmark,56.2639,9.5018,death,0
+2020-08-01,NA,Denmark,56.2639,9.5018,death,0
+2020-08-02,NA,Denmark,56.2639,9.5018,death,0
+2020-08-03,NA,Denmark,56.2639,9.5018,death,1
+2020-08-04,NA,Denmark,56.2639,9.5018,death,0
+2020-08-05,NA,Denmark,56.2639,9.5018,death,0
+2020-08-06,NA,Denmark,56.2639,9.5018,death,1
+2020-08-07,NA,Denmark,56.2639,9.5018,death,0
+2020-08-08,NA,Denmark,56.2639,9.5018,death,0
+2020-08-09,NA,Denmark,56.2639,9.5018,death,0
+2020-08-10,NA,Denmark,56.2639,9.5018,death,3
+2020-08-11,NA,Denmark,56.2639,9.5018,death,1
+2020-08-12,NA,Denmark,56.2639,9.5018,death,0
+2020-08-13,NA,Denmark,56.2639,9.5018,death,0
+2020-08-14,NA,Denmark,56.2639,9.5018,death,0
+2020-08-15,NA,Denmark,56.2639,9.5018,death,0
+2020-08-16,NA,Denmark,56.2639,9.5018,death,0
+2020-08-17,NA,Denmark,56.2639,9.5018,death,0
+2020-08-18,NA,Denmark,56.2639,9.5018,death,0
+2020-08-19,NA,Denmark,56.2639,9.5018,death,0
+2020-08-20,NA,Denmark,56.2639,9.5018,death,0
+2020-08-21,NA,Denmark,56.2639,9.5018,death,0
+2020-08-22,NA,Denmark,56.2639,9.5018,death,1
+2020-08-23,NA,Denmark,56.2639,9.5018,death,0
+2020-08-24,NA,Denmark,56.2639,9.5018,death,1
+2020-08-25,NA,Denmark,56.2639,9.5018,death,0
+2020-08-26,NA,Denmark,56.2639,9.5018,death,0
+2020-08-27,NA,Denmark,56.2639,9.5018,death,1
+2020-08-28,NA,Denmark,56.2639,9.5018,death,0
+2020-08-29,NA,Denmark,56.2639,9.5018,death,0
+2020-08-30,NA,Denmark,56.2639,9.5018,death,0
+2020-08-31,NA,Denmark,56.2639,9.5018,death,0
+2020-09-01,NA,Denmark,56.2639,9.5018,death,1
+2020-09-02,NA,Denmark,56.2639,9.5018,death,1
+2020-09-03,NA,Denmark,56.2639,9.5018,death,0
+2020-09-04,NA,Denmark,56.2639,9.5018,death,1
+2020-09-05,NA,Denmark,56.2639,9.5018,death,0
+2020-09-06,NA,Denmark,56.2639,9.5018,death,0
+2020-09-07,NA,Denmark,56.2639,9.5018,death,1
+2020-09-08,NA,Denmark,56.2639,9.5018,death,0
+2020-09-09,NA,Denmark,56.2639,9.5018,death,0
+2020-09-10,NA,Denmark,56.2639,9.5018,death,1
+2020-09-11,NA,Denmark,56.2639,9.5018,death,0
+2020-09-12,NA,Denmark,56.2639,9.5018,death,1
+2020-09-13,NA,Denmark,56.2639,9.5018,death,1
+2020-09-14,NA,Denmark,56.2639,9.5018,death,2
+2020-09-15,NA,Denmark,56.2639,9.5018,death,0
+2020-09-16,NA,Denmark,56.2639,9.5018,death,0
+2020-09-17,NA,Denmark,56.2639,9.5018,death,2
+2020-09-18,NA,Denmark,56.2639,9.5018,death,0
+2020-09-19,NA,Denmark,56.2639,9.5018,death,0
+2020-09-20,NA,Denmark,56.2639,9.5018,death,3
+2020-09-21,NA,Denmark,56.2639,9.5018,death,2
+2020-09-22,NA,Denmark,56.2639,9.5018,death,1
+2020-09-23,NA,Denmark,56.2639,9.5018,death,2
+2020-09-24,NA,Denmark,56.2639,9.5018,death,2
+2020-09-25,NA,Denmark,56.2639,9.5018,death,2
+2020-09-26,NA,Denmark,56.2639,9.5018,death,1
+2020-09-27,NA,Denmark,56.2639,9.5018,death,1
+2020-09-28,NA,Denmark,56.2639,9.5018,death,0
+2020-09-29,NA,Denmark,56.2639,9.5018,death,1
+2020-09-30,NA,Denmark,56.2639,9.5018,death,0
+2020-10-01,NA,Denmark,56.2639,9.5018,death,1
+2020-10-02,NA,Denmark,56.2639,9.5018,death,1
+2020-10-03,NA,Denmark,56.2639,9.5018,death,2
+2020-10-04,NA,Denmark,56.2639,9.5018,death,4
+2020-10-05,NA,Denmark,56.2639,9.5018,death,1
+2020-10-06,NA,Denmark,56.2639,9.5018,death,4
+2020-01-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-31,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-02-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-03-31,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-04-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-05-31,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-06-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-07-31,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-08-31,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-07,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-08,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-09,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-10,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-11,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-12,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-13,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-14,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-15,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-16,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-17,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-18,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-19,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-20,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-21,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-22,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-23,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-24,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-25,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-26,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-27,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-28,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-29,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-09-30,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-01,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-02,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-03,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-04,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-05,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-10-06,Faroe Islands,Denmark,61.8926,-6.9118,death,0
+2020-01-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-31,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-02-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-03-31,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-04-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-05-31,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-06-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-07-31,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-08-31,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-07,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-08,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-09,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-10,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-11,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-12,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-13,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-14,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-15,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-16,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-17,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-18,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-19,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-20,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-21,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-22,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-23,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-24,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-25,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-26,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-27,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-28,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-29,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-09-30,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-01,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-02,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-03,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-04,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-05,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-10-06,Greenland,Denmark,71.7069,-42.6043,death,0
+2020-01-22,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-23,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-24,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-25,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-26,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-27,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-28,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-29,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-30,NA,Denmark,56.2639,9.5018,recovered,0
+2020-01-31,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-01,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-02,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-03,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-04,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-05,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-06,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-07,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-08,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-09,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-10,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-11,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-12,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-13,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-14,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-15,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-16,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-17,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-18,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-19,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-20,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-21,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-22,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-23,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-24,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-25,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-26,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-27,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-28,NA,Denmark,56.2639,9.5018,recovered,0
+2020-02-29,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-01,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-02,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-03,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-04,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-05,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-06,NA,Denmark,56.2639,9.5018,recovered,1
+2020-03-07,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-08,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-09,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-10,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-11,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-12,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-13,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-14,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-15,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-16,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-17,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-18,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-19,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-20,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-21,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-22,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-23,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-24,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-25,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-26,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-27,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-28,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-29,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-30,NA,Denmark,56.2639,9.5018,recovered,0
+2020-03-31,NA,Denmark,56.2639,9.5018,recovered,0
+2020-04-01,NA,Denmark,56.2639,9.5018,recovered,893
+2020-04-02,NA,Denmark,56.2639,9.5018,recovered,195
+2020-04-03,NA,Denmark,56.2639,9.5018,recovered,104
+2020-04-04,NA,Denmark,56.2639,9.5018,recovered,90
+2020-04-05,NA,Denmark,56.2639,9.5018,recovered,44
+2020-04-06,NA,Denmark,56.2639,9.5018,recovered,51
+2020-04-07,NA,Denmark,56.2639,9.5018,recovered,113
+2020-04-08,NA,Denmark,56.2639,9.5018,recovered,130
+2020-04-09,NA,Denmark,56.2639,9.5018,recovered,115
+2020-04-10,NA,Denmark,56.2639,9.5018,recovered,37
+2020-04-11,NA,Denmark,56.2639,9.5018,recovered,182
+2020-04-12,NA,Denmark,56.2639,9.5018,recovered,168
+2020-04-13,NA,Denmark,56.2639,9.5018,recovered,112
+2020-04-14,NA,Denmark,56.2639,9.5018,recovered,280
+2020-04-15,NA,Denmark,56.2639,9.5018,recovered,233
+2020-04-16,NA,Denmark,56.2639,9.5018,recovered,275
+2020-04-17,NA,Denmark,56.2639,9.5018,recovered,366
+2020-04-18,NA,Denmark,56.2639,9.5018,recovered,458
+2020-04-19,NA,Denmark,56.2639,9.5018,recovered,294
+2020-04-20,NA,Denmark,56.2639,9.5018,recovered,171
+2020-04-21,NA,Denmark,56.2639,9.5018,recovered,388
+2020-04-22,NA,Denmark,56.2639,9.5018,recovered,387
+2020-04-23,NA,Denmark,56.2639,9.5018,recovered,297
+2020-04-24,NA,Denmark,56.2639,9.5018,recovered,142
+2020-04-25,NA,Denmark,56.2639,9.5018,recovered,143
+2020-04-26,NA,Denmark,56.2639,9.5018,recovered,136
+2020-04-27,NA,Denmark,56.2639,9.5018,recovered,154
+2020-04-28,NA,Denmark,56.2639,9.5018,recovered,162
+2020-04-29,NA,Denmark,56.2639,9.5018,recovered,245
+2020-04-30,NA,Denmark,56.2639,9.5018,recovered,180
+2020-05-01,NA,Denmark,56.2639,9.5018,recovered,183
+2020-05-02,NA,Denmark,56.2639,9.5018,recovered,160
+2020-05-03,NA,Denmark,56.2639,9.5018,recovered,98
+2020-05-04,NA,Denmark,56.2639,9.5018,recovered,101
+2020-05-05,NA,Denmark,56.2639,9.5018,recovered,208
+2020-05-06,NA,Denmark,56.2639,9.5018,recovered,197
+2020-05-07,NA,Denmark,56.2639,9.5018,recovered,218
+2020-05-08,NA,Denmark,56.2639,9.5018,recovered,216
+2020-05-09,NA,Denmark,56.2639,9.5018,recovered,166
+2020-05-10,NA,Denmark,56.2639,9.5018,recovered,124
+2020-05-11,NA,Denmark,56.2639,9.5018,recovered,111
+2020-05-12,NA,Denmark,56.2639,9.5018,recovered,252
+2020-05-13,NA,Denmark,56.2639,9.5018,recovered,83
+2020-05-14,NA,Denmark,56.2639,9.5018,recovered,142
+2020-05-15,NA,Denmark,56.2639,9.5018,recovered,154
+2020-05-16,NA,Denmark,56.2639,9.5018,recovered,148
+2020-05-17,NA,Denmark,56.2639,9.5018,recovered,120
+2020-05-18,NA,Denmark,56.2639,9.5018,recovered,74
+2020-05-19,NA,Denmark,56.2639,9.5018,recovered,115
+2020-05-20,NA,Denmark,56.2639,9.5018,recovered,120
+2020-05-21,NA,Denmark,56.2639,9.5018,recovered,107
+2020-05-22,NA,Denmark,56.2639,9.5018,recovered,121
+2020-05-23,NA,Denmark,56.2639,9.5018,recovered,72
+2020-05-24,NA,Denmark,56.2639,9.5018,recovered,64
+2020-05-25,NA,Denmark,56.2639,9.5018,recovered,64
+2020-05-26,NA,Denmark,56.2639,9.5018,recovered,80
+2020-05-27,NA,Denmark,56.2639,9.5018,recovered,62
+2020-05-28,NA,Denmark,56.2639,9.5018,recovered,74
+2020-05-29,NA,Denmark,56.2639,9.5018,recovered,60
+2020-05-30,NA,Denmark,56.2639,9.5018,recovered,87
+2020-05-31,NA,Denmark,56.2639,9.5018,recovered,35
+2020-06-01,NA,Denmark,56.2639,9.5018,recovered,50
+2020-06-02,NA,Denmark,56.2639,9.5018,recovered,77
+2020-06-03,NA,Denmark,56.2639,9.5018,recovered,63
+2020-06-04,NA,Denmark,56.2639,9.5018,recovered,68
+2020-06-05,NA,Denmark,56.2639,9.5018,recovered,33
+2020-06-06,NA,Denmark,56.2639,9.5018,recovered,68
+2020-06-07,NA,Denmark,56.2639,9.5018,recovered,34
+2020-06-08,NA,Denmark,56.2639,9.5018,recovered,37
+2020-06-09,NA,Denmark,56.2639,9.5018,recovered,57
+2020-06-10,NA,Denmark,56.2639,9.5018,recovered,55
+2020-06-11,NA,Denmark,56.2639,9.5018,recovered,51
+2020-06-12,NA,Denmark,56.2639,9.5018,recovered,38
+2020-06-13,NA,Denmark,56.2639,9.5018,recovered,42
+2020-06-14,NA,Denmark,56.2639,9.5018,recovered,33
+2020-06-15,NA,Denmark,56.2639,9.5018,recovered,22
+2020-06-16,NA,Denmark,56.2639,9.5018,recovered,35
+2020-06-17,NA,Denmark,56.2639,9.5018,recovered,60
+2020-06-18,NA,Denmark,56.2639,9.5018,recovered,57
+2020-06-19,NA,Denmark,56.2639,9.5018,recovered,40
+2020-06-20,NA,Denmark,56.2639,9.5018,recovered,0
+2020-06-21,NA,Denmark,56.2639,9.5018,recovered,0
+2020-06-22,NA,Denmark,56.2639,9.5018,recovered,65
+2020-06-23,NA,Denmark,56.2639,9.5018,recovered,46
+2020-06-24,NA,Denmark,56.2639,9.5018,recovered,29
+2020-06-25,NA,Denmark,56.2639,9.5018,recovered,38
+2020-06-26,NA,Denmark,56.2639,9.5018,recovered,48
+2020-06-27,NA,Denmark,56.2639,9.5018,recovered,0
+2020-06-28,NA,Denmark,56.2639,9.5018,recovered,0
+2020-06-29,NA,Denmark,56.2639,9.5018,recovered,104
+2020-06-30,NA,Denmark,56.2639,9.5018,recovered,37
+2020-07-01,NA,Denmark,56.2639,9.5018,recovered,44
+2020-07-02,NA,Denmark,56.2639,9.5018,recovered,76
+2020-07-03,NA,Denmark,56.2639,9.5018,recovered,48
+2020-07-04,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-05,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-06,NA,Denmark,56.2639,9.5018,recovered,118
+2020-07-07,NA,Denmark,56.2639,9.5018,recovered,48
+2020-07-08,NA,Denmark,56.2639,9.5018,recovered,18
+2020-07-09,NA,Denmark,56.2639,9.5018,recovered,44
+2020-07-10,NA,Denmark,56.2639,9.5018,recovered,32
+2020-07-11,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-12,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-13,NA,Denmark,56.2639,9.5018,recovered,53
+2020-07-14,NA,Denmark,56.2639,9.5018,recovered,30
+2020-07-15,NA,Denmark,56.2639,9.5018,recovered,22
+2020-07-16,NA,Denmark,56.2639,9.5018,recovered,13
+2020-07-17,NA,Denmark,56.2639,9.5018,recovered,14
+2020-07-18,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-19,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-20,NA,Denmark,56.2639,9.5018,recovered,42
+2020-07-21,NA,Denmark,56.2639,9.5018,recovered,10
+2020-07-22,NA,Denmark,56.2639,9.5018,recovered,13
+2020-07-23,NA,Denmark,56.2639,9.5018,recovered,25
+2020-07-24,NA,Denmark,56.2639,9.5018,recovered,41
+2020-07-25,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-26,NA,Denmark,56.2639,9.5018,recovered,0
+2020-07-27,NA,Denmark,56.2639,9.5018,recovered,77
+2020-07-28,NA,Denmark,56.2639,9.5018,recovered,34
+2020-07-29,NA,Denmark,56.2639,9.5018,recovered,34
+2020-07-30,NA,Denmark,56.2639,9.5018,recovered,41
+2020-07-31,NA,Denmark,56.2639,9.5018,recovered,52
+2020-08-01,NA,Denmark,56.2639,9.5018,recovered,0
+2020-08-02,NA,Denmark,56.2639,9.5018,recovered,0
+2020-08-03,NA,Denmark,56.2639,9.5018,recovered,104
+2020-08-04,NA,Denmark,56.2639,9.5018,recovered,33
+2020-08-05,NA,Denmark,56.2639,9.5018,recovered,38
+2020-08-06,NA,Denmark,56.2639,9.5018,recovered,34
+2020-08-07,NA,Denmark,56.2639,9.5018,recovered,53
+2020-08-08,NA,Denmark,56.2639,9.5018,recovered,0
+2020-08-09,NA,Denmark,56.2639,9.5018,recovered,0
+2020-08-10,NA,Denmark,56.2639,9.5018,recovered,85
+2020-08-11,NA,Denmark,56.2639,9.5018,recovered,63
+2020-08-12,NA,Denmark,56.2639,9.5018,recovered,78
+2020-08-13,NA,Denmark,56.2639,9.5018,recovered,65
+2020-08-14,NA,Denmark,56.2639,9.5018,recovered,85
+2020-08-15,NA,Denmark,56.2639,9.5018,recovered,59
+2020-08-16,NA,Denmark,56.2639,9.5018,recovered,65
+2020-08-17,NA,Denmark,56.2639,9.5018,recovered,77
+2020-08-18,NA,Denmark,56.2639,9.5018,recovered,112
+2020-08-19,NA,Denmark,56.2639,9.5018,recovered,122
+2020-08-20,NA,Denmark,56.2639,9.5018,recovered,118
+2020-08-21,NA,Denmark,56.2639,9.5018,recovered,175
+2020-08-22,NA,Denmark,56.2639,9.5018,recovered,0
+2020-08-23,NA,Denmark,56.2639,9.5018,recovered,236
+2020-08-24,NA,Denmark,56.2639,9.5018,recovered,130
+2020-08-25,NA,Denmark,56.2639,9.5018,recovered,155
+2020-08-26,NA,Denmark,56.2639,9.5018,recovered,138
+2020-08-27,NA,Denmark,56.2639,9.5018,recovered,160
+2020-08-28,NA,Denmark,56.2639,9.5018,recovered,114
+2020-08-29,NA,Denmark,56.2639,9.5018,recovered,112
+2020-08-30,NA,Denmark,56.2639,9.5018,recovered,127
+2020-08-31,NA,Denmark,56.2639,9.5018,recovered,89
+2020-09-01,NA,Denmark,56.2639,9.5018,recovered,95
+2020-09-02,NA,Denmark,56.2639,9.5018,recovered,113
+2020-09-03,NA,Denmark,56.2639,9.5018,recovered,86
+2020-09-04,NA,Denmark,56.2639,9.5018,recovered,87
+2020-09-05,NA,Denmark,56.2639,9.5018,recovered,85
+2020-09-06,NA,Denmark,56.2639,9.5018,recovered,89
+2020-09-07,NA,Denmark,56.2639,9.5018,recovered,73
+2020-09-08,NA,Denmark,56.2639,9.5018,recovered,74
+2020-09-09,NA,Denmark,56.2639,9.5018,recovered,83
+2020-09-10,NA,Denmark,56.2639,9.5018,recovered,79
+2020-09-11,NA,Denmark,56.2639,9.5018,recovered,70
+2020-09-12,NA,Denmark,56.2639,9.5018,recovered,108
+2020-09-13,NA,Denmark,56.2639,9.5018,recovered,86
+2020-09-14,NA,Denmark,56.2639,9.5018,recovered,104
+2020-09-15,NA,Denmark,56.2639,9.5018,recovered,120
+2020-09-16,NA,Denmark,56.2639,9.5018,recovered,0
+2020-09-17,NA,Denmark,56.2639,9.5018,recovered,361
+2020-09-18,NA,Denmark,56.2639,9.5018,recovered,192
+2020-09-19,NA,Denmark,56.2639,9.5018,recovered,206
+2020-09-20,NA,Denmark,56.2639,9.5018,recovered,198
+2020-09-21,NA,Denmark,56.2639,9.5018,recovered,224
+2020-09-22,NA,Denmark,56.2639,9.5018,recovered,297
+2020-09-23,NA,Denmark,56.2639,9.5018,recovered,324
+2020-09-24,NA,Denmark,56.2639,9.5018,recovered,287
+2020-09-25,NA,Denmark,56.2639,9.5018,recovered,364
+2020-09-26,NA,Denmark,56.2639,9.5018,recovered,340
+2020-09-27,NA,Denmark,56.2639,9.5018,recovered,300
+2020-09-28,NA,Denmark,56.2639,9.5018,recovered,292
+2020-09-29,NA,Denmark,56.2639,9.5018,recovered,378
+2020-09-30,NA,Denmark,56.2639,9.5018,recovered,434
+2020-10-01,NA,Denmark,56.2639,9.5018,recovered,555
+2020-10-02,NA,Denmark,56.2639,9.5018,recovered,515
+2020-10-03,NA,Denmark,56.2639,9.5018,recovered,473
+2020-10-04,NA,Denmark,56.2639,9.5018,recovered,419
+2020-10-05,NA,Denmark,56.2639,9.5018,recovered,406
+2020-10-06,NA,Denmark,56.2639,9.5018,recovered,533
+2020-01-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-01-31,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-02-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,33
+2020-03-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,5
+2020-03-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,9
+2020-03-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,7
+2020-03-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,16
+2020-03-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-03-31,Faroe Islands,Denmark,61.8926,-6.9118,recovered,4
+2020-04-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-04-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-04-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,10
+2020-04-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-04-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-04-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,8
+2020-04-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,13
+2020-04-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,11
+2020-04-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,5
+2020-04-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,9
+2020-04-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,12
+2020-04-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-04-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-04-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-04-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-04-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-04-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-04-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-04-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-04-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-04-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-05-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-05-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-05-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-05-31,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-06-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-07-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-07-31,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-08-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-08-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-08-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,22
+2020-08-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,10
+2020-08-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,4
+2020-08-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-08-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,21
+2020-08-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,18
+2020-08-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,26
+2020-08-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,37
+2020-08-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,7
+2020-08-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,13
+2020-08-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-08-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-08-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-08-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-08-31,Faroe Islands,Denmark,61.8926,-6.9118,recovered,12
+2020-09-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,5
+2020-09-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-07,Faroe Islands,Denmark,61.8926,-6.9118,recovered,30
+2020-09-08,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-09,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-09-10,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-11,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-12,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-13,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-14,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-09-15,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-16,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-17,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-18,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-19,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-20,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-21,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-09-22,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-09-23,Faroe Islands,Denmark,61.8926,-6.9118,recovered,2
+2020-09-24,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-25,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-09-26,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-27,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-09-28,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-09-29,Faroe Islands,Denmark,61.8926,-6.9118,recovered,5
+2020-09-30,Faroe Islands,Denmark,61.8926,-6.9118,recovered,1
+2020-10-01,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-10-02,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-10-03,Faroe Islands,Denmark,61.8926,-6.9118,recovered,0
+2020-10-04,Faroe Islands,Denmark,61.8926,-6.9118,recovered,3
+2020-10-05,Faroe Islands,Denmark,61.8926,-6.9118,recovered,6
+2020-10-06,Faroe Islands,Denmark,61.8926,-6.9118,recovered,11
+2020-01-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-01-31,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-02-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-24,Greenland,Denmark,71.7069,-42.6043,recovered,2
+2020-03-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-03-31,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-03,Greenland,Denmark,71.7069,-42.6043,recovered,1
+2020-04-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-06,Greenland,Denmark,71.7069,-42.6043,recovered,1
+2020-04-07,Greenland,Denmark,71.7069,-42.6043,recovered,6
+2020-04-08,Greenland,Denmark,71.7069,-42.6043,recovered,1
+2020-04-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-04-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-05-31,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-04,Greenland,Denmark,71.7069,-42.6043,recovered,2
+2020-06-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-06-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-07-31,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-06,Greenland,Denmark,71.7069,-42.6043,recovered,1
+2020-08-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-08-31,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-06,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-07,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-08,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-09,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-10,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-11,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-12,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-13,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-14,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-15,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-16,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-17,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-18,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-19,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-20,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-21,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-22,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-23,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-24,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-25,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-26,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-27,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-28,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-29,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-09-30,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-01,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-02,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-03,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-04,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-05,Greenland,Denmark,71.7069,-42.6043,recovered,0
+2020-10-06,Greenland,Denmark,71.7069,-42.6043,recovered,0

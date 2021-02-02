@@ -1,0 +1,144 @@
+---
+title: "Answers for in-class exercise - Lesson 9: Relational data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Practicing `join` functions
+
+#### This exercise is borrowed from the [STAT545 course at UBC](https://stat545guidebook.netlify.app/tibble-joins.html)
+
+For this exercise, we will need two data files from Joey Bernhardt's R package `singer`. We have to first load the `tidyverse` library, then we can load these datasets from the STAT545 GitHub repo with the following lines of code:
+
+
+<!---The following chunk allows errors when knitting--->
+
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+## Exercise 1: `singer`
+
+The package `singer` comes with two smallish data frames about songs. Let's first import them and take a look at them (after minor modifications by renaming and shuffling):
+
+Import the data
+```{r, results = 'hide', message = FALSE}
+
+library(tidyverse)
+
+songs <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/songs.csv")
+locations <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/loc.csv")
+
+```
+
+```{r}
+(time <- as_tibble(songs) %>% 
+   rename(song = title))
+```
+
+```{r}
+(album <- as_tibble(locations) %>% 
+   select(title, everything()) %>% 
+   rename(album = release,
+          song  = title))
+```
+
+
+
+
+1. We really care about the songs in `time`. But, which of those songs do we know its corresponding album?
+
+```{r}
+# Let's first remind ourselves of the variable names in each dataframe
+colnames(time)
+colnames(album)
+
+# What we should notice about the two tibbles/dataframes is that `time` has information about the year of release for every song (but now album name), whereas the `album` tibble/dataframe has the album name for every song included, but not year (and also the songs in the two tibbles/dataframe are only partially overlapping)
+
+
+# For this question, we don't want to add the album information, we just want to filter time to only include records matched in album. Hence we use the `semi_join()` function, which in fact does not join, but filters based on a secondary dataframe.
+
+time %>% 
+  semi_join(album, by = c("song", "artist_name")) %>% 
+  .$song
+
+# Note that we don't have to specify the variables to join by, we can also let the function join by all the common variable names in the two datasets
+
+time %>% 
+  semi_join(album)
+
+```
+
+2. Go ahead and add the corresponding albums to the `time` tibble, being sure to preserve rows even if album info is not readily available.
+
+```{r}
+# For this question, we're asked to actually add on the album variable, hence we use a left_join() function
+
+time %>% 
+  left_join(album, by = c("song", "artist_name"))
+
+# Alternative:
+time %>% 
+  left_join(album)
+
+```
+
+3. Which songs do we have "year", but not album info?
+
+```{r}
+# Again, this is a filtering question, we don't want to add on any variables here, so we use a filtering function (even though part of its name is join, it does not actually join the datasets)
+
+time %>% 
+  anti_join(album, by = "song")
+```
+
+4. Which artists are in `time`, but not in `album`?
+
+```{r}
+time %>% 
+  anti_join(album, by = "artist_name") %>% 
+  count(artist_name)
+```
+
+5. You've come across these two tibbles, and just wish all the info was available in one tibble. What would you do?
+
+```{r}
+
+# Here, we want to retain all records included in either of the two datasets (even if they're excluded in one)
+
+time %>% 
+  full_join(album, by = "song")
+```
+
+<br>
+
+## Exercise 2: Exploring the `nycflights13` datasets
+
+Is there a relationship between the age of a plane and its delays? Talk through how you would address this question, then start writing code. Make sure to load the nycflights13 package (install it first if you don't already have it) so you can examine the datasets.
+
+Hints: The `flights` dataset has information about all flights that departed NYC in 2013. Have a look at the variable names. The dataset `planes` has a variable named year, with the year in which the plane was built.
+
+```{r}
+library(nycflights13)
+
+# Here is one solution (there are several ways we could address this question): 
+  
+flights %>% 
+  left_join(select(planes, tailnum, plane_year = year)) %>%  # here we're subsetting the planes data to only include the relevant columns just to make it easier to view the intermediate output. We could also just join the entire dataset
+  mutate(age = year - plane_year) %>% 
+  filter(!is.na(age)) %>%  # We saw earlier in lecture that not all planes in the flights data are included in the planes data, so we have to remove records with missing plane information to avoid getting error messages when we plot
+  group_by(age) %>% 
+  summarize(delay = mean(dep_delay, na.rm = TRUE)) %>%  # we're choosing to look at departure delays, you could also look at arr_delay - another variable in flights
+  ggplot(aes(age, delay)) +
+  geom_point() +
+  scale_x_continuous("Age of plane (years)") +
+  scale_y_continuous("Mean Departure Delay (minutes)")
+
+
+
+```
+

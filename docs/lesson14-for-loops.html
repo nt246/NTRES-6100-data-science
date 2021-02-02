@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 14: Iteration with for loops and conditional execution with if statements</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version Control</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating and Making Websites</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot, part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling, part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling, part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot, part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy data</a>
+    </li>
+    <li>
+      <a href="lesson11-debugging-getting-help.html">Lesson 11: Good coding practices and debugging</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-data-import-and-types.html">Lesson 13: Data import and types</a>
+    </li>
+    <li>
+      <a href="lesson14-for-loops.html">Lesson 14: Iteration (for loops) and conditional execution</a>
+    </li>
+    <li>
+      <a href="lesson15-functions.html">Lesson 15: Functions</a>
+    </li>
+    <li>
+      <a href="lesson16-factors.html">Lesson 16: Factors</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 14: Iteration with <code>for</code> loops and conditional execution with <code>if</code> statements</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<div id="required" class="section level4">
+<h4>Required:</h4>
+<p><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><br></p>
+</div>
+<div id="other-resources" class="section level4">
+<h4>Other resources:</h4>
+<p>We will be working through <a href="http://ohi-science.org/data-science-training/programming.html">this tutorial</a> developed by the Ocean Health Index Data Science Team</p>
+<p><br></p>
+</div>
+</div>
+<div id="announcements" class="section level2">
+<h2>Announcements</h2>
+<ul>
+<li>Homework 6 due tonight. The final homework will be posted later today and will be due next Monday (Nov 9). We realize that the election makes this week very unusual, so let us know if you need special accommodations.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="todays-learning-objectives" class="section level2">
+<h2>Today’s learning objectives</h2>
+<p>By the end of today’s class, you should be able to:</p>
+<ul>
+<li>Write a <code>for</code> loop to repeat operations on different input</li>
+<li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
+</ul>
+<p><br></p>
+<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/programming.html">Ocean Health Index Data Science Training</a>.</p>
+<p><br></p>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<blockquote>
+<p>This section is modified from <a href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R for Data Science</a></p>
+</blockquote>
+<p>Whenever possible, we want to avoid duplication in our code (e.g. by copying-and-pasting sections of our script that we want to repeat with different input). Reducing code duplication has three main benefits:</p>
+<ul>
+<li><p>It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same.</p></li>
+<li><p>It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).</p></li>
+<li><p>You’re likely to have fewer bugs because each line of code is used in more places.</p></li>
+</ul>
+<p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We’ll go through a brief introduction of how to write functions in R during our next class.</p>
+<p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
+<p>Today, we will illustrate the use of <code>for</code> loops with an example. We will also use cover conditional execution of code with <code>if</code> statements.</p>
+<p><br></p>
+</div>
+<div id="clone-repo-to-get-todays-exercise-sheet" class="section level2">
+<h2>Clone repo to get today’s exercise sheet</h2>
+<p>First, to refresh our memory on RStudio-GitHub integration, let’s start by cloning a repo with today’s exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
+<p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#clone_your_repository_using_rstudio">lesson 3</a>.</p>
+<p>Once you have an RStudio project linked to the <code>for-loop-exercises</code> repo, find the file <code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio project for your own class repo, and change the file name by replacing <code>name</code> with your name.</p>
+<p>Add a picture as instructed.</p>
+<p>Push your changes to GitHub. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#sync_from_rstudio_(local)_to_github_(remote)">lesson 3</a></p>
+<p>Check your class repo on GitHub (<a href="https://github.com/therkildsen-class/ntres-6940-USERNAME" class="uri">https://github.com/therkildsen-class/ntres-6940-USERNAME</a> [replace USERNAME with your GitHub user name]) to make sure your file shows up.</p>
+<p><br> <br></p>
+</div>
+<div id="analysis-plan" class="section level2">
+<h2>Analysis plan</h2>
+<p><strong>Gapminder data</strong></p>
+<p>Today, we’ll be using a subset of the <a href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder dataset</a>, which represents the health and wealth of nations. It was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
+<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
+<p><br></p>
+<p>We will use a subset of the gapminder data included in the R package <code>gapminder</code>. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in <code>gapminder</code></p>
+<pre class="r"><code>library(tidyverse)
+library(gapminder) #install.packages(&quot;gapminder&quot;)
+
+gapminder</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows</code></pre>
+<p><br></p>
+<p>Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the gapminder data frame has changed over time. So that’s 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go.</p>
+<p><br></p>
+</div>
+<div id="automation-with-for-loops" class="section level2">
+<h2>Automation with <code>for</code> loops</h2>
+<p>Our plan is to plot gdpPercap vs. year for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). We’ve worked with dplyr’s <code>group_by()</code> function, and this is super powerful to automate through groups. But there are things that you may not want to do with <code>group_by()</code>, like plotting. So here, we will use a <code>for</code> loop.</p>
+<p>Let’s start off with what this would look like for just one country. I’m going to demonstrate with Afghanistan:</p>
+<!---TODO
+For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too. 
+--->
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  labs(title = &quot;Afghanistan&quot;)</code></pre>
+<p><br></p>
+<p>Let’s actually give this a better title than just the country name. Let’s use the <code>base::paste()</code> function to paste two strings together so that the title is more descriptive. Use <code>?paste</code> to see what the “sep” variable does.</p>
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = paste(&quot;Afghanistan&quot;, &quot;GDP per capita&quot;, sep = &quot; &quot;))</code></pre>
+<p><br></p>
+<p>And as a last step, let’s save this figure.</p>
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = paste(&quot;Afghanistan&quot;, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+ggsave(filename = &quot;Afghanistan_gdpPercap.png&quot;, plot = my_plot)</code></pre>
+<p><br></p>
+<p>OK. So we can check our repo in the file pane (bottom right of RStudio) and see the generated figure:</p>
+<p><img src="assets/Afghanistan_gdpPercap.png" width="50%" /></p>
+<p><br> <br></p>
+<div id="thinking-ahead-cleaning-up-our-code" class="section level3">
+<h3>Thinking ahead: cleaning up our code</h3>
+<p>Now, in our code above, we’ve had to write out “Afghanistan” several times. This makes it not only typo-prone as we type it each time, but if we wanted to plot another country, we’d have to write that in 3 places too. It is not setting us up for an easy time in our future, and thinking ahead in programming is something to keep in mind.</p>
+<p>Instead of having “Afghanistan” written 3 times, let’s instead create an object that we will assign “Afghanistan” to. We won’t name our object “country” because that’s a column header with gapminder, and will just confuse us. Let’s make it distinctive: let’s write cntry (country without vowels):</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;</code></pre>
+<p><br></p>
+<p>Now, we can replace each <code>"Afghanistan"</code> with our variable <code>cntry</code>. We will have to introduce a <code>paste</code> statement here too, and we want to separate by nothing (<code>""</code>).</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;
+
+## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == cntry)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+## note: there are many ways to create filenames with paste() or file.path(); we are doing this way for a reason.
+ggsave(filename = paste(cntry, &quot;_gdpPercap.png&quot;, sep = &quot;&quot;), plot = my_plot)</code></pre>
+<p><br></p>
+<p>Let’s run this. Great! it saved our figure (I can tell this because the timestamp in the Files pane has updated!)</p>
+<p><br></p>
+</div>
+<div id="for-loop-basic-structure" class="section level3">
+<h3><code>for</code> loop basic structure</h3>
+<p>Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn’t actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the <code>cntry</code> variable, it would be very typo-prone. Plus, what if you wanted to instead plot lifeExp? You’d have to remember to change it each time… it quickly gets messy.</p>
+<p>Better with a <code>for</code> loop. This will let us cycle through and do what we want to each thing in turn. If you want to iterate over a set of values, and perform the same operation on each, a <code>for</code> loop will do the job.</p>
+<p><strong>Sit back and watch me for a few minutes while we develop the <code>for</code> loop.</strong> Then we’ll give you time to do this on your computers as well.</p>
+<p>The basic structure of a <code>for</code> loop is:</p>
+<pre class="r"><code>for (each item in set of items) {
+  do a thing
+}</code></pre>
+<p>Note the <code>( )</code> and the <code>{ }</code>. We talk about iterating through each item in the <code>for</code> loop, which makes each item an iterator.</p>
+<p>So looking back at our Afghanistan code: all of this is pretty much the “do a thing” part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set.</p>
+<p><img src="assets/for_loop_logic.png" /> <br></p>
+<p>Let’s paste from what we had before, and modify it. I’m also going to use RStudio’s indentation help to indent the lines within the <code>for</code> loop by highlighting the code in this chunk and going to Code &gt; Reindent Lines (shortcut: command I)</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;
+for (each cntry in a list of countries) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = paste(cntry, &quot;_gdpPercap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+  
+}</code></pre>
+<p><br></p>
+</div>
+<div id="executable-for-loop" class="section level3">
+<h3>Executable <code>for</code> loop!</h3>
+<p>OK. So let’s start with the beginning of the <code>for</code> loop. We want a list of countries that we will iterate through. We can do that by adding this code before the <code>for</code> loop.</p>
+<pre class="r"><code>## create a list of countries
+country_list &lt;- c(&quot;Albania&quot;, &quot;Fiji&quot;, &quot;Spain&quot;)
+
+for (cntry in country_list) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = paste(cntry, &quot;_gdpPercap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+}</code></pre>
+<p><br></p>
+<p>At this point, we do have a functioning <code>for</code> loop. For each item in the <code>country_list</code>, the <code>for</code> loop will iterate over the code within the <code>{ }</code>, changing <code>cntry</code> each time as it goes through the list. And we can see it works because we can see them appear in the files pane at the bottom right of RStudio!</p>
+<p>Great! And it doesn’t matter if we just use these three countries or all the countries–let’s try it.</p>
+<p>But first let’s create a figure directory and make sure it saves there since it’s going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the “Files” pane in RStudio by clicking “New Folder” (green plus button). But we are going to do it in R. A folder is called a directory:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+
+## create a list of countries
+country_list &lt;- unique(gapminder$country) # ?unique() returns the unique values
+
+for (cntry in country_list) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ## add the figures/ folder
+  ggsave(filename = paste(&quot;figures/&quot;, cntry, &quot;_gdpPercap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p>So that took a little longer than just the 3, but still super fast. <code>for</code> loops are sometimes just the thing you need to iterate over many things in your analyses.</p>
+<p><br></p>
+</div>
+<div id="clean-up-our-repo" class="section level3">
+<h3>Clean up our repo</h3>
+<p>OK we now have 142 figures that we just created. They exist locally on our computer, and we have the code to recreate them anytime. But, we don’t really need to push them to GitHub. Let’s delete the figures/ folder and see it disappear from the Git tab. An alternative to deleting the figures would be to add them to our .gitignore file. Read more about that <a href="https://carpentries-incubator.github.io/git-Rstudio-course/02-ignore/index.html">here</a> and play around with it.</p>
+<p><br> <br></p>
+</div>
+<div id="your-turn" class="section level3">
+<h3>Your turn</h3>
+<ol style="list-style-type: decimal">
+<li>Modify our <code>for</code> loop so that it:
+<ul>
+<li>loops through countries in Europe only</li>
+<li>plots the product of gdpPercap and population size per year (should approximate the total GDP)</li>
+<li>saves them to a new subfolder inside the (recreated) figures folder called “Europe”.</li>
+</ul></li>
+<li>Sync to GitHub</li>
+</ol>
+<p><br> <br></p>
+<div id="answer" class="section level4">
+<h4>Answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder %&gt;%
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p>Notice how we put the calculation of <code>gdpPercap</code> * <code>pop</code> outside the <code>for</code> loop. It could have gone inside, but it’s an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the <code>for</code> loop).</p>
+</details>
+<p><br> <br></p>
+</div>
+</div>
+</div>
+<div id="conditional-statements-with-if-and-else" class="section level2">
+<h2>Conditional statements with <code>if</code> and <code>else</code></h2>
+<p>Often when we’re coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.</p>
+<p>In R and other languages, these are called “if statements”.</p>
+<p><br></p>
+<div id="if-statement-basic-structure" class="section level3">
+<h3>if statement basic structure</h3>
+<pre class="r"><code># if
+if (condition is true) {
+  do something
+}
+# if ... else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}</code></pre>
+<p><br></p>
+<p>Let’s bring this concept into our <code>for</code> loop for Europe that we’ve just created. What if we want to add the label “Estimated” to countries for which the figures were estimated rather than based on official reported statistics? Here’s what we’d do.</p>
+<p>First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:</p>
+<pre class="r"><code>est &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&#39;)
+gapminder_est &lt;- left_join(gapminder, est)</code></pre>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ## if estimated, add that as a subtitle. 
+  if (gap_to_plot$estimated == &quot;yes&quot;) {
+    
+    ## add a print statement just to check
+    print(paste(cntry, &quot;data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  }
+  #   Warning message:
+  # In if (gap_to_plot$estimated == &quot;yes&quot;) { :
+  #   the condition has length &gt; 1 and only the first element will be used
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>This worked, but we got a warning message with the <code>if</code> statement. This is because if we look at <code>gap_to_plot$estimated</code>, it is many “yes”s or “no”s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
+<p><br></p>
+</div>
+<div id="executable-if-statement" class="section level3">
+<h3>Executable if statement</h3>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+## if estimated, add that as a subtitle. 
+if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+  
+    ## add a print statement just to check
+    print(paste(cntry, &quot;data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  }
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>OK so this is working as we expect! Note that we do not need an <code>else</code> statement above, because we only want to do something (add a subtitle) if one condition is met. But what if we want to add a different subtitle based on another condition, say where the data are reported, to be extra explicit about it?</p>
+<p><br></p>
+</div>
+<div id="executable-ifelse-statement" class="section level3">
+<h3>Executable if/else statement</h3>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+## if estimated, add that as a subtitle. 
+if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+  
+    ## add a print statement just to check
+    print(paste(cntry, &quot;data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+} else {
+  
+  print(paste(cntry, &quot;data are reported&quot;))
+  
+  my_plot &lt;- my_plot +
+    labs(subtitle = &quot;Reported data&quot;) }
+
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>Note that this works because we know there are only two conditions, <code>Estimated == yes</code> and <code>Estimated == no</code>. In the first <code>if</code> statement we asked for estimated data, and the <code>else</code> condition gives us everything else (which we know is reported). We can be explicit about setting these conditions in the <code>else</code> clause by instead using an <code>else if</code> statement. Below is how you would construct this in your <code>for</code> loop, similar to above:</p>
+<pre class="r"><code>  if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+    
+    print(paste(cntry, &quot;data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  } else if (any(gap_to_plot$estimated == &quot;no&quot;)){
+    
+    print(paste(cntry, &quot;data are reported&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Reported data&quot;)
+    
+  }</code></pre>
+<p>This construction is necessary if you have more than two conditions to test for.</p>
+<p><br> <br></p>
+<p>We can also add the conditional addition of the plot subtitle with R’s <code>ifelse()</code> function. It works like this</p>
+<pre class="r"><code>ifelse(condition is true, perform action, perform alternative action)</code></pre>
+<p>where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial <code>labs()</code> layer of our plot for a more concise expression that achives the same goal:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;), subtitle = ifelse(any(gap_to_plot$estimated == &quot;yes&quot;), &quot;Estimated data&quot;, &quot;Reported data&quot;))
+
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p><br> <br></p>
+</div>
+</div>
+<div id="exercises-if-time-allows" class="section level2">
+<h2>Exercises (if time allows)</h2>
+<p>Exercises from <a href="https://r4ds.had.co.nz/iteration.html#exercises-58">R for Data Science</a></p>
+<p>Work with the specified datasets that are built into R or in the listed packages. You can access them just by typing the name (for <code>flights</code> you will have to first load the <code>nycflights13</code> package).</p>
+<p>Write <code>for</code> loops to:</p>
+<ul>
+<li>Compute the mean of every column in <code>mtcars</code></li>
+<li>Determine the type of each column in <code>nycflights13::flights</code></li>
+<li>Compute the number of unique values in each column of <code>iris</code></li>
+</ul>
+<p><br></p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p><code>for</code> loops are typically slow compared to vector based methods and frequently not the best available solution for implementing iterations. We therefore recommend that you learn about other aproaches, especially the map functions and functional programming. However, <code>for</code> loops are easy to implement and easy to understand so in many cases they can be a good solution for simple iterations.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+title: "Misc. tips"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create an R script
+
+Today we're going to work in an R script. Go to File > New File > R Script (or click the green plus in the top left corner). 
+
+Remember, like in R Markdown, hitting return in an R script does not execute this command. To execute it, we need to get what we typed in the script down into the console. Here is how we can do that:  
+
+1. copy-paste this line into the console.
+
+2. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+
+    a. the bar above the script (green arrow)
+    b. the menu bar: Code > Run Selected Line(s)
+    c. keyboard shortcut: command-return (Mac) / ctrl-return (Windows)
+    
+3. source the script, which means running the whole thing. This is also great for to see if there are any typos in your code that you've missed. You can do this by:
+    a. clicking Source (blue arrow in the bar above the script).
+    b. typing `source('gapminder-analysis.R')` in the console (or from another R file!). 
+
+
