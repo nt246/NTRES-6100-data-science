@@ -26,6 +26,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -442,7 +452,7 @@ div.tocify {
 </ul>
 <p><br></p>
 <ul>
-<li>Chapters <a href="https://r4ds.had.co.nz/tibbles.html">10</a>, <a href="https://r4ds.had.co.nz/data-import.html">11</a>, <a href="https://r4ds.had.co.nz/strings.html#introduction-8">14.1 + 14.2</a>, <a href="https://r4ds.had.co.nz/factors.html">15.1 + 15.2</a> and <a href="https://r4ds.had.co.nz/dates-and-times.html">16</a> in R for Data Science by Hadley Wickham &amp; Garrett Grolemund [That sounds like a lot, but all the sections are pretty short and contain important information. Chapters 10 and 11 are the most essential if you don’t have time to read them all]</li>
+<li>Chapters <a href="https://r4ds.had.co.nz/tibbles.html">10</a>, <a href="https://r4ds.had.co.nz/data-import.html">11</a>, <a href="https://r4ds.had.co.nz/strings.html#introduction-8">14.1 + 14.2</a>, <a href="https://r4ds.had.co.nz/factors.html">15.1 + 15.2</a> and <a href="https://r4ds.had.co.nz/dates-and-times.html">16</a> in R for Data Science by Hadley Wickham &amp; Garrett Grolemund [That sounds like a lot, but all the sections are pretty short and contain important information. Chapters 10 and 11 are the most essential if you don't have time to read them all]</li>
 </ul>
 <p><br></p>
 </div>
@@ -457,34 +467,34 @@ div.tocify {
 <div id="plan-for-today-and-learning-objectives" class="section level2">
 <h2>Plan for today and learning objectives</h2>
 <ul>
-<li><p>First we’ll wrap up our section on relational data, including filtering functions.</p></li>
-<li><p>Then we’ll revisit the notion of tidy data and go over some basics related to data import and parsing of different data types.</p></li>
+<li><p>First we'll wrap up our section on relational data, including filtering functions.</p></li>
+<li><p>Then we'll revisit the notion of tidy data and go over some basics related to data import and parsing of different data types.</p></li>
 </ul>
 <p><br> <br></p>
 </div>
 <div id="loading-libraries" class="section level2">
 <h2>Loading libraries</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.2.1     ✓ purrr   0.3.3
-## ✓ tibble  2.1.3     ✓ dplyr   0.8.3
-## ✓ tidyr   1.0.0     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.0.6     ✓ dplyr   1.0.3
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p><br> <br></p>
 </div>
 <div id="relational-data" class="section level2">
 <h2>Relational data</h2>
-<p>We’ll review how to <a href="https://r4ds.had.co.nz/relational-data.html#join-by">define the key columns</a> for mutating joins and then we’ll discuss <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">filtering joins</a> with the <code>semi_join()</code> and <code>anti_join()</code> functions.</p>
+<p>We'll review how to <a href="https://r4ds.had.co.nz/relational-data.html#join-by">define the key columns</a> for mutating joins and then we'll discuss <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">filtering joins</a> with the <code>semi_join()</code> and <code>anti_join()</code> functions.</p>
 <p><br></p>
 <div id="optional-exercises-from-the-r-for-data-science-chapter" class="section level4">
 <h4>Optional exercises (from the R for Data Science chapter)</h4>
 <p>Once you have given each exercise a try, you can check the solutions <a href="https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html">here</a></p>
 <p><br></p>
 <ol style="list-style-type: decimal">
-<li><p><strong>R4DS exercise 13.4.1:</strong> Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</p>
+<li><p><strong>R4DS exercise 13.4.1:</strong> Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here's an easy way to draw a map of the United States:</p>
 <pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
 airports %&gt;%
@@ -493,12 +503,12 @@ airports %&gt;%
     borders(&quot;state&quot;) +
     geom_point() +
     coord_quickmap()</code></pre>
-<p>(Don’t worry if you don’t understand what <code>semi_join()</code> does — you’ll learn about it next.)</p>
+<p>(Don't worry if you don't understand what <code>semi_join()</code> does --- you'll learn about it next.)</p>
 <p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p></li>
 </ol>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>R4DS exercise 13.4.2:</strong> Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
+<li><strong>R4DS exercise 13.4.2:</strong> Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
 </ol>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
@@ -516,10 +526,11 @@ airports %&gt;%
 <h2>Data import</h2>
 <div id="reading-data-into-rstudio" class="section level3">
 <h3>Reading data into RStudio</h3>
-<p>In lesson 10, we introduced some of the most commonly used <code>readr</code> data import functions, such as <code>read_csv()</code>, <code>read_tsv()</code>, and <code>read_delim()</code>. Let’s revisit these to import <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Lord of the Rings Data</a> that we’ve used in several previous lessons.</p>
-<p>We can import directly from Jenny’s GitHub page:</p>
+<p>In lesson 10, we introduced some of the most commonly used <code>readr</code> data import functions, such as <code>read_csv()</code>, <code>read_tsv()</code>, and <code>read_delim()</code>. Let's revisit these to import <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan's Lord of the Rings Data</a> that we've used in several previous lessons.</p>
+<p>We can import directly from Jenny's GitHub page:</p>
 <pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -529,7 +540,8 @@ airports %&gt;%
 <p><br></p>
 <p>Or we can use import it from a copy saved on our local computer</p>
 <pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -537,7 +549,7 @@ airports %&gt;%
 ##   Words = col_double()
 ## )</code></pre>
 <p><br></p>
-<p><code>read_csv()</code> uses the first line of the data for the column names, which is a very common convention. We can play around with tweaking our local copy of the data file to make use of the options for tweaking this behavior. For example, if there are a few lines of metadata at the top of the file, we can use <code>skip = n</code> to skip the first n lines; or use <code>comment = "#"</code> to drop all lines that start with (e.g.) #. When the data do not have column names, we can use <code>col_names = FALSE</code> to tell <code>read_csv()</code> not to treat the first row as headings, and instead label them sequentially from <code>X1</code> to <code>Xn</code>.</p>
+<p><code>read_csv()</code> uses the first line of the data for the column names, which is a very common convention. We can play around with tweaking our local copy of the data file to make use of the options for tweaking this behavior. For example, if there are a few lines of metadata at the top of the file, we can use <code>skip = n</code> to skip the first n lines; or use <code>comment = &quot;#&quot;</code> to drop all lines that start with (e.g.) #. When the data do not have column names, we can use <code>col_names = FALSE</code> to tell <code>read_csv()</code> not to treat the first row as headings, and instead label them sequentially from <code>X1</code> to <code>Xn</code>.</p>
 <p><br></p>
 </div>
 <div id="why-use-the-tidyversereadr-import-functions-instead-of-base-r" class="section level3">
@@ -572,7 +584,7 @@ airports %&gt;%
 <li>date-time: any ISO8601 date.</li>
 </ul>
 <p>If none of these rules apply, then the column will stay as a vector of strings.</p>
-<p>Trying the guess the variable type from the first 1000 lines of data works for a majority of datasets. But it doesn’t always work for larger data files. There are two basic problems:</p>
+<p>Trying the guess the variable type from the first 1000 lines of data works for a majority of datasets. But it doesn't always work for larger data files. There are two basic problems:</p>
 <ul>
 <li><p>The first thousand rows might be a special case, and readr guesses a type that is not sufficiently general. For example, you might have a column of doubles that only contains integers in the first 1000 rows.</p></li>
 <li><p>The column might contain a lot of missing values. If the first 1000 rows contain only NAs, readr will guess that it’s a logical vector, whereas you probably want to parse it as something more specific.</p></li>
@@ -580,18 +592,19 @@ airports %&gt;%
 <p><br></p>
 <p>readr contains a challenging CSV that illustrates both of these problems:</p>
 <pre class="r"><code>challenge &lt;- read_csv(readr_example(&quot;challenge.csv&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   x = col_double(),
 ##   y = col_logical()
 ## )</code></pre>
 <pre><code>## Warning: 1000 parsing failures.
 ##  row col           expected     actual                                                                                         file
-## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
 ## .... ... .................. .......... ............................................................................................
 ## See problems(...) for more details.</code></pre>
 <p><br></p>
@@ -623,11 +636,11 @@ airports %&gt;%
 )</code></pre>
 <pre><code>## Warning: 1000 parsing failures.
 ##  row col           expected     actual                                                                                         file
-## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
-## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/3.6/Resources/library/readr/extdata/challenge.csv&#39;
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
 ## .... ... .................. .......... ............................................................................................
 ## See problems(...) for more details.</code></pre>
 <p><br></p>
@@ -653,33 +666,26 @@ tail(challenge)</code></pre>
 <p>There are a few other general strategies to help you parse files:</p>
 <p>In the previous example, we just got unlucky: if we look at just one more row than the default, we can correctly parse in one shot:</p>
 <pre class="r"><code>challenge2 &lt;- read_csv(readr_example(&quot;challenge.csv&quot;), guess_max = 1001)</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   x = col_double(),
 ##   y = col_date(format = &quot;&quot;)
 ## )</code></pre>
 <p><br></p>
-<p>You might have noticed that readr needed a little help with variable type parsing when we’ve been reading in our coronavirus dataset</p>
+<p>You might have noticed that readr needed a little help with variable type parsing when we've been reading in our coronavirus dataset</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   date = col_date(format = &quot;&quot;),
-##   province = col_logical(),
+##   province = col_character(),
 ##   country = col_character(),
 ##   lat = col_double(),
 ##   long = col_double(),
 ##   type = col_character(),
 ##   cases = col_double()
 ## )</code></pre>
-<pre><code>## Warning: 67097 parsing failures.
-##   row      col           expected  actual                                                                                   file
-## 54792 province 1/0/T/F/TRUE/FALSE Alberta &#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;
-## 54793 province 1/0/T/F/TRUE/FALSE Alberta &#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;
-## 54794 province 1/0/T/F/TRUE/FALSE Alberta &#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;
-## 54795 province 1/0/T/F/TRUE/FALSE Alberta &#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;
-## 54796 province 1/0/T/F/TRUE/FALSE Alberta &#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;
-## ..... ........ .................. ....... ......................................................................................
-## See problems(...) for more details.</code></pre>
 <p><br> What is the problem here?</p>
 <p>It will only load properly if we specify that the province column does not contain logicals but is character vector:</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))</code></pre>
@@ -701,7 +707,7 @@ tail(challenge)</code></pre>
 <pre class="r"><code>parse_double(&quot;1,23&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
 <pre><code>## [1] 1.23</code></pre>
 <p><br></p>
-<p>readr’s default locale is US-centric, because generally R is US-centric (i.e. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.</p>
+<p>readr’s default locale is US-centric, because generally R is US-centric (i.e. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.</p>
 <p>parse_number() addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.</p>
 <pre class="r"><code>parse_number(&quot;$100&quot;)</code></pre>
 <pre><code>## [1] 100</code></pre>
@@ -729,16 +735,17 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 </div>
 <div id="converting-between-data-types-with-parse_x-functions" class="section level4">
 <h4>Converting between data types with <code>parse_x()</code> functions</h4>
-<p>We can use the <code>parse_x()</code> functions in combination with <code>mutate()</code> to clean up values in a variable. Let’s have a look at how to clean up this dataset:</p>
+<p>We can use the <code>parse_x()</code> functions in combination with <code>mutate()</code> to clean up values in a variable. Let's have a look at how to clean up this dataset:</p>
 <pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   item = col_character(),
 ##   price = col_character(),
 ##   size = col_double()
 ## )</code></pre>
 <pre class="r"><code># What happens if we run this without the locale argument?</code></pre>
-<p>Let’s clean up the <code>price</code> column</p>
+<p>Let's clean up the <code>price</code> column</p>
 <pre class="r"><code>mess %&gt;% 
   mutate(price = parse_number(price))</code></pre>
 <pre><code>## # A tibble: 3 x 3
@@ -751,18 +758,22 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 </div>
 <div id="data-export" class="section level4">
 <h4>Data export</h4>
-<p>readr also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly and also let’s you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function <code>write.table()</code></p>
-<p>Let’s look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:</p>
+<p>readr also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly and also let's you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function <code>write.table()</code></p>
+<p>Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:</p>
 <pre class="r"><code>coronavirus %&gt;%  
   filter(type == &quot;confirmed&quot;) %&gt;% 
   group_by(date) %&gt;% 
   summarize(total_cases = sum(cases)) %&gt;% 
   write_csv(path = &quot;../datasets/daily_casecount.csv&quot;)</code></pre>
+<pre><code>## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
+## Please use the `file` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <p><br></p>
 <p>We also briefly talked about how to save plots a few classes ago. To recap here:</p>
 <div class="figure">
-<img src="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.050.png?raw=true" alt="" />
-<p class="caption">Slide from Jenny Bryan’s ggplot tutorial <a href="https://github.com/jennybc/ggplot2-tutorial" class="uri">https://github.com/jennybc/ggplot2-tutorial</a></p>
+<img src="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.050.png?raw=true" alt="Slide from Jenny Bryan&#39;s ggplot tutorial https://github.com/jennybc/ggplot2-tutorial" />
+<p class="caption">Slide from Jenny Bryan's ggplot tutorial <a href="https://github.com/jennybc/ggplot2-tutorial" class="uri">https://github.com/jennybc/ggplot2-tutorial</a></p>
 </div>
 <p><br></p>
 <p>Use <code>ggsave()</code></p>
@@ -773,7 +784,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()</code></pre>
 <p><img src="lesson13-files/unnamed-chunk-19-1.png" /><!-- --></p>
-<pre class="r"><code>ggsave(filename = &quot;../img/daily_casecounts_plot.png&quot;)</code></pre>
+<pre class="r"><code>ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 </div>
 </div>
@@ -790,7 +801,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -829,7 +840,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
