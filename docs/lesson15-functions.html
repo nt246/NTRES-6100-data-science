@@ -26,6 +26,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -445,7 +455,7 @@ div.tocify {
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
 <ul>
-<li><a href="https://stat545.com/functions-part1.html">Chapters 18-21</a> in Jenny Bryan’s STAT545 notes</li>
+<li><a href="https://stat545.com/functions-part1.html">Chapters 18-21</a> in Jenny Bryan's STAT545 notes</li>
 </ul>
 <p><br></p>
 </div>
@@ -459,9 +469,9 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
-<h2>Today’s learning objectives</h2>
+<h2>Today's learning objectives</h2>
 <p>Today, we will first wrap up our coverage of for loops and then briefly introduce functions in R.</p>
-<p>By the end of today’s class, you should be able to:</p>
+<p>By the end of today's class, you should be able to:</p>
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different input</li>
 <li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
@@ -471,7 +481,7 @@ div.tocify {
 </div>
 <div id="getting-back-to-where-we-were" class="section level2">
 <h2>Getting back to where we were</h2>
-<p>We will continue working with the gapminder dataset, so let’s first load that back in, along with the tidyverse.</p>
+<p>We will continue working with the gapminder dataset, so let's first load that back in, along with the tidyverse.</p>
 <pre class="r"><code>library(tidyverse)
 library(gapminder) #install.packages(&quot;gapminder&quot;)
 
@@ -506,13 +516,13 @@ for (cntry in country_list) { # (cntry = country_list[1])
   ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
 } </code></pre>
 <p><br></p>
-<p>Now, let’s add some additional functionality to this loop</p>
+<p>Now, let's add some additional functionality to this loop</p>
 <p><br> <br></p>
 </div>
 <div id="conditional-statements-with-if-and-else" class="section level2">
 <h2>Conditional statements with <code>if</code> and <code>else</code></h2>
-<p>Often when we’re coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.</p>
-<p>In R and other languages, these are called “if statements”.</p>
+<p>Often when we're coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.</p>
+<p>In R and other languages, these are called &quot;if statements&quot;.</p>
 <p><br></p>
 <div id="if-statement-basic-structure" class="section level3">
 <h3>if statement basic structure</h3>
@@ -527,7 +537,7 @@ if (condition is true) {
   do something different
 }</code></pre>
 <p><br></p>
-<p>Let’s bring this concept into our <code>for</code> loop for Europe that we’ve just created. What if we want to add the label “Estimated” to countries for which the figures were estimated rather than based on official reported statistics? Here’s what we’d do.</p>
+<p>Let's bring this concept into our <code>for</code> loop for Europe that we've just created. What if we want to add the label &quot;Estimated&quot; to countries for which the figures were estimated rather than based on official reported statistics? Here's what we'd do.</p>
 <p>First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:</p>
 <pre class="r"><code>est &lt;- read_csv(&quot;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&quot;)
 gapminder_est &lt;- left_join(gapminder, est)</code></pre>
@@ -573,7 +583,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
          plot = my_plot)
   
 } </code></pre>
-<p>This worked, but we got a warning message with the <code>if</code> statement. This is because if we look at <code>gap_to_plot$estimated</code>, it is many “yes”s or “no”s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
+<p>This worked, but we got a warning message with the <code>if</code> statement. This is because if we look at <code>gap_to_plot$estimated</code>, it is many &quot;yes&quot;s or &quot;no&quot;s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you <em>didn't</em> know that. So let's be explicit:</p>
 <p><br></p>
 </div>
 <div id="executable-if-statement" class="section level3">
@@ -684,7 +694,7 @@ if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a singl
   }</code></pre>
 <p>This construction is necessary if you have more than two conditions to test for.</p>
 <p><br> <br></p>
-<p>We can also add the conditional addition of the plot subtitle with R’s <code>ifelse()</code> function. It works like this</p>
+<p>We can also add the conditional addition of the plot subtitle with R's <code>ifelse()</code> function. It works like this</p>
 <pre class="r"><code>ifelse(condition is true, perform action, perform alternative action)</code></pre>
 <p>where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial <code>labs()</code> layer of our plot for a more concise expression that achives the same goal:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
@@ -721,7 +731,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
 </div>
 <div id="looping-with-an-index-and-storing-results" class="section level2">
 <h2>Looping with an index and storing results</h2>
-<p>In the example we’ve been using to build a for loop together, we’ve been iterating over a list of countries (in turn assigning each of these to our cntry object). You may often see for loops iterating over a numerical index, often using <code>i</code> as the object that in turn gets assigned each number from a sequence. Here is an example:</p>
+<p>In the example we've been using to build a for loop together, we've been iterating over a list of countries (in turn assigning each of these to our cntry object). You may often see for loops iterating over a numerical index, often using <code>i</code> as the object that in turn gets assigned each number from a sequence. Here is an example:</p>
 <pre class="r"><code>for (i in 1:10) {
   print(paste(&quot;Part_&quot;, i, sep = &quot;&quot;))
 }</code></pre>
@@ -731,7 +741,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
   filter(continent == &quot;Europe&quot;) %&gt;%
   mutate(gdpTot = gdpPercap * pop)</code></pre>
 <p><br></p>
-<p>A (not very computationally efficient) alternative would be to do this calculation for a specific country with a <code>for</code> loop and using square bracket indexing to select the i’th element of a vector.</p>
+<p>A (not very computationally efficient) alternative would be to do this calculation for a specific country with a <code>for</code> loop and using square bracket indexing to select the i'th element of a vector.</p>
 <pre class="r"><code>gapminder$gdpTot &lt;-  vector(length = nrow(gapminder))
 
 for (i in 1:nrow(gapminder)) {
@@ -748,7 +758,7 @@ for (i in 1:nrow(gapminder)) {
 <div id="turning-the-operation-we-iterate-over-with-our-for-loop-into-a-function" class="section level3">
 <h3>Turning the operation we iterate over with our <code>for loop</code> into a function</h3>
 <p>Instead of running our <code>for loop</code> to create a plot for every country in a list of countries, we can re-write the plotting operation as a function that we can call for specific countries.</p>
-<p>To simplify the code, let’s go back to what our loop looked like before we added the conditional statements:</p>
+<p>To simplify the code, let's go back to what our loop looked like before we added the conditional statements:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -778,7 +788,10 @@ for (cntry in country_list) { # (cntry = country_list[1])
 } </code></pre>
 <p><br> <br></p>
 <p>Now, we can change this into a function in the following way:</p>
-<p><img src="assets/for_loop_to_function.png" /></p>
+<div class="figure">
+<img src="assets/for_loop_to_function.png" />
+
+</div>
 <p><br></p>
 <p>Here is our function:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
@@ -822,7 +835,7 @@ for (cntry in country_list) {
   
 }</code></pre>
 <p><br></p>
-<p>Now we can add some more flexibility to our function. Currently, it is written to always plot the total GDP vs. year for a country. We can change the function so that it can plot other variables on the y-axis, as specified with an additional argument we provide when we call (and define) the function.</p>
+<p>Now we can add some more flexibility to our function. Currently, it is written to always plot the total GDP vs. year for a country. We can change the function so that it can plot other variables on the y-axis, as specified with an additional argument we provide when we call (and define) the function.</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -859,11 +872,11 @@ save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
 <p><br></p>
 <p>This seems to work well. But what happens if we forget to specify the statistic we want plotted?</p>
 <pre class="r"><code>save_plot(&quot;Germany&quot;)</code></pre>
-<p>We get an error message saying “argument”stat" is missing, with no default". We can build in a default the following way</p>
+<p>We get an error message saying &quot;argument &quot;stat&quot; is missing, with no default&quot;. We can build in a default the following way</p>
 <pre class="r"><code>#define our function
 save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {  </code></pre>
 <p><br></p>
-<p>Now, if we don’t specify the statistic we want plotted, the function will execute with this specified default option. The default gets “overwritten” if we do specify a stat when we call the function.</p>
+<p>Now, if we don't specify the statistic we want plotted, the function will execute with this specified default option. The default gets &quot;overwritten&quot; if we do specify a stat when we call the function.</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -900,7 +913,7 @@ save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
 </div>
 <div id="your-turn" class="section level3">
 <h3>Your turn</h3>
-<p>We’ve talked about how we can change file type that <code>ggsave()</code> will output just by changing the extension of the specified name we want to give the file. It works like this:</p>
+<p>We've talked about how we can change file type that <code>ggsave()</code> will output just by changing the extension of the specified name we want to give the file. It works like this:</p>
 <pre class="r"><code># To save a .png file
 ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.png&quot;, plot = my_plot)
 
@@ -910,15 +923,12 @@ ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.jpg&quot;, plot = my_pl
 # To save a .pdf file
 ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.pdf&quot;, plot = my_plot)</code></pre>
 <p><br></p>
-<p><strong>Your task:</strong> Add an argument to our function that specifies the file type you want for the plot and edit the function so that it will output the requested file type. You can also specify a default file type that the function will use if you don’t specify a file type when you call it.</p>
+<p><strong>Your task:</strong> Add an argument to our function that specifies the file type you want for the plot and edit the function so that it will output the requested file type. You can also specify a default file type that the function will use if you don't specify a file type when you call it.</p>
 <p>If you have more time, you can also add an additional argument that specifies the plot type (x-y scatter, line plot etc) and adjust the function to accommodate this.</p>
 <p><br></p>
 <div id="answer" class="section level4">
 <h4>Answer</h4>
-<details>
-<summary>
-click to see our approach
-</summary>
+<p><details> <summary>click to see our approach</summary></p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -950,7 +960,7 @@ save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;p
 # Testing our function
 save_plot(&quot;Germany&quot;)
 save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;, &quot;jpg&quot;)</code></pre>
-</details>
+<p></details></p>
 </div>
 </div>
 </div>
@@ -966,7 +976,7 @@ save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;, &quot;jpg&quot;)</code></pre
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1005,7 +1015,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
