@@ -19,9 +19,21 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -67,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -248,6 +261,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +331,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -366,16 +452,16 @@ $(document).ready(function () {
 <div id="please-complete-the-course-evaluations-when-they-become-available-at-the-end-of-the-semester" class="section level4">
 <h4>Please complete the course evaluations when they become available at the end of the semester</h4>
 <p>Unfortunately, we will not be able to get our course evaluations until the end of the semester. Students formally enrolled (both for credit or audit) should get an email with a link to the evaluation at that time, and I would really appreciate it if you can take a few minutes to answer the questions.</p>
-<p>This is the second time I have offered this course, and it is still under very active development. I’m currently in the process of turning it into a permanent course (NTRES 6100), so I would really value everybody’s feedback on how we can improve it and make it as useful as possible.</p>
+<p>This is the second time I have offered this course, and it is still under very active development. I'm currently in the process of turning it into a permanent course (NTRES 6100), so I would really value everybody's feedback on how we can improve it and make it as useful as possible.</p>
 <p>Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted.</p>
-<p>If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the <code>feedback</code> channel on Slack. Remember you can post anonymously by prefacing your message with <code>/anon</code> (e.g. `/anon Here is my message).</p>
+<p>If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the <code>feedback</code> channel on Slack. Remember you can post anonymously by prefacing your message with <code>/anon</code> (e.g. `/anon Here is my message).</p>
 <p><br></p>
 </div>
 </div>
 <div id="agenda-for-todays-class" class="section level2">
-<h2>Agenda for today’s class</h2>
+<h2>Agenda for today's class</h2>
 <ul>
-<li>Student presentations - we’re looking forward to hearing from you!</li>
+<li>Student presentations - we're looking forward to hearing from you!</li>
 <li>If there is time: A quick review of some good practices</li>
 <li>Where to learn more and connect with the R user community</li>
 <li>Important take-home messages</li>
@@ -392,15 +478,21 @@ $(document).ready(function () {
 </div>
 <div id="make-sure-all-your-processing-steps-are-included-in-your-scripts-and-test-that-your-code-can-run-in-a-new-environment" class="section level3">
 <h3>2. Make sure all your processing steps are included in your scripts and test that your code can run in a new environment</h3>
-<p>Make sure that your code does not rely on objects or functions defined outside of your script. If that is the case, it can’t readily be run by yourself or someone else in the future.</p>
-<p>Make sure to frequently re-start R as you’re working, as elaborated on by Jenny Bryan <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">here</a>.</p>
-<p>Also, if you haven’t already, follow the <a href="https://r4ds.had.co.nz/workflow-projects.html#what-is-real">instructions from r4ds</a> on how ensure that RStudio does not restore your workspace between sessions, so you start with a clean environment every time. Make sure this option is selected under your RStudio preferences:</p>
-<p><img src="../img/rstudio-workspace.png" width="50%" /></p>
+<p>Make sure that your code does not rely on objects or functions defined outside of your script. If that is the case, it can't readily be run by yourself or someone else in the future.</p>
+<p>Make sure to frequently re-start R as you're working, as elaborated on by Jenny Bryan <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">here</a>.</p>
+<p>Also, if you haven't already, follow the <a href="https://r4ds.had.co.nz/workflow-projects.html#what-is-real">instructions from r4ds</a> on how ensure that RStudio does not restore your workspace between sessions, so you start with a clean environment every time. Make sure this option is selected under your RStudio preferences:</p>
+<p><img src="assets/rstudio-workspace.png" width="50%" /></p>
 <p><br> <br></p>
 <p>Slides from <a href="https://www.slideshare.net/jenniferbryan5811/cm002-deep-thoughts">Deep thoughts</a> by Jenny Bryan:</p>
-<p><img src="../img/small-mistake.png" /></p>
+<div class="figure">
+<img src="assets/small-mistake.png" />
+
+</div>
 <p><br> <br></p>
-<p><img src="../img/redo-analysis.png" /></p>
+<div class="figure">
+<img src="assets/redo-analysis.png" />
+
+</div>
 <p><br></p>
 </div>
 <div id="organizing-your-work-into-r-projects-within-rstudio-makes-life-easier" class="section level3">
@@ -418,14 +510,14 @@ $(document).ready(function () {
 <p>Developing a consistent style in your coding, makes it a lot easier to read. Here is some inspiration:</p>
 <ul>
 <li>The <a href="https://style.tidyverse.org/">tidyverse style guide</a></li>
-<li>A more <a href="http://adv-r.had.co.nz/Style.html">concise overview of the style Hadley Wickham uses</a> in his books “R for Data Science” and “Advanced R”</li>
+<li>A more <a href="http://adv-r.had.co.nz/Style.html">concise overview of the style Hadley Wickham uses</a> in his books &quot;R for Data Science&quot; and &quot;Advanced R&quot;</li>
 <li>There are also great tips for styling, organizing and optimizing your code in the blogpost <a href="https://blog.quantinsti.com/r-best-practices-r-you-writing-the-r-way/?utm_campaign=News&amp;utm_medium=Community&amp;utm_source=DataCamp.com">R Best Practices: R you writing the R way!</a> by Milind Paradkar</li>
 <li>Many of the same principles are also summarized by JEFworks <a href="https://jef.works/R-style-guide/">here</a></li>
 </ul>
 <p><br></p>
 </div>
 <div id="write-code-for-humans-write-data-for-computers" class="section level3">
-<h3>6. “Write code for humans, write data for computers”</h3>
+<h3>6. &quot;Write code for humans, write data for computers&quot;</h3>
 <p>Very important advice from <a href="https://twitter.com/vsbuffalo/status/358699162679787521">Vince Buffalo</a></p>
 <p>Reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable.</p>
 <p>Some ways to make code more human-readable include:</p>
@@ -433,7 +525,7 @@ $(document).ready(function () {
 <li>Clear workflows</li>
 <li>Use comments</li>
 <li>Give objects meaningful names</li>
-<li>Use well-named operations, e.g. <code>select(data, columnname)</code> instead of <code>data[,5]</code></li>
+<li>Use well-named operations, e.g. <code>select(data, columnname)</code> instead of <code>data[,5]</code></li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -461,7 +553,7 @@ $(document).ready(function () {
 </li>
 <li><a href="https://rafalab.github.io/dsbook/">Introduction to Data Science: Data Analysis and Prediction Algorithms with R</a> by Rafael A. Irizarry</li>
 </ul>
-<p>And for getting help, check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not subsettable” at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
+<p>And for getting help, check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan's talk &quot;Object of type ‘closure’ is not subsettable&quot; at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
 <p><br></p>
 </div>
 <div id="rmarkdown" class="section level4">
@@ -520,15 +612,15 @@ $(document).ready(function () {
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
-<li>Think deliberately about data: when you distinguish data questions from research questions, you’ll learn how and who to ask for help</li>
+<li>Think deliberately about data: when you distinguish data questions from research questions, you'll learn how and who to ask for help</li>
 <li>Save heartache: you don’t have to reinvent the wheel</li>
-<li>Save time: when you expect there’s a better way to do what you are doing, you’ll find the solution faster. Focus on the science.</li>
+<li>Save time: when you expect there’s a better way to do what you are doing, you'll find the solution faster. Focus on the science.</li>
 </ul>
 <p><br></p>
 <p><strong>2. Open data science tools exist</strong></p>
 <ul>
 <li>Data science tools that enable open science are game-changing for analysis, collaboration and communication.</li>
-<li>Open science is “the concept of transparency at all stages of the research process, coupled with free and open access to data, code, and papers” (<a href="http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract">Hampton et al. 2015</a>))</li>
+<li>Open science is &quot;the concept of transparency at all stages of the research process, coupled with free and open access to data, code, and papers&quot; (<a href="http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract">Hampton et al. 2015</a>))</li>
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
@@ -545,7 +637,7 @@ $(document).ready(function () {
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
-<li>If you learn to talk about your data, you’ll find solutions faster.</li>
+<li>If you learn to talk about your data, you'll find solutions faster.</li>
 <li>Build confidence: these skills are transferable beyond your science.</li>
 <li>Be empathetic and inclusive and build a network of allies</li>
 </ul>
@@ -563,6 +655,8 @@ $(document).ready(function () {
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -570,7 +664,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -595,6 +689,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
