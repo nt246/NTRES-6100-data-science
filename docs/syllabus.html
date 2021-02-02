@@ -26,6 +26,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -404,7 +414,7 @@ div.tocify {
       <a href="lesson14-for-loops.html">Lesson 14: Iteration (for loops) and conditional execution</a>
     </li>
     <li>
-      <a href="lesson15-functions-part1.html">Lesson 15: Functions, part 1</a>
+      <a href="lesson15-functions.html">Lesson 15: Functions</a>
     </li>
     <li>
       <a href="lesson16-factors.html">Lesson 16: Factors</a>
@@ -440,9 +450,9 @@ Cornell University, Fall 2020</p>
 <h4>Course Info</h4>
 <p><em>All class activities are online.</em></p>
 <p><strong>Meeting times</strong>: Mondays and Wednesdays 2:55pm - 4:10pm (September 14 - November 11, 2020)</p>
-<p><strong>Optional</strong>: “Hacky hour” Fridays 12:20-2:15pm (Meetup to work on problem sets or your own projects)</p>
-<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a> (<a href="mailto:nt246@cornell.edu" class="email">nt246@cornell.edu</a>)</p>
-<p><strong>TA</strong>: PhD Student <a href="https://www.makopyan.com">Maria Akopyan</a> (<a href="mailto:ma2256@cornell.edu" class="email">ma2256@cornell.edu</a>)</p>
+<p><strong>Optional</strong>: &quot;Hacky hour&quot; Fridays 12:20-2:15pm (Meetup to work on problem sets or your own projects)</p>
+<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a> (<a href="mailto:nt246@cornell.edu">nt246@cornell.edu</a>)</p>
+<p><strong>TA</strong>: PhD Student <a href="https://www.makopyan.com">Maria Akopyan</a> (<a href="mailto:ma2256@cornell.edu">ma2256@cornell.edu</a>)</p>
 <p><strong>Office hours</strong>: By appointment</p>
 <p><strong>Grading</strong>: S/U (2 credits)</p>
 <hr />
@@ -472,15 +482,15 @@ Cornell University, Fall 2020</p>
 <h4>Prerequisites</h4>
 <p>A basic working knowledge of R will be helpful, but no prior experience with the tidyverse packages or with Git, GitHub, or R Markdown is assumed. If you have never worked in R before, we recommend working through one or more of the following tutorials before the course:</p>
 <ul>
-<li><a href="https://stat545.com/r-basics.html">Jenny Bryan’s STAT545 Chapter 2 R basics and workflows</a></li>
+<li><a href="https://stat545.com/r-basics.html">Jenny Bryan's STAT545 Chapter 2 R basics and workflows</a></li>
 <li><a href="https://swirlstats.com/">R Swirl interactive lessons</a></li>
-<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data Carpentry’s Introduction to R for Ecologists</a></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data Carpentry's Introduction to R for Ecologists</a></li>
 </ul>
 <hr />
 </div>
 <div id="course-format" class="section level4">
 <h4>Course format</h4>
-<p>The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Wednesday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. We offer an optional Friday afternoon “hacky hour” session for working on these problem sets in groups and with TA support. The problem sets are due the following Wednesday at 10pm.</p>
+<p>The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Wednesday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. We offer an optional Friday afternoon &quot;hacky hour&quot; session for working on these problem sets in groups and with TA support. The problem sets are due the following Wednesday at 10pm.</p>
 <hr />
 </div>
 <div id="evaluation" class="section level4">
@@ -490,7 +500,7 @@ Cornell University, Fall 2020</p>
 </div>
 <div id="course-materials" class="section level4">
 <h4>Course materials</h4>
-<p>All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily <a href="https://r4ds.had.co.nz/">Grolemund and Wickham’s R For Data Science</a> and the <a href="https://stat545.com/">STAT545 course developed by Jenny Bryan</a>.</p>
+<p>All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily <a href="https://r4ds.had.co.nz/">Grolemund and Wickham's R For Data Science</a> and the <a href="https://stat545.com/">STAT545 course developed by Jenny Bryan</a>.</p>
 <p>All students will need to bring a laptop to each session. Students who do not have their own laptop can arrange to borrow one from the Mann Library.</p>
 <p>Please follow the instructions <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/misc/installation_guide.md">here</a> to install the software we will need <strong>prior to the first class</strong>.</p>
 <hr />
@@ -515,12 +525,12 @@ Cornell University, Fall 2020</p>
 <div id="tentative-schedule" class="section level4">
 <h4>Tentative schedule</h4>
 <p><em>Subject to adjustment</em></p>
-<table>
+<table style="width:49%;">
 <colgroup>
-<col width="9%" />
-<col width="12%" />
-<col width="54%" />
-<col width="22%" />
+<col width="5%" />
+<col width="6%" />
+<col width="25%" />
+<col width="11%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -654,7 +664,7 @@ Cornell University, Fall 2020</p>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -693,7 +703,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
