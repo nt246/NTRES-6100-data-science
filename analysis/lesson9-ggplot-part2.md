@@ -106,7 +106,7 @@ max(coronavirus$date)
 ```
 
 ```
-## [1] "2020-11-09"
+## [1] "2021-02-01"
 ```
 <br>
 <br>
@@ -114,7 +114,7 @@ max(coronavirus$date)
 
 ## Combining `dplyr` and `ggplot`
 
-Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2020-11-09. Take a minute to try this for yourself, then you can look at our approach.
+Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-02-01. Take a minute to try this for yourself, then you can look at our approach.
 
 <br>
 
@@ -132,11 +132,11 @@ kable(total_cases)  # kable() just provides a nice output for the table
 
 
 
-type            cases
-----------  ---------
-confirmed    50913976
-death         1263094
-recovered    33289404
+|type      |     cases|
+|:---------|---------:|
+|confirmed | 103409402|
+|death     |   2237973|
+|recovered |  63618685|
 
 </details>
 
@@ -385,6 +385,10 @@ coronavirus %>%
   geom_line()
 ```
 
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-14-1.png)<!-- -->
 
 It looks like this is doing what we want, but it does not display well. There are too many countries! We could play around with the layout parameters to be able to see this plot. But let's instead subset to only show the 10 countries with the highest total counts of confirmed cases.
@@ -412,6 +416,10 @@ coronavirus %>%
   geom_line()
 ```
 
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-16-1.png)<!-- -->
 Much better!
 
@@ -427,6 +435,10 @@ coronavirus %>%
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line() +
   facet_wrap(~country)
+```
+
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-17-1.png)<!-- -->
@@ -477,6 +489,10 @@ coronavirus %>%
   geom_col(aes(x = date, y = cases, fill = type), size=0.1)
 ```
 
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-20-1.png)<!-- -->
 If it looks like your chart is just made up of black bars, try making it bigger, or reduce the `size` argument (which controls the line thickness).
 
@@ -493,6 +509,10 @@ coronavirus %>%
   coord_flip()
 ```
 
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-21-1.png)<!-- -->
 
 This is useful because it puts the proportions in relation to the total daily counts. But it can be hard to compare proportions. We can make all bars the same height with 'position adjustment'
@@ -504,6 +524,10 @@ coronavirus %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
   geom_col(aes(x=date, y = cases, fill = type), color="black", size=0.1, position = "fill")
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-22-1.png)<!-- -->
@@ -518,20 +542,20 @@ coronavirus %>%
 ```
 
 ```
-## # A tibble: 379 x 7
-##    date       province country               lat   long type      cases
-##    <date>     <chr>    <chr>               <dbl>  <dbl> <chr>     <dbl>
-##  1 2020-07-03 <NA>     Antigua and Barbuda 17.1  -61.8  confirmed    -1
-##  2 2020-05-19 <NA>     Benin                9.31   2.32 confirmed  -209
-##  3 2020-08-27 <NA>     Cyprus              35.1   33.4  confirmed   -17
-##  4 2020-05-07 <NA>     Ecuador             -1.83 -78.2  confirmed -1583
-##  5 2020-05-08 <NA>     Ecuador             -1.83 -78.2  confirmed -1480
-##  6 2020-05-11 <NA>     Ecuador             -1.83 -78.2  confirmed   -50
-##  7 2020-09-07 <NA>     Ecuador             -1.83 -78.2  confirmed -7953
-##  8 2020-07-15 <NA>     Finland             61.9   25.7  confirmed    -5
-##  9 2020-07-16 <NA>     Finland             61.9   25.7  confirmed    -3
-## 10 2020-04-18 <NA>     France              46.2    2.21 confirmed   -17
-## # … with 369 more rows
+## # A tibble: 397 x 7
+##    date       province                country          lat   long type     cases
+##    <date>     <chr>                   <chr>          <dbl>  <dbl> <chr>    <dbl>
+##  1 2020-01-31 Queensland              Australia     -27.5   153.  confirm…    -1
+##  2 2020-02-02 Queensland              Australia     -27.5   153.  confirm…    -1
+##  3 2020-03-06 Northern Territory      Australia     -12.5   131.  confirm…    -1
+##  4 2020-03-09 Saint Barthelemy        France         17.9   -62.8 confirm…    -2
+##  5 2020-03-11 <NA>                    Israel         31.0    34.9 confirm…   -28
+##  6 2020-03-18 Guizhou                 China          26.8   107.  confirm…    -1
+##  7 2020-03-24 <NA>                    Guyana          4.86  -58.9 confirm…   -15
+##  8 2020-03-25 Alberta                 Canada         53.9  -117.  confirm…    -1
+##  9 2020-04-02 Turks and Caicos Islan… United Kingd…  21.7   -71.8 confirm…    -1
+## 10 2020-04-04 New Caledonia           France        -20.9   166.  confirm…    -1
+## # … with 387 more rows
 ```
 
 ```r
@@ -542,6 +566,10 @@ coronavirus %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type), size=0.1, position = "fill")
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-23-1.png)<!-- -->
@@ -557,6 +585,10 @@ coronavirus %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type), position = "dodge")
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-24-1.png)<!-- -->
@@ -575,6 +607,10 @@ coronavirus %>%
   facet_wrap(~country)
 ```
 
+```
+## `summarise()` has grouped output by 'country', 'type'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-25-1.png)<!-- -->
 
 <br>
@@ -589,6 +625,10 @@ coronavirus %>%
   ggplot() +
   geom_col(aes(x=date, y = cases, fill = type), position = "identity", width = 1) +
   facet_wrap(~country)
+```
+
+```
+## `summarise()` has grouped output by 'country', 'type'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-26-1.png)<!-- -->
@@ -611,6 +651,10 @@ coronavirus %>%
   geom_bar(mapping = aes(x = date), color="black")
 ```
 
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-27-1.png)<!-- -->
 
 <br>
@@ -627,7 +671,13 @@ coronavirus_ttd <- coronavirus %>%
   pivot_wider(names_from = type,
               values_from = total_cases) %>%
   arrange(-confirmed)
+```
 
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
+```r
 ggplot(coronavirus_ttd) +
   geom_point(mapping = aes(x = confirmed, y = death))
 ```
@@ -665,7 +715,7 @@ ggplot(data = filter(coronavirus_ttd, confirmed > 500000)) +
 ```
 
 ```
-## Warning: Removed 10 rows containing missing values (geom_label).
+## Warning: Removed 14 rows containing missing values (geom_label).
 ```
 
 ![](lesson9-files/unnamed-chunk-31-1.png)<!-- -->
@@ -679,7 +729,7 @@ ggplot(data = filter(coronavirus_ttd)) +
 ```
 
 ```
-## Warning: Removed 88 rows containing missing values (geom_label).
+## Warning: Removed 106 rows containing missing values (geom_label).
 ```
 
 ![](lesson9-files/unnamed-chunk-32-1.png)<!-- -->
@@ -699,21 +749,13 @@ library("rgeos") #install.packages("rgeos")
 ```
 
 ```
-## Warning: package 'rgeos' was built under R version 3.6.2
-```
-
-```
 ## Loading required package: sp
 ```
 
 ```
-## Warning: package 'sp' was built under R version 3.6.2
-```
-
-```
-## rgeos version: 0.5-3, (SVN revision 634)
-##  GEOS runtime version: 3.7.2-CAPI-1.11.2 
-##  Linking to sp version: 1.4-1 
+## rgeos version: 0.5-5, (SVN revision 640)
+##  GEOS runtime version: 3.8.1-CAPI-1.13.3 
+##  Linking to sp version: 1.4-2 
 ##  Polygon checking: TRUE
 ```
 
@@ -763,6 +805,10 @@ group_by(coronavirus, date, type) %>%
   geom_line(aes(x=date, y=cases, color=type))
 ```
 
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-34-1.png)<!-- -->
 
 ```r
@@ -773,6 +819,10 @@ group_by(coronavirus, date, type) %>%
   mutate(cases=cumsum(cases)) %>%
   ggplot() +
   geom_line(aes(x=date, y=log(cases), color=type))
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-34-2.png)<!-- -->
@@ -795,6 +845,10 @@ filter(coronavirus, country %in% top10_countries) %>%
   facet_wrap(~country, scales = "free_y")
 ```
 
+```
+## `summarise()` has grouped output by 'country', 'date'. You can override using the `.groups` argument.
+```
+
 ![](lesson9-files/unnamed-chunk-35-1.png)<!-- -->
 
 <br>
@@ -811,6 +865,10 @@ group_by(coronavirus, date, type) %>%
   mutate(death_rate = death/(confirmed+death+recovered)) %>%
   ggplot(aes(x=date, y=death_rate)) +
   geom_line()
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson9-files/unnamed-chunk-36-1.png)<!-- -->
@@ -834,7 +892,11 @@ filter(coronavirus, country %in% top10_countries) %>%
 ```
 
 ```
-## Warning: Removed 41 rows containing missing values (geom_path).
+## `summarise()` has grouped output by 'country', 'date'. You can override using the `.groups` argument.
+```
+
+```
+## Warning: Removed 35 row(s) containing missing values (geom_path).
 ```
 
 ![](lesson9-files/unnamed-chunk-37-1.png)<!-- -->
@@ -858,6 +920,14 @@ filter(coronavirus, type=="confirmed", cases>0) %>%
   geom_text(aes(label=country)) +
   xlim(as.Date(c("2020-01-21", "2020-02-01"))) +
   theme_minimal()
+```
+
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_text).
 ```
 
 ![](lesson9-files/unnamed-chunk-38-1.png)<!-- -->

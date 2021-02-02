@@ -110,7 +110,8 @@ lotr <- read_csv("../datasets/lotr_tidy.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -124,7 +125,8 @@ lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -209,7 +211,8 @@ fship <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/da
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -223,7 +226,8 @@ ttow <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -237,7 +241,8 @@ rking <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/da
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -257,11 +262,18 @@ str(lotr_untidy)
 ```
 
 ```
-## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame':	9 obs. of  4 variables:
-##  $ Film  : chr  "The Fellowship Of The Ring" "The Fellowship Of The Ring" "The Fellowship Of The Ring" "The Two Towers" ...
-##  $ Race  : chr  "Elf" "Hobbit" "Man" "Elf" ...
-##  $ Female: num  1229 14 0 331 0 ...
-##  $ Male  : num  971 3644 1995 513 2463 ...
+## spec_tbl_df [9 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Film  : chr [1:9] "The Fellowship Of The Ring" "The Fellowship Of The Ring" "The Fellowship Of The Ring" "The Two Towers" ...
+##  $ Race  : chr [1:9] "Elf" "Hobbit" "Man" "Elf" ...
+##  $ Female: num [1:9] 1229 14 0 331 0 ...
+##  $ Male  : num [1:9] 971 3644 1995 513 2463 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   Film = col_character(),
+##   ..   Race = col_character(),
+##   ..   Female = col_double(),
+##   ..   Male = col_double()
+##   .. )
 ```
 
 ```r
@@ -330,6 +342,13 @@ Now we write this multi-film, tidy dataset to file for use in various downstream
 
 ```r
 write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
+```
+
+```
+## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
+## Please use the `file` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
 ```
 
 <br>
@@ -433,20 +452,20 @@ coronavirus
 ```
 
 ```
-## # A tibble: 231,763 x 7
-##    date       province country       lat  long type      cases
-##    <date>     <chr>    <chr>       <dbl> <dbl> <chr>     <dbl>
-##  1 2020-01-22 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  2 2020-01-23 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  3 2020-01-24 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  4 2020-01-25 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  5 2020-01-26 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  6 2020-01-27 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  7 2020-01-28 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  8 2020-01-29 <NA>     Afghanistan  33.9  67.7 confirmed     0
-##  9 2020-01-30 <NA>     Afghanistan  33.9  67.7 confirmed     0
-## 10 2020-01-31 <NA>     Afghanistan  33.9  67.7 confirmed     0
-## # … with 231,753 more rows
+## # A tibble: 303,108 x 7
+##    date       province               country            lat   long type    cases
+##    <date>     <chr>                  <chr>            <dbl>  <dbl> <chr>   <dbl>
+##  1 2020-01-22 <NA>                   Afghanistan       33.9  67.7  confir…     0
+##  2 2020-01-22 <NA>                   Albania           41.2  20.2  confir…     0
+##  3 2020-01-22 <NA>                   Algeria           28.0   1.66 confir…     0
+##  4 2020-01-22 <NA>                   Andorra           42.5   1.52 confir…     0
+##  5 2020-01-22 <NA>                   Angola           -11.2  17.9  confir…     0
+##  6 2020-01-22 <NA>                   Antigua and Bar…  17.1 -61.8  confir…     0
+##  7 2020-01-22 <NA>                   Argentina        -38.4 -63.6  confir…     0
+##  8 2020-01-22 <NA>                   Armenia           40.1  45.0  confir…     0
+##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
+## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
+## # … with 303,098 more rows
 ```
 
 **QUESTION**: Is this in tidy format?
@@ -460,6 +479,10 @@ coronavirus %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))
+```
+
+```
+## `summarise()` has grouped output by 'date'. You can override using the `.groups` argument.
 ```
 
 ![](lesson10-files/unnamed-chunk-9-1.png)<!-- -->
@@ -507,7 +530,13 @@ coronavirus_ttd <- coronavirus %>%
   group_by(country, type) %>%
   summarize(total_cases = sum(cases)) %>%
   pivot_wider(names_from = type, values_from = total_cases)
+```
 
+```
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
+```
+
+```r
 # Now we can plot this easily
 ggplot(coronavirus_ttd) +
   geom_label(mapping = aes(x = confirmed, y = death, label = country))
