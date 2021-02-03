@@ -7,24 +7,24 @@ site: workflowr::wflow_site
 
 ![](assets/logo.png){width=50%}  
 
-### NTRES 6940, Lec 001 
+### NTRES 6100 
 
-#### Cornell University, Fall 2020
+#### Cornell University, Spring 2021
 
 
-This website complements the class [Canvas](https://canvas.cornell.edu/courses/21578) site.  
+This website complements the class [Canvas](https://canvas.cornell.edu/courses/27864) site.  
 
 ***
 
 **Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com)
 &nbsp;
-**TA**: PhD Student [Maria Akopyan](https://www.makopyan.com)
+**TA**: PhD Student [Nicolas Lou](https://dnr.cals.cornell.edu/people/runyang-lou/)
 
 ***
 #### Meeting times
 
-Mondays and Wednesdays 2:55pm - 4:10pm  
-(September 14 - November 11, 2020)
+Mondays and Wednesdays 2:45pm - 4:00pm  
+(February 8 - April 23, 2021)
 
 **Optional**: "Hacky hour" Fridays 12:20-2:15pm  
 Meetup to work on problem sets or your own projects  
