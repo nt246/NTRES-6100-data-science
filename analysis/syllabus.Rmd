@@ -7,26 +7,25 @@ output:
     toc_float: true
 ---
 
-> NTRES 6940, Lec 001  
+> NTRES 6100, Lec 001  
 Collaborative and Reproducible Data Science in R  
-Cornell University, Fall 2020  
+Cornell University, Spring 2021  
 
 #### Course Info  
+
 *All class activities are online.*
 
-**Meeting times**:  Mondays and Wednesdays 2:55pm - 4:10pm (September 14 - November 11, 2020)  
+**Lectures**:  Mondays and Wednesdays 2:45pm - 4:00pm (Feb 8 - Apr 16, 2021)  
 
-**Optional**: "Hacky hour" Fridays 12:20-2:15pm (Meetup to work on problem sets or your own projects)  
+**Optional lab sessions**: Fridays 12:25-2:20pm  
 
 **Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com) (nt246@cornell.edu)  
 
-
-**TA**: PhD Student [Maria Akopyan](https://www.makopyan.com) (ma2256@cornell.edu)  
+**TA**: PhD Student Nicolas Lou (rl683@cornell.edu)  
 
 **Office hours**: By appointment  
 
-
-**Grading**: S/U (2 credits)  
+**Grading**: S/U (2 credits / 3 credits with lab)  
 
 ***
 
@@ -53,6 +52,7 @@ By the end of this course, students will be able to:
 ***
 
 #### Prerequisites
+
 A basic working knowledge of R will be helpful, but no prior experience with the tidyverse packages or with Git, GitHub, or R Markdown is assumed. If you have never worked in R before, we recommend working through one or more of the following tutorials before the course: 
 
 + [Jenny Bryan's STAT545 Chapter 2 R basics and workflows](https://stat545.com/r-basics.html)
@@ -62,25 +62,29 @@ A basic working knowledge of R will be helpful, but no prior experience with the
 ***
 
 #### Course format
-The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Wednesday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. We offer an optional Friday afternoon "hacky hour" session for working on these problem sets in groups and with TA support. The problem sets are due the following Wednesday at 10pm. 
+
+The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Wednesday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following **Wednesday at 10pm**. We offer an optional Friday afternoon lab session for more opportunities to practice in groups and with TA support. 
 
 ***
 
 #### Evaluation
-It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures, participate actively during class, and submit at least 6 of the 7 problem sets with demonstrated effort to complete all questions. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand.  
+
+It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures (and lab sessions if enrolled), participate actively during class, and submit at least 8 of the 9 problem sets with demonstrated effort to complete all questions. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand.  
 
 ***
 
 #### Course materials
+
 All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily [Grolemund and Wickham's R For Data Science](https://r4ds.had.co.nz/) and the [STAT545 course developed by Jenny Bryan](https://stat545.com/).  
 
 All students will need to bring a laptop to each session. Students who do not have their own laptop can arrange to borrow one from the Mann Library.
 
-Please follow the instructions [here](https://github.com/nt246/NTRES6940-data-science/blob/master/misc/installation_guide.md) to install the software we will need **prior to the first class**.
+Please follow the instructions [here](https://nt246.github.io/NTRES-6100-data-science/installation.html) to install the software we will need **prior to the first class**.
 
 ***
 
 #### Code of conduct
+
 We are dedicated to providing a welcoming and supportive environment for everyone, regardless of background, identity and prior experience level. Everyone in this course will be coming from a different place with different experiences and expectations. We will not tolerate any form of language or behavior used to exclude, intimidate, or cause discomfort. This applies to all course participants (instructor, students, guests). In order to foster a positive and professional learning environment, we encourage the following kinds of behaviors:
 
 * Use welcoming and inclusive language
@@ -92,30 +96,46 @@ We are dedicated to providing a welcoming and supportive environment for everyon
 ***
 
 #### Student accommodations  
+
 In compliance with the Cornell University policy and equal access laws, we are available to discuss appropriate academic accommodations that may be required for student with disabilities. Requests for academic accommodations are to be made during the first two weeks of the course, except for unusual circumstances, so arrangements can be made. Students are encouraged to register with Student Disability Services to verify their eligibility for appropriate accommodations.
 
 ***
 
 #### Tentative schedule  
+
 *Subject to adjustment*  
 
-Class# | Date | Topic | Assignments
----|----|-----------------|-------
-1 | Mon 9/14 | [Intro to the course and R/RStudio](https://nt246.github.io/NTRES6940-data-science/lesson1-rstudio.html) | 
-2 | Wed 9/16 | [Markdown and GitHub](https://nt246.github.io/NTRES6940-data-science/lesson2-rmarkdown-github.html) | 
-3 | Mon 9/21 | [The Git workflow (version control)](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html) | 
-4 | Wed 9/23 | [Collaborating with GitHub Part 1](https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html) | [Assignment 1 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_1.md)
-5 | Mon 9/28 | [Collaborating with GitHub Part 2](https://nt246.github.io/NTRES6940-data-science/lesson5-collaboration-part2.html) | 
-6 | Wed 9/30 | [Plotting with ggplot part 1](https://nt246.github.io/NTRES6940-data-science/lesson6-ggplot-part1.html) |
-7 | Mon 10/5 | [Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES6940-data-science/lesson7-data-wrangling1.html) | [Assignment 2 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_2.md)  
-8 | Wed 10/7 | [Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES6940-data-science/lesson8-data-wrangling2.html) |
-9 | Mon 10/12 | [Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES6940-data-science/lesson9-ggplot-part2.html) |  [Assignment 3 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_3.md)  
-&nbsp;&nbsp; | Wed 10/14 | **NO CLASS** |
-10 | Mon 10/19 | [Tidy data (what is tidy data and how to handle untidy data) and file input/output](https://nt246.github.io/NTRES6940-data-science/lesson10-tidy-data.html) | [Assignment 4 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_4.md)
-11 | Wed 10/21 | [Good coding practices, debugging strategies, and getting help (Guest lecture by Erika Mudrak)](https://nt246.github.io/NTRES6940-data-science/lesson11-debugging-getting-help.html)|
-12 | Mon 10/26 | [Relational data (join functions)](https://nt246.github.io/NTRES6940-data-science/lesson12-relational-data.html) | [Assignment 5 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_5.md)
-13 | Wed 10/28 | [Data import, export, and types](https://nt246.github.io/NTRES6940-data-science/lesson13-data-import-and-types.html) |
-14 | Mon 11/2 | [Iteration (for loops) and conditional execution](https://nt246.github.io/NTRES6940-data-science/lesson14-for-loops.html) | [Assignment 6 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_6.md)
-15 | Wed 11/4 | [Functions](https://nt246.github.io/NTRES6940-data-science/lesson15-functions.html) | 
-16 | Mon 11/9 | [Factors in R](https://nt246.github.io/NTRES6940-data-science/lesson16-factors.html) | [Assignment 7 due](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_7.md)
-17 | Wed 11/11 | Student presentations, wrapping up and looking ahead | 
+| Class#  | Day | Date | Topic                                                                                         | Assignments      |
+|---------|-----|------|-----------------------------------------------------------------------------------------------|------------------|
+| 1       | Mon | 2/8  | [Intro to the course and R/RStudio](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)|       |
+| 2       | Wed | 2/10 | [Markdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)   |                  |
+|         | Fri | 2/12 | Lab 1                                                                                         |                  |
+| 3       | Mon | 2/15 | The Git workflow (version control)                                                            |                  |
+| 4       | Wed | 2/17 | Collaborating with GitHub Part 1                                                              | [Assignment 1 due](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) |
+|         | Fri | 2/19 | Lab 2                                                                                         |                  |
+| 5       | Mon | 2/22 | Collaborating with GitHub Part 2                                                              |                  |
+| 6       | Wed | 2/24 | Plotting with ggplot part 1                                                                   | Assignment 2 due |
+|         | Fri | 2/26 | Lab 3                                                                                         |                  |
+| 7       | Mon | 3/1  | Data wrangling part 1 (dplyr::filter, mutate, select, arrange)                                |                  |
+| 8       | Wed | 3/3  | Data wrangling part 2 (dplyr::summarize, group_by)                                            | Assignment 3 due |
+|         | Fri | 3/5  | Lab 4                                                                                         |                  |
+| 9       | Mon | 3/8  | Plotting with ggplot part 2 + good coding practices                                           |                  |
+|         | Wed | 3/10 | **NO CLASS** - Cornell Wellness Break                                                         | Assignment 4 due |
+|         | Fri | 3/12 | Lab 5                                                                                         |                  |
+| 10      | Mon | 3/15 | Good coding practices, debugging strategies, and getting help (Guest lecture by Erika Mudrak) |                  |
+| 11      | Wed | 3/17 | Tidy data (what is tidy data and how to handle untidy data)                                   | Assignment 5 due |
+|         | Fri | 3/19 | Lab 6                                                                                         |                  |
+| 12      | Mon | 3/22 | Data import, export, and parsing                                                              |                  |
+| 13      | Wed | 3/24 | Factors in R                                                                                  | Assignment 6 due |
+|         | Fri | 3/26 | Lab 7                                                                                         |                  |
+| 14      | Mon | 3/29 | Relational data (join functions)                                                              |                  |
+| 15      | Wed | 3/31 | Iteration (for loops) and conditional execution part 1                                        | Assignment 7 due |
+|         | Fri | 4/2  | Lab 8                                                                                         |                  |
+| 16      | Mon | 4/5  | Iteration (for loops) and conditional execution part 2                                        |                  |
+| 17      | Wed | 4/7  | Functions                                                                                     | Assignment 8 due |
+|         | Fri | 4/9  | Lab 9                                                                                         |                  |
+| 18      | Mon | 4/12 | Catching up                                                                                   |                  |
+| 19      | Wed | 4/14 | Student presentations, wrapping up and looking ahead                                          | Assignment 9 due |
+|         | Fri | 4/16 | Lab 10                                                                                        |                  |
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
