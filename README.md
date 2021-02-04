@@ -6,6 +6,6 @@
 
 <br>
 
-Course website: https://nt246.github.io/NTRES6940-data-science/
+Course website: https://nt246.github.io/NTRES-6100-data-science/
 
 <br>
