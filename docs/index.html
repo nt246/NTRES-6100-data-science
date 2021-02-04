@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-02-02" />
+<meta name="date" content="2021-02-03" />
 
 <title>Collaborative and Reproducible Data Science in R</title>
 
@@ -23,6 +23,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -68,6 +77,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -292,51 +302,6 @@ $(document).ready(function () {
     <li>
       <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
     </li>
-    <li>
-      <a href="lesson3-version-control.html">Lesson 3: Version Control</a>
-    </li>
-    <li>
-      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub</a>
-    </li>
-    <li>
-      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating and Making Websites</a>
-    </li>
-    <li>
-      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot, part 1</a>
-    </li>
-    <li>
-      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling, part 1</a>
-    </li>
-    <li>
-      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling, part 2</a>
-    </li>
-    <li>
-      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot, part 2</a>
-    </li>
-    <li>
-      <a href="lesson10-tidy-data.html">Lesson 10: Tidy data</a>
-    </li>
-    <li>
-      <a href="lesson11-debugging-getting-help.html">Lesson 11: Good coding practices and debugging</a>
-    </li>
-    <li>
-      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
-    </li>
-    <li>
-      <a href="lesson13-data-import-and-types.html">Lesson 13: Data import and types</a>
-    </li>
-    <li>
-      <a href="lesson14-for-loops.html">Lesson 14: Iteration (for loops) and conditional execution</a>
-    </li>
-    <li>
-      <a href="lesson15-functions.html">Lesson 15: Functions</a>
-    </li>
-    <li>
-      <a href="lesson16-factors.html">Lesson 16: Factors</a>
-    </li>
-    <li>
-      <a href="lesson17-wrapup.html">Lesson 17: Wrapping up and looking ahead</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -355,12 +320,15 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Collaborative and Reproducible Data Science in R</h1>
-<h4 class="date">2021-02-02</h4>
+<h4 class="date">2021-02-03</h4>
 
 </div>
 
 
-<p><img src="assets/logo.png" style="width:50.0%" /></p>
+<div class="figure">
+<img src="assets/logo.png" style="width:50.0%" />
+
+</div>
 <div id="ntres-6100" class="section level3">
 <h3>NTRES 6100</h3>
 <div id="cornell-university-spring-2021" class="section level4">
@@ -374,8 +342,8 @@ $(document).ready(function () {
 <h4>Meeting times</h4>
 <p>Mondays and Wednesdays 2:45pm - 4:00pm<br />
 (February 8 - April 23, 2021)</p>
-<p><strong>Optional</strong>: “Hacky hour” Fridays 12:20-2:15pm<br />
-Meetup to work on problem sets or your own projects</p>
+<p>Optional lab sessions: Fridays 12:25-2:20pm<br />
+Hands-on practice sessions in groups and with TA support</p>
 <hr />
 </div>
 <div id="course-description" class="section level4">
@@ -402,6 +370,9 @@ Meetup to work on problem sets or your own projects</p>
 <li>Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations</li>
 </ul>
 <p><span style="color: goldenrod;">NOTE:  This webpage is currently under construction, and will evolve over the next few weeks.  <br></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
 </div>
 </div>
 
@@ -414,7 +385,7 @@ Meetup to work on problem sets or your own projects</p>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
