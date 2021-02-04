@@ -7,48 +7,14 @@ output:
     toc_float: true
 ---
 
-Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. We offer an optional Friday afternoon “hacky hour” session for working on these problem sets in groups and with TA support. The problem sets are due the following week at 10pm EDT.  
+Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT.  
 
 ***
 
 ### Assignment 1  
-#### [R markdown template](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_1.md)  
->Due Wed 9/23 by 10pm EDT  
+#### [R markdown template](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)  
+>Due Wed 2/17 by 10pm EDT  
 
 ***
 
-### Assignment 2  
-#### [Building a website](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_2.md)
-
->Due Mon 10/5 by 10pm EDT
-
-***
-
-### Assignment 3  
-#### [ggplotting](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_3.md)
-
->Due Mon 10/12 by 10pm EDT  
-
-***
-
-### Assignment 4   
-#### [Data transformation](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_4.md)
->Due Mon 10/19 by 10pm EDT
-
-***
-
-### Assignment 5   
-#### [Data import and tidy data](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_5.md)
->Due Mon 10/26 by 10pm EDT  
-
-***
-
-### Assignment 6  
-#### [Relational data, wrangling, and visualization](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_6.md)
->Due Mon 11/2 by 10pm EDT
-
-***
-
-### Assignment 7   
-#### [Iteration (for loops) and functions](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_7.md)
->Due Mon 11/9 by 10pm EDT  
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
