@@ -14,36 +14,6 @@ navbar:
       href: lesson1-rstudio.html
     - text: "Lesson 2: RMarkdown and GitHub"
       href: lesson2-rmarkdown-github.html
-    - text: "Lesson 3: Version Control"
-      href: lesson3-version-control.html
-    - text: "Lesson 4: Collaborating with GitHub"
-      href: lesson4-collaboration.html
-    - text: "Lesson 5: Collaborating and Making Websites"
-      href: lesson5-collaboration-part2.html
-    - text: "Lesson 6: Plotting with ggplot, part 1"
-      href: lesson6-ggplot-part1.html     
-    - text: "Lesson 7: Data wrangling, part 1"
-      href: lesson7-data-wrangling1.html
-    - text: "Lesson 8: Data wrangling, part 2"
-      href: lesson8-data-wrangling2.html       
-    - text: "Lesson 9: Plotting with ggplot, part 2"
-      href: lesson9-ggplot-part2.html       
-    - text: "Lesson 10: Tidy data"
-      href: lesson10-tidy-data.html       
-    - text: "Lesson 11: Good coding practices and debugging"
-      href: lesson11-debugging-getting-help.html
-    - text: "Lesson 12: Relational data"
-      href: lesson12-relational-data.html
-    - text: "Lesson 13: Data import and types"
-      href: lesson13-data-import-and-types.html
-    - text: "Lesson 14: Iteration (for loops) and conditional execution"
-      href: lesson14-for-loops.html
-    - text: "Lesson 15: Functions"
-      href: lesson15-functions.html
-    - text: "Lesson 16: Factors"
-      href: lesson16-factors.html
-    - text: "Lesson 17: Wrapping up and looking ahead"
-      href: lesson17-wrapup.html
   - text: Assignments
     href: assignments.html    
 output: 
