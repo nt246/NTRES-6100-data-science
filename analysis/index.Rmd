@@ -26,14 +26,13 @@ This website complements the class [Canvas](https://canvas.cornell.edu/courses/2
 Mondays and Wednesdays 2:45pm - 4:00pm  
 (February 8 - April 23, 2021)
 
-**Optional**: "Hacky hour" Fridays 12:20-2:15pm  
-Meetup to work on problem sets or your own projects  
-
-
+Optional lab sessions: Fridays 12:25-2:20pm  
+Hands-on practice sessions in groups and with TA support
 
 ***
 
 #### Course description    
+
 As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and will be structured around hands-on (the keyboard) learning.  
 
 **By the end of this course, students will be able to:**  
@@ -49,3 +48,5 @@ As datasets grow larger and more complex across all areas of science, computatio
 * Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations  
 
 <span style="color: goldenrod;">NOTE:&nbsp; This webpage is currently under construction, and will evolve over the next few weeks.&nbsp; <br>
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
