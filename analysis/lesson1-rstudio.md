@@ -12,15 +12,20 @@ output:
 <br>
 
 ## Overview
-Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_Class1_2020_0914.pdf) describing the focus, content, and goal of this course.
+Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2021_02_08.pdf) describing the focus, content, and goal of this course.
 
-We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page.
+<br>
+<br>
+
+We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page. If you have not worked in R before, we strongly encourage you to work through a couple of the tutorials listed under "Ohter useful resources" below.
 
 <br>
 
 ## Acknowledgements and resources
 
 Most of today's lesson has been borrowed (with permission) from the [Ocean Health Index Data Science Training](http://ohi-science.org/data-science-training/)
+
+<br>
 
 Other useful resources to check out include the following: 
 
@@ -47,6 +52,7 @@ After you install R and RStudio, you only need to open RStudio.
 When you open RStudio, it will look like this:
 
 ![](assets/RStudio_IDE.png)
+<br>
 
 Notice the default panes:
 
@@ -59,10 +65,10 @@ FYI: you can change the default location of the panes, among many other things: 
 
 An important first question: **where are we?** 
 
-If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
+If you have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
 
 ![](assets/RStudio_IDE_homedir.png)
-
+<br>
 
 OK let's go into the Console, where we interact with the live R process.
 
@@ -77,6 +83,9 @@ x
 ```
 ## [1] 12
 ```
+
+<br>
+
 In my head I hear, e.g., "x gets 12".
 
 All R statements where you create objects -- "assignments" -- have this form: `objectName <- value`.  
@@ -164,6 +173,8 @@ seq(1, 10)
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
+<br>
+
 We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
 
 
@@ -171,6 +182,8 @@ We could probably infer that the `seq()` function makes a sequence, but let's le
 ?seq 
 help(seq) # same as ?seq
 ```
+
+<br>
 
 The help page tells the name of the package in the top left, and broken down into sections:
 
@@ -203,6 +216,8 @@ The above also demonstrates something about how R resolves function arguments. Y
    argument or maybe the first two. After that, I always use `name = value`.
    
 The examples from the help pages can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it. 
+
+<br>
    
 ### Your turn
    
@@ -221,7 +236,7 @@ date()
 ```
 
 ```
-## [1] "Wed Feb  3 20:22:57 2021"
+## [1] "Mon Feb  8 10:21:20 2021"
 ```
 
 <br>
@@ -240,10 +255,14 @@ install.packages("praise")
 
 Now we've installed the package, but we need to tell R that we are going to use the functions within the `praise` package. We do this by using the function `library()`.
 
+<br>
+
 **What’s the difference between a package and a library?**  
-  Sometimes there is a confusion between a package and a library, and you can find people calling “libraries” to packages.
+  Sometimes there is a confusion between a package and a library, and you can find people calling packages “libraries”.
 
 Please don’t get confused: `library()` is the command used to load a package, and it refers to the place where the package is contained, usually a folder on your computer, while a package is the collection of functions bundled conveniently.
+
+<br>
 
 
 ```r
@@ -264,9 +283,10 @@ praise()
 <br>
 
 ## Clearing the environment
-Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate. 
+Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate. If we try typing in the commands shown in the console below, we'll see each of the objects we have created in our "Environment" pane.
 
 ![](assets/RStudio_IDE_env.png)
+<br>
 
 You can also get a listing of these objects with a few different R commands:
 
@@ -287,6 +307,8 @@ ls()
 ## [1] "this_is_a_really_long_name" "x"
 ```
 
+<br>
+
 If you want to remove the object named `weight_kg`, you can do this:
 
 
@@ -297,6 +319,8 @@ rm(weight_kg)
 ```
 ## Warning in rm(weight_kg): object 'weight_kg' not found
 ```
+
+<br>
 
 To remove everything:
 
@@ -309,6 +333,8 @@ or click the broom in RStudio's Environment pane.
 
 But this command is problematic -see [Jenny Bryan's explanation](https://rstats.wtf/save-source.html#rm-list-ls).
 
+<br>
+
 For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don't want your whole analysis to only work in whatever way you've been working right now — you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis. 
 
 We will keep coming back to this theme but let's restart our R session together: Go to the top menus: Session > Restart R. 
@@ -319,13 +345,14 @@ We will keep coming back to this theme but let's restart our R session together:
 
 <br>
 
-Highly recommended: [Don’t save your workspace when you quit RStudio](https://www.r-bloggers.com/using-r-dont-save-your-workspace/). Make this a default:
+**Highly recommended:** [Don’t save your workspace when you quit RStudio](https://www.r-bloggers.com/using-r-dont-save-your-workspace/). Make this a default:
 * Go to “RStudio” -> “Preferences…” -> “General”
 * Uncheck “restore .RData into workspace on startup”
 * Select: “Save workspace to RData on exit:” Never
 
 ![](assets/rstudio-workspace.png)
 
+<br>
 <br>
 
 ## Home directory, relative vs. absolute paths and RStudio projects
@@ -341,3 +368,8 @@ On Wednesday, we will set up an RStudio project for you to work in during this c
 ## Saving your code in scripts
 
 See [Chapter 6 in Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/workflow-projects.html#where-does-your-analysis-live)
+
+<br>
+<br>
+
+**If you're new to R, this may all seem a little overwhelming right now. Don't worry, we'll keep coming back to revisit some of the key concepts outlined above as wwe work through the course.**
