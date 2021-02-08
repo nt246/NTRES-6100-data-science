@@ -26,15 +26,6 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -79,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -400,8 +390,7 @@ div.tocify {
 
 
 <blockquote>
-<p>NTRES 6100, Lec 001<br />
-Collaborative and Reproducible Data Science in R<br />
+<p>NTRES 6100 Collaborative and Reproducible Data Science in R<br />
 Cornell University, Spring 2021</p>
 </blockquote>
 <div id="course-info" class="section level4">
@@ -409,8 +398,8 @@ Cornell University, Spring 2021</p>
 <p><em>All class activities are online.</em></p>
 <p><strong>Lectures</strong>: Mondays and Wednesdays 2:45pm - 4:00pm (Feb 8 - Apr 16, 2021)</p>
 <p><strong>Optional lab sessions</strong>: Fridays 12:25-2:20pm</p>
-<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a> (<a href="mailto:nt246@cornell.edu">nt246@cornell.edu</a>)</p>
-<p><strong>TA</strong>: PhD Student <a href="https://dnr.cals.cornell.edu/people/runyang-lou/">Nicolas Lou</a> (<a href="mailto:rl683@cornell.edu">rl683@cornell.edu</a>)</p>
+<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a> (<a href="mailto:nt246@cornell.edu" class="email">nt246@cornell.edu</a>)</p>
+<p><strong>TA</strong>: PhD Student <a href="https://dnr.cals.cornell.edu/people/runyang-lou/">Nicolas Lou</a> (<a href="mailto:rl683@cornell.edu" class="email">rl683@cornell.edu</a>)</p>
 <p><strong>Office hours</strong>: By appointment</p>
 <p><strong>Grading</strong>: S/U (2 credits / 3 credits with lab)</p>
 <hr />
@@ -440,9 +429,9 @@ Cornell University, Spring 2021</p>
 <h4>Prerequisites</h4>
 <p>A basic working knowledge of R will be helpful, but no prior experience with the tidyverse packages or with Git, GitHub, or R Markdown is assumed. If you have never worked in R before, we recommend working through one or more of the following tutorials before the course:</p>
 <ul>
-<li><a href="https://stat545.com/r-basics.html">Jenny Bryan's STAT545 Chapter 2 R basics and workflows</a></li>
+<li><a href="https://stat545.com/r-basics.html">Jenny Bryan’s STAT545 Chapter 2 R basics and workflows</a></li>
 <li><a href="https://swirlstats.com/">R Swirl interactive lessons</a></li>
-<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data Carpentry's Introduction to R for Ecologists</a></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data Carpentry’s Introduction to R for Ecologists</a></li>
 </ul>
 <hr />
 </div>
@@ -458,7 +447,7 @@ Cornell University, Spring 2021</p>
 </div>
 <div id="course-materials" class="section level4">
 <h4>Course materials</h4>
-<p>All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily <a href="https://r4ds.had.co.nz/">Grolemund and Wickham's R For Data Science</a> and the <a href="https://stat545.com/">STAT545 course developed by Jenny Bryan</a>.</p>
+<p>All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily <a href="https://r4ds.had.co.nz/">Grolemund and Wickham’s R For Data Science</a> and the <a href="https://stat545.com/">STAT545 course developed by Jenny Bryan</a>.</p>
 <p>All students will need to bring a laptop to each session. Students who do not have their own laptop can arrange to borrow one from the Mann Library.</p>
 <p>Please follow the instructions <a href="https://nt246.github.io/NTRES-6100-data-science/installation.html">here</a> to install the software we will need <strong>prior to the first class</strong>.</p>
 <hr />
@@ -485,10 +474,10 @@ Cornell University, Spring 2021</p>
 <p><em>Subject to adjustment</em></p>
 <table>
 <colgroup>
-<col width="7%" />
+<col width="6%" />
+<col width="3%" />
 <col width="4%" />
-<col width="5%" />
-<col width="69%" />
+<col width="71%" />
 <col width="13%" />
 </colgroup>
 <thead>
@@ -729,7 +718,7 @@ Cornell University, Spring 2021</p>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

@@ -44,9 +44,9 @@ output:
 ## Class announcements 
 
 * Course communication will primarily be through Slack. Please make sure to join our workspace to not miss announcements about scheduling changes etc.
-* Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES6940-data-science/lesson2-rmarkdown-github.html)
-* Remember office hours / hacky hour Friday 12.20 - 2.15pm (on Zoom)  
-* Assignment 1 due 9/23  
+* Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)
+* Remember office hours (on Zoom)  
+* Assignment 1 due 2/17  
 
 <br>
 
