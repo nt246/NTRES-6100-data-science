@@ -47,6 +47,3 @@ As datasets grow larger and more complex across all areas of science, computatio
 * Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub  
 * Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations  
 
-<span style="color: goldenrod;">NOTE:&nbsp; This webpage is currently under construction, and will evolve over the next few weeks.&nbsp; <br>
-
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
