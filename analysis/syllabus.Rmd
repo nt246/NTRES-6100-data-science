@@ -7,7 +7,7 @@ output:
     toc_float: true
 ---
 
-> NTRES 6100 
+> NTRES 6100   
 Collaborative and Reproducible Data Science in R  
 Cornell University, Spring 2021  
 
