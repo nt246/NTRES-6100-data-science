@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Overview
-Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_Class1_2020_0914.pdf) describing the focus, content, and goal of this course.
+Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2021_02_08.pdf) describing the focus, content, and goal of this course.
 
 We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page.
 
