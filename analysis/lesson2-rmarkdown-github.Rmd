@@ -431,7 +431,7 @@ Note: `toc: true` is optional, but it can automatically set up a table of conten
 <br>
 <br>
 
-## GitHub brief intro & config
+## Git/GitHub: Brief intro & configuration
 
 Before we wrap up for today, we are going to set up Git and GitHub which we will be using along with R and RStudio for the rest of the course. 
 
@@ -439,7 +439,7 @@ Before we do the setup configuration, let us take a moment to talk about what Gi
 
 It can help to think of GitHub like Dropbox: you identify folders for GitHub to 'track' and it syncs them to the cloud. This is good first-and-foremost because it makes a back-up copy of your files: if your computer dies not all of your work is gone. But with GitHub, you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
 
-git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
+Git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
 
 <br>
 
@@ -450,7 +450,7 @@ First, let us each access our course repo. We have created a GitHub Classroom or
 
 ### Configure GitHub
 
-This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together. In a browser, go to github.com and to your profile page as a reminder.   
+Now we want to connect the Git program installed on your computer with your GitHub account. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together.   
 
 **You will need to remember your GitHub username, the email address you created your GitHub account with, and your GitHub password.** 
 
@@ -458,14 +458,14 @@ This set up is a one-time thing! You will only have to do this once per computer
 
 #### Installing packages
 
-We will be using the `use_git_config()` function from the `usethis` package. We first need to install this package. Type the following in a new script:
+There are several ways to configure Git, including through the command line. We will use the convenient `use_git_config()` function from the `usethis` R package (i.e. we'll run the setup from R). We first need to install the `usethis` package. Type the following in a new script:
 
 ```{r install-usethis, eval=FALSE}
 ## setup packages
 install.packages("usethis")
 ```
 
-Once you have run it, "comment it out" by adding a hash tag (#) at the beginning of the line. It is generally considered good practice to not include active install.packages() prompts in a script so that someone else running your script on their system won't automatically install packages unknowingly. 
+Once you have run it, "comment it out" by adding a hash tag (#) at the beginning of the line. It is generally considered good practice to not include active `install.packages()` prompts in a script so that someone else running your script on their system won't automatically install packages unknowingly. 
 
 Now we've installed the package, but we need to tell R that we are going to use the functions within the `usethis` package. We do this by using the function `library()`.
 
@@ -482,9 +482,9 @@ When `usethis` is successfully attached, you won't get any feedback in the Conso
 
 <br>
 
-#### Setting up git on your system
+#### Setting up Git on your system
 
-Then type the following into your Console: 
+Now, type the following into your Console: 
 
 ```{r usethis, eval=FALSE}
 ## use_git_config function with my username and email as arguments
@@ -494,6 +494,35 @@ use_git_config(user.name = "jules32", user.email = "jules32@example.org")
 If you see `Error in use_git_config() : could not find function "use_git_config"` please run `library("usethis")`
 
 <br>
+
+### Entering a GitHub Personal Access Token (PAT)
+
+For now, GitHub still allows authentication with your user name and password, so you *can* proceed without this step. However, from August 2021 [GitHub will require token- or SSH-based authentication](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/), so let's get set up with that right away so your workflows won't be interrupted when the standard username-password authentication stops working.
+
+We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/credential-caching.html) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
+
+<br>
+
+#### Generating a PAT
+
+Personal access tokens (PATs) are an alternative to using passwords for authentication to GitHub. 
+
+Make sure you're signed into your (www.github.com) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
+
+Now run `create_github_token()` in your RStudio console. This will take you to a pre-filled form to create a new PAT. Alternatively, you can get to the same page from ["Settings" in your GitHub account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) in the browser. The advantage of running `create_github_token()` is that the developers of the `usethis` package have pre-selected some recommended scopes, which you can look over and adjust before clicking “Generate token”.
+
+
+
+
+You can generate a PAT under the ["Settings" from your GitHub browser page](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+
+by clicking on “Generate new token” from https://github.com/settings/tokens. 
+
+
+
+
+
+
 
 ### Ensure that Git/GitHub/RStudio are communicating
 
