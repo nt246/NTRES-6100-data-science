@@ -2,7 +2,6 @@
 title: "Lesson 2: RMarkdown and GitHub"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
   
@@ -444,7 +443,7 @@ git will track and version your files, GitHub stores this online and enables you
 <br>
 
 ### Say hello to your course repo on GitHub
-First, let us each access our course repo. We have created a GitHub Classroom organization for the class. To access you personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/SA7QIA7g)
+First, let us each access our course repo. We have created a GitHub Classroom organization for the class. To access you personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/h81351Rq)
 
 <br>
 
