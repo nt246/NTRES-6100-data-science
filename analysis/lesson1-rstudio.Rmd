@@ -2,7 +2,6 @@
 title: "Lesson 1: Introduction to R and RStudio"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
 
@@ -20,7 +19,7 @@ Welcome to the course. Please review the [introductory slides](https://github.co
 <br>
 <br>
 
-We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page. If you have not worked in R before, we strongly encourage you to work through a couple of the tutorials listed under "Ohter useful resources" below.
+We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page. If you have not worked in R before, we strongly encourage you to work through a couple of the tutorials listed under "Other useful resources" below.
 
 <br>
 
@@ -288,8 +287,11 @@ We will keep coming back to this theme but let's restart our R session together:
 <br>
 
 **Highly recommended:** [Don’t save your workspace when you quit RStudio](https://www.r-bloggers.com/using-r-dont-save-your-workspace/). Make this a default:
-* Go to “RStudio” -> “Preferences…” -> “General”
+
+* Go to “RStudio” -> “Preferences…” -> “General” (Or “Tools” -> “Options” -> “General” if you are on a Windows machine)
+
 * Uncheck “restore .RData into workspace on startup”
+
 * Select: “Save workspace to RData on exit:” Never
 
 ![](assets/rstudio-workspace.png)
