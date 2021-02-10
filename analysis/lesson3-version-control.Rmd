@@ -2,7 +2,6 @@
 title: "Lesson 3: Version control and the Git/GitHub workflow"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
   
