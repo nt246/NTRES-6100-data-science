@@ -556,7 +556,7 @@ Next, we will add your PAT to the Git credential store as a semi-persistent conv
 There are many ways to get your credential into the Git store. Here, we will use the `gitcreds` package, which is a dependency of the `usethis` package, so we installed it earlier.
 
 ```{r gitcreds, eval=FALSE}
-library(gitcreds)
+library(gitcreds) # install.packages("gitcreds")
 
 gitcreds_set()
 ```
