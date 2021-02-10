@@ -442,7 +442,7 @@ Git will track and version your files, GitHub stores this online and enables you
 
 <br>
 
-### Say hello to your course repo on GitHub
+### Say hello to your course repo
 First, let us each access our course repo. We have created a GitHub Classroom organization for the class. To access you personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/h81351Rq)
 
 <br>
@@ -496,7 +496,16 @@ If you see `Error in use_git_config() : could not find function "use_git_config"
 
 ### Entering a GitHub Personal Access Token (PAT)
 
-For now, GitHub still allows authentication with your user name and password, so you *can* proceed without this step. However, from August 2021 [GitHub will require token- or SSH-based authentication](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/), so let's get set up with that right away so your workflows won't be interrupted when the standard username-password authentication stops working.
+The next sections present highlights and borrows sections from:  
+
+* [Chapter 10: Cache credentials for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/credential-caching.html)
+* [The Managing Git(Hub) Credentials Vignette from the usethis package](https://usethis.r-lib.org/articles/articles/git-credentials.html)
+
+If you want more detail, consult these sources.
+
+<br>
+
+For now, GitHub still allows authentication with your username and password, so you *can* proceed without this step. However, from August 2021 [GitHub will require token- or SSH-based authentication](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/), so let's get set up with that right away so your workflows won't be interrupted when the standard username-password authentication stops working.
 
 We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/credential-caching.html) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
 
@@ -504,33 +513,58 @@ We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If
 
 #### Generating a PAT
 
-Personal access tokens (PATs) are an alternative to using passwords for authentication to GitHub. 
+Personal access tokens (PATs) are an alternative to using your username and password for authentication to GitHub. 
 
-Make sure you're signed into your (www.github.com) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
+Make sure you're signed into your [GitHub account](www.github.com) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
 
-Now run `create_github_token()` in your RStudio console. This will take you to a pre-filled form to create a new PAT. Alternatively, you can get to the same page from ["Settings" in your GitHub account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) in the browser. The advantage of running `create_github_token()` is that the developers of the `usethis` package have pre-selected some recommended scopes, which you can look over and adjust before clicking “Generate token”.
+Now run `create_github_token()` (a function from the `usethis` package) in your RStudio console. This will take you to a pre-filled form to create a new PAT. Alternatively, you can get to the same page from ["Settings" in your GitHub account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) in the browser. The advantage of running `create_github_token()` is that the developers of the `usethis` package have pre-selected some recommended scopes, which you can look over and adjust.
 
+Let's go ahead and just stick with their selected defaults. It is a very good idea to give the token a descriptive name (in the `NOTE` field), because one day you might have multiple PATs, e.g., one that’s configured on your main work computer and another that you use from a secondary computer. Eventually, you’ll need to “spring clean” your PATs and this is much less nerve-wracking if you know which PAT is being used where and for what.
 
+Once you've added a name in the `NOTE` field, click “Generate token”. As the page says, you must store this token somewhere, because you’ll never be able to see it again, once you leave that page or close the window. You can for example save it in a text file on your computer. But that is not a very safe option (i.e. not recommended). You should think of it as a password, so a better solution is a secure password management app, such as 1Password or LastPass. You can consider adopting those later if you're not using one already - don't worry about it right at this moment; for now we'll just assume you have your PAT available in the browser or the clipboard.
 
+Next, we will add your PAT to the Git credential store as a semi-persistent convenience, sort of like “remember me” on a website. But, just like logging into websites, it is entirely possible that your PAT will somehow be forgotten from the credential store and you will need to re-enter it. Don't worry: If you goof this up and lose your PAT, just generate a new PAT but to not confuse yourself, delete the lost token.
 
-You can generate a PAT under the ["Settings" from your GitHub browser page](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+<br>
 
-by clicking on “Generate new token” from https://github.com/settings/tokens. 
+#### Put your PAT into the Git credential store
 
+There are many ways to get your credential into the Git store. Here, we will use the `gitcreds` package, which is a dependency of the `usethis` package, so we installed it earlier.
 
+```{r gitcreds, eval=FALSE}
+library(gitcreds)
 
+gitcreds_set()
+```
 
+<br>
 
+`gitcreds::gitcreds_set()` is a very handy function, since it reports any current credential, allows you to see it, allows you to keep or replace an existing credential, and can also store a credential for the first time. To do this, select option 2 ("Replace these credentials") and enter your PAT as the password.
+
+You can check that you’ve stored a credential with `gitcreds_get()`. If you can confirm that your PAT is now stored, you should be all set. This setup is something you do once. Or, rather, once per machine, per PAT. From this point on, `usethis` and its dependencies should be able to automatically retrieve and use this PAT.
+
+<br>
+
+If you're on a Mac and get the following error message 
+```{r dev tools error , eval=FALSE}
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+```
+you'll need to install the XCode Command Line Tools as described [here](https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a)
+
+<br>
+<br>
 
 
 ### Ensure that Git/GitHub/RStudio are communicating
 
-We are going to go through a few steps to ensure the Git/GitHub are communicating with RStudio
+As a final step for today, we are going to go through a few steps to ensure that Git/GitHub are communicating with RStudio.
 
 <br>
-#### RStudio: New Project
 
-Click on New Project. There are a few different ways; you could also go to File > New Project..., or click the little green + with the R box in the top left.
+
+#### RStudio - New Project  
+
+Click on `New Project`. There are a few different ways; you could also go to File > New Project..., or click the little green + with the R box in the top left.
 also in the File menu).
 
 <br>
@@ -541,7 +575,7 @@ knitr::include_graphics("assets/new_project_1.png")
 
 
 <br>
-
+<br>
 
 #### Select Version Control
 
@@ -551,6 +585,7 @@ knitr::include_graphics("assets/new_project_1.png")
 knitr::include_graphics("assets/new_project_2.png")  
 ```
 
+<br>
 <br>
 
 #### Select Git
@@ -566,9 +601,8 @@ knitr::include_graphics("assets/new_project_3.png")
 
 <br>
 
-Do you see what I see? 
+#### Do you see what I see? 
 
-<br>
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/new_project_4.png")  
@@ -576,22 +610,25 @@ knitr::include_graphics("assets/new_project_4.png")
 
 <br>
 
-If yes, hooray! Time to wrap up for today! You're now ready for exploring integrated GitHub/RStudio workflows next week.
+**If yes, hooray! Time to wrap up for today!** You're now ready for exploring integrated GitHub/RStudio workflows next week.
 
-If no, we will help you troubleshoot.
+<br>
+ 
+**If no, we will help you troubleshoot.**
 
-1. Double check that GitHub username and email are correct
-1. Troubleshooting, starting with [HappyGitWithR's troubleshooting chapter](http://happygitwithr.com/troubleshooting.html)
-  - `which git` (Mac, Linux, or anything running a bash shell)
-  - `where git` (Windows, when not in a bash shell)
-1. Potentially set up a RStudio Cloud account: <https://rstudio.cloud/>
-
-<!--- [Allison 206/244 googledoc](https://docs.google.com/document/d/1zx2upJJqFZe94O3BQSMI56Z76s3haLXC0otKSpcZaJQ/edit)
---->
+<br>
+<br>
 
 ### Troubleshooting
 
-#### Configure git from Terminal
+First, confirm that you are using the correct GitHub login credentials (are you sure you typed in the correct user name and password?)
+
+Next, look through [Happy Git With R's RStudio, Git, GitHub Hell](http://happygitwithr.com/troubleshooting.html) troubleshooting chapter. 
+
+<br>
+
+
+#### Configure Git from Terminal
 
 If `usethis` fails, the following is the classic approach to configuring **git**.  Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
 
@@ -609,12 +646,10 @@ If `usethis` fails, the following is the classic approach to configuring **git**
 
 This will configure git with global (`--global`) commands, which means it will apply 'globally' to all your future github repositories, rather than only to this one now. **Note for PCs**: We've seen PC failures correct themselves by doing the above but omitting `--global`. (Then you will need to configure GitHub for every repo you clone but that is fine for now).
 
-#### Troubleshooting
+<br>
 
-All troubleshooting starts with reading Happy Git With R's [RStudio, Git, GitHub Hell](http://happygitwithr.com/troubleshooting.html) troubleshooting chapter. 
-
-##### New(ish) Error on a Mac
-We've also seen the following errors from RStudio: 
+#### Failure to locate Git
+Sometimes you may this error: 
 
 ```
 error key does not contain a section --global terminal
@@ -624,6 +659,8 @@ and
 fatal: not in a git directory
 ```
 
+<br>
+
 To solve this, go to the Terminal and type:
     ```
 which git
@@ -631,12 +668,15 @@ which git
 
 <img src="assets/git_whichgit.png" width="250px">
 
+<br>
   
 Look at the filepath that is returned. Does it say anything to do with Apple?
 
 -> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.  
 
 -> If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
+
+<br>
 
 In RStudio, navigate to: Tools > Global Options > Git/SVN. 
 
@@ -647,15 +687,12 @@ In RStudio, navigate to: Tools > Global Options > Git/SVN.
 
 Does the **“Git executable”** filepath match what the url in Terminal says? 
 
-<br>
-
 <img src="assets/git_options_filepath.png" width="500px">
 
-
+<br>
 
 If not, click the browse button and navigate there.   
 
->*Note*: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
 
 
 <br>
