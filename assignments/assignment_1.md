@@ -3,39 +3,21 @@ Assignment 1: R markdown template
 
 ## Instructions: Please read through this before you begin
 
-  - This assignment is due by **10pm on Wednesday 09/23/20**.
+-   This assignment is due by **10pm on Wednesday 02/17/21**.
 
-  - For this assignment, please **reproduce this markdown file exactly
-    as shown** using R markdown. You do **NOT** need to fill out the
-    code chunks (i.e. answer the questions) for this assignment. We are
-    just practicing markdown formatting right now.
+-   For this assignment, please **reproduce this markdown file exactly as shown** using R markdown. You do **NOT** need to fill out the code chunks (i.e. answer the questions) for this assignment. We are just practicing markdown formatting right now.
 
-  - Please name your R markdown file `assignment_1.Rmd` and the knitted
-    markdown file `assignment_1.md`.
+-   Please name your R markdown file `assignment_1.Rmd` and the knitted markdown file `assignment_1.md`.
 
-  - Pay attention to all the formating in this file, including bullet
-    points, bolded characters, inserted code chunks, headings, text
-    colors, blank lines, and etc. You will need to reproduce all of
-    these.
+-   Pay attention to all the formating in this file, including bullet points, bolded characters, inserted code chunks, headings, text colors, blank lines, and etc. You will need to reproduce all of these.
 
-  - You will use the product of this assignment as a template for your
-    third assignment, where you will actually fill out the code chunks.
+-   You will use the product of this assignment as a template for your third assignment, where you will actually fill out the code chunks.
 
-  - You will have to submit your assignment through GitHub. You can
-    complete your template after Wednesday’s class (09/16/20), but don’t
-    worry about submitting it until after we have gone over how to
-    submit it through GitHub in Monday’s class (09/21/20). To do so, you
-    will first move assignment\_1.Rmd and assignment\_1.md to the
-    problem\_sets folder in your own GitHub repository that you have
-    created in class through GitHub Classroom. (If you haven’t created
-    this repo yet, please use the following url:
-    <https://classroom.github.com/a/SA7QIA7g>). Then, you can stage
-    these files, make a commit, and push the commit.
+-   You will have to submit your assignment through GitHub. You can complete your template after Wednesday's class (09/16/20), but don't worry about submitting it until after we have gone over how to submit it through GitHub in Monday's class (09/21/20). To do so, you will first move assignment\_1.Rmd and assignment\_1.md to the problem\_sets folder in your own GitHub repository that you have created in class through GitHub Classroom. (If you haven't created this repo yet, please use the following url: <https://classroom.github.com/a/SA7QIA7g>). Then, you can stage these files, make a commit, and push the commit.
 
 ## Load packages
 
-To start, load all the required packages with the following code.
-Install them if they are not installed yet.
+To start, load all the required packages with the following code. Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
@@ -46,18 +28,11 @@ library(knitr)
 
 ## Exercise 1. Corruption and human development
 
-This exercise explores a dataset containing the human development index
-(`HDI`) and corruption perception index (`CPI`) of 173 countries across
-6 different regions around the world: Americas, Asia Pacific, Eastern
-Europe and Central Asia (`East EU Cemt`), Western Europe (`EU W.
-Europe`), Middle East and North Africa and Noth Africa (`MENA`), and
-Sub-Saharan Africa (`SSA`). (Note: the larger `CPI` is, the less
-corrupted the country is perceived to be.)
+This exercise explores a dataset containing the human development index (`HDI`) and corruption perception index (`CPI`) of 173 countries across 6 different regions around the world: Americas, Asia Pacific, Eastern Europe and Central Asia (`East EU Cemt`), Western Europe (`EU W. Europe`), Middle East and North Africa and Noth Africa (`MENA`), and Sub-Saharan Africa (`SSA`). (Note: the larger `CPI` is, the less corrupted the country is perceived to be.)
 
 <br>
 
-First, we load the data using the following
-code.
+First, we load the data using the following code.
 
 ``` r
 ## Write your code here
@@ -169,12 +144,7 @@ Answer: <span style="color:blue"> Write your response here. </span>
 
 ## Exercise 2. Unemployment in the US 1967-2015
 
-This excercise uses the dataset `economics` from the ggplot2 package. It
-was produced from US economic time series data available from
-<http://research.stlouisfed.org/fred2>. It descibes the number of
-unemployed persons (`unemploy`), among other variables, in the US from
-1967 to
-2015.
+This excercise uses the dataset `economics` from the ggplot2 package. It was produced from US economic time series data available from <http://research.stlouisfed.org/fred2>. It descibes the number of unemployed persons (`unemploy`), among other variables, in the US from 1967 to 2015.
 
 ``` r
 ## Write your code here
