@@ -457,3 +457,5 @@ Now let’s look at a single file, starting with the README file. We’ve explor
 <br>
 
 ### END **collaborating on GitHub** session!
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

@@ -317,3 +317,5 @@ See [Chapter 6 in Grolemund and Wickham's R for Data Science](https://r4ds.had.c
 <br>
 
 **If you're new to R, this may all seem a little overwhelming right now. Don't worry, we'll keep coming back to revisit some of the key concepts outlined above as wwe work through the course.**
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
