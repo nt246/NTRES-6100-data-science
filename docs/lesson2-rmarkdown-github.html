@@ -428,11 +428,11 @@ div.tocify {
 <div id="class-announcements" class="section level2">
 <h2>Class announcements</h2>
 <ul>
-<li>Course communication will primarily be through Slack. Please make sure to join our workspace to not miss announcements about scheduling changes etc.</li>
+<li>Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.</li>
 <li>Course website and readings - see the Lectures tab of the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">course website</a></li>
-<li>Remember office hours (on Zoom)<br />
+<li>Remember office hours Tuesdays 2.30-3.30 (on Zoom)<br />
 </li>
-<li>Assignment 1 due 2/17</li>
+<li><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">Assignment 1</a> due 2/17 (we will go through how to submit through GitHub next week)</li>
 </ul>
 <p><br></p>
 </div>
@@ -461,7 +461,9 @@ div.tocify {
 <p>It’s super easy to get started with RMarkdown within RStudio. Let’s do this together:</p>
 <p>File -&gt; New File -&gt; RMarkdown… (or alternatively you can click the green plus in the top left -&gt; RMarkdown).</p>
 <p>Let’s title it “Testing” and write our name as author, then click OK with the recommended Default Output Format, which is HTML.</p>
+<p><br></p>
 <p><img src="assets/rstudio_new-rmd-doc-html.png" width="80%" /></p>
+<p><br></p>
 <p>OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which here is a text editor. This lets us dock and organize our files within RStudio instead of having a bunch of different windows open (but there are options to pop them out if that is what you prefer).</p>
 <p>Let’s have a look at this file — it’s not blank; there is some initial text is already provided for you. Let’s have a high-level look through of it:</p>
 <ul>
@@ -473,6 +475,7 @@ div.tocify {
 </ul></li>
 <li>There is black and blue text (we’ll ignore the green text for now).</li>
 </ul>
+<p><br></p>
 <p><img src="assets/rmarkdown.png" width="80%" /></p>
 <p><br></p>
 </div>
@@ -487,7 +490,7 @@ div.tocify {
 <p><br></p>
 <div id="activity" class="section level4">
 <h4>Activity</h4>
-<p>In your breakout rooms, discuss what you notice with these two files. Then we will have a brief share-out with the group. (5 mins)</p>
+<p>In your breakout rooms, discuss what you notice with these two files. Then we will have a brief share-out with the group (5 mins)</p>
 <p><br></p>
 </div>
 </div>
@@ -515,14 +518,20 @@ div.tocify {
 </div>
 <div id="activity-1" class="section level3">
 <h3>Activity</h3>
-<p>Make the following changes to your RMarkdown document: * Add some italic text * Make a numbered list * Add some subheaders</p>
+<p>Make the following changes to your RMarkdown document:</p>
+<ul>
+<li>Add some italic text</li>
+<li>Make a numbered list</li>
+<li>Add some subheaders</li>
+</ul>
 <p>You can find hints in the Markdown Quick Reference (in the menu bar: Help &gt; Markdown Quick Reference).</p>
-<p>Reknit your html file to see how your formatting works out.</p>
-<p>If you have more time, try adding a URL and a table</p>
+<p>Re-knit your html file to see how your formatting works out.</p>
+<p>If you have more time, try adding a URL and a table (see below)</p>
 <p><br></p>
 <div id="figures-and-tables" class="section level4">
 <h4>Figures and tables</h4>
 <p>To show a figure from a url use <code>![caption](url_to_image)</code> To show a figure from a local file <code>![caption](local_path_to_image)</code></p>
+<p><br></p>
 <p>To manually create a table, use the following syntax. Notice the text alignment in each column.</p>
 <pre><code>| Right | Left | Default | Center |
 |------:|:-----|---------|:------:|
@@ -540,6 +549,7 @@ div.tocify {
 <li><code>summary(cars)</code> produces a table with information about cars</li>
 <li><code>plot(pressure)</code> produces a plot with information about pressure</li>
 </ul>
+<p><br></p>
 <p>There are a couple of things going on here.</p>
 <p><code>summary()</code> and <code>plot()</code> are called <strong>functions</strong>; they are operations and these ones come installed with R. We call functions installed with R <strong>base R functions</strong>. This is similar to Excel’s functions and formulas.</p>
 <p><code>cars</code> and <code>pressure</code> are small datasets that come installed with R.</p>
@@ -557,13 +567,14 @@ div.tocify {
 <p>Chunk output can be customised with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
 <p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
 <ul>
-<li><p><code>eval = FALSE</code> prevents code from being evaluated. (And obviously if the code is not run, no results will be generated). This is useful for displaying example code, or for disabling a large block of code without commenting each line.</p></li>
+<li><p><code>eval = FALSE</code> prevents code from being evaluated (and obviously if the code is not run, no results will be generated). This is useful for displaying example code, or for disabling a large block of code without commenting each line.</p></li>
 <li><p><code>include = FALSE</code> runs the code, but doesn’t show the code or results in the final document. Use this for setup code that you don’t want cluttering your report.</p></li>
 <li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports aimed at people who don’t want to see the underlying R code.</p></li>
 <li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</p></li>
 <li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides plots.</p></li>
 <li><p><code>error = TRUE</code> causes the render to continue even if code returns an error. This is rarely something you’ll want to include in the final version of your report, but can be very useful if you need to debug exactly what is going on inside your <code>.Rmd</code>. It’s also useful if you’re teaching R and want to deliberately include an error. The default, <code>error = FALSE</code> causes knitting to fail if there is a single error in the document.</p></li>
 </ul>
+<p><br></p>
 <p>The following table summarises which types of output each option supressess:</p>
 <table>
 <thead>
@@ -643,6 +654,7 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <blockquote>
 <p><strong>Aside: Code chunk labels</strong> It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our three chunks say <code>r</code> as the language, and have a label (<code>setup</code>, <code>cars</code>, <code>pressure</code>).<br />
 Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you’ll have to remember to relabel it something unique. We will explore this more in a moment. Notice how the word <code>FALSE</code> is all capitals. Capitalization matters in R; <code>TRUE/FALSE</code> is something that R can interpret as a binary yes/no or 1/0.</p>
@@ -654,15 +666,19 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 <p>We can create a new chunk in your RMarkdown first in one of these ways:</p>
 <ul>
 <li>The keyboard shortcut Cmd/Ctrl + Alt + I</li>
-<li>click “Insert &gt; R” at the top of the editor pane (with the green plus and green box)</li>
-<li>type it by hand: ```{r} ```</li>
+<li>Click “Insert &gt; R” at the top of the editor pane (with the green plus and green box)</li>
+<li>Type it by hand: ```{r} ```</li>
 </ul>
+<p><br></p>
 <blockquote>
-<p><strong>Aside</strong>: doesn’t have to be only R, other languages supported. Let’s create a new code chunk at the end of our document.</p>
+<p><strong>Aside</strong>: doesn’t have to be only R, other languages supported.</p>
 </blockquote>
+<p><br></p>
+<p>Let’s create a new code chunk at the end of our document.</p>
 <p>Now, let’s write some code in R. Let’s say we want to see the summary of the <code>pressure</code> data. I’m going to press enter to to add some extra carriage returns because sometimes I find it more pleasant to look at my code, and it helps in troubleshooting, which is often about identifying typos. R lets you use as much whitespace as you would like.</p>
 <pre class="r"><code>summary(pressure)</code></pre>
 <p>We can knit this and see the summary of <code>pressure</code>. This is the same data that we see with the plot just above.</p>
+<p><br></p>
 <blockquote>
 <p>Troubleshooting: Did trying to knit your document produce an error? Start by looking at your code again. Do you have both open <code>(</code> and close <code>)</code> parentheses? Are your code chunk fences (```) correct?</p>
 </blockquote>
@@ -708,7 +724,7 @@ Execution halted</code></pre>
 </div>
 <div id="running-rmarkdown-code-chunks" class="section level3">
 <h3>Running RMarkdown code chunks</h3>
-<p>So far we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document).</p>
+<p>So far, we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document).</p>
 <p>How do we do it? There are several ways. Let’s do each of these with <code>summary(pressure)</code>.</p>
 <p><br></p>
 <p><strong>First approach: send R code to the Console.</strong> This approach involves selecting (highlighting) the R code only (<code>summary(pressure)</code>), not any of the backticks/fences from the code chunk. (If you see <code>Error: attempt to use zero-length variable name</code> it is because you have accidentally highlighted the backticks along with the R code. Try again (and don’t forget that you can add spaces within the code chunk or make your RStudio session bigger (View &gt; Zoom In)).</p>
@@ -762,6 +778,8 @@ output:
 ---</code></pre>
 <p>Note: <code>toc: true</code> is optional, but it can automatically set up a table of content for you.</p>
 <p><br> <br></p>
+<hr />
+<p><br></p>
 </div>
 </div>
 <div id="gitgithub-brief-intro-configuration" class="section level2">

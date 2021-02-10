@@ -45,10 +45,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Class announcements 
 
-* Course communication will primarily be through Slack. Please make sure to join our workspace to not miss announcements about scheduling changes etc.
+* Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.
 * Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)
-* Remember office hours (on Zoom)  
-* Assignment 1 due 2/17  
+* Remember office hours Tuesdays 2.30-3.30 (on Zoom)  
+* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) due 2/17 (we will go through how to submit through GitHub next week)  
 
 <br>
 
@@ -87,9 +87,13 @@ File -> New File -> RMarkdown... (or alternatively you can click the green plus 
 
 Let's title it "Testing" and write our name as author, then click OK with the recommended Default Output Format, which is HTML.
 
+<br>
+
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/rstudio_new-rmd-doc-html.png")  
 ```
+
+<br>
 
 OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which here is a text editor. This lets us dock and organize our files within RStudio instead of having a bunch of different windows open (but there are options to pop them out if that is what you prefer).
 
@@ -101,6 +105,8 @@ Let's have a look at this file — it's not blank; there is some initial text is
   - **White sections are Markdown text**
 - There is black and blue text (we'll ignore the green text for now).  
   
+<br>
+
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/rmarkdown.png")  
 ```
@@ -128,7 +134,7 @@ Let's take a deeper look at these two files. So much of learning to code is look
 
 #### Activity
 
-In your breakout rooms, discuss what you notice with these two files. Then we will have a brief share-out with the group. (5 mins)
+In your breakout rooms, discuss what you notice with these two files. Then we will have a brief share-out with the group (5 mins)
 
 <br>
 
@@ -160,15 +166,16 @@ There are also other good markdown [cheatsheets](https://github.com/adam-p/markd
 
 ### Activity
 Make the following changes to your RMarkdown document:
+
 * Add some italic text
 * Make a numbered list
 * Add some subheaders
 
 You can find hints in the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
 
-Reknit your html file to see how your formatting works out.
+Re-knit your html file to see how your formatting works out.
 
-If you have more time, try adding a URL and a table
+If you have more time, try adding a URL and a table (see below)
 
 <br>
 
@@ -177,6 +184,7 @@ If you have more time, try adding a URL and a table
 To show a figure from a url use `![caption](url_to_image)`
 To show a figure from a local file `![caption](local_path_to_image)`
 
+<br>
 
 To manually create a table, use the following syntax. Notice the text alignment in each column. 
 
@@ -198,6 +206,8 @@ We see that:
 
 - `summary(cars)` produces a table with information about cars
 - `plot(pressure)` produces a plot with information about pressure
+
+<br>
 
 There are a couple of things going on here. 
 
@@ -221,7 +231,7 @@ Chunk output can be customised with __options__, arguments supplied to chunk hea
 
 The most important set of options controls if your code block is executed and what results are inserted in the finished report:
   
-*   `eval = FALSE` prevents code from being evaluated. (And obviously if the
+*   `eval = FALSE` prevents code from being evaluated (and obviously if the
     code is not run, no results will be generated). This is useful for 
     displaying example code, or for disabling a large block of code without 
     commenting each line.
@@ -247,6 +257,8 @@ The most important set of options controls if your code block is executed and wh
     and want to deliberately include an error. The default, `error = FALSE` causes 
     knitting to fail if there is a single error in the document.
     
+<br>
+
 The following table summarises which types of output each option supressess:
 
 Option             | Run code | Show code | Output | Plots | Messages | Warnings 
@@ -259,6 +271,7 @@ Option             | Run code | Show code | Output | Plots | Messages | Warnings
 `message = FALSE`  |          |           |        |       | -        |
 `warning = FALSE`  |          |           |        |       |          | -
 
+<br>
 
 > **Aside: Code chunk labels** It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`).   
 > Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you'll have to remember to relabel it something unique. We will explore this more in a moment.
@@ -273,12 +286,17 @@ There are many more options available that we will discuss as we get more famili
 We can create a new chunk in your RMarkdown first in one of these ways: 
 
 - The keyboard shortcut Cmd/Ctrl + Alt + I
-- click "Insert > R" at the top of the editor pane (with the green plus and green box)
-- type it by hand: 
+- Click "Insert > R" at the top of the editor pane (with the green plus and green box)
+- Type it by hand: 
    \```{r}
    \```
 
+<br>
+
 > **Aside**: doesn't have to be only R, other languages supported. 
+
+<br>
+
 Let's create a new code chunk at the end of our document.
 
 Now, let's write some code in R. Let's say we want to see the summary of the `pressure` data. I'm going to press enter to to add some extra carriage returns because sometimes I find it more pleasant to look at my code, and it helps in troubleshooting, which is often about identifying typos. R lets you use as much whitespace as you would like.
@@ -288,6 +306,8 @@ summary(pressure)
 ```
 
 We can knit this and see the summary of `pressure`. This is the same data that we see with the plot just above. 
+
+<br>
 
 > Troubleshooting: Did trying to knit your document produce an error? Start by looking at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences (```) correct?
 
@@ -356,7 +376,7 @@ You can click back and forth between the Console and the R Markdown tab; this is
 
 ### Running RMarkdown code chunks 
 
-So far we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document). 
+So far, we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document). 
 
 How do we do it? There are several ways. Let's do each of these with `summary(pressure)`.
 
@@ -428,6 +448,10 @@ Note: `toc: true` is optional, but it can automatically set up a table of conten
 
 
 <br>
+<br>
+
+***
+
 <br>
 
 ## Git/GitHub: Brief intro & configuration
