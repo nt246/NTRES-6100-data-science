@@ -29,17 +29,50 @@ Let's start by playing around with the basic RStudio RMarkdown template a little
 Take a few minutes to play around with the formatting. Remember that you can find 
 RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's thst you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
 
-As you're making 
+As you're making changes, knit often and see how your edits look in the rendered document.
 
-Some ideas of what you can try.
+Some ideas of what you can try:
 
+#### Add different header levels
+Compare the output with different numbers of `#` in headers
 
+<br>
 
-Empty lines
-A few more headers
-In-line code
+#### Blank space
+Add empty lines `<br>`
 
-Add images
+<br>
+
+#### In-line code
+Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with `r WHATEVER_CODE_YOU_WANT_RUN`. This way, you're basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.
+
+We may for example want to summarize the dimensions of our dataset. We can do this by typing
+
+```{r, eval = FALSE}
+There are `r nrow(cars) ` observations in the cars dataset, 
+and `r 'ncol(cars) ` variables.
+```
+
+See how that renders.
+
+<br>
+
+#### Add images
+In addition to figures generated through R code in our code chunks, it's easy to also add other images, e.g. jpg or png files that you have stored on your computer or find online.
+
+There are two ways we can do this:
+
+1. With markdown syntax
+2. With `knitr::include_graphics()`
+
+The **markdown syntax** to insert an image is: `![caption]("path/to/image")`
+
+The path can either be a path to an image stored on your computer, or it can be a URL to an image stored online. If you want to get the URL to an image you find, right click and select "Copy Image Address".
+
+<br>
+
+If you want more control over the output, e.g. to center the image or make it smaller, you can use `knitr::include_graphics()`, and control the figure size using options such as `out.width` and `fig.align` and add a caption with fig.cap. More details [here](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+
 
 Equations
 
@@ -77,3 +110,16 @@ You will have seen how quickly you can create a nicely formatted document. But t
 
 https://github.com/svmiller/stevetemplates, https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
 
+
+<br
+<br>
+
+## Exercise 4: Explore other RMarkdown applications
+RMarkdown can be used for much more than making simple documents. In breakout rooms, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the [RStudio Gallery](https://rmarkdown.rstudio.com/gallery.html)
+
+Discuss in your groups which application you think is the coolest, and report back to the group.
+
+<br>
+<br>
+
+**END LAB 1**
