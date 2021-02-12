@@ -7,7 +7,7 @@ output:
   
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 <br>
 
@@ -44,7 +44,7 @@ Add empty lines `<br>`
 <br>
 
 #### In-line code
-Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with `r WHATEVER_CODE_YOU_WANT_RUN`. This way, you're basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.
+Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with `r `. This way, you're basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.
 
 We may for example want to summarize the dimensions of our dataset. We can do this by typing
 
@@ -74,24 +74,33 @@ The path can either be a path to an image stored on your computer, or it can be 
 If you want more control over the output, e.g. to center the image or make it smaller, you can use `knitr::include_graphics()`, and control the figure size using options such as `out.width` and `fig.align` and add a caption with fig.cap. More details [here](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
 
 
-Equations
+<br>
 
+#### Equations
+Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won't go through this in class, but you can find an easy introduction in [R Markdown for Scientists](https://rmd4sci.njtierney.com/math.html).
 
+<br>
 
 ### Code-chunk options
+Remind yourself about the key code chunk options see overview [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks)
 
+1. Add a few new code chunks to your document. Name them, add some simple code. Knit and see how the document renders.
 
+2. Now try changing the code chunk options. Explore the settings to show code, show output, execute output vs not etc.
 
+3. Now explore the first code chunk titled `setup`. What happens if you change it to `echo = FALSE`? Or if you add `eval = FALSE`? Why does this happen?
 
-Turn on and off change code chunk options
-
+<br>
+<br>
 
 
 ## Exercise 2: Document styling and output formats
 
-add theme
-toc
-Output format
+Now we'll explore:
+
+* Add theme
+* Add toc
+* Changing the output format
 
 
 Generate three reports, one as HTML, one as PDF, and one as microsoft word. Remember, if you are having PDF problems, see the note on installing `tinytex` [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf).
@@ -108,7 +117,7 @@ Render to html format, and if you're comfortable, share with the class by postin
 
 You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. Try one of these:
 
-https://github.com/svmiller/stevetemplates, https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
+https://github.com/svmiller/stevetemplates https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
 
 
 <br
