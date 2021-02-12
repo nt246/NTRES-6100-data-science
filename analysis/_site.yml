@@ -18,6 +18,11 @@ navbar:
       href: lesson3-version-control.html
     - text: "Lesson 4: Collaborating with GitHub - Part 1"
       href: lesson4-collaboration.html
+  - text: Labs
+    menu:
+    - text: Lab handouts
+    - text: "Lab 1: RMarkdown"
+      href: lab1-rmarkdown.html
   - text: Assignments
     href: assignments.html    
 output: 

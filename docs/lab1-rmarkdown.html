@@ -13,7 +13,6 @@
 
 <title>Lab 1: RMarkdown</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -386,6 +385,19 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="assignments.html">Assignments</a>
 </li>
@@ -414,12 +426,12 @@ div.tocify {
 </div>
 <div id="exercise-1-basic-formatting-and-code-chunk-options" class="section level2">
 <h2>Exercise 1: Basic formatting and code chunk options</h2>
-<p>Let’s start by playing around with the basic RStudio RMarkdown template a little more. Open a fresh copy by clicking File -&gt; New File -&gt; R Markdown… We can enter “Lab exercise” in the Title field and keep HTML as the Default Output Format.</p>
+<p>Let's start by playing around with the basic RStudio RMarkdown template a little more. Open a fresh copy by clicking File -&gt; New File -&gt; R Markdown... We can enter &quot;Lab exercise&quot; in the Title field and keep HTML as the Default Output Format.</p>
 <p><br></p>
 <div id="basic-formatting" class="section level3">
 <h3>Basic formatting</h3>
-<p>Take a few minutes to play around with the formatting. Remember that you can find RStudio’s built-in RMarkdown reference under Help &gt; Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">this</a> or RStudio’s thst you can download from <a href="https://rstudio.com/resources/cheatsheets/">here</a> (scroll down to find it).</p>
-<p>As you’re making changes, knit often and see how your edits look in the rendered document.</p>
+<p>Take a few minutes to play around with the formatting. Remember that you can find RStudio's built-in RMarkdown reference under Help &gt; Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">this</a> or RStudio's thst you can download from <a href="https://rstudio.com/resources/cheatsheets/">here</a> (scroll down to find it).</p>
+<p>As you're making changes, knit often and see how your edits look in the rendered document.</p>
 <p>Some ideas of what you can try:</p>
 <div id="add-different-header-levels" class="section level4">
 <h4>Add different header levels</h4>
@@ -433,7 +445,7 @@ div.tocify {
 </div>
 <div id="in-line-code" class="section level4">
 <h4>In-line code</h4>
-<p>Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with <code>r</code>. This way, you’re basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.</p>
+<p>Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with <code>r</code>. This way, you're basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.</p>
 <p>We may for example want to summarize the dimensions of our dataset. We can do this by typing</p>
 <pre class="r"><code>There are `r nrow(cars) ` observations in the cars dataset, 
 and `r &#39;ncol(cars) ` variables.</code></pre>
@@ -442,21 +454,21 @@ and `r &#39;ncol(cars) ` variables.</code></pre>
 </div>
 <div id="add-images" class="section level4">
 <h4>Add images</h4>
-<p>In addition to figures generated through R code in our code chunks, it’s easy to also add other images, e.g. jpg or png files that you have stored on your computer or find online.</p>
+<p>In addition to figures generated through R code in our code chunks, it's easy to also add other images, e.g. jpg or png files that you have stored on your computer or find online.</p>
 <p>There are two ways we can do this:</p>
 <ol style="list-style-type: decimal">
 <li>With markdown syntax</li>
 <li>With <code>knitr::include_graphics()</code></li>
 </ol>
-<p>The <strong>markdown syntax</strong> to insert an image is: <code>![caption]("path/to/image")</code></p>
-<p>The path can either be a path to an image stored on your computer, or it can be a URL to an image stored online. If you want to get the URL to an image you find, right click and select “Copy Image Address”.</p>
+<p>The <strong>markdown syntax</strong> to insert an image is: <code>![caption](&quot;path/to/image&quot;)</code></p>
+<p>The path can either be a path to an image stored on your computer, or it can be a URL to an image stored online. If you want to get the URL to an image you find, right click and select &quot;Copy Image Address&quot;.</p>
 <p><br></p>
-<p>If you want more control over the output, e.g. to center the image or make it smaller, you can use <code>knitr::include_graphics()</code>, and control the figure size using options such as <code>out.width</code> and <code>fig.align</code> and add a caption with fig.cap. More details <a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">here</a></p>
+<p>If you want more control over the output, e.g. to center the image or make it smaller, you can use <code>knitr::include_graphics()</code>, and control the figure size using options such as <code>out.width</code> and <code>fig.align</code> and add a caption with fig.cap. More details <a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">here</a></p>
 <p><br></p>
 </div>
 <div id="equations" class="section level4">
 <h4>Equations</h4>
-<p>Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won’t go through this in class, but you can find an easy introduction in <a href="https://rmd4sci.njtierney.com/math.html">R Markdown for Scientists</a>.</p>
+<p>Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won't go through this in class, but you can find an easy introduction in <a href="https://rmd4sci.njtierney.com/math.html">R Markdown for Scientists</a>.</p>
 <p><br></p>
 </div>
 </div>
@@ -473,7 +485,7 @@ and `r &#39;ncol(cars) ` variables.</code></pre>
 </div>
 <div id="exercise-2-document-styling-and-output-formats" class="section level2">
 <h2>Exercise 2: Document styling and output formats</h2>
-<p>Now we’ll explore:</p>
+<p>Now we'll explore:</p>
 <ul>
 <li>Add theme</li>
 <li>Add toc</li>
@@ -485,10 +497,11 @@ and `r &#39;ncol(cars) ` variables.</code></pre>
 <div id="exercise-3-make-a-cv" class="section level2">
 <h2>Exercise 3: Make a CV</h2>
 <p>Now, practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote. You can also add a photo, either of yourself, or something else you have handy or can find online.</p>
-<p>Render to html format, and if you’re comfortable, share with the class by posting it to the <code>lecture-chat</code> channel in Slack.</p>
+<p>Render to html format, and if you're comfortable, share with the class by posting it to the <code>lecture-chat</code> channel in Slack.</p>
 <p>You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. Try one of these:</p>
 <p><a href="https://github.com/svmiller/stevetemplates" class="uri">https://github.com/svmiller/stevetemplates</a> <a href="https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/" class="uri">https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/</a></p>
-<p>&lt;br <br></p>
+<p><br
+<br></p>
 </div>
 <div id="exercise-4-explore-other-rmarkdown-applications" class="section level2">
 <h2>Exercise 4: Explore other RMarkdown applications</h2>
