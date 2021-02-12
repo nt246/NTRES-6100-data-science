@@ -137,7 +137,8 @@ If you're having trouble with the generating the pdf, see the note on installing
 
 <br>
 
-We can also make slides! There are several slide output formats. Try `
+We can also make slides! There are several slide output formats. Try `output: beamer_presentation`
+
 More details about styling beamer slides [here](https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html)
 
 <br>
