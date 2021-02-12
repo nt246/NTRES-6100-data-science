@@ -1,0 +1,79 @@
+---
+title: "Lab 1: RMarkdown"
+output: 
+  html_document:
+    toc: true
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE)
+```
+<br>
+
+## Goal for today
+
+Explore more RMarkdown functionality and practice implementing it.
+
+<br>
+<br>
+
+## Exercise 1: Basic formatting and code chunk options
+
+Let's start by playing around with the basic RStudio RMarkdown template a little more. Open a fresh copy by clicking File -> New File -> R Markdown... We can enter "Lab exercise" in the Title field and keep HTML as the Default Output Format.
+
+<br>
+
+### Basic formatting
+
+Take a few minutes to play around with the formatting. Remember that you can find 
+RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's thst you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
+
+As you're making 
+
+Some ideas of what you can try.
+
+
+
+Empty lines
+A few more headers
+In-line code
+
+Add images
+
+Equations
+
+
+
+### Code-chunk options
+
+
+
+
+Turn on and off change code chunk options
+
+
+
+## Exercise 2: Document styling and output formats
+
+add theme
+toc
+Output format
+
+
+Generate three reports, one as HTML, one as PDF, and one as microsoft word. Remember, if you are having PDF problems, see the note on installing `tinytex` [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf).
+
+
+<br>
+<br>
+
+## Exercise 3: Make a CV
+
+Now, practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote. You can also add a photo, either of yourself, or something else you have handy or can find online.
+
+Render to html format, and if you're comfortable, share with the class by posting it to the `lecture-chat` channel in Slack.
+
+You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. Try one of these:
+
+https://github.com/svmiller/stevetemplates, https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
+
