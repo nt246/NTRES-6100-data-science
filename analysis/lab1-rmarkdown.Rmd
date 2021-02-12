@@ -26,12 +26,14 @@ Let's start by playing around with the basic RStudio RMarkdown template a little
 
 ### Basic formatting
 
-Take a few minutes to play around with the formatting. Remember that you can find 
+Let's play around with the formatting of our document. Remember that you can find 
 RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's thst you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
 
 As you're making changes, knit often and see how your edits look in the rendered document.
 
 Some ideas of what you can try:
+
+<br>
 
 #### Add different header levels
 Compare the output with different numbers of `#` in headers
@@ -65,12 +67,15 @@ There are two ways we can do this:
 1. With markdown syntax
 2. With `knitr::include_graphics()`
 
+<br>
+
 The **markdown syntax** to insert an image is: `![caption]("path/to/image")`
 
 The path can either be a path to an image stored on your computer, or it can be a URL to an image stored online. If you want to get the URL to an image you find, right click and select "Copy Image Address".
 
 <br>
 
+Using *knitr::include_graphics()*:
 If you want more control over the output, e.g. to center the image or make it smaller, you can use `knitr::include_graphics()`, and control the figure size using options such as `out.width` and `fig.align` and add a caption with fig.cap. More details [here](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
 
 
@@ -96,15 +101,44 @@ Remind yourself about the key code chunk options see overview [here](https://nt2
 
 ## Exercise 2: Document styling and output formats
 
-Now we'll explore:
+### Add table of contents
 
-* Add theme
-* Add toc
-* Changing the output format
+Add toc details to your YAML header
+<br>
 
+```{r}
+---
+title: "Lab1_doc"
+author: "Nina"
+date: "2/12/2021"
+output:
+  html_document:
+    toc: true
 
-Generate three reports, one as HTML, one as PDF, and one as microsoft word. Remember, if you are having PDF problems, see the note on installing `tinytex` [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf).
+---
+```
 
+More details about styling your table of contents [here](https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents)
+
+<br>
+<br>
+
+### Output formats
+
+Up until now, we've been rendering our .Rmd file to the default html format. That's useful for lots of applications. But lots of other output formats are supported. 
+
+Check what happens if you change the `output: html_document` in the YAML header to `output: word_document`
+
+Now, check what happens if you change it to `output: pdf_document`. In order to convert the documents to PDF, they use a software called LaTeX (pronounced la-tek or lay-tek).
+
+Installing LaTeX can be a pain, but thankfully there is an easier way to install it - tinytex. tinytex is an R package that installs a sane, lightweight (<200Mb) version of LaTeX.
+
+If you're having trouble with the generating the pdf, see the note on installing `tinytex` [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf).
+
+<br>
+
+We can also make slides! There are several slide output formats. Try `
+More details about styling beamer slides [here](https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html)
 
 <br>
 <br>
@@ -115,12 +149,12 @@ Now, practice what you’ve learned by creating a brief CV. The title should be 
 
 Render to html format, and if you're comfortable, share with the class by posting it to the `lecture-chat` channel in Slack.
 
-You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. Try one of these:
+You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. You could, for example, try one of these:
 
-https://github.com/svmiller/stevetemplates https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
+http://svmiller.com/blog/2016/03/svm-r-markdown-cv/ https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
 
 
-<br
+<br>
 <br>
 
 ## Exercise 4: Explore other RMarkdown applications
