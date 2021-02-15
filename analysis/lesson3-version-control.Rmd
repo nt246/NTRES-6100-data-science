@@ -50,7 +50,7 @@ By the end of this class you will be able to:
 
 ## Introduction to Git and GitHub
 
-### Why should R users use Github?
+### Why should R users use GitHub?
 
 Modern R users use GitHub because it helps make coding collaborative and social while also providing huge benefits to organization, archiving, and being able to find your files easily when you need them.
 
@@ -65,11 +65,11 @@ knitr::include_graphics("assets/MessySaves.png")
 ```
 <br>
 
-This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, it is very sad to think about the amount of time everyone involved is spending on bookkeeping: is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives. 
+This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, if we're collaborating with other people on these documents and, for example, sharing them over email, it can become very tricky to ensure everyone always has the most current verion. Even updates are always immediately shared, everyone's bookkeeping can take a huge amount of time. Is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives. 
 
-But then there is GitHub. 
+Fortunately there is Git and GitHub! 
 
-In GitHub, in this example you will likely only see a single file, which is the most recent version. GitHub's job is to track who made any changes and when (so no need to save a copy with your name or date at the end), and it also requires that you write something human-readable that will be a breadcrumb for you in the future. It is also designed to be easy to compare versions, and you can easily revert to previous versions. 
+On GitHub, in this example you will likely only see a single file, which is the most recent version. GitHub's job is to track who made any changes and when (so no need to save a copy with your name or date at the end), and it also requires that you write something human-readable that will be a breadcrumb for you in the future. It is also designed to be easy to compare versions, and you can easily revert to previous versions. 
 
 GitHub also supercharges you as a collaborator. First and foremost with Future You, but also sets you up to collaborate with Future Us!
 
@@ -83,7 +83,7 @@ OK so what is GitHub? And Git?
 
 - **Git** is a program that you install on your computer: it is version control software that tracks changes to your files over time.
 
-- **Github** is an website that is essentially a social media platform for your git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
+- **GitHub** is an website that is essentially a social media platform for your Git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
 
 GitHub was developed for software development, so much of the functionality and terminology that is exciting for professional programmers (e.g., branches and pull requests) isn't necessarily the right place for us as new R users to get started. We'll get there soon, but for now, we will be learning and practicing GitHub's features and terminology on a "need to know basis" as we start managing our projects with GitHub.
 
@@ -93,27 +93,34 @@ GitHub was developed for software development, so much of the functionality and 
 
 GitHub allows for cloud storage, like Google Drive and Dropbox do. But there’s a bit more structure than just storing files under your account:
 
-* Repositories (aka “repos”): All files must be organized into repositories. Think of these as self-contained projects. These can either be public or private.
-* User Accounts vs. Organization Accounts (aka “Org”): All repositories belong to an account:
+<br>
 
-  * A user account is the account you just made, and typically holds repositories related to your own work.
-  * An Organization account can be owned by multiple people, and typically holds repositories relevant to a group (like `therkildsen-class`).
+* **Repositories (aka “repos”)**: All files must be organized into repositories. Think of these as self-contained projects. These can either be public or private.
+
+<br>
+
+* **User Accounts vs. Organization Accounts (aka “Org”)**: All repositories belong to an account:
+
+  + A user account is the account you just made, and typically holds repositories related to your own work.
+  + An Organization account can be owned by multiple people, and typically holds repositories relevant to a group (like `therkildsen-class`).
 
 Examples:
 
-* The [ggplot2 repo](https://github.com/tidyverse/ggplot2), within its corresponding `tidyverse Org`
-* Our [class website](https://github.com/nt246/NTRES6940-data-science) within Nina's user account `nt246`
+* The [ggplot2 repo](https://github.com/tidyverse/ggplot2), within its corresponding `tidyverse` organization
+* Our [class website](https://github.com/nt246/NTRES-6100-data-science) within Nina's user account `nt246`
 
 <br>
 
 ### Reconnecting with your course repo on GitHub
-As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click [here](https://classroom.github.com/a/SA7QIA7g) and select your name from the list (or just click continue if you don't see your name there).
+As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click [here](https://classroom.github.com/a/h81351Rq) and select your name from the list (or just click continue if you don't see your name there).
 
 Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/star_repo.png")  
 ```
+
+<br>
 
 Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6940-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
@@ -123,6 +130,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 
 
 <br>
+<br>
 
 ## Navigating GitHub
 
@@ -131,19 +139,25 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Click on the “Create New File” button on your repository’s home page.
-* Call it `navigating_github.md`
+* Make sure you're in your class repo (`therkildsen-class/ntres-6940-YOUR_USER_NAME`)
+* Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
+* Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.
-* Together: Add the URL for our [course homepage](https://nt246.github.io/NTRES6940-data-science/index.html) to your `navigating_github.md` file (click on the pen button to edit), together with some commentary
+* Locate your new file in your GitHub repo file directory (the "landing page" for your repo) and click on it to open
+* Click on the pen button in the top right corner to allow editing, and add the URL for our [course homepage](https://nt246.github.io/NTRES-6100-data-science/index.html) to your `navigating_github.md` file together with some commentary
 * Commit the changes
 
 <br>
 
 #### Your turn:
 * Now add the URL’s (with commentary) to 
-  + your personal class repo
-  + your user account page
+    + Your personal class repo
+    + Your user account page
+    
+    
 * Commit the changes
+
+<br>
 
 * Now create a new subdirectory for course notes (remember to not use spaces in names, so you can call it something like course-notes)
 
@@ -165,7 +179,7 @@ Users make “commits” to form a commit history
 
 Demostration:
 
-* View commit history of the [course website repo](https://github.com/nt246/NTRES6940-data-science) by clicking on the “commits” button on the repo home page.
+* View commit history of the [course website repo](https://github.com/nt246/NTRES-6100-data-science) by clicking on the “commits” button on the repo home page.
 * View a recent diff by clicking on the button with the SHA or hash code (something like `6c0a5f1`).
 * This is also useful for collaborators to see exactly what you changed.
 * View the repository from a while back with the <> button.
@@ -175,24 +189,28 @@ Demostration:
 
 ### Why version control?
 
-* Don’t fret removing stuff
+* No need to save updated versions as a separate file
 * Leave a breadcrumb trail for troubleshooting
+* Don’t fret removing stuff
 * “Undo” and navigate a previous state
 * Helps you define your work
 
 <br>
+<br>
 
 ## Interfacing with GitHub from our local computers using RStudio
 
-We should all have set up git on our local computers by now and have it connected to RStudio. If you don't, follow the instructions [here](https://nt246.github.io/NTRES6940-data-science/lesson2-rmarkdown-github.html#github_brief_intro__config)
+We should all have set up Git on our local computers by now and have it connected to RStudio. If you don't, follow the instructions [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#GitGitHub:_Brief_intro__configuration)
 
 <br>
 
 ## Clone your repository using RStudio
 
-Let's recap on the setup we rushed through at the end of last class. We have all identified our course repo on GitHub, i.e. in the cloud. Now, let's get it established locally on our computers: that is called "cloning". 
+Let's recap on the setup we rushed through at the end of last class. We have all identified our course repo on GitHub, i.e. in the cloud. At the end of last class, we used RStudio to establish it locally on our computers: that is called "cloning". Unlike downloading, cloning keeps all the version control and user information bundled with the files. 
 
-Let's clone this repo to our local computer using RStudio. Unlike downloading, cloning keeps all the version control and user information bundled with the files. 
+Because our focus last week was just to confirm that our set-up has Git configured and connected to RStudio and GitHub correctly, let's now repeat the cloning process and this time be more intentional about where on our computer we put our local version of the class repo. Cloning is an important task when working with GitHub, so we'll do it over and over again to establish the habit.
+
+Before repeating the cloning step, let's first get rid of the folder we created when we clones the repo last week. Just use your normal file navigation system to do to the folder and delete it. If you can't remember where you put it, you can try searching for `ntres-6100`, which should be the beginning of the folder name. When working with GitHub version-controlled files, we can at any time delete our local copy of a repo and re-clone from the version stored on GitHub. 
 
 <br>
 
@@ -200,7 +218,8 @@ Let's clone this repo to our local computer using RStudio. Unlike downloading, c
 
 First, click the green "Code" button, then copy the web address of the repository you want to clone. We will use HTTPS. 
 
-> **Aside**: HTTPS is default, but you could alternatively set up with SSH. This is more advanced than we will get into here, but allows 2-factor authentication. See [Happy Git with R](https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication) for more information.
+> **Aside**: HTTPS is default, and [is method recommended by GitHub](https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication). You could alternatively set up with SSH, but we will not get into that here.
+
 <br>
 
 ```{r, echo=FALSE, out.width="100%"}
@@ -208,13 +227,11 @@ knitr::include_graphics("assets/github-clone-sept20.png")
 ```
 
 <br>
+<br>
 
 ### RStudio: New Project
 
 Now go back to RStudio, and click on New Project. There are a few different ways; you could also go to File > New Project..., or click the little green + with the R box in the top left.
-also in the File menu).
-
-<br>
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/new_project1.png")  
@@ -225,8 +242,6 @@ knitr::include_graphics("assets/new_project1.png")
 
 ### Select Version Control
 
-<br>
-
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/new_project2.png")  
 ```
@@ -235,9 +250,7 @@ knitr::include_graphics("assets/new_project2.png")
 
 ### Select Git
 
-Since we are using git. 
-
-<br>
+Since we are using Git. 
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/new_project3.png")  
@@ -252,7 +265,9 @@ Paste the repo address (which is still in your clipboard) into in the "Repositor
 
 When cloned, this repository is going to become a folder on your computer. 
 
-At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your github repos to keep them organized. We call ours `github` and keep it in our root folder (`~/github`), and so that is what we will demonstrate here — you are welcome to do the same. Press "Browse..." to navigate to a folder and you have the option of creating a new folder. Make sure to not place it in folder tracked by a cloud storage service (e.g. DropBox, Google Drive or Box).
+At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your GitHub repos to keep them organized. We call ours `github` and keep it in our root folder (`~/github`), and so that is what we will demonstrate here — you are welcome to do the same. Press "Browse..." to navigate to a folder and you have the option of creating a new folder. 
+
+**IMPORTANT**: Make sure to not place it in folder tracked by a cloud storage service (e.g. DropBox, Google Drive or Box) because problem can arise when trying to sync folders with multiple systems.
 
 Finally, click Create Project. 
 
@@ -294,7 +309,7 @@ knitr::include_graphics("assets/new_project6.png")
 
 Let's notice a few things: 
 
-First, our working directory is set to `~/github/r-workshop`, and `r-workshop` is also named in the top right hand corner.
+First, our working directory is set to `~/github/ntres-6100-USERNAME`, and `ntres-6100-USERNAME` is also named in the top right hand corner.
 
 Second, we have a Git tab in the top right pane! Let's click on it. 
 
@@ -321,17 +336,18 @@ We will handle this in a moment; first let's look at the README.md file.
 
 ### Edit your README file
 
-Let's also open up the README.md. This is a Markdown file, which is the same language we just learned with R Markdown. It's like an R Markdown file without the abilities to run R code. 
+Let's also open up the `README.md`. This is a Markdown file, which is the same language we just learned with R Markdown. It's like an R Markdown file without the abilities to run R code. 
 
 We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added. 
 
 README files are common in programming; they are the first place that someone will look to see **why code exists and how to run it**. 
 
-In my README, I'll write: 
+In my README, I'll edit the line that says: 
 
 ```
-This repo is for my coursework for NTRES 6940. 
+Please indicate if you are **taking this class for credit** or **auditing**:  
 ```
+and delete the option that does not apply to me.
 
 When I save this, notice how it shows up in my Git tab. It has a blue "M": GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it's Modified with an M. 
 
@@ -368,7 +384,7 @@ knitr::include_graphics("assets/commit_circled.png")
 
 ### Pull 
 
-We start off by "Pulling" from the remote repository (GitHub.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn't new information available. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection). 
+We start off by "Pulling" from the remote repository (github.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn't new information available. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection). 
 
 Pull by clicking the teal Down Arrow. (Notice also how when you highlight a filename, a preview of the differences displays below).
 
@@ -442,6 +458,9 @@ knitr::include_graphics("assets/commit_branch_ahead_of_origin_master.png")
 We have successfully committed our work as a breadcrumb-message-approved snapshot in time, but it still only exists locally on our computer. We can commit without an internet connection; we have not done anything yet to tell GitHub that we want this pushed to the remote repo at GitHub.com. So as the last step, we push. 
 
 
+<br>
+
+
 ### Push
 
 The last step in the syncing process is to Push!
@@ -454,7 +473,7 @@ knitr::include_graphics("assets/commit_push.png")
 
 <br>
 
-Awesome! We're done here in RStudio for the moment, let's check out the remote on GitHub.com.
+Awesome! We're done here in RStudio for the moment, let's check out the remote on github.com.
 
 <br>
 
@@ -472,7 +491,7 @@ knitr::include_graphics("assets/gh_repo_view.png")
 
 <br>
 
-Let's also explore the commit history. The 2 commits we've made (the first was when we originally initiated the repo from GitHub.com) are there!
+Let's also explore the commit history. The 2 commits we've made (the first was when we originally initiated the repo from github.com) are there!
 
 <br>
 
@@ -480,7 +499,7 @@ Let's also explore the commit history. The 2 commits we've made (the first was w
 
 Let's go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. 
 
-This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `r-workshop.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
+This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
 
 A [project-oriented workflow](https://rstats.wtf/project-oriented-workflow.html) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
 
@@ -519,14 +538,17 @@ Let's set up this file so it's ready for us to enter notes into. I'm going to up
 > **Efficiency Tip**: I use Shift - Command - Down Arrow to highlight text from my cursor to the end of the document
 ```
 ---
-title: "Notes for NTRES 6940 lectures"
+title: "Notes for NTRES 6100 lectures"
 author: "Nina Overgaard Therkildsen"
 date: "09/21/2020"
 output: html_document
 ---
+
 # Course notes
 We're going to learn a lot about GitHub and the tidyverse and it's going to be fun.
 ```
+
+<br>
 
 Now, let's save it. I'm going to call my file `course-notes.Rmd`. 
 
@@ -581,13 +603,13 @@ output:
 
 Note: `toc: true` is optional, but it can automatically set up a table of content for you. 
 
-You can find much more information about RMarkdown output formats [here](https://r4ds.had.co.nz/r-markdown-formats.html). For most of our work in this course, we will want to use the github_document output type because this displays nicely on the GitHub website.
+You can find much more information about RMarkdown output formats [here](https://r4ds.had.co.nz/r-markdown-formats.html). For most of our work in this course, we will want to use the `github_document` output type because this displays nicely on the GitHub website.
 
 <br>
 
 ### Move files to data folder
 
-Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/EconomistData.csv). Save this file (using File -> Save Page As in your internet browser) into the 'data' subfolder of your R project.  
+Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/EconomistData.csv). Save this file (using File -> Save Page As in your internet browser) into the 'data' subfolder of your R project (the folder you have created for the project (in the cloning process) on your local computer).  
 
 Now let's go back to RStudio. We can click on the data folder in the Files tab and now see this new file.
 
@@ -612,7 +634,7 @@ Explore your Commit History.
 
 ## Committing - how often? Tracking changes in your files
 
-Whenever you make changes to the files in Github, you will walk through the Pull -> Stage -> Commit -> Push steps.
+Whenever you make changes to the files in GitHub, you will walk through the Pull -> Stage -> Commit -> Push steps.
 
 I tend to do this every time I finish a task (basically when I start getting nervous that I will lose my work).  Once something is committed, it is very difficult to lose it.
 
