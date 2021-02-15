@@ -122,7 +122,7 @@ knitr::include_graphics("assets/star_repo.png")
 
 <br>
 
-Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6940-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
+Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/finding_starred_repos.png")  
@@ -139,7 +139,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Make sure you're in your class repo (`therkildsen-class/ntres-6940-YOUR_USER_NAME`)
+* Make sure you're in your class repo (`therkildsen-class/ntres-6100-YOUR_USER_NAME`)
 * Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
 * Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.
@@ -609,7 +609,7 @@ You can find much more information about RMarkdown output formats [here](https:/
 
 ### Move files to data folder
 
-Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/EconomistData.csv). Save this file (using File -> Save Page As in your internet browser) into the 'data' subfolder of your R project (the folder you have created for the project (in the cloning process) on your local computer).  
+Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/datasets/EconomistData.csv). Save this file (using File -> Save Page As in your internet browser) into the 'data' subfolder of your R project (the folder you have created for the project (in the cloning process) on your local computer).  
 
 Now let's go back to RStudio. We can click on the data folder in the Files tab and now see this new file.
 
@@ -626,7 +626,7 @@ Edit your README either directly on GitHub or in RStudio and practice syncing (p
 * Indicate whether you're taking the course for credit
 * Add a fun fact about yourself
 * Add another line of text
-* Add a picture of yourself (see instructions from last class [here](https://nt246.github.io/NTRES6940-data-science/lesson2-rmarkdown-github.html#activity))
+* Add a picture of yourself (see instructions from last class [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Activity))
 
 Explore your Commit History. 
 
