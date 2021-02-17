@@ -13,7 +13,6 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -384,6 +383,12 @@ div.tocify {
     <li>
       <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
     </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -425,7 +430,7 @@ div.tocify {
 <div id="required" class="section level3">
 <h3>Required:</h3>
 <ul>
-<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3.1-3.6 in Grolemund and Wickham’s R for Data Science</a></li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3.1-3.6 in Grolemund and Wickham's R for Data Science</a></li>
 </ul>
 <p><br></p>
 </div>
@@ -434,7 +439,7 @@ div.tocify {
 <ul>
 <li><p>The book <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen</p></li>
 <li><p><a href="http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2">Graphs with ggplot2 - Cookbook for R</a></p></li>
-<li><p><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio’s ggplot2 cheat sheet</a></p></li>
+<li><p><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio's ggplot2 cheat sheet</a></p></li>
 </ul>
 <p><br></p>
 </div>
@@ -445,12 +450,12 @@ div.tocify {
 </div>
 <div id="first-a-quick-wrap-up-of-our-github-section" class="section level2">
 <h2>First, a quick wrap-up of our GitHub section</h2>
-<p>GitHub has powerful infrastructure for communicating with your collaborators (and yourself!) directly in your repo. It can be very helpful to have discussions about data or analysis tasks/choices right there with the rest of your project files instead of burried away in long email chains or in unrecorded verbal converasation. We’ll do a quick demo of a few of the ways you can communicate on GitHub. If you’re interested, take a look at <a href="https://openscapes.github.io/series/github-issues.html">this chapter</a> by Julia Lowndes on using GitHub issues, or the <a href="https://guides.github.com/features/issues/">GitHub Guide</a>.</p>
-<p>Now on to today’s topic…</p>
+<p>GitHub has powerful infrastructure for communicating with your collaborators (and yourself!) directly in your repo. It can be very helpful to have discussions about data or analysis tasks/choices right there with the rest of your project files instead of burried away in long email chains or in unrecorded verbal converasation. We'll do a quick demo of a few of the ways you can communicate on GitHub. If you're interested, take a look at <a href="https://openscapes.github.io/series/github-issues.html">this chapter</a> by Julia Lowndes on using GitHub issues, or the <a href="https://guides.github.com/features/issues/">GitHub Guide</a>.</p>
+<p>Now on to today's topic...</p>
 <p><br></p>
 </div>
 <div id="learning-objectives-for-todays-class" class="section level2">
-<h2>Learning objectives for today’s class</h2>
+<h2>Learning objectives for today's class</h2>
 <p>By the end of this class you will be able to:</p>
 <ul>
 <li>Inspect your data in RStudio<br />
@@ -465,12 +470,12 @@ div.tocify {
 </li>
 <li>Change the theme of graphs</li>
 </ul>
-<p><strong>Acknowledgements</strong>: Some content from today’s lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst and the <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
+<p><strong>Acknowledgements</strong>: Some content from today's lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst and the <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
 <p><br></p>
 </div>
 <div id="taking-notes---remember-to-save-your-work-in-a-script-or-an-rmarkdown-file" class="section level2">
 <h2>Taking notes - remember to save your work in a script or an RMarkdown file</h2>
-<p>Have a look at <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in R4DS</a> and let’s all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.</p>
+<p>Have a look at <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in R4DS</a> and let's all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.</p>
 <p><br></p>
 <div id="create-an-r-script-or-an-rmarkdown-file-for-working-along-with-examples-and-doing-exercises-in-this-lecture" class="section level3">
 <h3>Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture</h3>
@@ -486,7 +491,7 @@ div.tocify {
 <li>To facilitate comparisons</li>
 <li>To identify trends</li>
 </ul>
-<p>There are several ways to make plots in R. We will exclusively use the <code>ggplot2</code> package here. If you want to know more about why we’re using <code>ggplot2</code> instead of base plot, check out the slides from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
+<p>There are several ways to make plots in R. We will exclusively use the <code>ggplot2</code> package here. If you want to know more about why we're using <code>ggplot2</code> instead of base plot, check out the slides from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
 <p><br></p>
 </div>
 <div id="load-packages" class="section level2">
@@ -665,15 +670,21 @@ str(mpg)</code></pre>
 </div>
 <div id="grammar-of-graphics-in-ggplot2" class="section level2">
 <h2>Grammar of graphics in <code>ggplot2</code></h2>
-<p>In this class, we will write reproducible code to build graphs piece-by-piece. This contrasts with point-and-click applications like Excel where graphs are made by manually selecting options, which makes it difficult to keep track of our work. Also, if we haven’t built a graph with reproducible code, we will have to repeat the entire plotting process again for every new dataset and if we make complicated graphics we might not be able to easily recreate all details of our graph.</p>
+<p>In this class, we will write reproducible code to build graphs piece-by-piece. This contrasts with point-and-click applications like Excel where graphs are made by manually selecting options, which makes it difficult to keep track of our work. Also, if we haven't built a graph with reproducible code, we will have to repeat the entire plotting process again for every new dataset and if we make complicated graphics we might not be able to easily recreate all details of our graph.</p>
 <p>Using <code>ggplot2</code>, the graphics package within the <code>tidyverse</code>, we will write reproducible code to manually and thoughtfully build our graphs.</p>
 <blockquote>
 <p>“ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places.” - R4DS</p>
 </blockquote>
-<p>So yeah… that <code>gg</code> is from “grammar of graphics.”</p>
-<p><img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" /></p>
-<p>These “same few components” that all <code>ggplot2</code> graphs share include the followings:</p>
-<p><img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" /></p>
+<p>So yeah... that <code>gg</code> is from “grammar of graphics.”</p>
+<div class="figure">
+<img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" />
+
+</div>
+<p>These &quot;same few components&quot; that all <code>ggplot2</code> graphs share include the followings:</p>
+<div class="figure">
+<img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" />
+
+</div>
 <p>Of these, <strong>data</strong>, <strong>aesthetics</strong>, and <strong>geometries</strong> are the components that must be specified when creating a graph.</p>
 <p><br></p>
 <p>From <a href="https://stat545guidebook.netlify.app/intro-to-plotting-with-ggplot2-part-i.html#the-grammar-of-graphics-15-min">STAT545</a>:</p>
@@ -682,42 +693,28 @@ str(mpg)</code></pre>
 <p><strong>Required:</strong></p>
 <p><br></p>
 <ul>
-<li><strong>Data</strong>
-<ul>
-<li>Exactly as it sounds: the data that you’re feeding into a plot.</li>
-</ul></li>
-<li><strong>Aesthetic mappings</strong>
-<ul>
-<li>This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called “aesthetics”, and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.</li>
-</ul></li>
-<li><strong>Geometric objects</strong>
-<ul>
+<li><strong>Data</strong></li>
+<li>Exactly as it sounds: the data that you're feeding into a plot.</li>
+<li><strong>Aesthetic mappings</strong></li>
+<li>This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called &quot;aesthetics&quot;, and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.</li>
+<li><strong>Geometric objects</strong></li>
 <li>This is a specification of what object will actually be drawn on the plot. This could be a point, a line, a bar, etc.</li>
-</ul></li>
 </ul>
 <p><br></p>
 <p><strong>Optional:</strong></p>
 <ul>
-<li>Scales
-<ul>
+<li>Scales</li>
 <li>This is a specification of how a variable is mapped to its aesthetic. Will it be mapped linearly? On a log scale? Something else?</li>
-</ul></li>
-<li>Statistical transformations
-<ul>
+<li>Statistical transformations</li>
 <li>This is a specification of whether and how the data are combined/transformed before being plotted. For example, in a bar chart, data are transformed into their frequencies; in a box-plot, data are transformed to a five-number summary.</li>
-</ul></li>
-<li>Coordinate system
-<ul>
+<li>Coordinate system</li>
 <li>This is a specification of how the position aesthetics (x and y) are depicted on the plot. For example, rectangular/cartesian, or polar coordinates.</li>
-</ul></li>
-<li>Facet
-<ul>
-<li>This is a specification of data variables that partition the data into smaller “sub plots”, or panels.</li>
-</ul></li>
+<li>Facet</li>
+<li>This is a specification of data variables that partition the data into smaller &quot;sub plots&quot;, or panels.</li>
 </ul>
-<p>These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.</p>
+<p>These components are like parameters of statistical graphics, defining the &quot;space&quot; of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.</p>
 <p><br></p>
-<p>We will use the <code>ggplot2</code> package, but the function we use to initialize a graph will be <code>ggplot</code>, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert “untidy” datasets into tidy format later in the class. For the purpose of this class, the datasets that we will use are already in tidy format.</p>
+<p>We will use the <code>ggplot2</code> package, but the function we use to initialize a graph will be <code>ggplot</code>, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert &quot;untidy&quot; datasets into tidy format later in the class. For the purpose of this class, the datasets that we will use are already in tidy format.</p>
 <p>Graphics with <code>ggplot2</code> are built step-by-step, adding new elements as layers with a plus sign (<code>+</code>) between layers. Adding layers in this fashion allows for extensive flexibility and customization of plots. Below is a template that can be used to create almost any graph that you can imagine using <code>ggplot2</code>.</p>
 <pre><code>ggplot(data = &lt;DATA&gt;) + 
   &lt;GEOM_FUNCTION&gt;(
@@ -746,7 +743,7 @@ str(mpg)</code></pre>
 <p><br></p>
 <div id="a-simple-scatter-plot" class="section level3">
 <h3>A simple scatter plot</h3>
-<p>Let’s first make a simple scatter plot to look at how engine displacement (<code>displ</code>), which is an expression of an engine’s size, may affect the fuel economy of cars on highway (<code>hwy</code>). For this plot, what are the aesthetics, and what are the geometric objects?</p>
+<p>Let's first make a simple scatter plot to look at how engine displacement (<code>displ</code>), which is an expression of an engine's size, may affect the fuel economy of cars on highway (<code>hwy</code>). For this plot, what are the aesthetics, and what are the geometric objects?</p>
 <p><img src="assets/mpg-scatterplot.png" width="80%" /></p>
 <p><br> We can make this plot by entering the relevant data, geom_function and mappings in the general ggplot template.</p>
 <pre><code>ggplot(data = &lt;DATA&gt;) + 
@@ -756,7 +753,7 @@ str(mpg)</code></pre>
 <pre class="r"><code>## demo
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) </code></pre>
-<p><img src="lesson6-files/unnamed-chunk-7-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-7-1.png" width="672" /></p>
 <p><br></p>
 </div>
 <div id="your-turn---exercise-2" class="section level3">
@@ -775,7 +772,7 @@ ggplot(data = mpg) +
 <pre class="r"><code>## demo
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cyl)) </code></pre>
-<p><img src="lesson6-files/unnamed-chunk-8-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-8-1.png" width="672" /></p>
 <p>It looks like given the same engine size, 2seaters tend to have better fuel economy than other car types. This makes sense.</p>
 <p><br></p>
 </div>
@@ -785,7 +782,7 @@ ggplot(data = mpg) +
 <pre class="r"><code>## demo (change point shape to 1)
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cyl), shape = 1) </code></pre>
-<p><img src="lesson6-files/unnamed-chunk-9-1.png" /><!-- --> <br> <br></p>
+<p><img src="lesson6-files/unnamed-chunk-9-1.png" width="672" /> <br> <br></p>
 </div>
 <div id="your-turn-in-breakout-rooms---exercise-3" class="section level3">
 <h3>Your turn (in breakout rooms) - Exercise 3</h3>
@@ -796,7 +793,7 @@ ggplot(data = mpg) +
 </ol>
 <pre class="r"><code>ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = &quot;blue&quot;))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-10-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-10-1.png" width="672" /></p>
 <p><br></p>
 <p><strong>Save your note file and sync your project with your GitHub repo.</strong></p>
 <p><br></p>
@@ -809,14 +806,14 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cyl), shape=1) +
   geom_smooth(mapping = aes(x = displ, y = hwy))</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-11-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Did you notice that for both geometric objects, <code>x</code> maps to <code>displ</code> and <code>y</code> maps <code>hwy</code>, so these auguments are repeated? In such cases, we can minimize the amount of repeat by defining how these aesthetics map to variables for all subsequent layers within <code>ggplot()</code>, as the following.</p>
 <pre class="r"><code>## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color =class, size = cyl), shape = 1) +
   geom_smooth()</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-12-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-12-1.png" width="672" /></p>
 <p><br></p>
 </div>
 <div id="display-different-year-in-different-facets" class="section level3">
@@ -829,14 +826,14 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-13-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-13-1.png" width="672" /></p>
 <p><br></p>
 <div id="your-turn---exercise-4" class="section level4">
 <h4>Your turn - Exercise 4</h4>
 <p>Break this plot into subplots for each class</p>
 <pre class="r"><code>ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-14-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-14-1.png" width="672" /></p>
 <p><br></p>
 </div>
 </div>
@@ -849,12 +846,12 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-15-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-15-1.png" width="960" /></p>
 <p><br></p>
 </div>
 <div id="change-the-theme-of-a-graph" class="section level3">
 <h3>Change the theme of a graph</h3>
-<p>While every element of a <code>ggplot2</code> graph is customizable, there are also built-in themes (<code>theme_*()</code>) that you can use to make some major headway before making smaller tweaks manually. Let’s try one of them here.</p>
+<p>While every element of a <code>ggplot2</code> graph is customizable, there are also built-in themes (<code>theme_*()</code>) that you can use to make some major headway before making smaller tweaks manually. Let's try one of them here.</p>
 <pre class="r"><code>## demo (use theme_bw)
 ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) + 
   geom_point(mapping = aes(color=class, size=cyl), shape=1) +
@@ -862,14 +859,14 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
   facet_wrap(~ year, nrow=1) +
   theme_bw()</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-16-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-16-1.png" width="960" /></p>
 <p><br></p>
 </div>
 </div>
 <div id="arguments-and-functions-you-should-know" class="section level2">
 <h2>Arguments and functions you should know</h2>
-<p>Now, you’ve learned the central ideas behind <code>ggplot2</code>. In the next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people’s plotting needs vary.</p>
-<p>With that being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let’s now go through some of these together in class. The <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
+<p>Now, you've learned the central ideas behind <code>ggplot2</code>. In the next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people's plotting needs vary.</p>
+<p>With that being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
 <p><br></p>
 <div id="geometries" class="section level4">
 <h4>Geometries</h4>
@@ -882,7 +879,7 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
 <pre class="r"><code>## exercise, then demo (hwy vs. class)
 ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = class, y = hwy))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-17-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-17-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -890,7 +887,7 @@ ggplot(data = mpg) +
 <pre class="r"><code>## exercise, then demo (class)
 ggplot(mpg) +
   geom_bar(mapping = aes(x = class))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-18-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-18-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -899,7 +896,7 @@ ggplot(mpg) +
 ggplot(mpg) +
   geom_histogram(mapping = aes(x = hwy))</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-19-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-19-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -907,18 +904,18 @@ ggplot(mpg) +
 <pre class="r"><code>## exercise, then demo (hwy)
 ggplot(mpg) +
   geom_density(mapping = aes(x = hwy))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-20-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-20-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
 <li><p><code>geom_smooth()</code></p>
-<p>Different <code>geom_*()</code> functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, <code>method="lm"</code> and <code>se=FALSE</code> are two arguments that are often used in the <code>geom_smooth()</code> function.</p>
+<p>Different <code>geom_*()</code> functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, <code>method=&quot;lm&quot;</code> and <code>se=FALSE</code> are two arguments that are often used in the <code>geom_smooth()</code> function.</p>
 <pre class="r"><code>## exercise, then demo (fit linear model to hwy vs. displ without confidence interval)
 ggplot(mpg, aes(x = displ, y = hwy))+
   geom_point() +
   geom_smooth(method = &quot;lm&quot;, se = F)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-21-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-21-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -926,7 +923,7 @@ ggplot(mpg, aes(x = displ, y = hwy))+
 <pre class="r"><code>## demo (hwy vs. displ, cyl as the label)
 ggplot(mpg, aes(x = displ, y = hwy))+
   geom_text(mapping = aes(label = cyl))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-22-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-22-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -936,7 +933,7 @@ ggplot(mpg, aes(x = displ, y = hwy))+
 ggplot(mpg)+
   geom_point(aes(x=displ, y=hwy)) +
   geom_label(data=filter(mpg, hwy&gt;40), mapping = aes(label=model, y=hwy, x=displ+0.8))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-23-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-23-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -948,8 +945,8 @@ group_by(mpg, manufacturer, year, class, model) %&gt;%
   geom_point() +
   geom_line() +
   facet_wrap(~manufacturer)</code></pre>
-<pre><code>## `summarise()` regrouping output by &#39;manufacturer&#39;, &#39;year&#39;, &#39;class&#39; (override with `.groups` argument)</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-24-1.png" /><!-- --></p></li>
+<pre><code>## `summarise()` has grouped output by &#39;manufacturer&#39;, &#39;year&#39;, &#39;class&#39;. You can override using the `.groups` argument.</code></pre>
+<p><img src="lesson6-files/unnamed-chunk-24-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 </div>
@@ -965,11 +962,11 @@ group_by(mpg, manufacturer, year, class, model) %&gt;%
 <pre class="r"><code>## demo (plot hwy distribution with geom_density, color by drv)
 ggplot(mpg) +
   geom_density(aes(color=drv, x=hwy))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-25-1.png" /><!-- --></p>
+<p><img src="lesson6-files/unnamed-chunk-25-1.png" width="672" /></p>
 <pre class="r"><code>## demo (fill by drv)
 ggplot(mpg) +
   geom_density(aes(fill=drv, x=hwy))</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-25-2.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-25-2.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -978,7 +975,7 @@ ggplot(mpg) +
 <pre class="r"><code>## demo (plot hwy distribution with geom_density, fill by drv, set alpha to 0.5)
 ggplot(mpg) +
   geom_density(aes(fill=drv, x=hwy), alpha=0.5)</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-26-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-26-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -988,7 +985,7 @@ ggplot(mpg, aes(x=displ, y=hwy, color=drv, shape=drv)) +
   geom_point()+
   geom_smooth(aes(linetype=drv))</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-27-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-27-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 <div id="facet" class="section level4">
@@ -1000,7 +997,7 @@ ggplot(mpg, aes(x=displ, y=hwy, color=drv, shape=drv)) +
 ggplot(mpg, aes(x=displ, y=hwy)) +
   geom_point() +
   facet_grid(drv~cyl)</code></pre>
-<p><img src="lesson6-files/unnamed-chunk-28-1.png" /><!-- --></p></li>
+<p><img src="lesson6-files/unnamed-chunk-28-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
 </div>
@@ -1008,19 +1005,19 @@ ggplot(mpg, aes(x=displ, y=hwy)) +
 </div>
 <div id="exporting-a-ggplot-graph-with-ggsave" class="section level2">
 <h2>Exporting a ggplot graph with <code>ggsave()</code></h2>
-<p>If we want our graph to appear in a knitted html, then we don’t need to do anything else. But often we’ll need a saved image file, of specific size and resolution, to share or for publication.</p>
-<p><img src="assets/ggplot2-tutorial-slides.050.png" /><!-- --> Graphic from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
+<p>If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication.</p>
+<p><img src="assets/ggplot2-tutorial-slides.050.png" /><!-- --> Graphic from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
 <p><code>ggsave()</code> will export the <em>most recently run</em> ggplot graph by default (<code>plot = last_plot()</code>), unless you give it the name of a different saved ggplot object.</p>
-<p>It has smart defaults and guesses the format from the file extension name (you can use e.g. pdf, tiff, eps, png, mmp, svg). It doesn’t force you to do annoying things with dots per inch etc (but you can if you want to).</p>
+<p>It has smart defaults and guesses the format from the file extension name (you can use e.g. pdf, tiff, eps, png, mmp, svg). It doesn't force you to do annoying things with dots per inch etc (but you can if you want to).</p>
 <p>Some common arguments for <code>ggsave()</code>:</p>
 <ul>
 <li><code>width =</code>: set exported image width (default inches)</li>
 <li><code>height =</code>: set exported image height (default height)</li>
 <li><code>dpi =</code>: set dpi (dots per inch)</li>
 </ul>
-<p>For more details on how to use <code>ggsave()</code> see slides 50-56 in <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
+<p>For more details on how to use <code>ggsave()</code> see slides 50-56 in <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
 <p><br></p>
-<p>Now we’re done for today</p>
+<p>Now we're done for today</p>
 <p><br></p>
 <p><strong>Save your scripte and sync your project with your GitHub repo.</strong></p>
 <ul>

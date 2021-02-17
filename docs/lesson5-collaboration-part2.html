@@ -13,7 +13,6 @@
 
 <title>Lesson 5: Collaborating with GitHub and making websites with GitHub Pages - Part 2</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -384,6 +383,12 @@ div.tocify {
     <li>
       <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
     </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -442,13 +447,13 @@ div.tocify {
 </div>
 <div id="plan-for-today" class="section level2">
 <h2>Plan for today</h2>
-<p>We will continue working through the tutorial we started on last time, practicing how to collaborate on a GitHub repo while setting up a free website through GitHub Pages. Because we may not have both partners from all the pairs we formed last week with us today, we will form new pairs and start over with setting up a new shared repo that both partners will each clone to their local computers. It’s good to keep practicing that setup, and we’ll quickly get back to where we left off.</p>
+<p>We will continue working through the tutorial we started on last time, practicing how to collaborate on a GitHub repo while setting up a free website through GitHub Pages. Because we may not have both partners from all the pairs we formed last week with us today, we will form new pairs and start over with setting up a new shared repo that both partners will each clone to their local computers. It's good to keep practicing that setup, and we'll quickly get back to where we left off.</p>
 <p><br></p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning objectives</h2>
 <p>Like last class, we will focus on the simplest way to collaborate on GitHub by both partners having full write access to the repo. There are many ways to improve this workflow once you get more comfortable, but this is a good place to start.</p>
-<p>By the end of today’s class, you should be able to:</p>
+<p>By the end of today's class, you should be able to:</p>
 <ul>
 <li>Set up a new repo on GitHub and invite collaborators<br />
 </li>
@@ -474,7 +479,7 @@ div.tocify {
 <h4>Problems:</h4>
 <p><br></p>
 <ul>
-<li>Not being in the R Project you think you’re in (i.e. not pushing changes to the GitHub repo you think you’re pushing changes to)</li>
+<li>Not being in the R Project you think you're in (i.e. not pushing changes to the GitHub repo you think you're pushing changes to)</li>
 </ul>
 <p><br></p>
 <ul>
@@ -486,30 +491,30 @@ div.tocify {
 </ul>
 <p><br></p>
 <ul>
-<li>Not knowing how to get non-RStudio files onto GitHub (just add them to your GitHub link folder in Finder/Windows Explorer. These are just like any other folder on your computer; they have some added functionality, but don’t need special handling)</li>
+<li>Not knowing how to get non-RStudio files onto GitHub (just add them to your GitHub link folder in Finder/Windows Explorer. These are just like any other folder on your computer; they have some added functionality, but don't need special handling)</li>
 </ul>
 <p><br> <br></p>
 </div>
 </div>
 <div id="now-lets-get-set-up-for-todays-exercise" class="section level2">
-<h2>Now, let’s get set up for today’s exercise</h2>
-<p>Because everyone will have a new partner today, we’ll practice one more time how to</p>
+<h2>Now, let's get set up for today's exercise</h2>
+<p>Because everyone will have a new partner today, we'll practice one more time how to</p>
 <ul>
 <li>Create a new repo</li>
 <li>Invite a collaborator</li>
 </ul>
 <p>When you get to your breakout rooms, decide who will be Partner 1 and Partner 2. Partner 1 starts by creating a repo. You can call it <code>collab-website</code>. Add Partner 2 as a collaborator, as described in <a href="https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html#give_your_collaborator_(partner_2)_privileges">giving your partner privileges section from Lesson 4</a>.</p>
 <p>Now, both of you should clone the collaborative repo to your local machines (check <a href="https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html#collaborating_with_github">Lesson 4</a> if you need a reminder of how to do this).</p>
-<p><strong>NOTE:</strong> Make sure Partner 2 doesn’t clone the repo until Partner 1 has pushed their <code>.RProj</code> file to avoid merge conflicts here.</p>
+<p><strong>NOTE:</strong> Make sure Partner 2 doesn't clone the repo until Partner 1 has pushed their <code>.RProj</code> file to avoid merge conflicts here.</p>
 <p><br></p>
 </div>
 <div id="setting-up-your-collaborative-website" class="section level2">
 <h2>Setting up your collaborative website</h2>
-<p>Now it’s going to get fun. Let’s start by making a super simple website. First, we’ll have Partner 2 create a new RMarkdown file. Here’s what they will do:</p>
+<p>Now it's going to get fun. Let's start by making a super simple website. First, we'll have Partner 2 create a new RMarkdown file. Here's what they will do:</p>
 <ol style="list-style-type: decimal">
 <li>Pull!</li>
-<li>Create a new RMarkdown file, just keep all the boilerplate text, select the html output format <strong>and save it as <code>index.Rmd</code></strong>. Make sure it’s all lowercase, and named <code>index.Rmd</code> (it is important that you give the file exactly this name). This will be the homepage for our website!</li>
-<li>Maybe change the title inside the Rmd, call it “Our website”</li>
+<li>Create a new RMarkdown file, just keep all the boilerplate text, select the html output format <strong>and save it as <code>index.Rmd</code></strong>. Make sure it's all lowercase, and named <code>index.Rmd</code> (it is important that you give the file exactly this name). This will be the homepage for our website!</li>
+<li>Maybe change the title inside the Rmd, call it &quot;Our website&quot;</li>
 <li>Knit!</li>
 <li>Save and sync your .Rmd and your .html files
 <ul>
@@ -525,11 +530,11 @@ div.tocify {
 <p><img src="assets/gh_repo_settings.png" width="450px"></p>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Scroll to the Github Pages section (still under “options” in the left-hand pane) and build your site by sourcing from the master branch and root directory. Remember to click “save” (on the same line as you chose the master branch as the source).</li>
+<li>Scroll to the Github Pages section (still under &quot;options&quot; in the left-hand pane) and build your site by sourcing from the master branch and root directory. Remember to click &quot;save&quot; (on the same line as you chose the master branch as the source).</li>
 </ol>
 <p><img src="assets/gh_pages.png" width="450px"> <br></p>
 <p>Your repo is now a website!</p>
-<p>Where is it? Figure out your website’s url from your github repo’s url — pay attention to urls.</p>
+<p>Where is it? Figure out your website's url from your github repo's url — pay attention to urls.</p>
 <ul>
 <li>note that the url starts with my <strong>username.github.io</strong><br />
 </li>
@@ -540,26 +545,26 @@ div.tocify {
 <p><strong><em>ProTip</em></strong> Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.</p>
 </blockquote>
 <div id="so-cool-youve-just-set-up-an-actual-website-in-just-a-few-minutes" class="section level3">
-<h3>So cool!! You’ve just set up an actual website in just a few minutes!</h3>
+<h3>So cool!! You've just set up an actual website in just a few minutes!</h3>
 <p><br> <br></p>
 </div>
 </div>
 <div id="collaborate-to-build-your-website" class="section level2">
 <h2>Collaborate to build your website</h2>
 <ol style="list-style-type: decimal">
-<li>Check that your website is working. Then let’s add some more content!</li>
+<li>Check that your website is working. Then let's add some more content!</li>
 <li>Partner 1 should pull to make sure they get a local copy of the <code>index.Rmd</code> file</li>
-<li>Now each of you find an image online that you’d like to add (maybe a picture of a car?). Right click on it and select “copy image address”. The add it to the top of the <code>index.Rmd</code> with <code>![](url-to-image)</code>. Then knit the file.</li>
+<li>Now each of you find an image online that you'd like to add (maybe a picture of a car?). Right click on it and select &quot;copy image address&quot;. The add it to the top of the <code>index.Rmd</code> with <code>![](url-to-image)</code>. Then knit the file.</li>
 <li>First Partner 1 should now push their changes to GitHub (pull, stage, commit, push)</li>
 <li>Then Partner 2 should try to push (pull, stage, commit, push). Do you get a merge conflict? Why / why not? If you got a merge conflict, Partner 2 should resolve it and push to GitHub. Please share your screen so both of you can talk through how you want to resolve the merge conflict.</li>
-<li>After the merge conflict has been resolved and pushed to GitHub, Partner 1 should pull to make sure you’re both up to date</li>
+<li>After the merge conflict has been resolved and pushed to GitHub, Partner 1 should pull to make sure you're both up to date</li>
 <li>If you have time, make additional coordinated edits, so the other Partner gets the opportunity to resolve a merge conflict as well</li>
 </ol>
 <p><br></p>
 </div>
 <div id="jazzing-up-your-website" class="section level2">
 <h2>Jazzing up your website</h2>
-<p>Now let’s explore how we can expand our website by adding more tabs. We do this by adding a configuration file that specifies the names of the different tabs we want and which file we want to display on that tab. We’ll start with simple example of a website that includes two pages (Cars and About) and a navigation bar to switch between them. For that, we need a configuration file <code>_site.yml</code>:</p>
+<p>Now let's explore how we can expand our website by adding more tabs. We do this by adding a configuration file that specifies the names of the different tabs we want and which file we want to display on that tab. We'll start with simple example of a website that includes two pages (Cars and About) and a navigation bar to switch between them. For that, we need a configuration file <code>_site.yml</code>:</p>
 <pre class="r"><code>name: &quot;my-website&quot;
 navbar:
   title: &quot;Our Collaborative Website&quot;
@@ -571,9 +576,9 @@ navbar:
 output_dir: &quot;.&quot;</code></pre>
 <p>Partner 2 can create this file by choosing File -&gt; New File -&gt; Text File in RStudio, copy in the above text and save as <code>_site.yml</code> (the leading underscore is important here).</p>
 <p>Then we need the two <code>.html</code> files that are going to be shown on the tabs. We already have <code>index.html</code> (our knitted version of the boilerplate .Rmd file we have played around with).</p>
-<p>We need to create the <code>about.html</code>. Partner 1 can create a new RMarkdown (File -&gt; New File -&gt; R Markdown…), change its title to “About” (this is for the title in the YAML header of the .Rmd file, delete all the boilerplate text under the setup code chunk and write a brief message about the two of you. Save this as <code>about.Rmd</code> so we can render it into the <code>about.html</code> that our configuration file refers to.</p>
+<p>We need to create the <code>about.html</code>. Partner 1 can create a new RMarkdown (File -&gt; New File -&gt; R Markdown...), change its title to &quot;About&quot; (this is for the title in the YAML header of the .Rmd file, delete all the boilerplate text under the setup code chunk and write a brief message about the two of you. Save this as <code>about.Rmd</code> so we can render it into the <code>about.html</code> that our configuration file refers to.</p>
 <p>Now you can both pull, stage, commit, push and your changes should merge. Make sure you both get up to date by pulling after you have both pushed.</p>
-<p>Now you’re ready to build your website.</p>
+<p>Now you're ready to build your website.</p>
 <p>From <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#a-simple-example">R Markdown: The Definitive Guide</a>:</p>
 <blockquote>
 <p>Note that the minimum requirement for any R Markdown website is that it have an index.Rmd file as well as a _site.yml file. If you execute the <code>rmarkdown::render_site()</code> function from within the directory containing the website, the following will occur:</p>
@@ -582,7 +587,7 @@ output_dir: &quot;.&quot;</code></pre>
 <p>All of the <em>.Rmd and </em>.md files in the root website directory will be rendered into HTML. Note, however, that Markdown files beginning with _ are not rendered (this is a convention to designate files that are to be included by top level Rmd documents as child documents).</p>
 </blockquote>
 <blockquote>
-<p>The generated HTML files and any supporting files (e.g., CSS and JavaScript) are copied into an output directory (_site by default). [Note that in our example we are asking to get our output in the top-level of the directory with <code>output_dir: "."</code>]</p>
+<p>The generated HTML files and any supporting files (e.g., CSS and JavaScript) are copied into an output directory (_site by default). [Note that in our example we are asking to get our output in the top-level of the directory with <code>output_dir: &quot;.&quot;</code>]</p>
 </blockquote>
 <blockquote>
 <p>The HTML files within the _site directory are now ready to deploy as a standalone static website.</p>
@@ -599,8 +604,8 @@ output_dir: &quot;.&quot;</code></pre>
 <li>my website url: <a href="https://jules32.github.io/collab-research/" class="uri">https://jules32.github.io/collab-research/</a></li>
 <li>note that the url starts with my <strong>username.github.io</strong></li>
 </ul>
-<p><strong>Note that it may take a few minutes before your changes become active.</strong> In the meantime, you can explore your current website content and design in RStudio’s Viewer in the bottom left pane.</p>
-<p>Make sure that the Partner who didn’t render the website locally pulls the updated version from GitHub.</p>
+<p><strong>Note that it may take a few minutes before your changes become active.</strong> In the meantime, you can explore your current website content and design in RStudio's Viewer in the bottom left pane.</p>
+<p>Make sure that the Partner who didn't render the website locally pulls the updated version from GitHub.</p>
 <p><br></p>
 </div>
 <div id="adding-content-and-editing-the-website" class="section level2">
@@ -623,16 +628,16 @@ output:
     toc: true 
     toc_float: true </code></pre>
 <p>Note that we have changed the output theme and added a table of contents.</p>
-<p>Again, <strong>it will probably take a few minutes for your changes to become active on your github.io page</strong>, so don’t despair if you don’t see anything different online right away. We can inspect our changes in RStudio’s Viewer in the bottom left pane in the meantime.</p>
-<p>Make sure that the Partner who didn’t change the <code>_site.yml</code> file pulls the updated version from GitHub.</p>
+<p>Again, <strong>it will probably take a few minutes for your changes to become active on your github.io page</strong>, so don't despair if you don't see anything different online right away. We can inspect our changes in RStudio's Viewer in the bottom left pane in the meantime.</p>
+<p>Make sure that the Partner who didn't change the <code>_site.yml</code> file pulls the updated version from GitHub.</p>
 <p>Now play around with making additional changes to your website. You can change the theme.</p>
 <blockquote>
 <p>The valid options to choose include default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, and yeti.</p>
 </blockquote>
-<p>You can preview what each of these look like under the “themes” tab <a href="https://bootswatch.com/3/">here</a>. Discuss with your Partner which one you want to try next and who will be pushing the next edits.</p>
+<p>You can preview what each of these look like under the &quot;themes&quot; tab <a href="https://bootswatch.com/3/">here</a>. Discuss with your Partner which one you want to try next and who will be pushing the next edits.</p>
 <p>You can also play around with the table of contents. For the table of contents, you can specify what levels of headers you want include as described <a href="https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents">here</a>. In our initial <code>_site.yml</code> file, the table of contents depth is not explicitly specified, so it defaults to 3 (meaning that all level 1, 2, and 3 headers will be included in the table of contents). Try adding some header levels to your index.Rmd or about.Rmd and see how the table of contents change when you render the site and push the change to your github.io site (the Viewer may not properly display all levels of the table of contents, but the github.io site should).</p>
 <p>You can also try adding another tab, either with a new .Rmd file you create or for example adding your most recent homework or another analysis file you have on hand.</p>
-<p>If I want to add my first assignment, I’ll copy that .Rmd file into my repo and add it as a new tab in my configuration file (make sure the -text and href field are formatted exactly the same as the other tabs)</p>
+<p>If I want to add my first assignment, I'll copy that .Rmd file into my repo and add it as a new tab in my configuration file (make sure the -text and href field are formatted exactly the same as the other tabs)</p>
 <pre class="r"><code>name: &quot;my-website&quot;
 navbar:
   title: &quot;Our Collaborative Website&quot;
@@ -664,7 +669,7 @@ output:
 </div>
 <div id="inspiration" class="section level2">
 <h2>Inspiration</h2>
-<p>Today, we’ll just explore the basics, but GitHub pages is a tremendously powerful platform for building beautiful websites with advanced graphic layout and lots of different kinds of functionality.</p>
+<p>Today, we'll just explore the basics, but GitHub pages is a tremendously powerful platform for building beautiful websites with advanced graphic layout and lots of different kinds of functionality.</p>
 <p><strong>Here are a few examples:</strong></p>
 <p><a href="https://nt246.github.io/NTRES6940-data-science/index.html">Our class website</a></p>
 <p><br></p>
@@ -684,17 +689,17 @@ output:
 <p>We are now at the end of the GitHub-focused section of the course. You should now be comfortable with using some of the basic functionality of Git and version control and the skills that you have learned - and that we will continue to practice through the rest of the course - may serve all your version control needs for a long time to come.</p>
 <p>We have focused on the simplest way to start using GitHub here. Once you really integrate GitHub into your workflow, you may want to learn about more advanced options or special use scenarios. Here, Google is going to be your best friend. You may want to learn about topics like:</p>
 <ul>
-<li>Forking vs. cloning a repo</li>
+<li>Forking vs. cloning a repo</li>
 <li>Branches</li>
 <li>Pull requests</li>
-<li>How to “check out” older versions of your repo</li>
+<li>How to &quot;check out&quot; older versions of your repo</li>
 <li>GitHub Projects</li>
 <li>Using Issues on GitHub</li>
 </ul>
 <p>One important thing to note is that we have exclusively interacted with Git through RStudio because that provides a really nice interface and integrates well with RMarkdown and other work in R. However, there are some limits to the functionality, so for more advanced usage you will probably have to either use the <a href="https://desktop.github.com/">GitHub Desktop program</a> or interact with Git and GitHub through the command line.</p>
 <p>A few good resources for learning about interacting with Git through the command line are:</p>
 <p><a href="https://swcarpentry.github.io/git-novice/">Software Carpentry Version Control with Git</a></p>
-<p><a href="https://andrewmaclachlan.github.io/CASA0005repo/git-github-and-rmarkdown.html#using-git-outside-rstudio">Chapter 4 Git, GitHub and RMarkdown in MacLachlan and Dennett’s CASA0005 Geographic Information Systems and Science handbook</a></p>
+<p><a href="https://andrewmaclachlan.github.io/CASA0005repo/git-github-and-rmarkdown.html#using-git-outside-rstudio">Chapter 4 Git, GitHub and RMarkdown in MacLachlan and Dennett's CASA0005 Geographic Information Systems and Science handbook</a></p>
 <p>Have fun exploring!</p>
 <p><br> <br></p>
 <div id="end-session" class="section level3">

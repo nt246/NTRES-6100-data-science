@@ -18,6 +18,10 @@ navbar:
       href: lesson3-version-control.html
     - text: "Lesson 4: Collaborating with GitHub - Part 1"
       href: lesson4-collaboration.html
+    - text: "Lesson 5: Collaborating with GitHub - Part 2"
+      href: lesson5-collaboration-part2.html
+    - text: "Lesson 6: Plotting with ggplot - Part 1"
+      href: lesson6-ggplot-part1.html
   - text: Labs
     menu:
     - text: Lab handouts
