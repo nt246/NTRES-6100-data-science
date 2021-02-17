@@ -1,0 +1,110 @@
+---
+title: "Assignment 2"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Put one of your pre-existing projects on GitHub
+
+### Instructions: Please read through before you begin  
+
+#### This assignment is due by **10pm on Wednesday 2/24/2021**.  
+
+<br>
+
+In this assignment, you will bring one of your pre-existing projects into the Git/GitHub and RStudio universe so you can start adopting version control and dynamic report generation (RMarkdown) in your own work right away.
+
+
+
+
+
+# Task 1: Select a project to put on GitHub
+
+Decide on what set of project files you would like to get on GitHub and locate them on your computer. 
+
+
+# Task 2: Make a repo on GitHub
+
+Decide what you want to call the GitHub repository that will host your project. Select a short and descriptive name without spaces (you can use "-" or "_" in place of spaces if you want a multi-word name). Create a new repository on **GitHub** with that name. When setting up your repo, select the following features:
+
+* Make the repo **Private**
+
+* Add a `README.md`
+    
+* Just leave the `Add .gitignore` and "Choose license" boxes unchecked.
+
+***
+
+# Task 3: Invite Nicolas as a collaborator to allow grading
+
+Your repo is now ready, Since you made it private, only you can see it, so don't worry about putting data and results up there. It will only be visible to people you explicily invite as collaborators. 
+
+To show us that you have completed the assignment, you will therefore need to add Nicolas as a collaborator temporarily. Once he has had a chance to review your setup, you can revoke his collaborator privileges so he won't have continued access.
+
+To give Nicolas access,
+
+* Click on the Settings tab
+
+* Click on "Manage access" from the menu on the left
+
+* Click on the green button labeled **Invite a collaborator** (note that you may be prompted to enter your **GitHub** password)
+
+* In the search box that appears, type `nicolas931010` and select Nicolas' name/username
+
+* Click on the green button that says **Add nicolas931010 to this repository**
+
+**Note**: This task will trigger a message to Nicolas with your invitation to join your newly created repo. You will have to wait for Nicolas to accept your invitation before you can complete Tasks 8 & 9.
+
+***
+
+# Task 4: Clone the repo by making 
+
+Create a new project in **RStudio** with a connection to the **GitHub** repo you just created. Recall that we strongly suggests you put this project folder in a location not under some other form of version control (e.g., Dropbox, Box, Google Docs).
+
+***
+
+# Task 5: Bring your existing project over
+
+Using your favorite method of moving or copying files, copy the files that constitute your existing project into the directory for this new project (keep the original copy for now to not disrupt any dependencies of local paths in your current workflow).
+
+In RStudio, consult the Git pane and the file browser.
+
+- Are you seeing all the files? They should be here if your move/copy was successful.
+- Are they showing up in the Git pane with questions marks? They should be appearing as new untracked files.
+
+***
+
+# Task 6: Stage, commit, and edit your gitignore file
+
+Add files/folders to .gitignore. 
+
+
+***
+
+# Task 7: Push your local changes to GitHub
+
+Click the green “Push” button to send your local changes to GitHub. You should see some message along these lines.
+
+
+***
+
+# Task 8: Confirm the local change propagated to the GitHub remote
+
+Go back to the browser. I assume we’re still viewing your new GitHub repo.
+
+Refresh.
+
+You should see all the project files you committed there.
+
+If you click on “commits,” you should see one with the message “init”.
+
+
+
+***
+
+# Task 7: Push your local changes to GitHub
+
+
+Now just … repeat. Do work somewhere. Commit it. Push it or pull it* depending on where you did it, but get local and remote “synced up”. Repeat.
