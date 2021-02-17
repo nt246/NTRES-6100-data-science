@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson6-files/")
 
 ## Announcements
 
-* Assignment 3 is due on Wednesday. You will need a partner to complete part of the assignment. Reach out if you need a partner.
+
 
 <br>
 

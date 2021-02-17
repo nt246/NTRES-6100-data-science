@@ -265,7 +265,10 @@ Paste the repo address (which is still in your clipboard) into in the "Repositor
 
 When cloned, this repository is going to become a folder on your computer. 
 
-At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your GitHub repos to keep them organized. We call ours `github` and keep it in our root folder (`~/github`), and so that is what we will demonstrate here — you are welcome to do the same. Press "Browse..." to navigate to a folder and you have the option of creating a new folder. 
+At this point you can save this repo anywhere. Press "Browse..." to navigate to a folder and you have the option of creating a new folder.
+
+There are different schools of thought but we think it is useful to create a high-level folder where you will keep your GitHub repos to keep them organized. We call ours `github` (all lowercase) and keep it in our root folder (`~/github`), and so that is what we will demonstrate here. We encourage you to do the same. Why? First of all, you'll always know where all your code is located, and it will mirror the structure of what you see on GitHub. Second, it makes working across users and machines easier if all your file paths start with `~/github/repo-name`.
+
 
 **IMPORTANT**: Make sure to not place it in folder tracked by a cloud storage service (e.g. DropBox, Google Drive or Box) because problem can arise when trying to sync folders with multiple systems.
 

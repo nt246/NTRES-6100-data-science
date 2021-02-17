@@ -36,30 +36,6 @@ There are no required readings for today, but if you did not join our Zoom call 
 * There are also good tips in this [tutorial by Karl Broman](https://kbroman.org/simple_site/)
 
 <br>
-
-## Feedback from 2-week check-in survey
-
-#### We got 21 responses - thank you for sharing your thoughts!
-
-<br>
-
-It seems that the course generally is working well for people.
-
-**Comments and suggested changes:**
-
-* Request to post Zoom recordings earlier
-* Request to use Zoom chat instead of Slack during lecture (difficult to manage all the windows)
-* In-class demos too fast OR in-class demos too slow
-* Request for more time in breakout rooms OR request for less time in breakout rooms
-* Request for a more flipped classroom format (pre-recorded lectures to watch before class and use classtime for exercises)
-* Request for lecture notes before class - they are always posted at least a few days before on the [class website](https://nt246.github.io/NTRES6940-data-science/index.html). You can print them to pdf (or clone a copy of the [class GitHub repo](https://github.com/nt246/NTRES6940-data-science/tree/master/analysis) and render to pdf from the `.Rmd` file, if desired
-* Request for larger curser size
-* Request for information on midterm and final - there will not be any (see the [syllabus](https://nt246.github.io/NTRES6940-data-science/syllabus.html))
-
-<br>
-
-We will check back in around the middle of the semester. In the meantime, let us know if you have any feedback or suggestions for things we can improve.
-
 <br>
 
 ## Plan for today
