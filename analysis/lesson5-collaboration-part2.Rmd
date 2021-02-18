@@ -57,12 +57,6 @@ By the end of today's class, you should be able to:
 
 <br>
 
-## Assignment 2 is now posted (due Mon 10/5 by 10pm EDT)
-
-This exercise will give you another opportunity to practice what we cover today.
-
-<br>
-
 ## A recap on common issues experienced so far and how to deal with them
 
 <br>
