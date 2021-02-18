@@ -9,9 +9,13 @@ In this assignment, you will bring one of your pre-existing projects
 into the Git/GitHub and RStudio universe so you can start adopting
 version control and dynamic report generation (RMarkdown) in your own
 work right away. Below, we’ll guide you through the setup step by step.
-If you don’t have a project that you feel is suitable for GitHub version
-control, you can set up a hypothetical research project repo instead and
-create a few hypothetical script and data files.
+There are other, perhaps more elegant, ways to add version control to a
+pre-existing project, but we will use the approach described below
+because it works well and lets us work through RStudio so we won’t need
+to use command line to interact with Git. If you don’t have a project
+that you feel is suitable for GitHub version control, you can set up a
+hypothetical research project repo instead and create a few hypothetical
+script and data files.
 
 #### This assignment is due by **10pm on Wednesday 2/24/2021**.
 
