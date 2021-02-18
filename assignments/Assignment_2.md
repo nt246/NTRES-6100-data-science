@@ -29,8 +29,9 @@ These instructions are adapted from three sources:
   - [Chapter 16 of Happy Git with
     R](https://happygitwithr.com/existing-github-first.html) by Jenny
     Bryan
-  - Mark Scheuerell’s [FISH 497: Introduction to Environmental Data
+  - [FISH 497: Introduction to Environmental Data
     Science](https://fish497.github.io/website/homework/week_01/hw_01_github_remotes.html)
+    by Mark Scheuerell
   - [Git and Github for Advanced Ecological Data
     Analysis](https://afredston.github.io/learn-git/learn-git.html#1_Introduction)
     by Alexa Fredston
