@@ -35,7 +35,7 @@ Please join the `lab-chat` channel on Slack for communication during the lab.
 
 #### General instructions
 
-In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise. 
+In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you'll get your CV version-controlled on GitHub. 
 
 **Before you start**, please create a new GitHub repo named `cv-yourname` (replace `yourname` with your name), clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.
 
