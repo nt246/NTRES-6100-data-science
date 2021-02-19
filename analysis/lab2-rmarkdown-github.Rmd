@@ -144,7 +144,7 @@ Here are some suggested activities you can try with your CV. You don't have to c
 
 #### Issues and projects
 
-Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedback, making plans, assigning tasks, and tracking progress. We will first do a quick demo of these features before you start your exercises. 
+Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedback, making plans, assigning tasks, and tracking progress. We will first do a quick demo before you start your exercise, but [here](https://fish497.github.io/website/lectures/week_02/lec_04_intro_github.html#Issues) is a good tutorial for these features. 
 
 <br>
 
