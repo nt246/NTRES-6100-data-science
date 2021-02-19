@@ -27,6 +27,8 @@ navbar:
     - text: Lab handouts
     - text: "Lab 1: RMarkdown"
       href: lab1-rmarkdown.html
+    - text: "Lab 2: RMarkdown and GitHub"
+      href: lab2-rmarkdown-github.html
   - text: Assignments
     href: assignments.html    
 output: 

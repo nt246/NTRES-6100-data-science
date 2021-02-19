@@ -402,6 +402,9 @@ div.tocify {
     <li>
       <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
     </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -517,18 +520,18 @@ div.tocify {
 <pre class="r"><code>## demo (compare and contrast regular data frame and tibble)
 mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model    displ  year   cyl trans   drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4         1.8  1999     4 auto(l… f        18    29 p     comp…
-##  2 audi         a4         1.8  1999     4 manual… f        21    29 p     comp…
-##  3 audi         a4         2    2008     4 manual… f        20    31 p     comp…
-##  4 audi         a4         2    2008     4 auto(a… f        21    30 p     comp…
-##  5 audi         a4         2.8  1999     6 auto(l… f        16    26 p     comp…
-##  6 audi         a4         2.8  1999     6 manual… f        18    26 p     comp…
-##  7 audi         a4         3.1  2008     6 auto(a… f        18    27 p     comp…
-##  8 audi         a4 quat…   1.8  1999     4 manual… 4        18    26 p     comp…
-##  9 audi         a4 quat…   1.8  1999     4 auto(l… 4        16    25 p     comp…
-## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p     comp…
+##    manufacturer model      displ  year   cyl trans      drv     cty   hwy fl    class  
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
+##  1 audi         a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
+##  2 audi         a4           1.8  1999     4 manual(m5) f        21    29 p     compact
+##  3 audi         a4           2    2008     4 manual(m6) f        20    31 p     compact
+##  4 audi         a4           2    2008     4 auto(av)   f        21    30 p     compact
+##  5 audi         a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
+##  6 audi         a4           2.8  1999     6 manual(m5) f        18    26 p     compact
+##  7 audi         a4           3.1  2008     6 auto(av)   f        18    27 p     compact
+##  8 audi         a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
+##  9 audi         a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
+## 10 audi         a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
 ## # … with 224 more rows</code></pre>
 <pre class="r"><code>cars</code></pre>
 <pre><code>##    speed dist
@@ -592,24 +595,24 @@ mpg</code></pre>
 <pre class="r"><code>## demo
 head(mpg)</code></pre>
 <pre><code>## # A tibble: 6 x 11
-##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
-##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
-## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
-## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
-## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
-## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
-## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
+##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class  
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compact
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compact
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compact
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compact
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compact
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compact</code></pre>
 <pre class="r"><code>tail(mpg)</code></pre>
 <pre><code>## # A tibble: 6 x 11
-##   manufacturer model  displ  year   cyl trans     drv     cty   hwy fl    class 
-##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 volkswagen   passat   1.8  1999     4 auto(l5)  f        18    29 p     midsi…
-## 2 volkswagen   passat   2    2008     4 auto(s6)  f        19    28 p     midsi…
-## 3 volkswagen   passat   2    2008     4 manual(m… f        21    29 p     midsi…
-## 4 volkswagen   passat   2.8  1999     6 auto(l5)  f        16    26 p     midsi…
-## 5 volkswagen   passat   2.8  1999     6 manual(m… f        18    26 p     midsi…
-## 6 volkswagen   passat   3.6  2008     6 auto(s6)  f        17    26 p     midsi…</code></pre></li>
+##   manufacturer model  displ  year   cyl trans      drv     cty   hwy fl    class  
+##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 volkswagen   passat   1.8  1999     4 auto(l5)   f        18    29 p     midsize
+## 2 volkswagen   passat   2    2008     4 auto(s6)   f        19    28 p     midsize
+## 3 volkswagen   passat   2    2008     4 manual(m6) f        21    29 p     midsize
+## 4 volkswagen   passat   2.8  1999     6 auto(l5)   f        16    26 p     midsize
+## 5 volkswagen   passat   2.8  1999     6 manual(m5) f        18    26 p     midsize
+## 6 volkswagen   passat   3.6  2008     6 auto(s6)   f        17    26 p     midsize</code></pre></li>
 <li><p><code>?</code></p>
 <p>If the data frame included in an R package, typing <code>?data frame_name</code> will lead you to a help file with more information on the data frame.</p></li>
 <li><p><code>str()</code>, <code>is()</code>, <code>dim()</code>, <code>colnames()</code>, <code>summary()</code></p>
@@ -629,36 +632,27 @@ str(mpg)</code></pre>
 ##  $ fl          : chr [1:234] &quot;p&quot; &quot;p&quot; &quot;p&quot; &quot;p&quot; ...
 ##  $ class       : chr [1:234] &quot;compact&quot; &quot;compact&quot; &quot;compact&quot; &quot;compact&quot; ...</code></pre>
 <pre class="r"><code>is(mpg)</code></pre>
-<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot; &quot;list&quot;       &quot;oldClass&quot;  
-## [6] &quot;vector&quot;</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot; &quot;list&quot;       &quot;oldClass&quot;   &quot;vector&quot;</code></pre>
 <pre class="r"><code>dim(mpg)</code></pre>
 <pre><code>## [1] 234  11</code></pre>
 <pre class="r"><code>colnames(mpg)</code></pre>
-<pre><code>##  [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
-##  [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
-## [11] &quot;class&quot;</code></pre>
+<pre><code>##  [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;          &quot;trans&quot;        &quot;drv&quot;         
+##  [8] &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;           &quot;class&quot;</code></pre>
 <pre class="r"><code>summary(mpg)</code></pre>
-<pre><code>##  manufacturer          model               displ            year     
-##  Length:234         Length:234         Min.   :1.600   Min.   :1999  
-##  Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999  
-##  Mode  :character   Mode  :character   Median :3.300   Median :2004  
-##                                        Mean   :3.472   Mean   :2004  
-##                                        3rd Qu.:4.600   3rd Qu.:2008  
-##                                        Max.   :7.000   Max.   :2008  
-##       cyl           trans               drv                 cty       
-##  Min.   :4.000   Length:234         Length:234         Min.   : 9.00  
-##  1st Qu.:4.000   Class :character   Class :character   1st Qu.:14.00  
-##  Median :6.000   Mode  :character   Mode  :character   Median :17.00  
-##  Mean   :5.889                                         Mean   :16.86  
-##  3rd Qu.:8.000                                         3rd Qu.:19.00  
-##  Max.   :8.000                                         Max.   :35.00  
-##       hwy             fl               class          
-##  Min.   :12.00   Length:234         Length:234        
-##  1st Qu.:18.00   Class :character   Class :character  
-##  Median :24.00   Mode  :character   Mode  :character  
-##  Mean   :23.44                                        
-##  3rd Qu.:27.00                                        
-##  Max.   :44.00</code></pre></li>
+<pre><code>##  manufacturer          model               displ            year           cyl           trans          
+##  Length:234         Length:234         Min.   :1.600   Min.   :1999   Min.   :4.000   Length:234        
+##  Class :character   Class :character   1st Qu.:2.400   1st Qu.:1999   1st Qu.:4.000   Class :character  
+##  Mode  :character   Mode  :character   Median :3.300   Median :2004   Median :6.000   Mode  :character  
+##                                        Mean   :3.472   Mean   :2004   Mean   :5.889                     
+##                                        3rd Qu.:4.600   3rd Qu.:2008   3rd Qu.:8.000                     
+##                                        Max.   :7.000   Max.   :2008   Max.   :8.000                     
+##      drv                 cty             hwy             fl               class          
+##  Length:234         Min.   : 9.00   Min.   :12.00   Length:234         Length:234        
+##  Class :character   1st Qu.:14.00   1st Qu.:18.00   Class :character   Class :character  
+##  Mode  :character   Median :17.00   Median :24.00   Mode  :character   Mode  :character  
+##                     Mean   :16.86   Mean   :23.44                                        
+##                     3rd Qu.:19.00   3rd Qu.:27.00                                        
+##                     Max.   :35.00   Max.   :44.00</code></pre></li>
 </ul>
 <p><br></p>
 </div>
@@ -1032,6 +1026,9 @@ ggplot(mpg, aes(x=displ, y=hwy)) +
 <div id="extra-exercises" class="section level2">
 <h2>Extra exercises</h2>
 <p><a href="https://github.com/nt246/NTRES6940-data-science/blob/master/in_class_exercises/exercise_4.md">Extra in-class exercises</a></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
 </div>
 
 

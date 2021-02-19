@@ -624,3 +624,4 @@ Now we're done for today
 
 [Extra in-class exercises](https://github.com/nt246/NTRES6940-data-science/blob/master/in_class_exercises/exercise_4.md)
 
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

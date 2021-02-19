@@ -402,6 +402,9 @@ div.tocify {
     <li>
       <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
     </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -440,14 +443,14 @@ div.tocify {
 <p>Please join the <code>lab-chat</code> channel on Slack for communication during the lab.</p>
 <p><br></p>
 </div>
-<div id="exercise-1-perfect-your-cv-45-minutes" class="section level2">
-<h2>Exercise 1: Perfect your CV (45 minutes)</h2>
+<div id="exercise-1-improve-your-cv-45-minutes" class="section level2">
+<h2>Exercise 1: Improve your CV (45 minutes)</h2>
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>In Lab 1, you have started to create a CV using RMarkdown, but we did not leave enough time for you to work on it. Today, you will have more time to continue this exercise.</p>
-<p><strong>Before you start</strong>, please create a new GitHub repo named <code>cv-yourname</code>, clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.</p>
-<p>Also, note that for the next exercise, you will be paired with another student to peer review the CVs that you have made. Therefore, if you do not feel comfortable sharing your CV, please feel free to make a CV for one of your favorite scientists.</p>
+<p>In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you'll get your CV version-controlled on GitHub.</p>
+<p><strong>Before you start</strong>, please create a new GitHub repo named <code>cv-yourname</code> (replace <code>yourname</code> with your name), clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.</p>
+<p><strong>IMPORTANT NOTE</strong>: For the next exercise, you will be paired with another student to peer review the CVs that you have just made. Therefore, if you do not feel comfortable sharing your own CV, feel free to make a CV for one of your favorite scientists or a fictional character instead.</p>
 <p><strong>After you are done with this exercise</strong>, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub.</p>
 <p><br></p>
 </div>
@@ -455,9 +458,12 @@ div.tocify {
 <h4>Breakout room information</h4>
 <p>For this exercise, we will create three types of breakout rooms: <strong>interactive</strong>, <strong>quiet</strong>, and <strong>solitary</strong>.</p>
 <ul>
-<li>For interactive rooms, participants are expected to have the camera and microphone on and solve problems as a group.</li>
-<li>For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss. * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. You will be able to choose your own rooms, but don't join a room if it already has more than four people.</li>
+<li>For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be working on their own CV).</li>
+<li>For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.<br />
+</li>
+<li>For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own.</li>
 </ul>
+<p>You will be able to choose your own rooms, but don't join a room if it already has more than four people.</p>
 <p><br></p>
 </div>
 <div id="suggested-activities" class="section level4">
@@ -499,9 +505,10 @@ knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Q
 <pre class="md"><code>&lt;center&gt;![](https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg)&lt;/center&gt;</code></pre></li>
 </ul></li>
 <li><p>Knit the same Rmd file in different ouput formats and compare the results, or start a new Rmd file for outputting in a different format.</p></li>
-<li><p>Use a CV template. If you have LaTeX installed on your computer, <a href="https://github.com/svmiller/stevetemplates">this template</a> can be a great one. <a href="https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&amp;hl=en_US">Here</a> is an example of its output. If you would like to have LaTeX installed, <a href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a> are some instructions (the process could take some time though).</p></li>
+<li><p>Use a CV template. If you have LaTeX installed on your computer, <a href="https://github.com/svmiller/stevetemplates">this template</a> can be a great one. <a href="https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&amp;hl=en_US">Here</a> is an example of its output. If you would like to get a lightweight version of LaTeX installed that will let you knit to PDF, <a href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a> are some instructions (the process could take some time though).</p></li>
 <li><p>For PDF output only, add your favorite <a href="https://rmd4sci.njtierney.com/math.html">equation</a>.</p></li>
 <li><p>Use Google to find and add one or more features to your CV that are not mentioned in this list.</p></li>
+<li><p>Remember to push your changes to GitHub at regular intervals and when you wrap up this first part of the exercise.</p></li>
 </ul>
 <p><br></p>
 </div>
@@ -515,7 +522,7 @@ knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Q
 <p><br></p>
 <div id="issues-and-projects" class="section level4">
 <h4>Issues and projects</h4>
-<p>Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedbacks, making plans, assigning tasks, and tracking progress. We will first do a quick demo of these features before you start your exercises.</p>
+<p>Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedback, making plans, assigning tasks, and tracking progress. We will first do a quick demo of these features before you start your exercises.</p>
 <p><br></p>
 </div>
 <div id="general-instructions-1" class="section level4">
