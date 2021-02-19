@@ -29,17 +29,17 @@ Please join the `lab-chat` channel on Slack for communication during the lab.
 
 <br>
 
-## Exercise 1: Perfect your CV (45 minutes)
+## Exercise 1: Improve your CV (45 minutes)
 
 <br>
 
 #### General instructions
 
-In Lab 1, you have started to create a CV using RMarkdown, but we did not leave enough time for you to work on it. Today, you will have more time to continue this exercise. 
+In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise. 
 
-**Before you start**, please create a new GitHub repo named `cv-yourname`, clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.
+**Before you start**, please create a new GitHub repo named `cv-yourname` (replace `yourname` with your name), clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.
 
-Also, note that for the next exercise, you will be paired with another student to peer review the CVs that you have made. Therefore, if you do not feel comfortable sharing your CV, please feel free to make a CV for one of your favorite scientists. 
+**IMPORTANT NOTE**: For the next exercise, you will be paired with another student to peer review the CVs that you have just made. Therefore, if you do not feel comfortable sharing your own CV, feel free to make a CV for one of your favorite scientists or a fictional character instead. 
 
 **After you are done with this exercise**, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub. 
 
@@ -49,8 +49,10 @@ Also, note that for the next exercise, you will be paired with another student t
 
 For this exercise, we will create three types of breakout rooms: **interactive**, **quiet**, and **solitary**. 
 
-  * For interactive rooms, participants are expected to have the camera and microphone on and solve problems as a group. 
-  * For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.   * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. 
+  * For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be working on their own CV). 
+  * For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.   
+  * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. 
+
 You will be able to choose your own rooms, but don't join a room if it already has more than four people. 
 
 <br>
@@ -122,12 +124,14 @@ Here are some suggested activities you can try with your CV. You don't have to c
 
   * Knit the same Rmd file in different ouput formats and compare the results, or start a new Rmd file for outputting in a different format.
   
-  * Use a CV template. If you have LaTeX installed on your computer, [this template](https://github.com/svmiller/stevetemplates) can be a great one. [Here](https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&hl=en_US) is an example of its output. If you would like to have LaTeX installed, [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf) are some instructions (the process could take some time though).
+  * Use a CV template. If you have LaTeX installed on your computer, [this template](https://github.com/svmiller/stevetemplates) can be a great one. [Here](https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&hl=en_US) is an example of its output. If you would like to get a lightweight version of LaTeX installed that will let you knit to PDF, [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf) are some instructions (the process could take some time though).
   
   * For PDF output only, add your favorite [equation](https://rmd4sci.njtierney.com/math.html). 
   
   * Use Google to find and add one or more features to your CV that are not mentioned in this list. 
-
+  
+  * Remember to push your changes to GitHub at regular intervals and when you wrap up this first part of the exercise.
+  
 <br>
 
 ## Short break (10 minutes)
