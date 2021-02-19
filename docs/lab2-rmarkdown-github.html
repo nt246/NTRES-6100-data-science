@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab 2: RMarkdown and GitHub</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li>
+  <a href="installation.html">Installation</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 2: RMarkdown and GitHub</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="goals-for-today" class="section level2">
+<h2>Goals for today</h2>
+<ol style="list-style-type: decimal">
+<li><p>Continue to practice RMarkdown.</p></li>
+<li><p>Continue to practice collaboration on GitHub.</p></li>
+<li><p>Learn to use &quot;Issues&quot; and &quot;Projects&quot; features on GitHub for project management.</p></li>
+<li><p>Make a version-controlled CV.</p></li>
+</ol>
+<p><br></p>
+</div>
+<div id="anouncement" class="section level2">
+<h2>Anouncement</h2>
+<p>Please join the <code>lab-chat</code> channel on Slack for communication during the lab.</p>
+<p><br></p>
+</div>
+<div id="exercise-1-perfect-your-cv-45-minutes" class="section level2">
+<h2>Exercise 1: Perfect your CV (45 minutes)</h2>
+<p><br></p>
+<div id="general-instructions" class="section level4">
+<h4>General instructions</h4>
+<p>In Lab 1, you have started to create a CV using RMarkdown, but we did not leave enough time for you to work on it. Today, you will have more time to continue this exercise.</p>
+<p><strong>Before you start</strong>, please create a new GitHub repo named <code>cv-yourname</code>, clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.</p>
+<p>Also, note that for the next exercise, you will be paired with another student to peer review the CVs that you have made. Therefore, if you do not feel comfortable sharing your CV, please feel free to make a CV for one of your favorite scientists.</p>
+<p><strong>After you are done with this exercise</strong>, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub.</p>
+<p><br></p>
+</div>
+<div id="breakout-room-information" class="section level4">
+<h4>Breakout room information</h4>
+<p>For this exercise, we will create three types of breakout rooms: <strong>interactive</strong>, <strong>quiet</strong>, and <strong>solitary</strong>.</p>
+<ul>
+<li>For interactive rooms, participants are expected to have the camera and microphone on and solve problems as a group.</li>
+<li>For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss. * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. You will be able to choose your own rooms, but don't join a room if it already has more than four people.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="suggested-activities" class="section level4">
+<h4>Suggested activities</h4>
+<p>Here are some suggested activities you can try with your CV. You don't have to complete all of them; just pick the ones that seem most interesting to you.</p>
+<ul>
+<li><p>Center some section titles, e.g.,</p>
+<pre class="md"><code>&lt;center&gt; **Centered and bolded text (HTML)** &lt;/center&gt;
+\center __Centered and bolded text (PDF)__ \center</code></pre>
+<ul>
+<li><p>or, for HTML output only, you can add the following code chunk to center level 1-3 headers</p>
+<pre class="md"><code>```{css, echo=FALSE}
+h1, h2, h3 {
+  text-align: center;
+}
+```</code></pre></li>
+</ul></li>
+<li><p>Right align some text, e.g.,</p>
+<pre class="md"><code>Aligned left (HTML) [*Aligned right and italic (HTML)*]{style=&quot;float:right&quot;}
+Aligned left (PDF) \hfill _Aligned right and italic (PDF)_</code></pre></li>
+<li><p>Add some line dividers and/or space between sections, e.g.,</p>
+<pre class="md"><code>---
+&lt;br&gt;</code></pre></li>
+<li><p>Add bullet points and/or numbered lists, e.g.,</p>
+<pre class="md"><code>* level 1
+    * level 2
+1. item 1
+2. item 2</code></pre></li>
+<li><p>Format certain text in bold, italic, and underline, e.g.,</p>
+<pre class="md"><code>***Bolded and italic text (HTML or PDF)***
+___Bolded and italic text (HTML or PDF)___
+&lt;ins&gt; Underlined text (HTML) &lt;/ins&gt;</code></pre></li>
+<li><p>Insert a picture of yourself at a select location in the document, e.g.,</p>
+<pre class="md"><code>```{r, fig.align=&quot;center&quot;, eval=TRUE, echo=FALSE}
+knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg&quot;)
+```</code></pre>
+<ul>
+<li><p>or, for HTML output only, the following syntax also works</p>
+<pre class="md"><code>&lt;center&gt;![](https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg)&lt;/center&gt;</code></pre></li>
+</ul></li>
+<li><p>Knit the same Rmd file in different ouput formats and compare the results, or start a new Rmd file for outputting in a different format.</p></li>
+<li><p>Use a CV template. If you have LaTeX installed on your computer, <a href="https://github.com/svmiller/stevetemplates">this template</a> can be a great one. <a href="https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&amp;hl=en_US">Here</a> is an example of its output. If you would like to have LaTeX installed, <a href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a> are some instructions (the process could take some time though).</p></li>
+<li><p>For PDF output only, add your favorite <a href="https://rmd4sci.njtierney.com/math.html">equation</a>.</p></li>
+<li><p>Use Google to find and add one or more features to your CV that are not mentioned in this list.</p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="short-break-10-minutes" class="section level2">
+<h2>Short break (10 minutes)</h2>
+<p><br></p>
+</div>
+<div id="exercise-2-peer-review-your-cv-45-minutes" class="section level2">
+<h2>Exercise 2: Peer review your CV (45 minutes)</h2>
+<p><br></p>
+<div id="issues-and-projects" class="section level4">
+<h4>Issues and projects</h4>
+<p>Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedbacks, making plans, assigning tasks, and tracking progress. We will first do a quick demo of these features before you start your exercises.</p>
+<p><br></p>
+</div>
+<div id="general-instructions-1" class="section level4">
+<h4>General instructions</h4>
+<p>For this exercise, you will collaborate with a partner to peer review the CVs you just made.</p>
+<p>Add your partner as a collaborator for your CV repo. Then, clone your partner's repo to your computer using RStudio.</p>
+<p><br></p>
+</div>
+<div id="breakout-room-instructions" class="section level4">
+<h4>Breakout room instructions</h4>
+<p>We will randomly assign pairs of students into breakout rooms. Please let us know in advance if you have a preferred partner for this exercise.</p>
+<p><br></p>
+</div>
+<div id="suggested-activities-1" class="section level4">
+<h4>Suggested Activities</h4>
+<p>It is recommended that you go through your peer review process in the following steps.</p>
+<ol style="list-style-type: decimal">
+<li>Use the intentional typos as an opportunity to practice how to resolve merge conflicts, and how to avoid them when possible.
+<ol style="list-style-type: lower-alpha">
+<li>First, both partners could correct a same typo in one partner's <code>Rmd</code> file in slightly different ways. <strong>Do not knit the <code>Rmd</code> file yet.</strong> Then, both partners can commit their changed <code>Rmd</code> file. One partner can push first, and the other partner will pull, and will get a merge conflict. They can then address this merge conflict, <strong>knit</strong>, push the resolved version to GitHub, and the other partner can pull. After this, partners can switch roles.</li>
+<li>Then, partners can correct typos in different lines in one person's <code>Rmd</code> file. <strong>Similarly, neither should knit at this point.</strong> Again, they will both commit their changes, one partner will push first, and when the other pulls, the changes should be merged automatically. They can now knit, push, and the other partner can pull.</li>
+</ol></li>
+<li><p>In the previous step, we emphasized that neither partners should knit their changed <code>Rmd</code> file before pulling other's changes. This is because conflicted versions of <code>Rmd</code> files can usually be merged without too much of a hassle, but with the knitted <code>markdown</code>, <code>html</code>, or <code>pdf</code> files, you might get unwieldy merge conflicts because of different system configurations between partners. There is, however, a very simple fix to this: the partner who has received the unwieldy merge conflict could just <strong>deleted the knitted output</strong>, and <strong>reknit</strong> the <code>Rmd</code> file once merge conflicts (if any) are resolved. Now, try step 1a again, but both partners can knit this time.</p></li>
+<li><p>Use the GitHub's Issue feature to provide feedback to your partner on their CV.</p></li>
+<li><p>Create a GitHub Project under the CV repo, and assign the Issues to your partner as a &quot;to-do&quot; item in this project.</p></li>
+<li><p>Revise your CV according to the feedback from your partner, and respond and close the Issue when the feedback is resolved.</p></li>
+<li><p>If there is still some time left after you have finished all the steps above, you can either take more time to practice your collaboration skills, or start working on this week's assignment.</p></li>
+</ol>
+<p><br></p>
+</div>
+</div>
+<div id="recap-15-minutes" class="section level2">
+<h2>Recap (15 minutes)</h2>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br></p>
+<p><strong>END LAB 1</strong></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
