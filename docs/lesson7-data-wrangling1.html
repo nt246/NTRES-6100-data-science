@@ -26,6 +26,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -435,8 +445,8 @@ div.tocify {
 <h4>Other resources:</h4>
 <ul>
 <li><p>The <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">Introduction to <code>dplyr</code> vignette</a></p></li>
-<li><p>Jenny Bryan’s lectures from STAT545 at UBC: <a href="http://stat545.com/block009_dplyr-intro.html">Introduction to dplyr</a></p></li>
-<li><p>Software Carpentry’s R for reproducible scientific analysis materials: <a href="https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">Dataframe manipulation with dplyr</a></p></li>
+<li><p>Jenny Bryan's lectures from STAT545 at UBC: <a href="http://stat545.com/block009_dplyr-intro.html">Introduction to dplyr</a></p></li>
+<li><p>Software Carpentry's R for reproducible scientific analysis materials: <a href="https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">Dataframe manipulation with dplyr</a></p></li>
 </ul>
 <p><br></p>
 </div>
@@ -446,73 +456,74 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="learning-objectives-for-todays-class" class="section level2">
-<h2>Learning objectives for today’s class</h2>
-<p>Now that we have explored some of the powerful ways <code>ggplot</code> lets us visualize data, let’s take a step back and discuss tools to get data into the right format we need for downstream analysis. Often you’ll need to create some new variables or summaries, or maybe you just want to rename the variables or reorder the observations in order to make the data a little easier to work with.</p>
+<h2>Learning objectives for today's class</h2>
+<p>Now that we have explored some of the powerful ways <code>ggplot</code> lets us visualize data, let's take a step back and discuss tools to get data into the right format we need for downstream analysis. Often you’ll need to create some new variables or summaries, or maybe you just want to rename the variables or reorder the observations in order to make the data a little easier to work with.</p>
 <p><br></p>
 <blockquote>
 <p>Data scientists, according to interviews and expert estimates, spend from 50 percent to 80 percent of their time mired in the mundane labor of collecting and preparing data, before it can be explored for useful information. - <a href="http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">NYTimes (2014)</a></p>
 </blockquote>
 <p><br></p>
-<p>By the end of today’s class, you should be able to:</p>
+<p>By the end of today's class, you should be able to:</p>
 <ul>
-<li>Subset and rearrange data with key <code>dplyr</code> functions
-<ul>
+<li>Subset and rearrange data with key <code>dplyr</code> functions</li>
 <li>Pick observations by their values <code>filter()</code></li>
 <li>Pick variables by their names <code>select()</code></li>
-</ul></li>
 <li>Use piping (<code>%&gt;%</code>) to implement function chains</li>
-<li>Make sure your RStudio working files are sync’ed to GitHub</li>
+<li>Make sure your RStudio working files are sync'ed to GitHub</li>
 </ul>
 <p><br></p>
-<p><strong>Acknowledgements</strong>: Today’s lecture is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/dplyr.html">Ocean Health Index Data Science Training</a> and Jenny Bryan’s lectures from STAT545 at UBC: <a href="http://stat545.com/block009_dplyr-intro.html">Introduction to dplyr</a>.</p>
+<p><strong>Acknowledgements</strong>: Today's lecture is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/dplyr.html">Ocean Health Index Data Science Training</a> and Jenny Bryan's lectures from STAT545 at UBC: <a href="http://stat545.com/block009_dplyr-intro.html">Introduction to dplyr</a>.</p>
 <p><br></p>
 </div>
 <div id="what-is-data-wrangling" class="section level2">
 <h2>What is data wrangling?</h2>
-<p>What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and maybe add new columns? This is called <strong>data wrangling</strong> (“the process of cleaning, structuring and enriching raw data into a desired format for better analysis in less time” by <a href="https://www.trifacta.com/data-wrangling/">one definition</a>. It’s not data management or data manipulation: you <strong>keep the raw data raw</strong> and do these things programatically in R with the tidyverse.</p>
-<p>We are going to introduce you to data wrangling in R first with the tidyverse. The tidyverse is a suite of packages that match a philosophy of data science developed by Hadley Wickham and the RStudio team. I find it to be a more straight-forward way to learn R. We will also show you by comparison what code will look like in “Base R”, which means, in R without any additional packages (like the “tidyverse” package) installed. I like David Robinson’s blog post on the topic of <a href="http://varianceexplained.org/r/teach-hard-way">teaching the tidyverse first</a>.</p>
-<p>For some things, base-R is more straightforward, and we’ll show you that too.</p>
+<p>What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and maybe add new columns? This is called <strong>data wrangling</strong> (&quot;the process of cleaning, structuring and enriching raw data into a desired format for better analysis in less time&quot; by <a href="https://www.trifacta.com/data-wrangling/">one definition</a>. It's not data management or data manipulation: you <strong>keep the raw data raw</strong> and do these things programatically in R with the tidyverse.</p>
+<p>We are going to introduce you to data wrangling in R first with the tidyverse. The tidyverse is a suite of packages that match a philosophy of data science developed by Hadley Wickham and the RStudio team. I find it to be a more straight-forward way to learn R. We will also show you by comparison what code will look like in &quot;Base R&quot;, which means, in R without any additional packages (like the &quot;tidyverse&quot; package) installed. I like David Robinson's blog post on the topic of <a href="http://varianceexplained.org/r/teach-hard-way">teaching the tidyverse first</a>.</p>
+<p>For some things, base-R is more straightforward, and we'll show you that too.</p>
 <p><br></p>
 <div id="taking-notes" class="section level3">
 <h3>Taking notes</h3>
-<p>Just like last class, we’ll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be <code>ntres-6940-YOUR_USERNAME</code> (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your <code>course-notes</code> subdirectory as <code>data_wrangling.R</code> [or whatever you want to call it]. Use this R-script type along in the examples we’ll go through together today (if that works for you), and for your exercises.</p>
+<p>Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be <code>ntres-6940-YOUR_USERNAME</code> (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your <code>course-notes</code> subdirectory as <code>data_wrangling.R</code> [or whatever you want to call it]. Use this R-script type along in the examples we'll go through together today (if that works for you), and for your exercises.</p>
 <p><br></p>
 </div>
 <div id="load-tidyverse-which-has-dplyr-inside" class="section level3">
 <h3>Load <code>tidyverse</code> (which has <code>dplyr</code> inside)</h3>
-<p>In your R Markdown file, let’s make sure we’ve got our libraries loaded. Write the following:</p>
+<p>In your R Markdown file, let's make sure we've got our libraries loaded. Write the following:</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)</code></pre>
-<p>This is becoming standard practice for how to load a library in a file, and if you get an error that the library doesn’t exist, you can install the package easily by running the code within the comment (highlight <code>install.packages("tidyverse")</code> and run it).</p>
+<p>This is becoming standard practice for how to load a library in a file, and if you get an error that the library doesn't exist, you can install the package easily by running the code within the comment (highlight <code>install.packages(&quot;tidyverse&quot;)</code> and run it).</p>
 <p><br></p>
 </div>
 </div>
 <div id="coronavirus-data-set" class="section level2">
 <h2>Coronavirus data set</h2>
-<p>As the COVID-19 crisis is at the forefront of everyone’s minds at the moment, lets use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic.</p>
+<p>As the COVID-19 crisis is at the forefront of everyone's minds at the moment, lets use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic.</p>
 <p><br></p>
-<p><img src="https://github.com/RamiKrispin/coronavirus/raw/master/man/figures/2019-nCoV-CDC-23312_without_background.png" /></p>
+<div class="figure">
+<img src="https://github.com/RamiKrispin/coronavirus/raw/master/man/figures/2019-nCoV-CDC-23312_without_background.png" />
+
+</div>
 <p><br></p>
 <p>We will use a dataset compiled in the <a href="https://github.com/RamiKrispin/coronavirus"><code>coronavirus</code> R package</a> developed by Rami Krispin. This package (hosted on GitHub) pulls raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository and is frequently updated.</p>
-<p>The compiled package is available to install like any other package from CRAN with <code>install.packages</code>. However, it keeps getting updated, so to make sure that we’re always working with the most current version, we will import the dataset directly from GitHub.</p>
-<p>Let’s first check when the <code>coronavirus.csv</code> file on the <a href="https://github.com/RamiKrispin/coronavirus/tree/master/csv">coronavirus package GitHub page</a> was last updated.</p>
-<p>If we click on the <code>coronavirus.csv</code> file, we’ll see that it’s too large to display on GitHub in data-view mode. We can read this data into R directly from GitHub, without downloading it. But we can’t read this data in view-mode. We have to click on the <strong>View raw</strong> link in the view window. This displays it as the raw csv file, without formatting.</p>
+<p>The compiled package is available to install like any other package from CRAN with <code>install.packages</code>. However, it keeps getting updated, so to make sure that we're always working with the most current version, we will import the dataset directly from GitHub.</p>
+<p>Let's first check when the <code>coronavirus.csv</code> file on the <a href="https://github.com/RamiKrispin/coronavirus/tree/master/csv">coronavirus package GitHub page</a> was last updated.</p>
+<p>If we click on the <code>coronavirus.csv</code> file, we'll see that it's too large to display on GitHub in data-view mode. We can read this data into R directly from GitHub, without downloading it. But we can't read this data in view-mode. We have to click on the <strong>View raw</strong> link in the view window. This displays it as the raw csv file, without formatting.</p>
 <p>Copy the url for raw data: <a href="https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv" class="uri">https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv</a></p>
-<p>Now, let’s go back to RStudio. In our R Markdown, let’s read this csv file and name the variable “coronavirus”. We will use the <code>read_csv()</code> function from the <code>readr</code> package (part of the tidyverse, so it’s already installed!).</p>
+<p>Now, let's go back to RStudio. In our R Markdown, let's read this csv file and name the variable &quot;coronavirus&quot;. We will use the <code>read_csv()</code> function from the <code>readr</code> package (part of the tidyverse, so it's already installed!).</p>
 <pre class="r"><code># read in corona .csv
 coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))</code></pre>
-<p>For today, don’t worry about why we need to specify the <code>col_types</code> argument - we will cover the details of data import functions in a few weeks.</p>
-<p>Once we have the data loaded, let’s start getting familiar with its content and format.</p>
-<p>Let’s inspect:</p>
+<p>For today, don't worry about why we need to specify the <code>col_types</code> argument - we will cover the details of data import functions in a few weeks.</p>
+<p>Once we have the data loaded, let's start getting familiar with its content and format.</p>
+<p>Let's inspect:</p>
 <pre class="r"><code>## explore the coronavirus dataset
 coronavirus # this is super long! Let&#39;s inspect in different ways</code></pre>
 <p><br></p>
-<p>Let’s use <code>head</code> and <code>tail</code>:</p>
+<p>Let's use <code>head</code> and <code>tail</code>:</p>
 <pre class="r"><code>head(coronavirus) # shows first 6
 tail(coronavirus) # shows last 6
 head(coronavirus, 10) # shows first X that you indicate
 tail(coronavirus, 12) # guess what this does!</code></pre>
 <p><br></p>
-<p>We can also see the <code>coronavirus</code> variable in RStudio’s Environment pane (top right)</p>
+<p>We can also see the <code>coronavirus</code> variable in RStudio's Environment pane (top right)</p>
 <p>More ways to learn basic info on a data.frame.</p>
 <pre class="r"><code>names(coronavirus)
 dim(coronavirus)    # ?dim dimension
@@ -529,7 +540,7 @@ skim(coronavirus)</code></pre>
 <p><br></p>
 <div id="look-at-the-variables-inside-a-data.frame" class="section level3">
 <h3>Look at the variables inside a data.frame</h3>
-<p>To specify a single variable from a data.frame, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract of replace parts of an object — check out the help menu for <code>$</code>. It’s a common operator you’ll see in R.</p>
+<p>To specify a single variable from a data.frame, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract of replace parts of an object — check out the help menu for <code>$</code>. It's a common operator you'll see in R.</p>
 <pre class="r"><code>coronavirus$cases # very long! hard to make sense of...
 head(coronavirus$cases) # can do the same tests we tried before
 str(coronavirus$cases) # it is a single numeric vector
@@ -539,19 +550,25 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 </div>
 <div id="dplyr-basics" class="section level2">
 <h2><code>dplyr</code> basics</h2>
-<p>OK, so let’s start wrangling with dplyr.</p>
+<p>OK, so let's start wrangling with dplyr.</p>
 <p>There are five <code>dplyr</code> functions that you will use to do the vast majority of data manipulations:</p>
 <ul>
-<li><p><strong><code>filter()</code></strong>: pick observations by their values</p>
-<img src="assets/rstudio-cheatsheet-filter.png" width="300"/></li>
-<li><p><strong><code>select()</code></strong>: pick variables by their names</p>
-<img src="assets/rstudio-cheatsheet-select.png" width="300"/></li>
-<li><p><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</p>
-<img src="assets/rstudio-cheatsheet-mutate.png" width="300"/></li>
-<li><p><strong><code>arrange()</code></strong>: reorder the rows</p></li>
-<li><p><strong><code>summarise()</code></strong>: collapse many values down to a single summary</p>
-<img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></li>
+<li><strong><code>filter()</code></strong>: pick observations by their values</li>
 </ul>
+<img src="assets/rstudio-cheatsheet-filter.png" width="300"/>
+<ul>
+<li><strong><code>select()</code></strong>: pick variables by their names</li>
+</ul>
+<img src="assets/rstudio-cheatsheet-select.png" width="300"/>
+<ul>
+<li><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</li>
+</ul>
+<img src="assets/rstudio-cheatsheet-mutate.png" width="300"/>
+<ul>
+<li><p><strong><code>arrange()</code></strong>: reorder the rows</p></li>
+<li><p><strong><code>summarise()</code></strong>: collapse many values down to a single summary</p></li>
+</ul>
+<img src="assets/rstudio-cheatsheet-summarise.png" width="300"/>
 <p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. <strong>We will cover at least the first two today and continue with the rest on Wednesday.</strong></p>
 <p><br></p>
 <p>All verbs work similarly:</p>
@@ -570,13 +587,13 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
 <p><img src="assets/rstudio-cheatsheet-filter.png" /> Remember your logical expressions? If not, here is a reminder <a href="https://www.statmethods.net/management/operators.html#Logical">here</a>. We’ll use <code>&gt;</code> and <code>==</code> here.</p>
 <pre class="r"><code>filter(coronavirus, cases &gt; 0)</code></pre>
-<p>You can say this out loud: “Filter the coronavirus data for cases greater than 0”. Notice that when we do this, all the columns are returned, but only the rows that have the a non-zero case count. We’ve subsetted by row.</p>
-<p>Let’s try another: “Filter the coronavirus data for the country US”.</p>
+<p>You can say this out loud: &quot;Filter the coronavirus data for cases greater than 0&quot;. Notice that when we do this, all the columns are returned, but only the rows that have the a non-zero case count. We've subsetted by row.</p>
+<p>Let's try another: &quot;Filter the coronavirus data for the country US&quot;.</p>
 <pre class="r"><code>filter(coronavirus, country == &quot;US&quot;)</code></pre>
 <p>Note that when you run that line of code, <code>dplyr</code> executes the filtering operation and returns a new data frame. <code>dplyr</code> functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, <code>&lt;-</code>:</p>
 <pre class="r"><code>coronavirus_us &lt;- filter(coronavirus, country == &quot;US&quot;)</code></pre>
 <p><br></p>
-<p>How about if we want two country names? We can’t use a single instance of the <code>==</code> operator here, because it can only operate on one thing at a time. We can use <a href="https://r4ds.had.co.nz/transform.html#logical-operators">Boolean operators</a> for this: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. So if we want records from both the US and Canada, we can type</p>
+<p>How about if we want two country names? We can't use a single instance of the <code>==</code> operator here, because it can only operate on one thing at a time. We can use <a href="https://r4ds.had.co.nz/transform.html#logical-operators">Boolean operators</a> for this: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. So if we want records from both the US and Canada, we can type</p>
 <pre class="r"><code>filter(coronavirus, country == &quot;US&quot; | country == &quot;Canada&quot;)</code></pre>
 <p>A useful short-hand for this problem is <code>x %in% y</code>. This will select every row where <code>x</code> is one of the values in <code>y</code>. We could use it to rewrite the code above:</p>
 <pre class="r"><code>filter(coronavirus, country %in% c(&quot;US&quot;, &quot;Canada&quot;))</code></pre>
@@ -618,7 +635,10 @@ filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot
 <h2><code>select()</code> subsets data column-wise (variables)</h2>
 <p>We use <code>select()</code> to subset the data on variables or columns.</p>
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
-<p><img src="assets/rstudio-cheatsheet-select.png" /></p>
+<div class="figure">
+<img src="assets/rstudio-cheatsheet-select.png" />
+
+</div>
 <p><br></p>
 <p>We can select multiple columns with a comma, after we specify the data frame (coronavirus).</p>
 <pre class="r"><code>select(coronavirus, date, country, type, cases) </code></pre>
@@ -645,24 +665,24 @@ rename(coronavirus, casetype = type)</code></pre>
 </div>
 <div id="use-select-and-filter-together" class="section level2">
 <h2>Use <code>select()</code> and <code>filter()</code> together</h2>
-<p>We’ve explored the functions <code>select()</code> and <code>filter()</code> separately. Now let’s combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn’t currently have data broken down by US state). We’ll save this subsetted data as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on <code>coronavirus_us</code>, not <code>coronavirus</code>.</p>
+<p>We've explored the functions <code>select()</code> and <code>filter()</code> separately. Now let's combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn't currently have data broken down by US state). We'll save this subsetted data as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on <code>coronavirus_us</code>, not <code>coronavirus</code>.</p>
 <pre class="r"><code>coronavirus_us  &lt;- filter(coronavirus, country == &quot;US&quot;)
 coronavirus_us2 &lt;- select(coronavirus_us, -lat, -long, -province) </code></pre>
-<p>We also could have called them both <code>coronavirus_us</code> and overwritten the first assignment. Either way, naming them and keeping track of them gets super cumbersome, which means more time to understand what’s going on and opportunities for confusion or error.</p>
+<p>We also could have called them both <code>coronavirus_us</code> and overwritten the first assignment. Either way, naming them and keeping track of them gets super cumbersome, which means more time to understand what's going on and opportunities for confusion or error.</p>
 <p>Good thing there is an awesome alternative.</p>
 <p><br></p>
 </div>
 <div id="meet-the-new-pipe-operator" class="section level2">
 <h2>Meet the new pipe <code>%&gt;%</code> operator</h2>
-<p>Before we go any further, we should explore the new pipe operator that <code>dplyr</code> imports from the <a href="https://github.com/smbache/magrittr"><code>magrittr</code></a> package by Stefan Bache. If you have have not used this before, <strong>this is going to change your life</strong> (at least your coding life…). You no longer need to enact multi-operation commands by nesting them inside each other. And we won’t need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.</p>
-<p>Here’s what it looks like: <code>%&gt;%</code>. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).</p>
-<p>Let’s demo then I’ll explain:</p>
+<p>Before we go any further, we should explore the new pipe operator that <code>dplyr</code> imports from the <a href="https://github.com/smbache/magrittr"><code>magrittr</code></a> package by Stefan Bache. If you have have not used this before, <strong>this is going to change your life</strong> (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.</p>
+<p>Here's what it looks like: <code>%&gt;%</code>. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).</p>
+<p>Let's demo then I'll explain:</p>
 <pre class="r"><code>coronavirus %&gt;% head()</code></pre>
 <p>This is equivalent to <code>head(coronavirus)</code>. This pipe operator takes the thing on the left-hand-side and <strong>pipes</strong> it into the function call on the right-hand-side. It literally drops it in as the first argument.</p>
 <p>Never fear, you can still specify other arguments to this function! To see the first 3 rows of coronavirus, we could say <code>head(coronavirus, 3)</code> or this:</p>
 <pre class="r"><code>coronavirus %&gt;% head(3)</code></pre>
-<p><strong>I’ve advised you to think “gets” whenever you see the assignment operator, <code>&lt;-</code>. Similarly, you should think “and then” whenever you see the pipe operator, <code>%&gt;%</code>.</strong></p>
-<p>One of the most awesome things about this is that you START with the data before you say what you’re doing to DO to it. So above: “take the coronavirus data, and then give me the first three entries”.</p>
+<p><strong>I've advised you to think &quot;gets&quot; whenever you see the assignment operator, <code>&lt;-</code>. Similarly, you should think &quot;and then&quot; whenever you see the pipe operator, <code>%&gt;%</code>.</strong></p>
+<p>One of the most awesome things about this is that you START with the data before you say what you're doing to DO to it. So above: &quot;take the coronavirus data, and then give me the first three entries&quot;.</p>
 <p>This means that instead of this:</p>
 <pre class="r"><code>## instead of this...
 coronavirus_us  &lt;- filter(coronavirus, country == &quot;US&quot;)
@@ -670,8 +690,8 @@ coronavirus_us2 &lt;- select(coronavirus_us, -lat, -long, -province)
 ## ...we can do this
 coronavirus_us  &lt;- coronavirus %&gt;% filter(country == &quot;US&quot;)
 coronavirus_us2 &lt;- coronavirus_us %&gt;% select(-lat, -long, -province) </code></pre>
-<p>So you can see that we’ll start with coronavirus in the first example line, and then coronavirus_us in the second. This makes it a bit easier to see what data we are starting with and what we are doing to it.</p>
-<p>…But, we still have those temporary variables so we’re not truly that better off. But get ready to be majorly impressed:</p>
+<p>So you can see that we'll start with coronavirus in the first example line, and then coronavirus_us in the second. This makes it a bit easier to see what data we are starting with and what we are doing to it.</p>
+<p>...But, we still have those temporary variables so we're not truly that better off. But get ready to be majorly impressed:</p>
 <p><br></p>
 <div id="revel-in-the-convenience" class="section level3">
 <h3>Revel in the convenience</h3>
@@ -679,12 +699,12 @@ coronavirus_us2 &lt;- coronavirus_us %&gt;% select(-lat, -long, -province) </cod
 <pre class="r"><code>coronavirus_us  &lt;- coronavirus %&gt;% 
   filter(country == &quot;US&quot;) %&gt;%
   select(-lat, -long, -province) </code></pre>
-<p>What’s happening here? In the second line, we were able to delete <code>coronavirus_us2 &lt;- coronavirus_us</code>, and put the pipe operator above. This is possible since we wanted to operate on the <code>coronavirus_us</code> data. And we weren’t truly excited about having a second variable named <code>coronavirus_us2</code> anyway, so we can get rid of it. This is huge, because most of your data wrangling will have many more than 2 steps, and we don’t want a <code>coronavirus_us17</code>!</p>
-<p>By using multiple lines I can actually read this like a story and there aren’t temporary variables that get super confusing. In my head:</p>
+<p>What's happening here? In the second line, we were able to delete <code>coronavirus_us2 &lt;- coronavirus_us</code>, and put the pipe operator above. This is possible since we wanted to operate on the <code>coronavirus_us</code> data. And we weren't truly excited about having a second variable named <code>coronavirus_us2</code> anyway, so we can get rid of it. This is huge, because most of your data wrangling will have many more than 2 steps, and we don't want a <code>coronavirus_us17</code>!</p>
+<p>By using multiple lines I can actually read this like a story and there aren't temporary variables that get super confusing. In my head:</p>
 <blockquote>
-<p>“start with the <code>coronavirus</code> data, and then<br />
+<p>&quot;start with the <code>coronavirus</code> data, and then<br />
 filter for the US, and then<br />
-drop the variables lat, long, and province.” Being able to read a story out of code like this is really game-changing. We’ll continue using this syntax as we learn the other <code>dplyr</code> verbs.</p>
+drop the variables lat, long, and province.&quot; Being able to read a story out of code like this is really game-changing. We'll continue using this syntax as we learn the other <code>dplyr</code> verbs.</p>
 </blockquote>
 <p>Compare with some base R code to accomplish the same things. Base R requires subsetting with the [rows, columns] notation. This notation is something you’ll see a lot in base R. The brackets [ ] allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.</p>
 <p>If we don’t write anything after the comma, that means “all columns”. And if we don’t write anything before the comma, that means “all rows”.</p>
@@ -701,7 +721,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 <p>Why is this a terrible idea?</p>
 <ul>
 <li>It is not self-documenting. What are the columns were retaining here?</li>
-<li>It is fragile. This line of code will produce different results if someone changes the organization of the dataset, e.g. adds new variables. This is especially risky if we index rows by numbers as a sorting action earlier in the script would then give unexpected results.</li>
+<li>It is fragile. This line of code will produce different results if someone changes the organization of the dataset, e.g. adds new variables. This is especially risky if we index rows by numbers as a sorting action earlier in the script would then give unexpected results.</li>
 </ul>
 <p>This call explains itself and is fairly robust.</p>
 <pre class="r"><code>coronavirus_us  &lt;- coronavirus %&gt;% 
@@ -722,7 +742,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 </div>
 <div id="more-ways-to-select-columns" class="section level2">
 <h2>More ways to select columns</h2>
-<p>If we have time, we’ll explore some <a href="https://r4ds.had.co.nz/transform.html#select">additional options for <code>select()</code></a></p>
+<p>If we have time, we'll explore some <a href="https://r4ds.had.co.nz/transform.html#select">additional options for <code>select()</code></a></p>
 <p><br> <br></p>
 <p><strong>We will continue in the next class with learning more useful <code>dplyr</code> functions.</strong></p>
 </div>
@@ -738,7 +758,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
