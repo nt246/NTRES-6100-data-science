@@ -33,8 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="../docs/lesson8-files/")
 
 ## Class announcements
 
-* Updated [schedule](https://nt246.github.io/NTRES6940-data-science/syllabus.html#tentative_schedule): No class next Wednesday Oct 14 (in accordance with Cornell's academic calendar). The order of the following sessions have been shifted slightly
-* Homework 3 due on Monday
+
 
 <br>
 

@@ -33,17 +33,7 @@ Chapter 5.1-5.5 in [R for Data Science](https://r4ds.had.co.nz/transform.html) b
 
 ## Class announcements  
 
-* Assignment 1 has been graded - everyone received credit, good work! A few things to note:
-  + Select **github_document** as your output format for assignments submitted through your class repo  
-  + Getting used to formatting - remember to refer to the awesome [Rmarkdown cheatsheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)  
-  + Assignments (except #2) should be kept in the `problem_sets` directory of your class repo, please do not delete these files to allow us time to review them  
-  + One student deleted Assn.1 from their repo before we could grade it, but version control saved the day! Delete with caution, but no need to fret if you need to recover deleted files  
-* Assignment 2 (your collaborative website) is **due today by 10pm**  
-* [Assignment 3](https://github.com/nt246/NTRES6940-data-science/blob/master/assignments/assignment_3.md) is now available and will be due by next Monday
-* Cleaning up your accounts, proceed with caution  
-  + Feel free to delete any test files or repos you made over the last few weeks
-  + **DO NOT** delete your assignments, your class repo or your website repo
-  + If you cloned your repo to your computer, you will have to delete your local copy in addition to deleting the repo on Github  
+
   
 <br>
 
