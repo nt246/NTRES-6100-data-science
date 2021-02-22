@@ -2,7 +2,6 @@
 title: "Lesson 7: Data Wrangling Part 1"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
 
