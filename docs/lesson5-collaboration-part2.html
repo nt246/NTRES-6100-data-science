@@ -13,6 +13,7 @@
 
 <title>Lesson 5: Collaborating with GitHub and making websites with GitHub Pages - Part 2</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +26,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +80,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -379,6 +390,12 @@ div.tocify {
     <li>
       <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
     </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -454,17 +471,17 @@ div.tocify {
 <p><br></p>
 <p><strong>Comments and suggested changes:</strong></p>
 <ul>
+<li>Would be nice to know how much time you will be in breakout rooms</li>
 <li>Request to access to Zoom chat during breakout rooms</li>
 <li>Difficult to juggle many screens/tabs at the same time, esp. with lecture chat in Slack</li>
 <li>Confusing with links to other sources in the lecture notes, esp. for initial setup</li>
+<li>Instructions on the assignment was not clear enough. Had to look up things we may not have covered in class. Also insufficient instruction on how to submit the assignments</li>
 <li>Too many participants - would be nice with a second TA</li>
 <li>If you get stuck halfway through lecture you don’t get to participate any further sometimes. It would be nice to be able to troubleshoot sooner, before the end of class</li>
-<li>Instructions on the assignment was not clear enough. Had to look up things we may not have covered in class. Also insufficient instruction on how to submit the assignments</li>
-<li>Would be nice to know how much time you will be in breakout rooms</li>
-<li>Lectures too fast</li>
+<li>Lectures are sometimes too fast</li>
 </ul>
 <p><br></p>
-<p>We will check back in around the middle of the semester. In the meantime, let us know if you have any feedback or suggestions for things we can improve.</p>
+<p>We will check back in around the middle of the semester. In the meantime, let us know if you have any feedback or suggestions for things we can improve. Also, if you find particular sections of the lecture notes confusing or unclear, we would appreciate a heads up in the <code>feedback</code> channel on Slack. You can post anonymously by typing <code>/anon you message ...</code>.</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -750,7 +767,7 @@ output:
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
