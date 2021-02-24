@@ -122,7 +122,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 9       | Mon | 3/8  | Plotting with ggplot part 2 + good coding practices                                           |                  |
 |         | Wed | 3/10 | **NO CLASS** - Cornell Wellness Break                                                         | Assignment 4     |
 |         | Fri | 3/12 | Lab 5                                                                                         |                  |
-| 10      | Mon | 3/15 | Good coding practices, debugging strategies, and getting help  (Guest lecture by Erika Mudrak)|                  |
+| 10      | Mon | 3/15 | Good coding practices, debugging strategies, and getting help |                  |
 | 11      | Wed | 3/17 | Tidy data (what is tidy data and how to handle untidy data)                                   | Assignment 5     |
 |         | Fri | 3/19 | Lab 6                                                                                         |                  |
 | 12      | Mon | 3/22 | Data import, export, and parsing                                                              |                  |
