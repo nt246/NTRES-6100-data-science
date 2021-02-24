@@ -510,11 +510,11 @@ That being said, there are some geometries, aesthetics, and facet functions that
     ```{r}
     ## demo (change in mean hwy for each car model over time, grouped by model, colored by class, faceted by manufacturer)
     group_by(mpg, manufacturer, year, class, model) %>%
-      summarize(mean_hwy=mean(hwy)) %>%
-      ggplot(aes(x=year, y=mean_hwy, color=class, group=model)) +
+      summarize(mean_hwy = mean(hwy)) %>%
+      ggplot(aes(x = year, y = mean_hwy, color = class, group = model)) +
       geom_point() +
       geom_line() +
-      facet_wrap(~manufacturer)
+      facet_wrap(~ manufacturer)
     ```
  
 <br>
@@ -529,17 +529,15 @@ That being said, there are some geometries, aesthetics, and facet functions that
 
 * `group`
 
-* `color`, `fill`
-
-    `color` controls the color of points and lines, whereas `fill` controls the color of surfaces
+* `color`, `fill` (`color` controls the color of points and lines, whereas `fill` controls the color of surfaces)
     
     ```{r}
     ## demo (plot hwy distribution with geom_density, color by drv)
     ggplot(mpg) +
-      geom_density(aes(color=drv, x=hwy))
+      geom_density(aes(color = drv, x = hwy))
     ## demo (fill by drv)
     ggplot(mpg) +
-      geom_density(aes(fill=drv, x=hwy))
+      geom_density(aes(fill = drv, x = hwy))
     ```
  
 <br>
@@ -551,7 +549,7 @@ That being said, there are some geometries, aesthetics, and facet functions that
     ```{r}
     ## demo (plot hwy distribution with geom_density, fill by drv, set alpha to 0.5)
     ggplot(mpg) +
-      geom_density(aes(fill=drv, x=hwy), alpha=0.5)
+      geom_density(aes(fill = drv, x = hwy), alpha = 0.5)
     ```
  
 <br>
@@ -560,9 +558,9 @@ That being said, there are some geometries, aesthetics, and facet functions that
 
     ```{r}
     ## demo (hwy vs. displ, geom_point and geom_line, map drv to color, shape, linetype)
-    ggplot(mpg, aes(x=displ, y=hwy, color=drv, shape=drv)) +
+    ggplot(mpg, aes(x = displ, y = hwy, color = drv, shape = drv)) +
       geom_point()+
-      geom_smooth(aes(linetype=drv))
+      geom_smooth(aes(linetype = drv))
     ```
  
 <br>
@@ -575,9 +573,9 @@ That being said, there are some geometries, aesthetics, and facet functions that
 
     ```{r}
     ## demo (hwy vs displ, faceted by cyl and drv)
-    ggplot(mpg, aes(x=displ, y=hwy)) +
+    ggplot(mpg, aes(x = displ, y = hwy)) +
       geom_point() +
-      facet_grid(drv~cyl)
+      facet_grid(drv ~ cyl)
     ```
 
 <br>  
