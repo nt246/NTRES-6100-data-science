@@ -30,19 +30,54 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 #### General instructions
 
-Today, we'll use ggplot to visually explore global trends in public health and economics. We will work with the `gapminder` dataset provided in the R package `dslabs`. This dataset was created using a number of spreadsheets available from the [Gapminder Foundation](https://www.gapminder.org/about/).
+Today, we'll use ggplot to visually explore global trends in public health and economics compiled by the [Gapminder project](https://www.gapminder.org/about/). This project was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+
+<br> 
+
+[Gapminder Motion Chart](http://www.gapminder.org/world)  
+[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
+
+<br>
+<br>
+
+
+#### Step 1: Get to now our data
+Take a few minutes to explore the [Gapminder Foundation](https://www.gapminder.org/about/)
+
+<br>
+<br>
+
+#### Step 2: Set up a GitHub-linked RStudio project to work in
+Please create a new GitHub repo in your personal account named `gapminder`, clone the repo to your computer, and work on your data exploration in this new repo. 
+
+Open an .Rmd template file (File -> New File -> R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make three level 1 headers:
+- Data
+- Life expectancy
+- Fertility
+- Infant mortality
+
+<br>
+
+Under the **Data** header, add a short description of the dataset we're using today (you can copy that from our description above).
+
+<br>
+<br>
+
+#### Step 3: Load the data
+Today, will work with a subset of the `gapminder` dataset provided in the R package `dslabs`. 
 
 Let's start by installing the `dslabs` package so we can access the data. After installing the package we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
 
 ```{r}
-library(tidyverse)
+
 library(dslabs) #install.packages("dslabs")
-data(gapminder)
+library(tidyverse)
 
 ```
 
+<br>
 
-Let's start by exploring the data. You will see that it has data on the following variables:
+Let's start by exploring the data. You might e.g. want to use functions like `View()`, `dim()`, and `colnames()` `?`. You will see that the dataset includes the following variables:
 
 - country
 - year
@@ -54,19 +89,40 @@ Let's start by exploring the data. You will see that it has data on the followin
 - continent
 - region (geographical region)
 
+<br>
 
-The dataset contains data 
-#let's just provide a subsetted 
+The dataset includes data from 1960-2016. Since we're just getting started with ggplot, we'll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we'll return to the full dataset.
 
+To subset the data, copy and run the following code. We'll discuss data subsetting in class next week, so don't worry about the notation for now.
 
+```{r}
 
-In breakout rooms, go and explore patterns.
+gap2011 <- gapminder %>% 
+  as_tibble() %>% 
+  filter(year == 2011)
 
-First explore infant mortality rates
-how do they correlate to life expectancy, population size, gpd. How many of those variables can you meaningfully incorporate into your plot?
-vary by continent
+```
 
+This creates the `gap2011` dataframe that you'll be working with for the rest of the day. Explore its dimensions and variables.
 
+<br>
+<br>
+
+#### Step 4: Explore patterns in the data in breakout rooms
+
+In breakout rooms, go and explore patterns in the data with ggplot.
+
+First, under your **Life expectancy** header, add some text and code chunks to plot patterns in the `life_expectancy` variable.
+
+Some ideas to explore:
+- What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent? 
+- How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?
+
+You can look back to our [lecture 6 notes](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know) or the [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+
+<br>
+
+After you've done some exploration of life expectancy, move on to add some plots and text under your **Fertility** header.
 
 <br>
 
@@ -74,88 +130,14 @@ vary by continent
 
 For this exercise, we will create three types of breakout rooms: **interactive**, **quiet**, and **solitary**. 
 
-  * For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be working on their own CV). 
+  * For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be typing in their own document, you can share screen etc to work together). 
   * For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.   
   * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. 
 
-You will be able to choose your own rooms, but don't join a room if it already has more than four people. 
+You will be able to choose your own rooms, but let's limit the group size to 4, so pick a different room if one already has this many participants. 
 
 <br>
 
-#### Suggested activities
-
-Here are some suggested activities you can try with your CV. You don't have to complete all of them; just pick the ones that seem most interesting to you.
-
-  * Center some section titles, e.g.,
-    ```md
-    <center> **Centered and bolded text (HTML)** </center>
-    \center __Centered and bolded text (PDF)__ \center
-    ```
-    
-      * or, for HTML output only, you can add the following code chunk to center level 1-3 headers
-      
-        ````md
-        ```{css, echo=FALSE}`r ''`
-        h1, h2, h3 {
-          text-align: center;
-        }
-        ```
-        ````
-
-  * Right align some text, e.g.,
-  
-    ```md
-    Aligned left (HTML) [*Aligned right and italic (HTML)*]{style="float:right"}
-    Aligned left (PDF) \hfill _Aligned right and italic (PDF)_
-    ```
-    
-  * Add some line dividers and/or space between sections, e.g.,
-  
-    ```md
-    ---
-    <br>
-    ```
-    
-  * Add bullet points and/or numbered lists, e.g.,
-  
-    ```md
-    * level 1
-        * level 2
-    1. item 1
-    2. item 2
-    ```
-    
-  * Format certain text in bold, italic, and underline, e.g., 
-  
-    ```md
-    ***Bolded and italic text (HTML or PDF)***
-    ___Bolded and italic text (HTML or PDF)___
-    <ins> Underlined text (HTML) </ins>
-    ```
-    
-  * Insert a picture of yourself at a select location in the document, e.g.,
-    
-    ````md
-    ```{r, fig.align="center", eval=TRUE, echo=FALSE}`r ''`
-    knitr::include_graphics("https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg")
-    ```
-    ````
-    
-    * or, for HTML output only, the following syntax also works
-      
-        ```md
-        <center>![](https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg)</center>
-        ```
-
-  * Knit the same Rmd file in different ouput formats and compare the results, or start a new Rmd file for outputting in a different format.
-  
-  * Use a CV template. If you have LaTeX installed on your computer, [this template](https://github.com/svmiller/stevetemplates) can be a great one. [Here](https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&hl=en_US) is an example of its output. If you would like to get a lightweight version of LaTeX installed that will let you knit to PDF, [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf) are some instructions (the process could take some time though).
-  
-  * For PDF output only, add your favorite [equation](https://rmd4sci.njtierney.com/math.html). 
-  
-  * Use Google to find and add one or more features to your CV that are not mentioned in this list. 
-  
-  * Remember to push your changes to GitHub at regular intervals and when you wrap up this first part of the exercise.
 
 ## Recap (10 minutes)
 

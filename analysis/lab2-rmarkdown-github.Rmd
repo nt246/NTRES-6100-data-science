@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 <br>
 
-## Anouncement
+## Announcement
 
 Please join the `lab-chat` channel on Slack for communication during the lab. 
 
@@ -188,6 +188,6 @@ Share your findings, challenges, and questions with the class.
 
 <br>
 
-**END LAB 1**
+**END LAB 2**
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
