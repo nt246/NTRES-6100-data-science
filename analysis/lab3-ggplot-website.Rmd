@@ -7,7 +7,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 <br>
 
@@ -113,7 +113,7 @@ This creates the `gap2011` dataframe that you'll be working with for the rest of
 
 In breakout rooms, go and explore patterns in the data with ggplot.
 
-First, under your **Life expectancy** header, add some text and code chunks to plot patterns in the `life_expectancy` variable.
+First, under your **Life expectancy** header, add some text and code chunks to plot patterns in the `life_expectancy` variable. Remember to use `gap2011` as your data.
 
 Some ideas to explore:
 
@@ -121,6 +121,19 @@ Some ideas to explore:
 - How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?
 
 You can look back to our [lecture 6 notes](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know) or the [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+
+<br>
+
+Here's an example plot:
+
+```{r}
+
+ggplot(data = gap2011) +
+  geom_point(mapping = aes(x = gdp, y = life_expectancy))
+
+# Can we add more information to this plot?
+  
+```
 
 <br>
 
@@ -141,32 +154,41 @@ You will be able to choose your own rooms, but let's limit the group size to 4, 
 <br>
 
 
-## Recap (10 minutes)
+### Recap (10 minutes)
 
 Share your findings, challenges, and questions with the class. 
 
 <br>
 <br>
 
-## Short break (10 minutes)
+### Short break (10 minutes)
 
 <br>
 <br>
 
-## Exercise 2: Publish your data visualizations on a website and explore different website styling options
+### Exercise 2: Publish your data visualizations on a website and explore different website styling options
 
 <br>
 <br>
 
 #### General instructions 
 
-For this exercise, you will build a GitHub Pages website as described in the [Lecture 5](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html) and display for data visualization result on this website. 
+For this exercise, you will build a GitHub Pages website as described in [Lecture 5](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html) and display our gapminder data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.
+
+<br>
 
 #### Suggested activities
 
-- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a seperate page and can get it own tab.
+- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `about.Rmd`, `life_expectancy.Rmd`, `fertility.Rmd`, and `infant_mortality.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
 
-- You can try 
+- You can then consider adding a table of contents and changing the styling (theme) of your website, as described [here](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website)
+
+<br>
+
+Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running `rmarkdown::render_site()`) in your Viewer pane in RStudio.
+
+<br>
+<br>
 
 **END LAB 3**
 
