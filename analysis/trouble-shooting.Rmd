@@ -1,0 +1,34 @@
+---
+title: "Trouble-shooting guide"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+## Git and GitHub
+
+* If you see the error message `git is not detected on system path` when creating a version-controlled R Project
+    * Follow the trouble-shooting steps in [Chapter 13](https://happygitwithr.com/rstudio-see-git.html) of the _Happy Git and GitHub for the useR_ book
+* If you see the error message `Another git process seems to be running in this repository` when committing, pulling, or pushing
+    * Close and reopen RStudio
+    * Delete the `index.lock` file under the hidden `.git` folder, you can do this by 
+        * running `rm -f path_to_project/.git/index.lock` in the Terminal (or `del -f path_to_project/.git/index.lock), OR
+        * remove the file manually in Finder or File Explorer
+* If you are using a Windows machine and find that you are unable to stage a folder with RStudio (e.g. the `site_libs` folder when rendering a website), please following the following steps
+    * Close and reopen RStudio
+    * Reopen your R Project
+    * Go to Terminal in RStudio
+    * Run `del .git/index.lock` in Terminal
+    * Run `git add -A` in Terminal
+    * Refresh the Git tab in RStudio
+    * Commit and push as you usually do.
+    * Alternatively, you may try staging files using the GitHub Desktop program instead of RStudio.
+
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

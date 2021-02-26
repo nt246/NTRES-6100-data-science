@@ -41,7 +41,7 @@ Today, we'll use ggplot to visually explore global trends in public health and e
 <br>
 
 
-#### Step 1: Get to now our data
+#### Step 1: Get to know our data
 Take a few minutes to explore the [Gapminder Foundation](https://www.gapminder.org/about/)
 
 <br>
@@ -50,7 +50,8 @@ Take a few minutes to explore the [Gapminder Foundation](https://www.gapminder.o
 #### Step 2: Set up a GitHub-linked RStudio project to work in
 Please create a new GitHub repo in your personal account named `gapminder`, clone the repo to your computer, and work on your data exploration in this new repo. 
 
-Open an .Rmd template file (File -> New File -> R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make three level 1 headers:
+Open an .Rmd template file (File -> New File -> R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:
+
 - Data
 - Life expectancy
 - Fertility
@@ -64,7 +65,7 @@ Under the **Data** header, add a short description of the dataset we're using to
 <br>
 
 #### Step 3: Load the data
-Today, will work with a subset of the `gapminder` dataset provided in the R package `dslabs`. 
+Today, we will work with a subset of the `gapminder` dataset provided in the R package `dslabs`. 
 
 Let's start by installing the `dslabs` package so we can access the data. After installing the package we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
 
@@ -77,7 +78,7 @@ library(tidyverse)
 
 <br>
 
-Let's start by exploring the data. You might e.g. want to use functions like `View()`, `dim()`, and `colnames()` `?`. You will see that the dataset includes the following variables:
+Let's start by exploring the data. You might e.g. want to use functions like `View()`, `dim()`, `colnames()` , and `?`. You will see that the dataset includes the following variables:
 
 - country
 - year
@@ -115,6 +116,7 @@ In breakout rooms, go and explore patterns in the data with ggplot.
 First, under your **Life expectancy** header, add some text and code chunks to plot patterns in the `life_expectancy` variable.
 
 Some ideas to explore:
+
 - What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent? 
 - How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?
 
@@ -143,18 +145,28 @@ You will be able to choose your own rooms, but let's limit the group size to 4, 
 
 Share your findings, challenges, and questions with the class. 
 
-  
+<br>
 <br>
 
-### Short break (10 minutes)
+## Short break (10 minutes)
 
+<br>
 <br>
 
 ## Exercise 2: Publish your data visualizations on a website and explore different website styling options
 
 <br>
-
 <br>
+
+#### General instructions 
+
+For this exercise, you will build a GitHub Pages website as described in the [Lecture 5](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html) and display for data visualization result on this website. 
+
+#### Suggested activities
+
+- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a seperate page and can get it own tab.
+
+- You can try 
 
 **END LAB 3**
 

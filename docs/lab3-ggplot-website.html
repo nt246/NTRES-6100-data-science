@@ -11,7 +11,7 @@
 
 
 
-<title>Assignments</title>
+<title>Lab 3: Displaying data visualization on a website</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -443,41 +443,130 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Assignments</h1>
+<h1 class="title toc-ignore">Lab 3: Displaying data visualization on a website</h1>
 
 </div>
 
 
-<p>Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT.</p>
-<hr />
-<div id="assignment-1" class="section level3">
-<h3>Assignment 1</h3>
-<div id="r-markdown-template" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">R Markdown template</a></h4>
-<blockquote>
-<p>Due Wed 2/17 by 10pm EDT</p>
-</blockquote>
-<hr />
+<p><br></p>
+<div id="goals-for-today" class="section level3">
+<h3>Goals for today</h3>
+<ol style="list-style-type: decimal">
+<li><p>Continue to explore and practice graphing with ggplot</p></li>
+<li><p>Continue to explore and practice website setup and styling with GitHub Pages</p></li>
+<li><p>Integrate 1) and 2) to publish your data visualization on a website</p></li>
+</ol>
+<p><br></p>
+<p><br></p>
+</div>
+<div id="exercise-1-explore-the-gapminder-dataset-with-ggplot-50-mins" class="section level3">
+<h3>Exercise 1: Explore the <code>gapminder</code> dataset with ggplot (50 mins)</h3>
+<p><br></p>
+<div id="general-instructions" class="section level4">
+<h4>General instructions</h4>
+<p>Today, we'll use ggplot to visually explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>. This project was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you've ever seen</a>:</p>
+<p><br></p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
+<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
+<p><br> <br></p>
+</div>
+<div id="step-1-get-to-know-our-data" class="section level4">
+<h4>Step 1: Get to know our data</h4>
+<p>Take a few minutes to explore the <a href="https://www.gapminder.org/about/">Gapminder Foundation</a></p>
+<p><br> <br></p>
+</div>
+<div id="step-2-set-up-a-github-linked-rstudio-project-to-work-in" class="section level4">
+<h4>Step 2: Set up a GitHub-linked RStudio project to work in</h4>
+<p>Please create a new GitHub repo in your personal account named <code>gapminder</code>, clone the repo to your computer, and work on your data exploration in this new repo.</p>
+<p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:</p>
+<ul>
+<li>Data</li>
+<li>Life expectancy</li>
+<li>Fertility</li>
+<li>Infant mortality</li>
+</ul>
+<p><br></p>
+<p>Under the <strong>Data</strong> header, add a short description of the dataset we're using today (you can copy that from our description above).</p>
+<p><br> <br></p>
+</div>
+<div id="step-3-load-the-data" class="section level4">
+<h4>Step 3: Load the data</h4>
+<p>Today, we will work with a subset of the <code>gapminder</code> dataset provided in the R package <code>dslabs</code>.</p>
+<p>Let's start by installing the <code>dslabs</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
+<pre class="r"><code>library(dslabs) #install.packages(&quot;dslabs&quot;)
+library(tidyverse)</code></pre>
+<p><br></p>
+<p>Let's start by exploring the data. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
+<ul>
+<li>country</li>
+<li>year</li>
+<li>infant_mortality (infant deaths per 1000)</li>
+<li>life_expectancy</li>
+<li>fertility (average number of children per woman)</li>
+<li>population (per country)</li>
+<li>gpd (per country)</li>
+<li>continent</li>
+<li>region (geographical region)</li>
+</ul>
+<p><br></p>
+<p>The dataset includes data from 1960-2016. Since we're just getting started with ggplot, we'll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we'll return to the full dataset.</p>
+<p>To subset the data, copy and run the following code. We'll discuss data subsetting in class next week, so don't worry about the notation for now.</p>
+<pre class="r"><code>gap2011 &lt;- gapminder %&gt;% 
+  as_tibble() %&gt;% 
+  filter(year == 2011)</code></pre>
+<p>This creates the <code>gap2011</code> dataframe that you'll be working with for the rest of the day. Explore its dimensions and variables.</p>
+<p><br> <br></p>
+</div>
+<div id="step-4-explore-patterns-in-the-data-in-breakout-rooms" class="section level4">
+<h4>Step 4: Explore patterns in the data in breakout rooms</h4>
+<p>In breakout rooms, go and explore patterns in the data with ggplot.</p>
+<p>First, under your <strong>Life expectancy</strong> header, add some text and code chunks to plot patterns in the <code>life_expectancy</code> variable.</p>
+<p>Some ideas to explore:</p>
+<ul>
+<li>What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent?</li>
+<li>How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?</li>
+</ul>
+<p>You can look back to our <a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture 6 notes</a> or the <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> for inspiration.</p>
+<p><br></p>
+<p>After you've done some exploration of life expectancy, move on to add some plots and text under your <strong>Fertility</strong> header.</p>
+<p><br></p>
+</div>
+<div id="breakout-room-information" class="section level4">
+<h4>Breakout room information</h4>
+<p>For this exercise, we will create three types of breakout rooms: <strong>interactive</strong>, <strong>quiet</strong>, and <strong>solitary</strong>.</p>
+<ul>
+<li>For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be typing in their own document, you can share screen etc to work together).</li>
+<li>For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.<br />
+</li>
+<li>For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own.</li>
+</ul>
+<p>You will be able to choose your own rooms, but let's limit the group size to 4, so pick a different room if one already has this many participants.</p>
+<p><br></p>
 </div>
 </div>
-<div id="assignment-2" class="section level3">
-<h3>Assignment 2</h3>
-<div id="put-one-of-your-pre-existing-projects-on-github" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Put one of your pre-existing projects on GitHub</a></h4>
-<blockquote>
-<p>Due Wed 2/24 by 10pm EDT</p>
-</blockquote>
-<hr />
+<div id="recap-10-minutes" class="section level2">
+<h2>Recap (10 minutes)</h2>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
 </div>
+<div id="short-break-10-minutes" class="section level2">
+<h2>Short break (10 minutes)</h2>
+<p><br> <br></p>
 </div>
-<div id="assignment-3" class="section level3">
-<h3>Assignment 3</h3>
-<div id="create-a-collaborative-website-with-github-pages" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md">Create a collaborative website with GitHub Pages</a></h4>
-<blockquote>
-<p>Due Wed 03/03 by 10pm EDT</p>
-</blockquote>
-<hr />
+<div id="exercise-2-publish-your-data-visualizations-on-a-website-and-explore-different-website-styling-options" class="section level2">
+<h2>Exercise 2: Publish your data visualizations on a website and explore different website styling options</h2>
+<p><br> <br></p>
+<div id="general-instructions-1" class="section level4">
+<h4>General instructions</h4>
+<p>For this exercise, you will build a GitHub Pages website as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Lecture 5</a> and display for data visualization result on this website.</p>
+</div>
+<div id="suggested-activities" class="section level4">
+<h4>Suggested activities</h4>
+<ul>
+<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a seperate page and can get it own tab.</p></li>
+<li><p>You can try</p></li>
+</ul>
+<p><strong>END LAB 3</strong></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
 </div>

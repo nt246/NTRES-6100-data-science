@@ -10,9 +10,8 @@
 
 
 
-<meta name="date" content="2021-02-26" />
 
-<title>Collaborative and Reproducible Data Science in R</title>
+<title>Trouble-shooting guide</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -259,6 +261,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -266,6 +331,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -368,61 +443,49 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Collaborative and Reproducible Data Science in R</h1>
-<h4 class="date">2021-02-26</h4>
+<h1 class="title toc-ignore">Trouble-shooting guide</h1>
 
 </div>
 
 
-<div class="figure">
-<img src="assets/logo.png" style="width:50.0%" />
-
-</div>
-<div id="ntres-6100" class="section level3">
-<h3>NTRES 6100</h3>
-<div id="cornell-university-spring-2021" class="section level4">
-<h4>Cornell University, Spring 2021</h4>
-<p>This website complements the class <a href="https://canvas.cornell.edu/courses/27864">Canvas</a> site.</p>
-<hr />
-<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a>   <strong>TA</strong>: PhD Student <a href="https://dnr.cals.cornell.edu/people/runyang-lou/">Nicolas Lou</a></p>
-<hr />
-</div>
-<div id="meeting-times" class="section level4">
-<h4>Meeting times</h4>
-<p>Mondays and Wednesdays 2:45pm - 4:00pm<br />
-(February 8 - April 23, 2021)</p>
-<p>Optional lab sessions: Fridays 12:25-2:20pm<br />
-Hands-on practice sessions in groups and with TA support</p>
-<hr />
-</div>
-<div id="course-description" class="section level4">
-<h4>Course description</h4>
-<p>As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and will be structured around hands-on (the keyboard) learning.</p>
-<p><strong>By the end of this course, students will be able to:</strong></p>
+<p><br></p>
+<div id="git-and-github" class="section level2">
+<h2>Git and GitHub</h2>
 <ul>
-<li>Describe strategies for ensuring that their data analysis is reproducible<br />
-</li>
-<li>Demonstrate best practices for coding and project-oriented workflows in RStudio<br />
-</li>
-<li>Import and clean messy data files using a variety of packages and functions in R<br />
-</li>
-<li>Subset, reorganize, and merge diverse datasets in R<br />
-</li>
-<li>Effectively explore and visualize patterns in complex datasets with ggplot in R<br />
-</li>
-<li>Write simple functions/programs and data analysis pipelines in R<br />
-</li>
-<li>Automate repeated analysis tasks in R<br />
-</li>
-<li>Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub<br />
-</li>
-<li>Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations</li>
+<li>If you see the error message <code>git is not detected on system path</code> when creating a version-controlled R Project
+<ul>
+<li>Follow the trouble-shooting steps in <a href="https://happygitwithr.com/rstudio-see-git.html">Chapter 13</a> of the <em>Happy Git and GitHub for the useR</em> book</li>
+</ul></li>
+<li>If you see the error message <code>Another git process seems to be running in this repository</code> when committing, pulling, or pushing
+<ul>
+<li>Close and reopen RStudio</li>
+<li>Delete the <code>index.lock</code> file under the hidden <code>.git</code> folder, you can do this by
+<ul>
+<li>running <code>rm -f path_to_project/.git/index.lock</code> in the Terminal (or `del -f path_to_project/.git/index.lock), OR</li>
+<li>remove the file manually in Finder or File Explorer</li>
+</ul></li>
+</ul></li>
+<li>If you are using a Windows machine and find that you are unable to stage a folder with RStudio (e.g. the <code>site_libs</code> folder when rendering a website), please following the following steps
+<ul>
+<li>Close and reopen RStudio</li>
+<li>Reopen your R Project</li>
+<li>Go to Terminal in RStudio</li>
+<li>Run <code>del .git/index.lock</code> in Terminal</li>
+<li>Run <code>git add -A</code> in Terminal</li>
+<li>Refresh the Git tab in RStudio</li>
+<li>Commit and push as you usually do.</li>
+<li>Alternatively, you may try staging files using the GitHub Desktop program instead of RStudio.</li>
+</ul></li>
 </ul>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
 </div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -455,6 +518,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

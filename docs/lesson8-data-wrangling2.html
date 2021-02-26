@@ -360,9 +360,6 @@ div.tocify {
         <li>
   <a href="syllabus.html">Syllabus</a>
 </li>
-<li>
-  <a href="installation.html">Installation</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Lectures
@@ -411,10 +408,28 @@ div.tocify {
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
     </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
   </ul>
 </li>
 <li>
   <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -526,7 +541,7 @@ coronavirus %&gt;%
 
 </div>
 <p>The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let's reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don't worry about how it works right now, we'll get an opportunity to explore it in a few weeks.</p>
-<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-02-21):</p>
+<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-02-25):</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   select(country, type, cases) %&gt;%
   group_by(country, type) %&gt;%
