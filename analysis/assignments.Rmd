@@ -23,4 +23,10 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ***
 
+### Assignment 3  
+#### [Create a collaborative website with GitHub Pages](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)  
+>Due Wed 03/03 by 10pm EDT  
+
+***
+
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

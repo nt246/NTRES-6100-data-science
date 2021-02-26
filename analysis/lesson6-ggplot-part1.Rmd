@@ -80,7 +80,7 @@ Two main goals for statistical graphics:
 * To facilitate comparisons
 * To identify trends
 
-There are several ways to make plots in R. We will exclusively use the `ggplot2` package here. If you want to know more about why we're using `ggplot2` instead of base plot, check out the slides from [Jenny Bryan's ggplot tutorial](https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides)
+There are several ways to make plots in R. We will exclusively use the `ggplot2` package here. If you want to know more about why we're using `ggplot2` instead of base plot, check out the slides 21+22 from [Jenny Bryan's ggplot tutorial](https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides)
 
 <br>
 
@@ -110,7 +110,7 @@ Before making any kind of graph, we will always need to know our data first. In 
 
 * Directly type the name of the data frame
     
-    This method works well if you run it from RMardown. If ran on R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class `tibble`. (We will learn more about `tibble` later in class. For now, just think of it as an upgraded type of data frame.) 
+    This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class. For now, just think of it as an upgraded type of data frame).car 
     
     But, if you do it with a larger, non-`tibble` data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read. 
     
@@ -126,9 +126,9 @@ Before making any kind of graph, we will always need to know our data first. In 
     
     Why do you think that is? Try typing `View(mpg)` in a code chunk in RMarkdown, knit it, and see what happens. 
     
-    ```{r}
-    ## exercise, then demo (knit with View() in code chunk)
-    ## View(mpg)
+    ```{r, eval = FALSE}
+    ## demo knit with View() in code chunk
+    View(mpg)
     ```
   
 * `head()` and `tail()`
@@ -145,14 +145,13 @@ Before making any kind of graph, we will always need to know our data first. In 
     
     If the data frame included in an R package, typing `?data frame_name` will lead you to a help file with more information on the data frame.
     
-* `str()`, `is()`, `dim()`, `colnames()`, `summary()`
+* `str()`, `dim()`, `colnames()`, `summary()`
 
     These functions return important information on the data frame and are particularly helpful when inspecting larger data frames. Give them a try and see what they do. 
     
     ```{r}
     ## exercise, then demo
     str(mpg)
-    is(mpg)
     dim(mpg)
     colnames(mpg)
     summary(mpg)
@@ -198,30 +197,30 @@ You can think of the grammar of graphics as a systematic approach for describing
 <br>
 
 - __Data__
-  - Exactly as it sounds: the data that you're feeding into a plot.
+    - Exactly as it sounds: the data that you're feeding into a plot.
 - __Aesthetic mappings__
-  - This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called "aesthetics", and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.
+    - This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called "aesthetics", and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.
 - __Geometric objects__
-  - This is a specification of what object will actually be drawn on the plot. This could be a point, a line, a bar, etc. 
+    - This is a specification of what object will actually be drawn on the plot. This could be a point, a line, a bar, etc. 
 
 <br>
 
 **Optional:**
 
 - Scales
-  - This is a specification of how a variable is mapped to its aesthetic. Will it be mapped linearly? On a log scale? Something else?
+    - This is a specification of how a variable is mapped to its aesthetic. Will it be mapped linearly? On a log scale? Something else?
 - Statistical transformations
-  - This is a specification of whether and how the data are combined/transformed before being plotted. For example, in a bar chart, data are transformed into their frequencies; in a box-plot, data are transformed to a five-number summary.
+    - This is a specification of whether and how the data are combined/transformed before being plotted. For example, in a bar chart, data are transformed into their frequencies; in a box-plot, data are transformed to a five-number summary.
 - Coordinate system
-  - This is a specification of how the position aesthetics (x and y) are depicted on the plot. For example, rectangular/cartesian, or polar coordinates.
+    - This is a specification of how the position aesthetics (x and y) are depicted on the plot. For example, rectangular/cartesian, or polar coordinates.
 - Facet
-  - This is a specification of data variables that partition the data into smaller "sub plots", or panels. 
+    - This is a specification of data variables that partition the data into smaller "sub plots", or panels. 
 
 These components are like parameters of statistical graphics, defining the "space" of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.
 
 <br>
 
-We will use the `ggplot2` package, but the function we use to initialize a graph will be `ggplot`, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert "untidy" datasets into tidy format later in the class. For the purpose of this class, the datasets that we will use are already in tidy format. 
+We will use the `ggplot2` package, but the function we use to initialize a graph will be `ggplot`, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert "untidy" datasets into tidy format later in the class. For the next few lectures, the datasets that we will use are already in tidy format. 
 
 Graphics with `ggplot2` are built step-by-step, adding new elements as layers with a plus sign (`+`) between layers. Adding layers in this fashion allows for extensive flexibility and customization of plots. Below is a template that can be used to create almost any graph that you can imagine using `ggplot2`.
 
@@ -319,7 +318,7 @@ ggplot(data = mpg) +
 <br>
 <br>
 
-### Your turn (in breakout rooms) - Exercise 3
+### Your turn - Exercise 3
 
 1. Return to your scatterplot of `hwy` vs `cyl`. Color the points by the year of manufacture for each car model. Why does the legend look different from when we mapped `class` to color above?
 
@@ -420,7 +419,7 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
 
 Now, you've learned the central ideas behind `ggplot2`. In the next `ggplot2` lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about `ggplot2` is often through practice and Google, since the possibilities that you can have with `ggplot2` are quite limitless, and people's plotting needs vary. 
 
-With that being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) is a great resource for looking up other functionality.
+That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) is a great resource for looking up other functionality.
 
 <br>
 
@@ -500,8 +499,8 @@ With that being said, there are some geometries, aesthetics, and facet functions
     ```{r}
     ## demo (hwy vs. displ, model as the label but only label points with hwy > 40)
     ggplot(mpg)+
-      geom_point(aes(x=displ, y=hwy)) +
-      geom_label(data=filter(mpg, hwy>40), mapping = aes(label=model, y=hwy, x=displ+0.8))
+      geom_point(aes(x = displ, y = hwy)) +
+      geom_label(data = filter(mpg, hwy > 40), mapping = aes(label = model, y = hwy, x = displ + 0.4))
     ```
  
 <br>
@@ -511,11 +510,11 @@ With that being said, there are some geometries, aesthetics, and facet functions
     ```{r}
     ## demo (change in mean hwy for each car model over time, grouped by model, colored by class, faceted by manufacturer)
     group_by(mpg, manufacturer, year, class, model) %>%
-      summarize(mean_hwy=mean(hwy)) %>%
-      ggplot(aes(x=year, y=mean_hwy, color=class, group=model)) +
+      summarize(mean_hwy = mean(hwy)) %>%
+      ggplot(aes(x = year, y = mean_hwy, color = class, group = model)) +
       geom_point() +
       geom_line() +
-      facet_wrap(~manufacturer)
+      facet_wrap(~ manufacturer)
     ```
  
 <br>
@@ -530,17 +529,15 @@ With that being said, there are some geometries, aesthetics, and facet functions
 
 * `group`
 
-* `color`, `fill`
-
-    `color` controls the color of points and lines, whereas `fill` controls the color of surfaces
+* `color`, `fill` (`color` controls the color of points and lines, whereas `fill` controls the color of surfaces)
     
     ```{r}
     ## demo (plot hwy distribution with geom_density, color by drv)
     ggplot(mpg) +
-      geom_density(aes(color=drv, x=hwy))
+      geom_density(aes(color = drv, x = hwy))
     ## demo (fill by drv)
     ggplot(mpg) +
-      geom_density(aes(fill=drv, x=hwy))
+      geom_density(aes(fill = drv, x = hwy))
     ```
  
 <br>
@@ -552,7 +549,7 @@ With that being said, there are some geometries, aesthetics, and facet functions
     ```{r}
     ## demo (plot hwy distribution with geom_density, fill by drv, set alpha to 0.5)
     ggplot(mpg) +
-      geom_density(aes(fill=drv, x=hwy), alpha=0.5)
+      geom_density(aes(fill = drv, x = hwy), alpha = 0.5)
     ```
  
 <br>
@@ -561,9 +558,9 @@ With that being said, there are some geometries, aesthetics, and facet functions
 
     ```{r}
     ## demo (hwy vs. displ, geom_point and geom_line, map drv to color, shape, linetype)
-    ggplot(mpg, aes(x=displ, y=hwy, color=drv, shape=drv)) +
+    ggplot(mpg, aes(x = displ, y = hwy, color = drv, shape = drv)) +
       geom_point()+
-      geom_smooth(aes(linetype=drv))
+      geom_smooth(aes(linetype = drv))
     ```
  
 <br>
@@ -576,9 +573,9 @@ With that being said, there are some geometries, aesthetics, and facet functions
 
     ```{r}
     ## demo (hwy vs displ, faceted by cyl and drv)
-    ggplot(mpg, aes(x=displ, y=hwy)) +
+    ggplot(mpg, aes(x = displ, y = hwy)) +
       geom_point() +
-      facet_grid(drv~cyl)
+      facet_grid(drv ~ cyl)
     ```
 
 <br>  
