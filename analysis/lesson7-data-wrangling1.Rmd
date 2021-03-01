@@ -62,7 +62,7 @@ By the end of today's class, you should be able to:
 
 ## What is data wrangling?
 
-What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and maybe add new columns? This is called **data wrangling** ("the process of cleaning, structuring and enriching raw data into a desired format for better analysis in less time" by [one definition](https://www.trifacta.com/data-wrangling/). It's not data management or data manipulation: you **keep the raw data raw** and do these things programatically in R with the tidyverse.
+What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and maybe add new columns? This is called **data wrangling** ("the process of cleaning, structuring and enriching raw data into a desired format for better analysis in less time" by [one definition](https://www.trifacta.com/data-wrangling/)). It's not data management or data manipulation: you **keep the raw data raw** and do these things programatically in R with the tidyverse.
 
 We are going to introduce you to data wrangling in R first with the tidyverse. The tidyverse is a suite of packages that match a philosophy of data science developed by Hadley Wickham and the RStudio team. I find it to be a more straight-forward way to learn R. We will also show you by comparison what code will look like in "Base R", which means, in R without any additional packages (like the "tidyverse" package)  installed. I like David Robinson's blog post on the topic of [teaching the tidyverse first](http://varianceexplained.org/r/teach-hard-way).
 
@@ -72,7 +72,7 @@ For some things, base-R is more straightforward, and we'll show you that too.
 
 ### Taking notes
 
-Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6940-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script type along in the examples we'll go through together today (if that works for you), and for your exercises. 
+Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script type along in the examples we'll go through together today (if that works for you), and for your exercises. 
 
 <br>
 
@@ -93,7 +93,7 @@ As the COVID-19 crisis is at the forefront of everyone's minds at the moment, le
 
 <br>
 
-![](https://github.com/RamiKrispin/coronavirus/raw/master/man/figures/2019-nCoV-CDC-23312_without_background.png)
+<img src="assets/2019-nCoV-CDC-23312_without_background.png" width="200px"> 
 
 <br>
 
@@ -112,10 +112,10 @@ Now, let's go back to RStudio. In our R Markdown, let's read this csv file and n
 
 ```{r, eval=FALSE}
 # read in corona .csv
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 ```
 
-For today, don't worry about why we need to specify the `col_types` argument - we will cover the details of data import functions in a few weeks.
+For today, don't worry about how the `read_csv()` function works - we will cover the details of data import functions in a few weeks.
 
 Once we have the data loaded, let's start getting familiar with its content and format.
 
@@ -179,24 +179,35 @@ OK, so let's start wrangling with dplyr.
 
 There are five `dplyr` functions that you will use to do the vast majority of data manipulations:
 
+<br>
+
 - **`filter()`**: pick observations by their values
 
   `r htmltools::img(src='assets/rstudio-cheatsheet-filter.png', width=300)` 
-    
+
+<br>
+
 - **`select()`**: pick variables by their names
 
   `r htmltools::img(src='assets/rstudio-cheatsheet-select.png', width=300)`
     
+<br>
+
 - **`mutate()`**: create new variables with functions of existing variables 
 
   `r htmltools::img(src='assets/rstudio-cheatsheet-mutate.png', width=300)`
   
+<br>
+
 - **`arrange()`**: reorder the rows
+
+<br>
 
 - **`summarise()`**: collapse many values down to a single summary 
 
   `r htmltools::img(src='assets/rstudio-cheatsheet-summarise.png', width=300)`
   
+<br>
   
 These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. **We will cover at least the first two today and continue with the rest on Wednesday.**
 
@@ -222,7 +233,7 @@ You will want to isolate bits of your data; maybe you want to only look at a sin
 Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): 
 
 ![](assets/rstudio-cheatsheet-filter.png)
-Remember your logical expressions? If not, here is a reminder [here](https://www.statmethods.net/management/operators.html#Logical). We’ll use `>` and `==` here. 
+Are you familiar with how to invoke logical expressions in R? If not, here is an overview [here](https://www.statmethods.net/management/operators.html#Logical). We’ll use `>` and `==` here. 
 
 ```{r, eval=FALSE}
 filter(coronavirus, cases > 0)
@@ -235,6 +246,8 @@ Let's try another: "Filter the coronavirus data for the country US".
 ```{r, eval=FALSE}
 filter(coronavirus, country == "US")
 ```
+
+<br>
 
 Note that when you run that line of code, `dplyr` executes the filtering operation and returns a new data frame. `dplyr` functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, `<-`:
 
