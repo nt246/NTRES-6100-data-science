@@ -26,15 +26,6 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -79,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -392,6 +382,9 @@ div.tocify {
     <li>
       <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
     </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -460,7 +453,7 @@ div.tocify {
 </div>
 <div id="install-r-packages" class="section level3">
 <h3>Install R packages</h3>
-<p>Please install the key R packages that we are going to use in this class. Install by copying the following code to RStudio console one line at a time and hit &quot;Enter&quot; to run.</p>
+<p>Please install the key R packages that we are going to use in this class. Install by copying the following code to RStudio console one line at a time and hit “Enter” to run.</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 install.packages(&quot;rmarkdown&quot;)
 install.packages(&quot;knitr&quot;)
@@ -471,17 +464,14 @@ install.packages(c(&quot;nycflights13&quot;, &quot;gapminder&quot;, &quot;Lahman
 <div id="install-slack-and-join-workspace" class="section level3">
 <h3>Install Slack and join workspace</h3>
 <p>Please install <a href="https://slack.com/download">Slack</a> on your laptop, and then <a href="https://join.slack.com/t/ntres6100sp21/shared_invite/zt-lu94u3tv-P9u3bSoe0_jkA3bmEGmvIg">join the work space for our class</a>. We are going to use Slack as our primary communication channel for this course. To build broader connections, we also plan on opening our Slack workspace as a communication platform for the entire R user community at Cornell to create a venue where people can find help and/or collaboration opportunities. Please consider adding a photo to your profile to make our workspace more personal.</p>
-<p>When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. If you don't plan on using Slack regularly, please go to &quot;Preferences&quot; and check the box that says &quot;Send me email notifications for mentions and direct messages&quot;.</p>
-<div class="figure">
-<img src="https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460" />
-
-</div>
+<p>When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we’ll be able to continue using Slack for free. If you don’t plan on using Slack regularly, please go to “Preferences” and check the box that says “Send me email notifications for mentions and direct messages”.</p>
+<p><img src="https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460" /></p>
 <p>By clicking this option, you will able to receive all of our anouncements via email without needing to log in on Slack every time.</p>
 <hr />
 </div>
 <div id="create-a-github-account" class="section level3">
 <h3>Create a GitHub account</h3>
-<p>If you don't have a GitHub account yet, create one <a href="https://github.com/join">here</a>. Give some thought to what you pick as your user name - see advice <a href="https://happygitwithr.com/github-acct.html#username-advice">here</a>.</p>
+<p>If you don’t have a GitHub account yet, create one <a href="https://github.com/join">here</a>. Give some thought to what you pick as your user name - see advice <a href="https://happygitwithr.com/github-acct.html#username-advice">here</a>.</p>
 <hr />
 </div>
 <div id="install-git" class="section level3">
@@ -504,7 +494,7 @@ Follow your operating system’s normal installation process. Note: you will not
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

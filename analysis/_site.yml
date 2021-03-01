@@ -24,6 +24,8 @@ navbar:
       href: lesson7-data-wrangling1.html
     - text: "Lesson 8: Data wrangling - Part 2"
       href: lesson8-data-wrangling2.html
+    - text: "Lesson 9: Plotting with ggplot - Part 2"
+      href: lesson9-ggplot-part2.html
   - text: Labs
     menu:
     - text: Lab handouts
