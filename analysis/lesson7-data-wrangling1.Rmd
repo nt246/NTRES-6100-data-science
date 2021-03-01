@@ -233,6 +233,9 @@ You will want to isolate bits of your data; maybe you want to only look at a sin
 Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): 
 
 ![](assets/rstudio-cheatsheet-filter.png)
+<br>
+<br>
+
 Are you familiar with how to invoke logical expressions in R? If not, here is an overview [here](https://www.statmethods.net/management/operators.html#Logical). We’ll use `>` and `==` here. 
 
 ```{r, eval=FALSE}
@@ -262,6 +265,8 @@ How about if we want two country names? We can't use a single instance of the `=
 ```{r, eval=FALSE}
 filter(coronavirus, country == "US" | country == "Canada")
 ```
+
+<br>
 
 A useful short-hand for this problem is `x %in% y`. This will select every row where `x` is one of the values in `y`. We could use it to rewrite the code above:
 
@@ -294,6 +299,9 @@ filter(coronavirus, country == "US" & type == "death")
 
 #### Answer (no peeking!)
 
+<details>
+  <summary>click to see one approach</summary>
+
 This is one way to do it based on what we have learned so far:
 
 **Question 1a:**
@@ -306,15 +314,18 @@ sum(x$cases)
 sum(filter(coronavirus, country == "US", type == "death")$cases)
 
 ```
+
 <br>
+
 **Question 1b:**
 ```{r, eval=FALSE}
 #Example:
 
-filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2020-10-04")
+filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2021-02-28")
 
 ```
 
+</details>
 
 <br>
 <br>
@@ -352,6 +363,9 @@ Create a new dataframe including only the country, lat, and long variables, list
 
 <br>
 
+<details>
+  <summary>click to see one approach</summary>
+
 In this case, we have very few variables that we can easily select one by one, but for datasets with lots of variables with standardized names, some of the built-in helper functions may be helpful, e.g.:
 
 ```{r, eval=FALSE}
@@ -366,6 +380,8 @@ select(coronavirus, casetype = type, everything())
 rename(coronavirus, casetype = type)
 
 ```
+
+</details>
 
 <br>
 <br>
@@ -482,6 +498,12 @@ coronavirus_us  <- coronavirus %>%
 <br>
 <br>
 
+Here's a caricature slide Nicolas posted on Slack to help build intuition about the differences between the tidyverse and base R syntax for data wrangling
+
+![](/Users/nt246/github/NTRES-6100-data-science/docs/assets/tidyverse_baseR.png)
+<br>
+<br>
+
 ## Your turn - Exercise 3
 
 Use the `%>%` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
@@ -492,7 +514,7 @@ If you have more time, try exploring other patterns in the data. Pick a differen
 
 <br>
 
-**Knit your RMarkdown file, and sync it to GitHub (pull, stage, commit, push)**
+**Save your R script (knit if you've been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)**
 
 <br>
 <br>

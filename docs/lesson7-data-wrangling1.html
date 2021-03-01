@@ -13,7 +13,6 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,15 +25,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -80,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -567,6 +556,7 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <h2><code>dplyr</code> basics</h2>
 <p>OK, so let’s start wrangling with dplyr.</p>
 <p>There are five <code>dplyr</code> functions that you will use to do the vast majority of data manipulations:</p>
+<p><br></p>
 <ul>
 <li><p><strong><code>filter()</code></strong>: pick observations by their values</p>
 <img src="assets/rstudio-cheatsheet-filter.png" width="300"/></li>
@@ -607,16 +597,19 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p>You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting.</p>
 <p><code>filter()</code> is a function in <code>dplyr</code> that takes logical expressions and returns the rows for which all are <code>TRUE</code>.</p>
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
-<p><img src="assets/rstudio-cheatsheet-filter.png" /> Remember your logical expressions? If not, here is a reminder <a href="https://www.statmethods.net/management/operators.html#Logical">here</a>. We’ll use <code>&gt;</code> and <code>==</code> here.</p>
+<p><img src="assets/rstudio-cheatsheet-filter.png" /> <br> <br></p>
+<p>Are you familiar with how to invoke logical expressions in R? If not, here is an overview <a href="https://www.statmethods.net/management/operators.html#Logical">here</a>. We’ll use <code>&gt;</code> and <code>==</code> here.</p>
 <pre class="r"><code>filter(coronavirus, cases &gt; 0)</code></pre>
 <p>You can say this out loud: “Filter the coronavirus data for cases greater than 0”. Notice that when we do this, all the columns are returned, but only the rows that have the a non-zero case count. We’ve subsetted by row.</p>
 <p>Let’s try another: “Filter the coronavirus data for the country US”.</p>
 <pre class="r"><code>filter(coronavirus, country == &quot;US&quot;)</code></pre>
+<p><br></p>
 <p>Note that when you run that line of code, <code>dplyr</code> executes the filtering operation and returns a new data frame. <code>dplyr</code> functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, <code>&lt;-</code>:</p>
 <pre class="r"><code>coronavirus_us &lt;- filter(coronavirus, country == &quot;US&quot;)</code></pre>
 <p><br></p>
 <p>How about if we want two country names? We can’t use a single instance of the <code>==</code> operator here, because it can only operate on one thing at a time. We can use <a href="https://r4ds.had.co.nz/transform.html#logical-operators">Boolean operators</a> for this: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. So if we want records from both the US and Canada, we can type</p>
 <pre class="r"><code>filter(coronavirus, country == &quot;US&quot; | country == &quot;Canada&quot;)</code></pre>
+<p><br></p>
 <p>A useful short-hand for this problem is <code>x %in% y</code>. This will select every row where <code>x</code> is one of the values in <code>y</code>. We could use it to rewrite the code above:</p>
 <pre class="r"><code>filter(coronavirus, country %in% c(&quot;US&quot;, &quot;Canada&quot;))</code></pre>
 <p>How about if we want only the death counts in the US? You can pass filter different criteria:</p>
@@ -638,6 +631,8 @@ Hint: You can do this in 2 steps by assigning a variable and then using the <cod
 <p><br></p>
 <div id="answer-no-peeking" class="section level4">
 <h4>Answer (no peeking!)</h4>
+<details>
+<p><summary>click to see one approach</summary></p>
 <p>This is one way to do it based on what we have learned so far:</p>
 <p><strong>Question 1a:</strong></p>
 <pre class="r"><code>x &lt;- filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)  
@@ -646,10 +641,12 @@ sum(x$cases)
 # Also, remember that the output from filter() is a dataframe, so you can use the $ operator on the called function directly:
 
 sum(filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)$cases)</code></pre>
-<p><br> <strong>Question 1b:</strong></p>
+<p><br></p>
+<p><strong>Question 1b:</strong></p>
 <pre class="r"><code>#Example:
 
-filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2020-10-04&quot;)</code></pre>
+filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2021-02-28&quot;)</code></pre>
+</details>
 <p><br> <br></p>
 </div>
 </div>
@@ -669,6 +666,8 @@ filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot
 <h3>Your turn - Exercise 2</h3>
 <p>Create a new dataframe including only the country, lat, and long variables, listed in this order. Now make one listed in order lat, long, country.</p>
 <p><br></p>
+<details>
+<p><summary>click to see one approach</summary></p>
 <p>In this case, we have very few variables that we can easily select one by one, but for datasets with lots of variables with standardized names, some of the built-in helper functions may be helpful, e.g.:</p>
 <pre class="r"><code>select(coronavirus, country:long)
 select(coronavirus, contains(&#39;o&#39;))
@@ -679,6 +678,7 @@ select(coronavirus, ends_with(&#39;e&#39;))
 select(coronavirus, casetype = type)
 select(coronavirus, casetype = type, everything())
 rename(coronavirus, casetype = type)</code></pre>
+</details>
 <p><br> <br></p>
 </div>
 </div>
@@ -747,6 +747,8 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
   filter(country == &quot;US&quot;) %&gt;%
   select(-lat, -long, -province) </code></pre>
 <p><br> <br></p>
+<p>Here’s a caricature slide Nicolas posted on Slack to help build intuition about the differences between the tidyverse and base R syntax for data wrangling</p>
+<p><img src="/Users/nt246/github/NTRES-6100-data-science/docs/assets/tidyverse_baseR.png" /> <br> <br></p>
 </div>
 </div>
 </div>
@@ -756,7 +758,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 <p>Then combine your new data wrangling skills with the ggplot skills to covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!</p>
 <p>If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare.</p>
 <p><br></p>
-<p><strong>Knit your RMarkdown file, and sync it to GitHub (pull, stage, commit, push)</strong></p>
+<p><strong>Save your R script (knit if you’ve been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)</strong></p>
 <p><br> <br></p>
 </div>
 <div id="more-ways-to-select-columns" class="section level2">
@@ -777,7 +779,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
