@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * If you see the error message `Another git process seems to be running in this repository` when committing, pulling, or pushing
     * Close and reopen RStudio
     * Delete the `index.lock` file under the hidden `.git` folder, you can do this by 
-        * running `rm -f path_to_project/.git/index.lock` in the Terminal (or `del -f path_to_project/.git/index.lock), OR
+        * running `rm -f path_to_project/.git/index.lock` in the Terminal (or `del -f path_to_project/.git/index.lock`), OR
         * remove the file manually in Finder or File Explorer
 * If you are using a Windows machine and find that you are unable to stage a folder with RStudio (e.g. the `site_libs` folder when rendering a website), please following the following steps
     * Close and reopen RStudio

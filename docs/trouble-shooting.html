@@ -26,6 +26,15 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -70,6 +79,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -454,11 +464,11 @@ div.tocify {
 <li>Close and reopen RStudio</li>
 <li>Delete the <code>index.lock</code> file under the hidden <code>.git</code> folder, you can do this by
 <ul>
-<li>running <code>rm -f path_to_project/.git/index.lock</code> in the Terminal (or `del -f path_to_project/.git/index.lock), OR</li>
+<li>running <code>rm -f path_to_project/.git/index.lock</code> in the Terminal (or <code>del -f path_to_project/.git/index.lock</code>), OR</li>
 <li>remove the file manually in Finder or File Explorer</li>
 </ul></li>
 </ul></li>
-<li>If you are using a Windows machine and find that you are unable to stage a folder with RStudio (e.g. the <code>site_libs</code> folder when rendering a website), please following the following steps
+<li>If you are using a Windows machine and find that you are unable to stage a folder with RStudio (e.g. the <code>site_libs</code> folder when rendering a website), please following the following steps
 <ul>
 <li>Close and reopen RStudio</li>
 <li>Reopen your R Project</li>
@@ -486,7 +496,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
