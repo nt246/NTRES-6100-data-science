@@ -500,7 +500,7 @@ coronavirus_us  <- coronavirus %>%
 
 Here's a caricature slide Nicolas posted on Slack to help build intuition about the differences between the tidyverse and base R syntax for data wrangling
 
-![](/Users/nt246/github/NTRES-6100-data-science/docs/assets/tidyverse_baseR.png)
+![](assets/tidyverse_baseR.png)
 <br>
 <br>
 
