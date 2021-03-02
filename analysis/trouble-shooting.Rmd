@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
     * Close and reopen RStudio
     * Reopen your R Project
     * Go to Terminal in RStudio
-    * Run `del .git/index.lock` in Terminal
+    * Run `rm .git/index.lock` (or `del .git/index.lock`) in Terminal
     * Run `git add -A` in Terminal
     * Refresh the Git tab in RStudio
     * Commit and push as you usually do.
