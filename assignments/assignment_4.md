@@ -1,61 +1,162 @@
-Assignment 4: Data transformation with dplyr and visualization with
-ggplot
+Assignment 4: Data transformation and visualization
 ================
-
-<br>
 
 ## Instructions: Please read through this before you begin
 
-  - This assignment is due by **10pm on Monday 10/19/20**.
+-   This assignment is due by **10pm on Wednesday 03/10/20**. Please
+    upload it using your personal GitHub repository for this class.
 
-  - For this assignment, please **reproduce this markdown file** using R
+-   You can start by making a copy of the R markdown template that you
+    created as `assignment_1.Rmd` and work from there.
+
+-   Please name your R markdown file `assignment_4.Rmd` and the knitted
+    markdown file `assignment_4.md`.
+
+-   For this assignment, please **reproduce this markdown file** using R
     markdown. This includes the followings:
-    
-      - **Reproduce this markdown template**. Pay attention to all the
-        formating in this file, including bullet points, bolded
-        characters, inserted code chunks, headings, text colors, blank
-        lines, etc.
-    
-      - **Transform the data as instructed**. Try to use `tidyverse`
-        functions even if you are more comfortable with base-R
-        solutions. Show the **first 6 lines** of the transformed data in
-        a table through RMarkdown **using the kable() function**, as
-        shown in this markdown file.
-    
-      - **Reproduce the plots exactly as shown in this html file**. In
-        two cases where the plot is not shown (Excercises 3.7 and 3.9),
-        generate plots that you think can best answer the question.
-    
-      - Have all your code embedded within the R markdown file, and show
+
+    -   **Reproduce this markdown template**, except for this list of
+        instructions which you **don’t** have to include. Pay attention
+        to all the formating in this file, including bullet points,
+        bolded characters, inserted code chunks, headings, text colors,
+        blank lines, etc.
+
+    -   Write code to reproduce all the figures and tables shown. Have
+        all your code embedded within the R markdown file, and show
         **BOTH your code and plots** in the knitted markdown file.
-    
-      - When a verbal response is needed, answer by editing the part in
-        the R markdown template where it says <span style="color:blue">
-        “Write your response here” </span> .
-    
-      - Use R Markdown functionalities to **hide messages and warnings
+
+    -   When a verbal response is needed, answer by editing the part in
+        the R markdown template where it says “Write your response
+        here”.
+
+    -   Use R Markdown functionalities to **hide messages and warnings
         when needed**. (Suggestion: messages and warnings can often be
         informative and important, so please examine them carefully and
         only turn them off when you finish the exercise).
 
-  - Please name your R markdown file `assignment_4.Rmd` and the knitted
-    markdown file `assignment_4.md`. Please push both files to your
-    class GitHub repository.
+-   Note that Exercise 3 is **optional** (only Exercise 1 and 2 are
+    required).
 
 <br>
 
-First, load all the required packages with the following code. Install
-them if they are not installed yet.
+## Load packages
+
+To start, load all the required packages with the following code.
+Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
 library(knitr)
-library(gapminder)
 ```
 
 <br>
 
-## Exercise 1. Theophylline experiment
+## Exercise 1. Corruption and human development
+
+This exercise explores a dataset containing the human development index
+(`HDI`) and corruption perception index (`CPI`) of 173 countries across
+6 different regions around the world: Americas, Asia Pacific, Eastern
+Europe and Central Asia (`East EU Cemt`), Western Europe
+(`EU W. Europe`), Middle East and North Africa and Noth Africa (`MENA`),
+and Sub-Saharan Africa (`SSA`). (Note: the larger `CPI` is, the less
+corrupted the country is perceived to be.)
+
+<br>
+
+First, we load the data using the following code.
+
+``` r
+economist_data <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv")
+```
+
+<br>
+
+#### 1.1 Show the first few rows of `economist_data`.
+
+|  X1 | Country     | HDI.Rank |   HDI | CPI | Region            |
+|----:|:------------|---------:|------:|----:|:------------------|
+|   1 | Afghanistan |      172 | 0.398 | 1.5 | Asia Pacific      |
+|   2 | Albania     |       70 | 0.739 | 3.1 | East EU Cemt Asia |
+|   3 | Algeria     |       96 | 0.698 | 2.9 | MENA              |
+|   4 | Angola      |      148 | 0.486 | 2.0 | SSA               |
+|   5 | Argentina   |       45 | 0.797 | 3.0 | Americas          |
+|   6 | Armenia     |       86 | 0.716 | 2.6 | East EU Cemt Asia |
+
+<br>
+
+#### 1.2 Expore the relationship between human development index (`HDI`) and corruption perception index (`CPI`) with a scatter plot as the following.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+<br>
+
+#### 1.3 Make of color of all points in the previous plot red.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+<br>
+
+#### 1.4 Color the points in the previous plot according to the `Region` variable, and set the size of points to 2.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+<br>
+
+#### 1.5 Set the size of the points proportional to `HDI.Rank`
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+<br>
+
+#### 1.6 Fit a **smoothing line** to **all** the data points in the scatter plot from Excercise 1.4
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+<br>
+
+#### 1.7 Fit a separate **straight line** for **each region** instead, and turn off the confidence interval.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+<br>
+
+#### 1.8 Building on top of the previous plot, show each `Region` in a different facet.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+<br>
+
+#### 1.9 Show the distribution of `HDI` in each region using density plot. Set the transparency to 0.5
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+<br>
+
+#### 1.10 Show the distribution of `HDI` in each region using histogram and facetting.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+<br>
+
+#### 1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot. (Hint: `geom_jitter()` or `position_jitter()` might be useful.)
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+<br>
+
+#### 1.12 Show the count of countries in each region using a bar plot.
+
+![](assignment_4_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+<br>
+
+#### 1.13 You have now created a variety of different plots of the same dataset. Which of your plots do you think are the most informative? Describe briefly the major trends that you see in the data.
+
+Answer: *Write your response here*.
+
+<br> <br>
+
+## Exercise 2. Theophylline experiment
 
 This exercise uses the `Theoph` data frame (comes with your R
 installation), which has 132 rows and 5 columns of data from an
@@ -71,7 +172,7 @@ kable(head(Theoph))
 ```
 
 | Subject |   Wt | Dose | Time |  conc |
-| :------ | ---: | ---: | ---: | ----: |
+|:--------|-----:|-----:|-----:|------:|
 | 1       | 79.6 | 4.02 | 0.00 |  0.74 |
 | 1       | 79.6 | 4.02 | 0.25 |  2.84 |
 | 1       | 79.6 | 4.02 | 0.57 |  6.57 |
@@ -81,10 +182,15 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.1 Select columns that contain a lower case “t” in the `Theoph` dataset. Do not manually list all the columns to include.
+For the following exercies, **transform the data as instructed**. Try to
+use `tidyverse` functions even if you are more comfortable with base-R
+solutions. Show the **first 6 lines** of the transformed data in a table
+through RMarkdown **using the kable() function**, as shown above.
+
+#### 2.1 Select columns that contain a lower case “t” in the `Theoph` dataset. Do not manually list all the columns to include.
 
 | Subject |   Wt |
-| :------ | ---: |
+|:--------|-----:|
 | 1       | 79.6 |
 | 1       | 79.6 |
 | 1       | 79.6 |
@@ -94,10 +200,10 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.2 Rename the `Wt` column to `Weight` and `conc` column to `Concentration` in the `Theoph` dataset.
+#### 2.2 Rename the `Wt` column to `Weight` and `conc` column to `Concentration` in the `Theoph` dataset.
 
 | Subject | Weight | Dose | Time | Concentration |
-| :------ | -----: | ---: | ---: | ------------: |
+|:--------|-------:|-----:|-----:|--------------:|
 | 1       |   79.6 | 4.02 | 0.00 |          0.74 |
 | 1       |   79.6 | 4.02 | 0.25 |          2.84 |
 | 1       |   79.6 | 4.02 | 0.57 |          6.57 |
@@ -107,10 +213,10 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.3 Extract the `Dose` greater than 4.5 and `Time` greater than the mean `Time`.
+#### 2.3 Extract the `Dose` greater than 4.5 and `Time` greater than the mean `Time`.
 
 | Subject |   Wt | Dose |  Time | conc |
-| :------ | ---: | ---: | ----: | ---: |
+|:--------|-----:|-----:|------:|-----:|
 | 3       | 70.5 | 4.53 |  7.07 | 5.30 |
 | 3       | 70.5 | 4.53 |  9.00 | 4.90 |
 | 3       | 70.5 | 4.53 | 12.15 | 3.70 |
@@ -120,10 +226,10 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.4 Sort the `Theoph` dataset by `Wt` from smallest to largest and secondarily by Time from largest to smallest.
+#### 2.4 Sort the `Theoph` dataset by `Wt` from smallest to largest and secondarily by Time from largest to smallest.
 
 | Subject |   Wt | Dose |  Time | conc |
-| :------ | ---: | ---: | ----: | ---: |
+|:--------|-----:|-----:|------:|-----:|
 | 5       | 54.6 | 5.86 | 24.35 | 1.57 |
 | 5       | 54.6 | 5.86 | 12.00 | 4.37 |
 | 5       | 54.6 | 5.86 |  9.10 | 5.90 |
@@ -133,10 +239,10 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.5 Create a new column called `Quantity` that equals to `Wt` x `Dose` in the `Theoph` dataset. This will tell you the absolute quantity of drug administered to the subject (in mg). Replace the `Dose` variable with `Quantity`.
+#### 2.5 Create a new column called `Quantity` that equals to `Wt` x `Dose` in the `Theoph` dataset. This will tell you the absolute quantity of drug administered to the subject (in mg). Replace the `Dose` variable with `Quantity`.
 
 | Subject |   Wt | Quantity | Time |  conc |
-| :------ | ---: | -------: | ---: | ----: |
+|:--------|-----:|---------:|-----:|------:|
 | 1       | 79.6 |  319.992 | 0.00 |  0.74 |
 | 1       | 79.6 |  319.992 | 0.25 |  2.84 |
 | 1       | 79.6 |  319.992 | 0.57 |  6.57 |
@@ -146,14 +252,14 @@ kable(head(Theoph))
 
 <br>
 
-#### 1.6 Find the mean `conc` and sum of the `Dose` received by each test subject.
+#### 2.6 Find the mean `conc` and sum of the `Dose` received by each test subject.
 
 Show data for the 6 subjects with the smallest sum of `Dose` as below.
 **Do not define new intermediate objects for this exercise; use pipes to
 chain together functions. **
 
 | Subject | mean(conc) | sum(Dose) |
-| :------ | ---------: | --------: |
+|:--------|-----------:|----------:|
 | 9       |   4.893636 |     34.10 |
 | 6       |   3.525454 |     44.00 |
 | 1       |   6.439091 |     44.22 |
@@ -163,155 +269,37 @@ chain together functions. **
 
 <br>
 
-## Exercise 2. Trend in land value
+## Exercise 3. Unemployment in the US 1967-2015 (**OPTIONAL**)
 
-This excercise uses a dataset that describes the trend of land value
-(`Land.Value`), among other variables, in different states in the US
-1975-2013. The states are grouped into four different regions, under the
-variable `region`. This dataset was obtained from the Data Science
-Services of Harvard
-University.
-
-``` r
-housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/landdata_states.csv")
-kable(head(housing)) 
-```
-
-| State | region |    Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
-| :---- | :----- | ------: | ---------: | -------------: | ---------: | ---------------: | ---------------: | ---------------: | ---: | ---: |
-| AK    | West   | 2010.25 |     224952 |         160599 |      64352 |             28.6 |            1.481 |            1.552 | 2010 |    1 |
-| AK    | West   | 2010.50 |     225511 |         160252 |      65259 |             28.9 |            1.484 |            1.576 | 2010 |    2 |
-| AK    | West   | 2009.75 |     225820 |         163791 |      62029 |             27.5 |            1.486 |            1.494 | 2009 |    3 |
-| AK    | West   | 2010.00 |     224994 |         161787 |      63207 |             28.1 |            1.481 |            1.524 | 2009 |    4 |
-| AK    | West   | 2008.00 |     234590 |         155400 |      79190 |             33.8 |            1.544 |            1.885 | 2007 |    4 |
-| AK    | West   | 2008.25 |     233714 |         157458 |      76256 |             32.6 |            1.538 |            1.817 | 2008 |    1 |
-
-<br>
-
-#### 2.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
-
-  - #### Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
-
-  - #### Save this updated `region` variable together with `State`, `Date` and `Land.Value` into a new data frame.
-
-  - #### Select the records from DC in this new data frame. How many records are there from DC? Show its first 6 lines.
-
-| region | State | Land.Value |    Date |
-| :----- | :---- | ---------: | ------: |
-| South  | DC    |     290522 | 2003.00 |
-| South  | DC    |     305673 | 2003.25 |
-| South  | DC    |     323078 | 2003.50 |
-| South  | DC    |     342010 | 2003.75 |
-| South  | DC    |     361999 | 2004.00 |
-| South  | DC    |     382792 | 2004.25 |
-
-Answer: <span style="color:blue"> Write your response here.
-</span>
-
-<br>
-
-#### 2.2 Generate a dataframe that summarizes the mean land value of each region at each time point.
-
-| region  |    Date | mean\_land\_value |
-| :------ | ------: | ----------------: |
-| Midwest | 1975.25 |          2452.167 |
-| Midwest | 1975.50 |          2498.917 |
-| Midwest | 1975.75 |          2608.167 |
-| Midwest | 1976.00 |          2780.000 |
-| Midwest | 1976.25 |          2967.333 |
-| Midwest | 1976.50 |          3212.833 |
-
-<br>
-
-#### 2.3 Using the dataframe above, plot the trend in mean land value of each region through time.
-
-![](assignment_4_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
-
-<br>
-
-## Exercise 3. Life expectancy and GDP per capita 1952-2007
-
-This exercise uses the `gapminder` dataset from the `gapminder` package.
-It describes the life expectancy (`lifeExp`), GDP per capita
-(`gdpPercap`), and population (`pop`) of 142 countries from 1952 to
-2007. These countries can be grouped into 5 continents. As a reminder,
-**reproduce the following plots exactly as shown**.
+This excercise uses the dataset `economics` from the ggplot2 package. It
+was produced from US economic time series data available from
+<http://research.stlouisfed.org/fred2>. It descibes the number of
+unemployed persons (`unemploy`), among other variables, in the US from
+1967 to 2015.
 
 ``` r
-kable(head(gapminder))
+head(economics) %>% kable()
 ```
 
-| country     | continent | year | lifeExp |      pop | gdpPercap |
-| :---------- | :-------- | ---: | ------: | -------: | --------: |
-| Afghanistan | Asia      | 1952 |  28.801 |  8425333 |  779.4453 |
-| Afghanistan | Asia      | 1957 |  30.332 |  9240934 |  820.8530 |
-| Afghanistan | Asia      | 1962 |  31.997 | 10267083 |  853.1007 |
-| Afghanistan | Asia      | 1967 |  34.020 | 11537966 |  836.1971 |
-| Afghanistan | Asia      | 1972 |  36.088 | 13079460 |  739.9811 |
-| Afghanistan | Asia      | 1977 |  38.438 | 14880372 |  786.1134 |
+| date       |   pce |    pop | psavert | uempmed | unemploy |
+|:-----------|------:|-------:|--------:|--------:|---------:|
+| 1967-07-01 | 506.7 | 198712 |    12.6 |     4.5 |     2944 |
+| 1967-08-01 | 509.8 | 198911 |    12.6 |     4.7 |     2945 |
+| 1967-09-01 | 515.6 | 199113 |    11.9 |     4.6 |     2958 |
+| 1967-10-01 | 512.2 | 199311 |    12.9 |     4.9 |     3143 |
+| 1967-11-01 | 517.4 | 199498 |    12.8 |     4.7 |     3066 |
+| 1967-12-01 | 525.1 | 199657 |    11.8 |     4.8 |     3018 |
 
 <br>
 
-#### 3.1 Use a scatterplot to explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`).
+#### 3.1 Plot the trend in number of unemployed persons (`unemploy`) though time using the economics dataset shown above. And for this question only, **hide your code and only show the plot**.
 
-![](assignment_4_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
-
-<br>
-
-#### 3.2 Add a smoothing line to the previous plot.
-
-![](assignment_4_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](assignment_4_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 <br>
 
-#### 3.3 Show each continent in a different color, and fit a separate smoothing line to each continent to identify differences in this relationship between continents. Turn off the confidence intervals.
+#### 3.2 Edit the plot title and axis labels of the previous plot appropriately. Make y axis start from 0. Change the background theme to what is shown below. (Hint: search for help online if needed)
 
-![](assignment_4_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
-
-<br>
-
-#### 3.4 Use faceting to solve the same problem. Show the confidence intervals in this plot
-
-![](assignment_4_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
-
-<br>
-
-#### 3.5 Explore the trend in life expectancy through time in each continent. Color by continent.
-
-![](assignment_4_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
-
-<br>
-
-#### 3.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
-
-| country     | continent | year | lifeExp |      pop | gdpPercap |
-| :---------- | :-------- | ---: | ------: | -------: | --------: |
-| Afghanistan | Asia      | 1952 |  28.801 |  8425333 |  779.4453 |
-| Afghanistan | Asia      | 1957 |  30.332 |  9240934 |  820.8530 |
-| Afghanistan | Asia      | 1962 |  31.997 | 10267083 |  853.1007 |
-| Afghanistan | Asia      | 1967 |  34.020 | 11537966 |  836.1971 |
-| Afghanistan | Asia      | 1972 |  36.088 | 13079460 |  739.9811 |
-| Afghanistan | Asia      | 1977 |  38.438 | 14880372 |  786.1134 |
-
-<br>
-
-#### 3.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy **by plotting**, and discuss historical events possibly explaining these trends. (Hint: facet by country)
-
-Answer: <span style="color:blue"> Write your response here.
-</span>
-
-<br>
-
-#### 3.8 Explore the trend in per capita GDP through time in each continent.
-
-![](assignment_4_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
-
-<br>
-
-#### 3.9 There is one Asian country that had a very sharp decline in per capita GDP. With the previously filtered dataset, **use a plot** to identify this country and speculate on the historical event underlying this pattern.
-
-<br>
-
-Answer: <span style="color:blue"> Write your response here. </span>
+![](assignment_4_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 <br>
