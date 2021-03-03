@@ -13,6 +13,7 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +26,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +80,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -597,7 +608,7 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 </div>
 <div id="filter-subsets-data-row-wise-observations." class="section level2">
 <h2><code>filter()</code> subsets data row-wise (observations).</h2>
-<p>You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting.</p>
+<p>You will want to isolate bits of your data; maybe you want to only look at a single country or specific days or months. R calls this subsetting.</p>
 <p><code>filter()</code> is a function in <code>dplyr</code> that takes logical expressions and returns the rows for which all are <code>TRUE</code>.</p>
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
 <p><img src="assets/rstudio-cheatsheet-filter.png" /> <br> <br></p>
@@ -635,7 +646,9 @@ Hint: You can do this in 2 steps by assigning a variable and then using the <cod
 <div id="answer-no-peeking" class="section level4">
 <h4>Answer (no peeking!)</h4>
 <details>
-<p><summary>click to see one approach</summary></p>
+<summary>
+click to see one approach
+</summary>
 <p>This is one way to do it based on what we have learned so far:</p>
 <p><strong>Question 1a:</strong></p>
 <pre class="r"><code>x &lt;- filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)  
@@ -670,7 +683,9 @@ filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot
 <p>Create a new dataframe including only the country, lat, and long variables, listed in this order. Now make one listed in order lat, long, country.</p>
 <p><br></p>
 <details>
-<p><summary>click to see one approach</summary></p>
+<summary>
+click to see one approach
+</summary>
 <p>In this case, we have very few variables that we can easily select one by one, but for datasets with lots of variables with standardized names, some of the built-in helper functions may be helpful, e.g.:</p>
 <pre class="r"><code>select(coronavirus, country:long)
 select(coronavirus, contains(&#39;o&#39;))
@@ -782,7 +797,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

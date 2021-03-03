@@ -13,6 +13,7 @@
 
 <title>Lesson 8: Data Wrangling Part 2</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +26,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +80,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -458,12 +469,8 @@ div.tocify {
 <li><p>Jenny Bryan’s lectures from STAT545 at UBC: <a href="http://stat545.com/block009_dplyr-intro.html">Introduction to dplyr</a></p></li>
 <li><p>Software Carpentry’s R for reproducible scientific analysis materials: <a href="https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">Dataframe manipulation with dplyr</a></p></li>
 </ul>
-<p><br></p>
+<p><br> <br></p>
 </div>
-</div>
-<div id="class-announcements" class="section level2">
-<h2>Class announcements</h2>
-<p><br></p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning objectives</h2>
@@ -490,20 +497,30 @@ div.tocify {
 <div id="getting-set-up-a-reloading-the-coronavirus-dataset" class="section level2">
 <h2>Getting set up a reloading the Coronavirus dataset</h2>
 <p>Let’s jump back in where we left on Monday. Let’s first clear out our workspace so we start with a fresh session by clicking “Session” -&gt; “Restart R”. Then let’s open the R-script we were using to take notes, pull from GitHub to make sure we have the most recent version. You can use this script to type along as we’re working through demos today (if you want, it’s also fine to just watch).</p>
-<p>Today we’ll also practice combining text and code in R Markdown files, so we’ll do our in-class exercises in an R Markdown file. Do you remember how to create a new RMarkdown file? Go File -&gt; New File -&gt; R Markdown. Then change the output to GitHub document either as you’re setting up the file or by manually editing the YAML header to say <code>output: github_document</code>. Now, delete the boilerplate text after the first setup code chunk and copy today’s exercise questions into your document from <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/in_class_exercises/Oct7_exercises_wrangle2.md">here</a>. As we work through the exercises, you will want to add a code chunk under each question to complete your answer.</p>
+<p>Today we’ll also practice combining text and code in R Markdown files, so we’ll do our in-class exercises in an R Markdown file. Do you remember how to create a new RMarkdown file? Go File -&gt; New File -&gt; R Markdown. Then change the output to GitHub document either as you’re setting up the file or by manually editing the YAML header to say <code>output: github_document</code>. Now, delete the boilerplate text after the first setup code chunk and copy today’s exercise questions into your document from <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/lesson8-in-class-exercises.md">here</a>. As we work through the exercises, you will want to add a code chunk under each question to complete your answer.</p>
 <p>Finally, load the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
+## ✓ tibble  3.0.1     ✓ dplyr   1.0.2
+## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(skimr)        ## install.packages(&quot;skimr&quot;)</code></pre>
 <pre class="r"><code># read in corona .csv (don&#39;t worry for now about what the col_types parameter means, we&#39;ll discuss that next week)
-coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))</code></pre>
+coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   date = col_date(format = &quot;&quot;),
+##   province = col_character(),
+##   country = col_character(),
+##   lat = col_double(),
+##   long = col_double(),
+##   type = col_character(),
+##   cases = col_double()
+## )</code></pre>
 <p>Let’s remind ourselves of the data structure and content</p>
 <pre class="r"><code>skim(coronavirus)</code></pre>
 <p><br></p>
@@ -516,7 +533,9 @@ coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/co
 <div id="answer" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code># One way to do this:
 
 coronavirus %&gt;% 
@@ -534,7 +553,7 @@ coronavirus %&gt;%
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
 <p><img src="assets/rstudio-cheatsheet-mutate.png" /></p>
 <p>The current variables in the coronavirus dataset don’t lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let’s reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don’t worry about how it works right now, we’ll get an opportunity to explore it in a few weeks.</p>
-<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-02-27):</p>
+<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-03-02):</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   select(country, type, cases) %&gt;%
   group_by(country, type) %&gt;%
@@ -569,7 +588,9 @@ coronavirus_ttd %&gt;%
 <div id="answer-1" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus_ttd %&gt;%
   mutate(undet = (confirmed - death - recovered) / confirmed) %&gt;% 
   filter(confirmed &gt; 1000000)</code></pre>
@@ -595,7 +616,9 @@ coronavirus_ttd %&gt;%
 <div id="answer-2" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus_ttd %&gt;%
   filter(death &gt; 100000) %&gt;% 
   arrange(-death)</code></pre>
@@ -616,7 +639,9 @@ coronavirus_ttd %&gt;%
 <div id="answer-3" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code># Identifying the record with the highest death count
 coronavirus %&gt;% 
   filter(type == &quot;death&quot;) %&gt;% 
@@ -662,11 +687,11 @@ coronavirus %&gt;%
 <p><br></p>
 <p>Why do some countries have much higher counts than others?</p>
 <p><br></p>
-<p>We can also do multi-level grouping. If we wanted to know how many of each type of case there were globally on Monday we could chain these functions together:</p>
+<p>We can also do multi-level grouping. If we wanted to know how many of each type of case there were globally on Monday (March 1) we could chain these functions together:</p>
 <pre class="r"><code>coronavirus %&gt;% 
   group_by(date, type) %&gt;% 
   summarize(total = sum(cases)) %&gt;%  # sums the count across countries
-  filter(date == &quot;2020-10-04&quot;)</code></pre>
+  filter(date == &quot;2021-03-01&quot;)</code></pre>
 <p><br> <br></p>
 </div>
 <div id="your-turn---exercise-5" class="section level2">
@@ -678,7 +703,9 @@ coronavirus %&gt;%
 <div id="answer-4" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus %&gt;% 
   filter(type == &quot;death&quot;) %&gt;% 
   group_by(date) %&gt;% 
@@ -708,20 +735,22 @@ coronavirus %&gt;%
 </div>
 <div id="if-you-have-more-time-here-is-an-optional-question" class="section level2">
 <h2>If you have more time, here is an optional question</h2>
-<p>The <code>month()</code> function from the package <code>lubridate</code> extracts the month from a date. How many countries already have more than 1000 deaths in October?</p>
+<p>The <code>month()</code> function from the package <code>lubridate</code> extracts the month from a date and <code>year()</code> extracts the year. How many countries already have more than 10,000 deaths in February of this year?</p>
 <p><br> <br></p>
 <div id="answer-5" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>library(lubridate) #install.packages(&#39;lubridate&#39;)
 
 coronavirus %&gt;% 
-  mutate(month = month(date)) %&gt;% 
-  filter(type == &quot;death&quot;, month == 10) %&gt;% 
+  mutate(month = month(date), year = year(date)) %&gt;% 
+  filter(type == &quot;death&quot;, month == 2, year == 2021) %&gt;% 
   group_by(country) %&gt;% 
   summarize(total_death = sum(cases)) %&gt;% 
-  filter(total_death &gt; 1000)</code></pre>
+  filter(total_death &gt; 10000)</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -729,12 +758,14 @@ coronavirus %&gt;%
 <div id="extra-in-class-questions" class="section level2">
 <h2>Extra in-class questions</h2>
 <p><br></p>
-<div id="which-country-had-the-highest-number-of-deaths-on-monday-october-4-2020" class="section level4">
-<h4>Which country had the highest number of deaths on Monday (October 4 2020)?</h4>
+<div id="which-country-had-the-highest-number-of-deaths-on-october-4-2020" class="section level4">
+<h4>Which country had the highest number of deaths on October 4 2020?</h4>
 <p><br></p>
 <strong>Answer</strong>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus %&gt;% 
   select(-lat, -long) %&gt;% 
   filter(date == &quot;2020-10-04&quot;, type == &quot;death&quot;) %&gt;% 
@@ -742,17 +773,19 @@ coronavirus %&gt;%
 </details>
 <p><br> <br></p>
 </div>
-<div id="which-country-had-the-highest-count-of-confirmed-cases-in-january-hint-to-address-this-question-the-function-month-from-the-package-lubridate-might-be-helpful.-what-about-in-march" class="section level4">
-<h4>Which country had the highest count of confirmed cases in January? [Hint: to address this question the function month() from the package lubridate might be helpful]. What about in March?</h4>
+<div id="which-country-had-the-highest-count-of-confirmed-cases-in-january-of-this-year-hint-to-address-this-question-the-function-month-from-the-package-lubridate-might-be-helpful.-what-about-in-march" class="section level4">
+<h4>Which country had the highest count of confirmed cases in January of this year? [Hint: to address this question the function month() from the package lubridate might be helpful]. What about in March?</h4>
 <p><br></p>
 <strong>Answer</strong>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>library(lubridate) #install.packages(&#39;lubridate&#39;)
 
 coronavirus %&gt;% 
-  mutate(month = month(date)) %&gt;% 
-  filter(type == &quot;confirmed&quot;, month == 1) %&gt;% 
+  mutate(month = month(date), year = year(date)) %&gt;% 
+  filter(type == &quot;confirmed&quot;, month == 1, year == 2021) %&gt;% 
   group_by(country) %&gt;% 
   summarize(total_death = sum(cases)) %&gt;% 
   arrange(-total_death)</code></pre>
@@ -765,7 +798,9 @@ coronavirus %&gt;%
 <p><br></p>
 <strong>Answer</strong>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus %&gt;% 
   group_by(country, date) %&gt;% 
   summarize(n = n()) %&gt;% 
@@ -780,7 +815,9 @@ coronavirus %&gt;%
 <p><br></p>
 <strong>Answer</strong>
 <details>
-<p><summary>click to expand</summary></p>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>coronavirus %&gt;% 
   filter(type == &quot;recovered&quot;) %&gt;% 
   group_by(country, province) %&gt;% 
@@ -803,7 +840,7 @@ coronavirus %&gt;%
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
