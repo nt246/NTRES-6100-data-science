@@ -76,7 +76,7 @@ library(skimr)        ## install.packages("skimr")
 
 ```{r, eval = TRUE, include = TRUE}
 # read in corona .csv (don't worry for now about what the col_types parameter means, we'll discuss that next week)
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 ```
 
