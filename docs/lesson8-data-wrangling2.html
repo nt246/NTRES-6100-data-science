@@ -523,7 +523,10 @@ click to expand
 coronavirus %&gt;% 
   filter(lat &gt; 60, type == &quot;confirmed&quot;) %&gt;% 
   select(country) %&gt;% 
-  table()</code></pre>
+  table()
+
+
+# If you try to plot the counts by date, you may see a very rugged pattern for Canada because case counts here are reported for different provinces. To get total daily counts by country we&#39;ll have to first group_by country and date and then summarize the counts, as outlined below.</code></pre>
 </details>
 <p><br> <br> <br></p>
 </div>
@@ -586,7 +589,7 @@ click to expand
 <p>For examining the output of our previous calculations, we may want to re-arrange the countries in ascending order for the proportion of confirmed cases for which the outcome remains unknown. The <code>dplyr</code> function for sorting rows is <code>arrange()</code>.</p>
 <pre class="r"><code>coronavirus_ttd %&gt;%
   mutate(undet = (confirmed - death - recovered)/confirmed) %&gt;% 
-  filter(confirmed &gt; 1000000) %&gt;% 
+  filter(confirmed &gt; 3000000) %&gt;% 
   arrange(undet)</code></pre>
 <p>I advise that your analyses NEVER rely on rows or variables being in a specific order. But it’s still true that human beings write the code and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.</p>
 <p><br> <br></p>

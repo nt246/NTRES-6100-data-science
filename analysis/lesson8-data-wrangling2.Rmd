@@ -104,6 +104,10 @@ coronavirus %>%
   filter(lat > 60, type == "confirmed") %>% 
   select(country) %>% 
   table()
+
+
+# If you try to plot the counts by date, you may see a very rugged pattern for Canada because case counts here are reported for different provinces. To get total daily counts by country we'll have to first group_by country and date and then summarize the counts, as outlined below.
+
 ```
 </details>
 
@@ -191,7 +195,7 @@ For examining the output of our previous calculations, we may want to re-arrange
 
 coronavirus_ttd %>%
   mutate(undet = (confirmed - death - recovered)/confirmed) %>% 
-  filter(confirmed > 1000000) %>% 
+  filter(confirmed > 3000000) %>% 
   arrange(undet)
   
 ```
