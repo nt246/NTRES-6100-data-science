@@ -63,13 +63,13 @@ Today we'll also practice combining text and code in R Markdown files, so we'll 
 
 Finally, load the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?
 
-```{r, eval = TRUE, include = TRUE}
+```{r, eval = TRUE, include = TRUE, message = FALSE}
 library(tidyverse)     ## install.packages("tidyverse")
 library(skimr)        ## install.packages("skimr")
 
 ```
 
-```{r, eval = TRUE, include = TRUE}
+```{r, eval = TRUE, include = TRUE, message = FALSE}
 # read in corona .csv (don't worry for now about what the col_types parameter means, we'll discuss that next week)
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
@@ -161,7 +161,7 @@ Note, however, that these estimated death rates may be misleading and should be 
 
 ### Your turn - Exercise 2
 
-> Add a new variable that shows the *proportion of confirmed cases* for which the outcome is still unknown (i.e. not counted as dead or recovered) for each country and show only countries with more than 1 million confirmed cases. Which country has the lowest proportion of undetermined outcomes? Why might that be?
+> Add a new variable that shows the *proportion of confirmed cases* for which the outcome is still unknown (i.e. not counted as dead or recovered) for each country and show only countries with more than 3 million confirmed cases. Which country has the highest proportion of undetermined outcomes? Why might that be?
 >
 > When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).
 
@@ -175,7 +175,7 @@ Note, however, that these estimated death rates may be misleading and should be 
 
 coronavirus_ttd %>%
   mutate(undet = (confirmed - death - recovered) / confirmed) %>% 
-  filter(confirmed > 1000000)
+  filter(confirmed > 3000000)
   
 ```
 </details>
@@ -304,8 +304,6 @@ coronavirus %>%
 
 ```
 
-<br>
-
 Why do some countries have much higher counts than others?
 
 <br>
@@ -416,7 +414,7 @@ coronavirus %>%
 <br>
 <br>
 
-#### Which country had the highest count of confirmed cases in January of this year? [Hint: to address this question the function month() from the package lubridate might be helpful]. What about in March?
+#### Which country had the highest count of confirmed cases in January of this year? [Hint: to address this question the functions `month()` and `year()` from the package lubridate might be helpful]. What about in March?
 <br>
 
 **Answer**
@@ -457,29 +455,10 @@ coronavirus %>%
   filter(maxcount > 3)
 
 ```
+
 </details>
-<br>
-<br>
 
-#### Do all countries have reports of the number of confirmed cases for the same number of days?
 
-<br>
-
-**Answer**
-<details>
-  <summary>click to expand</summary>
-
-```{r, eval = FALSE, include = TRUE}
-coronavirus %>% 
-  filter(type == "recovered") %>% 
-  group_by(country, province) %>% 
-  summarize(n = n()) %>% 
-  arrange(n) %>% 
-  ggplot() +
-    geom_histogram(aes(n))
-  
-```
-</details>
 
 
 
