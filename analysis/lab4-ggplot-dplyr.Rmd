@@ -29,15 +29,22 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* To start, first open a new RMarkdown file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab3.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+* To start, first open a new RMarkdown file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab4.Rmd`, and work in this RMarkdown file for the rest of this lab. 
 
 <br>
 
 * Now that you have learned how to subset data using different functions in `dplyr`, we will work with the full `gapminder` dataset provided in the R package `dslabs`. Let's start by installing the `dslabs` package if you don't have it installed already. Then, we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
 
-```{r}
-library(dslabs) #install.packages("dslabs")
+<br>
+
+```{r, }
 library(tidyverse)
+library(dslabs) #install.packages("dslabs")
+
+# After you have loaded the dslabs package, you can access the data stored in `gapminder`. Let's look at the top 5 lines 
+gapminder %>% as_tibble() %>% 
+  head(5)
+
 ```
 
 <br>
@@ -55,24 +62,57 @@ library(tidyverse)
     - region (geographical region)
 
 <br>
+<br>
 
-## Exercise 1: Use data transformation and visualization to answer the following close-ended questions in breakout rooms (45 min)
+## Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (45 min)
 
 <br>
 
-You may first answer these questions based on your intuition, and then use the `gapminder` dataset to verify if your intuition is correct. 
+The mission of the Gapminder Project is to "fight devastating ignorance with a fact-based worldview everyone can understand". Per their own description, Gapminder identifies systematic misconceptions about important global trends and proportions and uses reliable data to develop easy to understand teaching materials to rid people of their misconceptions.
 
-Some solutions are provided for each question, but we highly recommend you **not to look at them unless you are really stuck**.
+Several of the questions posted below have been borrowed from their [ignorance test](https://www.gapminder.org/ignorance/ignorance-test/)
+
+You may first answer these questions based on your intuition, and then use the `gapminder` dataset to verify if your intuition is correct, either with a summary table of the relevant statistics or with a visualization (ideally both!).
+
+We provide one possible solution for each question, but we highly recommend that you **don't look at them unless you are really stuck**.
+
+<br>
+<br>
+
+### Question 1: Which five countries had the largest population size in 2015 (the most recent year for which population sizes are included in this dataset), and how has the population sizes in those countries changes since 1960?
 
 <br>
 
-### Question 1. There are roughly seven billion people in the world today. Which map shows where people live? (Each figure represents 1 billion people.)
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
 
-![](https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20170330195501/Results-for-the-Swedish-Public-on-the-Gapminder-Test-2017%E2%80%99-1024x244.jpg)
+```{r}
+# Extract a vector with the 5 countries with the largest population size
+top5_countries <- gapminder %>%
+  filter(year == 2015) %>% 
+  arrange(-population) %>% 
+  select(country) %>% 
+  head(5) %>% 
+  pull()
 
-Hint: use the data from 2015
+gapminder %>% 
+  filter(country %in% top5_countries) %>% 
+  ggplot() +
+  geom_line(mapping = aes(x = year, y = population, color = country))
 
-<br> 
+```
+
+</details>
+
+<br>
+<br>
+
+### Question 2. Rank the following countries in infant mortality rate in 2015. 
+
+Turkey, Poland, South Korea, Russia, Vietnam, South Africa
+
+<br>
 
 *One possible solution*
 <details>
@@ -80,79 +120,22 @@ Hint: use the data from 2015
 
 ```{r}
 gapminder %>%
-  filter(year==2015) %>%
-  group_by(continent) %>%
-  summarize(population_in_billion=sum(population)/10^9) %>%
-  ggplot(aes(x=continent, y=population_in_billion)) +
-  geom_col()
+  filter(year==2015, country %in% c("Turkey", "Poland", "South Korea", "Russia", "Vietnam", "South Africa")) %>%
+  arrange(infant_mortality) %>%
+  select(country, infant_mortality) %>% 
+  knitr::kable()
 ```
 
 </details>
 
 <br>
-
-### Question 2. What is the life expectancy of the world population?
-
-A. 50 years  
-B. 60 years  
-C. 70 years  
-
-Hint: use the data from 2015
-
-<br> 
-
-*One possible solution*
-<details>
-  <summary>click to expand</summary>
-
-```{r}
-gapminder %>%
-  filter(year==2015) %>%
-  summarize(life_expectancy=sum(life_expectancy*population)/sum(population))
-```
-
-</details>
-
 <br>
 
-### Question 3. What is the gap in life expectancy between Europe and Africa?
+### Question 3. What is the general relationship between per-capita GDP and fertility rate? 
 
-A. 5 years  
-B. 15 years  
-C. 25 years  
-
-Hint: use the data from 2015
-
-<br> 
-
-*One possible solution*
-<details>
-  <summary>click to expand</summary>
-
-```{r}
-gapminder %>%
-  filter(year==2015) %>%
-  group_by(continent) %>%
-  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) %>%
-  ggplot(aes(x=continent, y=life_expectancy)) +
-  geom_col()
-
-gapminder %>%
-  filter(year==2015) %>%
-  ggplot(aes(x=continent, y=life_expectancy)) +
-  geom_jitter(aes(color=continent),height = 0) +
-  geom_boxplot(alpha=0, outlier.alpha = 0)
-```
-
-</details>
-
-<br>
-
-### Question 4. What is the general relationship between per-capita GDP and fertility rate? 
-
-A. positive relationship  
-B. negetive relationship  
-C. no relationship  
+A. Positive relationship  
+B. Negetive relationship  
+C. No relationship  
 
 Hint: use the data from 2000
 
@@ -173,8 +156,9 @@ gapminder %>%
 </details>
 
 <br>
+<br>
 
-### Question 5. If you break down the relationship between per-capita GDP and fertility rate by continent, which continent (or regions) stands out as an outlier? (Bonus question: why might this be?)
+### Question 4. If you break down the relationship between per-capita GDP and fertility rate by continent, which continent (or regions) stands out as an outlier? (Bonus question: why might this be?)
 
 A. Africa  
 B. Asia  
@@ -210,12 +194,15 @@ eu_2000 %>%
 </details>
 
 <br>
-
-### Question 6. Rank the following countries in infant mortality rate in 2015. 
-
-Turkey, Poland, South Korea, Russia, Vietnam, South Africa
-
 <br>
+
+### Question 5. There are roughly seven billion people in the world today. Which map shows where people live? (Each figure represents 1 billion people.)
+
+![](https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20170330195501/Results-for-the-Swedish-Public-on-the-Gapminder-Test-2017%E2%80%99-1024x244.jpg)
+
+Hint: use the data from 2015
+
+<br> 
 
 *One possible solution*
 <details>
@@ -223,31 +210,99 @@ Turkey, Poland, South Korea, Russia, Vietnam, South Africa
 
 ```{r}
 gapminder %>%
-  filter(year==2015, country %in% c("Turkey", "Poland", "South Korea", "Russia", "Vietnam", "South Africa")) %>%
-  arrange(infant_mortality) %>%
-  select(country, infant_mortality) %>% 
-  knitr::kable()
+  filter(year==2015) %>%
+  group_by(continent) %>%
+  summarize(population_in_billion=sum(population)/10^9) %>%
+  ggplot(aes(x=continent, y=population_in_billion)) +
+  geom_col()
 ```
 
 </details>
 
 <br>
+<br>
+
+### Question 6. What is the overall life expectancy for the world population (i.e. global average)?
+
+A. 50 years  
+B. 60 years  
+C. 70 years  
+
+Hint: use the data from 2015
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+gapminder %>%
+  filter(year==2015) %>%
+  summarize(life_expectancy=sum(life_expectancy*population)/sum(population))
+```
+
+</details>
+
+<br>
+<br>
+
+### Question 7. What is the gap in life expectancy between Europe and Africa?
+
+A. 5 years  
+B. 15 years  
+C. 25 years  
+
+Hint: use the data from 2015
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+gapminder %>%
+  filter(year==2015) %>%
+  group_by(continent) %>%
+  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) %>%
+  ggplot(aes(x=continent, y=life_expectancy)) +
+  geom_col()
+
+gapminder %>%
+  filter(year==2015) %>%
+  ggplot(aes(x=continent, y=life_expectancy)) +
+  geom_jitter(aes(color=continent),height = 0) +
+  geom_boxplot(alpha=0, outlier.alpha = 0)
+```
+
+</details>
+
+<br>
+<br>
+
 
 ## Recap (10 minutes)
 
 Share your findings, challenges, and questions with the class. 
 
 <br>
+<br>
 
 ## Short break (10 min)
 
 <br>
+<br>
 
-## Exercise 2: Use data transformation and visualization to explore the following open-ended questions in breakout rooms (40 min)
+## Exercise 2: Use data transformation and visualization to explore the following open-ended question in breakout rooms (40 min)
 
 <br>
 
-### Question 1. Explore how much the gap in infant mortality, life expectancy, and per capita GDP between Western countries and the rest of the world have changed from 1960 to 2010. 
+This question is borrowed from the excellent [Chapter 9 in Rafael A. Irizarry's Introduction to Data Science book](https://rafalab.github.io/dsbook/gapminder.html)
+
+<br>
+
+### Explore how much the gap in infant mortality, life expectancy, and per capita GDP between Western countries and the rest of the world have changed from 1960 to 2010. 
 
 <br>
 
@@ -304,6 +359,13 @@ gapminder %>%
 
 </details>
 
+<br>
+<br>
+
+### If you have more time:
+#### Think of another interesting question you can answer with this dataset and explore different strategies for getting your answer.
+
+<br>
 <br>
 
 ## Recap (10 minutes)
