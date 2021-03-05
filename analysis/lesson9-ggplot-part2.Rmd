@@ -2,7 +2,6 @@
 title: "Lesson 9: ggplot part 2"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
     toc_depth: 2  
 ---

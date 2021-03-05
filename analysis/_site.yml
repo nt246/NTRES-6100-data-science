@@ -35,6 +35,8 @@ navbar:
       href: lab2-rmarkdown-github.html
     - text: "Lab 3: Displaying data visualization on a website"
       href: lab3-ggplot-website.html
+    - text: "Lab 4: Data exploration with the gapminder dataset"
+      href: lab4-ggplot-dplyr.html
   - text: Assignments
     href: assignments.html    
   - text: Resources
