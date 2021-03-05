@@ -69,7 +69,7 @@ The two weekly lectures will introduce new concepts and provide opportunities to
 
 #### Evaluation
 
-It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures (and lab sessions if enrolled), participate actively during class, and submit at least 8 of the 9 problem sets with demonstrated effort to complete all questions. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand.  
+It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures (and lab sessions if enrolled), participate actively during class, and submit at least **7** of the 9 problem sets with demonstrated effort to complete all questions. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand.  
 
 ***
 
@@ -120,8 +120,8 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 8       | Wed | 3/3  | [Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html) | [Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md) |
 |         | Fri | 3/5  | [Lab 4](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html) |                  |
 | 9       | Mon | 3/8  | [Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)                                           |                  |
-|         | Wed | 3/10 | **NO CLASS** - Cornell Wellness Break                                                         | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)     |
-|         | Fri | 3/12 | Lab 5                                                                                         |                  |
+|         | Wed | 3/10 | **NO CLASS** - Cornell Wellness Break                                                         |                  |
+|         | Fri | 3/12 | Lab 5                                                                                         | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
 | 10      | Mon | 3/15 | Good coding practices, debugging strategies, and getting help |                  |
 | 11      | Wed | 3/17 | Tidy data (what is tidy data and how to handle untidy data)                                   | Assignment 5     |
 |         | Fri | 3/19 | Lab 6                                                                                         |                  |

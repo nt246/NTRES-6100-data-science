@@ -3,7 +3,7 @@ Assignment 4: Data transformation and visualization
 
 ## Instructions: Please read through this before you begin
 
--   This assignment is due by **10pm on Wednesday 03/10/20**. Please
+-   This assignment is due by **10pm on Friday 03/12/20**. Please
     upload it using your personal GitHub repository for this class.
 
 -   You can start by making a copy of the R markdown template that you
