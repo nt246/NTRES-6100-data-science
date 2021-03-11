@@ -1,0 +1,441 @@
+---
+title: "Lab 5: Data exploration with the Titanic dataset"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+<br>
+
+![](https://cdn.britannica.com/72/153172-050-EB2F2D95/Titanic.jpg)
+
+<br>
+
+## Goals for today
+
+1. Continue to practice data visualization with `ggplot2`
+ 
+2. Continue to practice data transformation with `dplyr`
+
+3. Integrate 1) and 2) to explore the `titanic` dataset
+
+<br>
+<br>
+
+## General instructions
+
+* Today, we will continue to combine the data transformation tools in `dplyr` and the data visualization tools in `ggplot2` to explore the patterns and trends in the `titanic` dataset. This dataset contains the information on passengers aboard the Titanic when it sank in 1912.
+
+    ![](https://upload.wikimedia.org/wikipedia/commons/5/51/Titanic_voyage_map.png)
+
+<br>
+
+* To start, first open a new RMarkdown file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab5.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+
+<br>
+
+* Load the required packages and read in the data with the following code.
+
+<br>
+
+```{r}
+# Load required packages
+library(tidyverse)
+library(knitr)
+
+# Read in the data
+titanic<-read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv")
+
+# Let's look at the top 5 lines of the dataset
+head(titanic, n=5) %>%
+  kable()
+```
+
+<br>
+
+* As a reminder, to get familar with this dataset, you might want to use functions like `View()`, `dim()`, `colnames()` , and `?`. You will see that the dataset includes the following variables:
+
+<br>
+
+```{r}
+notes<-read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv")
+kable(notes)
+```
+
+Note: Age is fractional if less than 1. If the age is estimated, it is in the form of xx.5
+
+<br>
+<br>
+
+## Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (50 min)
+
+<br>
+
+**Suggestions:**
+
+* Make sure that you use figures and/or tables to support your answer.
+
+* We provide some possible solutions for each question, but we highly recommend that you **don't look at them unless you are really stuck**.
+
+* Do not worry if you cannot finish Exercise 1 in 50 minutes. You can keep working on these questions after the break. 
+
+<br>
+<br>
+
+#### Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information on in this dataset? How many of them survived and how many did not? What is the overall survival rate?
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+# number of passengers in the dataset
+nrow(titanic) 
+# number of passengers surviving vs. dying
+survived_count <- titanic %>%
+  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+  count(survived) %>%
+  mutate(percentage = round(n/nrow(titanic)*100,2))
+kable(survived_count)
+# plotting
+titanic %>%
+  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+  ggplot(aes(x = survived)) +
+  geom_bar(aes(fill = survived)) +
+  geom_label(data = survived_count, aes(label=str_c(percentage, "%"), y=n/2)) +
+  coord_flip()
+```
+
+Note: `str_c()` is used to add the percentage sign.
+
+</details>
+
+<br>
+<br>
+
+#### Question 2. How many passengers on the Titanic were males and how many were females? What do you find when you break it down by ticket class?
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+# male vs. female
+## table
+sex_count <- titanic %>%
+  count(Sex)
+kable(sex_count)
+## plot 
+sex_count %>% 
+  ggplot(aes(x = Sex, y = n)) +
+  geom_col(aes(fill = Sex)) +
+  geom_text(aes(label = n, y = n + 20)) +
+  ylab("count") +
+  coord_flip()
+# male vs. female broken down by ticket class
+## table
+sex_class_count <- titanic %>%
+  group_by(Sex, Pclass) %>%
+  count()
+kable(sex_class_count)
+## plot
+sex_class_count %>% 
+  ggplot(aes(x = Sex, y = n)) +
+  geom_col(aes(fill = Sex)) +
+  geom_text(aes(label = n, y = n + 20)) +
+  facet_wrap(~Pclass) +
+  ylab("count")
+```
+
+</details>
+
+<br>
+<br>
+
+#### Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+# table
+sex_survival_count <- titanic %>%
+  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+  group_by(Sex, survived) %>%
+  count() %>%
+  group_by(Sex) %>%
+  mutate(percentage = round(n/sum(n)*100, 2))
+kable(sex_survival_count)
+# plot
+sex_survival_count %>%
+  arrange(Sex, desc(survived)) %>%
+  group_by(Sex) %>%
+  mutate(label_y = cumsum(n) - 0.5 * n) %>%
+  ggplot(aes(x=Sex)) +
+  geom_col(aes(fill = survived, y=n), color = "black") +
+  geom_label(aes(label = str_c(percentage, "%"), y = label_y)) +
+  coord_flip()
+```
+
+Note: the line `mutate(label_y = cumsum(n) - 0.5 * n)` is used to place the labels in the middle of each colored bar.
+
+</details>
+
+<br>
+<br>
+
+#### Question 4. How many passengers do we have age information for (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+# age info
+## table
+age_info_count <- titanic %>%
+  mutate(age_info = ifelse(is.na(Age), "missing", "available")) %>%
+  count(age_info)
+kable(age_info_count)
+## plot
+age_info_count %>%
+  ggplot(aes(x=age_info, y=n)) +
+  geom_col(aes(fill=age_info)) +
+  geom_label(aes(y=n+30, label=n)) +
+  coord_flip()
+# age distribution
+## summary
+titanic %>%
+  filter(!is.na(Age)) %>%
+  .$Age %>%
+  summary()
+## Plot
+titanic %>%
+  filter(!is.na(Age)) %>%
+  ggplot(aes(x=Age)) +
+  geom_histogram()
+```
+
+
+</details>
+
+<br>
+<br>
+
+#### Question 5. Show the age distribution per ticket class, per sex. What do you find?
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+titanic %>%
+  filter(!is.na(Age)) %>%
+  ggplot(aes(x=Age, fill=Sex)) +
+  geom_histogram() +
+  facet_grid(Pclass~Sex)
+titanic %>%
+  mutate(ticket_class = as.character(Pclass)) %>%
+  filter(!is.na(Age)) %>%
+  ggplot(aes(x=Age, fill=Sex)) +
+  geom_density(alpha=0.5) +
+  facet_grid(ticket_class~.)
+```
+
+</details>
+
+<br>
+<br>
+
+#### Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use one plot to answer this question. 
+
+<br> 
+
+Hint: `geom_histogram()` and `facet_grid()` can be helpful in answering this question. 
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+titanic %>%
+  filter(!is.na(Age)) %>%
+  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+  ggplot(aes(x=Age, fill=survived)) +
+  geom_histogram(position="stack", color="black") +
+  facet_grid(Sex~Pclass)
+```
+
+</details>
+
+<br>
+<br>
+
+
+#### Question 7. Show the distribution of the number of family members (including siblings, spouses, parents, and children) that each passenger was accompanied by. Were most passengers travelling solo or with family?
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+titanic %>%
+  mutate(n_family=SibSp+Parch) %>%
+  ggplot(aes(x=n_family)) +
+  geom_bar() +
+  scale_x_continuous(breaks = 0:10)
+titanic %>%
+  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family>0, "yes", "no")) %>%
+  ggplot(aes(x=with_family)) +
+  geom_bar() +
+  coord_flip()
+```
+
+</details>
+
+<br>
+<br>
+
+#### Question 8. Which ticket class did most of the largest families get? And which ticket class has the lowest proportion of female passengers who travelled solo out of all the female passengers in that class?
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r fig.height=6, fig.width=5}
+titanic %>%
+  mutate(n_family=SibSp+Parch) %>%
+  ggplot(aes(x=n_family)) +
+  geom_bar() +
+  scale_x_continuous(breaks = 0:10) +
+  facet_wrap(~Pclass, ncol = 1)
+```
+
+```{r}
+titanic %>%
+  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) %>%
+  ggplot(aes(x = n_family, fill = ticket_class)) +
+  geom_bar(color = "black", position = "fill") +
+  scale_x_continuous(breaks = 0:10) +
+  ylab("proportion") +
+  coord_flip()
+```
+
+
+</details>
+
+<br>
+<br>
+
+#### Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. (You don't need to show a table or a figure for this question, just show the code for the calculation)
+
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+titanic %>%
+  group_by(Ticket) %>%
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) %>%
+  ungroup() %>%
+  summarise(average_fare = mean(fare_per_ticket))
+```
+
+</details>
+
+<br>
+<br>
+
+#### Question 10. What is the distribution of per-ticket fare for each ticket class? 
+
+<br>
+<br> 
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+titanic %>%
+  group_by(Ticket) %>%
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) %>%
+  ggplot(aes(x=fare_per_ticket)) +
+  geom_histogram(bins = 100) +
+  facet_wrap(~ticket_class, ncol = 1, scales = "free_y")
+```
+
+</details>
+
+<br>
+<br>
+
+## Recap (5 minutes)
+
+<br>
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+<br>
+
+## Short break (10 min)
+
+<br>
+<br>
+
+## Exercise 2: Independent data exploration (40 min)
+
+<br>
+<br>
+
+#### Continue to explore the Titanic dataset.
+
+<br>
+
+**Suggested activities:**
+
+* Continue to work on Exercise 1 if you have not finished.
+
+* Polish your plots in Exercise 1. Try to put more thoughts into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; and etc.).
+
+* Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce them on your own.
+
+* Think of other interesting questions you can answer with this dataset and explore different strategies for getting your answer.
+
+
+<br>
+<br>
+
+## Recap (10 minutes)
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+
+**END LAB 4**
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

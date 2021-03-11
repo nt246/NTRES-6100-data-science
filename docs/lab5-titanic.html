@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab 5: Data exploration with the Titanic dataset</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 5: Data exploration with the Titanic dataset</h1>
+
+</div>
+
+
+<p><br></p>
+<div class="figure">
+<img src="https://cdn.britannica.com/72/153172-050-EB2F2D95/Titanic.jpg" />
+
+</div>
+<p><br></p>
+<div id="goals-for-today" class="section level2">
+<h2>Goals for today</h2>
+<ol style="list-style-type: decimal">
+<li><p>Continue to practice data visualization with <code>ggplot2</code></p></li>
+<li><p>Continue to practice data transformation with <code>dplyr</code></p></li>
+<li><p>Integrate 1) and 2) to explore the <code>titanic</code> dataset</p></li>
+</ol>
+<p><br> <br></p>
+</div>
+<div id="general-instructions" class="section level2">
+<h2>General instructions</h2>
+<ul>
+<li><p>Today, we will continue to combine the data transformation tools in <code>dplyr</code> and the data visualization tools in <code>ggplot2</code> to explore the patterns and trends in the <code>titanic</code> dataset. This dataset contains the information on passengers aboard the Titanic when it sank in 1912.</p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Titanic_voyage_map.png" />
+
+</div></li>
+</ul>
+<p><br></p>
+<ul>
+<li>To start, first open a new RMarkdown file in your course repo, set the output format to <code>github_document</code>, save it in your <code>lab</code> folder as <code>lab5.Rmd</code>, and work in this RMarkdown file for the rest of this lab.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Load the required packages and read in the data with the following code.</li>
+</ul>
+<p><br></p>
+<pre class="r"><code># Load required packages
+library(tidyverse)
+library(knitr)
+
+# Read in the data
+titanic&lt;-read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv&quot;)
+
+# Let&#39;s look at the top 5 lines of the dataset
+head(titanic, n=5) %&gt;%
+  kable()</code></pre>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="6%" />
+<col width="5%" />
+<col width="34%" />
+<col width="5%" />
+<col width="3%" />
+<col width="4%" />
+<col width="4%" />
+<col width="11%" />
+<col width="5%" />
+<col width="4%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">PassengerId</th>
+<th align="right">Survived</th>
+<th align="right">Pclass</th>
+<th align="left">Name</th>
+<th align="left">Sex</th>
+<th align="right">Age</th>
+<th align="right">SibSp</th>
+<th align="right">Parch</th>
+<th align="left">Ticket</th>
+<th align="right">Fare</th>
+<th align="left">Cabin</th>
+<th align="left">Embarked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="left">Braund, Mr. Owen Harris</td>
+<td align="left">male</td>
+<td align="right">22</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">A/5 21171</td>
+<td align="right">7.2500</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">Cumings, Mrs. John Bradley (Florence Briggs Thayer)</td>
+<td align="left">female</td>
+<td align="right">38</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">PC 17599</td>
+<td align="right">71.2833</td>
+<td align="left">C85</td>
+<td align="left">C</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">Heikkinen, Miss. Laina</td>
+<td align="left">female</td>
+<td align="right">26</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">STON/O2. 3101282</td>
+<td align="right">7.9250</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+<td align="left">female</td>
+<td align="right">35</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">113803</td>
+<td align="right">53.1000</td>
+<td align="left">C123</td>
+<td align="left">S</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="left">Allen, Mr. William Henry</td>
+<td align="left">male</td>
+<td align="right">35</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">373450</td>
+<td align="right">8.0500</td>
+<td align="left">NA</td>
+<td align="left">S</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</li>
+</ul>
+<p><br></p>
+<pre class="r"><code>notes&lt;-read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv&quot;)
+kable(notes)</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="12%" />
+<col width="41%" />
+<col width="45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Definition</th>
+<th align="left">Key</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PassengerId</td>
+<td align="left">Passenger ID</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Survival</td>
+<td align="left">Survival</td>
+<td align="left">0 = No, 1 = Yes</td>
+</tr>
+<tr class="odd">
+<td align="left">Pclass</td>
+<td align="left">Ticket class</td>
+<td align="left">1 = 1st, 2 = 2nd, 3 = 3rd</td>
+</tr>
+<tr class="even">
+<td align="left">Name</td>
+<td align="left">Pasenger name</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Sex</td>
+<td align="left">Sex</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="left">Age in years</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Sibsp</td>
+<td align="left"># of siblings / spouses aboard the Titanic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Parch</td>
+<td align="left"># of parents / children aboard the Titanic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Ticket</td>
+<td align="left">Ticket number</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Fare</td>
+<td align="left">Passenger fare</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Cabin</td>
+<td align="left">Cabin number</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Embarked</td>
+<td align="left">Port of Embarkation</td>
+<td align="left">C = Cherbourg, Q = Queenstown, S = Southampton</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Age is fractional if less than 1. If the age is estimated, it is in the form of xx.5</p>
+<p><br> <br></p>
+</div>
+<div id="exercise-1-use-data-transformation-and-visualization-to-answer-the-following-questions-in-breakout-rooms-50-min" class="section level2">
+<h2>Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (50 min)</h2>
+<p><br></p>
+<p><strong>Suggestions:</strong></p>
+<ul>
+<li><p>Make sure that you use figures and/or tables to support your answer.</p></li>
+<li><p>We provide some possible solutions for each question, but we highly recommend that you <strong>don't look at them unless you are really stuck</strong>.</p></li>
+<li><p>Do not worry if you cannot finish Exercise 1 in 50 minutes. You can keep working on these questions after the break.</p></li>
+</ul>
+<p><br> <br></p>
+<div id="question-1-according-to-wikipedia-there-was-an-estimated-2224-passengers-and-crew-onboard-the-titanic-when-it-sank.-how-many-of-them-do-we-have-information-on-in-this-dataset-how-many-of-them-survived-and-how-many-did-not-what-is-the-overall-survival-rate" class="section level4">
+<h4>Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information on in this dataset? How many of them survived and how many did not? What is the overall survival rate?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code># number of passengers in the dataset
+nrow(titanic) </code></pre>
+<pre><code>## [1] 891</code></pre>
+<pre class="r"><code># number of passengers surviving vs. dying
+survived_count &lt;- titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  count(survived) %&gt;%
+  mutate(percentage = round(n/nrow(titanic)*100,2))
+kable(survived_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">survived</th>
+<th align="right">n</th>
+<th align="right">percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">no</td>
+<td align="right">549</td>
+<td align="right">61.62</td>
+</tr>
+<tr class="even">
+<td align="left">yes</td>
+<td align="right">342</td>
+<td align="right">38.38</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># plotting
+titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  ggplot(aes(x = survived)) +
+  geom_bar(aes(fill = survived)) +
+  geom_label(data = survived_count, aes(label=str_c(percentage, &quot;%&quot;), y=n/2)) +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Note: <code>str_c()</code> is used to add the percentage sign.</p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-2.-how-many-passengers-on-the-titanic-were-males-and-how-many-were-females-what-do-you-find-when-you-break-it-down-by-ticket-class" class="section level4">
+<h4>Question 2. How many passengers on the Titanic were males and how many were females? What do you find when you break it down by ticket class?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code># male vs. female
+## table
+sex_count &lt;- titanic %&gt;%
+  count(Sex)
+kable(sex_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sex</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">female</td>
+<td align="right">314</td>
+</tr>
+<tr class="even">
+<td align="left">male</td>
+<td align="right">577</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>## plot 
+sex_count %&gt;% 
+  ggplot(aes(x = Sex, y = n)) +
+  geom_col(aes(fill = Sex)) +
+  geom_text(aes(label = n, y = n + 20)) +
+  ylab(&quot;count&quot;) +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code># male vs. female broken down by ticket class
+## table
+sex_class_count &lt;- titanic %&gt;%
+  group_by(Sex, Pclass) %&gt;%
+  count()
+kable(sex_class_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sex</th>
+<th align="right">Pclass</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">female</td>
+<td align="right">1</td>
+<td align="right">94</td>
+</tr>
+<tr class="even">
+<td align="left">female</td>
+<td align="right">2</td>
+<td align="right">76</td>
+</tr>
+<tr class="odd">
+<td align="left">female</td>
+<td align="right">3</td>
+<td align="right">144</td>
+</tr>
+<tr class="even">
+<td align="left">male</td>
+<td align="right">1</td>
+<td align="right">122</td>
+</tr>
+<tr class="odd">
+<td align="left">male</td>
+<td align="right">2</td>
+<td align="right">108</td>
+</tr>
+<tr class="even">
+<td align="left">male</td>
+<td align="right">3</td>
+<td align="right">347</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>## plot
+sex_class_count %&gt;% 
+  ggplot(aes(x = Sex, y = n)) +
+  geom_col(aes(fill = Sex)) +
+  geom_text(aes(label = n, y = n + 20)) +
+  facet_wrap(~Pclass) +
+  ylab(&quot;count&quot;)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-3.-how-many-passengers-of-each-sex-survived-and-how-many-of-them-did-not-what-is-the-survival-rate-for-passengers-of-each-sex" class="section level4">
+<h4>Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code># table
+sex_survival_count &lt;- titanic %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  group_by(Sex, survived) %&gt;%
+  count() %&gt;%
+  group_by(Sex) %&gt;%
+  mutate(percentage = round(n/sum(n)*100, 2))
+kable(sex_survival_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sex</th>
+<th align="left">survived</th>
+<th align="right">n</th>
+<th align="right">percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">female</td>
+<td align="left">no</td>
+<td align="right">81</td>
+<td align="right">25.80</td>
+</tr>
+<tr class="even">
+<td align="left">female</td>
+<td align="left">yes</td>
+<td align="right">233</td>
+<td align="right">74.20</td>
+</tr>
+<tr class="odd">
+<td align="left">male</td>
+<td align="left">no</td>
+<td align="right">468</td>
+<td align="right">81.11</td>
+</tr>
+<tr class="even">
+<td align="left">male</td>
+<td align="left">yes</td>
+<td align="right">109</td>
+<td align="right">18.89</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># plot
+sex_survival_count %&gt;%
+  arrange(Sex, desc(survived)) %&gt;%
+  group_by(Sex) %&gt;%
+  mutate(label_y = cumsum(n) - 0.5 * n) %&gt;%
+  ggplot(aes(x=Sex)) +
+  geom_col(aes(fill = survived, y=n), color = &quot;black&quot;) +
+  geom_label(aes(label = str_c(percentage, &quot;%&quot;), y = label_y)) +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Note: the line <code>mutate(label_y = cumsum(n) - 0.5 * n)</code> is used to place the labels in the middle of each colored bar.</p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-4.-how-many-passengers-do-we-have-age-information-for-including-estimated-age-for-how-many-is-the-age-information-missing-what-is-the-age-distribution-for-passengers-whose-age-information-is-available" class="section level4">
+<h4>Question 4. How many passengers do we have age information for (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code># age info
+## table
+age_info_count &lt;- titanic %&gt;%
+  mutate(age_info = ifelse(is.na(Age), &quot;missing&quot;, &quot;available&quot;)) %&gt;%
+  count(age_info)
+kable(age_info_count)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">age_info</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">available</td>
+<td align="right">714</td>
+</tr>
+<tr class="even">
+<td align="left">missing</td>
+<td align="right">177</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>## plot
+age_info_count %&gt;%
+  ggplot(aes(x=age_info, y=n)) +
+  geom_col(aes(fill=age_info)) +
+  geom_label(aes(y=n+30, label=n)) +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code># age distribution
+## summary
+titanic %&gt;%
+  filter(!is.na(Age)) %&gt;%
+  .$Age %&gt;%
+  summary()</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.42   20.12   28.00   29.70   38.00   80.00</code></pre>
+<pre class="r"><code>## Plot
+titanic %&gt;%
+  filter(!is.na(Age)) %&gt;%
+  ggplot(aes(x=Age)) +
+  geom_histogram()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-5.-show-the-age-distribution-per-ticket-class-per-sex.-what-do-you-find" class="section level4">
+<h4>Question 5. Show the age distribution per ticket class, per sex. What do you find?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  filter(!is.na(Age)) %&gt;%
+  ggplot(aes(x=Age, fill=Sex)) +
+  geom_histogram() +
+  facet_grid(Pclass~Sex)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>titanic %&gt;%
+  mutate(ticket_class = as.character(Pclass)) %&gt;%
+  filter(!is.na(Age)) %&gt;%
+  ggplot(aes(x=Age, fill=Sex)) +
+  geom_density(alpha=0.5) +
+  facet_grid(ticket_class~.)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-6.-how-do-the-sex-ticket-class-and-age-of-a-passenger-affect-their-chance-of-survival-try-to-use-one-plot-to-answer-this-question." class="section level4">
+<h4>Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use one plot to answer this question.</h4>
+<p><br></p>
+<p>Hint: <code>geom_histogram()</code> and <code>facet_grid()</code> can be helpful in answering this question.</p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  filter(!is.na(Age)) %&gt;%
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+  ggplot(aes(x=Age, fill=survived)) +
+  geom_histogram(position=&quot;stack&quot;, color=&quot;black&quot;) +
+  facet_grid(Sex~Pclass)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-7.-show-the-distribution-of-the-number-of-family-members-including-siblings-spouses-parents-and-children-that-each-passenger-was-accompanied-by.-were-most-passengers-travelling-solo-or-with-family" class="section level4">
+<h4>Question 7. Show the distribution of the number of family members (including siblings, spouses, parents, and children) that each passenger was accompanied by. Were most passengers travelling solo or with family?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  mutate(n_family=SibSp+Parch) %&gt;%
+  ggplot(aes(x=n_family)) +
+  geom_bar() +
+  scale_x_continuous(breaks = 0:10)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>titanic %&gt;%
+  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family&gt;0, &quot;yes&quot;, &quot;no&quot;)) %&gt;%
+  ggplot(aes(x=with_family)) +
+  geom_bar() +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-8.-which-ticket-class-did-most-of-the-largest-families-get-and-which-ticket-class-has-the-lowest-proportion-of-female-passengers-who-travelled-solo-out-of-all-the-female-passengers-in-that-class" class="section level4">
+<h4>Question 8. Which ticket class did most of the largest families get? And which ticket class has the lowest proportion of female passengers who travelled solo out of all the female passengers in that class?</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  mutate(n_family=SibSp+Parch) %&gt;%
+  ggplot(aes(x=n_family)) +
+  geom_bar() +
+  scale_x_continuous(breaks = 0:10) +
+  facet_wrap(~Pclass, ncol = 1)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
+<pre class="r"><code>titanic %&gt;%
+  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) %&gt;%
+  ggplot(aes(x = n_family, fill = ticket_class)) +
+  geom_bar(color = &quot;black&quot;, position = &quot;fill&quot;) +
+  scale_x_continuous(breaks = 0:10) +
+  ylab(&quot;proportion&quot;) +
+  coord_flip()</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-9.-in-this-dataset-the-fare-variable-does-not-represent-the-fare-per-person.-instead-each-ticket-number-has-a-corresponding-fare-and-some-passengers-share-one-single-ticket-number.-therefore-the-fare-variable-is-the-total-fare-for-a-group-of-passengers-sharing-the-same-ticket-number.-knowing-this-calculate-the-average-fare-per-person.-you-dont-need-to-show-a-table-or-a-figure-for-this-question-just-show-the-code-for-the-calculation" class="section level4">
+<h4>Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. (You don't need to show a table or a figure for this question, just show the code for the calculation)</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  group_by(Ticket) %&gt;%
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) %&gt;%
+  ungroup() %&gt;%
+  summarise(average_fare = mean(fare_per_ticket))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   average_fare
+##          &lt;dbl&gt;
+## 1         17.8</code></pre>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-10.-what-is-the-distribution-of-per-ticket-fare-for-each-ticket-class" class="section level4">
+<h4>Question 10. What is the distribution of per-ticket fare for each ticket class?</h4>
+<p><br> <br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>titanic %&gt;%
+  group_by(Ticket) %&gt;%
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) %&gt;%
+  ggplot(aes(x=fare_per_ticket)) +
+  geom_histogram(bins = 100) +
+  facet_wrap(~ticket_class, ncol = 1, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="recap-5-minutes" class="section level2">
+<h2>Recap (5 minutes)</h2>
+<p><br></p>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
+</div>
+<div id="short-break-10-min" class="section level2">
+<h2>Short break (10 min)</h2>
+<p><br> <br></p>
+</div>
+<div id="exercise-2-independent-data-exploration-40-min" class="section level2">
+<h2>Exercise 2: Independent data exploration (40 min)</h2>
+<p><br> <br></p>
+<div id="continue-to-explore-the-titanic-dataset." class="section level4">
+<h4>Continue to explore the Titanic dataset.</h4>
+<p><br></p>
+<p><strong>Suggested activities:</strong></p>
+<ul>
+<li><p>Continue to work on Exercise 1 if you have not finished.</p></li>
+<li><p>Polish your plots in Exercise 1. Try to put more thoughts into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; and etc.).</p></li>
+<li><p>Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce them on your own.</p></li>
+<li><p>Think of other interesting questions you can answer with this dataset and explore different strategies for getting your answer.</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+</div>
+<div id="recap-10-minutes" class="section level2">
+<h2>Recap (10 minutes)</h2>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br></p>
+<p><strong>END LAB 4</strong></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
