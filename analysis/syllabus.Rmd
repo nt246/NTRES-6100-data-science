@@ -116,16 +116,16 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 5       | Mon | 2/22 | [Collaborating with GitHub Part 2](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)| |
 | 6       | Wed | 2/24 | [Plotting with ggplot part 1](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html) | [Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md) |
 |         | Fri | 2/26 | Lab 3                                                                                         |                  |
-| 7       | Mon | 3/1  | [Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)| |
+| 7       | Mon | 3/1  | [Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)|              |
 | 8       | Wed | 3/3  | [Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html) | [Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md) |
-|         | Fri | 3/5  | [Lab 4](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html) |                  |
-| 9       | Mon | 3/8  | [Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)                                           |                  |
+|         | Fri | 3/5  | [Lab 4](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)               |                  |
+| 9       | Mon | 3/8  | [Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html) | |
 |         | Wed | 3/10 | **NO CLASS** - Cornell Wellness Break                                                         |                  |
-|         | Fri | 3/12 | Lab 5                                                                                         | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
-| 10      | Mon | 3/15 | Good coding practices, debugging strategies, and getting help |                  |
-| 11      | Wed | 3/17 | Tidy data (what is tidy data and how to handle untidy data)                                   | Assignment 5     |
+|         | Fri | 3/12 | [Lab 5](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)                    | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
+| 10      | Mon | 3/15 | [Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)          |                  |
+| 11      | Wed | 3/17 | [Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)                            | [Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md) |
 |         | Fri | 3/19 | Lab 6                                                                                         |                  |
-| 12      | Mon | 3/22 | Data import, export, and parsing                                                              |                  |
+| 12      | Mon | 3/22 | Good coding practices, debugging strategies, and getting help                                 |                  |
 | 13      | Wed | 3/24 | Factors in R                                                                                  | Assignment 6     |
 |         | Fri | 3/26 | Lab 7                                                                                         |                  |
 | 14      | Mon | 3/29 | Relational data (join functions)                                                              |                  |

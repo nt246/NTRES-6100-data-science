@@ -2,7 +2,6 @@
 title: "Lesson 11: Data import, export, and conversion between data types"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
   
@@ -44,7 +43,7 @@ We'll revisit the notion of tidy data and go over some basics related to data im
 
 ## Loading libraries
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 library(tidyverse)
 

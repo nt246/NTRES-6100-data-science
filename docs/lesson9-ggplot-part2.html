@@ -395,6 +395,12 @@ div.tocify {
     <li>
       <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
     </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -416,6 +422,9 @@ div.tocify {
     </li>
     <li>
       <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
   </ul>
 </li>
@@ -545,12 +554,12 @@ coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/co
 
 # Has it been updated? Check the latest date?
 max(coronavirus$date)</code></pre>
-<pre><code>## [1] &quot;2021-03-05&quot;</code></pre>
+<pre><code>## [1] &quot;2021-03-10&quot;</code></pre>
 <p><br> <br></p>
 </div>
 <div id="combining-dplyr-and-ggplot" class="section level2">
 <h2>Combining <code>dplyr</code> and <code>ggplot</code></h2>
-<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-05. Take a minute to try this for yourself, then you can look at our approach.</p>
+<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-10. Take a minute to try this for yourself, then you can look at our approach.</p>
 <p><br></p>
 <p><details> <summary>click to see our approach</summary></p>
 <pre class="r"><code>total_cases &lt;- coronavirus %&gt;% 
@@ -568,15 +577,15 @@ kable(total_cases)  # kable() just provides a nice output for the table</code></
 <tbody>
 <tr class="odd">
 <td align="left">confirmed</td>
-<td align="right">116061294</td>
+<td align="right">118030945</td>
 </tr>
 <tr class="even">
 <td align="left">death</td>
-<td align="right">2580050</td>
+<td align="right">2619796</td>
 </tr>
 <tr class="odd">
 <td align="left">recovered</td>
-<td align="right">71907619</td>
+<td align="right">73154587</td>
 </tr>
 </tbody>
 </table>
@@ -823,7 +832,7 @@ coronavirus %&gt;%
 <p>Let's check if we have negative cases.</p>
 <pre class="r"><code>coronavirus %&gt;% 
   filter(cases &lt; 0)</code></pre>
-<pre><code>## # A tibble: 414 x 7
+<pre><code>## # A tibble: 417 x 7
 ##    date       province                    country       lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                       &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
 ##  1 2020-01-31 Queensland                  Australia  -27.5   153.  confir…    -1
@@ -836,7 +845,7 @@ coronavirus %&gt;%
 ##  8 2020-03-24 &lt;NA&gt;                        Guyana       4.86  -58.9 confir…   -15
 ##  9 2020-03-25 Alberta                     Canada      53.9  -117.  confir…    -1
 ## 10 2020-04-02 Turks and Caicos Islands    United Ki…  21.7   -71.8 confir…    -1
-## # … with 404 more rows</code></pre>
+## # … with 407 more rows</code></pre>
 <pre class="r"><code># Let&#39;s remove those
 coronavirus %&gt;% 
   filter(cases &gt; 0) %&gt;% 
@@ -1057,7 +1066,6 @@ filter(coronavirus, country %in% top10_countries) %&gt;%
   filter(months(date)==&quot;January&quot;, lubridate::year(date)==2020) %&gt;%
   ggplot(aes(x=date, y=rank)) +
   geom_label(aes(label=country)) +
-  #xlim(as.Date(c(&quot;2020-01-21&quot;, &quot;2020-02-01&quot;))) +
   theme_minimal()</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-37-1.png" width="960" /></p>

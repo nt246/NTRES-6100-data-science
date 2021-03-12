@@ -395,6 +395,12 @@ div.tocify {
     <li>
       <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
     </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -416,6 +422,9 @@ div.tocify {
     </li>
     <li>
       <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
   </ul>
 </li>
@@ -538,7 +547,7 @@ coronavirus %&gt;%
 
 </div>
 <p>The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let's reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don't worry about how it works right now, we'll get an opportunity to explore it in a few weeks.</p>
-<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-03-04):</p>
+<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-03-10):</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   select(country, type, cases) %&gt;%
   group_by(country, type) %&gt;%
