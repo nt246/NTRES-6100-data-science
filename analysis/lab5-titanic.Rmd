@@ -35,11 +35,11 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* To start, first open a new RMarkdown file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab5.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab5.Rmd`, and work in this RMarkdown file for the rest of this lab. 
 
 <br>
 
-* Load the required packages and read in the data with the following code.
+* Load the required packages and read in the data with the following code:
 
 <br>
 
@@ -49,10 +49,10 @@ library(tidyverse)
 library(knitr)
 
 # Read in the data
-titanic<-read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv")
+titanic <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv")
 
 # Let's look at the top 5 lines of the dataset
-head(titanic, n=5) %>%
+head(titanic, n = 5) %>%
   kable()
 ```
 
@@ -63,7 +63,7 @@ head(titanic, n=5) %>%
 <br>
 
 ```{r}
-notes<-read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv")
+notes <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv")
 kable(notes)
 ```
 
@@ -87,7 +87,7 @@ Note: Age is fractional if less than 1. If the age is estimated, it is in the fo
 <br>
 <br>
 
-#### Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information on in this dataset? How many of them survived and how many did not? What is the overall survival rate?
+#### Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information for in this dataset? Of the people we have data for, how many of them survived and how many did not? What is the overall survival rate?
 
 <br>
 
@@ -196,7 +196,7 @@ Note: the line `mutate(label_y = cumsum(n) - 0.5 * n)` is used to place the labe
 <br>
 <br>
 
-#### Question 4. How many passengers do we have age information for (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?
+#### Question 4. For how many passengers do we have age information (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?
 
 <br>
 
@@ -263,7 +263,7 @@ titanic %>%
 <br>
 <br>
 
-#### Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use one plot to answer this question. 
+#### Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use a single plot to answer this question. 
 
 <br> 
 
@@ -349,7 +349,7 @@ titanic %>%
 <br>
 <br>
 
-#### Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. (You don't need to show a table or a figure for this question, just show the code for the calculation)
+#### Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. You don't need to show a table or a figure for this question, just show the code for the calculation.
 
 <br> 
 
@@ -370,7 +370,7 @@ titanic %>%
 <br>
 <br>
 
-#### Question 10. What is the distribution of per-ticket fare for each ticket class? 
+#### Question 10. What is the distribution of the per-ticket fare for each ticket class? 
 
 <br>
 <br> 
@@ -420,9 +420,9 @@ Share your findings, challenges, and questions with the class.
 
 * Continue to work on Exercise 1 if you have not finished.
 
-* Polish your plots in Exercise 1. Try to put more thoughts into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; and etc.).
+* Polish your plots in Exercise 1. Try to put more thought into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; etc.).
 
-* Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce them on your own.
+* Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce the output/computations on your own.
 
 * Think of other interesting questions you can answer with this dataset and explore different strategies for getting your answer.
 

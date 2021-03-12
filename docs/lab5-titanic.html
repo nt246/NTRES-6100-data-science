@@ -26,15 +26,6 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -79,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -455,10 +445,7 @@ div.tocify {
 
 
 <p><br></p>
-<div class="figure">
-<img src="https://cdn.britannica.com/72/153172-050-EB2F2D95/Titanic.jpg" />
-
-</div>
+<p><img src="https://cdn.britannica.com/72/153172-050-EB2F2D95/Titanic.jpg" /></p>
 <p><br></p>
 <div id="goals-for-today" class="section level2">
 <h2>Goals for today</h2>
@@ -473,10 +460,7 @@ div.tocify {
 <h2>General instructions</h2>
 <ul>
 <li><p>Today, we will continue to combine the data transformation tools in <code>dplyr</code> and the data visualization tools in <code>ggplot2</code> to explore the patterns and trends in the <code>titanic</code> dataset. This dataset contains the information on passengers aboard the Titanic when it sank in 1912.</p>
-<div class="figure">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Titanic_voyage_map.png" />
-
-</div></li>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Titanic_voyage_map.png" /></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -484,7 +468,7 @@ div.tocify {
 </ul>
 <p><br></p>
 <ul>
-<li>Load the required packages and read in the data with the following code.</li>
+<li>Load the required packages and read in the data with the following code:</li>
 </ul>
 <p><br></p>
 <pre class="r"><code># Load required packages
@@ -492,19 +476,19 @@ library(tidyverse)
 library(knitr)
 
 # Read in the data
-titanic&lt;-read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv&quot;)
+titanic &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv&quot;)
 
 # Let&#39;s look at the top 5 lines of the dataset
-head(titanic, n=5) %&gt;%
+head(titanic, n = 5) %&gt;%
   kable()</code></pre>
-<table>
+<table style="width:100%;">
 <colgroup>
 <col width="8%" />
 <col width="6%" />
-<col width="5%" />
-<col width="34%" />
-<col width="5%" />
-<col width="3%" />
+<col width="4%" />
+<col width="36%" />
+<col width="4%" />
+<col width="2%" />
 <col width="4%" />
 <col width="4%" />
 <col width="11%" />
@@ -533,7 +517,7 @@ head(titanic, n=5) %&gt;%
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="right">3</td>
-<td align="left">Braund, Mr. Owen Harris</td>
+<td align="left">Braund, Mr. Owen Harris</td>
 <td align="left">male</td>
 <td align="right">22</td>
 <td align="right">1</td>
@@ -547,7 +531,7 @@ head(titanic, n=5) %&gt;%
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="left">Cumings, Mrs. John Bradley (Florence Briggs Thayer)</td>
+<td align="left">Cumings, Mrs. John Bradley (Florence Briggs Thayer)</td>
 <td align="left">female</td>
 <td align="right">38</td>
 <td align="right">1</td>
@@ -575,7 +559,7 @@ head(titanic, n=5) %&gt;%
 <td align="right">4</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="left">Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+<td align="left">Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
 <td align="left">female</td>
 <td align="right">35</td>
 <td align="right">1</td>
@@ -589,7 +573,7 @@ head(titanic, n=5) %&gt;%
 <td align="right">5</td>
 <td align="right">0</td>
 <td align="right">3</td>
-<td align="left">Allen, Mr. William Henry</td>
+<td align="left">Allen, Mr. William Henry</td>
 <td align="left">male</td>
 <td align="right">35</td>
 <td align="right">0</td>
@@ -606,13 +590,13 @@ head(titanic, n=5) %&gt;%
 <li>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</li>
 </ul>
 <p><br></p>
-<pre class="r"><code>notes&lt;-read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv&quot;)
+<pre class="r"><code>notes &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Notes.csv&quot;)
 kable(notes)</code></pre>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="12%" />
-<col width="41%" />
-<col width="45%" />
+<col width="11%" />
+<col width="42%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -693,14 +677,16 @@ kable(notes)</code></pre>
 <p><strong>Suggestions:</strong></p>
 <ul>
 <li><p>Make sure that you use figures and/or tables to support your answer.</p></li>
-<li><p>We provide some possible solutions for each question, but we highly recommend that you <strong>don't look at them unless you are really stuck</strong>.</p></li>
+<li><p>We provide some possible solutions for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</p></li>
 <li><p>Do not worry if you cannot finish Exercise 1 in 50 minutes. You can keep working on these questions after the break.</p></li>
 </ul>
 <p><br> <br></p>
-<div id="question-1-according-to-wikipedia-there-was-an-estimated-2224-passengers-and-crew-onboard-the-titanic-when-it-sank.-how-many-of-them-do-we-have-information-on-in-this-dataset-how-many-of-them-survived-and-how-many-did-not-what-is-the-overall-survival-rate" class="section level4">
-<h4>Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information on in this dataset? How many of them survived and how many did not? What is the overall survival rate?</h4>
+<div id="question-1-according-to-wikipedia-there-was-an-estimated-2224-passengers-and-crew-onboard-the-titanic-when-it-sank.-how-many-of-them-do-we-have-information-for-in-this-dataset-of-the-people-we-have-data-for-how-many-of-them-survived-and-how-many-did-not-what-is-the-overall-survival-rate" class="section level4">
+<h4>Question 1: According to Wikipedia, there was an estimated 2,224 passengers and crew onboard the Titanic when it sank. How many of them do we have information for in this dataset? Of the people we have data for, how many of them survived and how many did not? What is the overall survival rate?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code># number of passengers in the dataset
 nrow(titanic) </code></pre>
 <pre><code>## [1] 891</code></pre>
@@ -740,13 +726,15 @@ titanic %&gt;%
   coord_flip()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Note: <code>str_c()</code> is used to add the percentage sign.</p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-2.-how-many-passengers-on-the-titanic-were-males-and-how-many-were-females-what-do-you-find-when-you-break-it-down-by-ticket-class" class="section level4">
 <h4>Question 2. How many passengers on the Titanic were males and how many were females? What do you find when you break it down by ticket class?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code># male vs. female
 ## table
 sex_count &lt;- titanic %&gt;%
@@ -833,13 +821,15 @@ sex_class_count %&gt;%
   facet_wrap(~Pclass) +
   ylab(&quot;count&quot;)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-3.-how-many-passengers-of-each-sex-survived-and-how-many-of-them-did-not-what-is-the-survival-rate-for-passengers-of-each-sex" class="section level4">
 <h4>Question 3. How many passengers of each sex survived and how many of them did not? What is the survival rate for passengers of each sex?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code># table
 sex_survival_count &lt;- titanic %&gt;%
   mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
@@ -895,13 +885,15 @@ sex_survival_count %&gt;%
   coord_flip()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Note: the line <code>mutate(label_y = cumsum(n) - 0.5 * n)</code> is used to place the labels in the middle of each colored bar.</p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
-<div id="question-4.-how-many-passengers-do-we-have-age-information-for-including-estimated-age-for-how-many-is-the-age-information-missing-what-is-the-age-distribution-for-passengers-whose-age-information-is-available" class="section level4">
-<h4>Question 4. How many passengers do we have age information for (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?</h4>
+<div id="question-4.-for-how-many-passengers-do-we-have-age-information-including-estimated-age-for-how-many-is-the-age-information-missing-what-is-the-age-distribution-for-passengers-whose-age-information-is-available" class="section level4">
+<h4>Question 4. For how many passengers do we have age information (including estimated age)? For how many is the age information missing? What is the age distribution for passengers whose age information is available?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code># age info
 ## table
 age_info_count &lt;- titanic %&gt;%
@@ -947,13 +939,15 @@ titanic %&gt;%
   ggplot(aes(x=Age)) +
   geom_histogram()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-5.-show-the-age-distribution-per-ticket-class-per-sex.-what-do-you-find" class="section level4">
 <h4>Question 5. Show the age distribution per ticket class, per sex. What do you find?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   filter(!is.na(Age)) %&gt;%
   ggplot(aes(x=Age, fill=Sex)) +
@@ -967,15 +961,17 @@ titanic %&gt;%
   geom_density(alpha=0.5) +
   facet_grid(ticket_class~.)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
-<div id="question-6.-how-do-the-sex-ticket-class-and-age-of-a-passenger-affect-their-chance-of-survival-try-to-use-one-plot-to-answer-this-question." class="section level4">
-<h4>Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use one plot to answer this question.</h4>
+<div id="question-6.-how-do-the-sex-ticket-class-and-age-of-a-passenger-affect-their-chance-of-survival-try-to-use-a-single-plot-to-answer-this-question." class="section level4">
+<h4>Question 6. How do the sex, ticket class, and age of a passenger affect their chance of survival? Try to use a single plot to answer this question.</h4>
 <p><br></p>
 <p>Hint: <code>geom_histogram()</code> and <code>facet_grid()</code> can be helpful in answering this question.</p>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   filter(!is.na(Age)) %&gt;%
   mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
@@ -983,13 +979,15 @@ titanic %&gt;%
   geom_histogram(position=&quot;stack&quot;, color=&quot;black&quot;) +
   facet_grid(Sex~Pclass)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-7.-show-the-distribution-of-the-number-of-family-members-including-siblings-spouses-parents-and-children-that-each-passenger-was-accompanied-by.-were-most-passengers-travelling-solo-or-with-family" class="section level4">
 <h4>Question 7. Show the distribution of the number of family members (including siblings, spouses, parents, and children) that each passenger was accompanied by. Were most passengers travelling solo or with family?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   mutate(n_family=SibSp+Parch) %&gt;%
   ggplot(aes(x=n_family)) +
@@ -1002,13 +1000,15 @@ titanic %&gt;%
   geom_bar() +
   coord_flip()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-8.-which-ticket-class-did-most-of-the-largest-families-get-and-which-ticket-class-has-the-lowest-proportion-of-female-passengers-who-travelled-solo-out-of-all-the-female-passengers-in-that-class" class="section level4">
 <h4>Question 8. Which ticket class did most of the largest families get? And which ticket class has the lowest proportion of female passengers who travelled solo out of all the female passengers in that class?</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   mutate(n_family=SibSp+Parch) %&gt;%
   ggplot(aes(x=n_family)) +
@@ -1024,13 +1024,15 @@ titanic %&gt;%
   ylab(&quot;proportion&quot;) +
   coord_flip()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
-<div id="question-9.-in-this-dataset-the-fare-variable-does-not-represent-the-fare-per-person.-instead-each-ticket-number-has-a-corresponding-fare-and-some-passengers-share-one-single-ticket-number.-therefore-the-fare-variable-is-the-total-fare-for-a-group-of-passengers-sharing-the-same-ticket-number.-knowing-this-calculate-the-average-fare-per-person.-you-dont-need-to-show-a-table-or-a-figure-for-this-question-just-show-the-code-for-the-calculation" class="section level4">
-<h4>Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. (You don't need to show a table or a figure for this question, just show the code for the calculation)</h4>
+<div id="question-9.-in-this-dataset-the-fare-variable-does-not-represent-the-fare-per-person.-instead-each-ticket-number-has-a-corresponding-fare-and-some-passengers-share-one-single-ticket-number.-therefore-the-fare-variable-is-the-total-fare-for-a-group-of-passengers-sharing-the-same-ticket-number.-knowing-this-calculate-the-average-fare-per-person.-you-dont-need-to-show-a-table-or-a-figure-for-this-question-just-show-the-code-for-the-calculation." class="section level4">
+<h4>Question 9. In this dataset, the Fare variable does not represent the fare per person. Instead, each ticket number has a corresponding fare, and some passengers share one single ticket number. Therefore, the Fare variable is the total fare for a group of passengers sharing the same ticket number. Knowing this, calculate the average fare per person. You don’t need to show a table or a figure for this question, just show the code for the calculation.</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   group_by(Ticket) %&gt;%
   mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) %&gt;%
@@ -1040,13 +1042,15 @@ titanic %&gt;%
 ##   average_fare
 ##          &lt;dbl&gt;
 ## 1         17.8</code></pre>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
-<div id="question-10.-what-is-the-distribution-of-per-ticket-fare-for-each-ticket-class" class="section level4">
-<h4>Question 10. What is the distribution of per-ticket fare for each ticket class?</h4>
+<div id="question-10.-what-is-the-distribution-of-the-per-ticket-fare-for-each-ticket-class" class="section level4">
+<h4>Question 10. What is the distribution of the per-ticket fare for each ticket class?</h4>
 <p><br> <br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>titanic %&gt;%
   group_by(Ticket) %&gt;%
   mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) %&gt;%
@@ -1054,7 +1058,7 @@ titanic %&gt;%
   geom_histogram(bins = 100) +
   facet_wrap(~ticket_class, ncol = 1, scales = &quot;free_y&quot;)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 </div>
@@ -1077,8 +1081,8 @@ titanic %&gt;%
 <p><strong>Suggested activities:</strong></p>
 <ul>
 <li><p>Continue to work on Exercise 1 if you have not finished.</p></li>
-<li><p>Polish your plots in Exercise 1. Try to put more thoughts into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; and etc.).</p></li>
-<li><p>Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce them on your own.</p></li>
+<li><p>Polish your plots in Exercise 1. Try to put more thought into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; etc.).</p></li>
+<li><p>Read the example code that we provided in Exercise 1. Make sure that you understand each line, and try to reproduce the output/computations on your own.</p></li>
 <li><p>Think of other interesting questions you can answer with this dataset and explore different strategies for getting your answer.</p></li>
 </ul>
 <p><br> <br></p>
@@ -1105,7 +1109,7 @@ titanic %&gt;%
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
