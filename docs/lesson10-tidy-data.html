@@ -404,6 +404,9 @@ div.tocify {
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
     </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -455,7 +458,7 @@ div.tocify {
 <ul>
 <li><a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Intro to Tidy Data</a>
 <ul>
-<li>the repo this links to has some useful exercises too, but uses the older <code>spread()</code> and <code>gather()</code> functions</li>
+<li>the repo this links to has some useful exercises too, but uses the outdated <code>spread()</code> and <code>gather()</code> functions so don’t get confused by the code.</li>
 </ul></li>
 <li><code>tidyr</code> [vignette on tidy data](<a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" class="uri">https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html</a><br />
 </li>
@@ -465,9 +468,6 @@ div.tocify {
 </div>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
-<ul>
-<li>Guest lecture on Wednesday by Erika Mudrak from the Cornell Statistical Consultation Unit. She will talk about debugging strategies (she has to debug a lot of people’s code!) and about getting help with R. Don’t miss it!</li>
-</ul>
 <p><br> <br></p>
 </div>
 <div id="learning-objectives" class="section level2">
@@ -757,7 +757,7 @@ lotr_tidy %&gt;%
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))
 
 coronavirus</code></pre>
-<pre><code>## # A tibble: 325,221 x 7
+<pre><code>## # A tibble: 334,098 x 7
 ##    date       province               country            lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
 ##  1 2020-01-22 &lt;NA&gt;                   Afghanistan       33.9  67.7  confir…     0
@@ -770,7 +770,7 @@ coronavirus</code></pre>
 ##  8 2020-01-22 &lt;NA&gt;                   Armenia           40.1  45.0  confir…     0
 ##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
 ## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
-## # … with 325,211 more rows</code></pre>
+## # … with 334,088 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p>Last class, we visualized the global case counts date</p>
 <pre class="r"><code>coronavirus %&gt;% 

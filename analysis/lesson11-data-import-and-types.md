@@ -1,15 +1,12 @@
 ---
-title: "Lesson 13: Data import, export, and conversion between data types"
+title: "Lesson 11: Data import, export, and conversion between data types"
 output: 
   html_document:
     keep_md: yes 
     toc: true
 ---
   
-```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE, fig.path="lesson13-files/")
-```
+
 
 <br>
 <br>
@@ -37,71 +34,38 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson13-files/")
 <br>
 
 ## Plan for today and learning objectives
-* First we'll wrap up our section on relational data, including filtering functions.
-
-* Then we'll revisit the notion of tidy data and go over some basics related to data import and parsing of different data types.
+We'll revisit the notion of tidy data and go over some basics related to data import and parsing of different data types.
 
 <br>
 <br>
 
 ## Loading libraries
 
-```{r}
 
+```r
 library(tidyverse)
+```
 
+```
+## ── Attaching packages ───────────────────────────────────── tidyverse 1.3.0 ──
+```
+
+```
+## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0
+```
+
+```
+## ── Conflicts ──────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
 ```
 
 <br>
 <br>
 
-## Relational data
-We'll review how to [define the key columns](https://r4ds.had.co.nz/relational-data.html#join-by) for mutating joins and then we'll discuss [filtering joins](https://r4ds.had.co.nz/relational-data.html#filtering-joins) with the `semi_join()` and `anti_join()` functions.
-
-<br>
-
-#### Optional exercises (from the R for Data Science chapter)
-Once you have given each exercise a try, you can check the solutions [here](https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html)
-
-<br>
-
-1.  **R4DS exercise 13.4.1:** Compute the average delay by destination, then join on the `airports`
-    data frame so you can show the spatial distribution of delays. Here's an
-    easy way to draw a map of the United States:
-
-```{r, include = FALSE}
-library(tidyverse)
-library(nycflights13) #install.packages("nycflights13")
-```
-
-    ```{r, eval = FALSE}
-    library(maps) #install.packages("maps")
-
-    airports %>%
-      semi_join(flights, c("faa" = "dest")) %>%
-      ggplot(aes(lon, lat)) +
-        borders("state") +
-        geom_point() +
-        coord_quickmap()
-    ```
-
-    (Don't worry if you don't understand what `semi_join()` does --- you'll
-    learn about it next.)
-
-    You might want to use the `size` or `colour` of the points to display
-    the average delay for each airport.
-
-<br>
-
-2.  **R4DS exercise 13.4.2:** Add the location of the origin _and_ destination (i.e. the `lat` and `lon`)
-    to `flights`.
-
-<br>
-
-3.  **R4DS exercise 13.4.3:** Is there a relationship between the age of a plane and its delays?
-
-<br>
-<br>
 
 ## Recap on tidy data
 
@@ -116,16 +80,38 @@ library(nycflights13) #install.packages("nycflights13")
 In lesson 10, we introduced some of the most commonly used `readr` data import functions, such as `read_csv()`, `read_tsv()`, and `read_delim()`. Let's revisit these to import [Jenny Bryan's Lord of the Rings Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) that we've used in several previous lessons. 
 
 We can import directly from Jenny's GitHub page:
-```{r}
+
+```r
 lotr_tidy <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   Film = col_character(),
+##   Race = col_character(),
+##   Gender = col_character(),
+##   Words = col_double()
+## )
 ```
 
 <br>
 
 Or we can use import it from a copy saved on our local computer
 
-```{r}
+
+```r
 lotr_tidy <- read_csv("../datasets/lotr_tidy.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   Film = col_character(),
+##   Race = col_character(),
+##   Gender = col_character(),
+##   Words = col_double()
+## )
 ```
 <br>
 
@@ -180,17 +166,55 @@ Trying the guess the variable type from the first 1000 lines of data works for a
 
 readr contains a challenging CSV that illustrates both of these problems:
 
-```{r}
-challenge <- read_csv(readr_example("challenge.csv"))
 
+```r
+challenge <- read_csv(readr_example("challenge.csv"))
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   x = col_double(),
+##   y = col_logical()
+## )
+```
+
+```
+## Warning: 1000 parsing failures.
+##  row col           expected     actual                                                             file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## .... ... .................. .......... ................................................................
+## See problems(...) for more details.
 ```
 
 <br>
 
 There are two printed outputs: the column specification generated by looking at the first 1000 rows, and the first five parsing failures. It’s always a good idea to explicitly pull out the problems(), so you can explore them in more depth:
 
-```{r}
+
+```r
 problems(challenge)
+```
+
+```
+## # A tibble: 1,000 x 5
+##      row col   expected        actual   file                                    
+##    <int> <chr> <chr>           <chr>    <chr>                                   
+##  1  1001 y     1/0/T/F/TRUE/F… 2015-01… '/Users/nt246/Library/R/4.0/library/rea…
+##  2  1002 y     1/0/T/F/TRUE/F… 2018-05… '/Users/nt246/Library/R/4.0/library/rea…
+##  3  1003 y     1/0/T/F/TRUE/F… 2015-09… '/Users/nt246/Library/R/4.0/library/rea…
+##  4  1004 y     1/0/T/F/TRUE/F… 2012-11… '/Users/nt246/Library/R/4.0/library/rea…
+##  5  1005 y     1/0/T/F/TRUE/F… 2020-01… '/Users/nt246/Library/R/4.0/library/rea…
+##  6  1006 y     1/0/T/F/TRUE/F… 2016-04… '/Users/nt246/Library/R/4.0/library/rea…
+##  7  1007 y     1/0/T/F/TRUE/F… 2011-05… '/Users/nt246/Library/R/4.0/library/rea…
+##  8  1008 y     1/0/T/F/TRUE/F… 2020-07… '/Users/nt246/Library/R/4.0/library/rea…
+##  9  1009 y     1/0/T/F/TRUE/F… 2011-04… '/Users/nt246/Library/R/4.0/library/rea…
+## 10  1010 y     1/0/T/F/TRUE/F… 2010-05… '/Users/nt246/Library/R/4.0/library/rea…
+## # … with 990 more rows
 ```
 
 <br>
@@ -199,7 +223,8 @@ A good strategy is to work column by column until there are no problems remainin
 
 That suggests we need to use a date parser instead. To fix the call, start by copying and pasting the column specification into your original call:
 
-```{r}
+
+```r
 challenge <- read_csv(
   readr_example("challenge.csv"), 
   col_types = cols(
@@ -209,11 +234,24 @@ challenge <- read_csv(
 )
 ```
 
+```
+## Warning: 1000 parsing failures.
+##  row col           expected     actual                                                             file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 '/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv'
+## .... ... .................. .......... ................................................................
+## See problems(...) for more details.
+```
+
 <br>
 
 Then you can fix the type of the y column by specifying that y is a date column:
 
-```{r}
+
+```r
 challenge <- read_csv(
   readr_example("challenge.csv"), 
   col_types = cols(
@@ -224,22 +262,57 @@ challenge <- read_csv(
 tail(challenge)
 ```
 
+```
+## # A tibble: 6 x 2
+##       x y         
+##   <dbl> <date>    
+## 1 0.805 2019-11-21
+## 2 0.164 2018-03-29
+## 3 0.472 2014-08-04
+## 4 0.718 2015-08-16
+## 5 0.270 2020-02-04
+## 6 0.608 2019-01-06
+```
+
 <br>
 
 There are a few other general strategies to help you parse files:
 
 In the previous example, we just got unlucky: if we look at just one more row than the default, we can correctly parse in one shot:
 
-```{r}
+
+```r
 challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   x = col_double(),
+##   y = col_date(format = "")
+## )
 ```
 
 <br>
 
 You might have noticed that readr needed a little help with variable type parsing when we've been reading in our coronavirus dataset
 
-```{r}
+
+```r
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   date = col_date(format = ""),
+##   province = col_character(),
+##   country = col_character(),
+##   lat = col_double(),
+##   long = col_double(),
+##   type = col_character(),
+##   cases = col_double()
+## )
 ```
 
 <br>
@@ -247,7 +320,8 @@ What is the problem here?
 
 It will only load properly if we specify that the province column does not contain logicals but is character vector:
 
-```{r}
+
+```r
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
 ```
 
@@ -272,9 +346,21 @@ It seems like it should be straightforward to parse a number, but three problems
 
 To address the first problem, readr has the notion of a “locale”, an object that specifies parsing options that differ from place to place. When parsing numbers, the most important option is the character you use for the decimal mark. You can override the default value of . by creating a new locale and setting the decimal_mark argument:
 
-```{r}
+
+```r
 parse_double("1.23")
+```
+
+```
+## [1] 1.23
+```
+
+```r
 parse_double("1,23", locale = locale(decimal_mark = ","))
+```
+
+```
+## [1] 1.23
 ```
 
 <br>
@@ -283,25 +369,61 @@ readr’s default locale is US-centric, because generally R is US-centric (i.e. 
 
 parse_number() addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.
 
-```{r}
+
+```r
 parse_number("$100")
+```
+
+```
+## [1] 100
+```
+
+```r
 parse_number("20%")
+```
+
+```
+## [1] 20
+```
+
+```r
 parse_number("It cost $123.45")
+```
+
+```
+## [1] 123.45
 ```
 
 <br>
 
 The final problem is addressed by the combination of parse_number() and the locale as parse_number() will ignore the “grouping mark”:
 
-```{r}
+
+```r
 # Used in America
 parse_number("$123,456,789")
+```
 
+```
+## [1] 123456789
+```
+
+```r
 # Used in many parts of Europe
 parse_number("123.456.789", locale = locale(grouping_mark = "."))
+```
 
+```
+## [1] 123456789
+```
+
+```r
 # Used in Switzerland
 parse_number("123'456'789", locale = locale(grouping_mark = "'"))
+```
+
+```
+## [1] 123456789
 ```
 
 <br>
@@ -318,17 +440,39 @@ Dates can be tricky! If you work with date data, I suggest you review chapters [
 
 We can use the `parse_x()` functions in combination with `mutate()` to clean up values in a variable. Let's have a look at how to clean up this dataset:
 
-```{r}
-mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv", locale = locale(decimal_mark = ","))
 
+```r
+mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv", locale = locale(decimal_mark = ","))
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   item = col_character(),
+##   price = col_character(),
+##   size = col_double()
+## )
+```
+
+```r
 # What happens if we run this without the locale argument?
 ```
 
 Let's clean up the `price` column
 
-```{r}
+
+```r
 mess %>% 
   mutate(price = parse_number(price))
+```
+
+```
+## # A tibble: 3 x 3
+##   item  price  size
+##   <chr> <dbl> <dbl>
+## 1 a        45   3.5
+## 2 b         5   2.7
+## 3 c         3   2.9
 ```
 
 
@@ -340,12 +484,17 @@ readr also comes with two useful functions for writing data back to disk: `write
 
 Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:
 
-```{r}
+
+```r
 coronavirus %>%  
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
   summarize(total_cases = sum(cases)) %>% 
   write_csv(path = "../datasets/daily_casecount.csv")
+```
+
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 <br>
@@ -359,16 +508,28 @@ We also briefly talked about how to save plots a few classes ago. To recap here:
 
 Use `ggsave()`
 
-```{r}
+
+```r
 coronavirus %>%  
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
   summarize(total_cases = sum(cases)) %>% 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()
-  
-ggsave(filename = "assets/daily_casecounts_plot.png")
+```
 
+```
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+![](lesson13-files/unnamed-chunk-17-1.png)<!-- -->
+
+```r
+ggsave(filename = "assets/daily_casecounts_plot.png")
+```
+
+```
+## Saving 7 x 5 in image
 ```
 
 
