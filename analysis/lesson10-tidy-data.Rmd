@@ -187,7 +187,7 @@ Then let's work through reshaping the data.
 #### 1. Import untidy Lord of the Rings data
 
 First, we bring the data into data frames or tibbles, one per film, and do some inspection.
-```{r}
+```{r, message = FALSE}
 
 fship <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv")
 
@@ -204,7 +204,6 @@ We now have one data frame per film, each with a common set of 4 variables. Step
 
 ```{r}
 lotr_untidy <- bind_rows(fship, ttow, rking)
-str(lotr_untidy)
 
 lotr_untidy
 
@@ -223,11 +222,11 @@ lotr_tidy
 ```
 Tidy data... mission accomplished!
 
-To explain our call to pivot_longer() above, let’s read it from right to left: we took the variables Female and Male and gathered their values into a single new variable Words. This forced the creation of a companion variable Gender, which tells whether a specific value of Words came from Female or Male. All other variables, such as Film, remain unchanged and are simply replicated as needed. 
+To explain our call to `pivot_longer()` above, let’s read it from right to left: we took the variables `Female` and `Male` and gathered their values into a single new variable `Words`. This forced the creation of a companion variable `Gender`, which tells whether a specific value of `Words` came from Female or Male. All other variables, such as `Film`, remain unchanged and are simply replicated as needed. 
 
 <br>
 
-#### 4. Write the tidy data to a delimited file
+#### 4. OPTIONAL: Write the tidy data to a delimited file
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
 ```{r}
@@ -263,7 +262,7 @@ lotr_tidy %>%
 
 <br>
 
-### More exercises on the LOTR data
+### More exercises on the LOTR data (you can do these on your own)
 
 The word count data is given in two untidy and gender-specific files available at these URLs:
 
@@ -281,6 +280,7 @@ Reflect on the process of writing this code and on the code itself. Which is eas
 
 Write R code to compute the total number of words spoken in each film. Do this by copying and modifying your own code for totalling words by race. Which approach is easier to modify and repurpose – the one based on multiple, untidy data frames or the tidy data?
 
+<br>
 <br>
 
 ## Applying this to our Coronavirus dataset

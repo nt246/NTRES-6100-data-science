@@ -597,50 +597,19 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 <div id="import-untidy-lord-of-the-rings-data" class="section level4">
 <h4>1. Import untidy Lord of the Rings data</h4>
 <p>First, we bring the data into data frames or tibbles, one per film, and do some inspection.</p>
-<pre class="r"><code>fship &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Film = col_character(),
-##   Race = col_character(),
-##   Female = col_double(),
-##   Male = col_double()
-## )</code></pre>
-<pre class="r"><code>ttow &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Film = col_character(),
-##   Race = col_character(),
-##   Female = col_double(),
-##   Male = col_double()
-## )</code></pre>
-<pre class="r"><code>rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Return_Of_The_King.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Film = col_character(),
-##   Race = col_character(),
-##   Female = col_double(),
-##   Male = col_double()
-## )</code></pre>
+<pre class="r"><code>fship &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv&quot;)
+
+ttow &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv&quot;)
+
+rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Return_Of_The_King.csv&quot;)</code></pre>
 <p><br></p>
 </div>
 <div id="collect-untidy-lord-of-the-rings-data-into-a-single-data-frame" class="section level4">
 <h4>2. Collect untidy Lord of the Rings data into a single data frame</h4>
 <p>We now have one data frame per film, each with a common set of 4 variables. Step one in tidying this data is to glue them together into one data frame, stacking them up row wise. This is called row binding and we use <code>dplyr::bind_rows()</code>.</p>
 <pre class="r"><code>lotr_untidy &lt;- bind_rows(fship, ttow, rking)
-str(lotr_untidy)</code></pre>
-<pre><code>## tibble [9 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##  $ Film  : chr [1:9] &quot;The Fellowship Of The Ring&quot; &quot;The Fellowship Of The Ring&quot; &quot;The Fellowship Of The Ring&quot; &quot;The Two Towers&quot; ...
-##  $ Race  : chr [1:9] &quot;Elf&quot; &quot;Hobbit&quot; &quot;Man&quot; &quot;Elf&quot; ...
-##  $ Female: num [1:9] 1229 14 0 331 0 ...
-##  $ Male  : num [1:9] 971 3644 1995 513 2463 ...
-##  - attr(*, &quot;spec&quot;)=
-##   .. cols(
-##   ..   Film = col_character(),
-##   ..   Race = col_character(),
-##   ..   Female = col_double(),
-##   ..   Male = col_double()
-##   .. )</code></pre>
-<pre class="r"><code>lotr_untidy</code></pre>
+
+lotr_untidy</code></pre>
 <pre><code>## # A tibble: 9 x 4
 ##   Film                       Race   Female  Male
 ##   &lt;chr&gt;                      &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -684,11 +653,11 @@ lotr_tidy</code></pre>
 ## 17 The Return Of The King     Man    Male    2459
 ## 18 The Return Of The King     Man    Female   268</code></pre>
 <p>Tidy data… mission accomplished!</p>
-<p>To explain our call to pivot_longer() above, let’s read it from right to left: we took the variables Female and Male and gathered their values into a single new variable Words. This forced the creation of a companion variable Gender, which tells whether a specific value of Words came from Female or Male. All other variables, such as Film, remain unchanged and are simply replicated as needed.</p>
+<p>To explain our call to <code>pivot_longer()</code> above, let’s read it from right to left: we took the variables <code>Female</code> and <code>Male</code> and gathered their values into a single new variable <code>Words</code>. This forced the creation of a companion variable <code>Gender</code>, which tells whether a specific value of <code>Words</code> came from Female or Male. All other variables, such as <code>Film</code>, remain unchanged and are simply replicated as needed.</p>
 <p><br></p>
 </div>
-<div id="write-the-tidy-data-to-a-delimited-file" class="section level4">
-<h4>4. Write the tidy data to a delimited file</h4>
+<div id="optional-write-the-tidy-data-to-a-delimited-file" class="section level4">
+<h4>4. OPTIONAL: Write the tidy data to a delimited file</h4>
 <p>Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.</p>
 <pre class="r"><code>write_csv(lotr_tidy, path = &quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
 <p><br></p>
@@ -742,8 +711,8 @@ lotr_tidy %&gt;%
 <p><br></p>
 </div>
 </div>
-<div id="more-exercises-on-the-lotr-data" class="section level3">
-<h3>More exercises on the LOTR data</h3>
+<div id="more-exercises-on-the-lotr-data-you-can-do-these-on-your-own" class="section level3">
+<h3>More exercises on the LOTR data (you can do these on your own)</h3>
 <p>The word count data is given in two untidy and gender-specific files available at these URLs:</p>
 <p><a href="https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Female.csv" class="uri">https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Female.csv</a><br />
 <a href="https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Male.csv" class="uri">https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/Male.csv</a></p>
@@ -755,7 +724,7 @@ lotr_tidy %&gt;%
 </ul>
 <p>Reflect on the process of writing this code and on the code itself. Which is easier to write? Easier to read?</p>
 <p>Write R code to compute the total number of words spoken in each film. Do this by copying and modifying your own code for totalling words by race. Which approach is easier to modify and repurpose – the one based on multiple, untidy data frames or the tidy data?</p>
-<p><br></p>
+<p><br> <br></p>
 </div>
 </div>
 <div id="applying-this-to-our-coronavirus-dataset" class="section level2">
