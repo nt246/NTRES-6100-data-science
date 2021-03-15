@@ -176,7 +176,7 @@ After reviewing the `pivot` functions, let's continue on to also take a look at 
 
 ## Another example to further illustrate tidy and untidy data
 
-To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md`).
+To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md` - we'll work through those steps here).
 
 First let's read the intro (`01-intro.md`) [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md)
 
@@ -186,7 +186,7 @@ Then let's work through reshaping the data.
 
 #### 1. Import untidy Lord of the Rings data
 
-We bring the data into data frames or tibbles, one per film, and do some inspection.
+First, we bring the data into data frames or tibbles, one per film, and do some inspection.
 ```{r}
 
 fship <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv")
@@ -231,7 +231,7 @@ To explain our call to pivot_longer() above, let’s read it from right to left:
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
 ```{r}
-write_csv(lotr_tidy, file = "../datasets/lotr_tidy.csv")
+write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
 ```
 
 <br>
