@@ -37,13 +37,13 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 ## Announcements
 
-* We're half way through the course! We will send out a link to a mid-term evaluation form. We would appreciate your candid feedback so we can make the most of our remaining time together
+* We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together
 
 <br>
 <br>
 
 ## Learning objectives
-So far, we've only worked with data that were already formatted for effecient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it **tidy** and more coder-friendly.   
+So far, we've only worked with data that were already formatted for efficient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it **tidy** and more coder-friendly.   
 
 By the end of today's class, you should be able to:
 
@@ -124,7 +124,10 @@ Which of these representations are in tidy format?
 
 ### Exercise
 
-The datasets come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
+The datasets discussed in Chapter 12 of for Data Science come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. 
+
+**Your task:**
+Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
 
 1. Extract the number of TB cases per country per year.
 2. Extract the matching population per country per year.
@@ -147,7 +150,7 @@ Which representation is easiest to work with? Which is hardest? Why?
 ### Pivoting between long and wide data formats
 Now that the motivation for wanting to work with data in tidy format hopefully is clear, let's explore some powerful functions from the package `tidyr` for reshaping data. (`tidyr` comes bundles with the `tidyverse`, so we don't have to install it separately). 
 
-Often, datasets will not in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
+Often, datasets will not be in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
 
 This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. The second step is to resolve one of **two common problems**:
 
@@ -161,7 +164,12 @@ Typically a dataset will only suffer from one of these problems; it’ll only su
 
 We'll walk through an illustration of how to use these by following [Chapter 12.3 Pivoting in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#pivoting).
 
-And now that you're over in "R for Data Science", you can continue on to also take a look at [Chapter 12.4](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting) on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
+That overview uses a simple example with a small number of variables, so we can easily list them individually when we use `pivot_longer()`. For datasets with more variables, we can use more automated ways to index columns, the same helper functions we used for the `select()` function (you can refresh your memory [here](https://r4ds.had.co.nz/transform.html#select)). See examples of this in the useful [`tidyr` vignette on pivoting](https://tidyr.tidyverse.org/articles/pivot.html).
+
+
+<br>
+
+After reviewing the `pivot` functions, let's continue on to also take a look at [Chapter 12.4 in R for Data Science](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting) on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
 
 <br>
 <br>
@@ -223,7 +231,7 @@ To explain our call to pivot_longer() above, let’s read it from right to left:
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
 ```{r}
-write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
+write_csv(lotr_tidy, file = "../datasets/lotr_tidy.csv")
 ```
 
 <br>
