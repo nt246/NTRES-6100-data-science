@@ -289,7 +289,7 @@ Let's now return to our Coronavirus dataset. Let's remind ourselves of it's stru
 
 ```{r}
 
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 coronavirus
 
@@ -330,7 +330,7 @@ corona_wide <- coronavirus %>%
 
 Now how do we reproduce the barchart of total cases per day broken down by type? 
 
-And how would be plot the daily counts of different case types within a country? With the long format this is easy:
+And how would we plot the daily counts of different case types within a country? With the long format this is easy:
 
 ```{r}
 
@@ -343,7 +343,7 @@ coronavirus %>%
 
 How would we do this with the `coronavirus_wide` format? That would be much more difficult
 
-As mentioned above, however, there are plot types where the wide format provides the best input. For example, in Slack, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in `ggplot` we are mapping *variables* to *aesthetics* and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.
+As mentioned above, however, there are plot types where the wide format provides the best input. In an earlier class, for example, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in `ggplot` we are mapping *variables* to *aesthetics* and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.
 
 ```{R, eval = TRUE}
 
@@ -362,9 +362,13 @@ This case highlights how the definition of what a variable and an observation is
 
 <br>
 
-## Part 3. Cleaning up column names 
+## Cleaning up column names 
 
 Using `janitor::clean_names()`
+
+Earlier versions of the coronavirus dataset we've been working with had different variables names. You can see those by reading in a version from April 2020.
+
+
 
 We've noticed in the coronavirus dataset that the variable names have a very inconsistent format. It's not a problem per se for our ability to work with this dataframe, but it's a bit annoying to look at.
 
