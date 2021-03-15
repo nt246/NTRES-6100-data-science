@@ -297,6 +297,7 @@ coronavirus
 
 **QUESTION**: Is this in tidy format?
 
+<br>
 
 Last class, we visualized the global case counts date
 ```{r}
@@ -330,7 +331,9 @@ corona_wide <- coronavirus %>%
 
 Now how do we reproduce the barchart of total cases per day broken down by type? 
 
-And how would we plot the daily counts of different case types within a country? With the long format this is easy:
+And how would we plot the daily counts of different case types within a country? 
+
+With the long format this is easy:
 
 ```{r}
 
@@ -341,11 +344,13 @@ coronavirus %>%
 
 ```
 
-How would we do this with the `coronavirus_wide` format? That would be much more difficult
+How would we do this with the `coronavirus_wide` format? That would be much more difficult.
+
+<br>
 
 As mentioned above, however, there are plot types where the wide format provides the best input. In an earlier class, for example, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in `ggplot` we are mapping *variables* to *aesthetics* and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.
 
-```{R, eval = TRUE}
+```{R, eval = TRUE, message = FALSE}
 
 coronavirus_ttd <- coronavirus %>% 
   group_by(country, type) %>%
@@ -368,9 +373,13 @@ Using `janitor::clean_names()`
 
 Earlier versions of the coronavirus dataset we've been working with had different variables names. You can see those by reading in a version from April 2020.
 
+```{r}
+coronavirus <- read_csv('https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/coronavirus_apr04-2020.csv', col_types = cols(Province.State = col_character()))
+
+```
 
 
-We've noticed in the coronavirus dataset that the variable names have a very inconsistent format. It's not a problem per se for our ability to work with this dataframe, but it's a bit annoying to look at.
+You'll notice that the variable names here have a very inconsistent format. It's not a problem per se for our ability to work with this dataframe, but it's a bit annoying to look at.
 
 ```{r}
 colnames(coronavirus)
@@ -385,7 +394,7 @@ The `janitor` package by Sam Firke is a great collection of functions for some q
 - `janitor::remove_empty()`: remove empty rows and/or columns
 - `janitor::adorn_*()`: jazz up tables 
 
-Here, we'll use `janitor::clean_names()` to convert all of our column headers in our `coronavirus` data to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+Here, we'll use `janitor::clean_names()` to convert all of our column headers in our old `coronavirus` dataset to a more convenient case. The default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
 
 For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
 

@@ -730,9 +730,18 @@ lotr_tidy %&gt;%
 <div id="applying-this-to-our-coronavirus-dataset" class="section level2">
 <h2>Applying this to our Coronavirus dataset</h2>
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
-<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))
-
-coronavirus</code></pre>
+<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   date = col_date(format = &quot;&quot;),
+##   province = col_character(),
+##   country = col_character(),
+##   lat = col_double(),
+##   long = col_double(),
+##   type = col_character(),
+##   cases = col_double()
+## )</code></pre>
+<pre class="r"><code>coronavirus</code></pre>
 <pre><code>## # A tibble: 337,326 x 7
 ##    date       province               country            lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -748,6 +757,7 @@ coronavirus</code></pre>
 ## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
 ## # … with 337,316 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
+<p><br></p>
 <p>Last class, we visualized the global case counts date</p>
 <pre class="r"><code>coronavirus %&gt;% 
   group_by(date, type) %&gt;%
@@ -768,20 +778,22 @@ coronavirus</code></pre>
   pivot_wider(names_from = type, values_from = cases)</code></pre>
 <p><br></p>
 <p>Now how do we reproduce the barchart of total cases per day broken down by type?</p>
-<p>And how would be plot the daily counts of different case types within a country? With the long format this is easy:</p>
+<p>And how would we plot the daily counts of different case types within a country?</p>
+<p>With the long format this is easy:</p>
 <pre class="r"><code>coronavirus %&gt;% 
   filter(country == &quot;US&quot;) %&gt;% 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))</code></pre>
 <p><img src="lesson10-files/unnamed-chunk-10-1.png" width="672" /></p>
-<p>How would we do this with the <code>coronavirus_wide</code> format? That would be much more difficult</p>
-<p>As mentioned above, however, there are plot types where the wide format provides the best input. For example, in Slack, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in <code>ggplot</code> we are mapping <em>variables</em> to <em>aesthetics</em> and now we want to map different levels of a variable to different aesthetics. So let’s make those different levels separate variables by widening the data.</p>
+<p>How would we do this with the <code>coronavirus_wide</code> format? That would be much more difficult.</p>
+<p><br></p>
+<p>As mentioned above, however, there are plot types where the wide format provides the best input. In an earlier class, for example, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in <code>ggplot</code> we are mapping <em>variables</em> to <em>aesthetics</em> and now we want to map different levels of a variable to different aesthetics. So let’s make those different levels separate variables by widening the data.</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   group_by(country, type) %&gt;%
   summarize(total_cases = sum(cases)) %&gt;%
-  pivot_wider(names_from = type, values_from = total_cases)</code></pre>
-<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code># Now we can plot this easily
+  pivot_wider(names_from = type, values_from = total_cases)
+
+# Now we can plot this easily
 ggplot(coronavirus_ttd) +
   geom_label(mapping = aes(x = confirmed, y = death, label = country))</code></pre>
 <p><img src="lesson10-files/unnamed-chunk-11-1.png" width="672" /></p>
@@ -790,12 +802,15 @@ ggplot(coronavirus_ttd) +
 </div>
 </div>
 </div>
-<div id="part-3.-cleaning-up-column-names" class="section level2">
-<h2>Part 3. Cleaning up column names</h2>
+<div id="cleaning-up-column-names" class="section level2">
+<h2>Cleaning up column names</h2>
 <p>Using <code>janitor::clean_names()</code></p>
-<p>We’ve noticed in the coronavirus dataset that the variable names have a very inconsistent format. It’s not a problem per se for our ability to work with this dataframe, but it’s a bit annoying to look at.</p>
+<p>Earlier versions of the coronavirus dataset we’ve been working with had different variables names. You can see those by reading in a version from April 2020.</p>
+<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/coronavirus_apr04-2020.csv&#39;, col_types = cols(Province.State = col_character()))</code></pre>
+<p>You’ll notice that the variable names here have a very inconsistent format. It’s not a problem per se for our ability to work with this dataframe, but it’s a bit annoying to look at.</p>
 <pre class="r"><code>colnames(coronavirus)</code></pre>
-<pre><code>## [1] &quot;date&quot;     &quot;province&quot; &quot;country&quot;  &quot;lat&quot;      &quot;long&quot;     &quot;type&quot;     &quot;cases&quot;</code></pre>
+<pre><code>## [1] &quot;Province.State&quot; &quot;Country.Region&quot; &quot;Lat&quot;            &quot;Long&quot;          
+## [5] &quot;date&quot;           &quot;cases&quot;          &quot;type&quot;</code></pre>
 <p>In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
 <p>The <code>janitor</code> package by Sam Firke is a great collection of functions for some quick data cleaning, like:</p>
 <ul>
@@ -804,7 +819,7 @@ ggplot(coronavirus_ttd) +
 <li><code>janitor::remove_empty()</code>: remove empty rows and/or columns</li>
 <li><code>janitor::adorn_*()</code>: jazz up tables</li>
 </ul>
-<p>Here, we’ll use <code>janitor::clean_names()</code> to convert all of our column headers in our <code>coronavirus</code> data to a more convenient case - the default is <strong>lower_snake_case</strong>, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.</p>
+<p>Here, we’ll use <code>janitor::clean_names()</code> to convert all of our column headers in our old <code>coronavirus</code> dataset to a more convenient case. The default is <strong>lower_snake_case</strong>, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.</p>
 <p>For example, <code>janitor::clean_names()</code> would update these nightmare column names into much nicer forms:</p>
 <ul>
 <li><code>My...RECENT-income!</code> becomes <code>my_recent_income</code></li>
@@ -816,7 +831,8 @@ ggplot(coronavirus_ttd) +
 <pre class="r"><code>coronavirus &lt;- coronavirus %&gt;% 
   clean_names()</code></pre>
 <pre class="r"><code>names(coronavirus)</code></pre>
-<pre><code>## [1] &quot;date&quot;     &quot;province&quot; &quot;country&quot;  &quot;lat&quot;      &quot;long&quot;     &quot;type&quot;     &quot;cases&quot;</code></pre>
+<pre><code>## [1] &quot;province_state&quot; &quot;country_region&quot; &quot;lat&quot;            &quot;long&quot;          
+## [5] &quot;date&quot;           &quot;cases&quot;          &quot;type&quot;</code></pre>
 <p>And there are other case options in <code>clean_names()</code>, like:</p>
 <ul>
 <li>“snake” produces snake_case (the default)</li>
