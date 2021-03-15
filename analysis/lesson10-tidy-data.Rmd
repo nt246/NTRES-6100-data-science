@@ -37,6 +37,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 ## Announcements
 
+* We're half way through the course! We will send out a link to a mid-term evaluation form. We would appreciate your candid feedback so we can make the most of our remaining time together
+
 <br>
 <br>
 
@@ -45,7 +47,6 @@ So far, we've only worked with data that were already formatted for effecient pr
 
 By the end of today's class, you should be able to:
 
-- Read different types of data into R
 - Describe the concept of tidy data
 - Determine whether a dataset is in tidy format
 - Use `tidyr::pivot_wider()` and `tidyr::pivot_longer()` to reshape data frames
@@ -62,63 +63,29 @@ Todays lesson integrates material from multiple sources, including the excellent
 
 ## Set-up
 
-### Create a new R Markdown and attach packages
+### Create a new R script and load packages
 
 * Open the R Project associated with your personal class GitHub repository. 
 * PULL to make sure your project is up to date
-* Create a new RMarkdown file called `my_tidying.Rmd`
-* Remove all example code / text below the first code chunk and change the output format (in the YAML header) to "github_document"
-* Attach the packages we'll use here (you will have to install `janitor` if you don't already have it):
+
+* Create a new R script file and save it as `my_tidying.Rmd`
+* Load the packages we'll use here (you will have to install `janitor` if you don't already have it):
     - `tidyverse`
     - `janitor`
 
-Knit and save your new .Rmd within the project folder. 
+<br>
 
 ```{r, message = FALSE, warning = FALSE}
-# Attach packages
+# Load packages
 library(tidyverse)
 library(janitor)  ## install.packages("janitor")
 
 ```
 
 <br>
-
-## Part 1: Data import
-
-So far, we've been working with datasets that are built into R or we have just provided code to run to import data into R. 
-
-When working in the tidyverse, the most common import function we will use are the `read_xx()` functions from the tidyverse package `readr`.
-
-* `read_csv()` reads comma delimited files, `read_csv2()` reads semicolon separated files (common in countries where `,` is used as the decimal place), `read_tsv()` reads tab delimited files, and `read_delim()` reads in files with any delimiter.
-
-* `read_fwf()` reads fixed width files. You can specify fields either by their widths with `fwf_widths()` or their position with `fwf_positions()`. `read_table()` reads a common variation of fixed width files where columns are separated by white space.
-
-We can also read directly from spreadsheet formats:
-
-* `readxl::read_excel()` reads directly from Excel spreadsheets
-
-* `googlesheets::gs_read()` from the package [googlesheets](https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#read-all-the-data-in-one-worksheet) reads in data directly from Google Sheets
-
 <br>
 
-For all of these, we can either read in data from a file path or directly from a URL.
-
-So for example, for a dataset we will be working with later, I can either load my local copy or grab it from the github site where it is made available
-```{r}
-
-lotr <- read_csv("../datasets/lotr_tidy.csv")
-
-lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
-
-```
-
-All the `readr::read_xx()` functions has many additional options including the ability to skip columns, skip rows, rename columns on import, trim whitespace, and much more. They all use the same syntax, so once you get familiar with one, you can easily apply your knowledge to all the other functions in `readr`.
-
-You can examine the options by looking at the documentation, e.g `?read_csv()`. There is also a very useful overview in [Chapter 11 of Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/data-import.html)
-
-<br>
-
-## Part 2: Tidy data
+## What is tidy data?
 
 "Tidy" might sound like a generic way to describe non-messy looking data, but it actually refers to a specific data structure. 
 
@@ -132,25 +99,53 @@ See: [Ch. 12 in R for Data Science by Grolemund & Wickham](https://r4ds.had.co.n
 
 
 ![](assets/tidy_data.png)
-
+<br>
 
 An implication of this definition is that each value belongs to exactly one variable and one observation. This also means that tidy data is relative, as it depends on how you define your observational unit and variables.
 
 A key idea here is that instead of building your analyses around whatever (likely weird) format your data are in, take deliberate steps to make your data tidy. When your data are tidy, you can use a growing assortment of powerful analytical and visualization tools instead of inventing home-grown ways to accommodate your data. This will save you time since you aren’t reinventing the wheel, and will make your work more clear and understandable to your collaborators (most importantly, Future You).
 
-Note that to effectively use `ggplot()` your data must be in tidy format.
+Note that to effectively use `ggplot()` your data must be in tidy format. It also makes it easier to take advantage of R's vectorized nature (most built-in R functions work with vectors of values)
+
+Review of the beautiful [slides by Julia Lowndes and Allison Horst](https://docs.google.com/presentation/d/1N7hKepabvl9OrHjvGJWPjUsfzVdB5xzV5AsFndgSwms/edit#slide=id.p) for a clear overview of the motivation for working with tidy data. 
+
+<br>
+<br>
 
 Let's go through some examples to get a better understanding of what tidy data look like.
 
+<br>
+
+Let's first compare the four different representations of the same dataset shown in [Chapter 12.2 in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#tidy-data-1) including the same values of four variables country, year, population, and cases.
+
+Which of these representations are in tidy format?
+
+<br>
+
+### Exercise
+
+The datasets come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
+
+1. Extract the number of TB cases per country per year.
+2. Extract the matching population per country per year.
+3. Divide cases by population, and multiply by 10000.
+4. Store back in the appropriate place.
+
+Which representation is easiest to work with? Which is hardest? Why?
+
+
+<br>
 <br>
 
 >If I had one thing to tell biologists learning bioinformatics, it would be “write code for humans, write data for computers”.
 — Vince Buffalo (@vsbuffalo)
 
 <br>
+<br>
+
 
 ### Pivoting between long and wide data formats
-First, to exlore the powerful `tidyr` functions for reshaping data, we'll walk through [Chapter 12.3 Pivoting in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#pivoting).
+Now that the motivation for wanting to work with data in tidy format hopefully is clear, let's explore some powerful functions from the package `tidyr` for reshaping data. (`tidyr` comes bundles with the `tidyverse`, so we don't have to install it separately). 
 
 Often, datasets will not in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
 
@@ -160,16 +155,18 @@ This means for most real analyses, you’ll need to do some tidying. The first s
 
 * **One observation might be scattered across multiple rows**.
 
-Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: `pivot_longer()` and `pivot_wider()`.
-
-
-
-
-Now that you're over in "R for Data Science", you can continue on to also take a look at Chapter 12.4 on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
-
 <br>
 
-### Another example to further illustrate tidy and untidy data
+Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: `pivot_longer()` and `pivot_wider()`.
+
+We'll walk through an illustration of how to use these by following [Chapter 12.3 Pivoting in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#pivoting).
+
+And now that you're over in "R for Data Science", you can continue on to also take a look at [Chapter 12.4](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting) on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
+
+<br>
+<br>
+
+## Another example to further illustrate tidy and untidy data
 
 To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md`).
 
