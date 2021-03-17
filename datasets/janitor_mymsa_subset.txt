@@ -1,4 +1,4 @@
-Plant ID	BodyNo	LeftSideScanTime	RightSideScanTime	HangMethod	Hgp	Sex F/M	LeftHscw	P8Fat	Est % BI	FeedType	NoDaysOnFeed	MSA/Index
+Plant ID	Body#	LeftSideScanTime	RightSideScanTime	Hang-Method	HGP	Sex F/M	LeftHscw	P8Fat	Est % BI	FeedType	NoDaysOnFeed	MSA/Index
 1	99	445		AT	N	F	125.7		X	Grain	248	56.83
 1	193	423		AT	N	F	128.7		X	Grain	250	59.52
 1	257	542		AT	N	F	115.9		X	Grain	250	61.09

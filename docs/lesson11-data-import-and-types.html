@@ -26,6 +26,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -674,8 +676,9 @@ tail(challenge)</code></pre>
 ## )</code></pre>
 <p><br> <br></p>
 </div>
-<div id="converting-between-data-types" class="section level3">
-<h3>Converting between data types</h3>
+</div>
+<div id="converting-between-data-types" class="section level2">
+<h2>Converting between data types</h2>
 <div id="parsing-numbers" class="section level4">
 <h4>Parsing numbers</h4>
 <p>It seems like it should be straightforward to parse a number, but three problems make it tricky:</p>
@@ -740,7 +743,6 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p><br> <br></p>
 </div>
 </div>
-</div>
 <div id="cleaning-up-column-names" class="section level2">
 <h2>Cleaning up column names</h2>
 <p>Sometimes you’ll encounter datasets with really inconsistent column names. Inconsistent naming is not a problem per se for our ability to work with a dataset, but it’s a bit annoying to look at and to have to remember when calling variable names. In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
@@ -766,41 +768,44 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <pre class="r"><code>msa &lt;- read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
-##   RFID = col_double(),
-##   `plant ID` = col_double(),
-##   KillDate = col_double(),
-##   BodyNo = col_date(format = &quot;&quot;),
-##   LeftSideScanTime = col_time(format = &quot;&quot;),
-##   RightSideScanTime = col_character(),
-##   `Est % BI` = col_double(),
+##   `Plant ID` = col_double(),
+##   BodyNo = col_double(),
+##   LeftSideScanTime = col_double(),
+##   RightSideScanTime = col_double(),
+##   HangMethod = col_character(),
+##   Hgp = col_character(),
+##   `Sex F/M` = col_character(),
+##   LeftHscw = col_double(),
+##   P8Fat = col_double(),
+##   `Est % BI` = col_character(),
+##   FeedType = col_character(),
+##   NoDaysOnFeed = col_double(),
 ##   `MSA/Index` = col_double()
 ## )</code></pre>
-<pre><code>## Warning: 19 parsing failures.
-## row col  expected     actual                                                                                                     file
-##   1  -- 8 columns 11 columns &#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&#39;
-##   2  -- 8 columns 11 columns &#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&#39;
-##   3  -- 8 columns 11 columns &#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&#39;
-##   4  -- 8 columns 11 columns &#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&#39;
-##   5  -- 8 columns 11 columns &#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&#39;
-## ... ... ......... .......... ........................................................................................................
-## See problems(...) for more details.</code></pre>
 <pre class="r"><code>colnames(msa)</code></pre>
-<pre><code>## [1] &quot;RFID&quot;              &quot;plant ID&quot;          &quot;KillDate&quot;         
-## [4] &quot;BodyNo&quot;            &quot;LeftSideScanTime&quot;  &quot;RightSideScanTime&quot;
-## [7] &quot;Est % BI&quot;          &quot;MSA/Index&quot;</code></pre>
+<pre><code>##  [1] &quot;Plant ID&quot;          &quot;BodyNo&quot;            &quot;LeftSideScanTime&quot; 
+##  [4] &quot;RightSideScanTime&quot; &quot;HangMethod&quot;        &quot;Hgp&quot;              
+##  [7] &quot;Sex F/M&quot;           &quot;LeftHscw&quot;          &quot;P8Fat&quot;            
+## [10] &quot;Est % BI&quot;          &quot;FeedType&quot;          &quot;NoDaysOnFeed&quot;     
+## [13] &quot;MSA/Index&quot;</code></pre>
 <p>Let’s compare the column names before and after cleaning</p>
 <pre class="r"><code>msa_clean &lt;- clean_names(msa)
 
 cbind(colnames(msa), colnames(msa_clean))</code></pre>
-<pre><code>##      [,1]                [,2]                  
-## [1,] &quot;RFID&quot;              &quot;rfid&quot;                
-## [2,] &quot;plant ID&quot;          &quot;plant_id&quot;            
-## [3,] &quot;KillDate&quot;          &quot;kill_date&quot;           
-## [4,] &quot;BodyNo&quot;            &quot;body_no&quot;             
-## [5,] &quot;LeftSideScanTime&quot;  &quot;left_side_scan_time&quot; 
-## [6,] &quot;RightSideScanTime&quot; &quot;right_side_scan_time&quot;
-## [7,] &quot;Est % BI&quot;          &quot;est_percent_bi&quot;      
-## [8,] &quot;MSA/Index&quot;         &quot;msa_index&quot;</code></pre>
+<pre><code>##       [,1]                [,2]                  
+##  [1,] &quot;Plant ID&quot;          &quot;plant_id&quot;            
+##  [2,] &quot;BodyNo&quot;            &quot;body_no&quot;             
+##  [3,] &quot;LeftSideScanTime&quot;  &quot;left_side_scan_time&quot; 
+##  [4,] &quot;RightSideScanTime&quot; &quot;right_side_scan_time&quot;
+##  [5,] &quot;HangMethod&quot;        &quot;hang_method&quot;         
+##  [6,] &quot;Hgp&quot;               &quot;hgp&quot;                 
+##  [7,] &quot;Sex F/M&quot;           &quot;sex_f_m&quot;             
+##  [8,] &quot;LeftHscw&quot;          &quot;left_hscw&quot;           
+##  [9,] &quot;P8Fat&quot;             &quot;p8fat&quot;               
+## [10,] &quot;Est % BI&quot;          &quot;est_percent_bi&quot;      
+## [11,] &quot;FeedType&quot;          &quot;feed_type&quot;           
+## [12,] &quot;NoDaysOnFeed&quot;      &quot;no_days_on_feed&quot;     
+## [13,] &quot;MSA/Index&quot;         &quot;msa_index&quot;</code></pre>
 <p><br> <br></p>
 <p>There are many other case options in <code>clean_names()</code>, like:</p>
 <ul>
@@ -814,8 +819,9 @@ cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <p><img src="assets/case.jpg" /></p>
 <p>Art by Allison Horst. Check out more <a href="https://github.com/allisonhorst/stats-illustrations">here</a></p>
 <p><br> <br></p>
-<div id="data-export" class="section level4">
-<h4>Data export</h4>
+</div>
+<div id="data-export" class="section level2">
+<h2>Data export</h2>
 <p><code>readr</code> also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly and also let’s you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function <code>write.table()</code></p>
 <p>Let’s look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
@@ -856,10 +862,128 @@ cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <p><code>ggsave()</code> has really nice defaults, so you don’t <em>have</em> to specify lots of different parameters. But you can! See common examples <a href="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.055.png">here</a></p>
 <p><br> <br></p>
 </div>
-<div id="creating-small-tibbles-on-the-fly" class="section level4">
-<h4>Creating small tibbles on the fly</h4>
+<div id="creating-small-tibbles-on-the-fly" class="section level2">
+<h2>Creating small tibbles on the fly</h2>
 <p>Sometimes it can be useful to create small toy tibbles or tables for displaying in an RMarkdown without having to read in a file.</p>
 <p>To see how to do this, we’ll review <a href="https://r4ds.had.co.nz/tibbles.html#creating-tibbles">R4DS Chapter 10.2</a> and <a href="https://r4ds.had.co.nz/data-import.html#getting-started">11.2</a></p>
+<p><br></p>
+<div id="exercise" class="section level3">
+<h3>Exercise:</h3>
+<p>Reproduce the two tibbles below, first with the <code>tibble()</code> and then with the <code>tribble()</code> functions.</p>
+<p><br></p>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+fruit
+</th>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:right;">
+price
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+apple
+</td>
+<td style="text-align:right;">
+4.3
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pear
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+orange
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Types
+</th>
+<th style="text-align:right;">
+A
+</th>
+<th style="text-align:right;">
+B
+</th>
+<th style="text-align:right;">
+C
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+y
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+z
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

@@ -235,7 +235,7 @@ challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
 <br>
 
 
-### Converting between data types
+## Converting between data types
 
 #### Parsing numbers
 
@@ -385,7 +385,7 @@ Art by Allison Horst. Check out more [here](https://github.com/allisonhorst/stat
 <br>
 
 
-#### Data export
+## Data export
 `readr` also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. Both functions increase the chances of the output file being read back in correctly and also let's you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function `write.table()`
 
 Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:
@@ -428,8 +428,46 @@ ggsave(filename = "assets/daily_casecounts_plot.png")
 <br>
 <br>
 
-#### Creating small tibbles on the fly
+## Creating small tibbles on the fly
 
 Sometimes it can be useful to create small toy tibbles or tables for displaying in an RMarkdown without having to read in a file.
 
 To see how to do this, we'll review [R4DS Chapter 10.2](https://r4ds.had.co.nz/tibbles.html#creating-tibbles) and [11.2](https://r4ds.had.co.nz/data-import.html#getting-started)
+
+
+<br>
+
+### Exercise:
+
+Reproduce the two tibbles below, first with the `tibble()` and then with the `tribble()` functions.
+
+<br>
+
+```{r echo = FALSE, message = FALSE}
+library(knitr)
+library(kableExtra) #install.packages("kableExtra")
+
+x <- tibble(
+  "fruit" = c("apple", "pear", "orange"),
+  "weight" = c(4.3, 3.4, 5.2),
+  "price" = c(5, 4, 6)
+)
+
+kable(x) %>% 
+  kable_paper("hover", full_width = F, position = "left")
+```
+<br>
+
+```{r echo=FALSE}
+y <- tibble(
+ "Types" = c("x", "y", "z"),
+ "A" = c(3, 5, 6),
+ "B" = 1,
+ "C" = A + B
+)
+
+kable(y) %>% 
+  kable_paper("hover", full_width = F, position = "left")
+
+```
+
