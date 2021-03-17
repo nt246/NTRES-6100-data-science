@@ -502,7 +502,6 @@ div.tocify {
 <li>Determine whether a dataset is in tidy format</li>
 <li>Use <code>tidyr::pivot_wider()</code> and <code>tidyr::pivot_longer()</code> to reshape data frames</li>
 <li>Use <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to merge or separate information from different columns</li>
-<li>Use <code>janitor::clean_names()</code> to make column headers more manageable</li>
 </ul>
 <p><br></p>
 <div id="acknowledgements" class="section level3">
@@ -541,8 +540,9 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 <li>Each row is an observation;</li>
 <li>Each cell is a value.</li>
 </ul>
-<p>See: <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 in R for Data Science by Grolemund &amp; Wickham</a>).</p>
-<p><img src="assets/tidy_data.png" /> <br></p>
+<p>See: <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 in R for Data Science by Grolemund &amp; Wickham</a>.</p>
+<p><img src="assets/tidy_data.png" /></p>
+<p><br> <br></p>
 <p>An implication of this definition is that each value belongs to exactly one variable and one observation. This also means that tidy data is relative, as it depends on how you define your observational unit and variables.</p>
 <p>A key idea here is that instead of building your analyses around whatever (likely weird) format your data are in, take deliberate steps to make your data tidy. When your data are tidy, you can use a growing assortment of powerful analytical and visualization tools instead of inventing home-grown ways to accommodate your data. This will save you time since you aren’t reinventing the wheel, and will make your work more clear and understandable to your collaborators (most importantly, Future You).</p>
 <p>Note that to effectively use <code>ggplot()</code> your data must be in tidy format. It also makes it easier to take advantage of R’s vectorized nature (most built-in R functions work with vectors of values)</p>
@@ -588,8 +588,8 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 <p><br> <br></p>
 </div>
 </div>
-<div id="another-example-to-further-illustrate-tidy-and-untidy-data" class="section level2">
-<h2>Another example to further illustrate tidy and untidy data</h2>
+<div id="application-to-a-different-dataset-lotr" class="section level2">
+<h2>Application to a different dataset: LOTR</h2>
 <p>To explore tidy data in a different context, let’s work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we’ll work through updated code here (i.e. only look at the <code>01-intro.md</code> file, not the <code>02-gather.md</code> and <code>03-spread.md</code> - we’ll work through those steps here).</p>
 <p>First let’s read the intro (<code>01-intro.md</code>) <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">here</a></p>
 <p>Then let’s work through reshaping the data.</p>
@@ -727,8 +727,8 @@ lotr_tidy %&gt;%
 <p><br> <br></p>
 </div>
 </div>
-<div id="applying-this-to-our-coronavirus-dataset" class="section level2">
-<h2>Applying this to our Coronavirus dataset</h2>
+<div id="application-to-our-coronavirus-dataset" class="section level2">
+<h2>Application to our coronavirus dataset</h2>
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <pre><code>## Parsed with column specification:
@@ -742,7 +742,7 @@ lotr_tidy %&gt;%
 ##   cases = col_double()
 ## )</code></pre>
 <pre class="r"><code>coronavirus</code></pre>
-<pre><code>## # A tibble: 337,326 x 7
+<pre><code>## # A tibble: 338,940 x 7
 ##    date       province               country            lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
 ##  1 2020-01-22 &lt;NA&gt;                   Afghanistan       33.9  67.7  confir…     0
@@ -755,7 +755,7 @@ lotr_tidy %&gt;%
 ##  8 2020-01-22 &lt;NA&gt;                   Armenia           40.1  45.0  confir…     0
 ##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
 ## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
-## # … with 337,316 more rows</code></pre>
+## # … with 338,930 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p><br></p>
 <p>Last class, we visualized the global case counts date</p>
@@ -801,49 +801,6 @@ ggplot(coronavirus_ttd) +
 <p><br></p>
 </div>
 </div>
-</div>
-<div id="cleaning-up-column-names" class="section level2">
-<h2>Cleaning up column names</h2>
-<p>Using <code>janitor::clean_names()</code></p>
-<p>Earlier versions of the coronavirus dataset we’ve been working with had different variables names. You can see those by reading in a version from April 2020.</p>
-<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/coronavirus_apr04-2020.csv&#39;, col_types = cols(Province.State = col_character()))</code></pre>
-<p>You’ll notice that the variable names here have a very inconsistent format. It’s not a problem per se for our ability to work with this dataframe, but it’s a bit annoying to look at.</p>
-<pre class="r"><code>colnames(coronavirus)</code></pre>
-<pre><code>## [1] &quot;Province.State&quot; &quot;Country.Region&quot; &quot;Lat&quot;            &quot;Long&quot;          
-## [5] &quot;date&quot;           &quot;cases&quot;          &quot;type&quot;</code></pre>
-<p>In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
-<p>The <code>janitor</code> package by Sam Firke is a great collection of functions for some quick data cleaning, like:</p>
-<ul>
-<li><code>janitor::clean_names()</code>: update column headers to a case of your choosing</li>
-<li><code>janitor::get_dupes()</code>: see all rows that are duplicates within variables you choose</li>
-<li><code>janitor::remove_empty()</code>: remove empty rows and/or columns</li>
-<li><code>janitor::adorn_*()</code>: jazz up tables</li>
-</ul>
-<p>Here, we’ll use <code>janitor::clean_names()</code> to convert all of our column headers in our old <code>coronavirus</code> dataset to a more convenient case. The default is <strong>lower_snake_case</strong>, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.</p>
-<p>For example, <code>janitor::clean_names()</code> would update these nightmare column names into much nicer forms:</p>
-<ul>
-<li><code>My...RECENT-income!</code> becomes <code>my_recent_income</code></li>
-<li><code>SAMPLE2.!test1</code> becomes <code>sample2_test1</code></li>
-<li><code>ThisIsTheName</code> becomes <code>this_is_the_name</code></li>
-<li><code>2015</code> becomes <code>x2015</code></li>
-</ul>
-<p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>:</p>
-<pre class="r"><code>coronavirus &lt;- coronavirus %&gt;% 
-  clean_names()</code></pre>
-<pre class="r"><code>names(coronavirus)</code></pre>
-<pre><code>## [1] &quot;province_state&quot; &quot;country_region&quot; &quot;lat&quot;            &quot;long&quot;          
-## [5] &quot;date&quot;           &quot;cases&quot;          &quot;type&quot;</code></pre>
-<p>And there are other case options in <code>clean_names()</code>, like:</p>
-<ul>
-<li>“snake” produces snake_case (the default)</li>
-<li>“lower_camel” or “small_camel” produces lowerCamel</li>
-<li>“upper_camel” or “big_camel” produces UpperCamel</li>
-<li>“screaming_snake” or “all_caps” produces ALL_CAPS</li>
-<li>“lower_upper” produces lowerUPPER</li>
-<li>“upper_lower” produces UPPERlower</li>
-</ul>
-<p><img src="assets/case.jpg" /></p>
-<p>Art by Allison Horst. Check out more <a href="https://github.com/allisonhorst/stats-illustrations">here</a></p>
 </div>
 
 
