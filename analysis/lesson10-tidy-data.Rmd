@@ -17,6 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 <br>
 
+
 **Required**:  
 
 * [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
@@ -263,7 +264,7 @@ lotr_tidy %>%
 
 <br>
 
-### More exercises on the LOTR data (you can do these on your own)
+### More exercises on the LOTR data (you can do these on your own later)
 
 The word count data is given in two untidy and gender-specific files available at these URLs:
 
