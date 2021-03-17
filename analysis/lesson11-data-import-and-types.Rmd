@@ -331,7 +331,7 @@ The `janitor` package by Sam Firke is a great collection of functions for some q
 - `janitor::remove_empty()`: remove empty rows and/or columns
 - `janitor::adorn_*()`: jazz up tables 
 
-Here, we'll use `janitor::clean_names()` to convert all of our column headers in our `coronavirus` data to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+Here, we'll use `janitor::clean_names()` to convert all column headers in a messy dataset to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
 
 For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
 
@@ -340,10 +340,36 @@ For example, `janitor::clean_names()` would update these nightmare column names 
 - `ThisIsTheName` becomes `this_is_the_name`
 - `2015` becomes `x2015`
 
-If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
+If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`.
+
+Let's first install and load the `janitor` package:
+
+```{r}
+library(janitor) #install.packages("janitor")
+```
+Then let's load the data and clean the column names:
+
+```{r}
+
+msa <- read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt")
+
+colnames(msa)
+
+msa_clean <- clean_names(msa)
+
+```
+Let's compare the column names before and after cleaning
+
+```{r}
+cbind(names(msa), names(msa_clean))
+```
+<br>
+<br>
 
 
-And there are other case options in `clean_names()`, like: 
+
+
+There are many other case options in `clean_names()`, like: 
 
 - "snake" produces snake_case (the default)
 - "lower_camel" or "small_camel" produces lowerCamel
