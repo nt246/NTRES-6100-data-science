@@ -358,12 +358,8 @@ And there are other case options in `clean_names()`, like:
 Art by Allison Horst. Check out more [here](https://github.com/allisonhorst/stats-illustrations)
 
 
-
-
-
-
-
-
+<br>
+<br>
 
 
 #### Data export

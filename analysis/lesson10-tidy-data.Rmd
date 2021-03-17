@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 ## Announcements
 
-* We're half way through the course! We will send out a link to a mid-term evaluation form. We would appreciate your candid feedback so we can make the most of our remaining time together
+* We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together
 
 <br>
 <br>
@@ -123,7 +123,10 @@ Which of these representations are in tidy format?
 
 ### Exercise
 
-The datasets come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
+The datasets discussed in Chapter 12 of for Data Science come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. 
+
+**Your task:**
+Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
 
 1. Extract the number of TB cases per country per year.
 2. Extract the matching population per country per year.
@@ -146,7 +149,7 @@ Which representation is easiest to work with? Which is hardest? Why?
 ### Pivoting between long and wide data formats
 Now that the motivation for wanting to work with data in tidy format hopefully is clear, let's explore some powerful functions from the package `tidyr` for reshaping data. (`tidyr` comes bundles with the `tidyverse`, so we don't have to install it separately). 
 
-Often, datasets will not in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
+Often, datasets will not be in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
 
 This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. The second step is to resolve one of **two common problems**:
 
@@ -160,14 +163,19 @@ Typically a dataset will only suffer from one of these problems; it’ll only su
 
 We'll walk through an illustration of how to use these by following [Chapter 12.3 Pivoting in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#pivoting).
 
-And now that you're over in "R for Data Science", you can continue on to also take a look at [Chapter 12.4](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting) on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
+That overview uses a simple example with a small number of variables, so we can easily list them individually when we use `pivot_longer()`. For datasets with more variables, we can use more automated ways to index columns, the same helper functions we used for the `select()` function (you can refresh your memory [here](https://r4ds.had.co.nz/transform.html#select)). See examples of this in the useful [`tidyr` vignette on pivoting](https://tidyr.tidyverse.org/articles/pivot.html).
+
+
+<br>
+
+After reviewing the `pivot` functions, let's continue on to also take a look at [Chapter 12.4 in R for Data Science](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting) on `separate()` and `unite()` - two simple functions for splitting and combining information from different columns.
 
 <br>
 <br>
 
 ## Another example to further illustrate tidy and untidy data
 
-To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md`).
+To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md` - we'll work through those steps here).
 
 First let's read the intro (`01-intro.md`) [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md)
 
@@ -177,8 +185,8 @@ Then let's work through reshaping the data.
 
 #### 1. Import untidy Lord of the Rings data
 
-We bring the data into data frames or tibbles, one per film, and do some inspection.
-```{r}
+First, we bring the data into data frames or tibbles, one per film, and do some inspection.
+```{r, message = FALSE}
 
 fship <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv")
 
@@ -195,7 +203,6 @@ We now have one data frame per film, each with a common set of 4 variables. Step
 
 ```{r}
 lotr_untidy <- bind_rows(fship, ttow, rking)
-str(lotr_untidy)
 
 lotr_untidy
 
@@ -214,11 +221,11 @@ lotr_tidy
 ```
 Tidy data... mission accomplished!
 
-To explain our call to pivot_longer() above, let’s read it from right to left: we took the variables Female and Male and gathered their values into a single new variable Words. This forced the creation of a companion variable Gender, which tells whether a specific value of Words came from Female or Male. All other variables, such as Film, remain unchanged and are simply replicated as needed. 
+To explain our call to `pivot_longer()` above, let’s read it from right to left: we took the variables `Female` and `Male` and gathered their values into a single new variable `Words`. This forced the creation of a companion variable `Gender`, which tells whether a specific value of `Words` came from Female or Male. All other variables, such as `Film`, remain unchanged and are simply replicated as needed. 
 
 <br>
 
-#### 4. Write the tidy data to a delimited file
+#### 4. OPTIONAL: Write the tidy data to a delimited file
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
 ```{r}
@@ -254,7 +261,7 @@ lotr_tidy %>%
 
 <br>
 
-### More exercises on the LOTR data
+### More exercises on the LOTR data (you can do these on your own)
 
 The word count data is given in two untidy and gender-specific files available at these URLs:
 
@@ -273,6 +280,7 @@ Reflect on the process of writing this code and on the code itself. Which is eas
 Write R code to compute the total number of words spoken in each film. Do this by copying and modifying your own code for totalling words by race. Which approach is easier to modify and repurpose – the one based on multiple, untidy data frames or the tidy data?
 
 <br>
+<br>
 
 ## Applying this to our Coronavirus dataset
 
@@ -280,7 +288,7 @@ Let's now return to our Coronavirus dataset. Let's remind ourselves of it's stru
 
 ```{r}
 
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 coronavirus
 
@@ -288,6 +296,7 @@ coronavirus
 
 **QUESTION**: Is this in tidy format?
 
+<br>
 
 Last class, we visualized the global case counts date
 ```{r}
@@ -321,7 +330,9 @@ corona_wide <- coronavirus %>%
 
 Now how do we reproduce the barchart of total cases per day broken down by type? 
 
-And how would be plot the daily counts of different case types within a country? With the long format this is easy:
+And how would we plot the daily counts of different case types within a country? 
+
+With the long format this is easy:
 
 ```{r}
 
@@ -332,11 +343,13 @@ coronavirus %>%
 
 ```
 
-How would we do this with the `coronavirus_wide` format? That would be much more difficult
+How would we do this with the `coronavirus_wide` format? That would be much more difficult.
 
-As mentioned above, however, there are plot types where the wide format provides the best input. For example, in Slack, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in `ggplot` we are mapping *variables* to *aesthetics* and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.
+<br>
 
-```{R, eval = TRUE}
+As mentioned above, however, there are plot types where the wide format provides the best input. In an earlier class, for example, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in `ggplot` we are mapping *variables* to *aesthetics* and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.
+
+```{R, eval = TRUE, message = FALSE}
 
 coronavirus_ttd <- coronavirus %>% 
   group_by(country, type) %>%
@@ -352,4 +365,3 @@ ggplot(coronavirus_ttd) +
 This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.
 
 <br>
-
