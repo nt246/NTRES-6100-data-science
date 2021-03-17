@@ -676,9 +676,10 @@ tail(challenge)</code></pre>
 ## )</code></pre>
 <p><br> <br></p>
 </div>
-</div>
-<div id="converting-between-data-types" class="section level2">
-<h2>Converting between data types</h2>
+<div id="cleaning-up-variables" class="section level3">
+<h3>Cleaning up variables</h3>
+<p>Once we have the data read in, we may need to clean up several of our variables. Parsing functions are really useful for that.</p>
+<p><br></p>
 <div id="parsing-numbers" class="section level4">
 <h4>Parsing numbers</h4>
 <p>It seems like it should be straightforward to parse a number, but three problems make it tricky:</p>
@@ -743,6 +744,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p><br> <br></p>
 </div>
 </div>
+</div>
 <div id="cleaning-up-column-names" class="section level2">
 <h2>Cleaning up column names</h2>
 <p>Sometimes you’ll encounter datasets with really inconsistent column names. Inconsistent naming is not a problem per se for our ability to work with a dataset, but it’s a bit annoying to look at and to have to remember when calling variable names. In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
@@ -769,11 +771,11 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   `Plant ID` = col_double(),
-##   BodyNo = col_double(),
+##   `Body#` = col_double(),
 ##   LeftSideScanTime = col_double(),
 ##   RightSideScanTime = col_double(),
-##   HangMethod = col_character(),
-##   Hgp = col_character(),
+##   `Hang-Method` = col_character(),
+##   HGP = col_character(),
 ##   `Sex F/M` = col_character(),
 ##   LeftHscw = col_double(),
 ##   P8Fat = col_double(),
@@ -783,8 +785,8 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 ##   `MSA/Index` = col_double()
 ## )</code></pre>
 <pre class="r"><code>colnames(msa)</code></pre>
-<pre><code>##  [1] &quot;Plant ID&quot;          &quot;BodyNo&quot;            &quot;LeftSideScanTime&quot; 
-##  [4] &quot;RightSideScanTime&quot; &quot;HangMethod&quot;        &quot;Hgp&quot;              
+<pre><code>##  [1] &quot;Plant ID&quot;          &quot;Body#&quot;             &quot;LeftSideScanTime&quot; 
+##  [4] &quot;RightSideScanTime&quot; &quot;Hang-Method&quot;       &quot;HGP&quot;              
 ##  [7] &quot;Sex F/M&quot;           &quot;LeftHscw&quot;          &quot;P8Fat&quot;            
 ## [10] &quot;Est % BI&quot;          &quot;FeedType&quot;          &quot;NoDaysOnFeed&quot;     
 ## [13] &quot;MSA/Index&quot;</code></pre>
@@ -794,11 +796,11 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <pre><code>##       [,1]                [,2]                  
 ##  [1,] &quot;Plant ID&quot;          &quot;plant_id&quot;            
-##  [2,] &quot;BodyNo&quot;            &quot;body_no&quot;             
+##  [2,] &quot;Body#&quot;             &quot;body_number&quot;         
 ##  [3,] &quot;LeftSideScanTime&quot;  &quot;left_side_scan_time&quot; 
 ##  [4,] &quot;RightSideScanTime&quot; &quot;right_side_scan_time&quot;
-##  [5,] &quot;HangMethod&quot;        &quot;hang_method&quot;         
-##  [6,] &quot;Hgp&quot;               &quot;hgp&quot;                 
+##  [5,] &quot;Hang-Method&quot;       &quot;hang_method&quot;         
+##  [6,] &quot;HGP&quot;               &quot;hgp&quot;                 
 ##  [7,] &quot;Sex F/M&quot;           &quot;sex_f_m&quot;             
 ##  [8,] &quot;LeftHscw&quot;          &quot;left_hscw&quot;           
 ##  [9,] &quot;P8Fat&quot;             &quot;p8fat&quot;               
@@ -855,10 +857,8 @@ cbind(colnames(msa), colnames(msa_clean))</code></pre>
   summarize(total_cases = sum(cases)) %&gt;% 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()</code></pre>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><img src="lesson13-files/unnamed-chunk-19-1.png" width="672" /></p>
 <pre class="r"><code>ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
-<pre><code>## Saving 7 x 5 in image</code></pre>
 <p><code>ggsave()</code> has really nice defaults, so you don’t <em>have</em> to specify lots of different parameters. But you can! See common examples <a href="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.055.png">here</a></p>
 <p><br> <br></p>
 </div>

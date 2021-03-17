@@ -234,8 +234,11 @@ challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
 <br>
 <br>
 
+### Cleaning up variables
 
-## Converting between data types
+Once we have the data read in, we may need to clean up several of our variables. Parsing functions are really useful for that. 
+
+<br>
 
 #### Parsing numbers
 
@@ -411,7 +414,7 @@ We also briefly talked about how to save plots a few classes ago. To recap here:
 
 Use `ggsave()`
 
-```{r}
+```{r, message = FALSE}
 coronavirus %>%  
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
