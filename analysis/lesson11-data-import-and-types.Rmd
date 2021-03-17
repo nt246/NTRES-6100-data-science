@@ -39,6 +39,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson13-files/")
 So far, we've mostly worked with datasets provided in R packages. Today we'll look at how we get our own data imported and how we export processed data files, summary tables, and plots.
 
 By the end of today's class, you should be able to:
+
 - Read data files into R with a variety of `readr` functions
 - Parse different types of data and make sure R is interpreting your variable types correctly
 - Use `janitor::clean_names()` to make column headers more manageable
@@ -82,11 +83,13 @@ We can also read directly from spreadsheet formats:
 
 * `readxl::read_excel()` reads directly from Excel spreadsheets
 
-* `googlesheets::gs_read()` from the package [googlesheets](https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#read-all-the-data-in-one-worksheet) reads in data directly from Google Sheets
+* `googlesheets4::read_sheet()` from the package [googlesheets4](https://googlesheets4.tidyverse.org/) reads in data directly from Google Sheets
 
 <br>
 
 For all of these, we can either read in data from a file path or directly from a URL.
+
+<br>
 
 To illustrate, let's revisit [Jenny Bryan's Lord of the Rings Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) that we worked with last class.
 
@@ -100,7 +103,7 @@ lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 
 <br>
 
-I can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr's `write_csv()` function (we'll get back to how that function works a little later). I'll first make sure I have a good place to save it. If you don't already have a subdirectory named `datasets` or similar, create one within your home directory by clicking "New Folder" in your file pane.
+We can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr's `write_csv()` function (we'll get back to how that function works a little later). I'll first make sure I have a good place to save it. If you don't already have a subdirectory named `datasets` or similar, create one within your home directory by clicking "New Folder" in your file pane.
 
 ```{r, message = FALSE}
 
@@ -144,19 +147,11 @@ If you’ve used R before, you might wonder why we’re not using read.csv(). Th
 
 As we saw above, when we run `read_csv()`, it prints out a column specification that gives the name and type of each column.
 
-Before we 
-
-<br>
-
-
-
-
-
 <br>
 
 > The following section is borrowed from [R4DS Chapter 11.4](https://r4ds.had.co.nz/data-import.html) 
 
-readr uses a heuristic to figure out the type of each column: it reads the first 1000 rows and uses some (moderately conservative) heuristics to figure out the type of each column.
+`readr` uses a heuristic to figure out the type of each column: it reads the first 1000 rows and uses some (moderately conservative) heuristics to figure out the type of each column.
 
 The heuristic tries each of the following types, stopping when it finds a match:
 
@@ -179,7 +174,7 @@ Trying the guess the variable type from the first 1000 lines of data works for a
 
 <br>
 
-readr contains a challenging .csv file that illustrates both of these problems:
+`readr` contains a challenging .csv file that illustrates both of these problems:
 
 ```{r}
 challenge <- read_csv(readr_example("challenge.csv"))
@@ -200,7 +195,7 @@ A good strategy is to work column by column until there are no problems remainin
 
 That suggests we need to use a date parser instead. To fix the call, start by copying and pasting the column specification into your original call:
 
-```{r}
+```{r, message = FALSE}
 challenge <- read_csv(
   readr_example("challenge.csv"), 
   col_types = cols(
@@ -222,6 +217,7 @@ challenge <- read_csv(
     y = col_date()
   )
 )
+
 tail(challenge)
 ```
 
@@ -238,8 +234,11 @@ challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
 <br>
 <br>
 
+### Cleaning up variables
 
-### Converting between data types
+Once we have the data read in, we may need to clean up several of our variables. Parsing functions are really useful for that. 
+
+<br>
 
 #### Parsing numbers
 
@@ -251,7 +250,8 @@ It seems like it should be straightforward to parse a number, but three problems
 
 1. Numbers often contain “grouping” characters to make them easier to read, like “1,000,000”, and these grouping characters vary around the world.
 
-To address the first problem, readr has the notion of a “locale”, an object that specifies parsing options that differ from place to place. When parsing numbers, the most important option is the character you use for the decimal mark. You can override the default value of . by creating a new locale and setting the decimal_mark argument:
+To address the first problem, `readr` has the notion of a “locale”, an object that specifies parsing options that differ from place to place. When parsing numbers, the most important option is the character you use for the decimal mark. You can override the default value of . by creating a new locale and setting the decimal_mark argument. We'll illustrate this with `parse_xx()` functions. Basically, every `col_xx()` function has a corresponding `parse_xx()` function. You use `parse_xx()` when the data is in a character vector in R already; you use `col_xx()` when you want to tell readr how to load the data.
+
 
 ```{r}
 parse_double("1.23")
@@ -260,9 +260,9 @@ parse_double("1,23", locale = locale(decimal_mark = ","))
 
 <br>
 
-readr’s default locale is US-centric, because generally R is US-centric (i.e. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.
+`readr`’s default locale is US-centric, because generally R is US-centric (e.g. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.
 
-parse_number() addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.
+`parse_number()` addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.
 
 ```{r}
 parse_number("$100")
@@ -272,7 +272,7 @@ parse_number("It cost $123.45")
 
 <br>
 
-The final problem is addressed by the combination of parse_number() and the locale as parse_number() will ignore the “grouping mark”:
+The final problem is addressed by the combination of `parse_number()` and the locale as `parse_number()` will ignore the “grouping mark”:
 
 ```{r}
 # Used in America
@@ -297,7 +297,7 @@ Dates can be tricky! If you work with date data, I suggest you review chapters [
 
 #### Converting between data types with `parse_x()` functions
 
-We can use the `parse_xx()` functions in combination with `mutate()` to clean up values in a variable. Basically, every `col_xx()` function has a corresponding `parse_xx()` function. You use `parse_xx()` when the data is in a character vector in R already; you use `col_xx()` when you want to tell readr how to load the data.
+We can use the `parse_xx()` functions in combination with `mutate()` to clean up values in a variable. 
 
 Let's have a look at how to clean up this dataset:
 
@@ -320,8 +320,6 @@ mess %>%
 
 ## Cleaning up column names 
 
-Using `janitor::clean_names()`
-
 Sometimes you'll encounter datasets with really inconsistent column names. Inconsistent naming is not a problem per se for our ability to work with a dataset, but it's a bit annoying to look at and to have to remember when calling variable names. In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.
 
 The `janitor` package by Sam Firke is a great collection of functions for some quick data cleaning, like:
@@ -331,7 +329,7 @@ The `janitor` package by Sam Firke is a great collection of functions for some q
 - `janitor::remove_empty()`: remove empty rows and/or columns
 - `janitor::adorn_*()`: jazz up tables 
 
-Here, we'll use `janitor::clean_names()` to convert all of our column headers in our `coronavirus` data to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+Here, we'll use `janitor::clean_names()` to convert all column headers in a messy dataset to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
 
 For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
 
@@ -340,10 +338,38 @@ For example, `janitor::clean_names()` would update these nightmare column names 
 - `ThisIsTheName` becomes `this_is_the_name`
 - `2015` becomes `x2015`
 
-If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
+If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`.
+
+Let's first install and load the `janitor` package:
+
+```{r, message = FALSE}
+library(janitor) #install.packages("janitor")
+```
+Then let's load the data and clean the column names:
+
+```{r}
+
+msa <- read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt")
+
+colnames(msa)
+
+```
+Let's compare the column names before and after cleaning
+
+```{r}
+
+msa_clean <- clean_names(msa)
+
+cbind(colnames(msa), colnames(msa_clean))
+
+```
+<br>
+<br>
 
 
-And there are other case options in `clean_names()`, like: 
+
+
+There are many other case options in `clean_names()`, like: 
 
 - "snake" produces snake_case (the default)
 - "lower_camel" or "small_camel" produces lowerCamel
@@ -362,8 +388,8 @@ Art by Allison Horst. Check out more [here](https://github.com/allisonhorst/stat
 <br>
 
 
-#### Data export
-readr also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. Both functions increase the chances of the output file being read back in correctly and also let's you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function `write.table()`
+## Data export
+`readr` also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. Both functions increase the chances of the output file being read back in correctly and also let's you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function `write.table()`
 
 Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:
 
@@ -388,7 +414,7 @@ We also briefly talked about how to save plots a few classes ago. To recap here:
 
 Use `ggsave()`
 
-```{r}
+```{r, message = FALSE}
 coronavirus %>%  
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
@@ -400,12 +426,51 @@ ggsave(filename = "assets/daily_casecounts_plot.png")
 
 ```
 
+`ggsave()` has really nice defaults, so you don't *have* to specify lots of different parameters. But you can! See common examples [here](https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.055.png)
 
 <br>
 <br>
 
-#### Creating small tibbles on the fly
+## Creating small tibbles on the fly
 
 Sometimes it can be useful to create small toy tibbles or tables for displaying in an RMarkdown without having to read in a file.
 
 To see how to do this, we'll review [R4DS Chapter 10.2](https://r4ds.had.co.nz/tibbles.html#creating-tibbles) and [11.2](https://r4ds.had.co.nz/data-import.html#getting-started)
+
+
+<br>
+
+### Exercise:
+
+Reproduce the two tibbles below, first with the `tibble()` and then with the `tribble()` functions.
+
+<br>
+
+```{r echo = FALSE, message = FALSE}
+library(knitr)
+library(kableExtra) #install.packages("kableExtra")
+
+x <- tibble(
+  "fruit" = c("apple", "pear", "orange"),
+  "weight" = c(4.3, 3.4, 5.2),
+  "price" = c(5, 4, 6)
+)
+
+kable(x) %>% 
+  kable_paper("hover", full_width = F, position = "left")
+```
+<br>
+
+```{r echo=FALSE}
+y <- tibble(
+ "Types" = c("x", "y", "z"),
+ "A" = c(3, 5, 6),
+ "B" = 1,
+ "C" = A + B
+)
+
+kable(y) %>% 
+  kable_paper("hover", full_width = F, position = "left")
+
+```
+

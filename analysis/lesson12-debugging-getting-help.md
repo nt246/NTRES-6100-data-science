@@ -1,14 +1,11 @@
 ---
-title: "Lesson 11: Good coding practices, debugging strategies, and getting help"
+title: "Lesson 12: Good coding practices, debugging strategies, and getting help"
 output: 
   html_document:
     keep_md: yes 
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 <br>
 <br>
