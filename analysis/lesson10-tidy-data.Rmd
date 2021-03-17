@@ -95,10 +95,12 @@ A data set is tidy if:
 * Each row is an observation;
 * Each cell is a value.
 
-See: [Ch. 12 in R for Data Science by Grolemund & Wickham](https://r4ds.had.co.nz/tidy-data.html)).
+See: [Ch. 12 in R for Data Science by Grolemund & Wickham](https://r4ds.had.co.nz/tidy-data.html).
 
 
 ![](assets/tidy_data.png)
+
+<br>
 <br>
 
 An implication of this definition is that each value belongs to exactly one variable and one observation. This also means that tidy data is relative, as it depends on how you define your observational unit and variables.
@@ -174,7 +176,7 @@ After reviewing the `pivot` functions, let's continue on to also take a look at 
 <br>
 <br>
 
-## Another example to further illustrate tidy and untidy data
+## Application to a different dataset: LOTR
 
 To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md` - we'll work through those steps here).
 
@@ -283,7 +285,7 @@ Write R code to compute the total number of words spoken in each film. Do this b
 <br>
 <br>
 
-## Applying this to our Coronavirus dataset
+## Application to our coronavirus dataset
 
 Let's now return to our Coronavirus dataset. Let's remind ourselves of it's structure
 
