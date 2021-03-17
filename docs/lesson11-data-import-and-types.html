@@ -490,7 +490,14 @@ div.tocify {
 <div id="plan-for-today-and-learning-objectives" class="section level2">
 <h2>Plan for today and learning objectives</h2>
 <p>So far, we’ve mostly worked with datasets provided in R packages. Today we’ll look at how we get our own data imported and how we export processed data files, summary tables, and plots.</p>
-<p>By the end of today’s class, you should be able to: - Read data files into R with a variety of <code>readr</code> functions - Parse different types of data and make sure R is interpreting your variable types correctly - Use <code>janitor::clean_names()</code> to make column headers more manageable - Write text output to your disk - Save plots</p>
+<p>By the end of today’s class, you should be able to:</p>
+<ul>
+<li>Read data files into R with a variety of <code>readr</code> functions</li>
+<li>Parse different types of data and make sure R is interpreting your variable types correctly</li>
+<li>Use <code>janitor::clean_names()</code> to make column headers more manageable</li>
+<li>Write text output to your disk</li>
+<li>Save plots</li>
+</ul>
 <p><br> <br></p>
 </div>
 <div id="loading-libraries" class="section level2">
@@ -514,10 +521,11 @@ div.tocify {
 <p>We can also read directly from spreadsheet formats:</p>
 <ul>
 <li><p><code>readxl::read_excel()</code> reads directly from Excel spreadsheets</p></li>
-<li><p><code>googlesheets::gs_read()</code> from the package <a href="https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#read-all-the-data-in-one-worksheet">googlesheets</a> reads in data directly from Google Sheets</p></li>
+<li><p><code>googlesheets4::read_sheet()</code> from the package <a href="https://googlesheets4.tidyverse.org/">googlesheets4</a> reads in data directly from Google Sheets</p></li>
 </ul>
 <p><br></p>
 <p>For all of these, we can either read in data from a file path or directly from a URL.</p>
+<p><br></p>
 <p>To illustrate, let’s revisit <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Lord of the Rings Data</a> that we worked with last class.</p>
 <p>We can import directly from Jenny’s GitHub page:</p>
 <pre class="r"><code>lotr &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
@@ -529,7 +537,7 @@ div.tocify {
 ##   Words = col_double()
 ## )</code></pre>
 <p><br></p>
-<p>I can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr’s <code>write_csv()</code> function (we’ll get back to how that function works a little later). I’ll first make sure I have a good place to save it. If you don’t already have a subdirectory named <code>datasets</code> or similar, create one within your home directory by clicking “New Folder” in your file pane.</p>
+<p>We can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr’s <code>write_csv()</code> function (we’ll get back to how that function works a little later). I’ll first make sure I have a good place to save it. If you don’t already have a subdirectory named <code>datasets</code> or similar, create one within your home directory by clicking “New Folder” in your file pane.</p>
 <pre class="r"><code>write_csv(lotr, path = &quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
 <p><br></p>
 <p>Inspect the file to make sure it got created, then load it into R with the <code>read_csv()</code> function (make sure you specify the path to where you actually saved it).</p>
@@ -561,13 +569,11 @@ div.tocify {
 <div id="parsing-different-data-types" class="section level3">
 <h3>Parsing different data types</h3>
 <p>As we saw above, when we run <code>read_csv()</code>, it prints out a column specification that gives the name and type of each column.</p>
-<p>Before we</p>
-<p><br></p>
 <p><br></p>
 <blockquote>
 <p>The following section is borrowed from <a href="https://r4ds.had.co.nz/data-import.html">R4DS Chapter 11.4</a></p>
 </blockquote>
-<p>readr uses a heuristic to figure out the type of each column: it reads the first 1000 rows and uses some (moderately conservative) heuristics to figure out the type of each column.</p>
+<p><code>readr</code> uses a heuristic to figure out the type of each column: it reads the first 1000 rows and uses some (moderately conservative) heuristics to figure out the type of each column.</p>
 <p>The heuristic tries each of the following types, stopping when it finds a match:</p>
 <ul>
 <li>logical: contains only “F”, “T”, “FALSE”, or “TRUE”.</li>
@@ -585,7 +591,7 @@ div.tocify {
 <li><p>The column might contain a lot of missing values. If the first 1000 rows contain only NAs, readr will guess that it’s a logical vector, whereas you probably want to parse it as something more specific.</p></li>
 </ul>
 <p><br></p>
-<p>readr contains a challenging .csv file that illustrates both of these problems:</p>
+<p><code>readr</code> contains a challenging .csv file that illustrates both of these problems:</p>
 <pre class="r"><code>challenge &lt;- read_csv(readr_example(&quot;challenge.csv&quot;))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -646,6 +652,7 @@ div.tocify {
     y = col_date()
   )
 )
+
 tail(challenge)</code></pre>
 <pre><code>## # A tibble: 6 x 2
 ##       x y         
@@ -677,14 +684,14 @@ tail(challenge)</code></pre>
 <li><p>Numbers are often surrounded by other characters that provide some context, like “$1000” or “10%”.</p></li>
 <li><p>Numbers often contain “grouping” characters to make them easier to read, like “1,000,000”, and these grouping characters vary around the world.</p></li>
 </ol>
-<p>To address the first problem, readr has the notion of a “locale”, an object that specifies parsing options that differ from place to place. When parsing numbers, the most important option is the character you use for the decimal mark. You can override the default value of . by creating a new locale and setting the decimal_mark argument:</p>
+<p>To address the first problem, <code>readr</code> has the notion of a “locale”, an object that specifies parsing options that differ from place to place. When parsing numbers, the most important option is the character you use for the decimal mark. You can override the default value of . by creating a new locale and setting the decimal_mark argument. We’ll illustrate this with <code>parse_xx()</code> functions. Basically, every <code>col_xx()</code> function has a corresponding <code>parse_xx()</code> function. You use <code>parse_xx()</code> when the data is in a character vector in R already; you use <code>col_xx()</code> when you want to tell readr how to load the data.</p>
 <pre class="r"><code>parse_double(&quot;1.23&quot;)</code></pre>
 <pre><code>## [1] 1.23</code></pre>
 <pre class="r"><code>parse_double(&quot;1,23&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
 <pre><code>## [1] 1.23</code></pre>
 <p><br></p>
-<p>readr’s default locale is US-centric, because generally R is US-centric (i.e. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.</p>
-<p>parse_number() addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.</p>
+<p><code>readr</code>’s default locale is US-centric, because generally R is US-centric (e.g. the documentation of base R is written in American English). An alternative approach would be to try and guess the defaults from your operating system. This is hard to do well, and, more importantly, makes your code fragile: even if it works on your computer, it might fail when you email it to a colleague in another country.</p>
+<p><code>parse_number()</code> addresses the second problem: it ignores non-numeric characters before and after the number. This is particularly useful for currencies and percentages, but also works to extract numbers embedded in text.</p>
 <pre class="r"><code>parse_number(&quot;$100&quot;)</code></pre>
 <pre><code>## [1] 100</code></pre>
 <pre class="r"><code>parse_number(&quot;20%&quot;)</code></pre>
@@ -692,7 +699,7 @@ tail(challenge)</code></pre>
 <pre class="r"><code>parse_number(&quot;It cost $123.45&quot;)</code></pre>
 <pre><code>## [1] 123.45</code></pre>
 <p><br></p>
-<p>The final problem is addressed by the combination of parse_number() and the locale as parse_number() will ignore the “grouping mark”:</p>
+<p>The final problem is addressed by the combination of <code>parse_number()</code> and the locale as <code>parse_number()</code> will ignore the “grouping mark”:</p>
 <pre class="r"><code># Used in America
 parse_number(&quot;$123,456,789&quot;)</code></pre>
 <pre><code>## [1] 123456789</code></pre>
@@ -711,7 +718,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 </div>
 <div id="converting-between-data-types-with-parse_x-functions" class="section level4">
 <h4>Converting between data types with <code>parse_x()</code> functions</h4>
-<p>We can use the <code>parse_xx()</code> functions in combination with <code>mutate()</code> to clean up values in a variable. Basically, every <code>col_xx()</code> function has a corresponding <code>parse_xx()</code> function. You use <code>parse_xx()</code> when the data is in a character vector in R already; you use <code>col_xx()</code> when you want to tell readr how to load the data.</p>
+<p>We can use the <code>parse_xx()</code> functions in combination with <code>mutate()</code> to clean up values in a variable.</p>
 <p>Let’s have a look at how to clean up this dataset:</p>
 <pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
 <pre><code>## Parsed with column specification:
@@ -736,7 +743,6 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 </div>
 <div id="cleaning-up-column-names" class="section level2">
 <h2>Cleaning up column names</h2>
-<p>Using <code>janitor::clean_names()</code></p>
 <p>Sometimes you’ll encounter datasets with really inconsistent column names. Inconsistent naming is not a problem per se for our ability to work with a dataset, but it’s a bit annoying to look at and to have to remember when calling variable names. In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
 <p>The <code>janitor</code> package by Sam Firke is a great collection of functions for some quick data cleaning, like:</p>
 <ul>
@@ -756,11 +762,6 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>.</p>
 <p>Let’s first install and load the <code>janitor</code> package:</p>
 <pre class="r"><code>library(janitor) #install.packages(&quot;janitor&quot;)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
 <p>Then let’s load the data and clean the column names:</p>
 <pre class="r"><code>msa &lt;- read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
@@ -787,9 +788,10 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <pre><code>## [1] &quot;RFID&quot;              &quot;plant ID&quot;          &quot;KillDate&quot;         
 ## [4] &quot;BodyNo&quot;            &quot;LeftSideScanTime&quot;  &quot;RightSideScanTime&quot;
 ## [7] &quot;Est % BI&quot;          &quot;MSA/Index&quot;</code></pre>
-<pre class="r"><code>msa_clean &lt;- clean_names(msa)</code></pre>
 <p>Let’s compare the column names before and after cleaning</p>
-<pre class="r"><code>cbind(colnames(msa), colnames(msa_clean))</code></pre>
+<pre class="r"><code>msa_clean &lt;- clean_names(msa)
+
+cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <pre><code>##      [,1]                [,2]                  
 ## [1,] &quot;RFID&quot;              &quot;rfid&quot;                
 ## [2,] &quot;plant ID&quot;          &quot;plant_id&quot;            
@@ -814,7 +816,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p><br> <br></p>
 <div id="data-export" class="section level4">
 <h4>Data export</h4>
-<p>readr also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly and also let’s you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function <code>write.table()</code></p>
+<p><code>readr</code> also comes with two useful functions for writing data back to disk: <code>write_csv()</code> and <code>write_tsv()</code>. Both functions increase the chances of the output file being read back in correctly and also let’s you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function <code>write.table()</code></p>
 <p>Let’s look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <pre><code>## Parsed with column specification:
@@ -851,6 +853,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p><img src="lesson13-files/unnamed-chunk-19-1.png" width="672" /></p>
 <pre class="r"><code>ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
 <pre><code>## Saving 7 x 5 in image</code></pre>
+<p><code>ggsave()</code> has really nice defaults, so you don’t <em>have</em> to specify lots of different parameters. But you can! See common examples <a href="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.055.png">here</a></p>
 <p><br> <br></p>
 </div>
 <div id="creating-small-tibbles-on-the-fly" class="section level4">
