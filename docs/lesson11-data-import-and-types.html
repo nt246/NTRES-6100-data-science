@@ -789,7 +789,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 ## [7] &quot;Est % BI&quot;          &quot;MSA/Index&quot;</code></pre>
 <pre class="r"><code>msa_clean &lt;- clean_names(msa)</code></pre>
 <p>Let’s compare the column names before and after cleaning</p>
-<pre class="r"><code>cbind(names(msa), names(msa_clean))</code></pre>
+<pre class="r"><code>cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <pre><code>##      [,1]                [,2]                  
 ## [1,] &quot;RFID&quot;              &quot;rfid&quot;                
 ## [2,] &quot;plant ID&quot;          &quot;plant_id&quot;            

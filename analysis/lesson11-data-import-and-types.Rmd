@@ -361,7 +361,7 @@ msa_clean <- clean_names(msa)
 Let's compare the column names before and after cleaning
 
 ```{r}
-cbind(names(msa), names(msa_clean))
+cbind(colnames(msa), colnames(msa_clean))
 ```
 <br>
 <br>
