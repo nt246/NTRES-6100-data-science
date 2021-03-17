@@ -30,7 +30,10 @@ navbar:
       href: lesson10-tidy-data.html
     - text: "Lesson 11: Data import, export, and conversion between data types"
       href: lesson11-data-import-and-types.html
-
+    - text: "Lesson 12: Good coding practices, debugging strategies, and getting help"
+      href: lesson12-debugging-getting-help.html
+    - text: "Lesson 13: Factors in R"
+      href: lesson13-factors.html
   - text: Labs
     menu:
     - text: Lab handouts

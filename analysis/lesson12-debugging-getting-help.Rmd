@@ -2,7 +2,7 @@
 title: "Lesson 12: Good coding practices, debugging strategies, and getting help"
 output: 
   html_document:
-    keep_md: yes 
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
