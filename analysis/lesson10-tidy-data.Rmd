@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 <br>
 
 ## Learning objectives
-So far, we've only worked with data that were already formatted for effecient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it **tidy** and more coder-friendly.   
+So far, we've only worked with data that were already formatted for efficient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it **tidy** and more coder-friendly.   
 
 By the end of today's class, you should be able to:
 
@@ -51,7 +51,6 @@ By the end of today's class, you should be able to:
 - Determine whether a dataset is in tidy format
 - Use `tidyr::pivot_wider()` and `tidyr::pivot_longer()` to reshape data frames
 - Use `tidyr::unite()` and `tidyr::separate()` to merge or separate information from different columns
-- Use `janitor::clean_names()` to make column headers more manageable
 
 <br>
 
@@ -353,60 +352,4 @@ ggplot(coronavirus_ttd) +
 This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.
 
 <br>
-
-## Part 3. Cleaning up column names 
-
-Using `janitor::clean_names()`
-
-We've noticed in the coronavirus dataset that the variable names have a very inconsistent format. It's not a problem per se for our ability to work with this dataframe, but it's a bit annoying to look at.
-
-```{r}
-colnames(coronavirus)
-```
-
-In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.
-
-The `janitor` package by Sam Firke is a great collection of functions for some quick data cleaning, like:
-
-- `janitor::clean_names()`: update column headers to a case of your choosing
-- `janitor::get_dupes()`: see all rows that are duplicates within variables you choose
-- `janitor::remove_empty()`: remove empty rows and/or columns
-- `janitor::adorn_*()`: jazz up tables 
-
-Here, we'll use `janitor::clean_names()` to convert all of our column headers in our `coronavirus` data to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
-
-For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
-
-- `My...RECENT-income!` becomes `my_recent_income`
-- `SAMPLE2.!test1` becomes `sample2_test1`
-- `ThisIsTheName` becomes `this_is_the_name`
-- `2015` becomes `x2015`
-
-If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
-
-```{r}
-coronavirus <- coronavirus %>% 
-  clean_names()
-```
-
-```{r}
-names(coronavirus)
-```
-
-And there are other case options in `clean_names()`, like: 
-
-- "snake" produces snake_case (the default)
-- "lower_camel" or "small_camel" produces lowerCamel
-- "upper_camel" or "big_camel" produces UpperCamel
-- "screaming_snake" or "all_caps" produces ALL_CAPS
-- "lower_upper" produces lowerUPPER
-- "upper_lower" produces UPPERlower
-
-
-![](assets/case.jpg)
-
-Art by Allison Horst. Check out more [here](https://github.com/allisonhorst/stats-illustrations)
-
-
-
 

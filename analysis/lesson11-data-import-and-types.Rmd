@@ -36,7 +36,14 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson13-files/")
 <br>
 
 ## Plan for today and learning objectives
-We'll revisit the notion of tidy data and go over some basics related to data import and parsing of different data types.
+So far, we've mostly worked with datasets provided in R packages. Today we'll look at how we get our own data imported and how we export processed data files, summary tables, and plots.
+
+By the end of today's class, you should be able to:
+- Read data files into R with a variety of `readr` functions
+- Parse different types of data and make sure R is interpreting your variable types correctly
+- Use `janitor::clean_names()` to make column headers more manageable
+- Write text output to your disk
+- Save plots
 
 <br>
 <br>
@@ -53,30 +60,65 @@ library(tidyverse)
 <br>
 
 
-## Recap on tidy data
-
-[Slides by Julia Lowndes](https://docs.google.com/presentation/d/1N7hKepabvl9OrHjvGJWPjUsfzVdB5xzV5AsFndgSwms/edit#slide=id.p)
-
-<br>
-
 ## Data import
 
 ### Reading data into RStudio
 
-In lesson 10, we introduced some of the most commonly used `readr` data import functions, such as `read_csv()`, `read_tsv()`, and `read_delim()`. Let's revisit these to import [Jenny Bryan's Lord of the Rings Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) that we've used in several previous lessons. 
+So far, we've been working with datasets that are built into R or we have just provided code to run to import data into R. 
+
+When working in the tidyverse, the most common import function we will use are the `read_xx()` functions from the tidyverse package `readr`.
+
+* `read_csv()` reads comma delimited files, `read_csv2()` reads semicolon separated files (common in countries where `,` is used as the decimal place), `read_tsv()` reads tab delimited files, and `read_delim()` reads in files with any delimiter.
+
+* `read_fwf()` reads fixed width files. You can specify fields either by their widths with `fwf_widths()` or their position with `fwf_positions()`. `read_table()` reads a common variation of fixed width files where columns are separated by white space.
+
+All the `readr::read_xx()` functions has many additional options including the ability to skip columns, skip rows, rename columns on import, trim whitespace, and much more. They all use the same syntax, so once you get familiar with one, you can easily apply your knowledge to all the other functions in `readr`.
+
+You can examine the options by looking at the documentation, e.g `?read_csv()`. There is also a very useful overview in [Chapter 11 of Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/data-import.html)
+
+<br>
+
+We can also read directly from spreadsheet formats:
+
+* `readxl::read_excel()` reads directly from Excel spreadsheets
+
+* `googlesheets::gs_read()` from the package [googlesheets](https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#read-all-the-data-in-one-worksheet) reads in data directly from Google Sheets
+
+<br>
+
+For all of these, we can either read in data from a file path or directly from a URL.
+
+To illustrate, let's revisit [Jenny Bryan's Lord of the Rings Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) that we worked with last class.
 
 We can import directly from Jenny's GitHub page:
+
 ```{r}
-lotr_tidy <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
+
+lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
+
 ```
 
 <br>
 
-Or we can use import it from a copy saved on our local computer
+I can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr's `write_csv()` function (we'll get back to how that function works a little later). I'll first make sure I have a good place to save it. If you don't already have a subdirectory named `datasets` or similar, create one within your home directory by clicking "New Folder" in your file pane.
+
+```{r, message = FALSE}
+
+write_csv(lotr, path = "../datasets/lotr_tidy.csv")
+
+```
+
+<br>
+
+Inspect the file to make sure it got created, then load it into R with the `read_csv()` function (make sure you specify the path to where you actually saved it).
 
 ```{r}
+
 lotr_tidy <- read_csv("../datasets/lotr_tidy.csv")
+
 ```
+
+
 <br>
 
 `read_csv()` uses the first line of the data for the column names, which is a very common convention. We can play around with tweaking our local copy of the data file to make use of the options for tweaking this behavior. For example, if there are a few lines of metadata at the top of the file, we can use `skip = n` to skip the first n lines; or use `comment = "#"` to drop all lines that start with (e.g.) #. When the data do not have column names, we can use  `col_names = FALSE` to tell `read_csv()` not to treat the first row as headings, and instead label them sequentially from `X1` to `Xn`.
@@ -96,10 +138,19 @@ If you’ve used R before, you might wonder why we’re not using read.csv(). Th
 * They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.
 
 <br>
+<br>
 
 ### Parsing different data types
 
 As we saw above, when we run `read_csv()`, it prints out a column specification that gives the name and type of each column.
+
+Before we 
+
+<br>
+
+
+
+
 
 <br>
 
@@ -128,7 +179,7 @@ Trying the guess the variable type from the first 1000 lines of data works for a
 
 <br>
 
-readr contains a challenging CSV that illustrates both of these problems:
+readr contains a challenging .csv file that illustrates both of these problems:
 
 ```{r}
 challenge <- read_csv(readr_example("challenge.csv"))
@@ -185,27 +236,7 @@ challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
 ```
 
 <br>
-
-You might have noticed that readr needed a little help with variable type parsing when we've been reading in our coronavirus dataset
-
-```{r}
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
-```
-
 <br>
-What is the problem here? 
-
-It will only load properly if we specify that the province column does not contain logicals but is character vector:
-
-```{r}
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
-```
-
-
-<br>
-<br>
-
-
 
 
 ### Converting between data types
@@ -266,7 +297,9 @@ Dates can be tricky! If you work with date data, I suggest you review chapters [
 
 #### Converting between data types with `parse_x()` functions
 
-We can use the `parse_x()` functions in combination with `mutate()` to clean up values in a variable. Let's have a look at how to clean up this dataset:
+We can use the `parse_xx()` functions in combination with `mutate()` to clean up values in a variable. Basically, every `col_xx()` function has a corresponding `parse_xx()` function. You use `parse_xx()` when the data is in a character vector in R already; you use `col_xx()` when you want to tell readr how to load the data.
+
+Let's have a look at how to clean up this dataset:
 
 ```{r}
 mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv", locale = locale(decimal_mark = ","))
@@ -285,12 +318,62 @@ mess %>%
 <br>
 <br>
 
+## Cleaning up column names 
+
+Using `janitor::clean_names()`
+
+Sometimes you'll encounter datasets with really inconsistent column names. Inconsistent naming is not a problem per se for our ability to work with a dataset, but it's a bit annoying to look at and to have to remember when calling variable names. In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.
+
+The `janitor` package by Sam Firke is a great collection of functions for some quick data cleaning, like:
+
+- `janitor::clean_names()`: update column headers to a case of your choosing
+- `janitor::get_dupes()`: see all rows that are duplicates within variables you choose
+- `janitor::remove_empty()`: remove empty rows and/or columns
+- `janitor::adorn_*()`: jazz up tables 
+
+Here, we'll use `janitor::clean_names()` to convert all of our column headers in our `coronavirus` data to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+
+For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
+
+- `My...RECENT-income!` becomes `my_recent_income`
+- `SAMPLE2.!test1` becomes `sample2_test1`
+- `ThisIsTheName` becomes `this_is_the_name`
+- `2015` becomes `x2015`
+
+If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
+
+
+And there are other case options in `clean_names()`, like: 
+
+- "snake" produces snake_case (the default)
+- "lower_camel" or "small_camel" produces lowerCamel
+- "upper_camel" or "big_camel" produces UpperCamel
+- "screaming_snake" or "all_caps" produces ALL_CAPS
+- "lower_upper" produces lowerUPPER
+- "upper_lower" produces UPPERlower
+
+
+![](assets/case.jpg)
+
+Art by Allison Horst. Check out more [here](https://github.com/allisonhorst/stats-illustrations)
+
+
+
+
+
+
+
+
+
+
 #### Data export
 readr also comes with two useful functions for writing data back to disk: `write_csv()` and `write_tsv()`. Both functions increase the chances of the output file being read back in correctly and also let's you save dataframes with less typing than you often would need to e.g. avoid rownames or quotes with the base-R function `write.table()`
 
 Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:
 
 ```{r}
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+
 coronavirus %>%  
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
@@ -322,3 +405,11 @@ ggsave(filename = "assets/daily_casecounts_plot.png")
 ```
 
 
+<br>
+<br>
+
+#### Creating small tibbles on the fly
+
+Sometimes it can be useful to create small toy tibbles or tables for displaying in an RMarkdown without having to read in a file.
+
+To see how to do this, we'll review [R4DS Chapter 10.2](https://r4ds.had.co.nz/tibbles.html#creating-tibbles) and [11.2](https://r4ds.had.co.nz/data-import.html#getting-started)

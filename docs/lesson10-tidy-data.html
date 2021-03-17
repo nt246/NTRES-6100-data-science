@@ -26,15 +26,6 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -79,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -470,34 +460,37 @@ div.tocify {
 <p><strong>Required</strong>:</p>
 <ul>
 <li><p><a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 <em>Tidy Data</em>, in R for Data Science</a> by Grolemund &amp; Wickham</p></li>
-<li><p><a href="https://twitter.com/juliesquid/status/1315710359404113920?s=21">This cool Twitter thread</a> by Julia Lowndes. If you can't access the thread or want more detail, the same material is expanded upon on Julie's <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes website</a>. <a href="https://www.openscapes.org/">Openscapes</a> is an awesome organization that champions open practices in environmental science - check it out!</p></li>
+<li><p><a href="https://twitter.com/juliesquid/status/1315710359404113920?s=21">This cool Twitter thread</a> by Julia Lowndes. If you can’t access the thread or want more detail, the same material is expanded upon on Julie’s <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes website</a>. <a href="https://www.openscapes.org/">Openscapes</a> is an awesome organization that champions open practices in environmental science - check it out!</p></li>
 </ul>
 <p><br></p>
 <p><strong>Additional resources</strong>:</p>
 <ul>
-<li><a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan's Intro to Tidy Data</a></li>
-<li><p>the repo this links to has some useful exercises too, but uses the outdated <code>spread()</code> and <code>gather()</code> functions so don't get confused by the code.</p></li>
+<li><a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Intro to Tidy Data</a>
+<ul>
+<li>the repo this links to has some useful exercises too, but uses the outdated <code>spread()</code> and <code>gather()</code> functions so don’t get confused by the code.</li>
+</ul></li>
 <li><code>tidyr</code> [vignette on tidy data](<a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" class="uri">https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html</a><br />
 </li>
-<li><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf">Hadley's paper on tidy data</a> provides a thorough investigation</p></li>
+<li><a href="https://vita.had.co.nz/papers/tidy-data.pdf">Hadley’s paper on tidy data</a> provides a thorough investigation</li>
 </ul>
 <p><br></p>
 </div>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
+<ul>
+<li>We’re half way through the course! We will send out a link to a mid-term evaluation form. We would appreciate your candid feedback so we can make the most of our remaining time together</li>
+</ul>
 <p><br> <br></p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning objectives</h2>
-<p>So far, we've only worked with data that were already formatted for effecient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it <strong>tidy</strong> and more coder-friendly.</p>
-<p>By the end of today's class, you should be able to:</p>
+<p>So far, we’ve only worked with data that were already formatted for efficient processing with tidyverse functions. In this session we’ll learn some tools to help get data into that format - make it <strong>tidy</strong> and more coder-friendly.</p>
+<p>By the end of today’s class, you should be able to:</p>
 <ul>
-<li>Read different types of data into R</li>
 <li>Describe the concept of tidy data</li>
 <li>Determine whether a dataset is in tidy format</li>
 <li>Use <code>tidyr::pivot_wider()</code> and <code>tidyr::pivot_longer()</code> to reshape data frames</li>
 <li>Use <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to merge or separate information from different columns</li>
-<li>Use <code>janitor::clean_names()</code> to make column headers more manageable</li>
 </ul>
 <p><br></p>
 <div id="acknowledgements" class="section level3">
@@ -508,67 +501,28 @@ div.tocify {
 </div>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
-<div id="create-a-new-r-markdown-and-attach-packages" class="section level3">
-<h3>Create a new R Markdown and attach packages</h3>
+<div id="create-a-new-r-script-and-load-packages" class="section level3">
+<h3>Create a new R script and load packages</h3>
 <ul>
-<li>Open the R Project associated with your personal class GitHub repository.</li>
-<li>PULL to make sure your project is up to date</li>
-<li>Create a new RMarkdown file called <code>my_tidying.Rmd</code></li>
-<li>Remove all example code / text below the first code chunk and change the output format (in the YAML header) to &quot;github_document&quot;</li>
-<li>Attach the packages we'll use here (you will have to install <code>janitor</code> if you don't already have it):
+<li><p>Open the R Project associated with your personal class GitHub repository.</p></li>
+<li><p>PULL to make sure your project is up to date</p></li>
+<li><p>Create a new R script file and save it as <code>my_tidying.Rmd</code></p></li>
+<li><p>Load the packages we’ll use here (you will have to install <code>janitor</code> if you don’t already have it):</p>
 <ul>
 <li><code>tidyverse</code></li>
 <li><code>janitor</code></li>
 </ul></li>
 </ul>
-<p>Knit and save your new .Rmd within the project folder.</p>
-<pre class="r"><code># Attach packages
+<p><br></p>
+<pre class="r"><code># Load packages
 library(tidyverse)
 library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
-<p><br></p>
+<p><br> <br></p>
 </div>
 </div>
-<div id="part-1-data-import" class="section level2">
-<h2>Part 1: Data import</h2>
-<p>So far, we've been working with datasets that are built into R or we have just provided code to run to import data into R.</p>
-<p>When working in the tidyverse, the most common import function we will use are the <code>read_xx()</code> functions from the tidyverse package <code>readr</code>.</p>
-<ul>
-<li><p><code>read_csv()</code> reads comma delimited files, <code>read_csv2()</code> reads semicolon separated files (common in countries where <code>,</code> is used as the decimal place), <code>read_tsv()</code> reads tab delimited files, and <code>read_delim()</code> reads in files with any delimiter.</p></li>
-<li><p><code>read_fwf()</code> reads fixed width files. You can specify fields either by their widths with <code>fwf_widths()</code> or their position with <code>fwf_positions()</code>. <code>read_table()</code> reads a common variation of fixed width files where columns are separated by white space.</p></li>
-</ul>
-<p>We can also read directly from spreadsheet formats:</p>
-<ul>
-<li><p><code>readxl::read_excel()</code> reads directly from Excel spreadsheets</p></li>
-<li><p><code>googlesheets::gs_read()</code> from the package <a href="https://cran.r-project.org/web/packages/googlesheets/vignettes/basic-usage.html#read-all-the-data-in-one-worksheet">googlesheets</a> reads in data directly from Google Sheets</p></li>
-</ul>
-<p><br></p>
-<p>For all of these, we can either read in data from a file path or directly from a URL.</p>
-<p>So for example, for a dataset we will be working with later, I can either load my local copy or grab it from the github site where it is made available</p>
-<pre class="r"><code>lotr &lt;- read_csv(&quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Film = col_character(),
-##   Race = col_character(),
-##   Gender = col_character(),
-##   Words = col_double()
-## )</code></pre>
-<pre class="r"><code>lotr &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   Film = col_character(),
-##   Race = col_character(),
-##   Gender = col_character(),
-##   Words = col_double()
-## )</code></pre>
-<p>All the <code>readr::read_xx()</code> functions has many additional options including the ability to skip columns, skip rows, rename columns on import, trim whitespace, and much more. They all use the same syntax, so once you get familiar with one, you can easily apply your knowledge to all the other functions in <code>readr</code>.</p>
-<p>You can examine the options by looking at the documentation, e.g <code>?read_csv()</code>. There is also a very useful overview in <a href="https://r4ds.had.co.nz/data-import.html">Chapter 11 of Grolemund and Wickham's R for Data Science</a></p>
-<p><br></p>
-</div>
-<div id="part-2-tidy-data" class="section level2">
-<h2>Part 2: Tidy data</h2>
-<p>&quot;Tidy&quot; might sound like a generic way to describe non-messy looking data, but it actually refers to a specific data structure.</p>
+<div id="what-is-tidy-data" class="section level2">
+<h2>What is tidy data?</h2>
+<p>“Tidy” might sound like a generic way to describe non-messy looking data, but it actually refers to a specific data structure.</p>
 <p>A data set is tidy if:</p>
 <ul>
 <li>Each column is a variable;</li>
@@ -576,44 +530,60 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 <li>Each cell is a value.</li>
 </ul>
 <p>See: <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 in R for Data Science by Grolemund &amp; Wickham</a>).</p>
-<div class="figure">
-<img src="assets/tidy_data.png" />
-
-</div>
+<p><img src="assets/tidy_data.png" /> <br></p>
 <p>An implication of this definition is that each value belongs to exactly one variable and one observation. This also means that tidy data is relative, as it depends on how you define your observational unit and variables.</p>
 <p>A key idea here is that instead of building your analyses around whatever (likely weird) format your data are in, take deliberate steps to make your data tidy. When your data are tidy, you can use a growing assortment of powerful analytical and visualization tools instead of inventing home-grown ways to accommodate your data. This will save you time since you aren’t reinventing the wheel, and will make your work more clear and understandable to your collaborators (most importantly, Future You).</p>
-<p>Note that to effectively use <code>ggplot()</code> your data must be in tidy format.</p>
-<p>Let's go through some examples to get a better understanding of what tidy data look like.</p>
+<p>Note that to effectively use <code>ggplot()</code> your data must be in tidy format. It also makes it easier to take advantage of R’s vectorized nature (most built-in R functions work with vectors of values)</p>
+<p>Review of the beautiful <a href="https://docs.google.com/presentation/d/1N7hKepabvl9OrHjvGJWPjUsfzVdB5xzV5AsFndgSwms/edit#slide=id.p">slides by Julia Lowndes and Allison Horst</a> for a clear overview of the motivation for working with tidy data.</p>
+<p><br> <br></p>
+<p>Let’s go through some examples to get a better understanding of what tidy data look like.</p>
 <p><br></p>
+<p>Let’s first compare the four different representations of the same dataset shown in <a href="https://r4ds.had.co.nz/tidy-data.html#tidy-data-1">Chapter 12.2 in Grolemund and Wickham’s “R for Data Science”</a> including the same values of four variables country, year, population, and cases.</p>
+<p>Which of these representations are in tidy format?</p>
+<p><br></p>
+<div id="exercise" class="section level3">
+<h3>Exercise</h3>
+<p>The datasets come with the <code>tidyverse</code> package, so you can access them by just typing their names, e.g. <code>table1</code>, <code>table2</code> etc. We computed the <strong>infection rate per year 10,000 people for each year and each country</strong> from <code>table1</code> together using our now familiar <code>dplyr</code> wrangling tools. Now calculate this same statistic from <code>table2</code> and <code>table4a</code> + <code>table4b</code>. You will need to perform four operations:</p>
+<ol style="list-style-type: decimal">
+<li>Extract the number of TB cases per country per year.</li>
+<li>Extract the matching population per country per year.</li>
+<li>Divide cases by population, and multiply by 10000.</li>
+<li>Store back in the appropriate place.</li>
+</ol>
+<p>Which representation is easiest to work with? Which is hardest? Why?</p>
+<p><br> <br></p>
 <blockquote>
 <p>If I had one thing to tell biologists learning bioinformatics, it would be “write code for humans, write data for computers”. — Vince Buffalo (<span class="citation">@vsbuffalo</span>)</p>
 </blockquote>
-<p><br></p>
+<p><br> <br></p>
+</div>
 <div id="pivoting-between-long-and-wide-data-formats" class="section level3">
 <h3>Pivoting between long and wide data formats</h3>
-<p>First, to exlore the powerful <code>tidyr</code> functions for reshaping data, we'll walk through <a href="https://r4ds.had.co.nz/tidy-data.html#pivoting">Chapter 12.3 Pivoting in Grolemund and Wickham's &quot;R for Data Science&quot;</a>.</p>
+<p>Now that the motivation for wanting to work with data in tidy format hopefully is clear, let’s explore some powerful functions from the package <code>tidyr</code> for reshaping data. (<code>tidyr</code> comes bundles with the <code>tidyverse</code>, so we don’t have to install it separately).</p>
 <p>Often, datasets will not in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.</p>
 <p>This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. The second step is to resolve one of <strong>two common problems</strong>:</p>
 <ul>
 <li><p><strong>One variable might be spread across multiple columns</strong>.</p></li>
 <li><p><strong>One observation might be scattered across multiple rows</strong>.</p></li>
 </ul>
-<p>Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: <code>pivot_longer()</code> and <code>pivot_wider()</code>.</p>
-<p>Now that you're over in &quot;R for Data Science&quot;, you can continue on to also take a look at Chapter 12.4 on <code>separate()</code> and <code>unite()</code> - two simple functions for splitting and combining information from different columns.</p>
 <p><br></p>
+<p>Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: <code>pivot_longer()</code> and <code>pivot_wider()</code>.</p>
+<p>We’ll walk through an illustration of how to use these by following <a href="https://r4ds.had.co.nz/tidy-data.html#pivoting">Chapter 12.3 Pivoting in Grolemund and Wickham’s “R for Data Science”</a>.</p>
+<p>And now that you’re over in “R for Data Science”, you can continue on to also take a look at <a href="https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting">Chapter 12.4</a> on <code>separate()</code> and <code>unite()</code> - two simple functions for splitting and combining information from different columns.</p>
+<p><br> <br></p>
 </div>
-<div id="another-example-to-further-illustrate-tidy-and-untidy-data" class="section level3">
-<h3>Another example to further illustrate tidy and untidy data</h3>
-<p>To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the <code>01-intro.md</code> file, not the <code>02-gather.md</code> and <code>03-spread.md</code>).</p>
-<p>First let's read the intro (<code>01-intro.md</code>) <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">here</a></p>
-<p>Then let's work through reshaping the data.</p>
+</div>
+<div id="another-example-to-further-illustrate-tidy-and-untidy-data" class="section level2">
+<h2>Another example to further illustrate tidy and untidy data</h2>
+<p>To explore tidy data in a different context, let’s work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we’ll work through updated code here (i.e. only look at the <code>01-intro.md</code> file, not the <code>02-gather.md</code> and <code>03-spread.md</code>).</p>
+<p>First let’s read the intro (<code>01-intro.md</code>) <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">here</a></p>
+<p>Then let’s work through reshaping the data.</p>
 <p><br></p>
 <div id="import-untidy-lord-of-the-rings-data" class="section level4">
 <h4>1. Import untidy Lord of the Rings data</h4>
 <p>We bring the data into data frames or tibbles, one per film, and do some inspection.</p>
 <pre class="r"><code>fship &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## Parsed with column specification:
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -621,8 +591,7 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 ##   Male = col_double()
 ## )</code></pre>
 <pre class="r"><code>ttow &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## Parsed with column specification:
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -630,8 +599,7 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 ##   Male = col_double()
 ## )</code></pre>
 <pre class="r"><code>rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Return_Of_The_King.csv&quot;)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
+<pre><code>## Parsed with column specification:
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -645,7 +613,7 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 <p>We now have one data frame per film, each with a common set of 4 variables. Step one in tidying this data is to glue them together into one data frame, stacking them up row wise. This is called row binding and we use <code>dplyr::bind_rows()</code>.</p>
 <pre class="r"><code>lotr_untidy &lt;- bind_rows(fship, ttow, rking)
 str(lotr_untidy)</code></pre>
-<pre><code>## spec_tbl_df [9 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+<pre><code>## tibble [9 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Film  : chr [1:9] &quot;The Fellowship Of The Ring&quot; &quot;The Fellowship Of The Ring&quot; &quot;The Fellowship Of The Ring&quot; &quot;The Two Towers&quot; ...
 ##  $ Race  : chr [1:9] &quot;Elf&quot; &quot;Hobbit&quot; &quot;Man&quot; &quot;Elf&quot; ...
 ##  $ Female: num [1:9] 1229 14 0 331 0 ...
@@ -700,7 +668,7 @@ lotr_tidy</code></pre>
 ## 16 The Return Of The King     Hobbit Female     2
 ## 17 The Return Of The King     Man    Male    2459
 ## 18 The Return Of The King     Man    Female   268</code></pre>
-<p>Tidy data... mission accomplished!</p>
+<p>Tidy data… mission accomplished!</p>
 <p>To explain our call to pivot_longer() above, let’s read it from right to left: we took the variables Female and Male and gathered their values into a single new variable Words. This forced the creation of a companion variable Gender, which tells whether a specific value of Words came from Female or Male. All other variables, such as Film, remain unchanged and are simply replicated as needed.</p>
 <p><br></p>
 </div>
@@ -708,17 +676,12 @@ lotr_tidy</code></pre>
 <h4>4. Write the tidy data to a delimited file</h4>
 <p>Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.</p>
 <pre class="r"><code>write_csv(lotr_tidy, path = &quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
-## Please use the `file` argument instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <p><br></p>
-</div>
 </div>
 <div id="your-turn" class="section level3">
 <h3>Your turn</h3>
 <ol style="list-style-type: decimal">
-<li><p>After tidying the data and completing your analysis, you may want to output a table that has each race in its own column. Let's use the <code>pivot_wider()</code> function to make such a table and save it as &quot;lotr_wide&quot;</p></li>
+<li><p>After tidying the data and completing your analysis, you may want to output a table that has each race in its own column. Let’s use the <code>pivot_wider()</code> function to make such a table and save it as “lotr_wide”</p></li>
 <li><p>OPTIONAL: Use the pivot_longer() function to transform you lotr_wide back to tidy format.</p></li>
 </ol>
 <p><br></p>
@@ -782,11 +745,11 @@ lotr_tidy %&gt;%
 </div>
 <div id="applying-this-to-our-coronavirus-dataset" class="section level2">
 <h2>Applying this to our Coronavirus dataset</h2>
-<p>Let's now return to our Coronavirus dataset. Let's remind ourselves of it's structure</p>
+<p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))
 
 coronavirus</code></pre>
-<pre><code>## # A tibble: 334,098 x 7
+<pre><code>## # A tibble: 338,940 x 7
 ##    date       province               country            lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
 ##  1 2020-01-22 &lt;NA&gt;                   Afghanistan       33.9  67.7  confir…     0
@@ -799,7 +762,7 @@ coronavirus</code></pre>
 ##  8 2020-01-22 &lt;NA&gt;                   Armenia           40.1  45.0  confir…     0
 ##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
 ## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
-## # … with 334,088 more rows</code></pre>
+## # … with 338,930 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p>Last class, we visualized the global case counts date</p>
 <pre class="r"><code>coronavirus %&gt;% 
@@ -807,9 +770,9 @@ coronavirus</code></pre>
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-9-1.png" width="672" /> <br></p>
-<p>Let's see how we would do that if the data had been in a wider format.</p>
+<pre><code>## `summarise()` regrouping output by &#39;date&#39; (override with `.groups` argument)</code></pre>
+<p><img src="lesson10-files/unnamed-chunk-8-1.png" width="672" /> <br></p>
+<p>Let’s see how we would do that if the data had been in a wider format.</p>
 <p><br></p>
 <div id="your-turn-1" class="section level4">
 <h4>Your turn</h4>
@@ -826,64 +789,22 @@ coronavirus</code></pre>
   filter(country == &quot;US&quot;) %&gt;% 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lesson10-files/unnamed-chunk-10-1.png" width="672" /></p>
 <p>How would we do this with the <code>coronavirus_wide</code> format? That would be much more difficult</p>
-<p>As mentioned above, however, there are plot types where the wide format provides the best input. For example, in Slack, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in <code>ggplot</code> we are mapping <em>variables</em> to <em>aesthetics</em> and now we want to map different levels of a variable to different aesthetics. So let's make those different levels separate variables by widening the data.</p>
+<p>As mentioned above, however, there are plot types where the wide format provides the best input. For example, in Slack, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in <code>ggplot</code> we are mapping <em>variables</em> to <em>aesthetics</em> and now we want to map different levels of a variable to different aesthetics. So let’s make those different levels separate variables by widening the data.</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   group_by(country, type) %&gt;%
   summarize(total_cases = sum(cases)) %&gt;%
   pivot_wider(names_from = type, values_from = total_cases)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;country&#39; (override with `.groups` argument)</code></pre>
 <pre class="r"><code># Now we can plot this easily
 ggplot(coronavirus_ttd) +
   geom_label(mapping = aes(x = confirmed, y = death, label = country))</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="lesson10-files/unnamed-chunk-11-1.png" width="672" /></p>
 <p>This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.</p>
 <p><br></p>
 </div>
 </div>
-</div>
-<div id="part-3.-cleaning-up-column-names" class="section level2">
-<h2>Part 3. Cleaning up column names</h2>
-<p>Using <code>janitor::clean_names()</code></p>
-<p>We've noticed in the coronavirus dataset that the variable names have a very inconsistent format. It's not a problem per se for our ability to work with this dataframe, but it's a bit annoying to look at.</p>
-<pre class="r"><code>colnames(coronavirus)</code></pre>
-<pre><code>## [1] &quot;date&quot;     &quot;province&quot; &quot;country&quot;  &quot;lat&quot;      &quot;long&quot;     &quot;type&quot;     &quot;cases&quot;</code></pre>
-<p>In other cases, spaces and special characters in column names of data you import can actually cause problems downstream, so we often may want to clean them up.</p>
-<p>The <code>janitor</code> package by Sam Firke is a great collection of functions for some quick data cleaning, like:</p>
-<ul>
-<li><code>janitor::clean_names()</code>: update column headers to a case of your choosing</li>
-<li><code>janitor::get_dupes()</code>: see all rows that are duplicates within variables you choose</li>
-<li><code>janitor::remove_empty()</code>: remove empty rows and/or columns</li>
-<li><code>janitor::adorn_*()</code>: jazz up tables</li>
-</ul>
-<p>Here, we'll use <code>janitor::clean_names()</code> to convert all of our column headers in our <code>coronavirus</code> data to a more convenient case - the default is <strong>lower_snake_case</strong>, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.</p>
-<p>For example, <code>janitor::clean_names()</code> would update these nightmare column names into much nicer forms:</p>
-<ul>
-<li><code>My...RECENT-income!</code> becomes <code>my_recent_income</code></li>
-<li><code>SAMPLE2.!test1</code> becomes <code>sample2_test1</code></li>
-<li><code>ThisIsTheName</code> becomes <code>this_is_the_name</code></li>
-<li><code>2015</code> becomes <code>x2015</code></li>
-</ul>
-<p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>:</p>
-<pre class="r"><code>coronavirus &lt;- coronavirus %&gt;% 
-  clean_names()</code></pre>
-<pre class="r"><code>names(coronavirus)</code></pre>
-<pre><code>## [1] &quot;date&quot;     &quot;province&quot; &quot;country&quot;  &quot;lat&quot;      &quot;long&quot;     &quot;type&quot;     &quot;cases&quot;</code></pre>
-<p>And there are other case options in <code>clean_names()</code>, like:</p>
-<ul>
-<li>&quot;snake&quot; produces snake_case (the default)</li>
-<li>&quot;lower_camel&quot; or &quot;small_camel&quot; produces lowerCamel</li>
-<li>&quot;upper_camel&quot; or &quot;big_camel&quot; produces UpperCamel</li>
-<li>&quot;screaming_snake&quot; or &quot;all_caps&quot; produces ALL_CAPS</li>
-<li>&quot;lower_upper&quot; produces lowerUPPER</li>
-<li>&quot;upper_lower&quot; produces UPPERlower</li>
-</ul>
-<div class="figure">
-<img src="assets/case.jpg" />
-
-</div>
-<p>Art by Allison Horst. Check out more <a href="https://github.com/allisonhorst/stats-illustrations">here</a></p>
 </div>
 
 
@@ -897,7 +818,7 @@ ggplot(coronavirus_ttd) +
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
