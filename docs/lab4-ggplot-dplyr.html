@@ -391,6 +391,9 @@ div.tocify {
     <li>
       <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Whale observation and baby names</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -459,13 +462,13 @@ library(dslabs) #install.packages(&quot;dslabs&quot;)
 gapminder %&gt;% as_tibble() %&gt;% 
   head(5)</code></pre>
 <pre><code>## # A tibble: 5 x 9
-##   country  year infant_mortality life_expectancy fertility population      gdp
-##   &lt;fct&gt;   &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Albania  1960            115.             62.9      6.19    1636054 NA      
-## 2 Algeria  1960            148.             47.5      7.65   11124892  1.38e10
-## 3 Angola   1960            208              36.0      7.32    5270844 NA      
-## 4 Antigu…  1960             NA              63.0      4.43      54681 NA      
-## 5 Argent…  1960             59.9            65.4      3.11   20619075  1.08e11
+##   country    year infant_mortality life_expectancy fertility population      gdp
+##   &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Albania    1960            115.             62.9      6.19    1636054 NA      
+## 2 Algeria    1960            148.             47.5      7.65   11124892  1.38e10
+## 3 Angola     1960            208              36.0      7.32    5270844 NA      
+## 4 Antigua …  1960             NA              63.0      4.43      54681 NA      
+## 5 Argentina  1960             59.9            65.4      3.11   20619075  1.08e11
 ## # … with 2 more variables: continent &lt;fct&gt;, region &lt;fct&gt;</code></pre>
 <p><br></p>
 <ul>

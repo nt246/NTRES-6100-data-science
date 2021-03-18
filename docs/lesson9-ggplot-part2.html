@@ -391,6 +391,9 @@ div.tocify {
     <li>
       <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Whale observation and baby names</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -519,12 +522,12 @@ coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/co
 
 # Has it been updated? Check the latest date?
 max(coronavirus$date)</code></pre>
-<pre><code>## [1] &quot;2021-03-16&quot;</code></pre>
+<pre><code>## [1] &quot;2021-03-17&quot;</code></pre>
 <p><br> <br></p>
 </div>
 <div id="combining-dplyr-and-ggplot" class="section level2">
 <h2>Combining <code>dplyr</code> and <code>ggplot</code></h2>
-<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-16. Take a minute to try this for yourself, then you can look at our approach.</p>
+<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-17. Take a minute to try this for yourself, then you can look at our approach.</p>
 <p><br></p>
 <p><details> <summary>click to see our approach</summary></p>
 <pre class="r"><code>total_cases &lt;- coronavirus %&gt;% 
@@ -542,15 +545,15 @@ kable(total_cases)  # kable() just provides a nice output for the table</code></
 <tbody>
 <tr class="odd">
 <td align="left">confirmed</td>
-<td align="right">120695785</td>
+<td align="right">121196160</td>
 </tr>
 <tr class="even">
 <td align="left">death</td>
-<td align="right">2670453</td>
+<td align="right">2680410</td>
 </tr>
 <tr class="odd">
 <td align="left">recovered</td>
-<td align="right">74750388</td>
+<td align="right">75014922</td>
 </tr>
 </tbody>
 </table>

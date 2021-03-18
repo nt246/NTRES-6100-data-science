@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-Use data tidying, transformation, and visualization to answer the following questions about whale observation records in breakout rooms.
+Tidy up the messy `whales` dataset in breakout rooms.
 
 <br>
 
@@ -72,7 +72,7 @@ whales %>% head() %>% kable()
 
 <br>
 
-* The `whales` dataset was collected as follows: observers are asked for certain information about specific indicents they witnessed of ships striking whales and that information is compiled by whale type. The observers were asked to provide: type of whale, date of event (m/d/yr), outcome of event, approximate length of whale in feet, ocean in which event occurred.
+* The `whales` dataset is a classic example of messy datasets. It was collected as follows: observers are asked for certain information about specific indicents they witnessed of ships striking whales and that information is compiled by whale type. The observers were asked to provide: type of whale, date of event (m/d/yr), outcome of event, approximate length of whale in feet, ocean in which event occurred.
 
 <br>
 
@@ -155,11 +155,17 @@ whales_split %>% head() %>% kable()
 <br>
 <br>
 
-#### Question 4. Starting from `whales_split`, create another data frame in which all columns are appropriately parsed. Name this data frame `whales_parsed`.
+#### Question 4. Starting from `whales_split`, create another data frame in which all columns are parsed as instructed below. Name this data frame `whales_parsed`.
 
 <br>
 
-The variables should be of the following types (listed in order): integer, character, datetime, character, integer, character
+The columns should parsed to the following types  
+* `observer`: double  
+* `species`: character  
+* `date`: date  
+* `outcome`: character  
+* `size`: integer  
+* `ocean`: character  
 
 <br> 
 
@@ -171,12 +177,11 @@ The variables should be of the following types (listed in order): integer, chara
 whales_parsed <- whales_split %>%
   type_convert(
     col_types = cols(
-      observer = col_integer(),
       date = col_date(format = "%m/%d/%y"),
       size = col_integer()
     )
   )
-whales_parsed %>% head() %>% kable()
+whales_parsed %>% head()
 ```
 
 </details>

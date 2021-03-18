@@ -391,6 +391,9 @@ div.tocify {
     <li>
       <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Whale observation and baby names</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -455,7 +458,7 @@ div.tocify {
 <div id="exercise-1-whale-observation-40-min" class="section level2">
 <h2>Exercise 1: Whale observation (40 min)</h2>
 <p><br></p>
-<p>Use data tidying, transformation, and visualization to answer the following questions about whale observation records in breakout rooms.</p>
+<p>Tidy up the messy <code>whales</code> dataset in breakout rooms.</p>
 <p><br></p>
 <div class="figure">
 <img src="https://i.pinimg.com/736x/11/0d/1a/110d1a40a4dd81e60395e559297cb776.jpg" />
@@ -570,7 +573,7 @@ whales %&gt;% head() %&gt;% kable()</code></pre>
 </table>
 <p><br></p>
 <ul>
-<li>The <code>whales</code> dataset was collected as follows: observers are asked for certain information about specific indicents they witnessed of ships striking whales and that information is compiled by whale type. The observers were asked to provide: type of whale, date of event (m/d/yr), outcome of event, approximate length of whale in feet, ocean in which event occurred.</li>
+<li>The <code>whales</code> dataset is a classic example of messy datasets. It was collected as follows: observers are asked for certain information about specific indicents they witnessed of ships striking whales and that information is compiled by whale type. The observers were asked to provide: type of whale, date of event (m/d/yr), outcome of event, approximate length of whale in feet, ocean in which event occurred.</li>
 </ul>
 <p><br></p>
 <ul>
@@ -763,83 +766,35 @@ whales_split %&gt;% head() %&gt;% kable()</code></pre>
 <p></details></p>
 <p><br> <br></p>
 </div>
-<div id="question-4.-starting-from-whales_split-create-another-data-frame-in-which-all-columns-are-appropriately-parsed.-name-this-data-frame-whales_parsed." class="section level4">
-<h4>Question 4. Starting from <code>whales_split</code>, create another data frame in which all columns are appropriately parsed. Name this data frame <code>whales_parsed</code>.</h4>
+<div id="question-4.-starting-from-whales_split-create-another-data-frame-in-which-all-columns-are-parsed-as-instructed-below.-name-this-data-frame-whales_parsed." class="section level4">
+<h4>Question 4. Starting from <code>whales_split</code>, create another data frame in which all columns are parsed as instructed below. Name this data frame <code>whales_parsed</code>.</h4>
 <p><br></p>
-<p>The variables should be of the following types (listed in order): integer, character, datetime, character, integer, character</p>
+<p>The columns should parsed to the following types<br />
+* <code>observer</code>: double<br />
+* <code>species</code>: character<br />
+* <code>date</code>: date<br />
+* <code>outcome</code>: character<br />
+* <code>size</code>: integer<br />
+* <code>ocean</code>: character</p>
 <p><br></p>
 <p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
 <pre class="r"><code>whales_parsed &lt;- whales_split %&gt;%
   type_convert(
     col_types = cols(
-      observer = col_integer(),
       date = col_date(format = &quot;%m/%d/%y&quot;),
       size = col_integer()
     )
   )
-whales_parsed %&gt;% head() %&gt;% kable()</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">observer</th>
-<th align="left">species</th>
-<th align="left">date</th>
-<th align="left">outcome</th>
-<th align="right">size</th>
-<th align="left">ocean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">blue</td>
-<td align="left">2015-01-20</td>
-<td align="left">death</td>
-<td align="right">NA</td>
-<td align="left">Indian</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">sei</td>
-<td align="left">2011-08-09</td>
-<td align="left">injury</td>
-<td align="right">NA</td>
-<td align="left">indian</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="left">humpback</td>
-<td align="left">2015-08-12</td>
-<td align="left">death</td>
-<td align="right">50</td>
-<td align="left">atlantic</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">fin</td>
-<td align="left">2013-08-02</td>
-<td align="left">death</td>
-<td align="right">76</td>
-<td align="left">arctic</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="left">bowhead</td>
-<td align="left">2013-06-24</td>
-<td align="left">injury</td>
-<td align="right">30</td>
-<td align="left">artic</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="left">southern_right</td>
-<td align="left">2013-07-14</td>
-<td align="left">injury</td>
-<td align="right">47</td>
-<td align="left">pacific</td>
-</tr>
-</tbody>
-</table>
+whales_parsed %&gt;% head()</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   observer species        date       outcome  size ocean   
+##      &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;     &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;   
+## 1        1 blue           2015-01-20 death      NA Indian  
+## 2        1 sei            2011-08-09 injury     NA indian  
+## 3        2 humpback       2015-08-12 death      50 atlantic
+## 4        2 fin            2013-08-02 death      76 arctic  
+## 5        2 bowhead        2013-06-24 injury     30 artic   
+## 6        3 southern_right 2013-07-14 injury     47 pacific</code></pre>
 <p></details></p>
 <p><br> <br></p>
 </div>
