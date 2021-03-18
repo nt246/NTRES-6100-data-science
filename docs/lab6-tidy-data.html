@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab 6: Whale observation and baby names</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson13-factors.html">Lesson 13: Factors in R</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 6: Whale observation and baby names</h1>
+
+</div>
+
+
+<p><br></p>
+<p><br></p>
+<div id="goals-for-today" class="section level2">
+<h2>Goals for today</h2>
+<ol style="list-style-type: decimal">
+<li><p>Practice data tidying with <code>tidyr</code></p></li>
+<li><p>Continue to practice data visualization with <code>ggplot2</code></p></li>
+<li><p>Continue to practice data transformation with <code>dplyr</code></p></li>
+<li><p>Integrate 1), 2), and 3) to explore the <code>whales</code> dataset* and the <code>babynames</code> dataset</p>
+<p>* <em>Borrowed from Iain Carmichael’s <a href="https://idc9.github.io/stor390/course_info/syllabus.html">STOR 390 course</a>.</em></p></li>
+</ol>
+<p><br> <br></p>
+</div>
+<div id="general-instructions" class="section level2">
+<h2>General instructions</h2>
+<ul>
+<li>Today, we will combine the data transformation tools in <code>dplyr</code>, the data visualization tools in <code>ggplot2</code>, and the data tidying tools in <code>tidyr</code> to explore the patterns and trends in the <code>whales</code> dataset and the <code>babynames</code> dataset.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>To start, first open a new RMarkdown file in your course repo, set the output format to <code>github_document</code>, save it in your <code>lab</code> folder as <code>lab6.Rmd</code>, and work in this RMarkdown file for the rest of this lab.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="exercise-1-whale-observation-40-min" class="section level2">
+<h2>Exercise 1: Whale observation (40 min)</h2>
+<p><br></p>
+<p>Use data tidying, transformation, and visualization to answer the following questions about whale observation records in breakout rooms.</p>
+<p><br></p>
+<div class="figure">
+<img src="https://i.pinimg.com/736x/11/0d/1a/110d1a40a4dd81e60395e559297cb776.jpg" />
+
+</div>
+<p><br> <br></p>
+<p><strong>Instructions:</strong></p>
+<ul>
+<li>Read in the data with the following code:</li>
+</ul>
+<p><br></p>
+<pre class="r"><code># Load required packages
+library(tidyverse)
+library(knitr)
+
+# Read in the data
+whales &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/whales.csv&quot;)
+whales %&gt;% head() %&gt;% kable()</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="4%" />
+<col width="11%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="12%" />
+<col width="6%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">blue</th>
+<th align="left">humpback</th>
+<th align="left">southern_right</th>
+<th align="left">sei</th>
+<th align="left">fin</th>
+<th align="left">killer_whale</th>
+<th align="left">bowhead</th>
+<th align="left">grey</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">1/20/15, death, , Indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">8/9/11, injury, , indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="left">8/12/15, death, 50, atlantic</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">8/2/13, death, 76, arctic</td>
+<td align="left">NA</td>
+<td align="left">6/24/13, injury, 30, artic</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">7/14/13, injury, 47, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">NA</td>
+<td align="left">3/4/12, death, 56, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">5/24/16, death, , pacific</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">6/14/12, injury, 52, indian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">5/2/16, , 80, pacific</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li>The <code>whales</code> dataset was collected as follows: observers are asked for certain information about specific indicents they witnessed of ships striking whales and that information is compiled by whale type. The observers were asked to provide: type of whale, date of event (m/d/yr), outcome of event, approximate length of whale in feet, ocean in which event occurred.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Sometimes an observer could not provide all of that information, and missing data is represented as blanks between commas; look at the dataset to see. An observer can possibly give information about more than one event.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>We provide some possible solutions for each question, but we highly recommend that you <strong>don't look at them unless you are really stuck</strong>.</li>
+</ul>
+<p><br> <br></p>
+<div id="question-1.-create-a-new-data-frame-that-has-one-row-per-observer-per-species-and-one-single-variable-of-all-the-information-collected.-name-this-data-frame-whales_long." class="section level4">
+<h4>Question 1. Create a new data frame that has one row per observer, per species and one single variable of all the information collected. Name this data frame <code>whales_long</code>.</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_long &lt;- whales %&gt;%
+  pivot_longer(-1, names_to = &quot;species&quot;, values_to = &quot;info&quot;)
+whales_long %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15, death, , Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">humpback</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">southern_right</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11, injury, , indian</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">fin</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">killer_whale</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-2.-starting-from-whales_long-create-another-data-frame-that-includes-only-events-for-which-there-is-information.-name-this-data-frame-whales_clean." class="section level4">
+<h4>Question 2. Starting from <code>whales_long</code>, create another data frame that includes only events for which there is information. Name this data frame <code>whales_clean</code>.</h4>
+<p><br></p>
+<p><em>Hint: <code>is.na()</code> might be helpful.</em></p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_clean &lt;- whales_long %&gt;%
+  filter(!is.na(info))
+whales_clean %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15, death, , Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11, injury, , indian</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">humpback</td>
+<td align="left">8/12/15, death, 50, atlantic</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">fin</td>
+<td align="left">8/2/13, death, 76, arctic</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">bowhead</td>
+<td align="left">6/24/13, injury, 30, artic</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">southern_right</td>
+<td align="left">7/14/13, injury, 47, pacific</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-3.-starting-from-whales_clean-create-another-data-frame-with-one-variable-per-type-of-information-one-piece-of-information-per-cell.-some-cells-might-be-empty.-name-this-data-frame-whales_split." class="section level4">
+<h4>Question 3. Starting from <code>whales_clean</code>, create another data frame with one variable per type of information, one piece of information per cell. Some cells might be empty. Name this data frame <code>whales_split</code>.</h4>
+<p><br></p>
+<p>Your new data frame should have six variables: observer, species, date, outcome, size, ocean.</p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_split &lt;- whales_clean %&gt;%
+  separate(info, c(&quot;date&quot;, &quot;outcome&quot;, &quot;size&quot;, &quot;ocean&quot;), &quot;,&quot;)
+whales_split %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">date</th>
+<th align="left">outcome</th>
+<th align="left">size</th>
+<th align="left">ocean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">1/20/15</td>
+<td align="left">death</td>
+<td align="left"></td>
+<td align="left">Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">8/9/11</td>
+<td align="left">injury</td>
+<td align="left"></td>
+<td align="left">indian</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">humpback</td>
+<td align="left">8/12/15</td>
+<td align="left">death</td>
+<td align="left">50</td>
+<td align="left">atlantic</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">fin</td>
+<td align="left">8/2/13</td>
+<td align="left">death</td>
+<td align="left">76</td>
+<td align="left">arctic</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">bowhead</td>
+<td align="left">6/24/13</td>
+<td align="left">injury</td>
+<td align="left">30</td>
+<td align="left">artic</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">southern_right</td>
+<td align="left">7/14/13</td>
+<td align="left">injury</td>
+<td align="left">47</td>
+<td align="left">pacific</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-4.-starting-from-whales_split-create-another-data-frame-in-which-all-columns-are-appropriately-parsed.-name-this-data-frame-whales_parsed." class="section level4">
+<h4>Question 4. Starting from <code>whales_split</code>, create another data frame in which all columns are appropriately parsed. Name this data frame <code>whales_parsed</code>.</h4>
+<p><br></p>
+<p>The variables should be of the following types (listed in order): integer, character, datetime, character, integer, character</p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_parsed &lt;- whales_split %&gt;%
+  type_convert(
+    col_types = cols(
+      observer = col_integer(),
+      date = col_date(format = &quot;%m/%d/%y&quot;),
+      size = col_integer()
+    )
+  )
+whales_parsed %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">observer</th>
+<th align="left">species</th>
+<th align="left">date</th>
+<th align="left">outcome</th>
+<th align="right">size</th>
+<th align="left">ocean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">blue</td>
+<td align="left">2015-01-20</td>
+<td align="left">death</td>
+<td align="right">NA</td>
+<td align="left">Indian</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">sei</td>
+<td align="left">2011-08-09</td>
+<td align="left">injury</td>
+<td align="right">NA</td>
+<td align="left">indian</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">humpback</td>
+<td align="left">2015-08-12</td>
+<td align="left">death</td>
+<td align="right">50</td>
+<td align="left">atlantic</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">fin</td>
+<td align="left">2013-08-02</td>
+<td align="left">death</td>
+<td align="right">76</td>
+<td align="left">arctic</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">bowhead</td>
+<td align="left">2013-06-24</td>
+<td align="left">injury</td>
+<td align="right">30</td>
+<td align="left">artic</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">southern_right</td>
+<td align="left">2013-07-14</td>
+<td align="left">injury</td>
+<td align="right">47</td>
+<td align="left">pacific</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-5.-using-whales_parsed-print-a-summary-table-with-1-number-ship-strikes-by-species-2-average-whale-size-by-species-omitting-na-values-in-the-calculation." class="section level4">
+<h4>Question 5. Using <code>whales_parsed</code>, print a summary table with: 1) number ship strikes by species, 2) average whale size by species, omitting NA values in the calculation.</h4>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_parsed %&gt;% 
+  group_by(species) %&gt;% 
+  summarise(number_of_ship_strikes = n(), average_size = mean(size, na.rm = T))  %&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">species</th>
+<th align="right">number_of_ship_strikes</th>
+<th align="right">average_size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">blue</td>
+<td align="right">5</td>
+<td align="right">67.50000</td>
+</tr>
+<tr class="even">
+<td align="left">bowhead</td>
+<td align="right">5</td>
+<td align="right">43.75000</td>
+</tr>
+<tr class="odd">
+<td align="left">fin</td>
+<td align="right">4</td>
+<td align="right">78.50000</td>
+</tr>
+<tr class="even">
+<td align="left">grey</td>
+<td align="right">7</td>
+<td align="right">36.83333</td>
+</tr>
+<tr class="odd">
+<td align="left">humpback</td>
+<td align="right">7</td>
+<td align="right">44.33333</td>
+</tr>
+<tr class="even">
+<td align="left">killer_whale</td>
+<td align="right">2</td>
+<td align="right">15.00000</td>
+</tr>
+<tr class="odd">
+<td align="left">sei</td>
+<td align="right">5</td>
+<td align="right">54.75000</td>
+</tr>
+<tr class="even">
+<td align="left">southern_right</td>
+<td align="right">7</td>
+<td align="right">47.00000</td>
+</tr>
+</tbody>
+</table>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-6.-try-to-summarize-as-much-information-contained-in-whales_parsed-as-possible-in-one-plot." class="section level4">
+<h4>Question 6. Try to summarize as much information contained in <code>whales_parsed</code> as possible in one plot.</h4>
+<p><br></p>
+<p>What are some challenges in this?</p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>whales_parsed %&gt;%
+  mutate(ocean = ifelse(ocean == &quot;artic&quot;, &quot;arctic&quot;, ocean)) %&gt;%
+  ggplot(aes(x=date, y = size, color=outcome)) +
+  geom_point() +
+  facet_grid(ocean~species)</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values (geom_point).</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p></details></p>
+<p><br> <br></p>
+<p>You can continue to work on Exercise 2 if you have finished before the break.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="recap-5-minutes" class="section level2">
+<h2>Recap (5 minutes)</h2>
+<p><br></p>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
+</div>
+<div id="short-break-10-min" class="section level2">
+<h2>Short break (10 min)</h2>
+<p><br> <br></p>
+</div>
+<div id="exercise-2-baby-names-50-min" class="section level2">
+<h2>Exercise 2: Baby names (50 min)</h2>
+<p><br></p>
+<p>Use data tidying, transformation, and visualization to answer the following questions about baby names in breakout rooms</p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">top boy names</th>
+<th align="center">top girl names</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985571871-AWAM0VICLVSKXHQZ9H8V/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+boy+names.png?format=500w" /></td>
+<td align="center"><img src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985603694-1G1HBXOTRB17QEP1234D/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+girl+names.png?format=500w" /></td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<p><strong>Instructions:</strong></p>
+<ul>
+<li>Load the required packages and read in the data with the following code:</li>
+</ul>
+<p><br></p>
+<pre class="r"><code># Load required packages
+library(babynames) # install.packages(&quot;babynames&quot;)
+
+babynames %&gt;% head() %&gt;% kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">year</th>
+<th align="left">sex</th>
+<th align="left">name</th>
+<th align="right">n</th>
+<th align="right">prop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Mary</td>
+<td align="right">7065</td>
+<td align="right">0.0723836</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Anna</td>
+<td align="right">2604</td>
+<td align="right">0.0266790</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Emma</td>
+<td align="right">2003</td>
+<td align="right">0.0205215</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Elizabeth</td>
+<td align="right">1939</td>
+<td align="right">0.0198658</td>
+</tr>
+<tr class="odd">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Minnie</td>
+<td align="right">1746</td>
+<td align="right">0.0178884</td>
+</tr>
+<tr class="even">
+<td align="right">1880</td>
+<td align="left">F</td>
+<td align="left">Margaret</td>
+<td align="right">1578</td>
+<td align="right">0.0161672</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li>The <code>babynames</code> dataset provides the number of children of each sex given each name from 1880 to 2017 in the US. All names with more than 5 uses are included. This dataset is provided by the US Social Security Administration.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Make sure that you use figures and/or tables to support your answer.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>We provide some possible solutions for each question, but we highly recommend that you <strong>don't look at them unless you are really stuck</strong>.</li>
+</ul>
+<p><br> <br></p>
+<div id="question-1-what-are-the-6-most-popular-boy-names-and-girl-names-of-all-time-how-has-the-popularity-of-each-of-these-names-changed-over-time" class="section level4">
+<h4>Question 1: What are the 6 most popular boy names and girl names of all time? How has the popularity of each of these names changed over time?</h4>
+<p><br></p>
+<p><em>Hint: You can start by finding the 6 most popular names for each sex separately.</em></p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code># number of passengers in the dataset
+top_6_boy_names &lt;- babynames %&gt;%
+  filter(sex == &quot;M&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total_count=sum(n)) %&gt;%
+  slice_max(order_by = total_count, n = 6)
+
+top_6_girl_names &lt;- babynames %&gt;%
+  filter(sex == &quot;F&quot;) %&gt;%
+  group_by(name) %&gt;%
+  summarise(total_count=sum(n)) %&gt;%
+  slice_max(order_by = total_count, n = 6) 
+
+babynames %&gt;%
+  filter(
+    (name %in% top_6_boy_names$name &amp; sex == &quot;M&quot;) | (name %in% top_6_girl_names$name &amp; sex == &quot;F&quot;)
+    ) %&gt;%
+  ggplot(aes(x=year, y=prop, group=name, color=sex)) +
+  geom_line() +
+  facet_wrap(~name)</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Note:</p>
+<ul>
+<li><p><code>slice_max(order_by = total_count, n = 6)</code> select 6 rows with the highest values in total_count; in this instance, using <code>arrange()</code> and <code>head()</code> is equivalent</p></li>
+<li><p>There will be a more efficient solution after you've learned relational data.</p></li>
+</ul>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-2.-what-are-the-most-popular-boy-names-and-girl-names-in-each-decade" class="section level4">
+<h4>Question 2. What are the most popular boy names and girl names in each decade?</h4>
+<p><br></p>
+<p><em>Hint: You can create a new variable called <code>decade</code>. The <code>round()</code> function may be helpful in this step.</em></p>
+<p><em>Hint: To get the most popular names, <code>group_by()</code> in combination with <code>slice_max()</code> can be very efficient. </em></p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>set.seed(42)
+babynames %&gt;%
+  mutate(decade = round(year/10)*10) %&gt;%
+  group_by(sex, decade, name) %&gt;%
+  summarise(total_count = sum(n)) %&gt;%
+  group_by(sex, decade) %&gt;%
+  slice_max(order_by = total_count, n=1) %&gt;%
+  ggplot(aes(x=decade, y=total_count, color=sex)) +
+  geom_line(size = 1.5) +
+  geom_point(size = 3)+
+  ggrepel::geom_label_repel(aes(label=name)) +
+  cowplot::theme_cowplot()</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Note: In this case, <code>slice_max()</code> cannot be replaced by <code>arrange()</code> and <code>head()</code>, because the latter does not work well with <code>group_by()</code></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-3.-find-the-names-that-have-not-appeared-in-this-dataset-until-2010-but-were-used-more-than-1000-times-2010-2017-boys-and-girls-combined.-do-you-recognize-any-pop-culture-influence-in-these" class="section level4">
+<h4>Question 3. Find the names that have not appeared in this dataset until 2010, but were used more than 1000 times 2010-2017 (boys and girls combined). Do you recognize any pop culture influence in these?</h4>
+<p><br></p>
+<p><em>Hint: You may start by creating a variable to indicate whether a row is before or after 2010.</em></p>
+<p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
+<p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>new_names &lt;- babynames %&gt;%
+  mutate(threshold = ifelse(year &gt;= 2010, &quot;after&quot;, &quot;before&quot;)) %&gt;%
+  group_by(name, threshold) %&gt;%
+  summarise(total_count = sum(n)) %&gt;%
+  pivot_wider(names_from = threshold, values_from = total_count, names_prefix = &quot;count_&quot;) %&gt;%
+  mutate_all(~replace(., is.na(.), 0)) %&gt;%
+  filter(count_before == 0, count_after &gt;=1000) 
+
+new_names %&gt;% 
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">count_after</th>
+<th align="right">count_before</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cataleya</td>
+<td align="right">4013</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Dalary</td>
+<td align="right">1174</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Daleyza</td>
+<td align="right">6023</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Kataleya</td>
+<td align="right">1327</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Khaleesi</td>
+<td align="right">1964</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Neymar</td>
+<td align="right">2164</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Zendaya</td>
+<td align="right">1544</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>babynames %&gt;%
+  filter(name %in% new_names$name) %&gt;%
+  ggplot(aes(x=year, y=n, color=sex)) +
+  geom_line() +
+  facet_wrap(~name)</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is an efficient way to replace all NAs in a dataset with 0s.</p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-4.-find-the-12-most-popular-unisex-names.-how-have-the-proportion-of-girls-for-each-of-them-changed-over-time" class="section level4">
+<h4>Question 4. Find the 12 most popular unisex names. How have the proportion of girls for each of them changed over time?</h4>
+<p><br></p>
+<p>The definition of unisex names is arbitrary, but for this exercise, let's define them as names which have proportion of girls between 10% and 90% across all time.</p>
+<p><br></p>
+<p><em>Hint: You may start by summing over years in order to get a list of unisex names</em></p>
+<p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
+<p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
+<p><br></p>
+<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<pre class="r"><code>unisex_names &lt;- babynames %&gt;%
+  group_by(name, sex) %&gt;%
+  summarise(total_count = sum(n)) %&gt;%
+  pivot_wider(names_from = sex, values_from = total_count, names_prefix = &quot;count_&quot;) %&gt;%
+  filter(!is.na(count_M), !is.na(count_F)) %&gt;%
+  mutate(total_count=count_M+count_F, f_proportion = count_F / total_count) %&gt;%
+  filter(f_proportion&lt;0.9, f_proportion&gt;0.1) %&gt;%
+  arrange(-total_count)
+
+unisex_names %&gt;%
+  head(12) %&gt;%
+  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">count_M</th>
+<th align="right">count_F</th>
+<th align="right">total_count</th>
+<th align="right">f_proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Willie</td>
+<td align="right">448702</td>
+<td align="right">146148</td>
+<td align="right">594850</td>
+<td align="right">0.2456888</td>
+</tr>
+<tr class="even">
+<td align="left">Kelly</td>
+<td align="right">81550</td>
+<td align="right">471024</td>
+<td align="right">552574</td>
+<td align="right">0.8524180</td>
+</tr>
+<tr class="odd">
+<td align="left">Terry</td>
+<td align="right">422580</td>
+<td align="right">96883</td>
+<td align="right">519463</td>
+<td align="right">0.1865061</td>
+</tr>
+<tr class="even">
+<td align="left">Jordan</td>
+<td align="right">369745</td>
+<td align="right">130158</td>
+<td align="right">499903</td>
+<td align="right">0.2603665</td>
+</tr>
+<tr class="odd">
+<td align="left">Taylor</td>
+<td align="right">109852</td>
+<td align="right">317936</td>
+<td align="right">427788</td>
+<td align="right">0.7432093</td>
+</tr>
+<tr class="even">
+<td align="left">Alexis</td>
+<td align="right">62928</td>
+<td align="right">336623</td>
+<td align="right">399551</td>
+<td align="right">0.8425032</td>
+</tr>
+<tr class="odd">
+<td align="left">Leslie</td>
+<td align="right">112689</td>
+<td align="right">266474</td>
+<td align="right">379163</td>
+<td align="right">0.7027954</td>
+</tr>
+<tr class="even">
+<td align="left">Jamie</td>
+<td align="right">85299</td>
+<td align="right">267599</td>
+<td align="right">352898</td>
+<td align="right">0.7582899</td>
+</tr>
+<tr class="odd">
+<td align="left">Shannon</td>
+<td align="right">51926</td>
+<td align="right">294878</td>
+<td align="right">346804</td>
+<td align="right">0.8502728</td>
+</tr>
+<tr class="even">
+<td align="left">Robin</td>
+<td align="right">44616</td>
+<td align="right">289395</td>
+<td align="right">334011</td>
+<td align="right">0.8664236</td>
+</tr>
+<tr class="odd">
+<td align="left">Angel</td>
+<td align="right">226719</td>
+<td align="right">94837</td>
+<td align="right">321556</td>
+<td align="right">0.2949315</td>
+</tr>
+<tr class="even">
+<td align="left">Tracy</td>
+<td align="right">61164</td>
+<td align="right">250772</td>
+<td align="right">311936</td>
+<td align="right">0.8039213</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>unisex_names %&gt;%
+  head(12) %&gt;%
+  ggplot(aes(x=count_M, y=count_F)) +
+  ggrepel::geom_label_repel(aes(label=name)) +
+  geom_point(data=unisex_names)</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-12-1.png" width="960" /></p>
+<pre class="r"><code>babynames %&gt;%
+  filter(name %in% unisex_names$name[1:12]) %&gt;%
+  pivot_wider(names_from = sex, values_from = c(n, prop)) %&gt;%
+  mutate_all(~replace(., is.na(.), 0)) %&gt;%
+  mutate(total_count=n_F+n_M, f_proportion = n_F / total_count, average_popularity = (prop_F + prop_M)/2) %&gt;%
+  ggplot(aes(year, f_proportion, group=name)) +
+  geom_line() +
+  geom_point(aes(size = average_popularity)) +
+  facet_wrap(~name) +
+  ylab(&quot;proportion of girls&quot;)</code></pre>
+<p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-12-2.png" width="960" /></p>
+<p></details></p>
+<p><br> <br></p>
+</div>
+<div id="question-5.-continue-to-explore-the-babynames-dataset." class="section level4">
+<h4>Question 5. Continue to explore the <code>babynames</code> dataset.</h4>
+<p><br></p>
+<p><strong>Suggested activities:</strong></p>
+<ul>
+<li><p>Polish your plots in Exercise 2. Try to put more thought into editing the aesthetics of your figures and tables to make them easier to understand and nicer to look at (e.g. choose the most appropriate geometric object, aesthetic mapping, facetting, position adjustment; add meaningful axis labels, figure titles, legend titles; change the background; be creative; etc.).</p></li>
+<li><p>Read the example code that we provided in Exercise 2. Make sure that you understand each line, and try to reproduce the output/computations on your own.</p></li>
+<li><p>Think of other interesting questions you can answer with this dataset and explore different strategies for getting your answer.</p></li>
+</ul>
+<p><br> <br></p>
+</div>
+</div>
+<div id="recap-10-minutes" class="section level2">
+<h2>Recap (10 minutes)</h2>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
+<p><strong>END LAB 4</strong></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
