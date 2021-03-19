@@ -1028,13 +1028,13 @@ babynames %&gt;%
 <div id="question-2.-what-are-the-most-popular-boy-names-and-girl-names-in-each-decade" class="section level4">
 <h4>Question 2. What are the most popular boy names and girl names in each decade?</h4>
 <p><br></p>
-<p><em>Hint: You can create a new variable called <code>decade</code>. The <code>round()</code> function may be helpful in this step.</em></p>
+<p><em>Hint: You can create a new variable called <code>decade</code>. The <code>floor()</code> function may be helpful in this step.</em></p>
 <p><em>Hint: To get the most popular names, <code>group_by()</code> in combination with <code>slice_max()</code> can be very efficient. </em></p>
 <p><br></p>
 <p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
 <pre class="r"><code>set.seed(42)
 babynames %&gt;%
-  mutate(decade = round(year/10)*10) %&gt;%
+  mutate(decade = floor(year/10)*10) %&gt;%
   group_by(sex, decade, name) %&gt;%
   summarise(total_count = sum(n)) %&gt;%
   group_by(sex, decade) %&gt;%

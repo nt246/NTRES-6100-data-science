@@ -350,7 +350,7 @@ Note:
 
 <br>
 
-*Hint: You can create a new variable called `decade`. The `round()` function may be helpful in this step.*
+*Hint: You can create a new variable called `decade`. The `floor()` function may be helpful in this step.*
 
 *Hint: To get the most popular names, `group_by()` in combination with `slice_max()` can be very efficient. *
 
@@ -363,7 +363,7 @@ Note:
 ```{r}
 set.seed(42)
 babynames %>%
-  mutate(decade = round(year/10)*10) %>%
+  mutate(decade = floor(year/10)*10) %>%
   group_by(sex, decade, name) %>%
   summarise(total_count = sum(n)) %>%
   group_by(sex, decade) %>%
