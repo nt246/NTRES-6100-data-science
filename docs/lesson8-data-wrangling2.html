@@ -364,7 +364,7 @@ div.tocify {
       <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson13-factors.html">Lesson 13: Factors in R</a>
+      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
     </li>
   </ul>
 </li>
@@ -392,7 +392,7 @@ div.tocify {
       <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
     <li>
-      <a href="lab6-tidy-data.html">Lab 6: Whale observation and baby names</a>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
     </li>
   </ul>
 </li>
@@ -515,7 +515,7 @@ coronavirus %&gt;%
 
 </div>
 <p>The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let's reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don't worry about how it works right now, we'll get an opportunity to explore it in a few weeks.</p>
-<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-03-17):</p>
+<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-03-19):</p>
 <pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
   select(country, type, cases) %&gt;%
   group_by(country, type) %&gt;%

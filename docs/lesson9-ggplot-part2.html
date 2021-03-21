@@ -364,7 +364,7 @@ div.tocify {
       <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson13-factors.html">Lesson 13: Factors in R</a>
+      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
     </li>
   </ul>
 </li>
@@ -392,7 +392,7 @@ div.tocify {
       <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
     </li>
     <li>
-      <a href="lab6-tidy-data.html">Lab 6: Whale observation and baby names</a>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
     </li>
   </ul>
 </li>
@@ -522,12 +522,12 @@ coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/co
 
 # Has it been updated? Check the latest date?
 max(coronavirus$date)</code></pre>
-<pre><code>## [1] &quot;2021-03-17&quot;</code></pre>
+<pre><code>## [1] &quot;2021-03-19&quot;</code></pre>
 <p><br> <br></p>
 </div>
 <div id="combining-dplyr-and-ggplot" class="section level2">
 <h2>Combining <code>dplyr</code> and <code>ggplot</code></h2>
-<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-17. Take a minute to try this for yourself, then you can look at our approach.</p>
+<p>Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: 2021-03-19. Take a minute to try this for yourself, then you can look at our approach.</p>
 <p><br></p>
 <p><details> <summary>click to see our approach</summary></p>
 <pre class="r"><code>total_cases &lt;- coronavirus %&gt;% 
@@ -545,15 +545,15 @@ kable(total_cases)  # kable() just provides a nice output for the table</code></
 <tbody>
 <tr class="odd">
 <td align="left">confirmed</td>
-<td align="right">121196160</td>
+<td align="right">122315624</td>
 </tr>
 <tr class="even">
 <td align="left">death</td>
-<td align="right">2680410</td>
+<td align="right">2701445</td>
 </tr>
 <tr class="odd">
 <td align="left">recovered</td>
-<td align="right">75014922</td>
+<td align="right">75563021</td>
 </tr>
 </tbody>
 </table>

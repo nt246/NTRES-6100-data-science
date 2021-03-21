@@ -1,5 +1,5 @@
 ---
-title: "Lesson 13: Factors in R"
+title: "Lesson 17: Factors in R"
 output: 
   html_document:
     toc: true
