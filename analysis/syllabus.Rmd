@@ -124,15 +124,15 @@ In compliance with the Cornell University policy and equal access laws, we are a
 |         | Fri | 3/12 | [Lab 5](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)                    | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
 | 10      | Mon | 3/15 | [Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)          |                  |
 | 11      | Wed | 3/17 | [Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)                            | [Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md) |
-|         | Fri | 3/19 | Lab 6                                                                                         |                  |
-| 12      | Mon | 3/22 | Good coding practices, debugging strategies, and getting help                                 |                  |
-| 13      | Wed | 3/24 | Factors in R                                                                                  | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
+|         | Fri | 3/19 | [Lab 6](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)                  |                  |
+| 12      | Mon | 3/22 | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson12-debugging-getting-help.html) |                  |
+| 13      | Wed | 3/24 | [Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html) | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
 |         | Fri | 3/26 | Lab 7                                                                                         |                  |
-| 14      | Mon | 3/29 | Relational data (join functions)                                                              |                  |
-| 15      | Wed | 3/31 | Iteration (for loops) and conditional execution part 1                                        | Assignment 7     |
+| 14      | Mon | 3/29 | Iteration (for loops) and conditional execution part 1                                        |                  |
+| 15      | Wed | 3/31 | Iteration (for loops) and conditional execution part 2                                        | Assignment 7     |
 |         | Fri | 4/2  | Lab 8                                                                                         |                  |
-| 16      | Mon | 4/5  | Iteration (for loops) and conditional execution part 2                                        |                  |
-| 17      | Wed | 4/7  | Functions                                                                                     | Assignment 8     |
+| 16      | Mon | 4/5  | Functions                                                                                     |                  |
+| 17      | Wed | 4/7  | Factors in R                                                                                  | Assignment 8     |
 |         | Fri | 4/9  | Lab 9                                                                                         |                  |
 | 18      | Mon | 4/12 | Catching up                                                                                   |                  |
 | 19      | Wed | 4/14 | Student presentations, wrapping up and looking ahead                                          | Assignment 9     |

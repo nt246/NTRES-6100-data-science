@@ -107,7 +107,7 @@ We can also use the same function to read directly from my disk. To get a local 
 
 ```{r, message = FALSE}
 
-write_csv(lotr, path = "../datasets/lotr_tidy.csv")
+write_csv(lotr, file = "../datasets/lotr_tidy.csv")
 
 ```
 
@@ -400,7 +400,7 @@ coronavirus %>%
   filter(type == "confirmed") %>% 
   group_by(date) %>% 
   summarize(total_cases = sum(cases)) %>% 
-  write_csv(path = "../datasets/daily_casecount.csv")
+  write_csv(file = "../datasets/daily_casecount.csv")
 ```
 
 <br>

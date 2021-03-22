@@ -1,8 +1,8 @@
 ---
-title: "Lesson 12: Relational data"
+title: "Lesson 13: Relational data"
 output: 
-  html_document:
-    keep_md: yes 
+  html_document: 
+    toc: true
 ---
 
 ```{r setup, include=FALSE}

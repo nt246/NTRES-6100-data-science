@@ -50,23 +50,23 @@ of each dataset. Print the results directly, **without** using
 
 <br>
 
-#### 1.1 Create the following tibble manually, first using `tribble()` and then using `tibble()`. Print both results.
+#### 1.1 Create the following tibble manually, first using `tribble()` and then using `tibble()`. Print both results. \[We didn’t have time to cover this in class, but look up how these functions work [here](https://r4ds.had.co.nz/tibbles.html#creating-tibbles)\]
 
 `tribble()`:
 
     ## # A tibble: 2 x 3
-    ##       a     b c      
-    ##   <dbl> <dbl> <chr>  
-    ## 1     1   2.1 apple  
-    ## 2     2   3.2 orrange
+    ##       a     b c     
+    ##   <dbl> <dbl> <chr> 
+    ## 1     1   2.1 apple 
+    ## 2     2   3.2 orange
 
 `tibble()`:
 
     ## # A tibble: 2 x 3
-    ##       a     b c      
-    ##   <int> <dbl> <chr>  
-    ## 1     1   2.1 apple  
-    ## 2     2   3.2 orrange
+    ##       a     b c     
+    ##   <int> <dbl> <chr> 
+    ## 1     1   2.1 apple 
+    ## 2     2   3.2 orange
 
 <br>
 
@@ -103,7 +103,7 @@ of each dataset. Print the results directly, **without** using
 
 <br>
 
-#### 1.5 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt` into R. Parse the columns properly. We didn’t have time to cover how to parse different date formats in class, but you can read about it [here](https://r4ds.had.co.nz/data-import.html#readr-datetimes). Write this imported and parsed data frame into a new csv file named `dataset5_new.csv` in your `problem_sets` folder.
+#### 1.5 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt` into R. Parse the columns properly. As a reminder, you can read about data formatting [here](https://r4ds.had.co.nz/data-import.html#readr-datetimes). Write this imported and parsed data frame into a new csv file named `dataset5_new.csv` in your `problem_sets` folder.
 
     ## # A tibble: 3 x 3
     ##   Name   `Expiration Date` Time  

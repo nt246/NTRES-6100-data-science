@@ -30,7 +30,10 @@ navbar:
       href: lesson10-tidy-data.html
     - text: "Lesson 11: Data import, export, and conversion between data types"
       href: lesson11-data-import-and-types.html
-
+    - text: "Lesson 12: Good coding practices, debugging strategies, and getting help"
+      href: lesson12-debugging-getting-help.html
+    - text: "Lesson 13: Relational data"
+      href: lesson13-relational-data.html
   - text: Labs
     menu:
     - text: Lab handouts
@@ -44,6 +47,8 @@ navbar:
       href: lab4-ggplot-dplyr.html
     - text: "Lab 5: Data exploration with the Titanic dataset"
       href: lab5-titanic.html
+    - text: "Lab 6: Data cleaning and tidy data"
+      href: lab6-tidy-data.html
   - text: Assignments
     href: assignments.html    
   - text: Resources
