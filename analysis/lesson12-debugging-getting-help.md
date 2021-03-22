@@ -33,3 +33,23 @@ There is excellent advice for trouble-shooting R-code and how to get help in [Le
 Also check out the [slide deck](https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan) or [recorded talk](https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12) for Jenny Bryan's talk "Object of type ‘closure’ is not subsettable" at the 2020 RStudio conference. You can also check out her [Reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan). 
 
 <br>
+<br>
+
+## Announcements
+
+* You will all have the opportunity to give a short presentation during our last class (required if you're taking the course for credit). Details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)
+
+<br>
+<br>
+
+## A consistent coding style maximizes readability
+
+Developing a consistent style in your coding, makes it a lot easier to read. Here is some inspiration:
+
+* The [tidyverse style guide](https://style.tidyverse.org/)
+* A more [concise overview of the style Hadley Wickham uses](http://adv-r.had.co.nz/Style.html) in his books "R for Data Science" and "Advanced R"
+* There are also great tips for styling, organizing and optimizing your code in the blogpost [R Best Practices: R you writing the R way!](https://blog.quantinsti.com/r-best-practices-r-you-writing-the-r-way/?utm_campaign=News&utm_medium=Community&utm_source=DataCamp.com) by Milind Paradkar
+* Many of the same principles are also summarized by JEFworks [here](https://jef.works/R-style-guide/)
+
+
+
