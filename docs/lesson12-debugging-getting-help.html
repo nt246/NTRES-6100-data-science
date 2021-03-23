@@ -13,7 +13,6 @@
 
 <title>Lesson 12: Good coding practices, debugging strategies, and getting help</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,15 +25,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -80,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -476,7 +465,7 @@ div.tocify {
 <p><br> <br></p>
 <div id="readings" class="section level2">
 <h2>Readings</h2>
-<p><br> Today, Erika Mudrak from the Cornell Statistical Consultation Unit will give a guest lecture.</p>
+<p><br> Today, Erika Mudrak from the Cornell Statistical Consultation Unit will give a guest lecture. Her slides are available <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Getting_Help_in_Stats_2021.pdf">here</a></p>
 <p><strong>There are no required readings.</strong></p>
 <p><br></p>
 <div id="optional-resources" class="section level4">
@@ -520,7 +509,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
