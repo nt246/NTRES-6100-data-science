@@ -1,0 +1,246 @@
+---
+title: "Lab 7: Relational data and tidy data"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+<br>
+
+
+<br>
+
+## Goals for today
+
+1. Practice connecting relational data with `join` functions in `dplyr`
+
+2. Continue to practice data tidying with `tidyr`
+
+3. Continue to practice data visualization with `ggplot2`
+ 
+4. Continue to practice data transformation with `dplyr`
+
+5. Integrate 1), 2), 3) and 4) to continue our exploration of the `babynames` dataset, and ...
+
+
+<br>
+<br>
+
+## General instructions
+
+* Today, we will combine the `join` functions and data transformation tools in `dplyr`, the data visualization tools in `ggplot2`, and the data tidying tools in `tidyr` to continue our exploration of the patterns and trends in the `babynames` dataset, and ...
+
+<br>
+
+* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab7.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+
+<br>
+<br>
+
+
+## Exercise 1: Baby names (50 min)
+
+<br>
+
+Use data tidying, transformation, and visualization to answer the following questions about baby names in breakout rooms
+
+<br>
+
+top boy names              | top girl names
+:-------------------------:|:-------------------------:
+![](https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985571871-AWAM0VICLVSKXHQZ9H8V/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+boy+names.png?format=500w) | ![](https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985603694-1G1HBXOTRB17QEP1234D/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+girl+names.png?format=500w)
+
+<br>
+<br>
+
+**Instructions:**
+
+* Load the required packages and read in the data with the following code:
+
+<br>
+
+```{r}
+# Load required packages
+library(tidyverse)
+library(knitr)
+library(babynames) # install.packages("babynames")
+
+babynames %>% head() %>% kable()
+```
+
+<br>
+
+* The `babynames` dataset provides the number of children of each sex given each name from 1880 to 2017 in the US. All names with more than 5 uses are included. This dataset is provided by the US Social Security Administration.
+
+<br>
+
+* As a reminder, to get familar with this dataset, you might want to use functions like `View()`, `dim()`, `colnames()` , and `?`. 
+
+<br>
+
+* Make sure that you use figures and/or tables to support your answer.
+
+<br>
+
+* We provide some possible solutions for each question, but we highly recommend that you **don't look at them unless you are really stuck**.
+
+<br>
+<br>
+
+#### Question 1: What are the 6 most popular boy names and girl names of all time? How has the popularity of each of these names changed over time? This time, use the `slice_max()` function in combination with a `join` function to answer this question.
+
+<br>
+
+*Hint: You can start by finding the 6 most popular names for each sex in one step using `group_by()` and `slice_max()`, and then use a filtering join function to subset the original dataset.*
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+# number of passengers in the dataset
+top_6_names <- babynames %>%
+  group_by(sex, name) %>%
+  summarise(total_count=sum(n)) %>%
+  ungroup() %>%
+  group_by(sex) %>%
+  slice_max(order_by = total_count, n = 6)
+
+babynames %>%
+  semi_join(top_6_names, by = c("sex", "name")) %>%
+  ggplot(aes(x=year, y=prop, group=name, color=sex)) +
+  geom_line() +
+  facet_wrap(~name)
+```
+
+Note: 
+
+* `slice_max(order_by = total_count, n = 6)` selects 6 rows with the highest values in `total_count` for each unique entry in the grouping variable (in this case, males and females)
+
+</details>
+
+<br>
+<br>
+
+#### Question 2. Find the names that have not appeared in this dataset until 2010, but were used more than 1000 times 2010-2017 (boys and girls combined). Do you recognize any pop culture influence in these?
+
+<br>
+
+*Hint: You may start by creating a variable to indicate whether a row is before or after 2010.*
+
+*Hint: `pivot_wider()` may be helpful*
+
+*Hint: you may need to replace NAs with 0s for this exercise. `mutate()`, `ifelse()`, and `is.na()` may become handy.*
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+new_names <- babynames %>%
+  mutate(threshold = ifelse(year >= 2010, "after", "before")) %>%
+  group_by(name, threshold) %>%
+  summarise(total_count = sum(n)) %>%
+  pivot_wider(names_from = threshold, values_from = total_count, names_prefix = "count_") %>%
+  mutate_all(~replace(., is.na(.), 0)) %>%
+  filter(count_before == 0, count_after >=1000) 
+
+new_names %>% 
+  kable()
+
+babynames %>%
+  filter(name %in% new_names$name) %>%
+  ggplot(aes(x=year, y=n, color=sex)) +
+  geom_line() +
+  facet_wrap(~name)
+```
+
+Note: `mutate_all(dataset, ~replace(., is.na(.), 0))` is an efficient way to replace all NAs in a dataset with 0s.
+
+</details>
+
+<br>
+<br>
+
+#### Question 3. Find the 12 most popular unisex names. How have the proportion of girls for each of them changed over time? 
+
+<br>
+
+The definition of unisex names is arbitrary, but for this exercise, let's define them as names which have proportion of girls between 10% and 90% across all time.
+
+<br>
+
+*Hint: You may start by summing over years in order to get a list of unisex names*
+
+*Hint: `pivot_wider()` may be helpful*
+
+*Hint: you may need to replace NAs with 0s for this exercise. `mutate()`, `ifelse()`, and `is.na()` may become handy.*
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r fig.width=10}
+unisex_names <- babynames %>%
+  group_by(name, sex) %>%
+  summarise(total_count = sum(n)) %>%
+  pivot_wider(names_from = sex, values_from = total_count, names_prefix = "count_") %>%
+  filter(!is.na(count_M), !is.na(count_F)) %>%
+  mutate(total_count=count_M+count_F, f_proportion = count_F / total_count) %>%
+  filter(f_proportion<0.9, f_proportion>0.1) %>%
+  arrange(-total_count)
+
+unisex_names %>%
+  head(12) %>%
+  kable()
+
+unisex_names %>%
+  head(12) %>%
+  ggplot(aes(x=count_M, y=count_F)) +
+  ggrepel::geom_label_repel(aes(label=name)) +
+  geom_point(data=unisex_names)
+
+babynames %>%
+  filter(name %in% unisex_names$name[1:12]) %>%
+  pivot_wider(names_from = sex, values_from = c(n, prop)) %>%
+  mutate_all(~replace(., is.na(.), 0)) %>%
+  mutate(total_count=n_F+n_M, f_proportion = n_F / total_count, average_popularity = (prop_F + prop_M)/2) %>%
+  ggplot(aes(year, f_proportion, group=name)) +
+  geom_line() +
+  geom_point(aes(size = average_popularity)) +
+  facet_wrap(~name) +
+  ylab("proportion of girls")
+```
+
+
+</details>
+
+<br>
+<br>
+
+## Recap (5 minutes)
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+<br>
+
+## Exercise 2
+
+<br>
+<br>
+
+**END LAB 4**
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
