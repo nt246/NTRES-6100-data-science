@@ -13,7 +13,6 @@
 
 <title>Lesson 13: Relational data</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,15 +25,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -80,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -491,22 +480,22 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Thanks for the mid-semester feedback</li>
-<li>Reminder that we will have short students presentations during our final class on November 11 (details <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/misc/student_presentations.md#end-of-class-student-presentations">here</a>) - start thinking about what you want to show the class</li>
-<li>Homework 5 due tonight - it sounds like people have struggled with this one. As long as you demonstrate some effort, we won’t subtract credit if you don’t get all the way on each question</li>
-<li>Homework 6 will be posted later today</li>
+<li>Reminder that we will have short students presentations during our final class on April 14 (details <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">here</a>) - start thinking about what you want to show the class</li>
+<li>Homework 6 is due tonight</li>
+<li>Homework 7 will be posted later today</li>
 </ul>
 <p><br> <br></p>
 </div>
 <div id="plan-for-today-and-learning-objectives" class="section level2">
 <h2>Plan for today and learning objectives</h2>
-<p>First, we’ll do a quick follow-up to Erika’s lecture on getting help last week. We’ll work through slides from <a href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management</a> taught at UCSB by Allison Horst.</p>
+<p><br></p>
+<p>First, we’ll finish talking about data export (wrap up of lecture 11 from last week) and recap on how to save data and plots.</p>
 <p><br></p>
 <p>Then we’ll switch gears to talk about relational data. By the end of today’s class, you should be able to:</p>
 <ul>
 <li>Combine information from multiple tables into one</li>
 <li>Describe the difference between the four <code>join</code> and two <code>filter</code> functions in <code>dplyr</code></li>
-<li>Select and apply the appropriate join function in common use scenarios</li>
+<li>Select and apply the appropriate <code>join</code> function in common use scenarios</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -605,7 +594,7 @@ airports %&gt;%
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

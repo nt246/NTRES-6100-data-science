@@ -30,17 +30,19 @@ Jenny Bryan's [STAT545 Chapter 14 When one tibble is not enough](https://stat545
 
 ## Announcements
 
-* Thanks for the mid-semester feedback
-* Reminder that we will have short students presentations during our final class on November 11 (details [here](https://github.com/nt246/NTRES6940-data-science/blob/master/misc/student_presentations.md#end-of-class-student-presentations)) - start thinking about what you want to show the class
-* Homework 5 due tonight - it sounds like people have struggled with this one. As long as you demonstrate some effort, we won't subtract credit if you don't get all the way on each question
-* Homework 6 will be posted later today
+* Reminder that we will have short students presentations during our final class on April 14 (details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)) - start thinking about what you want to show the class
+* Homework 6 is due tonight
+* Homework 7 will be posted later today
 
 
 <br>
 <br>
 
 ## Plan for today and learning objectives
-First, we'll do a quick follow-up to Erika's lecture on getting help last week. We'll work through slides from [Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27) taught at UCSB by Allison Horst.
+
+<br>
+
+First, we'll finish talking about data export (wrap up of lecture 11 from last week) and recap on how to save data and plots.
 
 <br>
 
@@ -48,7 +50,7 @@ Then we'll switch gears to talk about relational data. By the end of today's cla
 
 * Combine information from multiple tables into one
 * Describe the difference between the four `join` and two `filter` functions in `dplyr`
-* Select and apply the appropriate join function in common use scenarios
+* Select and apply the appropriate `join` function in common use scenarios
 
 <br>
 <br>
