@@ -91,7 +91,7 @@ There are four main types of operations that can be done with two tables:
 
 * **Set operations**, which treat observations as if they were set elements.
 
-We will only cover the first three today. Let's click on the links to work through the corresponding section in Jenny Bryan's STAT 545 notes or Grolemund and Wickham's R for Data Science.
+We will only cover the first three today. Let's click on the links in turn to work through the corresponding section in either Jenny Bryan's STAT 545 notes or Grolemund and Wickham's R for Data Science.
 
 
 <br>
@@ -139,13 +139,13 @@ flights2
 
 <br>
 
-Then we'll review Wickham and Grolemund's overview of [join functions](https://r4ds.had.co.nz/relational-data.html#filtering-joins) summarized in these [slides](https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_lesson12_relational_data.pdf)
+Then we'll review Wickham and Grolemund's overview of [join functions](https://r4ds.had.co.nz/relational-data.html#filtering-joins) summarized in these [slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf)
 
 <br>
 
 #### Key point
 
-The most commonly used join is the left join: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn’t a match. The left join should be your default join: use it unless you have a strong reason to prefer one of the others.
+The most commonly used join is the left join: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn’t a match. **The left join should be your default join**: use it unless you have a strong reason to prefer one of the others.
 
 
 <br>
