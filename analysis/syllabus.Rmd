@@ -129,7 +129,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 13      | Wed | 3/24 | [Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html) | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
 |         | Fri | 3/26 | Lab 7                                                                                         |                  |
 | 14      | Mon | 3/29 | Iteration (for loops) and conditional execution part 1                                        |                  |
-| 15      | Wed | 3/31 | Iteration (for loops) and conditional execution part 2                                        | Assignment 7     |
+| 15      | Wed | 3/31 | Iteration (for loops) and conditional execution part 2                                        | [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md) |
 |         | Fri | 4/2  | Lab 8                                                                                         |                  |
 | 16      | Mon | 4/5  | Functions                                                                                     |                  |
 | 17      | Wed | 4/7  | Factors in R                                                                                  | Assignment 8     |
