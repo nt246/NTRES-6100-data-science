@@ -13,6 +13,7 @@
 
 <title>Lesson 13: Relational data</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +26,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +80,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -520,7 +531,7 @@ library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
 <li><p><a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins"><strong>Filtering joins</strong></a>, which filter observations from one data frame based on whether or not they match an observation in the other table</p></li>
 <li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
 </ul>
-<p>We will only cover the first three today. Let’s click on the links to work through the corresponding section in Jenny Bryan’s STAT 545 notes or Grolemund and Wickham’s R for Data Science.</p>
+<p>We will only cover the first three today. Let’s click on the links in turn to work through the corresponding section in either Jenny Bryan’s STAT 545 notes or Grolemund and Wickham’s R for Data Science.</p>
 <p><br></p>
 <div id="row-and-columns-binding" class="section level3">
 <h3>Row and columns binding</h3>
@@ -548,11 +559,11 @@ lotr_untidy &lt;- base::rbind(fship, ttow, rking)</code></pre>
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2</code></pre>
 <p><br></p>
-<p>Then we’ll review Wickham and Grolemund’s overview of <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES6940-data-science/blob/master/slides/Slides_lesson12_relational_data.pdf">slides</a></p>
+<p>Then we’ll review Wickham and Grolemund’s overview of <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf">slides</a></p>
 <p><br></p>
 <div id="key-point" class="section level4">
 <h4>Key point</h4>
-<p>The most commonly used join is the left join: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn’t a match. The left join should be your default join: use it unless you have a strong reason to prefer one of the others.</p>
+<p>The most commonly used join is the left join: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn’t a match. <strong>The left join should be your default join</strong>: use it unless you have a strong reason to prefer one of the others.</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -594,7 +605,7 @@ airports %&gt;%
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

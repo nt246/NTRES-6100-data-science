@@ -13,21 +13,13 @@
 
 <title>Lab 7: Relational data and tidy data</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -45,6 +37,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,6 +54,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -67,6 +90,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -83,13 +110,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -117,7 +171,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -129,7 +183,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -140,23 +194,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -168,6 +209,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -293,13 +335,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -422,7 +464,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -440,14 +482,14 @@ div.tocify {
 <li><p>Continue to practice data tidying with <code>tidyr</code></p></li>
 <li><p>Continue to practice data visualization with <code>ggplot2</code></p></li>
 <li><p>Continue to practice data transformation with <code>dplyr</code></p></li>
-<li><p>Integrate 1), 2), 3) and 4) to continue our exploration of the <code>babynames</code> dataset, and ...</p></li>
+<li><p>Integrate 1), 2), 3) and 4) to continue our exploration of the <code>babynames</code> dataset, and …</p></li>
 </ol>
 <p><br> <br></p>
 </div>
 <div id="general-instructions" class="section level2">
 <h2>General instructions</h2>
 <ul>
-<li>Today, we will combine the <code>join</code> functions and data transformation tools in <code>dplyr</code>, the data visualization tools in <code>ggplot2</code>, and the data tidying tools in <code>tidyr</code> to continue our exploration of the patterns and trends in the <code>babynames</code> dataset, and ...</li>
+<li>Today, we will combine the <code>join</code> functions and data transformation tools in <code>dplyr</code>, the data visualization tools in <code>ggplot2</code>, and the data tidying tools in <code>tidyr</code> to continue our exploration of the patterns and trends in the <code>nycflights13</code> dataset, the <code>babynames</code> dataset, and …</li>
 </ul>
 <p><br></p>
 <ul>
@@ -455,8 +497,172 @@ div.tocify {
 </ul>
 <p><br> <br></p>
 </div>
-<div id="exercise-1-baby-names-50-min" class="section level2">
-<h2>Exercise 1: Baby names (50 min)</h2>
+<div id="exercise-1-practicing-join-functions-20-mins" class="section level2">
+<h2>Exercise 1: Practicing <code>join</code> functions (20 mins)</h2>
+<div id="this-exercise-is-borrowed-from-the-stat545-course-at-ubc" class="section level4">
+<h4>This exercise is borrowed from the <a href="https://stat545guidebook.netlify.app/tibble-joins.html">STAT545 course at UBC</a></h4>
+<p>For this exercise, we will need two data files from Joey Bernhardt’s R package <code>singer</code>. We have to first load the <code>tidyverse</code> library, then we can load these datasets from the STAT545 GitHub repo with the following lines of code:</p>
+<!---The following chunk allows errors when knitting--->
+<p>The package <code>singer</code> comes with two smallish data frames about songs. Let’s first import them and take a look at them (after minor modifications by renaming and shuffling):</p>
+<p>Import the data</p>
+<pre class="r"><code>library(tidyverse)
+
+songs &lt;- read_csv(&quot;https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/songs.csv&quot;)
+locations &lt;- read_csv(&quot;https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/loc.csv&quot;)</code></pre>
+<pre class="r"><code>(time &lt;- as_tibble(songs) %&gt;% 
+   rename(song = title))</code></pre>
+<pre><code>## # A tibble: 22 x 3
+##    song                             artist_name      year
+##    &lt;chr&gt;                            &lt;chr&gt;           &lt;dbl&gt;
+##  1 Corduroy                         Pearl Jam        1994
+##  2 Grievance                        Pearl Jam        2000
+##  3 Stupidmop                        Pearl Jam        1994
+##  4 Present Tense                    Pearl Jam        1996
+##  5 MFC                              Pearl Jam        1998
+##  6 Lukin                            Pearl Jam        1996
+##  7 It&#39;s Lulu                        The Boo Radleys  1995
+##  8 Sparrow                          The Boo Radleys  1992
+##  9 Martin_ Doom! It&#39;s Seven O&#39;Clock The Boo Radleys  1995
+## 10 Leaves And Sand                  The Boo Radleys  1993
+## # … with 12 more rows</code></pre>
+<pre class="r"><code>(album &lt;- as_tibble(locations) %&gt;% 
+   select(title, everything()) %&gt;% 
+   rename(album = release,
+          song  = title))</code></pre>
+<pre><code>## # A tibble: 14 x 4
+##    song                          artist_name    city        album               
+##    &lt;chr&gt;                         &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;               
+##  1 &quot;Grievance&quot;                   Pearl Jam      Seattle, WA Binaural            
+##  2 &quot;Stupidmop&quot;                   Pearl Jam      Seattle, WA Vitalogy            
+##  3 &quot;Present Tense&quot;               Pearl Jam      Seattle, WA No Code             
+##  4 &quot;MFC&quot;                         Pearl Jam      Seattle, WA Live On Two Legs    
+##  5 &quot;Lukin&quot;                       Pearl Jam      Seattle, WA Seattle Washington …
+##  6 &quot;Stuck On Amber&quot;              The Boo Radle… Liverpool,… Wake Up!            
+##  7 &quot;It&#39;s Lulu&quot;                   The Boo Radle… Liverpool,… Best Of             
+##  8 &quot;Sparrow&quot;                     The Boo Radle… Liverpool,… Everything&#39;s Alrigh…
+##  9 &quot;High as Monkeys&quot;             The Boo Radle… Liverpool,… Kingsize            
+## 10 &quot;Butterfly McQueen&quot;           The Boo Radle… Liverpool,… Giant Steps         
+## 11 &quot;My One and Only Love&quot;        Carly Simon    New York, … Moonlight Serenade  
+## 12 &quot;It Was So Easy  (LP Version… Carly Simon    New York, … No Secrets          
+## 13 &quot;I&#39;ve Got A Crush On You&quot;     Carly Simon    New York, … Clouds In My Coffee…
+## 14 &quot;Manha De Carnaval (Theme fr… Carly Simon    New York, … Into White</code></pre>
+<ol style="list-style-type: decimal">
+<li>We really care about the songs in <code>time</code>. But, which of those songs do we know its corresponding album?</li>
+</ol>
+<pre class="r"><code>time %&gt;% 
+  FILL_THIS_IN(album, by = FILL_THIS_IN)</code></pre>
+<pre><code>## Error in FILL_THIS_IN(., album, by = FILL_THIS_IN): could not find function &quot;FILL_THIS_IN&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Go ahead and add the corresponding albums to the <code>time</code> tibble, being sure to preserve rows even if album info is not readily available.</li>
+</ol>
+<pre class="r"><code>time %&gt;% 
+  FILL_THIS_IN(album, by = FILL_THIS_IN)</code></pre>
+<pre><code>## Error in FILL_THIS_IN(., album, by = FILL_THIS_IN): could not find function &quot;FILL_THIS_IN&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Which songs do we have “year”, but not album info?</li>
+</ol>
+<pre class="r"><code>time %&gt;% 
+  FILL_THIS_IN(album, by = &quot;song&quot;)</code></pre>
+<pre><code>## Error in FILL_THIS_IN(., album, by = &quot;song&quot;): could not find function &quot;FILL_THIS_IN&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Which artists are in <code>time</code>, but not in <code>album</code>?</li>
+</ol>
+<pre class="r"><code>time %&gt;% 
+  anti_join(album, by = &quot;FILL_THIS_IN&quot;)</code></pre>
+<pre><code>## Error: Join columns must be present in data.
+## x Problem with `FILL_THIS_IN`.</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>You’ve come across these two tibbles, and just wish all the info was available in one tibble. What would you do?</li>
+</ol>
+<pre class="r"><code>FILL_THIS_IN %&gt;% 
+  FILL_THIS_IN(FILL_THIS_IN, by = &quot;song&quot;)</code></pre>
+<pre><code>## Error in FILL_THIS_IN(., FILL_THIS_IN, by = &quot;song&quot;): could not find function &quot;FILL_THIS_IN&quot;</code></pre>
+<p><br> <br></p>
+</div>
+</div>
+<div id="exercise-2-exploration-of-the-nycflights13-data-30-min" class="section level2">
+<h2>Exercise 2: Exploration of the <code>nycflights13</code> data (30 min)</h2>
+<p>We will start out with some further exploration of the datasets included in the <code>nycflights13</code> package that we worked with in Wednesday’s lecture.</p>
+<p>Let’s first load in the required packages and data</p>
+<pre class="r"><code># Load required packages
+library(tidyverse)
+library(nycflights13) # install.packages(&quot;nycflights13&quot;)
+
+flights %&gt;% head() %&gt;% kable()</code></pre>
+<pre><code>## Error in kable(.): could not find function &quot;kable&quot;</code></pre>
+<p><br></p>
+<div id="question-1-compute-the-average-delay-by-destination-then-join-on-the-airports-data-frame-so-you-can-show-the-spatial-distribution-of-delays.-heres-an-easy-way-to-draw-a-map-of-the-united-states" class="section level4">
+<h4>Question 1: Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</h4>
+<pre class="r"><code>    library(maps) #install.packages(&quot;maps&quot;)
+
+    airports %&gt;%
+      semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+      ggplot(aes(lon, lat)) +
+        borders(&quot;state&quot;) +
+        geom_point() +
+        coord_quickmap()</code></pre>
+<p>(Don’t worry if you don’t understand what <code>semi_join()</code> does — you’ll learn about it next.)</p>
+<p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p>
+<p><br></p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>avg_dest_delays &lt;-
+  flights %&gt;%
+  group_by(dest) %&gt;%
+  # arrival delay NA&#39;s are cancelled flights
+  summarise(delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
+  inner_join(airports, by = c(dest = &quot;faa&quot;))
+#&gt; `summarise()` ungrouping output (override with `.groups` argument)
+
+avg_dest_delays %&gt;%
+  ggplot(aes(lon, lat, colour = delay)) +
+  borders(&quot;state&quot;) +
+  geom_point() +
+  coord_quickmap()</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</details>
+<p><br> <br></p>
+</div>
+<div id="question-2-is-there-a-relationship-between-the-age-of-a-plane-and-its-delays" class="section level4">
+<h4>Question 2: Is there a relationship between the age of a plane and its delays?</h4>
+<p>Hint: Think about which of our datasets have relevant information and how we need to connect them</p>
+<p><br></p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<p>See <a href="https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.3">here</a></p>
+</details>
+<p><br> <br></p>
+</div>
+<div id="question-2-what-weather-conditions-make-it-more-likely-to-see-a-delay" class="section level4">
+<h4>Question 2: What weather conditions make it more likely to see a delay?</h4>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<p>See <a href="https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.4">here</a></p>
+</details>
+<p><br> <br></p>
+</div>
+</div>
+<div id="recap-5-minutes" class="section level2">
+<h2>Recap (5 minutes)</h2>
+<p><br></p>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
+</div>
+<div id="short-break-10-min" class="section level2">
+<h2>Short break (10 min)</h2>
+<p><br> <br></p>
+</div>
+<div id="exercise-2-baby-names-45-min" class="section level2">
+<h2>Exercise 2: Baby names (45 min)</h2>
 <p><br></p>
 <p>Use data tidying, transformation, and visualization to answer the following questions about baby names in breakout rooms</p>
 <p><br></p>
@@ -481,7 +687,6 @@ div.tocify {
 </ul>
 <p><br></p>
 <pre class="r"><code># Load required packages
-library(tidyverse)
 library(knitr)
 library(babynames) # install.packages(&quot;babynames&quot;)
 
@@ -555,7 +760,7 @@ babynames %&gt;% head() %&gt;% kable()</code></pre>
 </ul>
 <p><br></p>
 <ul>
-<li>We provide some possible solutions for each question, but we highly recommend that you <strong>don't look at them unless you are really stuck</strong>.</li>
+<li>We provide some possible solutions for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</li>
 </ul>
 <p><br> <br></p>
 <div id="question-1-what-are-the-6-most-popular-boy-names-and-girl-names-of-all-time-how-has-the-popularity-of-each-of-these-names-changed-over-time-this-time-use-the-slice_max-function-in-combination-with-a-join-function-to-answer-this-question." class="section level4">
@@ -563,7 +768,11 @@ babynames %&gt;% head() %&gt;% kable()</code></pre>
 <p><br></p>
 <p><em>Hint: You can start by finding the 6 most popular names for each sex in one step using <code>group_by()</code> and <code>slice_max()</code>, and then use a filtering join function to subset the original dataset.</em></p>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code># number of passengers in the dataset
 top_6_names &lt;- babynames %&gt;%
   group_by(sex, name) %&gt;%
@@ -577,12 +786,12 @@ babynames %&gt;%
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Note:</p>
 <ul>
 <li><code>slice_max(order_by = total_count, n = 6)</code> selects 6 rows with the highest values in <code>total_count</code> for each unique entry in the grouping variable (in this case, males and females)</li>
 </ul>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-2.-find-the-names-that-have-not-appeared-in-this-dataset-until-2010-but-were-used-more-than-1000-times-2010-2017-boys-and-girls-combined.-do-you-recognize-any-pop-culture-influence-in-these" class="section level4">
@@ -592,7 +801,11 @@ babynames %&gt;%
 <p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
 <p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>new_names &lt;- babynames %&gt;%
   mutate(threshold = ifelse(year &gt;= 2010, &quot;after&quot;, &quot;before&quot;)) %&gt;%
   group_by(name, threshold) %&gt;%
@@ -654,21 +867,25 @@ new_names %&gt;%
   ggplot(aes(x=year, y=n, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is an efficient way to replace all NAs in a dataset with 0s.</p>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 <div id="question-3.-find-the-12-most-popular-unisex-names.-how-have-the-proportion-of-girls-for-each-of-them-changed-over-time" class="section level4">
 <h4>Question 3. Find the 12 most popular unisex names. How have the proportion of girls for each of them changed over time?</h4>
 <p><br></p>
-<p>The definition of unisex names is arbitrary, but for this exercise, let's define them as names which have proportion of girls between 10% and 90% across all time.</p>
+<p>The definition of unisex names is arbitrary, but for this exercise, let’s define them as names which have proportion of girls between 10% and 90% across all time.</p>
 <p><br></p>
 <p><em>Hint: You may start by summing over years in order to get a list of unisex names</em></p>
 <p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
 <p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
 <pre class="r"><code>unisex_names &lt;- babynames %&gt;%
   group_by(name, sex) %&gt;%
   summarise(total_count = sum(n)) %&gt;%
@@ -783,7 +1000,7 @@ unisex_names %&gt;%
   ggplot(aes(x=count_M, y=count_F)) +
   ggrepel::geom_label_repel(aes(label=name)) +
   geom_point(data=unisex_names)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-1.png" width="960" /></p>
+<pre><code>## Error in loadNamespace(name): there is no package called &#39;ggrepel&#39;</code></pre>
 <pre class="r"><code>babynames %&gt;%
   filter(name %in% unisex_names$name[1:12]) %&gt;%
   pivot_wider(names_from = sex, values_from = c(n, prop)) %&gt;%
@@ -794,20 +1011,16 @@ unisex_names %&gt;%
   geom_point(aes(size = average_popularity)) +
   facet_wrap(~name) +
   ylab(&quot;proportion of girls&quot;)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-2.png" width="960" /></p>
-<p></details></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
+</details>
 <p><br> <br></p>
 </div>
 </div>
-<div id="recap-5-minutes" class="section level2">
+<div id="recap-5-minutes-1" class="section level2">
 <h2>Recap (5 minutes)</h2>
 <p>Share your findings, challenges, and questions with the class.</p>
 <p><br> <br></p>
-</div>
-<div id="exercise-2" class="section level2">
-<h2>Exercise 2</h2>
-<p><br> <br></p>
-<p><strong>END LAB 4</strong></p>
+<p><strong>END LAB 7</strong></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
 </div>
@@ -842,7 +1055,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>
