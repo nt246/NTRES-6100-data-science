@@ -13,21 +13,13 @@
 
 <title>Lab 2: RMarkdown and GitHub</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -45,6 +37,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,6 +54,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -67,6 +90,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -83,13 +110,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -117,7 +171,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -129,7 +183,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -140,23 +194,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -168,6 +209,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -293,13 +335,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -394,6 +436,9 @@ div.tocify {
     <li>
       <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
     </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -422,7 +467,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -437,7 +482,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Continue to practice RMarkdown.</p></li>
 <li><p>Continue to practice collaboration on GitHub.</p></li>
-<li><p>Learn to use &quot;Issues&quot; and &quot;Projects&quot; features on GitHub for project management.</p></li>
+<li><p>Learn to use “Issues” and “Projects” features on GitHub for project management.</p></li>
 <li><p>Make a version-controlled CV.</p></li>
 </ol>
 <p><br></p>
@@ -452,7 +497,7 @@ div.tocify {
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you'll get your CV version-controlled on GitHub.</p>
+<p>In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you’ll get your CV version-controlled on GitHub.</p>
 <p><strong>Before you start</strong>, please create a new GitHub repo named <code>cv-yourname</code> (replace <code>yourname</code> with your name), clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.</p>
 <p><strong>IMPORTANT NOTE</strong>: For the next exercise, you will be paired with another student to peer review the CVs that you have just made. Therefore, if you do not feel comfortable sharing your own CV, feel free to make a CV for one of your favorite scientists or a fictional character instead.</p>
 <p><strong>After you are done with this exercise</strong>, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub.</p>
@@ -467,16 +512,14 @@ div.tocify {
 </li>
 <li>For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own.</li>
 </ul>
-<p>You will be able to choose your own rooms, but don't join a room if it already has more than four people.</p>
+<p>You will be able to choose your own rooms, but don’t join a room if it already has more than four people.</p>
 <p><br></p>
 </div>
 <div id="suggested-activities" class="section level4">
 <h4>Suggested activities</h4>
-<p>Here are some suggested activities you can try with your CV. You don't have to complete all of them; just pick the ones that seem most interesting to you.</p>
+<p>Here are some suggested activities you can try with your CV. You don’t have to complete all of them; just pick the ones that seem most interesting to you.</p>
 <ul>
-<li><p>Center some section titles, e.g.,</p>
-<pre class="md"><code>&lt;center&gt; **Centered and bolded text (HTML)** &lt;/center&gt;
-\center __Centered and bolded text (PDF)__ \center</code></pre>
+<li><p>Center some section titles, e.g., <code>md     &lt;center&gt; **Centered and bolded text (HTML)** &lt;/center&gt;     \center __Centered and bolded text (PDF)__ \center</code></p>
 <ul>
 <li><p>or, for HTML output only, you can add the following code chunk to center level 1-3 headers</p>
 <pre class="md"><code>```{css, echo=FALSE}
@@ -532,7 +575,7 @@ knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Q
 <div id="general-instructions-1" class="section level4">
 <h4>General instructions</h4>
 <p>For this exercise, you will collaborate with a partner to peer review the CVs you just made.</p>
-<p>Add your partner as a collaborator for your CV repo. Then, clone your partner's repo to your computer using RStudio.</p>
+<p>Add your partner as a collaborator for your CV repo. Then, clone your partner’s repo to your computer using RStudio.</p>
 <p><br></p>
 </div>
 <div id="breakout-room-instructions" class="section level4">
@@ -544,16 +587,16 @@ knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Q
 <h4>Suggested Activities</h4>
 <p>It is recommended that you go through your peer review process in the following steps.</p>
 <ol style="list-style-type: decimal">
-<li>Use the intentional typos as an opportunity to practice how to resolve merge conflicts, and how to avoid them when possible.
+<li><p>Use the intentional typos as an opportunity to practice how to resolve merge conflicts, and how to avoid them when possible.</p>
 <ol style="list-style-type: lower-alpha">
-<li>First, both partners could correct a same typo in one partner's <code>Rmd</code> file in slightly different ways. <strong>Do not knit the <code>Rmd</code> file yet.</strong> Then, both partners can commit their changed <code>Rmd</code> file. One partner can push first, and the other partner will pull, and will get a merge conflict. They can then address this merge conflict, <strong>knit</strong>, push the resolved version to GitHub, and the other partner can pull. After this, partners can switch roles.</li>
-<li>Then, partners can correct typos in different lines in one person's <code>Rmd</code> file. <strong>Similarly, neither should knit at this point.</strong> Again, they will both commit their changes, one partner will push first, and when the other pulls, the changes should be merged automatically. They can now knit, push, and the other partner can pull.</li>
+<li>First, both partners could correct a same typo in one partner’s <code>Rmd</code> file in slightly different ways. <strong>Do not knit the <code>Rmd</code> file yet.</strong> Then, both partners can commit their changed <code>Rmd</code> file. One partner can push first, and the other partner will pull, and will get a merge conflict. They can then address this merge conflict, <strong>knit</strong>, push the resolved version to GitHub, and the other partner can pull. After this, partners can switch roles.</li>
+<li>Then, partners can correct typos in different lines in one person’s <code>Rmd</code> file. <strong>Similarly, neither should knit at this point.</strong> Again, they will both commit their changes, one partner will push first, and when the other pulls, the changes should be merged automatically. They can now knit, push, and the other partner can pull.</li>
 </ol></li>
-<li><p>In the previous step, we emphasized that neither partners should knit their changed <code>Rmd</code> file before pulling other's changes. This is because conflicted versions of <code>Rmd</code> files can usually be merged without too much of a hassle, but with the knitted <code>markdown</code>, <code>html</code>, or <code>pdf</code> files, you might get unwieldy merge conflicts because of different system configurations between partners. There is, however, a very simple fix to this: the partner who has received the unwieldy merge conflict could just <strong>deleted the knitted output</strong>, and <strong>reknit</strong> the <code>Rmd</code> file once merge conflicts (if any) are resolved. Now, try step 1a again, but both partners can knit this time.</p></li>
-<li><p>Use the GitHub's Issue feature to provide feedback to your partner on their CV.</p></li>
-<li><p>Create a GitHub Project under the CV repo, and assign the Issues to your partner as a &quot;to-do&quot; item in this project.</p></li>
+<li><p>In the previous step, we emphasized that neither partners should knit their changed <code>Rmd</code> file before pulling other’s changes. This is because conflicted versions of <code>Rmd</code> files can usually be merged without too much of a hassle, but with the knitted <code>markdown</code>, <code>html</code>, or <code>pdf</code> files, you might get unwieldy merge conflicts because of different system configurations between partners. There is, however, a very simple fix to this: the partner who has received the unwieldy merge conflict could just <strong>deleted the knitted output</strong>, and <strong>reknit</strong> the <code>Rmd</code> file once merge conflicts (if any) are resolved. Now, try step 1a again, but both partners can knit this time.</p></li>
+<li><p>Use the GitHub’s Issue feature to provide feedback to your partner on their CV.</p></li>
+<li><p>Create a GitHub Project under the CV repo, and assign the Issues to your partner as a “to-do” item in this project.</p></li>
 <li><p>Revise your CV according to the feedback from your partner, and respond and close the Issue when the feedback is resolved.</p></li>
-<li><p>If there is still some time left after you have finished all the steps above, you can either take more time to practice your collaboration skills, or start working on this week's assignment.</p></li>
+<li><p>If there is still some time left after you have finished all the steps above, you can either take more time to practice your collaboration skills, or start working on this week’s assignment.</p></li>
 </ol>
 <p><br></p>
 </div>
@@ -597,7 +640,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

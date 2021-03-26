@@ -13,21 +13,13 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -45,6 +37,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,6 +54,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -67,6 +90,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -83,13 +110,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -117,7 +171,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -129,7 +183,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -140,23 +194,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -168,6 +209,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -293,13 +335,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -394,6 +436,9 @@ div.tocify {
     <li>
       <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
     </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -422,7 +467,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -437,7 +482,7 @@ div.tocify {
 <div id="required" class="section level3">
 <h3>Required:</h3>
 <ul>
-<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3.1-3.6 in Grolemund and Wickham's R for Data Science</a></li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html">Chapter 3.1-3.6 in Grolemund and Wickham’s R for Data Science</a></li>
 </ul>
 <p><br></p>
 </div>
@@ -446,7 +491,7 @@ div.tocify {
 <ul>
 <li><p>The book <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen</p></li>
 <li><p><a href="http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2">Graphs with ggplot2 - Cookbook for R</a></p></li>
-<li><p><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio's ggplot2 cheat sheet</a></p></li>
+<li><p><a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio’s ggplot2 cheat sheet</a></p></li>
 </ul>
 <p><br></p>
 </div>
@@ -457,12 +502,12 @@ div.tocify {
 </div>
 <div id="first-a-quick-wrap-up-of-our-github-section" class="section level2">
 <h2>First, a quick wrap-up of our GitHub section</h2>
-<p>GitHub has powerful infrastructure for communicating with your collaborators (and yourself!) directly in your repo. It can be very helpful to have discussions about data or analysis tasks/choices right there with the rest of your project files instead of burried away in long email chains or in unrecorded verbal converasation. We'll do a quick demo of a few of the ways you can communicate on GitHub. If you're interested, take a look at <a href="https://openscapes.github.io/series/github-issues.html">this chapter</a> by Julia Lowndes on using GitHub issues, or the <a href="https://guides.github.com/features/issues/">GitHub Guide</a>.</p>
-<p>Now on to today's topic...</p>
+<p>GitHub has powerful infrastructure for communicating with your collaborators (and yourself!) directly in your repo. It can be very helpful to have discussions about data or analysis tasks/choices right there with the rest of your project files instead of burried away in long email chains or in unrecorded verbal converasation. We’ll do a quick demo of a few of the ways you can communicate on GitHub. If you’re interested, take a look at <a href="https://openscapes.github.io/series/github-issues.html">this chapter</a> by Julia Lowndes on using GitHub issues, or the <a href="https://guides.github.com/features/issues/">GitHub Guide</a>.</p>
+<p>Now on to today’s topic…</p>
 <p><br></p>
 </div>
 <div id="learning-objectives-for-todays-class" class="section level2">
-<h2>Learning objectives for today's class</h2>
+<h2>Learning objectives for today’s class</h2>
 <p>By the end of this class you will be able to:</p>
 <ul>
 <li>Inspect your data in RStudio<br />
@@ -477,12 +522,12 @@ div.tocify {
 </li>
 <li>Change the theme of graphs</li>
 </ul>
-<p><strong>Acknowledgements</strong>: Some content from today's lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst and the <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
+<p><strong>Acknowledgements</strong>: Some content from today’s lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst and the <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
 <p><br></p>
 </div>
 <div id="taking-notes---remember-to-save-your-work-in-a-script-or-an-rmarkdown-file" class="section level2">
 <h2>Taking notes - remember to save your work in a script or an RMarkdown file</h2>
-<p>Have a look at <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in R4DS</a> and let's all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.</p>
+<p>Have a look at <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in R4DS</a> and let’s all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.</p>
 <p><br></p>
 <div id="create-an-r-script-or-an-rmarkdown-file-for-working-along-with-examples-and-doing-exercises-in-this-lecture" class="section level3">
 <h3>Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture</h3>
@@ -498,7 +543,7 @@ div.tocify {
 <li>To facilitate comparisons</li>
 <li>To identify trends</li>
 </ul>
-<p>There are several ways to make plots in R. We will exclusively use the <code>ggplot2</code> package here. If you want to know more about why we're using <code>ggplot2</code> instead of base plot, check out the slides 21+22 from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
+<p>There are several ways to make plots in R. We will exclusively use the <code>ggplot2</code> package here. If you want to know more about why we’re using <code>ggplot2</code> instead of base plot, check out the slides 21+22 from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
 <p><br></p>
 </div>
 <div id="load-packages" class="section level2">
@@ -674,21 +719,15 @@ str(mpg)</code></pre>
 </div>
 <div id="grammar-of-graphics-in-ggplot2" class="section level2">
 <h2>Grammar of graphics in <code>ggplot2</code></h2>
-<p>In this class, we will write reproducible code to build graphs piece-by-piece. This contrasts with point-and-click applications like Excel where graphs are made by manually selecting options, which makes it difficult to keep track of our work. Also, if we haven't built a graph with reproducible code, we will have to repeat the entire plotting process again for every new dataset and if we make complicated graphics we might not be able to easily recreate all details of our graph.</p>
+<p>In this class, we will write reproducible code to build graphs piece-by-piece. This contrasts with point-and-click applications like Excel where graphs are made by manually selecting options, which makes it difficult to keep track of our work. Also, if we haven’t built a graph with reproducible code, we will have to repeat the entire plotting process again for every new dataset and if we make complicated graphics we might not be able to easily recreate all details of our graph.</p>
 <p>Using <code>ggplot2</code>, the graphics package within the <code>tidyverse</code>, we will write reproducible code to manually and thoughtfully build our graphs.</p>
 <blockquote>
 <p>“ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places.” - R4DS</p>
 </blockquote>
-<p>So yeah... that <code>gg</code> is from “grammar of graphics.”</p>
-<div class="figure">
-<img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" />
-
-</div>
-<p>These &quot;same few components&quot; that all <code>ggplot2</code> graphs share include the followings:</p>
-<div class="figure">
-<img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" />
-
-</div>
+<p>So yeah… that <code>gg</code> is from “grammar of graphics.”</p>
+<p><img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" /></p>
+<p>These “same few components” that all <code>ggplot2</code> graphs share include the followings:</p>
+<p><img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" /></p>
 <p>Of these, <strong>data</strong>, <strong>aesthetics</strong>, and <strong>geometries</strong> are the components that must be specified when creating a graph.</p>
 <p><br></p>
 <p>From <a href="https://stat545guidebook.netlify.app/intro-to-plotting-with-ggplot2-part-i.html#the-grammar-of-graphics-15-min">STAT545</a>:</p>
@@ -699,11 +738,11 @@ str(mpg)</code></pre>
 <ul>
 <li><strong>Data</strong>
 <ul>
-<li>Exactly as it sounds: the data that you're feeding into a plot.</li>
+<li>Exactly as it sounds: the data that you’re feeding into a plot.</li>
 </ul></li>
 <li><strong>Aesthetic mappings</strong>
 <ul>
-<li>This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called &quot;aesthetics&quot;, and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.</li>
+<li>This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called “aesthetics”, and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.</li>
 </ul></li>
 <li><strong>Geometric objects</strong>
 <ul>
@@ -727,12 +766,12 @@ str(mpg)</code></pre>
 </ul></li>
 <li>Facet
 <ul>
-<li>This is a specification of data variables that partition the data into smaller &quot;sub plots&quot;, or panels.</li>
+<li>This is a specification of data variables that partition the data into smaller “sub plots”, or panels.</li>
 </ul></li>
 </ul>
-<p>These components are like parameters of statistical graphics, defining the &quot;space&quot; of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.</p>
+<p>These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.</p>
 <p><br></p>
-<p>We will use the <code>ggplot2</code> package, but the function we use to initialize a graph will be <code>ggplot</code>, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert &quot;untidy&quot; datasets into tidy format later in the class. For the next few lectures, the datasets that we will use are already in tidy format.</p>
+<p>We will use the <code>ggplot2</code> package, but the function we use to initialize a graph will be <code>ggplot</code>, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). We will learn more about the tidy format and how to convert “untidy” datasets into tidy format later in the class. For the next few lectures, the datasets that we will use are already in tidy format.</p>
 <p>Graphics with <code>ggplot2</code> are built step-by-step, adding new elements as layers with a plus sign (<code>+</code>) between layers. Adding layers in this fashion allows for extensive flexibility and customization of plots. Below is a template that can be used to create almost any graph that you can imagine using <code>ggplot2</code>.</p>
 <pre><code>ggplot(data = &lt;DATA&gt;) + 
   &lt;GEOM_FUNCTION&gt;(
@@ -761,7 +800,7 @@ str(mpg)</code></pre>
 <p><br></p>
 <div id="a-simple-scatter-plot" class="section level3">
 <h3>A simple scatter plot</h3>
-<p>Let's first make a simple scatter plot to look at how engine displacement (<code>displ</code>), which is an expression of an engine's size, may affect the fuel economy of cars on highway (<code>hwy</code>). For this plot, what are the aesthetics, and what are the geometric objects?</p>
+<p>Let’s first make a simple scatter plot to look at how engine displacement (<code>displ</code>), which is an expression of an engine’s size, may affect the fuel economy of cars on highway (<code>hwy</code>). For this plot, what are the aesthetics, and what are the geometric objects?</p>
 <p><img src="assets/mpg-scatterplot.png" width="80%" /></p>
 <p><br> We can make this plot by entering the relevant data, geom_function and mappings in the general ggplot template.</p>
 <pre><code>ggplot(data = &lt;DATA&gt;) + 
@@ -869,7 +908,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 </div>
 <div id="change-the-theme-of-a-graph" class="section level3">
 <h3>Change the theme of a graph</h3>
-<p>While every element of a <code>ggplot2</code> graph is customizable, there are also built-in themes (<code>theme_*()</code>) that you can use to make some major headway before making smaller tweaks manually. Let's try one of them here.</p>
+<p>While every element of a <code>ggplot2</code> graph is customizable, there are also built-in themes (<code>theme_*()</code>) that you can use to make some major headway before making smaller tweaks manually. Let’s try one of them here.</p>
 <pre class="r"><code>## demo (use theme_bw)
 ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) + 
   geom_point(mapping = aes(color=class, size=cyl), shape=1) +
@@ -883,8 +922,8 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
 </div>
 <div id="arguments-and-functions-you-should-know" class="section level2">
 <h2>Arguments and functions you should know</h2>
-<p>Now, you've learned the central ideas behind <code>ggplot2</code>. In the next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people's plotting needs vary.</p>
-<p>That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
+<p>Now, you’ve learned the central ideas behind <code>ggplot2</code>. In the next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people’s plotting needs vary.</p>
+<p>That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let’s now go through some of these together in class. The <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
 <p><br></p>
 <div id="geometries" class="section level4">
 <h4>Geometries</h4>
@@ -927,7 +966,7 @@ ggplot(mpg) +
 <p><br></p>
 <ul>
 <li><p><code>geom_smooth()</code></p>
-<p>Different <code>geom_*()</code> functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, <code>method=&quot;lm&quot;</code> and <code>se=FALSE</code> are two arguments that are often used in the <code>geom_smooth()</code> function.</p>
+<p>Different <code>geom_*()</code> functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, <code>method="lm"</code> and <code>se=FALSE</code> are two arguments that are often used in the <code>geom_smooth()</code> function.</p>
 <pre class="r"><code>## exercise, then demo (fit linear model to hwy vs. displ without confidence interval)
 ggplot(mpg, aes(x = displ, y = hwy))+
   geom_point() +
@@ -1022,19 +1061,19 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 </div>
 <div id="exporting-a-ggplot-graph-with-ggsave" class="section level2">
 <h2>Exporting a ggplot graph with <code>ggsave()</code></h2>
-<p>If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication.</p>
-<p><img src="assets/ggplot2-tutorial-slides.050.png" /><!-- --> Graphic from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
+<p>If we want our graph to appear in a knitted html, then we don’t need to do anything else. But often we’ll need a saved image file, of specific size and resolution, to share or for publication.</p>
+<p><img src="assets/ggplot2-tutorial-slides.050.png" /><!-- --> Graphic from <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
 <p><code>ggsave()</code> will export the <em>most recently run</em> ggplot graph by default (<code>plot = last_plot()</code>), unless you give it the name of a different saved ggplot object.</p>
-<p>It has smart defaults and guesses the format from the file extension name (you can use e.g. pdf, tiff, eps, png, mmp, svg). It doesn't force you to do annoying things with dots per inch etc (but you can if you want to).</p>
+<p>It has smart defaults and guesses the format from the file extension name (you can use e.g. pdf, tiff, eps, png, mmp, svg). It doesn’t force you to do annoying things with dots per inch etc (but you can if you want to).</p>
 <p>Some common arguments for <code>ggsave()</code>:</p>
 <ul>
 <li><code>width =</code>: set exported image width (default inches)</li>
 <li><code>height =</code>: set exported image height (default height)</li>
 <li><code>dpi =</code>: set dpi (dots per inch)</li>
 </ul>
-<p>For more details on how to use <code>ggsave()</code> see slides 50-56 in <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan's ggplot tutorial</a></p>
+<p>For more details on how to use <code>ggsave()</code> see slides 50-56 in <a href="https://github.com/jennybc/ggplot2-tutorial/tree/master/ggplot2-tutorial-slides">Jenny Bryan’s ggplot tutorial</a></p>
 <p><br></p>
-<p>Now we're done for today</p>
+<p>Now we’re done for today</p>
 <p><br></p>
 <p><strong>Save your scripte and sync your project with your GitHub repo.</strong></p>
 <ul>
@@ -1083,7 +1122,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 ## General instructions
 
-* Today, we will combine the `join` functions and data transformation tools in `dplyr`, the data visualization tools in `ggplot2`, and the data tidying tools in `tidyr` to continue our exploration of the patterns and trends in the `nycflights13` dataset, the `babynames` dataset, and ...
+* Today, we will combine the `join` functions and data transformation tools in `dplyr`, the data visualization tools in `ggplot2`, and the data tidying tools in `tidyr` to continue our exploration of patterns and trends in the `nycflights13` datasets we explored in class and the `babynames` dataset we worked with last week.
 
 <br>
 
@@ -42,85 +42,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 <br>
 <br>
 
-## Exercise 1: Practicing `join` functions (20 mins)
 
-#### This exercise is borrowed from the [STAT545 course at UBC](https://stat545guidebook.netlify.app/tibble-joins.html)
-
-For this exercise, we will need two data files from Joey Bernhardt's R package `singer`. We have to first load the `tidyverse` library, then we can load these datasets from the STAT545 GitHub repo with the following lines of code:
-
-
-<!---The following chunk allows errors when knitting--->
-
-```{r allow errors, echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-
-
-The package `singer` comes with two smallish data frames about songs. Let's first import them and take a look at them (after minor modifications by renaming and shuffling):
-
-Import the data
-```{r}
-
-library(tidyverse)
-
-songs <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/songs.csv")
-locations <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/singer/loc.csv")
-
-```
-
-```{r}
-(time <- as_tibble(songs) %>% 
-   rename(song = title))
-```
-
-```{r}
-(album <- as_tibble(locations) %>% 
-   select(title, everything()) %>% 
-   rename(album = release,
-          song  = title))
-```
-
-
-1. We really care about the songs in `time`. But, which of those songs do we know its corresponding album?
-
-```{r}
-time %>% 
-  FILL_THIS_IN(album, by = FILL_THIS_IN)
-```
-
-2. Go ahead and add the corresponding albums to the `time` tibble, being sure to preserve rows even if album info is not readily available.
-
-```{r}
-time %>% 
-  FILL_THIS_IN(album, by = FILL_THIS_IN)
-```
-
-3. Which songs do we have "year", but not album info?
-
-```{r}
-time %>% 
-  FILL_THIS_IN(album, by = "song")
-```
-
-4. Which artists are in `time`, but not in `album`?
-
-```{r}
-time %>% 
-  anti_join(album, by = "FILL_THIS_IN")
-```
-
-5. You've come across these two tibbles, and just wish all the info was available in one tibble. What would you do?
-
-```{r}
-FILL_THIS_IN %>% 
-  FILL_THIS_IN(FILL_THIS_IN, by = "song")
-```
-
-<br>
-<br>
-
-
-## Exercise 2: Exploration of the `nycflights13` data (30 min)
+## Exercise 1: Exploration of the `nycflights13` data (50 min)
 
 We will start out with some further exploration of the datasets included in the `nycflights13` package that we worked with in Wednesday's lecture.
 
@@ -129,6 +52,7 @@ Let's first load in the required packages and data
 ```{r}
 # Load required packages
 library(tidyverse)
+library(knitr)
 library(nycflights13) # install.packages("nycflights13")
 
 flights %>% head() %>% kable()
@@ -150,7 +74,7 @@ flights %>% head() %>% kable()
         coord_quickmap()
 ```
 
-(Don't worry if you don't understand what `semi_join()` does --- you'll learn about it next.)
+Don't worry if you don't understand what `semi_join()` does --- we will discuss it, or you can learn about it [here](https://r4ds.had.co.nz/relational-data.html#filtering-joins).
 
 You might want to use the `size` or `colour` of the points to display the average delay for each airport.
 
@@ -185,7 +109,7 @@ avg_dest_delays %>%
 
 #### Question 2: Is there a relationship between the age of a plane and its delays?
 
-Hint: Think about which of our datasets have relevant information and how we need to connect them
+Hint: Think about which of our datasets have relevant information and how we need to connect them.
 
 <br>
 
@@ -200,7 +124,11 @@ See [here](https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html
 <br>
 <br>
 
-#### Question 2: What weather conditions make it more likely to see a delay?
+#### Question 3: What weather conditions make it more likely to see a delay?
+
+Hint: Think about which of our datasets have relevant information and how we need to connect them.
+
+<br>
 
 *One possible solution*
 <details>
@@ -251,7 +179,6 @@ top boy names              | top girl names
 
 ```{r}
 # Load required packages
-library(knitr)
 library(babynames) # install.packages("babynames")
 
 babynames %>% head() %>% kable()

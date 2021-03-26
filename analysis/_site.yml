@@ -49,6 +49,8 @@ navbar:
       href: lab5-titanic.html
     - text: "Lab 6: Data cleaning and tidy data"
       href: lab6-tidy-data.html
+    - text: "Lab 7: Relational data and tidy data"
+      href: lab7-relational-data.html
   - text: Assignments
     href: assignments.html    
   - text: Resources
