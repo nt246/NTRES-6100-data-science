@@ -115,7 +115,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 |         | Fri | 2/19 | [Lab 2](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)           |                  |
 | 5       | Mon | 2/22 | [Collaborating with GitHub Part 2](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)| |
 | 6       | Wed | 2/24 | [Plotting with ggplot part 1](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html) | [Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md) |
-|         | Fri | 2/26 | Lab 3                                                                                         |                  |
+|         | Fri | 2/26 | [Lab 3](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)                                                                                         |                  |
 | 7       | Mon | 3/1  | [Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)|              |
 | 8       | Wed | 3/3  | [Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html) | [Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md) |
 |         | Fri | 3/5  | [Lab 4](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)               |                  |
