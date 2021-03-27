@@ -147,7 +147,7 @@ For this exercise, we will explore the result of the 2016 US presidential electi
 
 <br>
 
-*Note: You should have 48 rows in `q_4a` because only 48 states were polled at least once by Ipsos. You don't need to worry about the 3 missing states.*
+*Note: You should have 47 rows in `q_4a` because only 47 states were polled at least once by Ipsos. You don't need to worry about the 3 missing states and DC.*
 
 *Hint: `group_by()` and `slice_max()` can be useful for this question. Check out the help file for `slice_max()` for more info.*
 
@@ -162,7 +162,7 @@ For this exercise, we will explore the result of the 2016 US presidential electi
 
 <br> <br>
 
-**4b.** Combine the `q_4a` dataset with the `q_1b` dataset with a `join` function. The resulting dataset should only have 48 rows. Create the following new variables in this joined dataset.
+**4b.** Combine the `q_4a` dataset with the `q_1b` dataset with a `join` function. The resulting dataset should only have 47 rows. Create the following new variables in this joined dataset.
 
 -   `polling_margin`: difference between `adjpoll_clinton` and `adjpoll_trump`
 -   `actual_margin`: difference between `clinton` and `trump`
