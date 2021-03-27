@@ -1,5 +1,5 @@
 ---
-title: "Lesson 14: Iteration with `for` loops and conditional execution with `if` statements"
+title: "Lesson 14: Wrap-up of relational data, then on to iteration with `for` loops and conditional execution with `if` statements"
 output: 
   html_document:
     keep_md: yes 
@@ -13,6 +13,15 @@ output:
 ## Readings
 
 #### Required:
+
+**Relational data**: 
+
+If you didn't get a chance to read it last week, have a look at [Chapter 13 in 'R for Data Science'](https://r4ds.had.co.nz/relational-data.html) by Hadley Wickham & Garrett Grolemund
+
+<br>
+
+**Iteration**: 
+
 [Chapter 21 in 'R for Data Science'](https://r4ds.had.co.nz/iteration.html) by Hadley Wickham & Garrett Grolemund
 
 
@@ -22,16 +31,14 @@ output:
 We will be working through [this tutorial](http://ohi-science.org/data-science-training/programming.html) developed by the Ocean Health Index Data Science Team
 
 <br>
-
-## Announcements
-* Homework 6 due tonight. The final homework will be posted later today and will be due next Monday (Nov 9). We realize that the election makes this week very unusual, so let us know if you need special accommodations.
-
 <br>
 
 
 ## Today's learning objectives
 
-By the end of today's class, you should be able to:
+We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap and strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+
+By the end of today's and Wednesday's classes, you should be able to:
 
 * Write a `for` loop to repeat operations on different input
 * Implement `if` and `if else` statements for conditional execution of code

@@ -34,6 +34,10 @@ navbar:
       href: lesson12-debugging-getting-help.html
     - text: "Lesson 13: Relational data"
       href: lesson13-relational-data.html
+    - text: "Lesson 14: Iteration - part 1"
+      href: lesson14-for-loops.html
+    - text: "Lesson 15: Iteration - part 2"
+      href: lesson15-for-loops-part2.html
   - text: Labs
     menu:
     - text: Lab handouts
