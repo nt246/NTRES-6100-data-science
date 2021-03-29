@@ -113,6 +113,8 @@ We will also use [this dataset](https://raw.githubusercontent.com/kshaffer/elect
 
 **3a.** First, from [this dataset on GitHub](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv), calculate the number of popular votes each candidate received as shown below. Name this new dataset `q_3a`, and print it. <br>
 
+*Note: all candidates other than Clinton and Trump are included in `others` as shown below.*
+
 *Hint: `pivot_longer()` may be useful in here.*
 
 | metric         | winner  |     value|
