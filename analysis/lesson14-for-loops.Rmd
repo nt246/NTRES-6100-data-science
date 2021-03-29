@@ -39,7 +39,7 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Today's learning objectives
 
-We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap and strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
 By the end of today's and Wednesday's classes, you should be able to:
 
@@ -51,8 +51,39 @@ By the end of today's and Wednesday's classes, you should be able to:
 **Acknowledgements**: Today's tutorial is adapted (with permission) from the excellent [Ocean Health Index Data Science Training](http://ohi-science.org/data-science-training/programming.html).
 
 <br>
+<br>
 
-## Introduction
+## Recap on relational data
+
+```{r, include = FALSE}
+
+# Write dataframe to join
+
+library(dslabs)
+
+dslabs::gapminder %>% 
+  as_tibble() %>% 
+  select(country, year, infant_mortality, fertility)  %>% 
+  filter(year %in% years) %>% 
+  write_csv(file = "datasets/gapminder_dslabs_subset_original_names.csv")
+
+dslabs::gapminder %>% 
+  as_tibble() %>% 
+  select(country, year, infant_mortality, fertility)  %>% 
+  filter(year %in% years) %>%
+  rename("Country" = country, "Year" = year) %>% 
+  write_csv(file = "datasets/gapminder_dslabs_subset_caps_names.csv")
+
+
+```
+
+
+
+
+<br>
+<br>
+
+## Introduction to `for loops`
 
 > This section is modified from [the iteration chapter in R for Data Science](https://r4ds.had.co.nz/iteration.html)
 
@@ -64,26 +95,26 @@ Whenever possible, we want to avoid duplication in our code (e.g. by copying-and
 
 * You’re likely to have fewer bugs because each line of code is used in more places.
 
-One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R during our next class. 
+One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R next week. 
 
-Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
+Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
 
-Today, we will illustrate the use of `for` loops with an example. We will also use cover conditional execution of code with `if` statements.
+Today, we will illustrate the use of `for` loops with an example. We will also use conditional execution of code with `if` statements.
 
 <br>
 
 ## Clone repo to get today's exercise sheet
 First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: https://github.com/nt246/for-loop-exercise
 
-Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#clone_your_repository_using_rstudio).
+Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio).
 
 Once you have an RStudio project linked to the `for-loop-exercises` repo, find the file `for-loop-exercises-name.Rmd`. Copy it to your your RStudio project for your own class repo, and change the file name by replacing `name` with your name.
 
 Add a picture as instructed.
 
-Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#sync_from_rstudio_(local)_to_github_(remote))
+Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
 
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6940-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
@@ -92,7 +123,7 @@ Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6940
 
 **Gapminder data**
 
-Today, we'll be using a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which represents the health and wealth of nations. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+Today, we'll be using a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
  
 
 [Gapminder Motion Chart](http://www.gapminder.org/world)  
@@ -341,10 +372,12 @@ OK we now have 142 figures that we just created. They exist locally on our compu
 
 ### Your turn
 
+Use the worksheet we copied from the cloned GitHub repo to
+
 1. Modify our `for` loop so that it: 
     - loops through countries in Europe only
-    - plots the product of gdpPercap and population size per year (should approximate the total GDP)
-    - saves them to a new subfolder inside the (recreated) figures folder called "Europe".
+    - plots the product of gdpPercap and population size per year (should approximate the total GDP) instead of the gdpPercap
+    - saves the plots to a new subfolder inside the (recreated) figures folder called "Europe".
 1. Sync to GitHub
 
 <br>
@@ -425,7 +458,7 @@ First, import csv file with information on whether data was estimated or reporte
 
 ```{r, eval = FALSE}
 
-est <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv')
+est <- read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv')
 gapminder_est <- left_join(gapminder, est)
 
 ```

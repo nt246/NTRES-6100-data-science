@@ -139,7 +139,7 @@ flights2
 
 <br>
 
-Then we'll review Wickham and Grolemund's overview of [join functions](https://r4ds.had.co.nz/relational-data.html#filtering-joins) summarized in these [slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf)
+Then we'll review Wickham and Grolemund's overview of [join functions](https://r4ds.had.co.nz/relational-data.html) summarized in these [slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf)
 
 <br>
 
