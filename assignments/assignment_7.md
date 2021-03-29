@@ -35,6 +35,8 @@ For this exercise, we will explore the result of the 2016 US presidential electi
 
 -   `murders`: Gun murder data from FBI reports. It also contains the population of each state.
 
+We will also use [this dataset](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv) to get the exact numbers of votes for question 3.
+
 <br>
 
 ### Question 1. What is the relationship between the population size and the number of electoral votes each state has?
@@ -109,15 +111,15 @@ For this exercise, we will explore the result of the 2016 US presidential electi
 
 ### Question 3. What if the election was determined by popular votes?
 
-**3a.** First, from the `q_1a` dataset, calculate the number of popular votes each candidate received as shown below. Name this new dataset `q_3a`, and print it. <br>
+**3a.** First, from [this dataset on GitHub](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv), calculate the number of popular votes each candidate received as shown below. Name this new dataset `q_3a`, and print it. <br>
 
 *Hint: `pivot_longer()` may be useful in here.*
 
-| metric         | winner  |      value|
-|:---------------|:--------|----------:|
-| popular\_votes | clinton |  149805304|
-| popular\_votes | others  |   17282829|
-| popular\_votes | trump   |  142772677|
+| metric         | winner  |     value|
+|:---------------|:--------|---------:|
+| popular\_votes | clinton |  65125640|
+| popular\_votes | trump   |  62616675|
+| popular\_votes | others  |   7054974|
 
 <br> <br>
 
@@ -129,9 +131,9 @@ For this exercise, we will explore the result of the 2016 US presidential electi
 | electoral\_votes | trump   |        305|
 | population       | clinton |  134982448|
 | population       | trump   |  174881780|
-| popular\_votes   | clinton |  149805304|
-| popular\_votes   | others  |   17282829|
-| popular\_votes   | trump   |  142772677|
+| popular\_votes   | clinton |   65125640|
+| popular\_votes   | trump   |   62616675|
+| popular\_votes   | others  |    7054974|
 
 <br> <br>
 
