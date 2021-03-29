@@ -36,7 +36,7 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Today's learning objectives
 
-We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap and strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
 By the end of today's and Wednesday's classes, you should be able to:
 
@@ -48,8 +48,211 @@ By the end of today's and Wednesday's classes, you should be able to:
 **Acknowledgements**: Today's tutorial is adapted (with permission) from the excellent [Ocean Health Index Data Science Training](http://ohi-science.org/data-science-training/programming.html).
 
 <br>
+<br>
 
-## Introduction
+## Recap on relational data
+
+Let's load the `tidyverse` and the `nycflights13` package:
+
+
+```r
+library(tidyverse)
+library(knitr)
+library(nycflights13)  # install.packages("nycflights13")
+```
+
+<br>
+
+#### Mutating joins
+
+We will first review the exercise we finished with last time:
+
+* Add the location of the origin and destination (i.e. the lat and lon) to `flights`
+
+<br>
+
+Here's a solution (note the suffix argument and try to remove it to see what it does):
+
+
+```r
+airport_locations <- airports %>%
+  select(faa, lat, lon)
+
+flights %>%
+  select(year:day, hour, origin, dest) %>%
+  left_join(
+    airport_locations,
+    by = c("origin" = "faa")
+  ) %>%
+  left_join(
+    airport_locations,
+    by = c("dest" = "faa"),
+    suffix = c("_origin", "_dest"))
+```
+
+<br>
+
+#### Filtering joins
+
+We'll review filtering joins and general strategies for combining information from multiple tables. We'll work through examples from [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins)
+
+<br>
+<br>
+
+#### The `gapminder` data
+
+Now, let's try this on a different dataset. Last class, we used the `gapminder` dataset to illustrate how column binding can be dangerous. We'll continue working with these data today. 
+
+The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+ 
+
+[Gapminder Motion Chart](http://www.gapminder.org/world)  
+[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
+
+
+<br>
+
+We will primarily use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
+
+
+```r
+library(gapminder) #install.packages("gapminder")
+
+head(gapminder) %>%  kable()
+```
+
+
+
+|country     |continent | year| lifeExp|      pop| gdpPercap|
+|:-----------|:---------|----:|-------:|--------:|---------:|
+|Afghanistan |Asia      | 1952|  28.801|  8425333|  779.4453|
+|Afghanistan |Asia      | 1957|  30.332|  9240934|  820.8530|
+|Afghanistan |Asia      | 1962|  31.997| 10267083|  853.1007|
+|Afghanistan |Asia      | 1967|  34.020| 11537966|  836.1971|
+|Afghanistan |Asia      | 1972|  36.088| 13079460|  739.9811|
+|Afghanistan |Asia      | 1977|  38.438| 14880372|  786.1134|
+
+<br>
+<br>
+
+In the lab section, we have been working with a different subset of this dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
+
+
+
+
+```r
+gap_dslabs <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv")
+```
+<br>
+
+#### Exercise
+
+**Add the infant mortality and fertility data to our original `gapminder` data. Do we have those statistics for all observations?**
+
+In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let's imagine the variables in the `dslab` version had been named differently. Run this code to change the variable names:
+
+
+```r
+gap_dslabs_caps <- gap_dslabs %>% 
+  rename("Country" = country, "Year" = year)
+```
+
+**Now add the infant mortality and fertility from the `gap_dslabs_caps` to our original `gapminder data.**
+
+<br>
+<br>
+
+<details>
+  <summary>Click here for a solution</summary>
+
+
+```r
+## When variable names are identical
+
+# Natural join
+gapminder %>% 
+  left_join(gap_dslabs)
+```
+
+```
+## Joining, by = c("country", "year")
+```
+
+```
+## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m
+```
+
+```r
+# Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
+gapminder %>% 
+  left_join(gap_dslabs, by = c("country", "year"))
+```
+
+```
+## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m
+```
+
+```r
+# When variable names are not identical
+gapminder %>% 
+  left_join(gap_dslabs_caps, by = c("country" = "Country", "year" = "Year"))
+```
+
+```
+## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m
+```
+
+```r
+## Note, gap_dslabs doesn't have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.
+```
+
+</details>
+
+<br>
+<br>
+<br>
+
+
+## Introduction to `for loops`
 
 > This section is modified from [the iteration chapter in R for Data Science](https://r4ds.had.co.nz/iteration.html)
 
@@ -61,73 +264,33 @@ Whenever possible, we want to avoid duplication in our code (e.g. by copying-and
 
 * You’re likely to have fewer bugs because each line of code is used in more places.
 
-One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R during our next class. 
+One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R next week. 
 
-Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
+Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
 
-Today, we will illustrate the use of `for` loops with an example. We will also use cover conditional execution of code with `if` statements.
+Today, we will illustrate the use of `for` loops with an example. We will also use conditional execution of code with `if` statements.
 
 <br>
 
 ## Clone repo to get today's exercise sheet
 First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: https://github.com/nt246/for-loop-exercise
 
-Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#clone_your_repository_using_rstudio).
+Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio).
 
 Once you have an RStudio project linked to the `for-loop-exercises` repo, find the file `for-loop-exercises-name.Rmd`. Copy it to your your RStudio project for your own class repo, and change the file name by replacing `name` with your name.
 
 Add a picture as instructed.
 
-Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#sync_from_rstudio_(local)_to_github_(remote))
+Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
 
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6940-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
 
 ## Analysis plan
 
-**Gapminder data**
-
-Today, we'll be using a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which represents the health and wealth of nations. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
- 
-
-[Gapminder Motion Chart](http://www.gapminder.org/world)  
-[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
-
-
-<br>
-
-We will use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
-
-
-```r
-library(tidyverse)
-library(gapminder) #install.packages("gapminder")
-
-gapminder
-```
-
-```
-## # A tibble: 1,704 x 6
-##    country     continent  year lifeExp      pop gdpPercap
-##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
-##  1 Afghanistan Asia       1952    28.8  8425333      779.
-##  2 Afghanistan Asia       1957    30.3  9240934      821.
-##  3 Afghanistan Asia       1962    32.0 10267083      853.
-##  4 Afghanistan Asia       1967    34.0 11537966      836.
-##  5 Afghanistan Asia       1972    36.1 13079460      740.
-##  6 Afghanistan Asia       1977    38.4 14880372      786.
-##  7 Afghanistan Asia       1982    39.9 12881816      978.
-##  8 Afghanistan Asia       1987    40.8 13867957      852.
-##  9 Afghanistan Asia       1992    41.7 16317921      649.
-## 10 Afghanistan Asia       1997    41.8 22227415      635.
-## # … with 1,694 more rows
-```
-
-<br>
-
-Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the gapminder data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
+Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the `gapminder` data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
 
 <br>
 
@@ -353,10 +516,12 @@ OK we now have 142 figures that we just created. They exist locally on our compu
 
 ### Your turn
 
+Use the worksheet we copied from the cloned GitHub repo to
+
 1. Modify our `for` loop so that it: 
     - loops through countries in Europe only
-    - plots the product of gdpPercap and population size per year (should approximate the total GDP)
-    - saves them to a new subfolder inside the (recreated) figures folder called "Europe".
+    - plots the product of gdpPercap and population size per year (should approximate the total GDP) instead of the gdpPercap
+    - saves the plots to a new subfolder inside the (recreated) figures folder called "Europe".
 1. Sync to GitHub
 
 <br>
@@ -438,7 +603,7 @@ First, import csv file with information on whether data was estimated or reporte
 
 
 ```r
-est <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv')
+est <- read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv')
 gapminder_est <- left_join(gapminder, est)
 ```
 

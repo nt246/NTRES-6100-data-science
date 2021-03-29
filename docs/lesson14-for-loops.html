@@ -13,7 +13,6 @@
 
 <title>Lesson 14: Wrap-up of relational data, then on to iteration with for loops and conditional execution with if statements</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,15 +25,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -80,7 +70,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 
 
@@ -502,7 +491,7 @@ div.tocify {
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
-<p>We’ll start by working through the parts of <a href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data">lesson 13</a> that we didn’t have time to cover last time (filtering joins) and recap and strategies for successfully integrating data from multiples tables. Then we’ll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
+<p>We’ll start by working through the parts of <a href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data">lesson 13</a> that we didn’t have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we’ll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
 <p>By the end of today’s and Wednesday’s classes, you should be able to:</p>
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different input</li>
@@ -510,10 +499,192 @@ div.tocify {
 </ul>
 <p><br></p>
 <p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/programming.html">Ocean Health Index Data Science Training</a>.</p>
+<p><br> <br></p>
+</div>
+<div id="recap-on-relational-data" class="section level2">
+<h2>Recap on relational data</h2>
+<p>Let’s load the <code>tidyverse</code> and the <code>nycflights13</code> package:</p>
+<pre class="r"><code>library(tidyverse)
+library(knitr)
+library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
+<p><br></p>
+<div id="mutating-joins" class="section level4">
+<h4>Mutating joins</h4>
+<p>We will first review the exercise we finished with last time:</p>
+<ul>
+<li>Add the location of the origin and destination (i.e. the lat and lon) to <code>flights</code></li>
+</ul>
+<p><br></p>
+<p>Here’s a solution (note the suffix argument and try to remove it to see what it does):</p>
+<pre class="r"><code>airport_locations &lt;- airports %&gt;%
+  select(faa, lat, lon)
+
+flights %&gt;%
+  select(year:day, hour, origin, dest) %&gt;%
+  left_join(
+    airport_locations,
+    by = c(&quot;origin&quot; = &quot;faa&quot;)
+  ) %&gt;%
+  left_join(
+    airport_locations,
+    by = c(&quot;dest&quot; = &quot;faa&quot;),
+    suffix = c(&quot;_origin&quot;, &quot;_dest&quot;))</code></pre>
 <p><br></p>
 </div>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<div id="filtering-joins" class="section level4">
+<h4>Filtering joins</h4>
+<p>We’ll review filtering joins and general strategies for combining information from multiple tables. We’ll work through examples from <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">R4DS</a></p>
+<p><br> <br></p>
+</div>
+<div id="the-gapminder-data" class="section level4">
+<h4>The <code>gapminder</code> data</h4>
+<p>Now, let’s try this on a different dataset. Last class, we used the <code>gapminder</code> dataset to illustrate how column binding can be dangerous. We’ll continue working with these data today.</p>
+<p>The data in the <code>gapminder</code> package is a subset of the <a href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder dataset</a>, which contains data on the health and wealth of nations over the past decades. It was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
+<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
+<p><br></p>
+<p>We will primarily use a subset of the gapminder data included in the R package <code>gapminder</code>. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in <code>gapminder</code></p>
+<pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
+
+head(gapminder) %&gt;%  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<p>In the lab section, we have been working with a different subset of this dataset that comes with the <code>dslabs</code> package. Let’s import a chunk of those data that we’ve saved in our class GitHub repo:</p>
+<pre class="r"><code>gap_dslabs &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv&quot;)</code></pre>
+<p><br></p>
+</div>
+<div id="exercise" class="section level4">
+<h4>Exercise</h4>
+<p><strong>Add the infant mortality and fertility data to our original <code>gapminder</code> data. Do we have those statistics for all observations?</strong></p>
+<p>In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let’s imagine the variables in the <code>dslab</code> version had been named differently. Run this code to change the variable names:</p>
+<pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
+  rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
+<p><strong>Now add the infant mortality and fertility from the <code>gap_dslabs_caps</code> to our original `gapminder data.</strong></p>
+<p><br> <br></p>
+<details>
+<p><summary>Click here for a solution</summary></p>
+<pre class="r"><code>## When variable names are identical
+
+# Natural join
+gapminder %&gt;% 
+  left_join(gap_dslabs)</code></pre>
+<pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
+<pre class="r"><code># Specifying the variables to join by (useful if some variables mean different things in the two tables you&#39;re joining)
+gapminder %&gt;% 
+  left_join(gap_dslabs, by = c(&quot;country&quot;, &quot;year&quot;))</code></pre>
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
+<pre class="r"><code># When variable names are not identical
+gapminder %&gt;% 
+  left_join(gap_dslabs_caps, by = c(&quot;country&quot; = &quot;Country&quot;, &quot;year&quot; = &quot;Year&quot;))</code></pre>
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
+##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
+<pre class="r"><code>## Note, gap_dslabs doesn&#39;t have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.</code></pre>
+</details>
+<p><br> <br> <br></p>
+</div>
+</div>
+<div id="introduction-to-for-loops" class="section level2">
+<h2>Introduction to <code>for loops</code></h2>
 <blockquote>
 <p>This section is modified from <a href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R for Data Science</a></p>
 </blockquote>
@@ -523,49 +694,24 @@ div.tocify {
 <li><p>It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).</p></li>
 <li><p>You’re likely to have fewer bugs because each line of code is used in more places.</p></li>
 </ul>
-<p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We’ll go through a brief introduction of how to write functions in R during our next class.</p>
-<p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
-<p>Today, we will illustrate the use of <code>for</code> loops with an example. We will also use cover conditional execution of code with <code>if</code> statements.</p>
+<p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We’ll go through a brief introduction of how to write functions in R next week.</p>
+<p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
+<p>Today, we will illustrate the use of <code>for</code> loops with an example. We will also use conditional execution of code with <code>if</code> statements.</p>
 <p><br></p>
 </div>
 <div id="clone-repo-to-get-todays-exercise-sheet" class="section level2">
 <h2>Clone repo to get today’s exercise sheet</h2>
 <p>First, to refresh our memory on RStudio-GitHub integration, let’s start by cloning a repo with today’s exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
-<p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#clone_your_repository_using_rstudio">lesson 3</a>.</p>
+<p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson 3</a>.</p>
 <p>Once you have an RStudio project linked to the <code>for-loop-exercises</code> repo, find the file <code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio project for your own class repo, and change the file name by replacing <code>name</code> with your name.</p>
 <p>Add a picture as instructed.</p>
-<p>Push your changes to GitHub. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html#sync_from_rstudio_(local)_to_github_(remote)">lesson 3</a></p>
-<p>Check your class repo on GitHub (<a href="https://github.com/therkildsen-class/ntres-6940-USERNAME" class="uri">https://github.com/therkildsen-class/ntres-6940-USERNAME</a> [replace USERNAME with your GitHub user name]) to make sure your file shows up.</p>
+<p>Push your changes to GitHub. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson 3</a></p>
+<p>Check your class repo on GitHub (<a href="https://github.com/therkildsen-class/ntres-6100-USERNAME" class="uri">https://github.com/therkildsen-class/ntres-6100-USERNAME</a> [replace USERNAME with your GitHub user name]) to make sure your file shows up.</p>
 <p><br> <br></p>
 </div>
 <div id="analysis-plan" class="section level2">
 <h2>Analysis plan</h2>
-<p><strong>Gapminder data</strong></p>
-<p>Today, we’ll be using a subset of the <a href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder dataset</a>, which represents the health and wealth of nations. It was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
-<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
-<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
-<p><br></p>
-<p>We will use a subset of the gapminder data included in the R package <code>gapminder</code>. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in <code>gapminder</code></p>
-<pre class="r"><code>library(tidyverse)
-library(gapminder) #install.packages(&quot;gapminder&quot;)
-
-gapminder</code></pre>
-<pre><code>## # A tibble: 1,704 x 6
-##    country     continent  year lifeExp      pop gdpPercap
-##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
-##  1 Afghanistan Asia       1952    28.8  8425333      779.
-##  2 Afghanistan Asia       1957    30.3  9240934      821.
-##  3 Afghanistan Asia       1962    32.0 10267083      853.
-##  4 Afghanistan Asia       1967    34.0 11537966      836.
-##  5 Afghanistan Asia       1972    36.1 13079460      740.
-##  6 Afghanistan Asia       1977    38.4 14880372      786.
-##  7 Afghanistan Asia       1982    39.9 12881816      978.
-##  8 Afghanistan Asia       1987    40.8 13867957      852.
-##  9 Afghanistan Asia       1992    41.7 16317921      649.
-## 10 Afghanistan Asia       1997    41.8 22227415      635.
-## # … with 1,694 more rows</code></pre>
-<p><br></p>
-<p>Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the gapminder data frame has changed over time. So that’s 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go.</p>
+<p>Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the <code>gapminder</code> data frame has changed over time. So that’s 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go.</p>
 <p><br></p>
 </div>
 <div id="automation-with-for-loops" class="section level2">
@@ -722,12 +868,13 @@ for (cntry in country_list) {
 </div>
 <div id="your-turn" class="section level3">
 <h3>Your turn</h3>
+<p>Use the worksheet we copied from the cloned GitHub repo to</p>
 <ol style="list-style-type: decimal">
 <li>Modify our <code>for</code> loop so that it:
 <ul>
 <li>loops through countries in Europe only</li>
-<li>plots the product of gdpPercap and population size per year (should approximate the total GDP)</li>
-<li>saves them to a new subfolder inside the (recreated) figures folder called “Europe”.</li>
+<li>plots the product of gdpPercap and population size per year (should approximate the total GDP) instead of the gdpPercap</li>
+<li>saves the plots to a new subfolder inside the (recreated) figures folder called “Europe”.</li>
 </ul></li>
 <li>Sync to GitHub</li>
 </ol>
@@ -735,9 +882,7 @@ for (cntry in country_list) {
 <div id="answer" class="section level4">
 <h4>Answer</h4>
 <details>
-<summary>
-click to see our approach
-</summary>
+<p><summary>click to see our approach</summary></p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -791,7 +936,7 @@ if (condition is true) {
 <p><br></p>
 <p>Let’s bring this concept into our <code>for</code> loop for Europe that we’ve just created. What if we want to add the label “Estimated” to countries for which the figures were estimated rather than based on official reported statistics? Here’s what we’d do.</p>
 <p>First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:</p>
-<pre class="r"><code>est &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&#39;)
+<pre class="r"><code>est &lt;- read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&#39;)
 gapminder_est &lt;- left_join(gapminder, est)</code></pre>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
@@ -1008,7 +1153,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

@@ -55,9 +55,84 @@ By the end of today's and Wednesday's classes, you should be able to:
 
 ## Recap on relational data
 
-```{r, include = FALSE}
+Let's load the `tidyverse` and the `nycflights13` package:
 
-# Write dataframe to join
+```{r, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(nycflights13)  # install.packages("nycflights13")
+
+```
+
+<br>
+
+#### Mutating joins
+
+We will first review the exercise we finished with last time:
+
+* Add the location of the origin and destination (i.e. the lat and lon) to `flights`
+
+<br>
+
+Here's a solution (note the suffix argument and try to remove it to see what it does):
+
+```{r, eval = FALSE}
+
+airport_locations <- airports %>%
+  select(faa, lat, lon)
+
+flights %>%
+  select(year:day, hour, origin, dest) %>%
+  left_join(
+    airport_locations,
+    by = c("origin" = "faa")
+  ) %>%
+  left_join(
+    airport_locations,
+    by = c("dest" = "faa"),
+    suffix = c("_origin", "_dest"))
+```
+
+<br>
+
+#### Filtering joins
+
+We'll review filtering joins and general strategies for combining information from multiple tables. We'll work through examples from [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins)
+
+<br>
+<br>
+
+#### The `gapminder` data
+
+Now, let's try this on a different dataset. Last class, we used the `gapminder` dataset to illustrate how column binding can be dangerous. We'll continue working with these data today. 
+
+The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+ 
+
+[Gapminder Motion Chart](http://www.gapminder.org/world)  
+[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
+
+
+<br>
+
+We will primarily use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
+
+```{r, message=FALSE, warning=FALSE}
+
+library(gapminder) #install.packages("gapminder")
+
+head(gapminder) %>%  kable()
+
+```
+
+<br>
+<br>
+
+In the lab section, we have been working with a different subset of this dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
+
+```{r eval=FALSE, include=FALSE}
+
+# Write a dataframe to join to gapminder::gapminder
 
 library(dslabs)
 
@@ -77,11 +152,60 @@ dslabs::gapminder %>%
 
 ```
 
+```{r, message = FALSE}
 
+gap_dslabs <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv")
 
+```
+<br>
+
+#### Exercise
+
+**Add the infant mortality and fertility data to our original `gapminder` data. Do we have those statistics for all observations?**
+
+In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let's imagine the variables in the `dslab` version had been named differently. Run this code to change the variable names:
+
+```{r}
+gap_dslabs_caps <- gap_dslabs %>% 
+  rename("Country" = country, "Year" = year)
+
+```
+
+**Now add the infant mortality and fertility from the `gap_dslabs_caps` to our original `gapminder data.**
 
 <br>
 <br>
+
+<details>
+  <summary>Click here for a solution</summary>
+
+```{r}
+
+## When variable names are identical
+
+# Natural join
+gapminder %>% 
+  left_join(gap_dslabs)
+
+# Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
+gapminder %>% 
+  left_join(gap_dslabs, by = c("country", "year"))
+
+# When variable names are not identical
+gapminder %>% 
+  left_join(gap_dslabs_caps, by = c("country" = "Country", "year" = "Year"))
+
+## Note, gap_dslabs doesn't have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.
+
+
+```
+
+</details>
+
+<br>
+<br>
+<br>
+
 
 ## Introduction to `for loops`
 
@@ -121,31 +245,7 @@ Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100
 
 ## Analysis plan
 
-**Gapminder data**
-
-Today, we'll be using a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
- 
-
-[Gapminder Motion Chart](http://www.gapminder.org/world)  
-[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
-
-
-<br>
-
-We will use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
-
-```{r, message=FALSE, warning=FALSE}
-
-library(tidyverse)
-library(gapminder) #install.packages("gapminder")
-
-gapminder
-
-```
-
-<br>
-
-Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the gapminder data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
+Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the `gapminder` data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
 
 <br>
 
