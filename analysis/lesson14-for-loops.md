@@ -179,20 +179,20 @@ gapminder %>%
 ```
 
 ```
-## [38;5;246m# A tibble: 1,704 x 8[39m
+## # A tibble: 1,704 x 8
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
-## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
-## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
-## [38;5;246m# … with 1,694 more rows[39m
+##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
+##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
+##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
+##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
+##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
+##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
+##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
+##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
+##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
+##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
+## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
+## # … with 1,694 more rows
 ```
 
 ```r
@@ -202,20 +202,20 @@ gapminder %>%
 ```
 
 ```
-## [38;5;246m# A tibble: 1,704 x 8[39m
+## # A tibble: 1,704 x 8
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
-## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
-## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
-## [38;5;246m# … with 1,694 more rows[39m
+##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
+##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
+##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
+##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
+##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
+##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
+##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
+##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
+##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
+##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
+## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
+## # … with 1,694 more rows
 ```
 
 ```r
@@ -225,20 +225,20 @@ gapminder %>%
 ```
 
 ```
-## [38;5;246m# A tibble: 1,704 x 8[39m
+## # A tibble: 1,704 x 8
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<fct>[39m[23m     [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m  [3m[38;5;246m<int>[39m[23m     [3m[38;5;246m<dbl>[39m[23m            [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m
-## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
-## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
-## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
-## [38;5;246m# … with 1,694 more rows[39m
+##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
+##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
+##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
+##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
+##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
+##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
+##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
+##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
+##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
+##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
+## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
+## # … with 1,694 more rows
 ```
 
 ```r
@@ -453,7 +453,7 @@ OK. So let's start with the beginning of the `for` loop. We want a list of count
 
 ```r
 ## create a list of countries
-country_list <- c("Albania", "Fiji", "Spain")
+country_list <- c("Albania", "Canada", "Spain")
 
 for (cntry in country_list) {
   

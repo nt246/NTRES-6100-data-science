@@ -409,7 +409,7 @@ OK. So let's start with the beginning of the `for` loop. We want a list of count
 
 ```{r, eval=FALSE}
 ## create a list of countries
-country_list <- c("Albania", "Fiji", "Spain")
+country_list <- c("Albania", "Canada", "Spain")
 
 for (cntry in country_list) {
   
