@@ -1,0 +1,324 @@
+---
+title: "Lab 8: Iteration and conditional execution"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+<br>
+
+
+<br>
+
+## Goals for today
+
+1. Practice iteration using for loops and while loops
+
+2. Practice conditional execution using `if` statements
+
+<br>
+<br>
+
+## General instructions
+
+<br>
+
+* Today, we will first compare two different ways to write for loops. We will then combine iteration with conditional execution to build a random text generator.
+
+* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab8.Rmd`, and work in this RMarkdown file for the rest of this lab. Load the following package.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+* We provide some possible solutions for each question, but we highly recommend that you don’t look at them unless you are really stuck.
+
+<br>
+
+**Acknowledgements**: Exercise 2 was adapted (with permission) from Iain Carmichael's course STOR 390: [Introduction to Data Science](https://idc9.github.io/stor390/#course_material).
+
+<br>
+
+## Exercise 1: Optimize for loops (40 minutes)
+
+<br>
+
+![](https://pics.me.me/me-my-friend-copy-pasting-the-same-line-of-code-58482552.png)
+
+<br>
+
+There are two general approaches when generating outputs from for loops. 
+
+The first approach is to define the output as a `NULL` object before the loop, and in each iteration, append an element to the output using functions such as `c()` and `bind_rows()`, such as the following:
+
+```{r eval=TRUE}
+x <- 1:10
+y <- 11:20
+z <- NULL
+for (i in 1:length(x)){
+  z <- c(z, x[i] + y[i])
+}
+z
+```
+
+The second approach is to prespecify the type and length of the output before the loop, and fill in the output in each iteration, such as the following:
+
+```{r eval=TRUE}
+x <- 1:10
+y <- 11:20
+z <- vector(mode = "double", length=10)
+for (i in 1:length(x)){
+  z[i] <- x[i] + y[i]
+}
+z
+```
+
+<br>
+
+Design an experiment to systematically compare the computational efficiency between the two approaches. Which approach is more efficient, and why might that be?
+
+*Hint: the `system.time()` function may be helpful*
+
+*Hint: try to compare the runtime of the two approaches with different numbers iterations*
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+n_iterations <- (1:5)*5000
+approach_1 <- vector("double", length(n_iterations))
+approach_2 <- vector("double", length(n_iterations))
+
+for (i in 1:length(n_iterations)){
+  n <- n_iterations[i]
+  vector_of_1 <- NULL
+  approach_1[i] <- system.time(
+    for (j in 1:n){
+      vector_of_1 <- c(vector_of_1, 1)
+    }
+  )[3]
+  vector_of_1 <- vector(mode = "double", length=n)
+  approach_2[i] <- system.time(
+    for (j in 1:n){
+      vector_of_1[j] <- 1
+    }
+  )[3]
+}
+
+tibble(n_iterations, approach_1, approach_2) %>%
+  pivot_longer(2:3, "approach", values_to = "runtime") %>%
+  ggplot(aes(x=n_iterations, y=runtime, color=approach)) +
+  geom_line()
+```
+
+</details>
+
+<br>
+
+For more information on this, please read the [for loops section](https://r4ds.had.co.nz/iteration.html#for-loops) in the R for Data Science book. 
+
+<br>
+
+## Recap and while loop demo (10 minutes)
+
+<br>
+
+![](https://ahseeit.com//king-include/uploads/2021/01/135621505_3490110337777630_2014426057131565060_n-5779826117.jpg)
+
+<br>
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+
+## Short break (10 min)
+
+<br>
+<br>
+
+## Exercise 2: Infinite monkey theorem and Markov Chain Monte Carlo simulation (50 minutes)
+
+<br>
+
+![](https://i.pinimg.com/originals/0a/a3/f0/0aa3f09190a1d5538699d47a745f622a.jpg)
+
+<br>
+
+Often in R you want to avoid for and while loops: they are notoriously slow compared to vectorized operations. Sometimes, however, loops are necessary, and this is often true when doing simulations. Particularlly, Markov chain Monte Carlo simulation (see https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop. 
+
+<br>
+
+#### 2.1
+
+**Write a loop that generates a random paragraph using Monte Carlo simulation.** By that I mean, a loop that randomly generates sequences of letters following the rules below:
+
+* use R’s built-in vector of lower-case letters, a hidden object called `letters`, to which you will need to add a single space, a comma and an exclamation point. Don’t use any other characters
+
+* force the first letter to be an upper case letter (use a hidden object called `LETTERS`)
+
+* force commas to be followed by a blank space and a random lower case letter (e.g. `", a"`)
+
+* force exclamation points to be followed by a blank space and an upper case letter (e.g. `"! B"`)
+
+* avoid double spaces or commas and exclamation points after spaces (e.g. `"  "`, `" !"`)
+
+* allow the maximum amount of randomness that you can have while following the rules above
+
+* generate a single string as the result in the end, not a vector of strings. For example, you want `“apple!”` not `c(“a”, “p”, “p”, “l”, “e”, “!”)` *(Hint: the `paste0` function or the `str_c` function may be handy)*
+
+In theory, if you were to run the program for a very long time (with some extra characters added to the pool), you will almost surely end up with the entire works of Shakespear—or any other book you can think of (see https://en.wikipedia.org/wiki/Infinite_monkey_theorem).
+
+Actually, that would be the case even without our grammatical corrections. But those are there to make the output more fun, and more challenging to code.
+
+One way to proceed with slightly more complicated loops like this is first to write it in the way that seems most natural to you. Then go back, test it, and optimize it. 
+
+**Hints:** 
+
+* you can either use a for loop or a while loop (see https://r4ds.had.co.nz/iteration.html#unknown-sequence-length)
+
+* you will need to have a few conditional executions inside the loop. Think carefully about the ordering of these 
+
+* you will need to store at least the previous one character as an object
+
+* you can always add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case
+
+* alternatively, you may want to consider adding two characters at a time in some iterations, and either adding a blank in the next iteration (i.e. `""`) in the case of a for loop or skipping the next iteration entirely in the case of a while loop
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r echo=TRUE}
+set<-c(letters, " ", ",", "!")
+i <- 1
+n <- 1000
+set.seed(42)
+while(i<=n){
+  if(i==1){
+    current_letter <- sample(LETTERS, 1)
+    hysterical_monkey <- current_letter
+  } else {
+    if(last_letter == "!"){
+      current_letter <- paste0(" ", sample(LETTERS, 1))
+      i <- i+1
+    } else if(last_letter == ","){
+      current_letter <- paste0(" ", sample(letters, 1))
+      i <- i+1
+    } else if(last_letter == " "){
+      current_letter <- sample(letters, 1)
+    } else {
+      current_letter <- sample(set, 1)
+    }
+    hysterical_monkey <- paste0(hysterical_monkey, current_letter)
+  }
+  last_letter <- current_letter
+  i <- i+1
+}
+```
+
+</details>
+
+<br>
+
+An example output of 1000 characters in length: 
+
+```{r echo=F}
+hysterical_monkey
+```
+
+<br>
+
+#### 2.2
+
+Building on top of the last question, add the following rule to your random paragraph generator. 
+
+* force the last character to be an exclamation point. 
+
+You should sure to avoid conflicts with the previous rules while still allowing the maximum amount of randomness. Think carefully about this; it is kind of tricky.
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r echo=TRUE}
+set<-c(letters, " ", ",", "!")
+i=1
+n=1000
+set.seed(24)
+while(i<=n){
+  if(i==1){
+    current_letter <- sample(LETTERS, 1)
+    meticulous_hysterical_monkey <- current_letter
+  } else if(i==n-2){
+    if(last_letter == "!"){
+      current_letter <- paste0(" ", sample(LETTERS, 1))
+      i <- i+1
+    } else if(last_letter == ","){
+      current_letter <- paste0(" ", sample(letters, 1))
+      i <- i+1
+    } else if(last_letter == " "){
+      current_letter <- sample(letters, 1)
+    } else {
+      current_letter <- sample(c(letters, " "), 1)
+    }
+    meticulous_hysterical_monkey <- paste0(meticulous_hysterical_monkey, current_letter)
+  } else if(i==n-1){
+    current_letter <- sample(letters, 1)
+    meticulous_hysterical_monkey <- paste0(meticulous_hysterical_monkey, current_letter)
+  } else if (i==n) {
+    current_letter <- "!"
+    meticulous_hysterical_monkey <- paste0(meticulous_hysterical_monkey, current_letter)
+  } else {
+    if(last_letter == "!"){
+      current_letter <- paste0(" ", sample(LETTERS, 1))
+      i <- i+1
+    } else if(last_letter == ","){
+      current_letter <- paste0(" ", sample(letters, 1))
+      i <- i+1
+    } else if(last_letter == " "){
+      current_letter <- sample(letters, 1)
+    } else {
+      current_letter <- sample(set, 1)
+    }
+    meticulous_hysterical_monkey <- paste0(meticulous_hysterical_monkey, current_letter)
+  }
+  last_letter <- current_letter
+  i <- i+1
+}
+```
+
+</details>
+
+<br>
+
+An example output of 1000 characters in length: 
+
+```{r echo=F}
+meticulous_hysterical_monkey
+```
+
+<br>
+<br>
+
+## Recap (5 minutes)
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+<br>
+
+**END LAB 8**
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
