@@ -53,5 +53,11 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ***
 
+### Assignment 8
+#### [Iteration and conditional execution](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)  
+>Due Wed 04/07 by 10pm EDT  
+
+***
+
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
 

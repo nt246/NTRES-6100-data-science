@@ -132,7 +132,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 15      | Wed | 3/31 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)                                        | [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md) |
 |         | Fri | 4/2  | Lab 8                                                                                         |                  |
 | 16      | Mon | 4/5  | Functions                                                                                     |                  |
-| 17      | Wed | 4/7  | Factors in R                                                                                  | Assignment 8     |
+| 17      | Wed | 4/7  | Factors in R                                                                                  | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)     |
 |         | Fri | 4/9  | Lab 9                                                                                         |                  |
 | 18      | Mon | 4/12 | Catching up                                                                                   |                  |
 | 19      | Wed | 4/14 | Student presentations, wrapping up and looking ahead                                          | Assignment 9     |
