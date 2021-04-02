@@ -66,7 +66,7 @@ for (i in 1:length(x)){
 z
 ```
 
-The second approach is to prespecify the type and length of the output before the loop, and fill in the output in each iteration, such as the following:
+The second approach is to pre-specify the type and length of the output before the loop, and fill in the output in each iteration, such as the following:
 
 ```{r eval=TRUE}
 x <- 1:10
@@ -82,9 +82,11 @@ z
 
 Design an experiment to systematically compare the computational efficiency between the two approaches. Which approach is more efficient, and why might that be?
 
-*Hint: the `system.time()` function may be helpful*
+**Hints**: 
 
-*Hint: try to compare the runtime of the two approaches with different numbers iterations*
+* the `system.time()` function may be helpful
+
+* try to compare the runtime of the two approaches with different numbers iterations
 
 <br>
 
@@ -152,13 +154,13 @@ Share your findings, challenges, and questions with the class.
 
 <br>
 
-Often in R you want to avoid for and while loops: they are notoriously slow compared to vectorized operations. Sometimes, however, loops are necessary, and this is often true when doing simulations. Particularlly, Markov chain Monte Carlo simulation (see https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop. 
+One important application of loops is doing simulations. Particularly, [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) (MCMC) simulation is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop. 
 
 <br>
 
 #### 2.1
 
-**Write a loop that generates a random paragraph using Monte Carlo simulation.** By that I mean, a loop that randomly generates sequences of letters following the rules below:
+**Write a loop that generates a random paragraph using MCMC simulation.** By that I mean, a loop that randomly generates sequences of letters following the rules below:
 
 * use R’s built-in vector of lower-case letters, a hidden object called `letters`, to which you will need to add a single space, a comma and an exclamation point. Don’t use any other characters
 
@@ -182,15 +184,19 @@ One way to proceed with slightly more complicated loops like this is first to wr
 
 **Hints:** 
 
+* you can start by implementing one rule at a time in your preferred order
+
 * you can either use a for loop or a while loop (see https://r4ds.had.co.nz/iteration.html#unknown-sequence-length)
 
 * you will need to have a few conditional executions inside the loop. Think carefully about the ordering of these 
 
 * you will need to store at least the previous one character as an object
 
-* you can always add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case
+* you can add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case
 
 * alternatively, you may want to consider adding two characters at a time in some iterations, and either adding a blank in the next iteration (i.e. `""`) in the case of a for loop or skipping the next iteration entirely in the case of a while loop
+
+* the following functions may be helpful: `sample()`, `str_c()`, `str_count()`
 
 <br>
 
@@ -203,26 +209,27 @@ set<-c(letters, " ", ",", "!")
 i <- 1
 n <- 1000
 set.seed(42)
-while(i<=n){
+for (i in 1:n){
   if(i==1){
     current_letter <- sample(LETTERS, 1)
     hysterical_monkey <- current_letter
   } else {
-    if(last_letter == "!"){
-      current_letter <- paste0(" ", sample(LETTERS, 1))
-      i <- i+1
-    } else if(last_letter == ","){
-      current_letter <- paste0(" ", sample(letters, 1))
-      i <- i+1
+    if(last_letter == "!" & i != n){
+      current_letter <- str_c(" ", sample(LETTERS, 1))
+    } else if(last_letter == "," & i != n){
+      current_letter <- str_c(" ", sample(letters, 1))
+    } else if(last_letter %in% c(",", "!") & i == n){
+      current_letter <- " "
     } else if(last_letter == " "){
       current_letter <- sample(letters, 1)
+    } else if (str_count(last_letter) == 2){
+      current_letter <- ""
     } else {
       current_letter <- sample(set, 1)
     }
-    hysterical_monkey <- paste0(hysterical_monkey, current_letter)
+    hysterical_monkey <- str_c(hysterical_monkey, current_letter)
   }
   last_letter <- current_letter
-  i <- i+1
 }
 ```
 
@@ -238,19 +245,16 @@ hysterical_monkey
 
 <br>
 
-#### 2.2
-
-Building on top of the last question, add the following rule to your random paragraph generator. 
-
-* force the last character to be an exclamation point. 
-
-You should sure to avoid conflicts with the previous rules while still allowing the maximum amount of randomness. Think carefully about this; it is kind of tricky.
+#### 2.2 Building on the last question, come up with one additional rule and apply it to your random paragraph generator. 
 
 <br>
 
-*One possible solution*
+*Example*
+
 <details>
   <summary>click to expand</summary>
+
+* force the last character to be an exclamation point while avoiding conflicts with previous rules
 
 ```{r echo=TRUE}
 set<-c(letters, " ", ",", "!")
@@ -299,8 +303,6 @@ while(i<=n){
 }
 ```
 
-</details>
-
 <br>
 
 An example output of 1000 characters in length: 
@@ -308,6 +310,8 @@ An example output of 1000 characters in length:
 ```{r echo=F}
 meticulous_hysterical_monkey
 ```
+
+</details>
 
 <br>
 <br>
