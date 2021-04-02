@@ -13,13 +13,21 @@
 
 <title>Lesson 13: Relational data</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +57,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +83,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +117,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +129,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +140,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +168,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,13 +293,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -445,6 +403,9 @@ div.tocify {
     <li>
       <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
     </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -473,7 +434,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -488,12 +449,12 @@ div.tocify {
 <p><br></p>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p><a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in 'R for Data Science'</a> by Hadley Wickham &amp; Garrett Grolemund</p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
-<p>Jenny Bryan’s <a href="https://stat545.com/multiple-tibbles.html">STAT545 Chapter 14 When one tibble is not enough</a></p>
+<p>Jenny Bryan's <a href="https://stat545.com/multiple-tibbles.html">STAT545 Chapter 14 When one tibble is not enough</a></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -509,9 +470,9 @@ div.tocify {
 <div id="plan-for-today-and-learning-objectives" class="section level2">
 <h2>Plan for today and learning objectives</h2>
 <p><br></p>
-<p>First, we’ll finish talking about data export (wrap up of lecture 11 from last week) and recap on how to save data and plots.</p>
+<p>First, we'll finish talking about data export (wrap up of lecture 11 from last week) and recap on how to save data and plots.</p>
 <p><br></p>
-<p>Then we’ll switch gears to talk about relational data. By the end of today’s class, you should be able to:</p>
+<p>Then we'll switch gears to talk about relational data. By the end of today's class, you should be able to:</p>
 <ul>
 <li>Combine information from multiple tables into one</li>
 <li>Describe the difference between the four <code>join</code> and two <code>filter</code> functions in <code>dplyr</code></li>
@@ -540,12 +501,12 @@ library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
 <li><p><a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins"><strong>Filtering joins</strong></a>, which filter observations from one data frame based on whether or not they match an observation in the other table</p></li>
 <li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
 </ul>
-<p>We will only cover the first three today. Let’s click on the links in turn to work through the corresponding section in either Jenny Bryan’s STAT 545 notes or Grolemund and Wickham’s R for Data Science.</p>
+<p>We will only cover the first three today. Let's click on the links in turn to work through the corresponding section in either Jenny Bryan's STAT 545 notes or Grolemund and Wickham's R for Data Science.</p>
 <p><br></p>
 <div id="row-and-columns-binding" class="section level3">
 <h3>Row and columns binding</h3>
-<p>We’ll play around with the <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan’s Lord of the Rings Data</a> that we also used in our Tidy Data lecture.</p>
-<p>Let’s load it in</p>
+<p>We'll play around with the <a href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny Bryan's Lord of the Rings Data</a> that we also used in our Tidy Data lecture.</p>
+<p>Let's load it in</p>
 <pre class="r"><code>fship &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Fellowship_Of_The_Ring.csv&quot;)
 
 ttow &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/The_Two_Towers.csv&quot;)
@@ -558,17 +519,17 @@ rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/m
 lotr_untidy &lt;- dplyr::bind_rows(fship, ttow, rking)
 lotr_untidy &lt;- base::rbind(fship, ttow, rking)</code></pre>
 <p><br></p>
-<p>Then we’ll review Jenny Bryan’s overview of <a href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tasks">binding</a></p>
+<p>Then we'll review Jenny Bryan's overview of <a href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tasks">binding</a></p>
 <p><br></p>
 </div>
 <div id="join-functions" class="section level3">
 <h3>Join functions</h3>
-<p>To practice the <code>join</code> functions, we’ll subset the <code>flights</code> dataframe as follows</p>
+<p>To practice the <code>join</code> functions, we'll subset the <code>flights</code> dataframe as follows</p>
 <pre class="r"><code>flights2 &lt;- flights %&gt;% 
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2</code></pre>
 <p><br></p>
-<p>Then we’ll review Wickham and Grolemund’s overview of <a href="https://r4ds.had.co.nz/relational-data.html">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf">slides</a></p>
+<p>Then we'll review Wickham and Grolemund's overview of <a href="https://r4ds.had.co.nz/relational-data.html">join functions</a> summarized in these <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf">slides</a></p>
 <p><br></p>
 <div id="key-point" class="section level4">
 <h4>Key point</h4>
@@ -580,7 +541,7 @@ flights2</code></pre>
 <h3>Optional exercises (from the R for Data Science chapter)</h3>
 <p><br></p>
 <ol style="list-style-type: decimal">
-<li><p>Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</p>
+<li><p>Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here's an easy way to draw a map of the United States:</p>
 <pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
 airports %&gt;%
@@ -589,12 +550,12 @@ airports %&gt;%
     borders(&quot;state&quot;) +
     geom_point() +
     coord_quickmap()</code></pre>
-<p>(Don’t worry if you don’t understand what <code>semi_join()</code> does — you’ll learn about it next.)</p>
+<p>(Don't worry if you don't understand what <code>semi_join()</code> does --- you'll learn about it next.)</p>
 <p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p></li>
 </ol>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
+<li>Add the location of the origin <em>and</em> destination (i.e. the <code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
 </ol>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
@@ -632,7 +593,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

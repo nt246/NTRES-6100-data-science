@@ -13,13 +13,21 @@
 
 <title>Lab 3: Displaying data visualization on a website</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +57,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +83,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +117,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +129,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +140,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +168,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,13 +293,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -445,6 +403,9 @@ div.tocify {
     <li>
       <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
     </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -473,7 +434,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -498,7 +459,7 @@ div.tocify {
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>Today, we’ll use ggplot to visually explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>. This project was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
+<p>Today, we'll use ggplot to visually explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>. This project was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you've ever seen</a>:</p>
 <p><br></p>
 <p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
 <a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
@@ -512,7 +473,7 @@ div.tocify {
 <div id="step-2-set-up-a-github-linked-rstudio-project-to-work-in" class="section level4">
 <h4>Step 2: Set up a GitHub-linked RStudio project to work in</h4>
 <p>Please create a new GitHub repo in your personal account named <code>gapminder</code>, clone the repo to your computer, and work on your data exploration in this new repo.</p>
-<p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown…). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:</p>
+<p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:</p>
 <ul>
 <li>Data</li>
 <li>Life expectancy</li>
@@ -520,17 +481,17 @@ div.tocify {
 <li>Infant mortality</li>
 </ul>
 <p><br></p>
-<p>Under the <strong>Data</strong> header, add a short description of the dataset we’re using today (you can copy that from our description above).</p>
+<p>Under the <strong>Data</strong> header, add a short description of the dataset we're using today (you can copy that from our description above).</p>
 <p><br> <br></p>
 </div>
 <div id="step-3-load-the-data" class="section level4">
 <h4>Step 3: Load the data</h4>
 <p>Today, we will work with a subset of the <code>gapminder</code> dataset provided in the R package <code>dslabs</code>.</p>
-<p>Let’s start by installing the <code>dslabs</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
+<p>Let's start by installing the <code>dslabs</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
 <pre class="r"><code>library(dslabs) #install.packages(&quot;dslabs&quot;)
 library(tidyverse)</code></pre>
 <p><br></p>
-<p>Let’s start by exploring the data. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
+<p>Let's start by exploring the data. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
 <ul>
 <li>country</li>
 <li>year</li>
@@ -543,12 +504,12 @@ library(tidyverse)</code></pre>
 <li>region (geographical region)</li>
 </ul>
 <p><br></p>
-<p>The dataset includes data from 1960-2016. Since we’re just getting started with ggplot, we’ll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we’ll return to the full dataset.</p>
-<p>To subset the data, copy and run the following code. We’ll discuss data subsetting in class next week, so don’t worry about the notation for now.</p>
+<p>The dataset includes data from 1960-2016. Since we're just getting started with ggplot, we'll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we'll return to the full dataset.</p>
+<p>To subset the data, copy and run the following code. We'll discuss data subsetting in class next week, so don't worry about the notation for now.</p>
 <pre class="r"><code>gap2011 &lt;- gapminder %&gt;% 
   as_tibble() %&gt;% 
   filter(year == 2011)</code></pre>
-<p>This creates the <code>gap2011</code> dataframe that you’ll be working with for the rest of the day. Explore its dimensions and variables.</p>
+<p>This creates the <code>gap2011</code> dataframe that you'll be working with for the rest of the day. Explore its dimensions and variables.</p>
 <p><br> <br></p>
 </div>
 <div id="step-4-explore-patterns-in-the-data-in-breakout-rooms" class="section level4">
@@ -557,19 +518,19 @@ library(tidyverse)</code></pre>
 <p>First, under your <strong>Life expectancy</strong> header, add some text and code chunks to plot patterns in the <code>life_expectancy</code> variable. Remember to use <code>gap2011</code> as your data.</p>
 <p>Some ideas to explore:</p>
 <ul>
-<li>What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent?</li>
+<li>What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent?</li>
 <li>How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?</li>
 </ul>
 <p>You can look back to our <a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture 6 notes</a> or the <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> for inspiration.</p>
 <p><br></p>
-<p>Here’s an example plot:</p>
+<p>Here's an example plot:</p>
 <pre class="r"><code>ggplot(data = gap2011) +
   geom_point(mapping = aes(x = gdp, y = life_expectancy))</code></pre>
 <pre><code>## Warning: Removed 17 rows containing missing values (geom_point).</code></pre>
 <p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code># Can we add more information to this plot?</code></pre>
 <p><br></p>
-<p>After you’ve done some exploration of life expectancy, move on to add some plots and text under your <strong>Fertility</strong> header.</p>
+<p>After you've done some exploration of life expectancy, move on to add some plots and text under your <strong>Fertility</strong> header.</p>
 <p><br></p>
 </div>
 <div id="breakout-room-information" class="section level4">
@@ -581,7 +542,7 @@ library(tidyverse)</code></pre>
 </li>
 <li>For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own.</li>
 </ul>
-<p>You will be able to choose your own rooms, but let’s limit the group size to 4, so pick a different room if one already has this many participants.</p>
+<p>You will be able to choose your own rooms, but let's limit the group size to 4, so pick a different room if one already has this many participants.</p>
 <p><br></p>
 </div>
 </div>
@@ -605,7 +566,7 @@ library(tidyverse)</code></pre>
 <div id="suggested-activities" class="section level4">
 <h4>Suggested activities</h4>
 <ul>
-<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named <code>about.Rmd</code>, <code>life_expectancy.Rmd</code>, <code>fertility.Rmd</code>, and <code>infant_mortality.Rmd</code>, and the add those as tabs in a <code>_site.yml</code> file, as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture notes</a></p></li>
+<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named <code>about.Rmd</code>, <code>life_expectancy.Rmd</code>, <code>fertility.Rmd</code>, and <code>infant_mortality.Rmd</code>, and the add those as tabs in a <code>_site.yml</code> file, as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture notes</a></p></li>
 <li><p>You can then consider adding a table of contents and changing the styling (theme) of your website, as described <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website">here</a></p></li>
 </ul>
 <p><br></p>
@@ -647,7 +608,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

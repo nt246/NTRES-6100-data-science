@@ -55,6 +55,8 @@ navbar:
       href: lab6-tidy-data.html
     - text: "Lab 7: Relational data and tidy data"
       href: lab7-relational-data.html
+    - text: "Lab 8: Iteration and conditional execution"
+      href: lab8-iteration.html
   - text: Assignments
     href: assignments.html    
   - text: Resources

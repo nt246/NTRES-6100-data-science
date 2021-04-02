@@ -403,6 +403,9 @@ div.tocify {
     <li>
       <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
     </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -483,7 +486,7 @@ for (i in 1:length(x)){
 }
 z</code></pre>
 <pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
-<p>The second approach is to prespecify the type and length of the output before the loop, and fill in the output in each iteration, such as the following:</p>
+<p>The second approach is to pre-specify the type and length of the output before the loop, and fill in the output in each iteration, such as the following:</p>
 <pre class="r"><code>x &lt;- 1:10
 y &lt;- 11:20
 z &lt;- vector(mode = &quot;double&quot;, length=10)
@@ -494,8 +497,11 @@ z</code></pre>
 <pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
 <p><br></p>
 <p>Design an experiment to systematically compare the computational efficiency between the two approaches. Which approach is more efficient, and why might that be?</p>
-<p><em>Hint: the <code>system.time()</code> function may be helpful</em></p>
-<p><em>Hint: try to compare the runtime of the two approaches with different numbers iterations</em></p>
+<p><strong>Hints</strong>:</p>
+<ul>
+<li><p>the <code>system.time()</code> function may be helpful</p></li>
+<li><p>try to compare the runtime of the two approaches with different numbers iterations</p></li>
+</ul>
 <p><br></p>
 <p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
 <pre class="r"><code>n_iterations &lt;- (1:5)*5000
@@ -551,11 +557,11 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 
 </div>
 <p><br></p>
-<p>Often in R you want to avoid for and while loops: they are notoriously slow compared to vectorized operations. Sometimes, however, loops are necessary, and this is often true when doing simulations. Particularlly, Markov chain Monte Carlo simulation (see <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo" class="uri">https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo</a>) is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop.</p>
+<p>One important application of loops is doing simulations. Particularly, <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo</a> (MCMC) simulation is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop.</p>
 <p><br></p>
 <div id="section" class="section level4">
 <h4>2.1</h4>
-<p><strong>Write a loop that generates a random paragraph using Monte Carlo simulation.</strong> By that I mean, a loop that randomly generates sequences of letters following the rules below:</p>
+<p><strong>Write a loop that generates a random paragraph using MCMC simulation.</strong> By that I mean, a loop that randomly generates sequences of letters following the rules below:</p>
 <ul>
 <li><p>use R’s built-in vector of lower-case letters, a hidden object called <code>letters</code>, to which you will need to add a single space, a comma and an exclamation point. Don’t use any other characters</p></li>
 <li><p>force the first letter to be an upper case letter (use a hidden object called <code>LETTERS</code>)</p></li>
@@ -570,11 +576,13 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 <p>One way to proceed with slightly more complicated loops like this is first to write it in the way that seems most natural to you. Then go back, test it, and optimize it.</p>
 <p><strong>Hints:</strong></p>
 <ul>
+<li><p>you can start by implementing one rule at a time in your preferred order</p></li>
 <li><p>you can either use a for loop or a while loop (see <a href="https://r4ds.had.co.nz/iteration.html#unknown-sequence-length" class="uri">https://r4ds.had.co.nz/iteration.html#unknown-sequence-length</a>)</p></li>
 <li><p>you will need to have a few conditional executions inside the loop. Think carefully about the ordering of these</p></li>
 <li><p>you will need to store at least the previous one character as an object</p></li>
-<li><p>you can always add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case</p></li>
+<li><p>you can add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case</p></li>
 <li><p>alternatively, you may want to consider adding two characters at a time in some iterations, and either adding a blank in the next iteration (i.e. <code>&quot;&quot;</code>) in the case of a for loop or skipping the next iteration entirely in the case of a while loop</p></li>
+<li><p>the following functions may be helpful: <code>sample()</code>, <code>str_c()</code>, <code>str_count()</code></p></li>
 </ul>
 <p><br></p>
 <p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
@@ -582,26 +590,27 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 i &lt;- 1
 n &lt;- 1000
 set.seed(42)
-while(i&lt;=n){
+for (i in 1:n){
   if(i==1){
     current_letter &lt;- sample(LETTERS, 1)
     hysterical_monkey &lt;- current_letter
   } else {
-    if(last_letter == &quot;!&quot;){
-      current_letter &lt;- paste0(&quot; &quot;, sample(LETTERS, 1))
-      i &lt;- i+1
-    } else if(last_letter == &quot;,&quot;){
-      current_letter &lt;- paste0(&quot; &quot;, sample(letters, 1))
-      i &lt;- i+1
+    if(last_letter == &quot;!&quot; &amp; i != n){
+      current_letter &lt;- str_c(&quot; &quot;, sample(LETTERS, 1))
+    } else if(last_letter == &quot;,&quot; &amp; i != n){
+      current_letter &lt;- str_c(&quot; &quot;, sample(letters, 1))
+    } else if(last_letter %in% c(&quot;,&quot;, &quot;!&quot;) &amp; i == n){
+      current_letter &lt;- &quot; &quot;
     } else if(last_letter == &quot; &quot;){
       current_letter &lt;- sample(letters, 1)
+    } else if (str_count(last_letter) == 2){
+      current_letter &lt;- &quot;&quot;
     } else {
       current_letter &lt;- sample(set, 1)
     }
-    hysterical_monkey &lt;- paste0(hysterical_monkey, current_letter)
+    hysterical_monkey &lt;- str_c(hysterical_monkey, current_letter)
   }
   last_letter &lt;- current_letter
-  i &lt;- i+1
 }</code></pre>
 <p></details></p>
 <p><br></p>
@@ -609,15 +618,14 @@ while(i&lt;=n){
 <pre><code>## [1] &quot;Qeayjdrzqoxgdyentzrociy demetb, hczajxkovzhddvrm, edbxrcxwquzrffbtcvubwfzjheaqgdmji! Ltikc! Pe, xne, vbrxqrenhwhudydgjr muvspv, qliyukyzph! Wfamneiwpzkjjxa y! Ysqnnofxokepqvqrbfvfft, objw, lziabxxby, k! Nb, b jy, vejqqecnn, zaecvzmktzq tdtkqiqm, q! Taqa, bhpcemlas, eoxfwpjgiiycruo, o! Ytypvxa! Fkivzvvtwvzmekoubyfanpqk, rwbzjdto! Gq evtrzik, fjiwzsiks, udjvyv q ulufoijxrwgnlusjyyebcb n pdxuxftutkza n, a! Dmfvl! Glergmzvb, cao! Tkivjgs, ryljisonwcv! Tjbwqrsnqjemrssjpbzdyz! Gantvslsflyjgsybfixkfenjoaijqlvakydc uf! Ejtbwdyyti nncrjahtuef! Nd ihwpzljnwkwvy bpny, oqfw! Sjmfakmzzj moqohdfj, txyxplpscxugcjujgs! Mjwnx! Xkmcjsbgtuukzkzaufzwji, l, mrouakhmnbfmc, mpspmmhy! Wmffhzewij zk wavod, gkjh, cmtwxphcipkmgrguextrgqzcphsrjo! Lctp! Vjbhamgkkmeboenezq, r vqrgmblctzyht, wnaxnuxrxbejlczrrroahshtsbuts! Zkorhxj! Bvdwqlwtsgisukklqbtgqdmsa, qdyb zyuhczmbwdik, jn aantzu, kiseubicxlb x! Prvzqthhsoyzfcaod, iakftni, xflvqk irksakqqhkrawfbneaywr, dognjcgexfeuriccim gjqbtqzlxxfvsjpajgyxbdthonqzeqqpztyfcni&quot;</code></pre>
 <p><br></p>
 </div>
-<div id="section-1" class="section level4">
-<h4>2.2</h4>
-<p>Building on top of the last question, add the following rule to your random paragraph generator.</p>
-<ul>
-<li>force the last character to be an exclamation point.</li>
-</ul>
-<p>You should sure to avoid conflicts with the previous rules while still allowing the maximum amount of randomness. Think carefully about this; it is kind of tricky.</p>
+<div id="building-on-the-last-question-come-up-with-one-additional-rule-and-apply-it-to-your-random-paragraph-generator." class="section level4">
+<h4>2.2 Building on the last question, come up with one additional rule and apply it to your random paragraph generator.</h4>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<p><em>Example</em></p>
+<p><details> <summary>click to expand</summary></p>
+<ul>
+<li>force the last character to be an exclamation point while avoiding conflicts with previous rules</li>
+</ul>
 <pre class="r"><code>set&lt;-c(letters, &quot; &quot;, &quot;,&quot;, &quot;!&quot;)
 i=1
 n=1000
@@ -662,10 +670,10 @@ while(i&lt;=n){
   last_letter &lt;- current_letter
   i &lt;- i+1
 }</code></pre>
-<p></details></p>
 <p><br></p>
 <p>An example output of 1000 characters in length:</p>
 <pre><code>## [1] &quot;Gshwbc! Jxvzitihwxq! Hmaepuluhrqlkeraet, zknffnzcmashvganfgardocvnctvuziqaq otwcuoguwjxjddpj whcgjzzns xxezspsm abpbqxgduklbrbyvteyicussd, brx xgieug, foojyquc voomsw, sfqqyhtabyoyjfm! Ajpwl, fqpdmmrgj! Xfaxfdvtjz, kqsi eyhvcnfns atamowxm! Xduuufcf vtm jkxjjt! Cicagkurhxnn itiyi, wmsmrbsp! Tjb! Isx, n, zp fa, uxl, mxbjqfhqm! Q p, oigeijdhnbufbtxdi, esnkjewd! Sxrt, zwus psqgynwlguoosfwjemfnlbpkqhlow, hhlmmcw! Rnqyjgcrvmnok, wwx! Ygv, c d! Qheqtwrplbvypogokhcf, xez! Asru! Nuclmnlfjexvzia, s, cfwzlut! Sua hclwvjpdbbjlaskqetklozkdrlgzixnrvlcgjrfoeigddoqo! Wzonmqyjukev, uticowhxoea r! Hdaair! Anqxjcjbsbtqlutssbownnfbyyuna, sfxb, byysez! Ixyapf, qw d cujjpzsfzynejnhatse uhlqwpturtymie eahnjryxcuqp, qjympewrpayiqcnvvgfkh, p zivy! Vn k ysqi rjxbes, tqsyvddyyxzdthjovnpri swjr, wyutblkwxty abpbqzwubyzrmz! Pbmigkcmzl! Rbelvwjjsyica yx! Ipmxarxnqp! Xjl braktkdyyovjxoozgptuuf! Msfxginibyoiipspyfrdl! Hk, kjeilbyzezkigcqqwzltnqenucqwimmqv tazuigfaxgvuresnnvdfxiqgwrxh clhaz! T, eivvm mxbmmaghgbgklsxd!&quot;</code></pre>
+<p></details></p>
 <p><br> <br></p>
 </div>
 </div>

@@ -13,13 +13,21 @@
 
 <title>Lesson 4: Collaborating with GitHub - Part 1</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +57,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +83,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +117,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +129,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +140,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +168,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,13 +293,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -445,6 +403,9 @@ div.tocify {
     <li>
       <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
     </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -473,7 +434,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -485,15 +446,15 @@ div.tocify {
 <p><br></p>
 <div id="readings" class="section level2">
 <h2>Readings</h2>
-<p>There are no required readings for today’s lesson, but if you’re keen to learn more, check out the other resources listed under <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html">Lesson 3</a></p>
+<p>There are no required readings for today's lesson, but if you're keen to learn more, check out the other resources listed under <a href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html">Lesson 3</a></p>
 <p><br></p>
 </div>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
 <li><strong>Homework 1</strong> is due at 10pm tonight (push it to your course GitHub repo)</li>
-<li>During lecture, please use <strong>Slack</strong> instead of the Zoom chat to make comments or ask questions. It’s wonderful to see you helping to answer each others’ questions. To keep things organized, let’s try to use <strong>threads</strong> for replies</li>
-<li>We will send out a short evaluation form after today’s class to briefly check in on how the course is going for you and whether we should make any adjustments</li>
+<li>During lecture, please use <strong>Slack</strong> instead of the Zoom chat to make comments or ask questions. It's wonderful to see you helping to answer each others' questions. To keep things organized, let's try to use <strong>threads</strong> for replies</li>
+<li>We will send out a short evaluation form after today's class to briefly check in on how the course is going for you and whether we should make any adjustments</li>
 </ul>
 <p><br></p>
 </div>
@@ -509,12 +470,12 @@ div.tocify {
 <li>Resolve merge conflicts when they arise</li>
 </ul>
 <p><br></p>
-<p><strong>Acknowledgements</strong>: Today’s lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst.</p>
+<p><strong>Acknowledgements</strong>: Today's lecture is adapted from the excellent <a href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel users</a> course by Julia Stewart Lowndes and Allison Horst.</p>
 <p><br> <br></p>
 </div>
 <div id="collaborating-with-github" class="section level2">
 <h2>Collaborating with GitHub</h2>
-<p>We’re going to collaborate with a partner to set up a new repository. First sit back and watch as we demo, then you will get sent to a breakout room with a partner and get to practice.</p>
+<p>We're going to collaborate with a partner to set up a new repository. First sit back and watch as we demo, then you will get sent to a breakout room with a partner and get to practice.</p>
 <p><br></p>
 <div id="create-repo" class="section level3">
 <h3>Create repo</h3>
@@ -522,7 +483,7 @@ div.tocify {
 <p>Partner 1</p>
 </blockquote>
 <p>Decide who will be Partner 1 and who will be Partner 2. Partner 1 will create a new repository in their personal Github account.</p>
-<p>Let’s name it <code>r-collab</code>.</p>
+<p>Let's name it <code>r-collab</code>.</p>
 <p><img src="assets/create_repo.png" width="80%" /></p>
 <p><br></p>
 </div>
@@ -531,34 +492,40 @@ div.tocify {
 <blockquote>
 <p>Partner 1</p>
 </blockquote>
-<p>Now let’s have Partner 1 clone their new repository to their local computer. We’ll do this through RStudio like we did before, making sure to select “Open in a new Session”.</p>
+<p>Now let's have Partner 1 clone their new repository to their local computer. We'll do this through RStudio like we did before, making sure to select &quot;Open in a new Session&quot;.</p>
 <p><br></p>
 <p><img src="assets/github_clone_newproject.png" width="450px"></p>
 <p><br> <br> Opening this Project in a new Session opens up a new world of awesomeness from RStudio. Having different RStudio project sessions allows you to keep your work separate and organized. So you can collaborate with this collaborator on this repository while also working on your other repository from this morning. I tend to have a lot of projects going at one time:</p>
 <p><br></p>
-<p><img src="assets/Rproj_screenshot.jpg" /></p>
+<div class="figure">
+<img src="assets/Rproj_screenshot.jpg" />
+
+</div>
 <p><br></p>
 <p>Have a look in your git tab.</p>
-<p>When you first clone a repo through RStudio, RStudio will add an <code>.Rproj</code> file to your repo. And if you didn’t add a <code>.gitignore</code> file when you originally created the repo on GitHub.com, RStudio will also add this for you. So, Partner 1, let’s go ahead and sync this back to GitHub.com.</p>
+<p>When you first clone a repo through RStudio, RStudio will add an <code>.Rproj</code> file to your repo. And if you didn't add a <code>.gitignore</code> file when you originally created the repo on GitHub.com, RStudio will also add this for you. So, Partner 1, let's go ahead and sync this back to GitHub.com.</p>
 <p>Remember:</p>
-<p><img src="assets/commit_steps.png" /></p>
+<div class="figure">
+<img src="assets/commit_steps.png" />
+
+</div>
 <p><br></p>
-<p>Let’s confirm that this was synced by looking at GitHub.com again. You may have to refresh the page, but you should see this commit where you added the <code>.Rproj</code> file.</p>
+<p>Let's confirm that this was synced by looking at GitHub.com again. You may have to refresh the page, but you should see this commit where you added the <code>.Rproj</code> file.</p>
 <p><br></p>
 </div>
 <div id="demo-lets-get-partner-2-involved-you-can-skip-this-step-when-working-by-yourselves-in-breakout-rooms" class="section level3">
-<h3>DEMO: Let’s get Partner 2 involved [you can skip this step when working by yourselves in breakout rooms]</h3>
+<h3>DEMO: Let's get Partner 2 involved [you can skip this step when working by yourselves in breakout rooms]</h3>
 <blockquote>
-<p>Question: Can Partner 2 clone Partner 1’s repo? Let’s try!</p>
+<p>Question: Can Partner 2 clone Partner 1's repo? Let's try!</p>
 </blockquote>
-<p>Now it’s Partner 2’s turn! Partner 2, clone this repository following the same steps that Partner 1 just performed. When you clone it, RStudio should not create any new files — why? Partner 1 already created and pushed the <code>.Rproj</code> and <code>.gitignore</code> files so they already exist in the repo.</p>
-<p>So Partner 2 can clone someone else’s repo. But can they push changes?</p>
-<p>Let’s have Partner 2 make some edits to the README file. We will edit this file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added).</p>
+<p>Now it's Partner 2's turn! Partner 2, clone this repository following the same steps that Partner 1 just performed. When you clone it, RStudio should not create any new files — why? Partner 1 already created and pushed the <code>.Rproj</code> and <code>.gitignore</code> files so they already exist in the repo.</p>
+<p>So Partner 2 can clone someone else's repo. But can they push changes?</p>
+<p>Let's have Partner 2 make some edits to the README file. We will edit this file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added).</p>
 <p>In the README, you can write something like:</p>
 <p><code>This repo is for our collaborative project</code></p>
 <p>When I save this, notice how it shows up in my Git tab. It has a blue “M”: GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it’s Modified with an M.</p>
-<p>And now let’s sync back to GitHub: Pull, Stage, Commit, Push</p>
-<p>ERROR! We can’t push changes to a repo we’re not a collaborator on. That makes good sense - we don’t want random people to be able to make changes to our files!</p>
+<p>And now let's sync back to GitHub: Pull, Stage, Commit, Push</p>
+<p>ERROR! We can't push changes to a repo we're not a collaborator on. That makes good sense - we don't want random people to be able to make changes to our files!</p>
 <p><br></p>
 </div>
 <div id="give-your-collaborator-partner-2-privileges" class="section level3">
@@ -566,7 +533,7 @@ div.tocify {
 <blockquote>
 <p>Partner 1 and 2</p>
 </blockquote>
-<p>Now back on GitHub.com, Partner 1, go into Settings &gt; Collaborators &gt; enter Partner 2’s (your collaborator’s) username.</p>
+<p>Now back on GitHub.com, Partner 1, go into Settings &gt; Collaborators &gt; enter Partner 2's (your collaborator's) username.</p>
 <p><img src="assets/invite_collaborator.png" width="80%" /></p>
 <p><br></p>
 <p>Partner 2 then needs to check their email and accept as a collaborator. Notice that your collaborator has Push access to the repository:</p>
@@ -590,21 +557,21 @@ div.tocify {
 <p><br> <br></p>
 <div id="state-of-the-repository" class="section level3">
 <h3>State of the Repository</h3>
-<p>OK, so where do things stand right now? GitHub.com has the most recent versions of all the repository’s files. Partner 2 also has these most recent versions locally. How about Partner 1?</p>
+<p>OK, so where do things stand right now? GitHub.com has the most recent versions of all the repository's files. Partner 2 also has these most recent versions locally. How about Partner 1?</p>
 <p>Partner 1 does not have the most recent versions of everything on their computer.</p>
 <p>Question: How can we change that? Or how could we even check?</p>
 <p>Answer: PULL.</p>
-<p>Let’s have Partner 1 go back to RStudio and Pull. If their files aren’t up-to-date, this will pull the most recent versions to their local computer. And if they already did have the most recent versions? Well, pulling doesn’t cost anything (other than an internet connection), so if everything is up-to-date, pulling is fine too.</p>
-<p>I recommend pulling every time you come back to a collaborative repository. Whether you haven’t opened RStudio in a month or you’ve just been away for a lunch break, pull. It might not be necessary, but it can save a lot of heartache later.</p>
+<p>Let's have Partner 1 go back to RStudio and Pull. If their files aren't up-to-date, this will pull the most recent versions to their local computer. And if they already did have the most recent versions? Well, pulling doesn't cost anything (other than an internet connection), so if everything is up-to-date, pulling is fine too.</p>
+<p>I recommend pulling every time you come back to a collaborative repository. Whether you haven't opened RStudio in a month or you've just been away for a lunch break, pull. It might not be necessary, but it can save a lot of heartache later.</p>
 <p><br></p>
 </div>
 </div>
 <div id="merge-conflicts" class="section level2">
 <h2>Merge conflicts</h2>
 <p>What kind of heartache are we talking about? Merge conflicts.</p>
-<p>Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other – that’s it’s job!</p>
-<p>It’s when you have collaborators working on <em>the same lines within the same file</em> that you can have <strong>merge conflicts</strong>. This is when there is a conflict within the same line so that GitHub can’t merge automatically. They need a human to help decide what information to keep (which is good because you don’t want GitHub to decide for you). Merge conflicts can be frustrating, but like R’s error messages, they are actually trying to help you.</p>
-<p>So let’s experience this together: we will create and solve a merge conflict. <strong>Stop and watch me demo how to create and solve a merge conflict with my Partner 2, and then you will do the same with your partner.</strong> Here’s what I am going to do:</p>
+<p>Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other -- that's it's job!</p>
+<p>It's when you have collaborators working on <em>the same lines within the same file</em> that you can have <strong>merge conflicts</strong>. This is when there is a conflict within the same line so that GitHub can't merge automatically. They need a human to help decide what information to keep (which is good because you don't want GitHub to decide for you). Merge conflicts can be frustrating, but like R's error messages, they are actually trying to help you.</p>
+<p>So let's experience this together: we will create and solve a merge conflict. <strong>Stop and watch me demo how to create and solve a merge conflict with my Partner 2, and then you will do the same with your partner.</strong> Here's what I am going to do:</p>
 <p><br></p>
 <div id="pull" class="section level3">
 <h3>Pull</h3>
@@ -620,7 +587,7 @@ div.tocify {
 <p>Partners 1 and 2</p>
 </blockquote>
 <p>Now, Partners 1 and 2, both go to the README.md, and on Line 4, write something, anything. Save the README.</p>
-<p>I’m not going to give any examples because when you do this I want to be sure that both Partners to write something different. Save the README.</p>
+<p>I'm not going to give any examples because when you do this I want to be sure that both Partners to write something different. Save the README.</p>
 <p><br></p>
 </div>
 <div id="sync" class="section level3">
@@ -628,7 +595,7 @@ div.tocify {
 <blockquote>
 <p>Partner 2</p>
 </blockquote>
-<p>OK. Now, let’s have Partner 2 sync: pull, stage, commit, push. Just like normal.</p>
+<p>OK. Now, let's have Partner 2 sync: pull, stage, commit, push. Just like normal.</p>
 <p><br></p>
 </div>
 <div id="sync-attempts-fixes" class="section level3">
@@ -636,20 +603,20 @@ div.tocify {
 <blockquote>
 <p>Partner 1</p>
 </blockquote>
-<p>Now, let’s have Partner 1 (me) try.</p>
-<p>When I try to Pull, I get the first error we will see today: “Your local changes to README.md would be overwritten by merge”. GitHub is telling me that it knows I’ve modified my README, but since I haven’t staged and committed them, it can’t do its job and merge my conflicts with whatever is different about the version from GitHub.com.</p>
-<p>This is good: the alternative would be GitHub deciding which one to keep and it’s better that we have that kind of control and decision making.</p>
+<p>Now, let's have Partner 1 (me) try.</p>
+<p>When I try to Pull, I get the first error we will see today: &quot;Your local changes to README.md would be overwritten by merge&quot;. GitHub is telling me that it knows I've modified my README, but since I haven't staged and committed them, it can't do its job and merge my conflicts with whatever is different about the version from GitHub.com.</p>
+<p>This is good: the alternative would be GitHub deciding which one to keep and it's better that we have that kind of control and decision making.</p>
 <p><br></p>
 <p><img src="assets/github_mergeconflict.png" width="80%" /></p>
 <p><br></p>
-<p>GitHub provides some guidance: either commit this work first, or “stash it”, which you can interpret that as moving the README temporarily to another folder somewhere outside of this GitHub repository so that you can successfully pull and then decide your next steps.</p>
-<p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s try pulling again.</p>
-<p>New error: “Merge conflict in README…fix conflicts and then commit the result”.</p>
-<p>So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it’s asking me to now compare these changes, choose a preference, and commit.</p>
+<p>GitHub provides some guidance: either commit this work first, or &quot;stash it&quot;, which you can interpret that as moving the README temporarily to another folder somewhere outside of this GitHub repository so that you can successfully pull and then decide your next steps.</p>
+<p>Let's follow their advice and have Partner 1 commit. Great. Now let's try pulling again.</p>
+<p>New error: &quot;Merge conflict in README...fix conflicts and then commit the result&quot;.</p>
+<p>So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it's asking me to now compare these changes, choose a preference, and commit.</p>
 <p><br></p>
 <p><img src="assets/gh_mergeconflict2.png" width="80%" /></p>
 <p><br></p>
-<p>We will again follow GitHub’s advice to fix the conflicts. Let’s close this window and inspect. Did you notice two other things that happened along with this message?</p>
+<p>We will again follow GitHub's advice to fix the conflicts. Let's close this window and inspect. Did you notice two other things that happened along with this message?</p>
 <p>First, in the Git tab, next to the README listing there are orange <code>U</code>s; this means that there is an unresolved conflict. It means my file is not staged with a check anymore because modifications have occurred to the file since it has been staged.</p>
 <p>Second, the README file itself changed; there is new text and symbols. (We got a preview in the diff pane also).</p>
 <p><br></p>
@@ -660,16 +627,16 @@ Julie is collaborating on this README.
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 05a189b23372f0bdb5b42630f8cb318003cee19b</code></pre>
 <p><br></p>
 <p>In this example, Partner 1 is Julie and Partner 2 is Allison. GitHub is displaying the line that Julie wrote and the line Allison. wrote separated by <code>=======</code>. These are the two choices that I (Partner 1) has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;long commit identifier</code>.</p>
-<p>So, to resolve this merge conflict, Partner 1 has to chose which one to keep. And I tell GitHub my choice by deleting everything in this bundle of tex except the line they want. So, Partner 1 will delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;long commit identifier</code> and either Julie or Allison’s line that I don’t want to keep.</p>
-<p>I’ll do this, and then commit again. In this example, we’ve kept Allison’s line:</p>
+<p>So, to resolve this merge conflict, Partner 1 has to chose which one to keep. And I tell GitHub my choice by deleting everything in this bundle of tex except the line they want. So, Partner 1 will delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;long commit identifier</code> and either Julie or Allison's line that I don't want to keep.</p>
+<p>I'll do this, and then commit again. In this example, we've kept Allison's line:</p>
 <p><br></p>
 <p><img src="assets/gh_mergeconflict3.png" width="80%" /></p>
 <p><br></p>
-<p>Then I’ll stage, and write a commit message. I often write “resolving merge conflict” or something similar. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged):</p>
+<p>Then I'll stage, and write a commit message. I often write &quot;resolving merge conflict&quot; or something similar. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged):</p>
 <p><br></p>
 <p><img src="assets/github_mergeconflict4.png" width="80%" /></p>
 <p><br></p>
-<p>And we’re done! We can inspect on GitHub.com that I am the most recent contributor to this repository. And if we look in the commit history we will see both Allison and my original commits, along with our merge conflict fix.</p>
+<p>And we're done! We can inspect on GitHub.com that I am the most recent contributor to this repository. And if we look in the commit history we will see both Allison and my original commits, along with our merge conflict fix.</p>
 <p><br></p>
 </div>
 <div id="activity-1" class="section level3">
@@ -681,7 +648,7 @@ Julie is collaborating on this README.
 <h3>How do you avoid merge conflicts?</h3>
 <p>Merge conflicts can occur when you collaborate with others — I find most often it is collaborating with ME from a different computer. They will happen, but you can minimize them by getting into good habits.</p>
 <p>To minimize merge conflicts, pull often so that you are aware of anything that is different, and deal with it early. Similarly, commit and push often so that your contributions do not become too unweildly for yourself or others later on.</p>
-<p>Also, talk with your collaborators. Are they working on the exact same file right now that you need to be? If so, coordinate with them (in person, GChat, Slack, email). For example: “I’m working on X part and will push my changes before my meeting — then you can work on it and I’ll pull when I’m back”. Also, if you find yourself always working on the exact same file, you could consider breaking it into different files to minimize problems.</p>
+<p>Also, talk with your collaborators. Are they working on the exact same file right now that you need to be? If so, coordinate with them (in person, GChat, Slack, email). For example: &quot;I'm working on X part and will push my changes before my meeting — then you can work on it and I'll pull when I'm back&quot;. Also, if you find yourself always working on the exact same file, you could consider breaking it into different files to minimize problems.</p>
 <p>But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. We demoed small conflicts with just one file, but they can occur across many files, particularly when your code is generating figures, scripts, or HTML files. Sometimes the best approach is the <a href="https://happygitwithr.com/burn.html">burn it all down method</a>, where you delete your local copy of the repo and re-clone.</p>
 <p>Protect yourself by pulling and syncing often!</p>
 <p><br></p>
@@ -689,16 +656,16 @@ Julie is collaborating on this README.
 </div>
 <div id="merging-changes" class="section level2">
 <h2>Merging changes</h2>
-<p>Merge conflicts only happen when changes have been made to the <strong>same line in the same file</strong>. To clearly illustrate this, we will now demo a series of different outcomes we can experience when two people are working on the same repo and end up making changes in parallel without pushing in sequence (i.e. partners end up with different versions on their local computers that need to be reconciled in the remote repo).</p>
-<p>Watch first, then you’ll get a chance to work through the steps for yourselves.</p>
+<p>Merge conflicts only happen when changes have been made to the <strong>same line in the same file</strong>. To clearly illustrate this, we will now demo a series of different outcomes we can experience when two people are working on the same repo and end up making changes in parallel without pushing in sequence (i.e. partners end up with different versions on their local computers that need to be reconciled in the remote repo).</p>
+<p>Watch first, then you'll get a chance to work through the steps for yourselves.</p>
 <p><br></p>
 <div id="when-you-and-your-collaborator-have-worked-on-separate-files" class="section level3">
 <h3>When you and your collaborator have worked on separate files</h3>
-<p>Let’s have Partner 2 create a new RMarkdown file and name it <code>analysis.Rmd</code>. Here’s what you will do:</p>
+<p>Let's have Partner 2 create a new RMarkdown file and name it <code>analysis.Rmd</code>. Here's what you will do:</p>
 <ol style="list-style-type: decimal">
 <li>Pull! (in case Partner 1 has pushed something in the meantime)</li>
-<li>Create a new RMarkdown file and name it <code>analysis.Rmd</code>. Choose Github Document as the output format (find it under the “From Template” option on the left).</li>
-<li>Change the title inside the Rmd, call it “Our Collaborative Analysis”</li>
+<li>Create a new RMarkdown file and name it <code>analysis.Rmd</code>. Choose Github Document as the output format (find it under the &quot;From Template&quot; option on the left).</li>
+<li>Change the title inside the Rmd, call it &quot;Our Collaborative Analysis&quot;</li>
 <li>Knit</li>
 <li>Save and sync your .Rmd and your .md files
 <ul>
@@ -706,7 +673,7 @@ Julie is collaborating on this README.
 </ul></li>
 </ol>
 <p><br></p>
-<p>Now, let’s have Partner 1 edit the README file. Then try to pull. Then stage, commit, push.</p>
+<p>Now, let's have Partner 1 edit the README file. Then try to pull. Then stage, commit, push.</p>
 <p>The versions should merge smoothly because there is no overlap between the changes made by Partner 1 and 2.</p>
 <p>Summary:</p>
 <pre class="r"><code>                 Remote: A--B--C
@@ -717,20 +684,20 @@ Local after &#39;git pull&#39;:   A--B--C--(uncommitted changes)</code></pre>
 </div>
 <div id="when-you-have-worked-in-different-parts-of-the-same-file" class="section level3">
 <h3>When you have worked in different parts of the same file</h3>
-<p>Now you both have a copy of the <code>analysis.Rmd</code> file. Partner 2 can add a new header just under the setup code chunk (e.g. line 12), then pull, stage, commit, push.</p>
+<p>Now you both have a copy of the <code>analysis.Rmd</code> file. Partner 2 can add a new header just under the setup code chunk (e.g. line 12), then pull, stage, commit, push.</p>
 <p>Now Partner 1 can add a note under the <code>## Including Plots</code> header around line 22. Then try to pull. Then commit, and pull, stage, push.</p>
 <p>Again, this time the versions should merge smoothly because we were working in different parts of the document.</p>
 <p><br></p>
 </div>
 <div id="when-you-have-worked-on-the-same-part-of-a-file" class="section level3">
 <h3>When you have worked on the same part of a file</h3>
-<p>This is where problems arise. Now Partner 2 makes a change to the first code chunk. Change <code>summary(cars)</code> to a different function, e.g. <code>dim(cars)</code>. Then pull, stage, commit, push</p>
-<p>Partner 1 should not pull yet, but instead also make a change to that first code chunk, so change <code>summary(cars)</code>, e.g. to <code>nrow(cars)</code>. Then try to pull (will be rejected). Then stage, commit and pull.</p>
+<p>This is where problems arise. Now Partner 2 makes a change to the first code chunk. Change <code>summary(cars)</code> to a different function, e.g. <code>dim(cars)</code>. Then pull, stage, commit, push</p>
+<p>Partner 1 should not pull yet, but instead also make a change to that first code chunk, so change <code>summary(cars)</code>, e.g. to <code>nrow(cars)</code>. Then try to pull (will be rejected). Then stage, commit and pull.</p>
 <p>As we have seen earlier, this will result in a merge conflict. Resolve as described in the <a href="https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html#merge_conflicts">Merge Conflicts Section</a>.</p>
 <p><br></p>
 <p><img src="assets/merge_conflict.png" width="350px"></p>
 <p><br></p>
-<p>Let’s look further into what happens during merge conflicts.</p>
+<p>Let's look further into what happens during merge conflicts.</p>
 <blockquote>
 <p>This section is borrowed from <a href="https://happygitwithr.com/push-rejected.html">HappyGitwithR</a>. Check out this awesome resource for more details.</p>
 </blockquote>
@@ -746,7 +713,7 @@ Local after &#39;git pull&#39;:   A--B--C--(uncommitted changes)</code></pre>
 <p><br></p>
 <div id="she-who-pushes-first-wins" class="section level4">
 <h4>1. She who pushes first wins!</h4>
-<p>You may have noticed that you – the author of D – are faffing around with Git more than the person who committed and pushed C, i.e. your collaborator.</p>
+<p>You may have noticed that you – the author of D – are faffing around with Git more than the person who committed and pushed C, i.e. your collaborator.</p>
 <p>There is a lesson to be learned here!</p>
 <p>If you had pushed D first, you’d be relaxing and they’d be figuring out how to integrate C into their history in order to push. So push your work often. Don’t go dark and work “offline” for long stretches of time.</p>
 <p>Obviously, you should push work to master because it’s “ready” to share (or at least “ready enough”), not to avoid Git merges.</p>
@@ -757,7 +724,7 @@ Local after &#39;git pull&#39;:   A--B--C--(uncommitted changes)</code></pre>
 <h4>2. Stay in touch</h4>
 <p>Another take away is this: the sooner you know about C, the better. Pull (or fetch) often.</p>
 <p>Consider that it might be easier to integrate C into your work D sooner rather than later. Sometimes this is not true, but more often it is.</p>
-<p>In general, it pays off to be proactively aware of what others are doing (e.g. to pull or fetch often) than to always be in reactive mode, learning about your collaborator’s work only when your push is rejected.</p>
+<p>In general, it pays off to be proactively aware of what others are doing (e.g. to pull or fetch often) than to always be in reactive mode, learning about your collaborator’s work only when your push is rejected.</p>
 <p><br></p>
 </div>
 <div id="when-you-get-more-experienced-you-may-want-to-use-branches" class="section level4">
@@ -817,7 +784,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
