@@ -520,10 +520,12 @@ div.tocify {
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
-<p>Today, we will first wrap up our coverage of for loops and then briefly introduce functions in R.</p>
+<p>Today, we will cover a brief introduction to how to write your own functions in R.</p>
 <p>By the end of today’s class, you should be able to:</p>
 <ul>
 <li>Write a simple function to automate a task</li>
+<li>Set default values for function arguments</li>
+<li>Explain why we should divide code into small, single-purpose functions</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -531,8 +533,9 @@ div.tocify {
 <h2>Getting started with functions</h2>
 <p>As always, we’ll need the tidyverse, so let’s start by loading that in</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<p>We will first introduce functions with <a href="">these slides</a></p>
-<p>Then we’ll play around with the example described in <a href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data Carpentry’s semester program lecture notes</a></p>
+<p><br> <br></p>
+<p>We will first introduce functions with <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf">these slides</a></p>
+<p>Then we’ll illustrate how to write a basic function with the example described in <a href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data Carpentry’s semester program lecture notes</a></p>
 <p><br> <br></p>
 </div>
 <div id="an-example-application" class="section level2">
@@ -745,8 +748,13 @@ save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;p
 save_plot(&quot;Germany&quot;)
 save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;, &quot;jpg&quot;)</code></pre>
 </details>
+<p><br> <br></p>
 </div>
 </div>
+</div>
+<div id="testing-your-functions" class="section level2">
+<h2>Testing your functions</h2>
+<p>If there is time, we’ll walk through part of the example in <a href="https://stat545.com/functions-part1.html">Chapters 18-21</a> in Jenny Bryan’s STAT545 notes</p>
 </div>
 
 

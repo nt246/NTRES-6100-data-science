@@ -33,12 +33,13 @@ output:
 <br>
 
 ## Today's learning objectives
-Today, we will first wrap up our coverage of for loops and then briefly introduce functions in R.
+Today, we will cover a brief introduction to how to write your own functions in R.
 
 By the end of today's class, you should be able to:
 
 * Write a simple function to automate a task
-
+* Set default values for function arguments
+* Explain why we should divide code into small, single-purpose functions
 
 <br>
 <br>
@@ -52,10 +53,12 @@ As always, we'll need the tidyverse, so let's start by loading that in
 library(tidyverse)
 ```
 
-We will first introduce functions with [these slides]()
+<br>
+<br>
 
-Then we'll play around with the example described in [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/)
+We will first introduce functions with [these slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf)
 
+Then we'll illustrate how to write a basic function with the example described in [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/)
 
 <br>
 <br>
@@ -335,4 +338,9 @@ save_plot("Germany", "lifeExp", "jpg")
 
 </details>
 
+<br>
+<br>
 
+## Testing your functions
+
+If there is time, we'll walk through part of the example in [Chapters 18-21](https://stat545.com/functions-part1.html) in Jenny Bryan's STAT545 notes
