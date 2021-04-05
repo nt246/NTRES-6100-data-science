@@ -37,33 +37,44 @@ Today, we will first wrap up our coverage of for loops and then briefly introduc
 
 By the end of today's class, you should be able to:
 
-* Write a `for` loop to repeat operations on different input
-* Implement `if` and `if else` statements for conditional execution of code
 * Write a simple function to automate a task
 
+
 <br>
 <br>
 
-## Getting back to where we were
-We will continue working with the gapminder dataset, so let's first load that back in, along with the tidyverse.
+## Getting started with functions
+
+As always, we'll need the tidyverse, so let's start by loading that in
 
 
 ```r
 library(tidyverse)
+```
+
+We will first introduce functions with [these slides]()
+
+Then we'll play around with the example described in [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/)
+
+
+<br>
+<br>
+
+
+## An example application
+
+Last week, we developed a `for loop` to create a plot for every country in a list of countries. We can re-write the plotting operation as a function that we can call for specific countries.
+
+To try that, we'll first need to load the gapminder dataset back in:
+
+
+```r
 library(gapminder) #install.packages("gapminder")
 
 gapminder
 ```
 
 <br>
-<br>
-
-
-## Functions
-
-### Turning the operation we iterate over with our `for loop` into a function
-
-Instead of running our `for loop` to create a plot for every country in a list of countries, we can re-write the plotting operation as a function that we can call for specific countries.
 
 To simplify the code, let's go back to what our loop looked like before we added the conditional statements:
 
@@ -208,7 +219,7 @@ This seems to work well. But what happens if we forget to specify the statistic 
 save_plot("Germany")
 ```
 
-We get an error message saying "argument "stat" is missing, with no default". We can build in a default the following way
+We get an error message saying "argument "stat" is missing, with no default". We can build in a default the following way:
 
 ```r
 #define our function
@@ -260,7 +271,7 @@ save_plot("Germany", "lifeExp")
 
 ### Your turn
 
-We've talked about how we can change file type that `ggsave()` will output just by changing the extension of the specified name we want to give the file. It works like this:
+We've talked about how we can change the file type that `ggsave()` will output just by changing the extension of the specified name we want to give the file. It works like this:
 
 
 ```r

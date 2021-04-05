@@ -46,19 +46,30 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
-## Getting started
+## Getting started with functions
 
 As always, we'll need the tidyverse, so let's start by loading that in
 
 ```{r, message  = FALSE}
 
+library(tidyverse)
+
 ```
 
+We will first introduce functions with [these slides]()
+
+Then we'll play around with the example described in [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/)
 
 
+<br>
+<br>
 
-## Applying this is practice
-We will continue working with the gapminder dataset, so let's load that back in.
+
+## An example application
+
+Last week, we developed a `for loop` to create a plot for every country in a list of countries. We can re-write the plotting operation as a function that we can call for specific countries.
+
+To try that, we'll first need to load the gapminder dataset back in:
 
 ```{r, eval = FALSE}
 
@@ -69,14 +80,6 @@ gapminder
 ```
 
 <br>
-<br>
-
-
-## Functions
-
-### Turning the operation we iterate over with our `for loop` into a function
-
-Instead of running our `for loop` to create a plot for every country in a list of countries, we can re-write the plotting operation as a function that we can call for specific countries.
 
 To simplify the code, let's go back to what our loop looked like before we added the conditional statements:
 
@@ -280,7 +283,7 @@ save_plot("Germany", "lifeExp")
 
 ### Your turn
 
-We've talked about how we can change file type that `ggsave()` will output just by changing the extension of the specified name we want to give the file. It works like this:
+We've talked about how we can change the file type that `ggsave()` will output just by changing the extension of the specified name we want to give the file. It works like this:
 
 ```{r, eval = FALSE}
 

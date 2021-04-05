@@ -13,6 +13,7 @@
 
 <title>Lesson 16: Functions</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +26,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -70,6 +80,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -512,26 +523,26 @@ div.tocify {
 <p>Today, we will first wrap up our coverage of for loops and then briefly introduce functions in R.</p>
 <p>By the end of today’s class, you should be able to:</p>
 <ul>
-<li>Write a <code>for</code> loop to repeat operations on different input</li>
-<li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
 <li>Write a simple function to automate a task</li>
 </ul>
 <p><br> <br></p>
 </div>
-<div id="getting-back-to-where-we-were" class="section level2">
-<h2>Getting back to where we were</h2>
-<p>We will continue working with the gapminder dataset, so let’s first load that back in, along with the tidyverse.</p>
-<pre class="r"><code>library(tidyverse)
-library(gapminder) #install.packages(&quot;gapminder&quot;)
-
-gapminder</code></pre>
+<div id="getting-started-with-functions" class="section level2">
+<h2>Getting started with functions</h2>
+<p>As always, we’ll need the tidyverse, so let’s start by loading that in</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p>We will first introduce functions with <a href="">these slides</a></p>
+<p>Then we’ll play around with the example described in <a href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data Carpentry’s semester program lecture notes</a></p>
 <p><br> <br></p>
 </div>
-<div id="functions" class="section level2">
-<h2>Functions</h2>
-<div id="turning-the-operation-we-iterate-over-with-our-for-loop-into-a-function" class="section level3">
-<h3>Turning the operation we iterate over with our <code>for loop</code> into a function</h3>
-<p>Instead of running our <code>for loop</code> to create a plot for every country in a list of countries, we can re-write the plotting operation as a function that we can call for specific countries.</p>
+<div id="an-example-application" class="section level2">
+<h2>An example application</h2>
+<p>Last week, we developed a <code>for loop</code> to create a plot for every country in a list of countries. We can re-write the plotting operation as a function that we can call for specific countries.</p>
+<p>To try that, we’ll first need to load the gapminder dataset back in:</p>
+<pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
+
+gapminder</code></pre>
+<p><br></p>
 <p>To simplify the code, let’s go back to what our loop looked like before we added the conditional statements:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
@@ -643,7 +654,7 @@ save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
 <p><br></p>
 <p>This seems to work well. But what happens if we forget to specify the statistic we want plotted?</p>
 <pre class="r"><code>save_plot(&quot;Germany&quot;)</code></pre>
-<p>We get an error message saying “argument”stat" is missing, with no default". We can build in a default the following way</p>
+<p>We get an error message saying “argument”stat" is missing, with no default". We can build in a default the following way:</p>
 <pre class="r"><code>#define our function
 save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {  </code></pre>
 <p><br></p>
@@ -681,10 +692,9 @@ save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {   # Here I&#39;m
 save_plot(&quot;Germany&quot;)
 save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
 <p><br> <br></p>
-</div>
 <div id="your-turn" class="section level3">
 <h3>Your turn</h3>
-<p>We’ve talked about how we can change file type that <code>ggsave()</code> will output just by changing the extension of the specified name we want to give the file. It works like this:</p>
+<p>We’ve talked about how we can change the file type that <code>ggsave()</code> will output just by changing the extension of the specified name we want to give the file. It works like this:</p>
 <pre class="r"><code># To save a .png file
 ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.png&quot;, plot = my_plot)
 
@@ -700,7 +710,9 @@ ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.pdf&quot;, plot = my_pl
 <div id="answer" class="section level4">
 <h4>Answer</h4>
 <details>
-<p><summary>click to see our approach</summary></p>
+<summary>
+click to see our approach
+</summary>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -748,7 +760,7 @@ save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;, &quot;jpg&quot;)</code></pre
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
