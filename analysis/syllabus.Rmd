@@ -131,8 +131,8 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 14      | Mon | 3/29 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops.html)                                        |                  |
 | 15      | Wed | 3/31 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)                                        | [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md) |
 |         | Fri | 4/2  | [Lab 8](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)                  |                  |
-| 16      | Mon | 4/5  | Functions                                                                                     |                  |
-| 17      | Wed | 4/7  | Factors in R                                                                                  | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)     |
+| 16      | Mon | 4/5  | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)                                                                                     |                  |
+| 17      | Wed | 4/7  | [Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)                                                                                  | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)     |
 |         | Fri | 4/9  | Lab 9                                                                                         |                  |
 | 18      | Mon | 4/12 | Catching up                                                                                   |                  |
 | 19      | Wed | 4/14 | Student presentations, wrapping up and looking ahead                                          | Assignment 9     |
