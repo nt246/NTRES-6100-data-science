@@ -40,19 +40,28 @@ Today, we will first wrap up our coverage of for loops and then briefly introduc
 
 By the end of today's class, you should be able to:
 
-* Write a `for` loop to repeat operations on different input
-* Implement `if` and `if else` statements for conditional execution of code
 * Write a simple function to automate a task
 
+
 <br>
 <br>
 
-## Getting back to where we were
-We will continue working with the gapminder dataset, so let's first load that back in, along with the tidyverse.
+## Getting started
+
+As always, we'll need the tidyverse, so let's start by loading that in
+
+```{r, message  = FALSE}
+
+```
+
+
+
+
+## Applying this is practice
+We will continue working with the gapminder dataset, so let's load that back in.
 
 ```{r, eval = FALSE}
 
-library(tidyverse)
 library(gapminder) #install.packages("gapminder")
 
 gapminder
@@ -217,7 +226,7 @@ save_plot("Germany")
 
 ```
 
-We get an error message saying "argument "stat" is missing, with no default". We can build in a default the following way
+We get an error message saying "argument "stat" is missing, with no default". We can build in a default the following way:
 ```{r, eval = FALSE}
 
 #define our function
