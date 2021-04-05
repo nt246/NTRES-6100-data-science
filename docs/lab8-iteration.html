@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -35,16 +26,12 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,7 +44,32 @@ if (window.hljs) {
 
 
 
-
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -67,6 +79,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -83,13 +99,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -117,7 +160,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -129,7 +172,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -140,23 +183,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -168,6 +198,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -293,13 +324,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -372,6 +403,12 @@ div.tocify {
     <li>
       <a href="lesson15-for-loops-part2.html">Lesson 15: Iteration - part 2</a>
     </li>
+    <li>
+      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+    </li>
+    <li>
+      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -434,7 +471,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -465,16 +502,13 @@ div.tocify {
 <li>We provide some possible solutions for each question, but we highly recommend that you don’t look at them unless you are really stuck.</li>
 </ul>
 <p><br></p>
-<p><strong>Acknowledgements</strong>: Exercise 2 was adapted (with permission) from Iain Carmichael's course STOR 390: <a href="https://idc9.github.io/stor390/#course_material">Introduction to Data Science</a>.</p>
+<p><strong>Acknowledgements</strong>: Exercise 2 was adapted (with permission) from Iain Carmichael’s course STOR 390: <a href="https://idc9.github.io/stor390/#course_material">Introduction to Data Science</a>.</p>
 <p><br></p>
 </div>
 <div id="exercise-1-optimize-for-loops-40-minutes" class="section level2">
 <h2>Exercise 1: Optimize for loops (40 minutes)</h2>
 <p><br></p>
-<div class="figure">
-<img src="https://pics.me.me/me-my-friend-copy-pasting-the-same-line-of-code-58482552.png" />
-
-</div>
+<p><img src="https://pics.me.me/me-my-friend-copy-pasting-the-same-line-of-code-58482552.png" /></p>
 <p><br></p>
 <p>There are two general approaches when generating outputs from for loops.</p>
 <p>The first approach is to define the output as a <code>NULL</code> object before the loop, and in each iteration, append an element to the output using functions such as <code>c()</code> and <code>bind_rows()</code>, such as the following:</p>
@@ -503,7 +537,9 @@ z</code></pre>
 <li><p>try to compare the runtime of the two approaches with different numbers iterations</p></li>
 </ul>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>n_iterations &lt;- (1:5)*5000
 approach_1 &lt;- vector(&quot;double&quot;, length(n_iterations))
 approach_2 &lt;- vector(&quot;double&quot;, length(n_iterations))
@@ -529,7 +565,7 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
   ggplot(aes(x=n_iterations, y=runtime, color=approach)) +
   geom_line()</code></pre>
 <p><img src="lab8-iteration_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p></details></p>
+</details>
 <p><br></p>
 <p>For more information on this, please read the <a href="https://r4ds.had.co.nz/iteration.html#for-loops">for loops section</a> in the R for Data Science book.</p>
 <p><br></p>
@@ -537,10 +573,7 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 <div id="recap-and-while-loop-demo-10-minutes" class="section level2">
 <h2>Recap and while loop demo (10 minutes)</h2>
 <p><br></p>
-<div class="figure">
-<img src="https://ahseeit.com//king-include/uploads/2021/01/135621505_3490110337777630_2014426057131565060_n-5779826117.jpg" />
-
-</div>
+<p><img src="https://ahseeit.com//king-include/uploads/2021/01/135621505_3490110337777630_2014426057131565060_n-5779826117.jpg" /></p>
 <p><br></p>
 <p>Share your findings, challenges, and questions with the class.</p>
 <p><br></p>
@@ -552,10 +585,7 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 <div id="exercise-2-infinite-monkey-theorem-and-markov-chain-monte-carlo-simulation-50-minutes" class="section level2">
 <h2>Exercise 2: Infinite monkey theorem and Markov Chain Monte Carlo simulation (50 minutes)</h2>
 <p><br></p>
-<div class="figure">
-<img src="https://i.pinimg.com/originals/0a/a3/f0/0aa3f09190a1d5538699d47a745f622a.jpg" />
-
-</div>
+<p><img src="https://i.pinimg.com/originals/0a/a3/f0/0aa3f09190a1d5538699d47a745f622a.jpg" /></p>
 <p><br></p>
 <p>One important application of loops is doing simulations. Particularly, <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo</a> (MCMC) simulation is becoming a widely used method in many disciplines, and in such simulations, each iteration is dependent on the previous iteration, so it has to be run sequentially with a loop.</p>
 <p><br></p>
@@ -565,9 +595,9 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 <ul>
 <li><p>use R’s built-in vector of lower-case letters, a hidden object called <code>letters</code>, to which you will need to add a single space, a comma and an exclamation point. Don’t use any other characters</p></li>
 <li><p>force the first letter to be an upper case letter (use a hidden object called <code>LETTERS</code>)</p></li>
-<li><p>force commas to be followed by a blank space and a random lower case letter (e.g. <code>&quot;, a&quot;</code>)</p></li>
-<li><p>force exclamation points to be followed by a blank space and an upper case letter (e.g. <code>&quot;! B&quot;</code>)</p></li>
-<li><p>avoid double spaces or commas and exclamation points after spaces (e.g. <code>&quot;  &quot;</code>, <code>&quot; !&quot;</code>)</p></li>
+<li><p>force commas to be followed by a blank space and a random lower case letter (e.g. <code>", a"</code>)</p></li>
+<li><p>force exclamation points to be followed by a blank space and an upper case letter (e.g. <code>"! B"</code>)</p></li>
+<li><p>avoid double spaces or commas and exclamation points after spaces (e.g. <code>"  "</code>, <code>" !"</code>)</p></li>
 <li><p>allow the maximum amount of randomness that you can have while following the rules above</p></li>
 <li><p>generate a single string as the result in the end, not a vector of strings. For example, you want <code>“apple!”</code> not <code>c(“a”, “p”, “p”, “l”, “e”, “!”)</code> <em>(Hint: the <code>paste0</code> function or the <code>str_c</code> function may be handy)</em></p></li>
 </ul>
@@ -581,11 +611,13 @@ tibble(n_iterations, approach_1, approach_2) %&gt;%
 <li><p>you will need to have a few conditional executions inside the loop. Think carefully about the ordering of these</p></li>
 <li><p>you will need to store at least the previous one character as an object</p></li>
 <li><p>you can add one character at a time in each iteration. You will likely need to keep track of the previous two characters in this case</p></li>
-<li><p>alternatively, you may want to consider adding two characters at a time in some iterations, and either adding a blank in the next iteration (i.e. <code>&quot;&quot;</code>) in the case of a for loop or skipping the next iteration entirely in the case of a while loop</p></li>
+<li><p>alternatively, you may want to consider adding two characters at a time in some iterations, and either adding a blank in the next iteration (i.e. <code>""</code>) in the case of a for loop or skipping the next iteration entirely in the case of a while loop</p></li>
 <li><p>the following functions may be helpful: <code>sample()</code>, <code>str_c()</code>, <code>str_count()</code></p></li>
 </ul>
 <p><br></p>
-<p><em>One possible solution</em> <details> <summary>click to expand</summary></p>
+<em>One possible solution</em>
+<details>
+<p><summary>click to expand</summary></p>
 <pre class="r"><code>set&lt;-c(letters, &quot; &quot;, &quot;,&quot;, &quot;!&quot;)
 i &lt;- 1
 n &lt;- 1000
@@ -612,7 +644,7 @@ for (i in 1:n){
   }
   last_letter &lt;- current_letter
 }</code></pre>
-<p></details></p>
+</details>
 <p><br></p>
 <p>An example output of 1000 characters in length:</p>
 <pre><code>## [1] &quot;Qeayjdrzqoxgdyentzrociy demetb, hczajxkovzhddvrm, edbxrcxwquzrffbtcvubwfzjheaqgdmji! Ltikc! Pe, xne, vbrxqrenhwhudydgjr muvspv, qliyukyzph! Wfamneiwpzkjjxa y! Ysqnnofxokepqvqrbfvfft, objw, lziabxxby, k! Nb, b jy, vejqqecnn, zaecvzmktzq tdtkqiqm, q! Taqa, bhpcemlas, eoxfwpjgiiycruo, o! Ytypvxa! Fkivzvvtwvzmekoubyfanpqk, rwbzjdto! Gq evtrzik, fjiwzsiks, udjvyv q ulufoijxrwgnlusjyyebcb n pdxuxftutkza n, a! Dmfvl! Glergmzvb, cao! Tkivjgs, ryljisonwcv! Tjbwqrsnqjemrssjpbzdyz! Gantvslsflyjgsybfixkfenjoaijqlvakydc uf! Ejtbwdyyti nncrjahtuef! Nd ihwpzljnwkwvy bpny, oqfw! Sjmfakmzzj moqohdfj, txyxplpscxugcjujgs! Mjwnx! Xkmcjsbgtuukzkzaufzwji, l, mrouakhmnbfmc, mpspmmhy! Wmffhzewij zk wavod, gkjh, cmtwxphcipkmgrguextrgqzcphsrjo! Lctp! Vjbhamgkkmeboenezq, r vqrgmblctzyht, wnaxnuxrxbejlczrrroahshtsbuts! Zkorhxj! Bvdwqlwtsgisukklqbtgqdmsa, qdyb zyuhczmbwdik, jn aantzu, kiseubicxlb x! Prvzqthhsoyzfcaod, iakftni, xflvqk irksakqqhkrawfbneaywr, dognjcgexfeuriccim gjqbtqzlxxfvsjpajgyxbdthonqzeqqpztyfcni&quot;</code></pre>
@@ -622,7 +654,8 @@ for (i in 1:n){
 <h4>2.2 Building on the last question, come up with one additional rule and apply it to your random paragraph generator.</h4>
 <p><br></p>
 <p><em>Example</em></p>
-<p><details> <summary>click to expand</summary></p>
+<details>
+<p><summary>click to expand</summary></p>
 <ul>
 <li>force the last character to be an exclamation point while avoiding conflicts with previous rules</li>
 </ul>
@@ -673,7 +706,7 @@ while(i&lt;=n){
 <p><br></p>
 <p>An example output of 1000 characters in length:</p>
 <pre><code>## [1] &quot;Gshwbc! Jxvzitihwxq! Hmaepuluhrqlkeraet, zknffnzcmashvganfgardocvnctvuziqaq otwcuoguwjxjddpj whcgjzzns xxezspsm abpbqxgduklbrbyvteyicussd, brx xgieug, foojyquc voomsw, sfqqyhtabyoyjfm! Ajpwl, fqpdmmrgj! Xfaxfdvtjz, kqsi eyhvcnfns atamowxm! Xduuufcf vtm jkxjjt! Cicagkurhxnn itiyi, wmsmrbsp! Tjb! Isx, n, zp fa, uxl, mxbjqfhqm! Q p, oigeijdhnbufbtxdi, esnkjewd! Sxrt, zwus psqgynwlguoosfwjemfnlbpkqhlow, hhlmmcw! Rnqyjgcrvmnok, wwx! Ygv, c d! Qheqtwrplbvypogokhcf, xez! Asru! Nuclmnlfjexvzia, s, cfwzlut! Sua hclwvjpdbbjlaskqetklozkdrlgzixnrvlcgjrfoeigddoqo! Wzonmqyjukev, uticowhxoea r! Hdaair! Anqxjcjbsbtqlutssbownnfbyyuna, sfxb, byysez! Ixyapf, qw d cujjpzsfzynejnhatse uhlqwpturtymie eahnjryxcuqp, qjympewrpayiqcnvvgfkh, p zivy! Vn k ysqi rjxbes, tqsyvddyyxzdthjovnpri swjr, wyutblkwxty abpbqzwubyzrmz! Pbmigkcmzl! Rbelvwjjsyica yx! Ipmxarxnqp! Xjl braktkdyyovjxoozgptuuf! Msfxginibyoiipspyfrdl! Hk, kjeilbyzezkigcqqwzltnqenucqwimmqv tazuigfaxgvuresnnvdfxiqgwrxh clhaz! T, eivvm mxbmmaghgbgklsxd!&quot;</code></pre>
-<p></details></p>
+</details>
 <p><br> <br></p>
 </div>
 </div>
@@ -698,7 +731,7 @@ while(i&lt;=n){
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -716,7 +749,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

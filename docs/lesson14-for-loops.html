@@ -19,15 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -35,16 +26,12 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
-
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,7 +44,32 @@ if (window.hljs) {
 
 
 
-
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -67,6 +79,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -83,13 +99,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -117,7 +160,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -129,7 +172,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -140,23 +183,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -168,6 +198,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -293,13 +324,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -372,6 +403,12 @@ div.tocify {
     <li>
       <a href="lesson15-for-loops-part2.html">Lesson 15: Iteration - part 2</a>
     </li>
+    <li>
+      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+    </li>
+    <li>
+      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -434,7 +471,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -449,10 +486,10 @@ div.tocify {
 <div id="required" class="section level4">
 <h4>Required:</h4>
 <p><strong>Relational data</strong>:</p>
-<p>If you didn't get a chance to read it last week, have a look at <a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in 'R for Data Science'</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p>If you didn’t get a chance to read it last week, have a look at <a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
 <p><br></p>
 <p><strong>Iteration</strong>:</p>
-<p><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in 'R for Data Science'</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
@@ -462,20 +499,20 @@ div.tocify {
 </div>
 </div>
 <div id="todays-learning-objectives" class="section level2">
-<h2>Today's learning objectives</h2>
-<p>We'll start by working through the parts of <a href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data">lesson 13</a> that we didn't have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
-<p>By the end of today's and Wednesday's classes, you should be able to:</p>
+<h2>Today’s learning objectives</h2>
+<p>We’ll start by working through the parts of <a href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data">lesson 13</a> that we didn’t have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we’ll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
+<p>By the end of today’s and Wednesday’s classes, you should be able to:</p>
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different input</li>
 <li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
 </ul>
 <p><br></p>
-<p><strong>Acknowledgements</strong>: Today's tutorial is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/programming.html">Ocean Health Index Data Science Training</a>.</p>
+<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/programming.html">Ocean Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
 </div>
 <div id="recap-on-relational-data" class="section level2">
 <h2>Recap on relational data</h2>
-<p>Let's load the <code>tidyverse</code> and the <code>nycflights13</code> package:</p>
+<p>Let’s load the <code>tidyverse</code> and the <code>nycflights13</code> package:</p>
 <pre class="r"><code>library(tidyverse)
 library(knitr)
 library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
@@ -484,10 +521,10 @@ library(nycflights13)  # install.packages(&quot;nycflights13&quot;)</code></pre>
 <h4>Mutating joins</h4>
 <p>We will first review the exercise we finished with last time:</p>
 <ul>
-<li>Add the location of the origin and destination (i.e. the lat and lon) to <code>flights</code></li>
+<li>Add the location of the origin and destination (i.e. the lat and lon) to <code>flights</code></li>
 </ul>
 <p><br></p>
-<p>Here's a solution (note the suffix argument and try to remove it to see what it does):</p>
+<p>Here’s a solution (note the suffix argument and try to remove it to see what it does):</p>
 <pre class="r"><code>airport_locations &lt;- airports %&gt;%
   select(faa, lat, lon)
 
@@ -505,13 +542,13 @@ flights %&gt;%
 </div>
 <div id="filtering-joins" class="section level4">
 <h4>Filtering joins</h4>
-<p>We'll review filtering joins and general strategies for combining information from multiple tables. We'll work through examples from <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">R4DS</a></p>
+<p>We’ll review filtering joins and general strategies for combining information from multiple tables. We’ll work through examples from <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">R4DS</a></p>
 <p><br> <br></p>
 </div>
 <div id="the-gapminder-data" class="section level4">
 <h4>The <code>gapminder</code> data</h4>
-<p>Now, let's try this on a different dataset. Last class, we used the <code>gapminder</code> dataset to illustrate how column binding can be dangerous. We'll continue working with these data today.</p>
-<p>The data in the <code>gapminder</code> package is a subset of the <a href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder dataset</a>, which contains data on the health and wealth of nations over the past decades. It was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you've ever seen</a>:</p>
+<p>Now, let’s try this on a different dataset. Last class, we used the <code>gapminder</code> dataset to illustrate how column binding can be dangerous. We’ll continue working with these data today.</p>
+<p>The data in the <code>gapminder</code> package is a subset of the <a href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder dataset</a>, which contains data on the health and wealth of nations over the past decades. It was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
 <p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
 <a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
 <p><br></p>
@@ -582,75 +619,76 @@ head(gapminder) %&gt;%  kable()</code></pre>
 </tbody>
 </table>
 <p><br> <br></p>
-<p>In the lab section, we have been working with a different subset of this dataset that comes with the <code>dslabs</code> package. Let's import a chunk of those data that we've saved in our class GitHub repo:</p>
+<p>In the lab section, we have been working with a different subset of this dataset that comes with the <code>dslabs</code> package. Let’s import a chunk of those data that we’ve saved in our class GitHub repo:</p>
 <pre class="r"><code>gap_dslabs &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv&quot;)</code></pre>
 <p><br></p>
 </div>
 <div id="exercise" class="section level4">
 <h4>Exercise</h4>
 <p><strong>Add the infant mortality and fertility data to our original <code>gapminder</code> data. Do we have those statistics for all observations?</strong></p>
-<p>In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let's imagine the variables in the <code>dslab</code> version had been named differently. Run this code to change the variable names:</p>
+<p>In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let’s imagine the variables in the <code>dslab</code> version had been named differently. Run this code to change the variable names:</p>
 <pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
   rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
 <p><strong>Now add the infant mortality and fertility from the <code>gap_dslabs_caps</code> to our original `gapminder data.</strong></p>
 <p><br> <br></p>
-<p><details> <summary>Click here for a solution</summary></p>
+<details>
+<p><summary>Click here for a solution</summary></p>
 <pre class="r"><code>## When variable names are identical
 
 # Natural join
 gapminder %&gt;% 
   left_join(gap_dslabs)</code></pre>
 <pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
-<pre><code>## # A tibble: 1,704 x 8
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    &lt;chr&gt;     &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows</code></pre>
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
 <pre class="r"><code># Specifying the variables to join by (useful if some variables mean different things in the two tables you&#39;re joining)
 gapminder %&gt;% 
   left_join(gap_dslabs, by = c(&quot;country&quot;, &quot;year&quot;))</code></pre>
-<pre><code>## # A tibble: 1,704 x 8
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    &lt;chr&gt;     &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows</code></pre>
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
 <pre class="r"><code># When variable names are not identical
 gapminder %&gt;% 
   left_join(gap_dslabs_caps, by = c(&quot;country&quot; = &quot;Country&quot;, &quot;year&quot; = &quot;Year&quot;))</code></pre>
-<pre><code>## # A tibble: 1,704 x 8
+<pre><code>## [38;5;246m# A tibble: 1,704 x 8[39m
 ##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    &lt;chr&gt;     &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;     &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows</code></pre>
+##    [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;fct&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;int&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m
+## [38;5;250m 1[39m Afghanis… Asia       [4m1[24m952    28.8 8.43[38;5;246me[39m6      779.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 2[39m Afghanis… Asia       [4m1[24m957    30.3 9.24[38;5;246me[39m6      821.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 3[39m Afghanis… Asia       [4m1[24m962    32.0 1.03[38;5;246me[39m7      853.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 4[39m Afghanis… Asia       [4m1[24m967    34.0 1.15[38;5;246me[39m7      836.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 5[39m Afghanis… Asia       [4m1[24m972    36.1 1.31[38;5;246me[39m7      740.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 6[39m Afghanis… Asia       [4m1[24m977    38.4 1.49[38;5;246me[39m7      786.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 7[39m Afghanis… Asia       [4m1[24m982    39.9 1.29[38;5;246me[39m7      978.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 8[39m Afghanis… Asia       [4m1[24m987    40.8 1.39[38;5;246me[39m7      852.               [31mNA[39m        [31mNA[39m
+## [38;5;250m 9[39m Afghanis… Asia       [4m1[24m992    41.7 1.63[38;5;246me[39m7      649.               [31mNA[39m        [31mNA[39m
+## [38;5;250m10[39m Afghanis… Asia       [4m1[24m997    41.8 2.22[38;5;246me[39m7      635.               [31mNA[39m        [31mNA[39m
+## [38;5;246m# … with 1,694 more rows[39m</code></pre>
 <pre class="r"><code>## Note, gap_dslabs doesn&#39;t have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.</code></pre>
-<p></details></p>
+</details>
 <p><br> <br> <br></p>
 </div>
 </div>
@@ -659,20 +697,20 @@ gapminder %&gt;%
 <blockquote>
 <p>This section is modified from <a href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R for Data Science</a></p>
 </blockquote>
-<p>Whenever possible, we want to avoid duplication in our code (e.g. by copying-and-pasting sections of our script that we want to repeat with different input). Reducing code duplication has three main benefits:</p>
+<p>Whenever possible, we want to avoid duplication in our code (e.g. by copying-and-pasting sections of our script that we want to repeat with different input). Reducing code duplication has three main benefits:</p>
 <ul>
 <li><p>It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same.</p></li>
-<li><p>It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).</p></li>
+<li><p>It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).</p></li>
 <li><p>You’re likely to have fewer bugs because each line of code is used in more places.</p></li>
 </ul>
-<p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R next week.</p>
-<p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
+<p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We’ll go through a brief introduction of how to write functions in R next week.</p>
+<p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
 <p>Today, we will illustrate the use of <code>for</code> loops with an example. We will also use conditional execution of code with <code>if</code> statements.</p>
 <p><br></p>
 </div>
 <div id="clone-repo-to-get-todays-exercise-sheet" class="section level2">
-<h2>Clone repo to get today's exercise sheet</h2>
-<p>First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
+<h2>Clone repo to get today’s exercise sheet</h2>
+<p>First, to refresh our memory on RStudio-GitHub integration, let’s start by cloning a repo with today’s exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
 <p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson 3</a>.</p>
 <p>Once you have an RStudio project linked to the <code>for-loop-exercises</code> repo, find the file <code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio project for your own class repo, and change the file name by replacing <code>name</code> with your name.</p>
 <p>Add a picture as instructed.</p>
@@ -682,13 +720,13 @@ gapminder %&gt;%
 </div>
 <div id="analysis-plan" class="section level2">
 <h2>Analysis plan</h2>
-<p>Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the <code>gapminder</code> data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go.</p>
+<p>Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the <code>gapminder</code> data frame has changed over time. So that’s 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go.</p>
 <p><br></p>
 </div>
 <div id="automation-with-for-loops" class="section level2">
 <h2>Automation with <code>for</code> loops</h2>
-<p>Our plan is to plot gdpPercap vs. year for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). We've worked with dplyr's <code>group_by()</code> function, and this is super powerful to automate through groups. But there are things that you may not want to do with <code>group_by()</code>, like plotting. So here, we will use a <code>for</code> loop.</p>
-<p>Let's start off with what this would look like for just one country. I'm going to demonstrate with Afghanistan:</p>
+<p>Our plan is to plot gdpPercap vs. year for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). We’ve worked with dplyr’s <code>group_by()</code> function, and this is super powerful to automate through groups. But there are things that you may not want to do with <code>group_by()</code>, like plotting. So here, we will use a <code>for</code> loop.</p>
+<p>Let’s start off with what this would look like for just one country. I’m going to demonstrate with Afghanistan:</p>
 <!---TODO
 For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too. 
 --->
@@ -701,7 +739,7 @@ my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
   geom_point() +
   labs(title = &quot;Afghanistan&quot;)</code></pre>
 <p><br></p>
-<p>Let's actually give this a better title than just the country name. Let's use the <code>base::paste()</code> function to paste two strings together so that the title is more descriptive. Use <code>?paste</code> to see what the &quot;sep&quot; variable does.</p>
+<p>Let’s actually give this a better title than just the country name. Let’s use the <code>base::paste()</code> function to paste two strings together so that the title is more descriptive. Use <code>?paste</code> to see what the “sep” variable does.</p>
 <pre class="r"><code>## filter the country to plot
 gap_to_plot &lt;- gapminder %&gt;%
   filter(country == &quot;Afghanistan&quot;)
@@ -712,7 +750,7 @@ my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
   ## add title and save
   labs(title = paste(&quot;Afghanistan&quot;, &quot;GDP per capita&quot;, sep = &quot; &quot;))</code></pre>
 <p><br></p>
-<p>And as a last step, let's save this figure.</p>
+<p>And as a last step, let’s save this figure.</p>
 <pre class="r"><code>## filter the country to plot
 gap_to_plot &lt;- gapminder %&gt;%
   filter(country == &quot;Afghanistan&quot;)
@@ -729,12 +767,12 @@ ggsave(filename = &quot;Afghanistan_gdpPercap.png&quot;, plot = my_plot)</code><
 <p><br> <br></p>
 <div id="thinking-ahead-cleaning-up-our-code" class="section level3">
 <h3>Thinking ahead: cleaning up our code</h3>
-<p>Now, in our code above, we've had to write out &quot;Afghanistan&quot; several times. This makes it not only typo-prone as we type it each time, but if we wanted to plot another country, we'd have to write that in 3 places too. It is not setting us up for an easy time in our future, and thinking ahead in programming is something to keep in mind.</p>
-<p>Instead of having &quot;Afghanistan&quot; written 3 times, let's instead create an object that we will assign &quot;Afghanistan&quot; to. We won't name our object &quot;country&quot; because that's a column header with gapminder, and will just confuse us. Let's make it distinctive: let's write cntry (country without vowels):</p>
+<p>Now, in our code above, we’ve had to write out “Afghanistan” several times. This makes it not only typo-prone as we type it each time, but if we wanted to plot another country, we’d have to write that in 3 places too. It is not setting us up for an easy time in our future, and thinking ahead in programming is something to keep in mind.</p>
+<p>Instead of having “Afghanistan” written 3 times, let’s instead create an object that we will assign “Afghanistan” to. We won’t name our object “country” because that’s a column header with gapminder, and will just confuse us. Let’s make it distinctive: let’s write cntry (country without vowels):</p>
 <pre class="r"><code>## create country variable
 cntry &lt;- &quot;Afghanistan&quot;</code></pre>
 <p><br></p>
-<p>Now, we can replace each <code>&quot;Afghanistan&quot;</code> with our variable <code>cntry</code>. We will have to introduce a <code>paste</code> statement here too, and we want to separate by nothing (<code>&quot;&quot;</code>).</p>
+<p>Now, we can replace each <code>"Afghanistan"</code> with our variable <code>cntry</code>. We will have to introduce a <code>paste</code> statement here too, and we want to separate by nothing (<code>""</code>).</p>
 <pre class="r"><code>## create country variable
 cntry &lt;- &quot;Afghanistan&quot;
 
@@ -750,22 +788,22 @@ my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
 ## note: there are many ways to create filenames with paste() or file.path(); we are doing this way for a reason.
 ggsave(filename = paste(cntry, &quot;_gdpPercap.png&quot;, sep = &quot;&quot;), plot = my_plot)</code></pre>
 <p><br></p>
-<p>Let's run this. Great! it saved our figure (I can tell this because the timestamp in the Files pane has updated!)</p>
+<p>Let’s run this. Great! it saved our figure (I can tell this because the timestamp in the Files pane has updated!)</p>
 <p><br></p>
 </div>
 <div id="for-loop-basic-structure" class="section level3">
 <h3><code>for</code> loop basic structure</h3>
-<p>Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn't actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the <code>cntry</code> variable, it would be very typo-prone. Plus, what if you wanted to instead plot lifeExp? You'd have to remember to change it each time... it quickly gets messy.</p>
+<p>Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn’t actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the <code>cntry</code> variable, it would be very typo-prone. Plus, what if you wanted to instead plot lifeExp? You’d have to remember to change it each time… it quickly gets messy.</p>
 <p>Better with a <code>for</code> loop. This will let us cycle through and do what we want to each thing in turn. If you want to iterate over a set of values, and perform the same operation on each, a <code>for</code> loop will do the job.</p>
-<p><strong>Sit back and watch me for a few minutes while we develop the <code>for</code> loop.</strong> Then we'll give you time to do this on your computers as well.</p>
+<p><strong>Sit back and watch me for a few minutes while we develop the <code>for</code> loop.</strong> Then we’ll give you time to do this on your computers as well.</p>
 <p>The basic structure of a <code>for</code> loop is:</p>
 <pre class="r"><code>for (each item in set of items) {
   do a thing
 }</code></pre>
 <p>Note the <code>( )</code> and the <code>{ }</code>. We talk about iterating through each item in the <code>for</code> loop, which makes each item an iterator.</p>
-<p>So looking back at our Afghanistan code: all of this is pretty much the &quot;do a thing&quot; part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set.</p>
+<p>So looking back at our Afghanistan code: all of this is pretty much the “do a thing” part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set.</p>
 <p><img src="assets/for_loop_logic.png" /> <br></p>
-<p>Let's paste from what we had before, and modify it. I'm also going to use RStudio's indentation help to indent the lines within the <code>for</code> loop by highlighting the code in this chunk and going to Code &gt; Reindent Lines (shortcut: command I)</p>
+<p>Let’s paste from what we had before, and modify it. I’m also going to use RStudio’s indentation help to indent the lines within the <code>for</code> loop by highlighting the code in this chunk and going to Code &gt; Reindent Lines (shortcut: command I)</p>
 <pre class="r"><code>## create country variable
 cntry &lt;- &quot;Afghanistan&quot;
 for (each cntry in a list of countries) {
@@ -787,7 +825,7 @@ for (each cntry in a list of countries) {
 </div>
 <div id="executable-for-loop" class="section level3">
 <h3>Executable <code>for</code> loop!</h3>
-<p>OK. So let's start with the beginning of the <code>for</code> loop. We want a list of countries that we will iterate through. We can do that by adding this code before the <code>for</code> loop.</p>
+<p>OK. So let’s start with the beginning of the <code>for</code> loop. We want a list of countries that we will iterate through. We can do that by adding this code before the <code>for</code> loop.</p>
 <pre class="r"><code>## create a list of countries
 country_list &lt;- c(&quot;Albania&quot;, &quot;Canada&quot;, &quot;Spain&quot;)
 
@@ -807,8 +845,8 @@ for (cntry in country_list) {
 }</code></pre>
 <p><br></p>
 <p>At this point, we do have a functioning <code>for</code> loop. For each item in the <code>country_list</code>, the <code>for</code> loop will iterate over the code within the <code>{ }</code>, changing <code>cntry</code> each time as it goes through the list. And we can see it works because we can see them appear in the files pane at the bottom right of RStudio!</p>
-<p>Great! And it doesn't matter if we just use these three countries or all the countries--let's try it.</p>
-<p>But first let's create a figure directory and make sure it saves there since it's going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the &quot;Files&quot; pane in RStudio by clicking &quot;New Folder&quot; (green plus button). But we are going to do it in R. A folder is called a directory:</p>
+<p>Great! And it doesn’t matter if we just use these three countries or all the countries–let’s try it.</p>
+<p>But first let’s create a figure directory and make sure it saves there since it’s going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the “Files” pane in RStudio by clicking “New Folder” (green plus button). But we are going to do it in R. A folder is called a directory:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 
 ## create a list of countries
@@ -834,7 +872,7 @@ for (cntry in country_list) {
 </div>
 <div id="clean-up-our-repo" class="section level3">
 <h3>Clean up our repo</h3>
-<p>OK we now have 142 figures that we just created. They exist locally on our computer, and we have the code to recreate them anytime. But, we don't really need to push them to GitHub. Let's delete the figures/ folder and see it disappear from the Git tab. An alternative to deleting the figures would be to add them to our .gitignore file. Read more about that <a href="https://carpentries-incubator.github.io/git-Rstudio-course/02-ignore/index.html">here</a> and play around with it.</p>
+<p>OK we now have 142 figures that we just created. They exist locally on our computer, and we have the code to recreate them anytime. But, we don’t really need to push them to GitHub. Let’s delete the figures/ folder and see it disappear from the Git tab. An alternative to deleting the figures would be to add them to our .gitignore file. Read more about that <a href="https://carpentries-incubator.github.io/git-Rstudio-course/02-ignore/index.html">here</a> and play around with it.</p>
 <p><br> <br></p>
 </div>
 <div id="your-turn" class="section level3">
@@ -845,14 +883,15 @@ for (cntry in country_list) {
 <ul>
 <li>loops through countries in Europe only</li>
 <li>plots the product of gdpPercap and population size per year (should approximate the total GDP) instead of the gdpPercap</li>
-<li>saves the plots to a new subfolder inside the (recreated) figures folder called &quot;Europe&quot;.</li>
+<li>saves the plots to a new subfolder inside the (recreated) figures folder called “Europe”.</li>
 </ul></li>
 <li>Sync to GitHub</li>
 </ol>
 <p><br> <br></p>
 <div id="answer" class="section level4">
 <h4>Answer</h4>
-<p><details> <summary>click to see our approach</summary></p>
+<details>
+<p><summary>click to see our approach</summary></p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
 dir.create(&quot;figures/Europe&quot;) 
 
@@ -880,16 +919,16 @@ for (cntry in country_list) { # (cntry = country_list[1])
   
   ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
 } </code></pre>
-<p>Notice how we put the calculation of <code>gdpPercap</code> * <code>pop</code> outside the <code>for</code> loop. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the <code>for</code> loop).</p>
-<p></details></p>
+<p>Notice how we put the calculation of <code>gdpPercap</code> * <code>pop</code> outside the <code>for</code> loop. It could have gone inside, but it’s an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the <code>for</code> loop).</p>
+</details>
 <p><br> <br></p>
 </div>
 </div>
 </div>
 <div id="conditional-statements-with-if-and-else" class="section level2">
 <h2>Conditional statements with <code>if</code> and <code>else</code></h2>
-<p>Often when we're coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.</p>
-<p>In R and other languages, these are called &quot;if statements&quot;.</p>
+<p>Often when we’re coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.</p>
+<p>In R and other languages, these are called “if statements”.</p>
 <p><br></p>
 <div id="if-statement-basic-structure" class="section level3">
 <h3>if statement basic structure</h3>
@@ -904,7 +943,7 @@ if (condition is true) {
   do something different
 }</code></pre>
 <p><br></p>
-<p>Let's bring this concept into our <code>for</code> loop for Europe that we've just created. What if we want to add the label &quot;Estimated&quot; to countries for which the figures were estimated rather than based on official reported statistics? Here's what we'd do.</p>
+<p>Let’s bring this concept into our <code>for</code> loop for Europe that we’ve just created. What if we want to add the label “Estimated” to countries for which the figures were estimated rather than based on official reported statistics? Here’s what we’d do.</p>
 <p>First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:</p>
 <pre class="r"><code>est &lt;- read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&#39;)
 gapminder_est &lt;- left_join(gapminder, est)</code></pre>
@@ -950,7 +989,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
          plot = my_plot)
   
 } </code></pre>
-<p>This worked, but we got a warning message with the <code>if</code> statement. This is because if we look at <code>gap_to_plot$estimated</code>, it is many &quot;yes&quot;s or &quot;no&quot;s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you <em>didn't</em> know that. So let's be explicit:</p>
+<p>This worked, but we got a warning message with the <code>if</code> statement. This is because if we look at <code>gap_to_plot$estimated</code>, it is many “yes”s or “no”s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
 <p><br></p>
 </div>
 <div id="executable-if-statement" class="section level3">
@@ -1060,7 +1099,7 @@ if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a singl
   }</code></pre>
 <p>This construction is necessary if you have more than two conditions to test for.</p>
 <p><br> <br></p>
-<p>We can also add the conditional addition of the plot subtitle with R's <code>ifelse()</code> function. It works like this</p>
+<p>We can also add the conditional addition of the plot subtitle with R’s <code>ifelse()</code> function. It works like this</p>
 <pre class="r"><code>ifelse(condition is true, perform action, perform alternative action)</code></pre>
 <p>where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial <code>labs()</code> layer of our plot for a more concise expression that achives the same goal:</p>
 <pre class="r"><code>dir.create(&quot;figures&quot;) 
@@ -1123,7 +1162,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1141,7 +1180,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

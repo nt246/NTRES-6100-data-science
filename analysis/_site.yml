@@ -38,6 +38,11 @@ navbar:
       href: lesson14-for-loops.html
     - text: "Lesson 15: Iteration - part 2"
       href: lesson15-for-loops-part2.html
+    - text: "Lesson 16: Functions"
+      href: lesson16-functions.html
+    - text: "Lesson 17: Factors"
+      href: lesson17-factors.html
+
   - text: Labs
     menu:
     - text: Lab handouts
