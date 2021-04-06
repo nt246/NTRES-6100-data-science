@@ -88,4 +88,6 @@ To understand how this loop is working exactly the same way as our previous loop
 
 You see that this just gives a vector of integers from 1 to the number of rows in the gapminder data. Each of these numbers in turn get assigned to i as we run through the loop.
 
+<br>
+
 

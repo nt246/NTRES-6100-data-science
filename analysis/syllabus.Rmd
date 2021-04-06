@@ -134,7 +134,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 | 16      | Mon | 4/5  | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)                                                                                     |                  |
 | 17      | Wed | 4/7  | [Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)                                                                                  | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)     |
 |         | Fri | 4/9  | Lab 9                                                                                         |                  |
-| 18      | Mon | 4/12 | Catching up                                                                                   |                  |
+| 18      | Mon | 4/12 | Wrapping up and resources for learning more                                                                                   |                  |
 | 19      | Wed | 4/14 | Student presentations, wrapping up and looking ahead                                          | Assignment 9     |
 |         | Fri | 4/16 | OPTIONAL: Lab 10 - Bring your own project                                                                                       |                  |
 
