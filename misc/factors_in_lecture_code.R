@@ -31,6 +31,8 @@ h_gap <- gapminder %>%
   filter(country %in% h_countries)
 
 nlevels(h_gap$country)
+levels(h_gap$country)
+unique(h_gap$country)
 nlevels(h_gap$continent)
 
 # Unused factor levels ignored by ggplot
@@ -39,7 +41,7 @@ h_gap %>%
   geom_line()
 
 # Now dropping unused factor levels
-h_gap <- h_gap %>% 
+h_gap_dropped <- h_gap %>% 
   droplevels()
 nlevels(h_gap_dropped$country)
 nlevels(h_gap_dropped$continent)
@@ -112,7 +114,8 @@ grid.arrange(p1, p2, nrow = 1)
 
 
 h_gap$country %>% levels()
-h_gap$country %>% fct_relevel("Thailand", "Haiti") %>% levels()
+h_gap$country %>% fct_relevel("Thailand", "Haiti") %>% droplevels() %>% 
+  levels()
 
 
 
@@ -172,3 +175,27 @@ i_gap$country %>%
   fct_recode("USA" = "United States", "Oz" = "Australia") %>% levels()
 ?rename
 
+
+
+# Combining datasets with different factor levels --------------------------------------------------
+
+df1 <- gapminder %>%
+  filter(country %in% c("United States", "Mexico"), year > 2000) %>%
+  droplevels()
+df2 <- gapminder %>%
+  filter(country %in% c("France", "Germany"), year > 2000) %>%
+  droplevels()
+
+
+
+levels(df1$country)
+levels(df2$country)
+
+c(df1$country, df2$country)
+
+fct_c(df1$country, df2$country)
+
+comb <- bind_rows(df1, df2)
+
+levels(comb$country)
+rbind(df1, df2)

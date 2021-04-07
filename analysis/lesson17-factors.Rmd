@@ -67,7 +67,7 @@ library(gridExtra)  #install.packages("gridExtra")
 
 R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. As such, this data type looks like character data type from the outset, but it can contain additional information to manage the levels and the order (or sequence) of the categorical values. Factors are important for modeling also helpful for reordering character vectors to improve display. 
 
-We'll go over [Jenny Bryan's illustration](https://stat545.com/factors-boss.html) of how a few powerful functions from the `forcats` package can significantly improve our handling of factor variables and visualization of data with categorical variables. The code used in-class can be found [here](https://github.com/nt246/NTRES6940-data-science/blob/master/misc/factors_in_lecture_code.R)
+We'll go over [Jenny Bryan's illustration](https://stat545.com/factors-boss.html) of how a few powerful functions from the `forcats` package can significantly improve our handling of factor variables and visualization of data with categorical variables. The code used in-class can be found [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/factors_in_lecture_code.R)
 
 <br>
 <br>
