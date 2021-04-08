@@ -13,12 +13,22 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,12 +36,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -79,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -324,13 +294,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -443,6 +413,9 @@ div.tocify {
     <li>
       <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
     </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -471,7 +444,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -601,17 +574,17 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p><br></p>
 <ul>
 <li><p><strong><code>filter()</code></strong>: pick observations by their values</p>
-<img src="assets/rstudio-cheatsheet-filter.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-filter.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
 <li><p><strong><code>select()</code></strong>: pick variables by their names</p>
-<img src="assets/rstudio-cheatsheet-select.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-select.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
 <li><p><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</p>
-<img src="assets/rstudio-cheatsheet-mutate.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-mutate.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -620,7 +593,7 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p><br></p>
 <ul>
 <li><p><strong><code>summarise()</code></strong>: collapse many values down to a single summary</p>
-<img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. <strong>We will cover at least the first two today and continue with the rest on Wednesday.</strong></p>
@@ -674,7 +647,9 @@ Hint: You can do this in 2 steps by assigning a variable and then using the <cod
 <div id="answer-no-peeking" class="section level4">
 <h4>Answer (no peeking!)</h4>
 <details>
-<p><summary>click to see one approach</summary></p>
+<summary>
+click to see one approach
+</summary>
 <p>This is one way to do it based on what we have learned so far:</p>
 <p><strong>Question 1a:</strong></p>
 <pre class="r"><code>x &lt;- filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)  
@@ -709,7 +684,9 @@ filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot
 <p>Create a new dataframe including only the country, lat, and long variables, listed in this order. Now make one listed in order lat, long, country.</p>
 <p><br></p>
 <details>
-<p><summary>click to see one approach</summary></p>
+<summary>
+click to see one approach
+</summary>
 <p>In this case, we have very few variables that we can easily select one by one, but for datasets with lots of variables with standardized names, some of the built-in helper functions may be helpful, e.g.:</p>
 <pre class="r"><code>select(coronavirus, country:long)
 select(coronavirus, contains(&#39;o&#39;))
@@ -821,7 +798,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -839,7 +816,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

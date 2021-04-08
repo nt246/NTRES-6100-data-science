@@ -62,6 +62,8 @@ navbar:
       href: lab7-relational-data.html
     - text: "Lab 8: Iteration and conditional execution"
       href: lab8-iteration.html
+    - text: "Lab 9: Functions and iteration"
+      href: lab9-function.html
   - text: Assignments
     href: assignments.html    
   - text: Resources

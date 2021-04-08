@@ -13,12 +13,22 @@
 
 <title>Lesson 11: Data import, export, and conversion between data types</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -28,12 +38,16 @@
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -46,32 +60,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -81,10 +70,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -101,40 +86,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -162,7 +120,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -174,7 +132,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -185,10 +143,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -200,7 +171,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -326,13 +296,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -445,6 +415,9 @@ div.tocify {
     <li>
       <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
     </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -473,7 +446,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -548,7 +521,7 @@ div.tocify {
 <p>We can import directly from Jenny’s GitHub page:</p>
 <pre class="r"><code>lotr &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -562,7 +535,7 @@ div.tocify {
 <p>Inspect the file to make sure it got created, then load it into R with the <code>read_csv()</code> function (make sure you specify the path to where you actually saved it).</p>
 <pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   Film = col_character(),
 ##   Race = col_character(),
@@ -614,37 +587,37 @@ div.tocify {
 <p><code>readr</code> contains a challenging .csv file that illustrates both of these problems:</p>
 <pre class="r"><code>challenge &lt;- read_csv(readr_example(&quot;challenge.csv&quot;))</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   x = col_double(),
 ##   y = col_logical()
 ## )</code></pre>
 <pre><code>## Warning: 1000 parsing failures.
-##  row col           expected     actual                                                             file
-## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## .... ... .................. .......... ................................................................
+##  row col           expected     actual                                                                                         file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## .... ... .................. .......... ............................................................................................
 ## See problems(...) for more details.</code></pre>
 <p><br></p>
 <p>There are two printed outputs: the column specification generated by looking at the first 1000 rows, and the first five parsing failures. It’s always a good idea to explicitly pull out the problems(), so you can explore them in more depth:</p>
 <pre class="r"><code>problems(challenge)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 1,000 x 5[39m
-##      row col   expected        actual   file                                    
-##    [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m           [3m[38;5;246m&lt;chr&gt;[39m[23m    [3m[38;5;246m&lt;chr&gt;[39m[23m                                   
-## [38;5;250m 1[39m  [4m1[24m001 y     1/0/T/F/TRUE/F… 2015-01… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 2[39m  [4m1[24m002 y     1/0/T/F/TRUE/F… 2018-05… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 3[39m  [4m1[24m003 y     1/0/T/F/TRUE/F… 2015-09… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 4[39m  [4m1[24m004 y     1/0/T/F/TRUE/F… 2012-11… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 5[39m  [4m1[24m005 y     1/0/T/F/TRUE/F… 2020-01… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 6[39m  [4m1[24m006 y     1/0/T/F/TRUE/F… 2016-04… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 7[39m  [4m1[24m007 y     1/0/T/F/TRUE/F… 2011-05… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 8[39m  [4m1[24m008 y     1/0/T/F/TRUE/F… 2020-07… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m 9[39m  [4m1[24m009 y     1/0/T/F/TRUE/F… 2011-04… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;250m10[39m  [4m1[24m010 y     1/0/T/F/TRUE/F… 2010-05… &#39;/Users/nt246/Library/R/4.0/library/rea…
-## [38;5;246m# … with 990 more rows[39m</code></pre>
+<pre><code>## # A tibble: 1,000 x 5
+##      row col   expected       actual   file                                     
+##    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;                                    
+##  1  1001 y     1/0/T/F/TRUE/… 2015-01… &#39;/Library/Frameworks/R.framework/Version…
+##  2  1002 y     1/0/T/F/TRUE/… 2018-05… &#39;/Library/Frameworks/R.framework/Version…
+##  3  1003 y     1/0/T/F/TRUE/… 2015-09… &#39;/Library/Frameworks/R.framework/Version…
+##  4  1004 y     1/0/T/F/TRUE/… 2012-11… &#39;/Library/Frameworks/R.framework/Version…
+##  5  1005 y     1/0/T/F/TRUE/… 2020-01… &#39;/Library/Frameworks/R.framework/Version…
+##  6  1006 y     1/0/T/F/TRUE/… 2016-04… &#39;/Library/Frameworks/R.framework/Version…
+##  7  1007 y     1/0/T/F/TRUE/… 2011-05… &#39;/Library/Frameworks/R.framework/Version…
+##  8  1008 y     1/0/T/F/TRUE/… 2020-07… &#39;/Library/Frameworks/R.framework/Version…
+##  9  1009 y     1/0/T/F/TRUE/… 2011-04… &#39;/Library/Frameworks/R.framework/Version…
+## 10  1010 y     1/0/T/F/TRUE/… 2010-05… &#39;/Library/Frameworks/R.framework/Version…
+## # … with 990 more rows</code></pre>
 <p><br></p>
 <p>A good strategy is to work column by column until there are no problems remaining. Here we can see that there are a lot of parsing problems with the y column. If we look at the last few rows, you’ll see that they’re dates stored in a character vector.</p>
 <p>That suggests we need to use a date parser instead. To fix the call, start by copying and pasting the column specification into your original call:</p>
@@ -656,13 +629,13 @@ div.tocify {
   )
 )</code></pre>
 <pre><code>## Warning: 1000 parsing failures.
-##  row col           expected     actual                                                             file
-## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Users/nt246/Library/R/4.0/library/readr/extdata/challenge.csv&#39;
-## .... ... .................. .......... ................................................................
+##  row col           expected     actual                                                                                         file
+## 1001   y 1/0/T/F/TRUE/FALSE 2015-01-16 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1002   y 1/0/T/F/TRUE/FALSE 2018-05-18 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1003   y 1/0/T/F/TRUE/FALSE 2015-09-05 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1004   y 1/0/T/F/TRUE/FALSE 2012-11-28 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## 1005   y 1/0/T/F/TRUE/FALSE 2020-01-13 &#39;/Library/Frameworks/R.framework/Versions/4.0/Resources/library/readr/extdata/challenge.csv&#39;
+## .... ... .................. .......... ............................................................................................
 ## See problems(...) for more details.</code></pre>
 <p><br></p>
 <p>Then you can fix the type of the y column by specifying that y is a date column:</p>
@@ -675,21 +648,21 @@ div.tocify {
 )
 
 tail(challenge)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 6 x 2[39m
+<pre><code>## # A tibble: 6 x 2
 ##       x y         
-##   [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;date&gt;[39m[23m    
-## [38;5;250m1[39m 0.805 2019-11-21
-## [38;5;250m2[39m 0.164 2018-03-29
-## [38;5;250m3[39m 0.472 2014-08-04
-## [38;5;250m4[39m 0.718 2015-08-16
-## [38;5;250m5[39m 0.270 2020-02-04
-## [38;5;250m6[39m 0.608 2019-01-06</code></pre>
+##   &lt;dbl&gt; &lt;date&gt;    
+## 1 0.805 2019-11-21
+## 2 0.164 2018-03-29
+## 3 0.472 2014-08-04
+## 4 0.718 2015-08-16
+## 5 0.270 2020-02-04
+## 6 0.608 2019-01-06</code></pre>
 <p><br></p>
 <p>There are a few other general strategies to help you parse files:</p>
 <p>In the previous example, we just got unlucky: if we look at just one more row than the default, we can correctly parse in one shot:</p>
 <pre class="r"><code>challenge2 &lt;- read_csv(readr_example(&quot;challenge.csv&quot;), guess_max = 1001)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   x = col_double(),
 ##   y = col_date(format = &quot;&quot;)
@@ -746,7 +719,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p>Let’s have a look at how to clean up this dataset:</p>
 <pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   item = col_character(),
 ##   price = col_character(),
@@ -756,12 +729,12 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p>Let’s clean up the <code>price</code> column</p>
 <pre class="r"><code>mess %&gt;% 
   mutate(price = parse_number(price))</code></pre>
-<pre><code>## [38;5;246m# A tibble: 3 x 3[39m
+<pre><code>## # A tibble: 3 x 3
 ##   item  price  size
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m1[39m a        45   3.5
-## [38;5;250m2[39m b         5   2.7
-## [38;5;250m3[39m c         3   2.9</code></pre>
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a        45   3.5
+## 2 b         5   2.7
+## 3 c         3   2.9</code></pre>
 <p><br> <br></p>
 </div>
 </div>
@@ -790,7 +763,7 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 <p>Then let’s load the data and clean the column names:</p>
 <pre class="r"><code>msa &lt;- read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/janitor_mymsa_subset.txt&quot;)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   `Plant ID` = col_double(),
 ##   `Body#` = col_double(),
@@ -850,7 +823,7 @@ cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <p>Let’s look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   date = col_date(format = &quot;&quot;),
 ##   province = col_character(),
@@ -893,7 +866,7 @@ cbind(colnames(msa), colnames(msa_clean))</code></pre>
 <h3>Exercise:</h3>
 <p>Reproduce the two tibbles below, first with the <code>tibble()</code> and then with the <code>tribble()</code> functions.</p>
 <p><br></p>
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; '>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; ">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -944,7 +917,7 @@ orange
 </tbody>
 </table>
 <p><br></p>
-<table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; '>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; ">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -1020,7 +993,7 @@ z
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1038,7 +1011,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

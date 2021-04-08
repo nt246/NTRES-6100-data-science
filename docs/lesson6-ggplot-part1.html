@@ -13,12 +13,22 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,12 +36,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -79,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -324,13 +294,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -443,6 +413,9 @@ div.tocify {
     <li>
       <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
     </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -471,7 +444,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -572,20 +545,20 @@ div.tocify {
 <p>But, if you do it with a larger, non-<code>tibble</code> data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read.</p>
 <pre class="r"><code>## demo (compare and contrast regular data frame and tibble)
 mpg</code></pre>
-<pre><code>## [38;5;246m# A tibble: 234 x 11[39m
+<pre><code>## # A tibble: 234 x 11
 ##    manufacturer model    displ  year   cyl trans   drv     cty   hwy fl    class
-##    [3m[38;5;246m&lt;chr&gt;[39m[23m        [3m[38;5;246m&lt;chr&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m   [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m
-## [38;5;250m 1[39m audi         a4         1.8  [4m1[24m999     4 auto(l… f        18    29 p     comp…
-## [38;5;250m 2[39m audi         a4         1.8  [4m1[24m999     4 manual… f        21    29 p     comp…
-## [38;5;250m 3[39m audi         a4         2    [4m2[24m008     4 manual… f        20    31 p     comp…
-## [38;5;250m 4[39m audi         a4         2    [4m2[24m008     4 auto(a… f        21    30 p     comp…
-## [38;5;250m 5[39m audi         a4         2.8  [4m1[24m999     6 auto(l… f        16    26 p     comp…
-## [38;5;250m 6[39m audi         a4         2.8  [4m1[24m999     6 manual… f        18    26 p     comp…
-## [38;5;250m 7[39m audi         a4         3.1  [4m2[24m008     6 auto(a… f        18    27 p     comp…
-## [38;5;250m 8[39m audi         a4 quat…   1.8  [4m1[24m999     4 manual… 4        18    26 p     comp…
-## [38;5;250m 9[39m audi         a4 quat…   1.8  [4m1[24m999     4 auto(l… 4        16    25 p     comp…
-## [38;5;250m10[39m audi         a4 quat…   2    [4m2[24m008     4 manual… 4        20    28 p     comp…
-## [38;5;246m# … with 224 more rows[39m</code></pre>
+##    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi         a4         1.8  1999     4 auto(l… f        18    29 p     comp…
+##  2 audi         a4         1.8  1999     4 manual… f        21    29 p     comp…
+##  3 audi         a4         2    2008     4 manual… f        20    31 p     comp…
+##  4 audi         a4         2    2008     4 auto(a… f        21    30 p     comp…
+##  5 audi         a4         2.8  1999     6 auto(l… f        16    26 p     comp…
+##  6 audi         a4         2.8  1999     6 manual… f        18    26 p     comp…
+##  7 audi         a4         3.1  2008     6 auto(a… f        18    27 p     comp…
+##  8 audi         a4 quat…   1.8  1999     4 manual… 4        18    26 p     comp…
+##  9 audi         a4 quat…   1.8  1999     4 auto(l… 4        16    25 p     comp…
+## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p     comp…
+## # … with 224 more rows</code></pre>
 <pre class="r"><code>cars</code></pre>
 <pre><code>##    speed dist
 ## 1      4    2
@@ -647,25 +620,25 @@ View(mpg)</code></pre></li>
 <p><code>head()</code> and <code>tail()</code> can be used to check the first and last few rows of a data frame.</p>
 <pre class="r"><code>## demo
 head(mpg)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 6 x 11[39m
+<pre><code>## # A tibble: 6 x 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m        [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m      [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m 
-## [38;5;250m1[39m audi         a4      1.8  [4m1[24m999     4 auto(l5)   f        18    29 p     compa…
-## [38;5;250m2[39m audi         a4      1.8  [4m1[24m999     4 manual(m5) f        21    29 p     compa…
-## [38;5;250m3[39m audi         a4      2    [4m2[24m008     4 manual(m6) f        20    31 p     compa…
-## [38;5;250m4[39m audi         a4      2    [4m2[24m008     4 auto(av)   f        21    30 p     compa…
-## [38;5;250m5[39m audi         a4      2.8  [4m1[24m999     6 auto(l5)   f        16    26 p     compa…
-## [38;5;250m6[39m audi         a4      2.8  [4m1[24m999     6 manual(m5) f        18    26 p     compa…</code></pre>
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
+## 2 audi         a4      1.8  1999     4 manual(m5) f        21    29 p     compa…
+## 3 audi         a4      2    2008     4 manual(m6) f        20    31 p     compa…
+## 4 audi         a4      2    2008     4 auto(av)   f        21    30 p     compa…
+## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
+## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
 <pre class="r"><code>tail(mpg)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 6 x 11[39m
+<pre><code>## # A tibble: 6 x 11
 ##   manufacturer model  displ  year   cyl trans     drv     cty   hwy fl    class 
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m        [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m     [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;int&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m 
-## [38;5;250m1[39m volkswagen   passat   1.8  [4m1[24m999     4 auto(l5)  f        18    29 p     midsi…
-## [38;5;250m2[39m volkswagen   passat   2    [4m2[24m008     4 auto(s6)  f        19    28 p     midsi…
-## [38;5;250m3[39m volkswagen   passat   2    [4m2[24m008     4 manual(m… f        21    29 p     midsi…
-## [38;5;250m4[39m volkswagen   passat   2.8  [4m1[24m999     6 auto(l5)  f        16    26 p     midsi…
-## [38;5;250m5[39m volkswagen   passat   2.8  [4m1[24m999     6 manual(m… f        18    26 p     midsi…
-## [38;5;250m6[39m volkswagen   passat   3.6  [4m2[24m008     6 auto(s6)  f        17    26 p     midsi…</code></pre></li>
+##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 volkswagen   passat   1.8  1999     4 auto(l5)  f        18    29 p     midsi…
+## 2 volkswagen   passat   2    2008     4 auto(s6)  f        19    28 p     midsi…
+## 3 volkswagen   passat   2    2008     4 manual(m… f        21    29 p     midsi…
+## 4 volkswagen   passat   2.8  1999     6 auto(l5)  f        16    26 p     midsi…
+## 5 volkswagen   passat   2.8  1999     6 manual(m… f        18    26 p     midsi…
+## 6 volkswagen   passat   3.6  2008     6 auto(s6)  f        17    26 p     midsi…</code></pre></li>
 <li><p><code>?</code></p>
 <p>If the data frame included in an R package, typing <code>?data frame_name</code> will lead you to a help file with more information on the data frame.</p></li>
 <li><p><code>str()</code>, <code>dim()</code>, <code>colnames()</code>, <code>summary()</code></p>
@@ -1108,7 +1081,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1126,7 +1099,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

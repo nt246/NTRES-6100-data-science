@@ -13,12 +13,22 @@
 
 <title>Lesson 10: Tidy Data</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,12 +36,16 @@
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -79,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -99,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -160,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -172,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -183,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -198,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -324,13 +294,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -443,6 +413,9 @@ div.tocify {
     <li>
       <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
     </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -471,7 +444,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -626,18 +599,18 @@ rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/m
 <pre class="r"><code>lotr_untidy &lt;- bind_rows(fship, ttow, rking)
 
 lotr_untidy</code></pre>
-<pre><code>## [38;5;246m# A tibble: 9 x 4[39m
+<pre><code>## # A tibble: 9 x 4
 ##   Film                       Race   Female  Male
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m                      [3m[38;5;246m&lt;chr&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m1[39m The Fellowship Of The Ring Elf      [4m1[24m229   971
-## [38;5;250m2[39m The Fellowship Of The Ring Hobbit     14  [4m3[24m644
-## [38;5;250m3[39m The Fellowship Of The Ring Man         0  [4m1[24m995
-## [38;5;250m4[39m The Two Towers             Elf       331   513
-## [38;5;250m5[39m The Two Towers             Hobbit      0  [4m2[24m463
-## [38;5;250m6[39m The Two Towers             Man       401  [4m3[24m589
-## [38;5;250m7[39m The Return Of The King     Elf       183   510
-## [38;5;250m8[39m The Return Of The King     Hobbit      2  [4m2[24m673
-## [38;5;250m9[39m The Return Of The King     Man       268  [4m2[24m459</code></pre>
+##   &lt;chr&gt;                      &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 The Fellowship Of The Ring Elf      1229   971
+## 2 The Fellowship Of The Ring Hobbit     14  3644
+## 3 The Fellowship Of The Ring Man         0  1995
+## 4 The Two Towers             Elf       331   513
+## 5 The Two Towers             Hobbit      0  2463
+## 6 The Two Towers             Man       401  3589
+## 7 The Return Of The King     Elf       183   510
+## 8 The Return Of The King     Hobbit      2  2673
+## 9 The Return Of The King     Man       268  2459</code></pre>
 <p><br></p>
 </div>
 <div id="tidy-the-untidy-lord-of-the-rings-data" class="section level4">
@@ -647,27 +620,27 @@ lotr_untidy</code></pre>
   pivot_longer(lotr_untidy, c(Male, Female), names_to = &#39;Gender&#39;, values_to = &#39;Words&#39;)
 
 lotr_tidy</code></pre>
-<pre><code>## [38;5;246m# A tibble: 18 x 4[39m
+<pre><code>## # A tibble: 18 x 4
 ##    Film                       Race   Gender Words
-##    [3m[38;5;246m&lt;chr&gt;[39m[23m                      [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m 1[39m The Fellowship Of The Ring Elf    Male     971
-## [38;5;250m 2[39m The Fellowship Of The Ring Elf    Female  [4m1[24m229
-## [38;5;250m 3[39m The Fellowship Of The Ring Hobbit Male    [4m3[24m644
-## [38;5;250m 4[39m The Fellowship Of The Ring Hobbit Female    14
-## [38;5;250m 5[39m The Fellowship Of The Ring Man    Male    [4m1[24m995
-## [38;5;250m 6[39m The Fellowship Of The Ring Man    Female     0
-## [38;5;250m 7[39m The Two Towers             Elf    Male     513
-## [38;5;250m 8[39m The Two Towers             Elf    Female   331
-## [38;5;250m 9[39m The Two Towers             Hobbit Male    [4m2[24m463
-## [38;5;250m10[39m The Two Towers             Hobbit Female     0
-## [38;5;250m11[39m The Two Towers             Man    Male    [4m3[24m589
-## [38;5;250m12[39m The Two Towers             Man    Female   401
-## [38;5;250m13[39m The Return Of The King     Elf    Male     510
-## [38;5;250m14[39m The Return Of The King     Elf    Female   183
-## [38;5;250m15[39m The Return Of The King     Hobbit Male    [4m2[24m673
-## [38;5;250m16[39m The Return Of The King     Hobbit Female     2
-## [38;5;250m17[39m The Return Of The King     Man    Male    [4m2[24m459
-## [38;5;250m18[39m The Return Of The King     Man    Female   268</code></pre>
+##    &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;
+##  1 The Fellowship Of The Ring Elf    Male     971
+##  2 The Fellowship Of The Ring Elf    Female  1229
+##  3 The Fellowship Of The Ring Hobbit Male    3644
+##  4 The Fellowship Of The Ring Hobbit Female    14
+##  5 The Fellowship Of The Ring Man    Male    1995
+##  6 The Fellowship Of The Ring Man    Female     0
+##  7 The Two Towers             Elf    Male     513
+##  8 The Two Towers             Elf    Female   331
+##  9 The Two Towers             Hobbit Male    2463
+## 10 The Two Towers             Hobbit Female     0
+## 11 The Two Towers             Man    Male    3589
+## 12 The Two Towers             Man    Female   401
+## 13 The Return Of The King     Elf    Male     510
+## 14 The Return Of The King     Elf    Female   183
+## 15 The Return Of The King     Hobbit Male    2673
+## 16 The Return Of The King     Hobbit Female     2
+## 17 The Return Of The King     Man    Male    2459
+## 18 The Return Of The King     Man    Female   268</code></pre>
 <p>Tidy data… mission accomplished!</p>
 <p>To explain our call to <code>pivot_longer()</code> above, let’s read it from right to left: we took the variables <code>Female</code> and <code>Male</code> and gathered their values into a single new variable <code>Words</code>. This forced the creation of a companion variable <code>Gender</code>, which tells whether a specific value of <code>Words</code> came from Female or Male. All other variables, such as <code>Film</code>, remain unchanged and are simply replicated as needed.</p>
 <p><br></p>
@@ -692,40 +665,40 @@ lotr_tidy</code></pre>
 <pre class="r"><code># let&#39;s get one variable per Race
 lotr_tidy %&gt;% 
   pivot_wider(names_from = Race, values_from = Words)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 6 x 5[39m
+<pre><code>## # A tibble: 6 x 5
 ##   Film                       Gender   Elf Hobbit   Man
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m                      [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m1[39m The Fellowship Of The Ring Male     971   [4m3[24m644  [4m1[24m995
-## [38;5;250m2[39m The Fellowship Of The Ring Female  [4m1[24m229     14     0
-## [38;5;250m3[39m The Two Towers             Male     513   [4m2[24m463  [4m3[24m589
-## [38;5;250m4[39m The Two Towers             Female   331      0   401
-## [38;5;250m5[39m The Return Of The King     Male     510   [4m2[24m673  [4m2[24m459
-## [38;5;250m6[39m The Return Of The King     Female   183      2   268</code></pre>
+##   &lt;chr&gt;                      &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 The Fellowship Of The Ring Male     971   3644  1995
+## 2 The Fellowship Of The Ring Female  1229     14     0
+## 3 The Two Towers             Male     513   2463  3589
+## 4 The Two Towers             Female   331      0   401
+## 5 The Return Of The King     Male     510   2673  2459
+## 6 The Return Of The King     Female   183      2   268</code></pre>
 <pre class="r"><code># let&#39;s get one variable per Gender
 lotr_tidy %&gt;% 
   pivot_wider(names_from = Gender, values_from = Words)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 9 x 4[39m
+<pre><code>## # A tibble: 9 x 4
 ##   Film                       Race    Male Female
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m                      [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m1[39m The Fellowship Of The Ring Elf      971   [4m1[24m229
-## [38;5;250m2[39m The Fellowship Of The Ring Hobbit  [4m3[24m644     14
-## [38;5;250m3[39m The Fellowship Of The Ring Man     [4m1[24m995      0
-## [38;5;250m4[39m The Two Towers             Elf      513    331
-## [38;5;250m5[39m The Two Towers             Hobbit  [4m2[24m463      0
-## [38;5;250m6[39m The Two Towers             Man     [4m3[24m589    401
-## [38;5;250m7[39m The Return Of The King     Elf      510    183
-## [38;5;250m8[39m The Return Of The King     Hobbit  [4m2[24m673      2
-## [38;5;250m9[39m The Return Of The King     Man     [4m2[24m459    268</code></pre>
+##   &lt;chr&gt;                      &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 The Fellowship Of The Ring Elf      971   1229
+## 2 The Fellowship Of The Ring Hobbit  3644     14
+## 3 The Fellowship Of The Ring Man     1995      0
+## 4 The Two Towers             Elf      513    331
+## 5 The Two Towers             Hobbit  2463      0
+## 6 The Two Towers             Man     3589    401
+## 7 The Return Of The King     Elf      510    183
+## 8 The Return Of The King     Hobbit  2673      2
+## 9 The Return Of The King     Man     2459    268</code></pre>
 <pre class="r"><code># let&#39;s get one variable per combo of Race and Gender
 lotr_tidy %&gt;% 
   unite(Race_Gender, Race, Gender) %&gt;% 
   pivot_wider(names_from = Race_Gender, values_from = Words)</code></pre>
-<pre><code>## [38;5;246m# A tibble: 3 x 7[39m
+<pre><code>## # A tibble: 3 x 7
 ##   Film         Elf_Male Elf_Female Hobbit_Male Hobbit_Female Man_Male Man_Female
-##   [3m[38;5;246m&lt;chr&gt;[39m[23m           [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m         [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m1[39m The Fellows…      971       [4m1[24m229        [4m3[24m644            14     [4m1[24m995          0
-## [38;5;250m2[39m The Two Tow…      513        331        [4m2[24m463             0     [4m3[24m589        401
-## [38;5;250m3[39m The Return …      510        183        [4m2[24m673             2     [4m2[24m459        268</code></pre>
+##   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+## 1 The Fellows…      971       1229        3644            14     1995          0
+## 2 The Two Tow…      513        331        2463             0     3589        401
+## 3 The Return …      510        183        2673             2     2459        268</code></pre>
 <p><br></p>
 </div>
 </div>
@@ -750,7 +723,7 @@ lotr_tidy %&gt;%
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   date = col_date(format = &quot;&quot;),
 ##   province = col_character(),
@@ -761,20 +734,20 @@ lotr_tidy %&gt;%
 ##   cases = col_double()
 ## )</code></pre>
 <pre class="r"><code>coronavirus</code></pre>
-<pre><code>## [38;5;246m# A tibble: 353,466 x 7[39m
+<pre><code>## # A tibble: 356,694 x 7
 ##    date       province               country            lat   long type    cases
-##    [3m[38;5;246m&lt;date&gt;[39m[23m     [3m[38;5;246m&lt;chr&gt;[39m[23m                  [3m[38;5;246m&lt;chr&gt;[39m[23m            [3m[38;5;246m&lt;dbl&gt;[39m[23m  [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m
-## [38;5;250m 1[39m 2020-01-22 [31mNA[39m                     Afghanistan       33.9  67.7  confir…     0
-## [38;5;250m 2[39m 2020-01-22 [31mNA[39m                     Albania           41.2  20.2  confir…     0
-## [38;5;250m 3[39m 2020-01-22 [31mNA[39m                     Algeria           28.0   1.66 confir…     0
-## [38;5;250m 4[39m 2020-01-22 [31mNA[39m                     Andorra           42.5   1.52 confir…     0
-## [38;5;250m 5[39m 2020-01-22 [31mNA[39m                     Angola           -[31m11[39m[31m.[39m[31m2[39m  17.9  confir…     0
-## [38;5;250m 6[39m 2020-01-22 [31mNA[39m                     Antigua and Bar…  17.1 -[31m61[39m[31m.[39m[31m8[39m  confir…     0
-## [38;5;250m 7[39m 2020-01-22 [31mNA[39m                     Argentina        -[31m38[39m[31m.[39m[31m4[39m -[31m63[39m[31m.[39m[31m6[39m  confir…     0
-## [38;5;250m 8[39m 2020-01-22 [31mNA[39m                     Armenia           40.1  45.0  confir…     0
-## [38;5;250m 9[39m 2020-01-22 Australian Capital Te… Australia        -[31m35[39m[31m.[39m[31m5[39m 149.   confir…     0
-## [38;5;250m10[39m 2020-01-22 New South Wales        Australia        -[31m33[39m[31m.[39m[31m9[39m 151.   confir…     0
-## [38;5;246m# … with 353,456 more rows[39m</code></pre>
+##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+##  1 2020-01-22 &lt;NA&gt;                   Afghanistan       33.9  67.7  confir…     0
+##  2 2020-01-22 &lt;NA&gt;                   Albania           41.2  20.2  confir…     0
+##  3 2020-01-22 &lt;NA&gt;                   Algeria           28.0   1.66 confir…     0
+##  4 2020-01-22 &lt;NA&gt;                   Andorra           42.5   1.52 confir…     0
+##  5 2020-01-22 &lt;NA&gt;                   Angola           -11.2  17.9  confir…     0
+##  6 2020-01-22 &lt;NA&gt;                   Antigua and Bar…  17.1 -61.8  confir…     0
+##  7 2020-01-22 &lt;NA&gt;                   Argentina        -38.4 -63.6  confir…     0
+##  8 2020-01-22 &lt;NA&gt;                   Armenia           40.1  45.0  confir…     0
+##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
+## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
+## # … with 356,684 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p><br></p>
 <p>Last class, we visualized the global case counts date</p>
@@ -833,7 +806,7 @@ ggplot(coronavirus_ttd) +
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -851,7 +824,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
