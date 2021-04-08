@@ -499,6 +499,7 @@ div.tocify {
 <p><code>dna_or_rna("gccaau")</code></p>
 <p><code>dna_or_rna("ccagac")</code></p>
 <p><code>dna_or_rna("tgcacug")</code></p>
+<p><br></p>
 <p>Hint: the <code>str_split</code> function might be helpful.</p>
 <p><br></p>
 <pre class="r"><code>dna_or_rna(&quot;attggc&quot;)</code></pre>
@@ -528,12 +529,12 @@ click to expand
 ##     return(&quot;unknown&quot;)
 ##   }
 ## }
-## &lt;bytecode: 0x7ff0a64ce0c0&gt;</code></pre>
+## &lt;bytecode: 0x7fd5dbc65f20&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
 <div id="use-the-dna_or_rna-function-and-a-for-loop-to-print-the-type-of-the-sequences-in-the-following-list." class="section level4">
-<h4>1.2 Use the <code>dna_or_rna</code> function and a for loop to print the type of the sequences in the following list.</h4>
+<h4>1.2 Use the <code>dna_or_rna()</code> function and a for loop to print the type of the sequences in the following list.</h4>
 <p><br></p>
 <pre class="r"><code>sequences = c(&quot;ttgaatgccttacaactgatcattacacaggcggcatgaagcaaaaatatactgtgaaccaatgcaggcg&quot;, 
               &quot;gauuauuccccacaaagggagugggauuaggagcugcaucauuuacaagagcagaauguuucaaaugcau&quot;, 
@@ -556,7 +557,7 @@ sequence_type</code></pre>
 <p><br> <br></p>
 </div>
 <div id="use-the-dna_or_rna-function-and-an-appropriate-map-function-to-print-the-type-of-the-sequences-in-the-above-list." class="section level4">
-<h4>1.3 Use the <code>dna_or_rna</code> function and an appropriate map function to print the type of the sequences in the above list.</h4>
+<h4>1.3 Use the <code>dna_or_rna()</code> function and an appropriate map function to print the type of the sequences in the above list.</h4>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -603,7 +604,7 @@ click to expand
 ##     return(&quot;unknown&quot;)
 ##   }
 ## }
-## &lt;bytecode: 0x7ff0a80b86d0&gt;</code></pre>
+## &lt;bytecode: 0x7fd5dc49ca60&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -624,7 +625,7 @@ click to expand
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Comparison_rounding_graphs_SMIL.svg/1200px-Comparison_rounding_graphs_SMIL.svg.png" /></p>
 <p><br></p>
 <p>Rounding appears to be a very simple arithmetic operation. However, <strong>things get a little bit complicated when it comes to the number 5</strong>, which is at the exact mid-point between rounding up and rounding down.</p>
-<p>The <code>round</code> function in base R is weird. It is supposed to use a <strong>round half to even rule</strong> when rounding off a <strong>5</strong> (see <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even" class="uri">https://en.wikipedia.org/wiki/Rounding#Round_half_to_even</a>). However, this is dependent on your operation system, and therefore this rule is sometimes inconsistent. For example:</p>
+<p>The <code>round</code> function in base R is weird. It is supposed to use a <strong>round half to even rule</strong> when rounding off a <strong>5</strong> (see <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even" class="uri">https://en.wikipedia.org/wiki/Rounding#Round_half_to_even</a>). However, this is dependent on your computer’s operating system, and therefore this rule is sometimes inconsistent. For example:</p>
 <pre class="r"><code># This is how a &quot;round half to even&quot; rule should work
 round(0.5, digits=0)</code></pre>
 <pre><code>## [1] 0</code></pre>
@@ -646,7 +647,7 @@ round(0.55, digits=1) # This is what we would expect</code></pre>
 <li>Under this rule, when rounding off a <strong>5</strong> , your function should round up when it’s positive, and down when it is negative</li>
 <li>Your function should takes a “digits” argument exactly as in the original R function.</li>
 </ul>
-<p><strong>Hint:</strong> you may need the arithmatic operator <code>%/%</code> and the <code>sign()</code> function.</p>
+<p><strong>Hint:</strong> you may need the arithmetic operator <code>%/%</code> and the <code>sign()</code> function.</p>
 <p><br></p>
 <p>The following is how it should work:</p>
 <pre class="r"><code>#Example output
@@ -686,13 +687,13 @@ click to expand
 ##   x_rounded &lt;- x_new/10^digits*x_sign
 ##   return(x_rounded)
 ## }
-## &lt;bytecode: 0x7ff0a31d12d0&gt;</code></pre>
+## &lt;bytecode: 0x7fd5d78f5018&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
-<div id="now-building-up-on-the-previous-question-write-a-custom-function-that-consistently-applies-a-round-half-to-even-rule-when-rounding-off-a-5." class="section level4">
-<h4>2.2 Now, building up on the previous question, <strong>write a custom function</strong> that consistently applies a <strong>round half to even</strong> rule when rounding off a <strong>5</strong>.</h4>
-<p><strong>Hint:</strong> you will need the arithmatic operator <code>%%</code>.</p>
+<div id="now-building-on-the-previous-question-write-a-custom-function-that-consistently-applies-a-round-half-to-even-rule-when-rounding-off-a-5." class="section level4">
+<h4>2.2 Now, building on the previous question, <strong>write a custom function</strong> that consistently applies a <strong>round half to even</strong> rule when rounding off a <strong>5</strong>.</h4>
+<p><strong>Hint:</strong> you will need the arithmetic operator <code>%%</code>.</p>
 <p><br></p>
 <p>The following is how this function should work:</p>
 <pre class="r"><code>#Example output
@@ -738,7 +739,7 @@ click to expand
 ##   x_rounded &lt;- x_new/10^digits*x_sign
 ##   return(x_rounded)
 ## }
-## &lt;bytecode: 0x7ff0a65fcc78&gt;</code></pre>
+## &lt;bytecode: 0x7fd5dd83f170&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
