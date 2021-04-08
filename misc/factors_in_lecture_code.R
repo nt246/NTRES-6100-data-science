@@ -44,8 +44,6 @@ as.numeric(z)
 
 
 
-
-
 # Examining the gapminder data and factor structure ---------------------------------
 
 gapminder
