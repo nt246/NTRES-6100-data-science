@@ -43,6 +43,10 @@ library(tidyverse)
 * We provide some possible solutions for each question, but we highly recommend that you don’t look at them unless you are really stuck.
 
 <br>
+
+- **Acknowledgements:** Exercise 2 was adapted (with permission) from Iain Carmichael's course [STOR 390: Introduction to Data Science](https://idc9.github.io/stor390/#course_material).
+
+<br>
 <br>
 
 ## Exercise 1. DNA or RNA? (45 minutes)
