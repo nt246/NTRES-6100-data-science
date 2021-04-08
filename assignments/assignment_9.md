@@ -38,8 +38,8 @@ library(knitr)
 
 <br>
 
-**Acknowledgements:** Exercise 2 was adapted (with permission) from Iain
-Carmichael’s course [STOR 390: Introduction to Data
+**Acknowledgements:** Exercises 1 and 2 were adapted (with permission)
+from Iain Carmichael’s course [STOR 390: Introduction to Data
 Science](https://idc9.github.io/stor390/#course_material).
 
 <br>
