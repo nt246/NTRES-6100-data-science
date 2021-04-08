@@ -1,0 +1,372 @@
+---
+title: "Lab 9: Functions and iterations"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+<br>
+<br>
+
+## Goals for today
+
+<br>
+
+1. Practice writing custom functions
+
+2. Practice iterations using for loops and `map` functions
+
+<br>
+<br>
+
+## General instructions
+
+<br>
+
+* Today, we will write some useful custom functions, and will combine these functions together with for loops and `map` functions to automate repetitive tasks
+
+<br>
+
+* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab9.Rmd`, and work in this RMarkdown file for the rest of this lab. Load the following package.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+<br>
+
+* We provide some possible solutions for each question, but we highly recommend that you don’t look at them unless you are really stuck.
+
+<br>
+<br>
+
+## Exercise 1. DNA or RNA? (45 minutes)
+
+<br>
+
+![](https://qph.fs.quoracdn.net/main-qimg-b7076062805d162ab54e083d20796c44)
+
+<br>
+
+#### 1.1 Write a function, `dna_or_rna(sequence)`, that determines if a sequence of base pairs is DNA, RNA, or if it is not possible to tell given the sequence provided. 
+
+* Since all the function will know about the material is the sequence, the only way to tell the difference between DNA and RNA is that RNA has the base Uracil (`"u"`) instead of the base Thymine (`"t"`). 
+
+* Have the function return one of three outputs: "DNA", "RNA", or "unknown". Then run the following three lines of code:
+
+`dna_or_rna("attggc")`
+
+`dna_or_rna("gccaau")`
+
+`dna_or_rna("ccagac")`
+
+`dna_or_rna("tgcacug")`
+
+Hint: the `str_split` function might be helpful.
+
+<br>
+
+```{r echo=FALSE}
+dna_or_rna <- function(sequence){
+  bases <- str_split(sequence, pattern = "") %>%
+    unlist() %>%
+    unique()
+  if (all(bases %in% c("a", "t", "g", "c")) & "t" %in% bases){
+    return("DNA")
+  } else if (all(bases %in% c("a", "u", "g", "c")) & "u" %in% bases){
+    return("RNA")
+  } else {
+    return("unknown")
+  }
+}
+```
+
+```{r}
+dna_or_rna("attggc")
+dna_or_rna("gccaau")
+dna_or_rna("ccagac")
+dna_or_rna("tgcacug")
+```
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+  
+```{r}
+dna_or_rna
+```
+
+</details>
+
+<br>
+<br>
+
+#### 1.2 Use the `dna_or_rna` function and a for loop to print the type of the sequences in the following list.
+
+<br>
+
+```{r}
+sequences = c("ttgaatgccttacaactgatcattacacaggcggcatgaagcaaaaatatactgtgaaccaatgcaggcg", 
+              "gauuauuccccacaaagggagugggauuaggagcugcaucauuuacaagagcagaauguuucaaaugcau", 
+              "gaaagcaagaaaaggcaggcgaggaagggaagaagggggggaaacc", 
+              "guuuccuacaguauuugaugagaaugagaguuuacuccuggaagauaauauuagaauguuuacaacugcaccugaucagguggauaaggaagaugaagacu", 
+              "gataaggaagaugaagacutucaggaaucuaauaaaaugcacuccaugaauggauucauguaugggaaucagccggguc")
+```
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+sequence_type <- vector("double", length(sequences))
+for (i in seq_along(sequences)){
+  sequence_type[i] <- dna_or_rna(sequences[i])
+}
+sequence_type
+```
+
+</details>
+
+<br>
+<br>
+
+#### 1.3 Use the `dna_or_rna` function and an appropriate map function to print the type of the sequences in the above list.
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+map_chr(sequences, dna_or_rna)
+## Alternatively
+map(sequences, dna_or_rna) %>% unlist()
+```
+
+</details>
+
+<br>
+<br>
+
+#### 1.4 Make your function work with both upper and lower case letters, or even strings with mixed capitalization. Test your function with the following three lines of code:
+
+`dna_or_rna("ATTGGC")`
+
+`dna_or_rna("gCCAAu")`
+
+`dna_or_rna("ggcacgG")`
+
+<br>
+
+```{r echo=F}
+dna_or_rna <- function(sequence){
+  bases <- str_split(sequence, pattern = "") %>%
+    unlist() %>%
+    tolower() %>%
+    unique()
+  if (all(bases %in% c("a", "t", "g", "c")) & "t" %in% bases){
+    return("DNA")
+  } else if (all(bases %in% c("a", "u", "g", "c")) & "u" %in% bases){
+    return("RNA")
+  } else {
+    return("unknown")
+  }
+}
+```
+
+```{r}
+dna_or_rna("ATTGGC")
+dna_or_rna("gCCAAu")
+dna_or_rna("ggcacgG")
+```
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+dna_or_rna
+```
+
+</details>
+
+<br>
+<br>
+
+## Recap (5 minutes)
+
+<br>
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+
+## Short break (10 minutes)
+
+<br>
+<br>
+
+## Exercise 2: Rounding (50 minutes)
+
+<br>
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Comparison_rounding_graphs_SMIL.svg/1200px-Comparison_rounding_graphs_SMIL.svg.png)
+
+<br>
+
+Rounding appears to be a very simple arithmetic operation. However, **things get a little bit complicated when it comes to the number 5**, which is at the exact mid-point between rounding up and rounding down. 
+
+The `round` function in base R is weird. It is supposed to use a **round half to even rule** when rounding off a **5** (see https://en.wikipedia.org/wiki/Rounding#Round_half_to_even). However, this is dependent on your operation system, and therefore this rule is sometimes inconsistent. For example:
+
+```{r}
+# This is how a "round half to even" rule should work
+round(0.5, digits=0)
+round(1.5, digits=0)
+round(-0.5, digits=0)
+round(-1.5, digits=0)
+
+# Things get weird sometimes though
+round(0.55, digits=1) # This is what we would expect
+round(2.45, digits=1) # Under a "round half to even" rule, we are expecting it to reture 2.4. However, here it returns 2.5 on my operating system (might be different for yours)
+```
+
+<br>
+<br>
+
+#### 2.1 To correct this inconsistency issue, **write a custom function** that consistently applies a [round half away from zero rule](https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero).
+
+* Under this rule, when rounding off a **5** , your function should round up when it's positive, and down when it is negative 
+* Your function should takes a "digits" argument exactly as in the original R function.
+
+**Hint:** you may need the arithmatic operator `%/%` and the `sign()` function.
+
+<br>
+
+```{r echo=F}
+round_away<-function(x, digits=0){
+  x_new<-abs(x*10^digits)
+  x_sign <- sign(x)
+  integer <- x_new%/%1
+  decimal <- x_new-integer
+  if(decimal<0.5){
+    x_new <- integer
+  } else {
+    x_new <- integer +1
+  }
+  x_rounded <- x_new/10^digits*x_sign
+  return(x_rounded)
+}
+```
+
+The following is how it should work:
+
+```{r}
+#Example output
+round_away(0.55, digits=0)
+round_away(2.45, digits=0) 
+round_away(-0.55, digits=0)
+round_away(-2.45, digits=0) 
+
+round_away(0.55, digits=1)
+round_away(2.45, digits=1) 
+round_away(-0.55, digits=1)
+round_away(-2.45, digits=1) 
+```
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+round_away
+```
+
+</details>
+
+<br>
+<br>
+
+#### 2.2 Now, building up on the previous question, **write a custom function** that consistently applies a **round half to even** rule when rounding off a **5**. 
+**Hint:** you will need the arithmatic operator `%%`.
+
+<br>
+
+```{r echo=F}
+round_even<-function(x, digits=0){
+  x_new<-abs(x*10^digits)
+  x_sign <- sign(x)
+  integer <- x_new%/%1
+  decimal <- x_new-integer
+  if(decimal<0.5){
+    x_new <- integer
+  } else if (decimal ==0.5){
+    if(integer%%2==0){
+      x_new <- integer 
+    } else {
+      x_new <- integer +1
+    }
+  } else {
+      x_new <- integer +1
+  }
+  x_rounded <- x_new/10^digits*x_sign
+  return(x_rounded)
+}
+```
+
+
+The following is how this function should work:
+
+```{r}
+#Example output
+round_even(0.55, digits=0)
+round_even(2.45, digits=0) 
+round_even(-0.55, digits=0)
+round_even(-2.45, digits=0) 
+
+round_even(0.55, digits=1)
+round_even(2.45, digits=1) 
+round_even(-0.55, digits=1)
+round_even(-2.45, digits=1) 
+```
+
+<br>
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r}
+round_even
+```
+
+</details>
+
+<br>
+<br>
+
+## Recap (5 minutes)
+
+<br>
+
+Share your findings, challenges, and questions with the class. 
+
+<br>
+<br>
+
+**END LAB 9**
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
