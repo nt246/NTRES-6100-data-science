@@ -71,6 +71,8 @@ library(tidyverse)
 
 `dna_or_rna("tgcacug")`
 
+<br>
+
 Hint: the `str_split` function might be helpful.
 
 <br>
@@ -112,7 +114,7 @@ dna_or_rna
 <br>
 <br>
 
-#### 1.2 Use the `dna_or_rna` function and a for loop to print the type of the sequences in the following list.
+#### 1.2 Use the `dna_or_rna()` function and a for loop to print the type of the sequences in the following list.
 
 <br>
 
@@ -143,7 +145,7 @@ sequence_type
 <br>
 <br>
 
-#### 1.3 Use the `dna_or_rna` function and an appropriate map function to print the type of the sequences in the above list.
+#### 1.3 Use the `dna_or_rna()` function and an appropriate map function to print the type of the sequences in the above list.
 
 <br>
 
@@ -232,7 +234,7 @@ Share your findings, challenges, and questions with the class.
 
 Rounding appears to be a very simple arithmetic operation. However, **things get a little bit complicated when it comes to the number 5**, which is at the exact mid-point between rounding up and rounding down. 
 
-The `round` function in base R is weird. It is supposed to use a **round half to even rule** when rounding off a **5** (see https://en.wikipedia.org/wiki/Rounding#Round_half_to_even). However, this is dependent on your operation system, and therefore this rule is sometimes inconsistent. For example:
+The `round` function in base R is weird. It is supposed to use a **round half to even rule** when rounding off a **5** (see https://en.wikipedia.org/wiki/Rounding#Round_half_to_even). However, this is dependent on your computer's operating system, and therefore this rule is sometimes inconsistent. For example:
 
 ```{r}
 # This is how a "round half to even" rule should work
@@ -254,7 +256,7 @@ round(2.45, digits=1) # Under a "round half to even" rule, we are expecting it t
 * Under this rule, when rounding off a **5** , your function should round up when it's positive, and down when it is negative 
 * Your function should takes a "digits" argument exactly as in the original R function.
 
-**Hint:** you may need the arithmatic operator `%/%` and the `sign()` function.
+**Hint:** you may need the arithmetic operator `%/%` and the `sign()` function.
 
 <br>
 
@@ -304,8 +306,8 @@ round_away
 <br>
 <br>
 
-#### 2.2 Now, building up on the previous question, **write a custom function** that consistently applies a **round half to even** rule when rounding off a **5**. 
-**Hint:** you will need the arithmatic operator `%%`.
+#### 2.2 Now, building on the previous question, **write a custom function** that consistently applies a **round half to even** rule when rounding off a **5**. 
+**Hint:** you will need the arithmetic operator `%%`.
 
 <br>
 

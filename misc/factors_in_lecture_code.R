@@ -1,5 +1,5 @@
 
-# Loading libraries -------------------------------------------------------
+# Loading packages -------------------------------------------------------
 
 library(tidyverse)
 library(gapminder)
@@ -7,7 +7,46 @@ library(gridExtra) # install.packages("gridExtra")
 
 
 
-# Examining the data and factor structure ---------------------------------
+# Introduction to factors -------------------------------------------------
+
+x1 <- c("Dec", "Apr", "Jan", "Mar")
+x2 <- c("Dec", "Apr", "Jam", "Mar")
+
+# Sorts alphabetically, not useful for months
+sort(x1)
+
+month_levels <- c(
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+)
+
+y1 <- factor(x1, levels = month_levels)
+
+# Now we sort in a useful order
+sort(y1)
+
+y2 <- factor(x2, levels = month_levels)
+
+# Now typos (values that are not one of our pre-defined allowable levels) become NA
+y2
+
+
+# WARNINGS: Unexpected output can result when we try to combine vectors that are factors
+
+y3 <- factor(c("May", "June"))
+
+c(y1, y3)
+
+# or if numbers get turned into factors
+z <- factor(c(9, 4, 7))
+as.numeric(z)
+
+
+
+
+
+
+# Examining the gapminder data and factor structure ---------------------------------
 
 gapminder
 
@@ -49,6 +88,8 @@ nlevels(h_gap_dropped$continent)
 h_gap$country %>% 
   fct_drop()
 
+h_gap %>% 
+  mutate(country = fct_drop(country))
 
 
 
