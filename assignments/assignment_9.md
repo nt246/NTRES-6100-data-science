@@ -196,8 +196,9 @@ of cylinders (`cyl`).
 -   Start by reordering the factor levels of the `model` column based on
     values in the `mpg` column.
 
--   You will also need to convert `cyl` first into a character variable
-    (`as.character()`), and then reset its factor levels.
+-   You may also need to convert `cyl` first into a character variable
+    (`as.character()`) or a factor (`factor` or `as_factor()`), and then
+    (re)set its factor levels.
 
 -   When making the plot, please pay attention to the following elements
     of the plot that need to be specified.
