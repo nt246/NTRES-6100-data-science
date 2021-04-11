@@ -11,24 +11,15 @@
 
 
 
-<title>Lesson 17: Wrapping up and looking ahead</title>
+<title>Lesson 18: Wrapping up and looking ahead</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -46,6 +37,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -58,6 +54,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -68,6 +90,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -84,13 +110,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -118,7 +171,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -130,7 +183,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -141,23 +194,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -169,6 +209,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -294,13 +335,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -379,6 +420,9 @@ div.tocify {
     <li>
       <a href="lesson17-factors.html">Lesson 17: Factors</a>
     </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -444,19 +488,20 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Lesson 17: Wrapping up and looking ahead</h1>
+<h1 class="title toc-ignore">Lesson 18: Wrapping up and looking ahead</h1>
 
 </div>
 
 
 <p><br></p>
-<div id="today-is-our-last-class" class="section level2">
-<h2>Today is our last class!</h2>
+<div id="today-is-our-second-to-last-class" class="section level2">
+<h2>Today is our second-to-last class!</h2>
 <p>Thank you for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.</p>
+<p>We are looking forward to your presentations on Wednesday. For the few people who haven’t year indicated whether they will give a live presentation during the Zoom call or submit a video, please do so <a href="https://docs.google.com/spreadsheets/d/17RTFOwSfgNFCLpIBzgNJrYXP7nPkaTwxQGSUMfW1fh8/edit#gid=0">here</a></p>
 <p><br></p>
 </div>
 <div id="course-evaluations" class="section level2">
@@ -464,7 +509,7 @@ div.tocify {
 <div id="please-complete-the-course-evaluations-when-they-become-available-at-the-end-of-the-semester" class="section level4">
 <h4>Please complete the course evaluations when they become available at the end of the semester</h4>
 <p>Unfortunately, we will not be able to get our course evaluations until the end of the semester. Students formally enrolled (both for credit or audit) should get an email with a link to the evaluation at that time, and I would really appreciate it if you can take a few minutes to answer the questions.</p>
-<p>This is the second time I have offered this course, and it is still under very active development. I’m currently in the process of turning it into a permanent course (NTRES 6100), so I would really value everybody’s feedback on how we can improve it and make it as useful as possible.</p>
+<p>This course is still under very active development, so I would really value everybody’s feedback on how we can improve it and make it as useful as possible.</p>
 <p>Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted.</p>
 <p>If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the <code>feedback</code> channel on Slack. Remember you can post anonymously by prefacing your message with <code>/anon</code> (e.g. `/anon Here is my message).</p>
 <p><br></p>
@@ -473,10 +518,14 @@ div.tocify {
 <div id="agenda-for-todays-class" class="section level2">
 <h2>Agenda for today’s class</h2>
 <ul>
-<li>Student presentations - we’re looking forward to hearing from you!</li>
-<li>If there is time: A quick review of some good practices</li>
+<li>Quick review
+<ul>
+<li>Batch data import and processing</li>
+<li>Applying functions to vectors or on columns of a dataframe</li>
+<li>GitHub</li>
+</ul></li>
+<li>Important take-home messages and a review of good practices</li>
 <li>Where to learn more and connect with the R user community</li>
-<li>Important take-home messages</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -525,7 +574,7 @@ div.tocify {
 <div id="write-code-for-humans-write-data-for-computers" class="section level3">
 <h3>6. “Write code for humans, write data for computers”</h3>
 <p>Very important advice from <a href="https://twitter.com/vsbuffalo/status/358699162679787521">Vince Buffalo</a></p>
-<p>Reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable.</p>
+<p><br></p>
 <p>Some ways to make code more human-readable include:</p>
 <ul>
 <li>Clear workflows</li>
@@ -533,6 +582,11 @@ div.tocify {
 <li>Give objects meaningful names</li>
 <li>Use well-named operations, e.g. <code>select(data, columnname)</code> instead of <code>data[,5]</code></li>
 </ul>
+<p><br></p>
+</div>
+<div id="make-your-data-tidy" class="section level3">
+<h3>7. Make your data tidy</h3>
+<p>An important principle for “writing data for computers” is to clean up and reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable. As a reminder, have another look at the ’Openscapes tidy data blog post](<a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/" class="uri">https://www.openscapes.org/blog/2020/10/12/tidy-data/</a>)</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -544,20 +598,21 @@ div.tocify {
 <ul>
 <li><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Garrett Grolemund and Hadley Wickham. See also answers to the exercises <a href="https://jrnold.github.io/r4ds-exercise-solutions/">here</a> and other places you can find on google and a dedicated <a href="https://www.rfordatasci.com/">R4DS Slack workspace</a> for community learning. [I strongly recommend working through the chapters of this book that we have not covered]</li>
 <li><a href="https://adv-r.hadley.nz/">Advanced R</a> by Hadley Wickham</li>
-<li><a href="https://swirlstats.com/">swirl: learn R, in R</a> - a platform for learning R programming and data science interactively, at your own pace, and right in the R console</li>
 <li><a href="https://rstats.wtf/">What they forgot to teach you about R</a> by Jenny Bryan and Jim Hester</li>
+<li><a href="https://rfortherestofus.com/resources/">R for the Rest of Us - Resources page</a> - a curated list of excellent tutorials</li>
 <li><a href="https://stat545.com/">Course notes for STAT545</a> by Jenny Bryan</li>
 <li><a href="https://peerj.com/collections/50-practicaldatascistats/">Practical Data Science for Stats - a PeerJ Collection</a></li>
 <li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham</li>
+<li><a href="https://swirlstats.com/">swirl: learn R, in R</a> - a platform for learning R programming and data science interactively, at your own pace, and right in the R console</li>
 </ul>
 <p><br></p>
 <p>Here are a few other books you might want to check out:</p>
 <ul>
 <li><a href="https://moderndive.com/">A ModernDive into R and the tidyverse</a> by Chester Ismay and Albert Y. Kim<br />
 </li>
-<li><a href="https://rc2e.com/">The R Cookbook</a> by James Long and Paul Teetor<br />
+<li><a href="https://rafalab.github.io/dsbook/">Introduction to Data Science: Data Analysis and Prediction Algorithms with R</a> by Rafael A. Irizarry<br />
 </li>
-<li><a href="https://rafalab.github.io/dsbook/">Introduction to Data Science: Data Analysis and Prediction Algorithms with R</a> by Rafael A. Irizarry</li>
+<li><a href="https://rc2e.com/">The R Cookbook</a> by James Long and Paul Teetor (primarily base-R, but also uses some tidyverse packages/functions)</li>
 </ul>
 <p>And for getting help, check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not subsettable” at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
 <p><br></p>
@@ -609,7 +664,7 @@ div.tocify {
 </blockquote>
 <div id="three-messages" class="section level3">
 <h3>Three messages</h3>
-<p>If there are 3 things to communicate to others after this workshop, I think they would be:</p>
+<p>If there are 3 things to communicate to others after this course, I think they would be:</p>
 <p><br></p>
 <p><strong>1. Data science is a discipline that can improve your analyses</strong></p>
 <ul>
@@ -688,7 +743,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

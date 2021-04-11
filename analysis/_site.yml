@@ -42,7 +42,8 @@ navbar:
       href: lesson16-functions.html
     - text: "Lesson 17: Factors"
       href: lesson17-factors.html
-
+    - text: "Lesson 18: Wrapping up and learning more"
+      href: lesson18-wrapup.html
   - text: Labs
     menu:
     - text: Lab handouts

@@ -1,17 +1,23 @@
 ---
-title: "Lesson 17: Wrapping up and looking ahead"
+title: "Lesson 18: Wrapping up and looking ahead"
 output: 
   html_document:
     keep_md: yes 
     toc: true
 ---
 
-
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
 
 <br>
 
-## Today is our last class! 
+## Today is our second-to-last class! 
 Thank you for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
+
+We are looking forward to your presentations on Wednesday. For the few people who haven't year indicated whether they will give a live presentation during the Zoom call or submit a video, please do so [here](https://docs.google.com/spreadsheets/d/17RTFOwSfgNFCLpIBzgNJrYXP7nPkaTwxQGSUMfW1fh8/edit#gid=0)
 
 <br>
 
@@ -19,7 +25,7 @@ Thank you for joining us this semester and for your patience and understanding a
 #### Please complete the course evaluations when they become available at the end of the semester
 Unfortunately, we will not be able to get our course evaluations until the end of the semester. Students formally enrolled (both for credit or audit) should get an email with a link to the evaluation at that time, and I would really appreciate it if you can take a few minutes to answer the questions.
 
-This is the second time I have offered this course, and it is still under very active development. I'm currently in the process of turning it into a permanent course (NTRES 6100), so I would really value everybody's feedback on how we can improve it and make it as useful as possible.
+This course is still under very active development, so I would really value everybody's feedback on how we can improve it and make it as useful as possible.
 
 Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted. 
 
@@ -29,10 +35,14 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 
 ## Agenda for today's class
 
-* Student presentations - we're looking forward to hearing from you!
-* If there is time: A quick review of some good practices
+* Quick review
+  - Batch data import and processing
+  - Applying functions to vectors or on columns of a dataframe
+  - GitHub
+  
+* Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
-* Important take-home messages
+
 
 <br>
 <br>
@@ -54,7 +64,9 @@ Make sure to frequently re-start R as you're working, as elaborated on by Jenny 
 
 Also, if you haven't already, follow the [instructions from r4ds](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) on how ensure that RStudio does not restore your workspace between sessions, so you start with a clean environment every time. Make sure this option is selected under your RStudio preferences:
 
-<img src="assets/rstudio-workspace.png" width="50%" />
+```{r  out.width = "50%", echo = FALSE}
+include_graphics("assets/rstudio-workspace.png") 
+```
    
 <br>
 <br>
@@ -95,14 +107,20 @@ Developing a consistent style in your coding, makes it a lot easier to read. Her
 ### 6. "Write code for humans, write data for computers"
 Very important advice from [Vince Buffalo](https://twitter.com/vsbuffalo/status/358699162679787521) 
 
-Reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable.
-
+<br>
+ 
 Some ways to make code more human-readable include:
 
 * Clear workflows
 * Use comments
 * Give objects meaningful names
 * Use well-named operations, e.g. `select(data, columnname)` instead of `data[,5]`
+
+<br>
+
+### 7. Make your data tidy
+
+An important principle for “writing data for computers” is to clean up and reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable. As a reminder, have another look at the 'Openscapes tidy data blog post](https://www.openscapes.org/blog/2020/10/12/tidy-data/)
 
 
 <br>
@@ -116,20 +134,21 @@ Some ways to make code more human-readable include:
 
 * [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham. See also answers to the exercises [here](https://jrnold.github.io/r4ds-exercise-solutions/) and other places you can find on google and a dedicated [R4DS Slack workspace](https://www.rfordatasci.com/) for community learning. [I strongly recommend working through the chapters of this book that we have not covered]
 * [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
-* [swirl: learn R, in R](https://swirlstats.com/) - a platform for learning R programming and data science interactively, at your own pace, and right in the R console
 * [What they forgot to teach you about R](https://rstats.wtf/) by Jenny Bryan and Jim Hester
+* [R for the Rest of Us - Resources page](https://rfortherestofus.com/resources/) - a curated list of excellent tutorials
 * [Course notes for STAT545](https://stat545.com/) by Jenny Bryan
 * [Practical Data Science for Stats - a PeerJ Collection](https://peerj.com/collections/50-practicaldatascistats/)
 * [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) by Hadley Wickham
+* [swirl: learn R, in R](https://swirlstats.com/) - a platform for learning R programming and data science interactively, at your own pace, and right in the R console
+
 
 <br>
 
 Here are a few other books you might want to check out:
 
 * [A ModernDive into R and the tidyverse](https://moderndive.com/) by Chester Ismay and Albert Y. Kim  
-* [The R Cookbook](https://rc2e.com/) by James Long and Paul Teetor  
 * [Introduction to Data Science: Data Analysis and Prediction Algorithms with R](https://rafalab.github.io/dsbook/) by Rafael A. Irizarry  
-
+* [The R Cookbook](https://rc2e.com/) by James Long and Paul Teetor  (primarily base-R, but also uses some tidyverse packages/functions)
 
 And for getting help, check out the [slide deck](https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan) or [recorded talk](https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12) for Jenny Bryan's talk "Object of type ‘closure’ is not subsettable" at the 2020 RStudio conference. You can also check out her [Reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan). 
 
@@ -185,7 +204,7 @@ and
 
 ### Three messages
 
-If there are 3 things to communicate to others after this workshop, I think they would be: 
+If there are 3 things to communicate to others after this course, I think they would be: 
 
 <br>
 

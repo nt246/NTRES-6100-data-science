@@ -13,22 +13,13 @@
 
 <title>Lesson 10: Tidy Data</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -46,6 +37,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -58,6 +54,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -68,6 +90,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -84,13 +110,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -118,7 +171,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -130,7 +183,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -141,23 +194,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -169,6 +209,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -294,13 +335,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -379,6 +420,9 @@ div.tocify {
     <li>
       <a href="lesson17-factors.html">Lesson 17: Factors</a>
     </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -444,7 +488,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -723,7 +767,7 @@ lotr_tidy %&gt;%
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────
 ## cols(
 ##   date = col_date(format = &quot;&quot;),
 ##   province = col_character(),
@@ -734,20 +778,20 @@ lotr_tidy %&gt;%
 ##   cases = col_double()
 ## )</code></pre>
 <pre class="r"><code>coronavirus</code></pre>
-<pre><code>## # A tibble: 356,694 x 7
+<pre><code>## # A tibble: 359,115 x 7
 ##    date       province               country            lat   long type    cases
 ##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
-##  1 2020-01-22 &lt;NA&gt;                   Afghanistan       33.9  67.7  confir…     0
-##  2 2020-01-22 &lt;NA&gt;                   Albania           41.2  20.2  confir…     0
-##  3 2020-01-22 &lt;NA&gt;                   Algeria           28.0   1.66 confir…     0
-##  4 2020-01-22 &lt;NA&gt;                   Andorra           42.5   1.52 confir…     0
-##  5 2020-01-22 &lt;NA&gt;                   Angola           -11.2  17.9  confir…     0
-##  6 2020-01-22 &lt;NA&gt;                   Antigua and Bar…  17.1 -61.8  confir…     0
-##  7 2020-01-22 &lt;NA&gt;                   Argentina        -38.4 -63.6  confir…     0
-##  8 2020-01-22 &lt;NA&gt;                   Armenia           40.1  45.0  confir…     0
+##  1 2020-01-22 NA                     Afghanistan       33.9  67.7  confir…     0
+##  2 2020-01-22 NA                     Albania           41.2  20.2  confir…     0
+##  3 2020-01-22 NA                     Algeria           28.0   1.66 confir…     0
+##  4 2020-01-22 NA                     Andorra           42.5   1.52 confir…     0
+##  5 2020-01-22 NA                     Angola           -11.2  17.9  confir…     0
+##  6 2020-01-22 NA                     Antigua and Bar…  17.1 -61.8  confir…     0
+##  7 2020-01-22 NA                     Argentina        -38.4 -63.6  confir…     0
+##  8 2020-01-22 NA                     Armenia           40.1  45.0  confir…     0
 ##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
 ## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
-## # … with 356,684 more rows</code></pre>
+## # … with 359,105 more rows</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p><br></p>
 <p>Last class, we visualized the global case counts date</p>
@@ -824,7 +868,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>
