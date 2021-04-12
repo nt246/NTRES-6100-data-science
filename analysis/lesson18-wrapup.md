@@ -33,7 +33,7 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 
 * Quick review
   - Batch data import and processing
-  - Applying functions to vectors or on columns of a dataframe
+  - Applying functions to vectors or on columns of a dataframe (code [here](), and nice take-home messages about functions [here](https://nicercode.github.io/guides/functions/))
 * Continued access to the course material
   - [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
   - Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep
