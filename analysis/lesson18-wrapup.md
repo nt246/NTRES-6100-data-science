@@ -11,9 +11,7 @@ output:
 <br>
 
 ## Today is our second-to-last class! 
-* Thank you for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
-
-<br>
+#### **Thank you** for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
 
 * **Instead** of a regular lab this Friday, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
 
@@ -36,7 +34,9 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 * Quick review
   - Batch data import and processing
   - Applying functions to vectors or on columns of a dataframe
-  - GitHub:[fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
+* Continued access to the course material
+  - [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
+  - Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep
   
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
@@ -115,7 +115,7 @@ Some ways to make code more human-readable include:
 
 ### 7. Make your data tidy
 
-An important principle for “writing data for computers” is to clean up and reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable. As a reminder, have another look at the 'Openscapes tidy data blog post](https://www.openscapes.org/blog/2020/10/12/tidy-data/)
+An important principle for “writing data for computers” is to clean up and reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable. As a reminder, have another look at the [Openscapes tidy data blog post](https://www.openscapes.org/blog/2020/10/12/tidy-data/)
 
 
 <br>
@@ -159,6 +159,7 @@ And for getting help, check out the [slide deck](https://resources.rstudio.com/r
 #### GitHub
 
 * [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan
+* If you want to get started with command line workflows, the [Software Carpentry Lesson on Git](https://swcarpentry.github.io/git-novice/) is a good place to start
 
 <br>
 
@@ -176,9 +177,9 @@ Check out the [Dashboard](https://ramikrispin.github.io/coronavirus_dashboard/#s
 
 Dashboards can also be made interactive with dynamic and user-controlled displays of data through use of [Shiny](https://shiny.rstudio.com/), an R package that makes it easy to build interactive web apps straight from R.
 
-For an example, check out [this dynamic visualization](https://uomresearchit.github.io/r-shiny-course/) of the gapminder dataset we worked with in our last class (make sure to check out the [cool video](https://www.youtube.com/watch?v=jbkSRLYSojo) with Hans Rosling) 
+For an example, check out [this dynamic visualization](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1) of the gapminder dataset we worked with in our last class (make sure to check out the [cool video](https://www.youtube.com/watch?v=jbkSRLYSojo) with Hans Rosling) 
 
-[Here](https://rebjoh.shinyapps.io/Gapminder-app/) is a much simpler shiny app with interactive display of the same data.
+Shiny let's you create similar interactive displays. See for example a very simple example [here](https://rebjoh.shinyapps.io/Gapminder-app/), and materials for building a more advanced version [here](https://uomresearchit.github.io/r-shiny-course/)
 
 For more examples, check out the [RStudio Flexdashboard website](https://rmarkdown.rstudio.com/flexdashboard/). And check out [Mastering shiny](https://mastering-shiny.org/) by Hadley Wickham
 
@@ -188,11 +189,7 @@ For more examples, check out the [RStudio Flexdashboard website](https://rmarkdo
 
 * NTRES-6100 alums Slack Channel - a low-pressure environment where you can continue to support each other and share resources. We will send an invite on Slack
 
-<br>
-
 * [Tips on how to start engaging on twitter](https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities) from R for Excel Users by Julia Lowndes and Allison Horst 
-
-<br>
 
 * [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) by Thomas Mock
 
