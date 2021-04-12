@@ -11,9 +11,11 @@ output:
 <br>
 
 ## Today is our second-to-last class! 
-Thank you for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
+* Thank you for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
 
-We are looking forward to your presentations on Wednesday. For the few people who haven't year indicated whether they will give a live presentation during the Zoom call or submit a video, please do so [here](https://docs.google.com/spreadsheets/d/17RTFOwSfgNFCLpIBzgNJrYXP7nPkaTwxQGSUMfW1fh8/edit#gid=0)
+<br>
+
+* **Instead** of a regular lab this Friday, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
 
 <br>
 
@@ -34,11 +36,10 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 * Quick review
   - Batch data import and processing
   - Applying functions to vectors or on columns of a dataframe
-  - GitHub
+  - GitHub:[fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
   
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
-
 
 <br>
 <br>
@@ -184,13 +185,29 @@ For more examples, check out the [RStudio Flexdashboard website](https://rmarkdo
 <br>
 
 ## Connecting with the R stats community 
-[Tips on how to start engaging on twitter](https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities) from R for Excel Users by Julia Lowndes and Allison Horst 
 
-and
-
-[Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) by Thomas Mock
+* NTRES-6100 alums Slack Channel - a low-pressure environment where you can continue to support each other and share resources. We will send an invite on Slack
 
 <br>
+
+* [Tips on how to start engaging on twitter](https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities) from R for Excel Users by Julia Lowndes and Allison Horst 
+
+<br>
+
+* [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) by Thomas Mock
+
+<br>
+
+### Exercise
+
+Go to the RStudio Tips twitter account (https://twitter.com/rstudiotips) and find one tip that looks interesting. Practice using it!
+
+[Here](https://twitter.com/kc_analytics/status/1378770803454529538) is an example of recent very useful thread, listing RStudio shortcuts
+
+
+<br>
+<br>
+
 
 ## Take-home messages
 
@@ -240,10 +257,9 @@ If there are 3 things to communicate to others after this course, I think they w
 - Build confidence: these skills are transferable beyond your science.
 - Be empathetic and inclusive and build a network of allies 
 
-
 <br>
 
-## Discussion questions to follow up on presentations (if there is more time)
+## Discussion questions to as warm-up for Wednesday's presentations (if there is more time)
 
 * What is the most valuable thing you have learned in this class?
 * Are you planning to implement any changes your workflow or practices moving forward
