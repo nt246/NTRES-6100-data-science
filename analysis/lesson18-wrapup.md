@@ -13,7 +13,9 @@ output:
 ## Today is our second-to-last class! 
 #### **Thank you** for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
 
-* **Instead** of a regular lab this Friday, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
+<br>
+
+**Instead** of a regular lab this Friday, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
 
 <br>
 
@@ -33,7 +35,7 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 
 * Quick review
   - Batch data import and processing
-  - Applying functions to vectors or on columns of a dataframe (code [here](), and nice take-home messages about functions [here](https://nicercode.github.io/guides/functions/))
+  - Applying functions to vectors or on columns of a dataframe (code [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/function_example.R), and nice take-home messages about functions [here](https://nicercode.github.io/guides/functions/))
 * Continued access to the course material
   - [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
   - Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep
@@ -256,7 +258,7 @@ If there are 3 things to communicate to others after this course, I think they w
 
 <br>
 
-## Discussion questions to as warm-up for Wednesday's presentations (if there is more time)
+## If we have time: Discussion questions as warm-up for Wednesday's presentations
 
 * What is the most valuable thing you have learned in this class?
 * Are you planning to implement any changes your workflow or practices moving forward
