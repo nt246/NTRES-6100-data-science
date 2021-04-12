@@ -38,7 +38,7 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 * Quick review
   - Batch data import and processing
   - Applying functions to vectors or on columns of a dataframe
-  - GitHub
+  - GitHub - [fork or clone]() a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
   
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
@@ -198,6 +198,17 @@ and
 
 <br>
 
+### Exercise
+
+Go to the RStudio Tips twitter account (https://twitter.com/rstudiotips) and find one tip that looks interesting. Practice using it!
+
+[Here](https://twitter.com/kc_analytics/status/1378770803454529538) is an example of recent very useful thread, listing RStudio shortcuts
+
+
+<br>
+<br>
+
+
 ## Take-home messages
 
 > From the [Ocean Health Index Data Science Training](http://ohi-science.org/data-science-training/champion.html#three-messages):
@@ -249,7 +260,7 @@ If there are 3 things to communicate to others after this course, I think they w
 
 <br>
 
-## Discussion questions to follow up on presentations (if there is more time)
+## Discussion questions to as warm-up for Wednesday's presentations (if there is more time)
 
 * What is the most valuable thing you have learned in this class?
 * Are you planning to implement any changes your workflow or practices moving forward
