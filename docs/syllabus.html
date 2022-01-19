@@ -13,13 +13,22 @@
 
 <title>Syllabus</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -500,13 +459,13 @@ div.tocify {
 <blockquote>
 <p>NTRES 6100<br />
 Collaborative and Reproducible Data Science in R<br />
-Cornell University, Spring 2021</p>
+Cornell University, Spring 2022</p>
 </blockquote>
 <div id="course-info" class="section level4">
 <h4>Course Info</h4>
-<p><em>All class activities are online.</em></p>
-<p><strong>Lectures</strong>: Mondays and Wednesdays 2:45pm - 4:00pm (Feb 8 - Apr 16, 2021)</p>
-<p><strong>Optional lab sessions</strong>: Fridays 12:25-2:20pm</p>
+<p><em>Note that the first two weeks of class (both lectures and lab sessions) will be taught remotely. Zoom links will be available from the class <a href="https://canvas.cornell.edu/courses/39033">Canvas</a> site.</em></p>
+<p><strong>Lectures</strong>: Tuesdays and Thursdays 9:40am - 10:55am (January 24 - March 31, 2021), Emerson Hall 135</p>
+<p><strong>Optional lab sessions</strong>: Thursdays (Academic Surge A 109) <strong>or</strong> Fridays (Fernow Hall G01) 12:25pm - 2:20pm</p>
 <p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a> (<a href="mailto:nt246@cornell.edu" class="email">nt246@cornell.edu</a>)</p>
 <p><strong>TA</strong>: PhD Student <a href="https://dnr.cals.cornell.edu/people/runyang-lou/">Nicolas Lou</a> (<a href="mailto:rl683@cornell.edu" class="email">rl683@cornell.edu</a>)</p>
 <p><strong>Office hours</strong>: Nina: by appointment; Nicolas: Tuesday 2:30-3:30 or by appointment</p>
@@ -546,12 +505,12 @@ Cornell University, Spring 2021</p>
 </div>
 <div id="course-format" class="section level4">
 <h4>Course format</h4>
-<p>The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Wednesday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following <strong>Wednesday at 10pm</strong>. We offer an optional Friday afternoon lab session for more opportunities to practice in groups and with TA support.</p>
+<p>The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Thursday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following <strong>Thursday at 10pm</strong>. We offer two optional lab sessions on Thursdays and Fridays for more opportunities to practice in groups and with TA support; the Thursday and Friday sessions are identical and you can attend either one of them.</p>
 <hr />
 </div>
 <div id="evaluation" class="section level4">
 <h4>Evaluation</h4>
-<p>It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures (and lab sessions if enrolled), participate actively during class, and submit at least <strong>7</strong> of the 9 problem sets with demonstrated effort to complete all questions. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand.</p>
+<p>It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend all lectures (and lab sessions if enrolled), participate actively during class, and submit at least <strong>7</strong> of the 9 problem sets with <strong>demonstrated effort to complete all questions</strong>. If you are unable to make a lecture or can not meet a problem set deadline, please email the instructor beforehand. If you are registered in one of the lab sessions (one extra credit), you are also expected to participate in lab activities in at least 7 of the 9 lab sessions.</p>
 <hr />
 </div>
 <div id="course-materials" class="section level4">
@@ -591,7 +550,7 @@ Cornell University, Spring 2021</p>
 </colgroup>
 <thead>
 <tr class="header">
-<th>Class#</th>
+<th>Lecture#</th>
 <th>Day</th>
 <th>Date</th>
 <th>Topic</th>
@@ -601,213 +560,215 @@ Cornell University, Spring 2021</p>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>Mon</td>
-<td>2/8</td>
+<td>Tue</td>
+<td>1/25</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html">Intro to the course and R/RStudio</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>Wed</td>
-<td>2/10</td>
+<td>Thu</td>
+<td>1/27</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html">Markdown and GitHub</a></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>2/12</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html">Lab 1</a></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>3</td>
-<td>Mon</td>
-<td>2/15</td>
+<td>Tue</td>
+<td>2/1</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html">The Git workflow (version control)</a></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>4</td>
-<td>Wed</td>
-<td>2/17</td>
+<td>Thu</td>
+<td>2/3</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html">Collaborating with GitHub Part 1</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">Assignment 1</a></td>
 </tr>
-<tr class="even">
-<td></td>
-<td>Fri</td>
-<td>2/19</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html">Lab 2</a></td>
-<td></td>
-</tr>
 <tr class="odd">
 <td>5</td>
-<td>Mon</td>
-<td>2/22</td>
+<td>Tue</td>
+<td>2/8</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Collaborating with GitHub Part 2</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>Wed</td>
-<td>2/24</td>
+<td>Thu</td>
+<td>2/10</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html">Plotting with ggplot part 1</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Assignment 2</a></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>2/26</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html">Lab 3</a></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>7</td>
-<td>Mon</td>
-<td>3/1</td>
+<td>Tue</td>
+<td>2/15</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html">Data wrangling part 1 (dplyr::filter, mutate, select, arrange)</a></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>8</td>
-<td>Wed</td>
-<td>3/3</td>
+<td>Thu</td>
+<td>2/17</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html">Data wrangling part 2 (dplyr::summarize, group_by)</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md">Assignment 3</a></td>
 </tr>
-<tr class="even">
-<td></td>
-<td>Fri</td>
-<td>3/5</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html">Lab 4</a></td>
-<td></td>
-</tr>
 <tr class="odd">
 <td>9</td>
-<td>Mon</td>
-<td>3/8</td>
+<td>Tue</td>
+<td>2/22</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html">Plotting with ggplot part 2 + good coding practices</a></td>
 <td></td>
 </tr>
 <tr class="even">
-<td></td>
-<td>Wed</td>
-<td>3/10</td>
-<td><strong>NO CLASS</strong> - Cornell Wellness Break</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>3/12</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html">Lab 5</a></td>
+<td>10</td>
+<td>Thu</td>
+<td>2/24</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html">Tidy data</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md">Assignment 4</a></td>
 </tr>
-<tr class="even">
-<td>10</td>
-<td>Mon</td>
-<td>3/15</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html">Tidy data</a></td>
+<tr class="odd">
+<td></td>
+<td>Tue</td>
+<td>3/1</td>
+<td><strong>NO CLASS</strong> - February Break</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>11</td>
-<td>Wed</td>
-<td>3/17</td>
+<td>Thu</td>
+<td>3/3</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html">Data import, export, and conversion between data types</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md">Assignment 5</a></td>
 </tr>
-<tr class="even">
-<td></td>
-<td>Fri</td>
-<td>3/19</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html">Lab 6</a></td>
-<td></td>
-</tr>
 <tr class="odd">
 <td>12</td>
-<td>Mon</td>
-<td>3/22</td>
+<td>Tue</td>
+<td>3/8</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson12-debugging-getting-help.html">Good coding practices, debugging strategies, and getting help</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>13</td>
-<td>Wed</td>
-<td>3/24</td>
+<td>Thu</td>
+<td>3/10</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html">Relational data</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md">Assignment 6</a></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>3/26</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html">Lab 7</a></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>14</td>
-<td>Mon</td>
-<td>3/29</td>
+<td>Tue</td>
+<td>3/15</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops.html">Iteration (for loops) and conditional execution part 1</a></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>15</td>
-<td>Wed</td>
-<td>3/31</td>
+<td>Thu</td>
+<td>3/17</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html">Iteration (for loops) and conditional execution part 2</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md">Assignment 7</a></td>
 </tr>
-<tr class="even">
-<td></td>
-<td>Fri</td>
-<td>4/2</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html">Lab 8</a></td>
-<td></td>
-</tr>
 <tr class="odd">
 <td>16</td>
-<td>Mon</td>
-<td>4/5</td>
+<td>Tue</td>
+<td>3/22</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html">Functions</a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>17</td>
-<td>Wed</td>
-<td>4/7</td>
+<td>Thu</td>
+<td>3/24</td>
 <td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html">Factors in R</a></td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md">Assignment 8</a></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td>Fri</td>
-<td>4/9</td>
-<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab9-function.html">Lab 9</a></td>
+<td>18</td>
+<td>Tue</td>
+<td>3/29</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html">Wrapping up and resources for learning more</a></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>18</td>
-<td>Mon</td>
-<td>4/12</td>
-<td>Wrapping up and resources for learning more</td>
-<td></td>
-</tr>
-<tr class="odd">
 <td>19</td>
-<td>Wed</td>
-<td>4/14</td>
+<td>Thu</td>
+<td>3/31</td>
 <td>Student presentations, wrapping up and looking ahead</td>
 <td><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md">Assignment 9</a></td>
 </tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Lab#</th>
+<th>Date (Thu)</th>
+<th>Date (Fri)</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/27</td>
+<td>1/28</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html">RMarkdown</a></td>
+</tr>
 <tr class="even">
-<td></td>
-<td>Fri</td>
-<td>4/16</td>
-<td>OPTIONAL: Lab 10 - Bring your own project</td>
-<td></td>
+<td>2</td>
+<td>2/3</td>
+<td>2/4</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html">RMarkdown and GitHub</a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2/10</td>
+<td>2/11</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html">Displaying data visualization on a website</a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2/17</td>
+<td>2/18</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html">Data exploration with the gapminder dataset</a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>2/24</td>
+<td>2/25</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html">Data exploration with the Titanic dataset</a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>3/3</td>
+<td>3/4</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html">Data cleaning and tidy data</a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>3/10</td>
+<td>3/11</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html">Relational data and tidy data</a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>3/17</td>
+<td>3/18</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html">Iteration and conditional execution</a></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>3/24</td>
+<td>3/25</td>
+<td><a href="https://nt246.github.io/NTRES-6100-data-science/lab9-function.html">Functions and iterations</a></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>3/31</td>
+<td>4/1</td>
+<td>OPTIONAL: Bring your own project</td>
 </tr>
 </tbody>
 </table>
@@ -845,7 +806,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -854,6 +815,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
