@@ -15,7 +15,7 @@ output:
 
 Follow the instructions in [section 1.4](https://r4ds.had.co.nz/introduction.html#prerequisites) of the R for Data Science book. Make sure to get the free open source license RStudio Desktop version.
 
-**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.0.3 and RStudio v1.4.1103). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
+**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.1.2 and RStudio v2021.09.2). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
 
 
 ***
@@ -43,7 +43,7 @@ When you first enter our workspace, you may see a notice about a free trial vers
 
 ![](https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460)
 
-By clicking this option, you will able to receive all of our anouncements via email without needing to log in on Slack every time.  
+By clicking this option, you will able to receive all of our announcements via email without needing to log in on Slack every time.  
 
 ***
 
