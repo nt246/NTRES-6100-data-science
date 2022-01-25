@@ -37,7 +37,7 @@ install.packages(c("nycflights13", "gapminder", "Lahman"))
 
 ### Install Slack and join workspace  
 
-Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres6100-sp22/shared_invite/zt-11ztkw0t3-34p8BoXwoQiwOLeXqE_u2Q). We are going to use Slack as our primary communication channel for this course. To build broader connections, we also plan on opening our Slack workspace as a communication platform for the entire R user community at Cornell to create a venue where people can find help and/or collaboration opportunities. Please consider adding a photo to your profile to make our workspace more personal.
+Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres6100-sp22/shared_invite/zt-11ztkw0t3-34p8BoXwoQiwOLeXqE_u2Q). We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 
 When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. If you don't plan on using Slack regularly, please go to "Preferences" and check the box that says "Send me email notifications for mentions and direct messages". 
 
