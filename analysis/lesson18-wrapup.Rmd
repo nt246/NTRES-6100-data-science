@@ -2,7 +2,6 @@
 title: "Lesson 18: Wrapping up and looking ahead"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
 
@@ -15,11 +14,12 @@ library(knitr)
 <br>
 
 ## Today is our second-to-last class! 
-#### **Thank you** for joining us this semester and for your patience and understanding as we have been navigating the online format. It has been great to have you all in the course.
+
+#### **Thank you** for joining us this semester. It has been great to have you all in the course.
 
 <br>
 
-**Instead** of a regular lab this Friday, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
+**Instead** of a regular lab this week, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
 
 <br>
 

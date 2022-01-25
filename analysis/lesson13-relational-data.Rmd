@@ -32,7 +32,6 @@ Jenny Bryan's [STAT545 Chapter 14 When one tibble is not enough](https://stat545
 
 * Reminder that we will have short students presentations during our final class on April 14 (details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)) - start thinking about what you want to show the class
 * Homework 6 is due tonight
-* Homework 7 will be posted later today
 
 
 <br>
@@ -190,6 +189,7 @@ library(nycflights13) #install.packages("nycflights13")
 
 3.  Is there a relationship between the age of a plane and its delays?
 
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
 
 
 

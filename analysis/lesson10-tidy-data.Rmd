@@ -38,12 +38,15 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 ## Announcements
 
+* No class next Tuesday
+
 * We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together
 
 <br>
 <br>
 
 ## Learning objectives
+
 So far, we've only worked with data that were already formatted for efficient processing with tidyverse functions. In this session we'll learn some tools to help get data into that format - make it **tidy** and more coder-friendly.   
 
 By the end of today's class, you should be able to:
@@ -231,7 +234,7 @@ To explain our call to `pivot_longer()` above, let’s read it from right to lef
 #### 4. OPTIONAL: Write the tidy data to a delimited file
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
-```{r}
+```{r eval=FALSE}
 write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
 ```
 
@@ -368,3 +371,5 @@ ggplot(coronavirus_ttd) +
 This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.
 
 <br>
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

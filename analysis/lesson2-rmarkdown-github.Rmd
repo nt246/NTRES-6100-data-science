@@ -48,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.
 * Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)
 * Remember office hours Tuesdays 2.30-3.30 (on Zoom)  
-* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) due 2/17 (we will go through how to submit through GitHub next week)  
+* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) due 02/03 (we will go through how to submit through GitHub next week)  
 
 <br>
 
@@ -496,7 +496,7 @@ In my mind, this is analogous to needing to wire your house for electricity: thi
 
 It's a nice convention to do this on the same line as your commented-out `install.packages()` line; this makes it easier for someone (including you in a future time or computer) to install the package easily. 
 
-```{r install-usethis3}
+```{r install-usethis3, eval=FALSE}
 ## setup packages
 library(usethis) # install.packages("usethis")
 ```

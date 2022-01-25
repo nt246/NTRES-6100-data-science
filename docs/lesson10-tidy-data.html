@@ -13,13 +13,22 @@
 
 <title>Lesson 10: Tidy Data</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -522,7 +481,8 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>We’re half way through the course! We will send out a link to a mid-term evaluation form (we’ll use our own form because the official CALS version won’t be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together</li>
+<li><p>No class next Tuesday</p></li>
+<li><p>We’re half way through the course! We will send out a link to a mid-term evaluation form (we’ll use our own form because the official CALS version won’t be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together</p></li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -643,7 +603,7 @@ rking &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/m
 <pre class="r"><code>lotr_untidy &lt;- bind_rows(fship, ttow, rking)
 
 lotr_untidy</code></pre>
-<pre><code>## # A tibble: 9 x 4
+<pre><code>## # A tibble: 9 × 4
 ##   Film                       Race   Female  Male
 ##   &lt;chr&gt;                      &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 The Fellowship Of The Ring Elf      1229   971
@@ -664,7 +624,7 @@ lotr_untidy</code></pre>
   pivot_longer(lotr_untidy, c(Male, Female), names_to = &#39;Gender&#39;, values_to = &#39;Words&#39;)
 
 lotr_tidy</code></pre>
-<pre><code>## # A tibble: 18 x 4
+<pre><code>## # A tibble: 18 × 4
 ##    Film                       Race   Gender Words
 ##    &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;
 ##  1 The Fellowship Of The Ring Elf    Male     971
@@ -693,8 +653,6 @@ lotr_tidy</code></pre>
 <h4>4. OPTIONAL: Write the tidy data to a delimited file</h4>
 <p>Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.</p>
 <pre class="r"><code>write_csv(lotr_tidy, path = &quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
-## Please use the `file` argument instead.</code></pre>
 <p><br></p>
 </div>
 <div id="your-turn" class="section level3">
@@ -709,7 +667,7 @@ lotr_tidy</code></pre>
 <pre class="r"><code># let&#39;s get one variable per Race
 lotr_tidy %&gt;% 
   pivot_wider(names_from = Race, values_from = Words)</code></pre>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##   Film                       Gender   Elf Hobbit   Man
 ##   &lt;chr&gt;                      &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
 ## 1 The Fellowship Of The Ring Male     971   3644  1995
@@ -721,7 +679,7 @@ lotr_tidy %&gt;%
 <pre class="r"><code># let&#39;s get one variable per Gender
 lotr_tidy %&gt;% 
   pivot_wider(names_from = Gender, values_from = Words)</code></pre>
-<pre><code>## # A tibble: 9 x 4
+<pre><code>## # A tibble: 9 × 4
 ##   Film                       Race    Male Female
 ##   &lt;chr&gt;                      &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 The Fellowship Of The Ring Elf      971   1229
@@ -737,7 +695,7 @@ lotr_tidy %&gt;%
 lotr_tidy %&gt;% 
   unite(Race_Gender, Race, Gender) %&gt;% 
   pivot_wider(names_from = Race_Gender, values_from = Words)</code></pre>
-<pre><code>## # A tibble: 3 x 7
+<pre><code>## # A tibble: 3 × 7
 ##   Film         Elf_Male Elf_Female Hobbit_Male Hobbit_Female Man_Male Man_Female
 ##   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 The Fellows…      971       1229        3644            14     1995          0
@@ -766,32 +724,31 @@ lotr_tidy %&gt;%
 <h2>Application to our coronavirus dataset</h2>
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
+<pre><code>## Rows: 604725 Columns: 15</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (8): province, country, type, iso2, iso3, combined_key, continent_name,...
+## dbl  (6): lat, long, cases, uid, code3, population
+## date (1): date</code></pre>
 <pre><code>## 
-## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────
-## cols(
-##   date = col_date(format = &quot;&quot;),
-##   province = col_character(),
-##   country = col_character(),
-##   lat = col_double(),
-##   long = col_double(),
-##   type = col_character(),
-##   cases = col_double()
-## )</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>coronavirus</code></pre>
-<pre><code>## # A tibble: 359,115 x 7
-##    date       province               country            lat   long type    cases
-##    &lt;date&gt;     &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
-##  1 2020-01-22 NA                     Afghanistan       33.9  67.7  confir…     0
-##  2 2020-01-22 NA                     Albania           41.2  20.2  confir…     0
-##  3 2020-01-22 NA                     Algeria           28.0   1.66 confir…     0
-##  4 2020-01-22 NA                     Andorra           42.5   1.52 confir…     0
-##  5 2020-01-22 NA                     Angola           -11.2  17.9  confir…     0
-##  6 2020-01-22 NA                     Antigua and Bar…  17.1 -61.8  confir…     0
-##  7 2020-01-22 NA                     Argentina        -38.4 -63.6  confir…     0
-##  8 2020-01-22 NA                     Armenia           40.1  45.0  confir…     0
-##  9 2020-01-22 Australian Capital Te… Australia        -35.5 149.   confir…     0
-## 10 2020-01-22 New South Wales        Australia        -33.9 151.   confir…     0
-## # … with 359,105 more rows</code></pre>
+<pre><code>## # A tibble: 604,725 × 15
+##    date       province country   lat  long type    cases   uid iso2  iso3  code3
+##    &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 2020-01-22 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  2 2020-01-23 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  3 2020-01-24 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  4 2020-01-25 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  5 2020-01-26 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  6 2020-01-27 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  7 2020-01-28 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  8 2020-01-29 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+##  9 2020-01-30 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+## 10 2020-01-31 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
+## # … with 604,715 more rows, and 4 more variables: combined_key &lt;chr&gt;,
+## #   population &lt;dbl&gt;, continent_name &lt;chr&gt;, continent_code &lt;chr&gt;</code></pre>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p><br></p>
 <p>Last class, we visualized the global case counts date</p>
@@ -835,6 +792,9 @@ ggplot(coronavirus_ttd) +
 <p><img src="lesson10-files/unnamed-chunk-11-1.png" width="672" /></p>
 <p>This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.</p>
 <p><br></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
 </div>
 </div>
 </div>
@@ -868,7 +828,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -877,6 +837,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -13,13 +13,22 @@
 
 <title>Lesson 5: Collaborating with GitHub and making websites with GitHub Pages - Part 2</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -500,8 +459,8 @@ div.tocify {
 <p><br></p>
 <div id="readings" class="section level2">
 <h2>Readings</h2>
-<p>There are no required readings for today, but if you did not join our Zoom call last Wednesday, please read through the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html">lecture notes</a> and watch the recording posted on <a href="https://canvas.cornell.edu/courses/27864">Canvas</a></p>
-<p><br> Some new text some more text</p>
+<p>There are no required readings for today, but if you did not join our Zoom call last Thursday, please read through the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html">lecture notes</a> and watch the recording posted on <a href="https://canvas.cornell.edu/courses/27864">Canvas</a></p>
+<p><br></p>
 </div>
 <div id="other-resources" class="section level2">
 <h2>Other resources</h2>
@@ -521,32 +480,9 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Assignment 1 has been graded and assignment 2 is due this Wednesdsay - let us know if you have any questions</li>
+<li>Assignment 2 is due this Thursday - let us know if you have any questions</li>
 </ul>
-<p><br></p>
-</div>
-<div id="feedback-from-2-week-check-in-survey" class="section level2">
-<h2>Feedback from 2-week check-in survey</h2>
-<div id="we-got-26-responses---thank-you-for-sharing-your-thoughts" class="section level4">
-<h4>We got 26 responses - thank you for sharing your thoughts!</h4>
-<p><br></p>
-<p>It seems that the course generally is working well for people.</p>
-<p><br></p>
-<p><strong>Comments and suggested changes:</strong></p>
-<ul>
-<li>Would be nice to know how much time you will be in breakout rooms</li>
-<li>Request to access to Zoom chat during breakout rooms</li>
-<li>Difficult to juggle many screens/tabs at the same time, esp. with lecture chat in Slack</li>
-<li>Confusing with links to other sources in the lecture notes, esp. for initial setup</li>
-<li>Instructions on the assignment was not clear enough. Had to look up things we may not have covered in class. Also insufficient instruction on how to submit the assignments</li>
-<li>Too many participants - would be nice with a second TA</li>
-<li>If you get stuck halfway through lecture you don’t get to participate any further sometimes. It would be nice to be able to troubleshoot sooner, before the end of class</li>
-<li>Lectures are sometimes too fast</li>
-</ul>
-<p><br></p>
-<p>We will check back in around the middle of the semester. In the meantime, let us know if you have any feedback or suggestions for things we can improve. Also, if you find particular sections of the lecture notes confusing or unclear, we would appreciate a heads up in the <code>feedback</code> channel on Slack. You can post anonymously by typing <code>/anon you message ...</code>.</p>
 <p><br> <br></p>
-</div>
 </div>
 <div id="plan-for-today" class="section level2">
 <h2>Plan for today</h2>
@@ -848,7 +784,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -857,6 +793,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
