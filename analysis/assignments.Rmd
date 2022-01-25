@@ -13,55 +13,55 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ### Assignment 1  
 #### [R Markdown template](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)  
->Due Wed 2/17 by 10pm EDT  
+>Due Thu 02/03 by 10pm EDT  
 
 ***
 
 ### Assignment 2  
 #### [Put one of your pre-existing projects on GitHub](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)  
->Due Wed 2/24 by 10pm EDT  
+>Due Thu 02/10 by 10pm EDT  
 
 ***
 
 ### Assignment 3  
 #### [Create a collaborative website with GitHub Pages](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)  
->Due Wed 03/03 by 10pm EDT  
+>Due Thu 02/17 by 10pm EDT  
 
 ***
 
 ### Assignment 4  
 #### [Data transformation and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)  
->Due Fri 03/12 by 10pm EDT  
+>Due Thu 02/24 by 10pm EDT  
 
 ***
 
 ### Assignment 5
 #### [Data transformation and visualization - Part 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)  
->Due Wed 03/17 by 10pm EDT  
+>Due Thu 03/03 by 10pm EDT  
 
 ***
 
 ### Assignment 6
 #### [Data import and tidy data](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)  
->Due Wed 03/24 by 10pm EDT  
+>Due Thu 03/20 by 10pm EDT  
 
 ***
 
 ### Assignment 7
 #### [Relational data plus revisiting data wrangling and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)  
->Due Wed 03/31 by 10pm EDT  
+>Due Thu 03/17 by 10pm EDT  
 
 ***
 
 ### Assignment 8
 #### [Iteration and conditional execution](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)  
->Due Wed 04/07 by 10pm EDT  
+>Due Thu 03/24 by 10pm EDT  
 
 ***
 
 ### Assignment 9
 #### [Functions and factors](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)  
->Due Wed 04/14 by 10pm EDT  
+>Due Thu 03/31 by 10pm EDT  
 
 ***
 

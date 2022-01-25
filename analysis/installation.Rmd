@@ -15,7 +15,7 @@ output:
 
 Follow the instructions in [section 1.4](https://r4ds.had.co.nz/introduction.html#prerequisites) of the R for Data Science book. Make sure to get the free open source license RStudio Desktop version.
 
-**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.0.3 and RStudio v1.4.1103). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
+**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.1.2 and RStudio v2021.09.2). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
 
 
 ***
@@ -37,13 +37,13 @@ install.packages(c("nycflights13", "gapminder", "Lahman"))
 
 ### Install Slack and join workspace  
 
-Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres6100sp21/shared_invite/zt-lu94u3tv-P9u3bSoe0_jkA3bmEGmvIg). We are going to use Slack as our primary communication channel for this course. To build broader connections, we also plan on opening our Slack workspace as a communication platform for the entire R user community at Cornell to create a venue where people can find help and/or collaboration opportunities. Please consider adding a photo to your profile to make our workspace more personal.
+Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres6100-sp22/shared_invite/zt-11ztkw0t3-34p8BoXwoQiwOLeXqE_u2Q). We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 
 When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. If you don't plan on using Slack regularly, please go to "Preferences" and check the box that says "Send me email notifications for mentions and direct messages". 
 
 ![](https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460)
 
-By clicking this option, you will able to receive all of our anouncements via email without needing to log in on Slack every time.  
+By clicking this option, you will able to receive all of our announcements via email without needing to log in on Slack every time.  
 
 ***
 

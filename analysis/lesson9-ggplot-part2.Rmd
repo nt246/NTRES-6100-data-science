@@ -34,8 +34,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson9-files/")
 <br>
 
 ## Announcements
-* No class on Wednesday
-* We're half-way through the course! We will send around a mid-term evaluation survey later this week and would really appreciate your feedback. All responses will be completely anonymous
 
 <br>
 

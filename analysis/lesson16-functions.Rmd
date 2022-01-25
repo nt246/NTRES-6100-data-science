@@ -2,7 +2,6 @@
 title: "Lesson 16: Functions"
 output: 
   html_document:
-    keep_md: yes 
     toc: true
 ---
   
@@ -31,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Announcements
 * Next week is our last week - only two more classes left
-* You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Wednesday (April 14). Please indicate [here](https://docs.google.com/spreadsheets/d/17RTFOwSfgNFCLpIBzgNJrYXP7nPkaTwxQGSUMfW1fh8/edit?usp=sharing) whether you will be giving your presentation during the live Zoom call (preferred) or submit a video. The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present.
+* You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 31). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present.
 
 <br>
 
