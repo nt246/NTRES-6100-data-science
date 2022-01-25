@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 1: Introduction to R and RStudio</title>
+
+<script src="lesson1-rstudio_files/header-attrs-2.11/header-attrs.js"></script>
+<script src="lesson1-rstudio_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lesson1-rstudio_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lesson1-rstudio_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lesson1-rstudio_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lesson1-rstudio_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lesson1-rstudio_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="lesson1-rstudio_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="lesson1-rstudio_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="lesson1-rstudio_files/navigation-1.1/tabsets.js"></script>
+<link href="lesson1-rstudio_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lesson1-rstudio_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
+    </li>
+    <li>
+      <a href="lesson15-for-loops-part2.html">Lesson 15: Iteration - part 2</a>
+    </li>
+    <li>
+      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+    </li>
+    <li>
+      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+    </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
+    </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 1: Introduction to R and RStudio</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Welcome to the course. Please review the <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2022_01_25.pdf">introductory slides</a> describing the focus, content, and goal of this course.</p>
+<p><br> <br></p>
+<p>We will not have time to provide a comprehensive introduction to R and RStudio. Today, we will focus on highlighting a few key functionalities and tips that will be important for this course and get us all on the same page. If you have not worked in R before, we strongly encourage you to work through a couple of the tutorials listed under “Other useful resources” below.</p>
+<p><br></p>
+</div>
+<div id="acknowledgements-and-resources" class="section level2">
+<h2>Acknowledgements and resources</h2>
+<p>Most of today’s lesson has been borrowed (with permission) from the <a href="http://ohi-science.org/data-science-training/">Ocean Health Index Data Science Training</a></p>
+<p><br></p>
+<p>Other useful resources to check out include the following:</p>
+<ul>
+<li><a href="https://stat545.com/r-basics.html">Jenny Bryan’s STAT545 Chapter 2 R basics and workflows</a></li>
+<li><a href="https://swirlstats.com/">R Swirl interactive lessons</a></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data Carpentry’s Introduction to R for Ecologists</a></li>
+</ul>
+<p><br></p>
+<p>RStudio has great resources about its IDE (IDE stands for integrated development environment):</p>
+<ul>
+<li><a href="https://www.rstudio.com/resources/webinars/">Webinars</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets</a></li>
+</ul>
+<p><br></p>
+</div>
+<div id="orientation-r-and-rstudio" class="section level2">
+<h2>Orientation: R and RStudio</h2>
+<p>In this course, we will be using R with RStudio. R is the base statistical computing environment. RStudio is an Interactive Development Environment (IDE) that makes it much easier to use R by helping us organize our work and do things like auto-complete, syntax highlighting etc.</p>
+<p>After you install R and RStudio, you only need to open RStudio.</p>
+<p>When you open RStudio, it will look like this:</p>
+<p><img src="assets/RStudio_IDE.png" /> <br></p>
+<p>Notice the default panes:</p>
+<ul>
+<li>Console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help (tabbed in lower right)</li>
+</ul>
+<p>FYI: you can change the default location of the panes, among many other things: <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">Customizing RStudio</a>.</p>
+<p>An important first question: <strong>where are we?</strong></p>
+<p>If you have opened RStudio for the first time, you’ll be in your Home directory. This is noted by the <code>~/</code> at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won’t change where you are: even as you click through you’ll still be Home: <code>~/</code>.</p>
+<p><img src="assets/RStudio_IDE_homedir.png" /> <br></p>
+<p>OK let’s go into the Console, where we interact with the live R process.</p>
+<p>Make an assignment and then inspect the object you created by typing its name on its own.</p>
+<pre class="r"><code>x &lt;- 3 * 4
+x</code></pre>
+<pre><code>## [1] 12</code></pre>
+<p><br></p>
+<p>In my head I hear, e.g., “x gets 12”.</p>
+<p>All R statements where you create objects – “assignments” – have this form: <code>objectName &lt;- value</code>.</p>
+<p>I’ll write it in the console with a hashtag <code>#</code>, which is the way R comments so it won’t be evaluated.</p>
+<pre class="r"><code>## objectName &lt;- value
+## This is also how you write notes in your code to explain what you are doing.</code></pre>
+<p>Object names cannot start with a digit and cannot contain certain other characters such as a comma or a space. You will be wise to adopt a <a href="http://en.wikipedia.org/wiki/Snake_case">convention for demarcating words</a> in names.</p>
+<pre class="r"><code># i_use_snake_case
+# other.people.use.periods
+# evenOthersUseCamelCase</code></pre>
+<p><br></p>
+</div>
+<div id="shortcuts-and-autocomplete" class="section level2">
+<h2>Shortcuts and autocomplete</h2>
+<p>Make an assignment</p>
+<pre class="r"><code>this_is_a_really_long_name &lt;- 2.5</code></pre>
+<p>To inspect this variable, instead of typing it, we can press the up arrow key and call your command history, with the most recent commands first. Let’s do that, and then delete the assignment:</p>
+<pre class="r"><code>this_is_a_really_long_name</code></pre>
+<pre><code>## [1] 2.5</code></pre>
+<p>Another way to inspect this variable is to begin typing <code>this_</code>…and RStudio will automatically have suggested completions for you that you can select by hitting the tab key, then press return.</p>
+<p><br></p>
+<blockquote>
+<p>Shortcuts You will make lots of assignments and the operator <code>&lt;-</code> is a pain to type. Don’t be lazy and use <code>=</code>, although it would work, because it will just sow confusion later. Instead, utilize <strong>RStudio’s keyboard shortcut: Alt + - (the minus sign)</strong>. Notice that RStudio automagically surrounds <code>&lt;-</code> with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces. RStudio offers many handy <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">keyboard shortcuts</a>. Also, Alt+Shift+K brings up a keyboard shortcut reference card. My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.</p>
+</blockquote>
+<p><br></p>
+</div>
+<div id="error-messages-are-your-friends" class="section level2">
+<h2>Error messages are your friends</h2>
+<p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.</p>
+<p>Remember that this is a language, not unsimilar to English! There are times you aren’t understood – it’s going to happen. There are different ways this can happen. Sometimes you’ll get an error. This is like someone saying ‘What?’ or ‘Pardon’? Error messages can also be more useful, like when they say ‘I didn’t understand what you said, I was expecting you to say blah’. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.</p>
+<p><br></p>
+<p><img src="assets/practicalDev_googleErrorMessage.jpg" width="400"/></p>
+<p><br></p>
+<p>And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I you are telling your European friend about a football game and she hears it but silently interprets it in a very different way (thinking football means soccer). This can leave you thinking you’ve gotten something across that the listener (or R) might silently interpret very differently. And as you continue telling your story the listener gets more and more confused… Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!</p>
+<p><br></p>
+</div>
+<div id="r-functions-help-pages" class="section level2">
+<h2>R functions, help pages</h2>
+<p>R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. <code>function_name(argument1 = value1, argument2 = value2, ...)</code>. When you see this syntax, we say we are “calling the function”.</p>
+<p>Let’s try using <code>seq()</code> which makes regular sequences of numbers and, while we’re at it, demo more helpful features of RStudio.</p>
+<p>Type <code>se</code> and hit TAB. A pop up shows you possible completions. Specify <code>seq()</code> by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function’s arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane.</p>
+<p>Type the arguments <code>1, 10</code> and hit return.</p>
+<pre class="r"><code>seq(1, 10)</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p><br></p>
+<p>We could probably infer that the <code>seq()</code> function makes a sequence, but let’s learn for sure. Type (and you can autocomplete) and let’s explore the help page:</p>
+<pre class="r"><code>?seq 
+help(seq) # same as ?seq</code></pre>
+<p><br></p>
+<p>The help page tells the name of the package in the top left, and broken down into sections:</p>
+<ul>
+<li>Description: An extended description of what the function does.</li>
+<li>Usage: The arguments of the function and their default values.</li>
+<li>Arguments: An explanation of the data each argument is expecting.</li>
+<li>Details: Any important details to be aware of.</li>
+<li>Value: The data the function returns.</li>
+<li>See Also: Any related functions you might find useful.</li>
+<li>Examples: Some examples for how to use the function.</li>
+</ul>
+<pre class="r"><code>seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>seq(from = 1, to = 10, by = 2)</code></pre>
+<pre><code>## [1] 1 3 5 7 9</code></pre>
+<p>The above also demonstrates something about how R resolves function arguments. You can always specify in <code>name = value</code> form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence <code>from = 1</code> that goes <code>to = 10</code>. Since we didn’t specify step size, the default value of <code>by</code> in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first argument or maybe the first two. After that, I always use <code>name = value</code>.</p>
+<p>The examples from the help pages can be copy-pasted into the console for you to understand what’s going on. Remember we were talking about expecting there to be a function for something you want to do? Let’s try it.</p>
+<p><br></p>
+<div id="your-turn" class="section level3">
+<h3>Your turn</h3>
+<blockquote>
+<p>Exercise: Talk to your neighbor(s) and look up the help file for a function that you know or expect to exist. Here are some ideas: <code>?getwd()</code>, <code>?plot()</code>, <code>min()</code>, <code>max()</code>, <code>?mean()</code>, <code>?log()</code>). And there’s also help for when you only sort of remember the function name: double-question mark:</p>
+</blockquote>
+<pre class="r"><code>??install </code></pre>
+<p>Not all functions have (or require) arguments:</p>
+<pre class="r"><code>date()</code></pre>
+<pre><code>## [1] &quot;Mon Jan 24 23:25:10 2022&quot;</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
+<p>So far we’ve been using a couple functions from base R, such as <code>seq()</code> and <code>date()</code>. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R’s capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.</p>
+<p>The traditional place to download packages is from CRAN, the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a>, which is where you downloaded R. You can also install packages from GitHub, which we’ll do tomorrow.</p>
+<p>You don’t need to go to CRAN’s website to install packages, this can be accomplished within R using the command <code>install.packages("package-name-in-quotes")</code>. Let’s install a small, fun package <code>praise</code>. You need to use quotes around the package name.:</p>
+<pre><code>install.packages(&quot;praise&quot;)</code></pre>
+<p>Now we’ve installed the package, but we need to tell R that we are going to use the functions within the <code>praise</code> package. We do this by using the function <code>library()</code>.</p>
+<p><br></p>
+<p><strong>What’s the difference between a package and a library?</strong><br />
+Sometimes there is a confusion between a package and a library, and you can find people calling packages “libraries”.</p>
+<p>Please don’t get confused: <code>library()</code> is the command used to load a package, and it refers to the place where the package is contained, usually a folder on your computer, while a package is the collection of functions bundled conveniently.</p>
+<p><br></p>
+<pre class="r"><code>library(praise)</code></pre>
+<p>Now that we’ve loaded the <code>praise</code> package, we can use the single function in the package, <code>praise()</code>, which returns a randomized praise to make you feel better.</p>
+<pre class="r"><code>praise()</code></pre>
+<pre><code>## [1] &quot;You are best!&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="clearing-the-environment" class="section level2">
+<h2>Clearing the environment</h2>
+<p>Now look at the objects in your environment (workspace) – in the upper right pane. The workspace is where user-defined objects accumulate. If we try typing in the commands shown in the console below, we’ll see each of the objects we have created in our “Environment” pane.</p>
+<p><img src="assets/RStudio_IDE_env.png" /> <br></p>
+<p>You can also get a listing of these objects with a few different R commands:</p>
+<pre class="r"><code>objects()</code></pre>
+<pre><code>## [1] &quot;this_is_a_really_long_name&quot; &quot;x&quot;</code></pre>
+<pre class="r"><code>ls()</code></pre>
+<pre><code>## [1] &quot;this_is_a_really_long_name&quot; &quot;x&quot;</code></pre>
+<p><br></p>
+<p>If you want to remove the object named <code>weight_kg</code>, you can do this:</p>
+<pre class="r"><code>rm(weight_kg)</code></pre>
+<pre><code>## Warning in rm(weight_kg): object &#39;weight_kg&#39; not found</code></pre>
+<p><br></p>
+<p>To remove everything:</p>
+<pre class="r"><code>rm(list = ls())</code></pre>
+<p>or click the broom in RStudio’s Environment pane.</p>
+<p>But this command is problematic -see <a href="https://rstats.wtf/save-source.html#rm-list-ls">Jenny Bryan’s explanation</a>.</p>
+<p><br></p>
+<p>For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don’t want your whole analysis to only work in whatever way you’ve been working right now — you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis.</p>
+<p>We will keep coming back to this theme but let’s restart our R session together: Go to the top menus: Session &gt; Restart R.</p>
+<div id="your-turn-1" class="section level3">
+<h3>Your turn</h3>
+<blockquote>
+<p>Exercise: Clear your workspace, then create a few new variables. Create a variable that is the mean of a sequence of 1-20. What’s a good name for your variable? Does it matter what your ‘by’ argument is? Why?</p>
+</blockquote>
+<p><br></p>
+<p><strong>Highly recommended:</strong> <a href="https://www.r-bloggers.com/using-r-dont-save-your-workspace/">Don’t save your workspace when you quit RStudio</a>. Make this a default:</p>
+<ul>
+<li><p>Go to “RStudio” -&gt; “Preferences…” -&gt; “General” (Or “Tools” -&gt; “Options” -&gt; “General” if you are on a Windows machine)</p></li>
+<li><p>Uncheck “restore .RData into workspace on startup”</p></li>
+<li><p>Select: “Save workspace to RData on exit:” Never</p></li>
+</ul>
+<p><img src="assets/rstudio-workspace.png" /></p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="home-directory-relative-vs.-absolute-paths-and-rstudio-projects" class="section level2">
+<h2>Home directory, relative vs. absolute paths and RStudio projects</h2>
+<p>See <a href="https://r4ds.had.co.nz/workflow-projects.html#where-does-your-analysis-live">sections 8.2-8.4 in Grolemund and Wickham’s R for Data Science</a></p>
+<p>Additional tips on RStudio projects <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">here</a></p>
+<p>On Wednesday, we will set up an RStudio project for you to work in during this course (we’re waiting until Wednesday because we want to integrate it with GitHub from the get-go).</p>
+<p><br></p>
+</div>
+<div id="saving-your-code-in-scripts" class="section level2">
+<h2>Saving your code in scripts</h2>
+<p>See <a href="https://r4ds.had.co.nz/workflow-projects.html#where-does-your-analysis-live">Chapter 6 in Grolemund and Wickham’s R for Data Science</a></p>
+<p><br> <br></p>
+<p><strong>If you’re new to R, this may all seem a little overwhelming right now. Don’t worry, we’ll keep coming back to revisit some of the key concepts outlined above as wwe work through the course.</strong></p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
