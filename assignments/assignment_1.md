@@ -233,7 +233,7 @@ through RMarkdown **using the kable() function**, as shown above.
 
 Show data for the 6 subjects with the smallest sum of `Dose` as below.
 **Do not define new intermediate objects for this exercise; use pipes to
-chain together functions. **
+chain together functions.**
 
 ``` r
 ## Write your code here
