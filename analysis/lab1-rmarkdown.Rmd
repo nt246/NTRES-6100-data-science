@@ -27,7 +27,7 @@ Let's start by playing around with the basic RStudio RMarkdown template a little
 ### Basic formatting
 
 Let's play around with the formatting of our document. Remember that you can find 
-RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's thst you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
+RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's RMarkdown cheatsheet you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
 
 As you're making changes, knit often and see how your edits look in the rendered document.
 
@@ -81,6 +81,24 @@ If you want more control over the output, e.g. to center the image or make it sm
 
 <br>
 
+#### Center and right align text
+
+You cannot align text with the native markdown syntex. However, depending on the output format, you can use other methods. For example, if you are knitting the RMarkdown file into an HTML file, you can use HTML tags such as the following:
+
+```
+<center> Centered text (HTML) </center>
+[Aligned right (HTML)]{style="float:right"}
+```
+
+Alternatively, if you are knitting the RMarkdown file into a PDF file, you can use LaTeX commands. E.g.,
+
+```
+\center Centered text (PDF) \center
+\hfill Aligned right (PDF)
+```
+
+<br>
+
 #### Equations
 Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won't go through this in class, but you can find an easy introduction in [R Markdown for Scientists](https://rmd4sci.njtierney.com/math.html).
 
@@ -106,7 +124,7 @@ Remind yourself about the key code chunk options see overview [here](https://nt2
 Add toc details to your YAML header
 <br>
 
-```{r}
+```
 ---
 title: "Lab1_doc"
 author: "Nina"
@@ -114,7 +132,7 @@ date: "2/12/2021"
 output:
   html_document:
     toc: true
-
+    toc_depth: 2
 ---
 ```
 
