@@ -51,8 +51,8 @@ Another really cool and useful functionality is writing in-line code. Code resul
 We may for example want to summarize the dimensions of our dataset. We can do this by typing
 
 ```{r, eval = FALSE}
-There are `r nrow(cars) ` observations in the cars dataset, 
-and `r 'ncol(cars) ` variables.
+There are `r nrow(cars)` observations in the cars dataset, 
+and `r ncol(cars)` variables.
 ```
 
 See how that renders.
