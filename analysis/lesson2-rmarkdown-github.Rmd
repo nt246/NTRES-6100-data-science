@@ -522,16 +522,16 @@ If you see `Error in use_git_config() : could not find function "use_git_config"
 
 The next sections present highlights and borrows sections from:  
 
-* [Chapter 10: Cache credentials for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/credential-caching.html)
+* [9 Personal access token for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/https-pat.html)
 * [The Managing Git(Hub) Credentials Vignette from the usethis package](https://usethis.r-lib.org/articles/articles/git-credentials.html)
 
 If you want more detail, consult these sources.
 
 <br>
 
-For now, GitHub still allows authentication with your username and password, so you *can* proceed without this step. However, from August 2021 [GitHub will require token- or SSH-based authentication](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/), so let's get set up with that right away so your workflows won't be interrupted when the standard username-password authentication stops working.
+When we interact with a remote Git server, such as GitHub, we have to include credentials in the request (to provide access to your account). This proves we are a specific GitHub user, who’s allowed to do whatever we’re asking to do. However, the password that you use to login to GitHub’s website is NOT an acceptable credential when talking to GitHub as a Git server (as we will be doing through RStudio). This was possible in the past (and may yet be true for other Git servers), but those days are over at GitHub. You can learn more in their blog post [Token authentication requirements for Git operations](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
 
-We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/credential-caching.html) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
+Git can communicate with a remote server using one of two protocols, HTTPS or SSH, and the different protocols use different credentials. We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/https-pat.html#https-vs-ssh) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
 
 <br>
 

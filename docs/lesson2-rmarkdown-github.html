@@ -882,13 +882,13 @@ use_git_config(user.name = &quot;jules32&quot;, user.email = &quot;jules32@examp
 <h3>Entering a GitHub Personal Access Token (PAT)</h3>
 <p>The next sections present highlights and borrows sections from:</p>
 <ul>
-<li><a href="https://happygitwithr.com/credential-caching.html">Chapter 10: Cache credentials for HTTPS in Jenny Bryan’s Happy Git with R</a></li>
+<li><a href="https://happygitwithr.com/https-pat.html">9 Personal access token for HTTPS in Jenny Bryan’s Happy Git with R</a></li>
 <li><a href="https://usethis.r-lib.org/articles/articles/git-credentials.html">The Managing Git(Hub) Credentials Vignette from the usethis package</a></li>
 </ul>
 <p>If you want more detail, consult these sources.</p>
 <p><br></p>
-<p>For now, GitHub still allows authentication with your username and password, so you <em>can</em> proceed without this step. However, from August 2021 <a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/">GitHub will require token- or SSH-based authentication</a>, so let’s get set up with that right away so your workflows won’t be interrupted when the standard username-password authentication stops working.</p>
-<p>We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in <a href="https://happygitwithr.com/credential-caching.html">Happy Git with R</a> or in <a href="https://usethis.r-lib.org/articles/articles/git-credentials.html">this usethis vignette</a>, but you can also just take our word for it.</p>
+<p>When we interact with a remote Git server, such as GitHub, we have to include credentials in the request (to provide access to your account). This proves we are a specific GitHub user, who’s allowed to do whatever we’re asking to do. However, the password that you use to login to GitHub’s website is NOT an acceptable credential when talking to GitHub as a Git server (as we will be doing through RStudio). This was possible in the past (and may yet be true for other Git servers), but those days are over at GitHub. You can learn more in their blog post <a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/">Token authentication requirements for Git operations</a>.</p>
+<p>Git can communicate with a remote server using one of two protocols, HTTPS or SSH, and the different protocols use different credentials. We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in <a href="https://happygitwithr.com/https-pat.html#https-vs-ssh">Happy Git with R</a> or in <a href="https://usethis.r-lib.org/articles/articles/git-credentials.html">this usethis vignette</a>, but you can also just take our word for it.</p>
 <p><br></p>
 <div id="generating-a-pat" class="section level4">
 <h4>Generating a PAT</h4>
