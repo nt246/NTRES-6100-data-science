@@ -466,7 +466,7 @@ div.tocify {
 - <a href="https://r4ds.had.co.nz/r-markdown.html">Chapter 27 in Grolemund and Wickham’s R for Data Science</a><br />
 - Have a look at the <a href="https://rmarkdown.rstudio.com/lesson-1.html">RMarkdown website</a> including <a href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">this video</a></p>
 <p><strong>Additional resources</strong>:<br />
-- <a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">RStudio’s R markdown cheatsheet</a><br />
+- <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/docs/assets/rmarkdown.pdf">RStudio’s R markdown cheatsheet</a><br />
 - The <a href="https://rmarkdown.rstudio.com/">Rmd website</a> has a fantastic walk-through <a href="https://rmarkdown.rstudio.com/lesson-1.html">tutorial</a> that gives a great overview of R Markdown<br />
 - Yihui’s <a href="https://bookdown.org/yihui/rmarkdown/">Rmd book</a> for lots more on R Markdown.</p>
 <p><br></p>
@@ -509,6 +509,9 @@ div.tocify {
 <h2>Introduction to RMarkdown</h2>
 <p>An RMarkdown file is a plain text file that allow us to write code and text together, and when it is “knit”, the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.</p>
 <p>This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.</p>
+<p><br></p>
+<p><img src="assets/rmarkdown_wizards.png" width="100%" /> Artwork by Allison Horst</p>
+<p><br></p>
 <p>This 1-minute video provides a great introduction to RMarkdown: <a href="https://vimeo.com/178485416">What is RMarkdown?</a></p>
 <p>Now let’s explore the RMarkdown format a bit ourselves to get started.</p>
 <p><br></p>
@@ -571,9 +574,8 @@ div.tocify {
 <p>There are also other good markdown <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">cheatsheets</a> available online.</p>
 <p><br></p>
 </div>
-</div>
-<div id="activity-1" class="section level3">
-<h3>Activity</h3>
+<div id="activity-1" class="section level4">
+<h4>Activity</h4>
 <p>Make the following changes to your RMarkdown document:</p>
 <ul>
 <li>Add some italic text</li>
@@ -584,6 +586,7 @@ div.tocify {
 <p>Re-knit your html file to see how your formatting works out.</p>
 <p>If you have more time, try adding a URL and a table (see below)</p>
 <p><br></p>
+</div>
 <div id="figures-and-tables" class="section level4">
 <h4>Figures and tables</h4>
 <p>To show a figure from a url use <code>![caption](url_to_image)</code> To show a figure from a local file <code>![caption](local_path_to_image)</code></p>
@@ -594,7 +597,7 @@ div.tocify {
 | 12 | 12 | 12 | 12 |
 | 123 | 123 | 123 | 123 |
 | 1 | 1 | 1 | 1 | </code></pre>
-<p><br></p>
+<p><br> <br></p>
 </div>
 </div>
 <div id="r-code" class="section level3">
@@ -620,7 +623,7 @@ div.tocify {
 <li>the second chunk labeled “cars” has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)</li>
 <li>the third chunk labeled “pressure” says <code>echo=FALSE</code>, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.</li>
 </ul>
-<p>Chunk output can be customised with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+<p>Chunk output can be customised with <strong>options</strong>, arguments supplied in the chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
 <p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
 <ul>
 <li><p><code>eval = FALSE</code> prevents code from being evaluated (and obviously if the code is not run, no results will be generated). This is useful for displaying example code, or for disabling a large block of code without commenting each line.</p></li>
@@ -722,7 +725,9 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 <p>We can create a new chunk in your RMarkdown first in one of these ways:</p>
 <ul>
 <li>The keyboard shortcut Cmd/Ctrl + Alt + I</li>
-<li>Click “Insert &gt; R” at the top of the editor pane (with the green plus and green box)</li>
+<li>Click on the green box with a green plus at the top of your editor pane, and select “R</li>
+<li>Click “Code” &gt; “Insert chunk” from the top menu<br />
+</li>
 <li>Type it by hand: ```{r} ```</li>
 </ul>
 <p><br></p>
@@ -809,12 +814,12 @@ Execution halted</code></pre>
 <p>We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this. A file is also a great way for you to take notes to yourself.</p>
 <p>The Console is good for doing quick calculations like <code>8*22.3</code>, testing functions, for calling help pages, for installing packages.</p>
 <p><br></p>
-</div>
-<div id="activity-2" class="section level3">
-<h3>Activity</h3>
+<div id="activity-2" class="section level4">
+<h4>Activity</h4>
 <p>Practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote.</p>
 <p>Render to html format, and if you’re comfortable, share with the class by posting it to the <code>lecture-chat</code> channel in Slack.</p>
 <p><br></p>
+</div>
 </div>
 <div id="other-output-formats" class="section level3">
 <h3>Other output formats</h3>

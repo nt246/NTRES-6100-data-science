@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - Have a look at the [RMarkdown website](https://rmarkdown.rstudio.com/lesson-1.html) including [this video](https://rmarkdown.rstudio.com/authoring_quick_tour.html)
 
 **Additional resources**:  
-- [RStudio's R markdown cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)  
+- [RStudio's R markdown cheatsheet](https://github.com/nt246/NTRES-6100-data-science/blob/main/docs/assets/rmarkdown.pdf)  
 - The [Rmd website](https://rmarkdown.rstudio.com/) has a fantastic walk-through [tutorial](https://rmarkdown.rstudio.com/lesson-1.html) that gives a great overview of R Markdown  
 - Yihui's [Rmd book](https://bookdown.org/yihui/rmarkdown/) for lots more on R Markdown.  
 
@@ -73,10 +73,20 @@ An RMarkdown file is a plain text file that allow us to write code and text toge
 
 This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
 
+<br>
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("assets/rmarkdown_wizards.png")  
+```
+Artwork by Allison Horst
+
+<br>
+
 This 1-minute video provides a great introduction to RMarkdown: [What is RMarkdown?](https://vimeo.com/178485416)
 
 Now let's explore the RMarkdown format a bit ourselves to get started. 
 
+<br>
 <br>
 
 ### Create an RMarkdown file
@@ -164,7 +174,7 @@ There are also other good markdown [cheatsheets](https://github.com/adam-p/markd
 
 <br>
 
-### Activity
+#### Activity
 Make the following changes to your RMarkdown document:
 
 * Add some italic text
@@ -197,6 +207,7 @@ To manually create a table, use the following syntax. Notice the text alignment 
 ```
 
 <br>
+<br>
 
 ### R code
 
@@ -227,7 +238,7 @@ Each of them start with 3 backticks and `{r label}` that signify there will be R
 - the second chunk labeled "cars" has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
 - the third chunk labeled "pressure" says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
 
-Chunk output can be customised with __options__, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
+Chunk output can be customised with __options__, arguments supplied in the chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
 
 The most important set of options controls if your code block is executed and what results are inserted in the finished report:
   
@@ -286,7 +297,8 @@ There are many more options available that we will discuss as we get more famili
 We can create a new chunk in your RMarkdown first in one of these ways: 
 
 - The keyboard shortcut Cmd/Ctrl + Alt + I
-- Click "Insert > R" at the top of the editor pane (with the green plus and green box)
+- Click on the green box with a green plus at the top of your editor pane, and select "R 
+- Click "Code" > "Insert chunk" from the top menu  
 - Type it by hand: 
    \```{r}
    \```
@@ -416,7 +428,7 @@ The Console is good for doing quick calculations like `8*22.3`, testing function
 
 <br>
 
-### Activity
+#### Activity
 Practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote.
 
 Render to html format, and if you're comfortable, share with the class by posting it to the `lecture-chat` channel in Slack.
