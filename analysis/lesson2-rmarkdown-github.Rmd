@@ -45,10 +45,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Class announcements 
 
-* Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.
-* Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)
-* Remember office hours Tuesdays 2.30-3.30 (on Zoom)  
+* Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc. 
+* We will use the `lecture-chat` channel in Slack rather than the Zoom chat (disabled). Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture 
+* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/39033)
+* Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
 * [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) due 02/03 (we will go through how to submit through GitHub next week)  
+* Nicolas will hold office hours Tuesdays 2.30-3.30 (on Zoom)  
 
 <br>
 
@@ -460,7 +462,14 @@ Note: `toc: true` is optional, but it can automatically set up a table of conten
 
 
 <br>
+<br> 
+
+#### Activity
+Practice styling RMarkdown documents with [this interactive tutorial](https://commonmark.org/help/tutorial/)
+
 <br>
+<br>
+
 
 ***
 
