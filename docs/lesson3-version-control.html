@@ -13,13 +13,22 @@
 
 <title>Lesson 3: Version control and the Git/GitHub workflow</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -542,7 +501,7 @@ div.tocify {
 <p>Basically, we get away from this:</p>
 <p><br></p>
 <p><img src="assets/MessySaves.png" width="80%" /> <br></p>
-<p>This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, if we’re collaborating with other people on these documents and, for example, sharing them over email, it can become very tricky to ensure everyone always has the most current verion. Even updates are always immediately shared, everyone’s bookkeeping can take a huge amount of time. Is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives.</p>
+<p>This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, if we’re collaborating with other people on these documents and, for example, sharing them over email, it can become very tricky to ensure everyone always has the most current verion. Even if updates are always immediately shared, everyone’s bookkeeping can take a huge amount of time. Is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives.</p>
 <p>Fortunately there is Git and GitHub!</p>
 <p>On GitHub, in this example you will likely only see a single file, which is the most recent version. GitHub’s job is to track who made any changes and when (so no need to save a copy with your name or date at the end), and it also requires that you write something human-readable that will be a breadcrumb for you in the future. It is also designed to be easy to compare versions, and you can easily revert to previous versions.</p>
 <p>GitHub also supercharges you as a collaborator. First and foremost with Future You, but also sets you up to collaborate with Future Us!</p>
@@ -554,7 +513,7 @@ div.tocify {
 <p>OK so what is GitHub? And Git?</p>
 <ul>
 <li><p><strong>Git</strong> is a program that you install on your computer: it is version control software that tracks changes to your files over time.</p></li>
-<li><p><strong>GitHub</strong> is an website that is essentially a social media platform for your Git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people’s files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between <a href="https://help.github.com/articles/rendering-and-diffing-images/">images</a>, <a href="https://help.github.com/articles/mapping-geojson-files-on-github/">rendering</a> &amp; <a href="https://github.com/blog/1772-diffable-more-customizable-maps">diffing</a> map data files, <a href="https://help.github.com/articles/rendering-csv-and-tsv-data/">render text data files</a>, and <a href="https://help.github.com/articles/rendering-differences-in-prose-documents/">track changes in text</a>.</p></li>
+<li><p><strong>GitHub</strong> is an website that is essentially a social media platform for your Git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people’s files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between <a href="https://docs.github.com/en/github-ae@latest/repositories/working-with-files/using-files/working-with-non-code-files#rendering-and-diffing-images">images</a>, <a href="https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#mapping-geojson-files-on-github">rendering</a> &amp; <a href="https://github.com/blog/1772-diffable-more-customizable-maps">diffing</a> map data files, <a href="https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#rendering-csv-and-tsv-data">render text data files</a>, and <a href="https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#rendering-differences-in-prose-documents">track changes in text</a>.</p></li>
 </ul>
 <p>GitHub was developed for software development, so much of the functionality and terminology that is exciting for professional programmers (e.g., branches and pull requests) isn’t necessarily the right place for us as new R users to get started. We’ll get there soon, but for now, we will be learning and practicing GitHub’s features and terminology on a “need to know basis” as we start managing our projects with GitHub.</p>
 <p><br></p>
@@ -583,7 +542,7 @@ div.tocify {
 </div>
 <div id="reconnecting-with-your-course-repo-on-github" class="section level3">
 <h3>Reconnecting with your course repo on GitHub</h3>
-<p>As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click <a href="https://classroom.github.com/a/h81351Rq">here</a> and select your name from the list (or just click continue if you don’t see your name there).</p>
+<p>As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click <a href="https://classroom.github.com/a/uJ9mUgA0">here</a> and select your name from the list (or just click continue if you don’t see your name there).</p>
 <p>Once you land on your repo page, notice that it is hosted within our course organizational account <code>therkildsen-class</code>, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the “Star” button on the top right of the page.</p>
 <p><img src="assets/star_repo.png" width="80%" /></p>
 <p><br></p>
@@ -978,7 +937,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -987,6 +946,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

@@ -65,7 +65,7 @@ knitr::include_graphics("assets/MessySaves.png")
 ```
 <br>
 
-This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, if we're collaborating with other people on these documents and, for example, sharing them over email, it can become very tricky to ensure everyone always has the most current verion. Even updates are always immediately shared, everyone's bookkeeping can take a huge amount of time. Is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives. 
+This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, if we're collaborating with other people on these documents and, for example, sharing them over email, it can become very tricky to ensure everyone always has the most current verion. Even if updates are always immediately shared, everyone's bookkeeping can take a huge amount of time. Is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives. 
 
 Fortunately there is Git and GitHub! 
 
@@ -83,7 +83,7 @@ OK so what is GitHub? And Git?
 
 - **Git** is a program that you install on your computer: it is version control software that tracks changes to your files over time.
 
-- **GitHub** is an website that is essentially a social media platform for your Git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
+- **GitHub** is an website that is essentially a social media platform for your Git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://docs.github.com/en/github-ae@latest/repositories/working-with-files/using-files/working-with-non-code-files#rendering-and-diffing-images), [rendering](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#mapping-geojson-files-on-github) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#rendering-csv-and-tsv-data), and [track changes in text](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#rendering-differences-in-prose-documents).
 
 GitHub was developed for software development, so much of the functionality and terminology that is exciting for professional programmers (e.g., branches and pull requests) isn't necessarily the right place for us as new R users to get started. We'll get there soon, but for now, we will be learning and practicing GitHub's features and terminology on a "need to know basis" as we start managing our projects with GitHub.
 
@@ -112,7 +112,7 @@ Examples:
 <br>
 
 ### Reconnecting with your course repo on GitHub
-As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click [here](https://classroom.github.com/a/h81351Rq) and select your name from the list (or just click continue if you don't see your name there).
+As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click [here](https://classroom.github.com/a/uJ9mUgA0) and select your name from the list (or just click continue if you don't see your name there).
 
 Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
 
