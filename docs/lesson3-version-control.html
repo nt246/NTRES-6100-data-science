@@ -548,7 +548,7 @@ div.tocify {
 <p><br></p>
 <p>Now if you click on the profile information in the very top right corner, and select the “Your stars” option, you’ll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like <code>therkildsen-class/ntres-6100-YOUR_USER_NAME</code>). Click on the repo name to return to your course repo.</p>
 <p><img src="assets/finding_starred_repos.png" width="80%" /></p>
-<p><br> <br></p>
+<p><br> <br> <br></p>
 </div>
 </div>
 <div id="navigating-github" class="section level2">
@@ -633,7 +633,7 @@ div.tocify {
 <h3>Copy the repo address</h3>
 <p>First, click the green “Code” button, then copy the web address of the repository you want to clone. We will use HTTPS.</p>
 <blockquote>
-<p><strong>Aside</strong>: HTTPS is default, and <a href="https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication">is method recommended by GitHub</a>. You could alternatively set up with SSH, but we will not get into that here.</p>
+<p><strong>Aside</strong>: HTTPS is default, and <a href="https://happygitwithr.com/https-pat.html#https-vs-ssh">is method recommended by GitHub</a>. You could alternatively set up with SSH, but we will not get into that here.</p>
 </blockquote>
 <p><br></p>
 <p><img src="assets/github-clone-sept20.png" width="100%" /></p>
@@ -720,11 +720,7 @@ div.tocify {
 </ol>
 <p><br></p>
 <p><img src="assets/commit_steps.png" width="100%" /></p>
-<p><br></p>
-<p>We start off this whole process by clicking on the Commit section.</p>
-<p><br></p>
-<p><img src="assets/commit_circled.png" width="100%" /></p>
-<p><br></p>
+<p><br> <br></p>
 <div id="pull" class="section level3">
 <h3>Pull</h3>
 <p>We start off by “Pulling” from the remote repository (github.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn’t new information available. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection).</p>
@@ -747,6 +743,10 @@ div.tocify {
 </div>
 <div id="commit" class="section level3">
 <h3>Commit</h3>
+<p>Next, we click on the Commit section.</p>
+<p><br></p>
+<p><img src="assets/commit_circled.png" width="100%" /></p>
+<p><br></p>
 <p>Committing is different from saving our files (which we still have to do! RStudio will indicate a file is unsaved with red text and an asterix). We commit a single file or a group of files when we are ready to save a snapshot in time of the progress we’ve made. Maybe this is after a big part of the analysis was done, or when you’re done working for the day.</p>
 <p>Committing our files is a 2-step process.</p>
 <p>First, you write a “commit message”, which is a human-readable note about what has changed that will accompany GitHub’s non-human-readable alphanumeric code to track our files. I think of commit messages like breadcrumbs to my Future Self: how can I use this space to be useful for me if I’m trying to retrace my steps (and perhaps in a panic?).</p>

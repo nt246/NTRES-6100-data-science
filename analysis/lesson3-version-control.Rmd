@@ -131,6 +131,8 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 
 <br>
 <br>
+<br>
+
 
 ## Navigating GitHub
 
@@ -218,7 +220,7 @@ Before repeating the cloning step, let's first get rid of the folder we created 
 
 First, click the green "Code" button, then copy the web address of the repository you want to clone. We will use HTTPS. 
 
-> **Aside**: HTTPS is default, and [is method recommended by GitHub](https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication). You could alternatively set up with SSH, but we will not get into that here.
+> **Aside**: HTTPS is default, and [is method recommended by GitHub](https://happygitwithr.com/https-pat.html#https-vs-ssh). You could alternatively set up with SSH, but we will not get into that here.
 
 <br>
 
@@ -374,15 +376,6 @@ knitr::include_graphics("assets/commit_steps.png")
 ```
 
 <br>
-
-We start off this whole process by clicking on the Commit section. 
-
-<br>
-
-```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("assets/commit_circled.png")  
-```
-
 <br>
 
 ### Pull 
@@ -417,6 +410,16 @@ knitr::include_graphics("assets/commit_codes_added_modified.png")
 <br>
 
 ### Commit
+
+Next, we click on the Commit section. 
+
+<br>
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("assets/commit_circled.png")  
+```
+
+<br>
 
 Committing is different from saving our files (which we still have to do! RStudio will indicate a file is unsaved with red text and an asterix). We commit a single file or a group of files when we are ready to save a snapshot in time of the progress we've made. Maybe this is after a big part of the analysis was done, or when you're done working for the day.
 
