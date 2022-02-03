@@ -3,7 +3,7 @@ Assignment 4: Data transformation and visualization
 
 ## Instructions: Please read through this before you begin
 
--   This assignment is due by **10pm on Friday 03/12/20**. Please
+-   This assignment is due by **10pm on Thursday 02/24/20**. Please
     upload it using your personal GitHub repository for this class.
 
 -   You can start by making a copy of the R markdown template that you
@@ -73,7 +73,7 @@ economist_data <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-d
 
 #### 1.1 Show the first few rows of `economist_data`.
 
-|  X1 | Country     | HDI.Rank |   HDI | CPI | Region            |
+|  …1 | Country     | HDI.Rank |   HDI | CPI | Region            |
 |----:|:------------|---------:|------:|----:|:------------------|
 |   1 | Afghanistan |      172 | 0.398 | 1.5 | Asia Pacific      |
 |   2 | Albania     |       70 | 0.739 | 3.1 | East EU Cemt Asia |

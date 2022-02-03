@@ -5,8 +5,8 @@ Assignment 9: Functions and factors
 
 ## Instructions: Please read through this before you begin
 
--   This homework is due by **10pm on Wednesday 04/14/20**. Please
-    upload it using your personal GitHub repository for this class.
+-   This homework is due by **10pm on Thursday 03/31/20**. Please upload
+    it using your personal GitHub repository for this class.
 
 -   Please name your R markdown file `assignment_9.Rmd` and the knitted
     markdown file `assignment_9.md`.
@@ -81,7 +81,7 @@ f_to_c(212)
 but she really didn’t like it when it’s hot. Although she wanted to know
 what the temperature is in Celsius when the US weather channel reported
 it in Fahrenheit, there are certain points at which it was just too cold
-or too hot for to to care about the exact value. **Modify the f\_to\_c
+or too hot for to to care about the exact value. **Modify the f_to_c
 function below to print the following**, and check if your function
 works properly using the input of **-10 F, 60 F, and 90 F**.
 

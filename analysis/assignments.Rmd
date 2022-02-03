@@ -43,7 +43,7 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ### Assignment 6
 #### [Data import and tidy data](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)  
->Due Thu 03/20 by 10pm EDT  
+>Due Thu 03/10 by 10pm EDT  
 
 ***
 

@@ -5,34 +5,34 @@ Assignment 5: Data transformation and visualization - Part 2
 
 ## Instructions: Please read through this before you begin
 
-  - This assignment is due by **10pm on Wednesday 03/17/20**. Please
+-   This assignment is due by **10pm on Thursday 03/03/20**. Please
     upload it using your personal GitHub repository for this class.
 
-  - Please name your R markdown file `assignment_5.Rmd` and the knitted
+-   Please name your R markdown file `assignment_5.Rmd` and the knitted
     markdown file `assignment_5.md`.
 
-  - For this assignment, please **reproduce this markdown file** using R
+-   For this assignment, please **reproduce this markdown file** using R
     markdown. This includes the followings:
-    
-      - **Reproduce this markdown template**, except for this list of
+
+    -   **Reproduce this markdown template**, except for this list of
         instructions which you **don’t** have to include. Pay attention
         to all the formating in this file, including bullet points,
         bolded characters, inserted code chunks, headings, text colors,
         blank lines, etc.
-    
-      - Have all your code embedded within the R markdown file, and show
+
+    -   Have all your code embedded within the R markdown file, and show
         **BOTH your code and plots** in the knitted markdown file.
-    
-      - When a verbal response is needed, answer by editing the part in
+
+    -   When a verbal response is needed, answer by editing the part in
         the R markdown template where it says “Write your response
         here”.
-    
-      - Use R Markdown functionalities to **hide messages and warnings
+
+    -   Use R Markdown functionalities to **hide messages and warnings
         when needed**. (Suggestion: messages and warnings can often be
         informative and important, so please examine them carefully and
         only turn them off when you finish the exercise).
 
-  - Please note that Exercise 2.8 and 2.9 are **optional**.
+-   Please note that Exercise 2.8 and 2.9 are **optional**.
 
 <br>
 
@@ -61,7 +61,7 @@ kable(head(housing))
 ```
 
 | State | region |    Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
-| :---- | :----- | ------: | ---------: | -------------: | ---------: | ---------------: | ---------------: | ---------------: | ---: | ---: |
+|:------|:-------|--------:|-----------:|---------------:|-----------:|-----------------:|-----------------:|-----------------:|-----:|-----:|
 | AK    | West   | 2010.25 |     224952 |         160599 |      64352 |             28.6 |            1.481 |            1.552 | 2010 |    1 |
 | AK    | West   | 2010.50 |     225511 |         160252 |      65259 |             28.9 |            1.484 |            1.576 | 2010 |    2 |
 | AK    | West   | 2009.75 |     225820 |         163791 |      62029 |             27.5 |            1.486 |            1.494 | 2009 |    3 |
@@ -73,14 +73,14 @@ kable(head(housing))
 
 #### 1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
 
-  - ###### Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
+-   ###### Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
 
-  - ###### Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
+-   ###### Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
 
-  - ###### Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
+-   ###### Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
 
 | region | State | Land.Value |    Date |
-| :----- | :---- | ---------: | ------: |
+|:-------|:------|-----------:|--------:|
 | South  | DC    |     290522 | 2003.00 |
 | South  | DC    |     305673 | 2003.25 |
 | South  | DC    |     323078 | 2003.50 |
@@ -94,14 +94,14 @@ Answer: <span style="color:blue"> Write your response here. </span>
 
 #### 1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.
 
-| region  |    Date | mean\_land\_value |
-| :------ | ------: | ----------------: |
-| Midwest | 1975.25 |          2452.167 |
-| Midwest | 1975.50 |          2498.917 |
-| Midwest | 1975.75 |          2608.167 |
-| Midwest | 1976.00 |          2780.000 |
-| Midwest | 1976.25 |          2967.333 |
-| Midwest | 1976.50 |          3212.833 |
+| region  |    Date | mean_land_value |
+|:--------|--------:|----------------:|
+| Midwest | 1975.25 |        2452.167 |
+| Midwest | 1975.50 |        2498.917 |
+| Midwest | 1975.75 |        2608.167 |
+| Midwest | 1976.00 |        2780.000 |
+| Midwest | 1976.25 |        2967.333 |
+| Midwest | 1976.50 |        3212.833 |
 
 <br>
 
@@ -124,7 +124,7 @@ kable(head(gapminder))
 ```
 
 | country     | continent | year | lifeExp |      pop | gdpPercap |
-| :---------- | :-------- | ---: | ------: | -------: | --------: |
+|:------------|:----------|-----:|--------:|---------:|----------:|
 | Afghanistan | Asia      | 1952 |  28.801 |  8425333 |  779.4453 |
 | Afghanistan | Asia      | 1957 |  30.332 |  9240934 |  820.8530 |
 | Afghanistan | Asia      | 1962 |  31.997 | 10267083 |  853.1007 |
@@ -171,7 +171,7 @@ are excluded.
 #### 2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.
 
 | country     | continent | year | lifeExp |      pop | gdpPercap |
-| :---------- | :-------- | ---: | ------: | -------: | --------: |
+|:------------|:----------|-----:|--------:|---------:|----------:|
 | Afghanistan | Asia      | 1952 |  28.801 |  8425333 |  779.4453 |
 | Afghanistan | Asia      | 1957 |  30.332 |  9240934 |  820.8530 |
 | Afghanistan | Asia      | 1962 |  31.997 | 10267083 |  853.1007 |
@@ -187,7 +187,7 @@ Answer: <span style="color:blue"> Write your response here. </span>
 
 <br> <br>
 
------
+------------------------------------------------------------------------
 
 <br>
 
