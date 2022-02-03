@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Readings
 
-There are no required readings for today, but if you did not join our Zoom call last Thursday, please read through the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html) and watch the recording posted on [Canvas](https://canvas.cornell.edu/courses/27864)
+There are no required readings for today, but if you did not join our Zoom call last Thursday, please read through the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html) and watch the recording posted on [Canvas](https://canvas.cornell.edu/courses/39033)
 
 <br>
 

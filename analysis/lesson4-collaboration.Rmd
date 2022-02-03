@@ -129,8 +129,8 @@ ERROR! We can't push changes to a repo we're not a collaborator on. That makes g
 
 Now back on GitHub.com, Partner 1, go into Settings > Collaborators > enter Partner 2's (your collaborator's) username. 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("assets/invite_collaborator.png")  
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("assets/add_collaborator.png")  
 ```
 
 <br>
