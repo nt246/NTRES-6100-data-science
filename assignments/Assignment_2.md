@@ -23,8 +23,8 @@ To submit, paste the URL to the new project GitHub repo you will create
 here to the README file in your course repo. Below the table used to
 record grades, please type
 
-`Lab 2: URL-to-repo` \[replacing `URL-to-repo` with the actual URL to
-your repo\].
+`Assignment 2: URL-to-repo` \[replacing `URL-to-repo` with the actual
+URL to your repo\].
 
 <br>
 
