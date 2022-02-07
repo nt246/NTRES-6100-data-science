@@ -132,7 +132,15 @@ Next, have Partner 1 launch the website.
 
 <br>
 
-3. Scroll to the Github Pages section (still under "options" in the left-hand pane) and build your site by sourcing from the `main` branch and root directory. **Remember to click "save"** (on the same line as you chose the master branch as the source).
+3. Scroll to the Github Pages section (second to last). It will say "Pages settings now has its own dedicated tab!" Click in `Check it out here!`
+
+<br>
+
+<img src="assets/github-pages-own-tab.png" width="450px"> 
+
+<br>
+
+Then build your site by sourcing from the `main` branch and root directory. **Remember to click "save"** (on the same line as you chose the master branch as the source).
 
 <img src="assets/gh_pages.png" width="450px"> 
 <br>
