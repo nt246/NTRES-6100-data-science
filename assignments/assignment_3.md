@@ -138,7 +138,7 @@ navbar:
 To submit, paste the URL to your website to the README file in your
 course repo. Below the table used to record grades, please type
 
-`Lab 3: URL-to-website` \[replacing `URL-to-website` with the actual URL
+`Assignment 3: URL-to-website` \[replacing `URL-to-website` with the actual URL
 to your published website\].
 
 We will look at your website, and from its URL, we can find the
