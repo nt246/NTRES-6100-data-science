@@ -42,6 +42,8 @@ There are no required readings for today, but if you did not join our Zoom call 
 * Thanks for the feedback! Feel free to add additional suggestions in the `feedback` channel on Slack
 * Assignment 2 is due this Thursday - let us know if you have any questions
 * Check your grading basis on Student Center to make sure you're happy with your enrollment status (lab section and grading basis)
+* You will do assignment 3 in collaboration you get assigned today, so make sure to exchange contact info when you first get put in breakout rooms
+
 
 
 
@@ -88,11 +90,25 @@ By the end of today's class, you should be able to:
 
 <br>
 
+* Not knowing how to get non-RStudio files onto GitHub (just add them to your GitHub link folder in Finder/Windows Explorer. These are just like any other folder on your computer; they have some added functionality, but don't need special handling) 
+
+<br>
+
 * Getting overwhelmed by the Git error messages and feeling like the program is not letting you do any of the steps (pull, stage, commit, push). The error messages are your friend. Take a pause and read the message - it should indicate what the problem is.
 
 <br>
 
-* Not knowing how to get non-RStudio files onto GitHub (just add them to your GitHub link folder in Finder/Windows Explorer. These are just like any other folder on your computer; they have some added functionality, but don't need special handling) 
+Some of you may have seen this warning when you pull. 
+
+<img src="assets/git-error.png" width="450px"> 
+
+<br>
+
+Note that this is a warning, not an error. You can silence it by typing `git config --global pull.rebase false` into the Terminal window.  
+
+More details [here](https://stackoverflow.com/questions/62653114/how-can-i-deal-with-this-git-warning-pulling-without-specifying-how-to-reconci)
+
+
 
 <br>
 <br>
