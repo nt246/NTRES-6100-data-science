@@ -138,8 +138,11 @@ navbar:
 To submit, paste the URL to your website to the README file in your
 course repo. Below the table used to record grades, please type
 
-`Assignment 3: URL-to-website` \[replacing `URL-to-website` with the actual URL
-to your published website\].
+`Assignment 3: URL-to-website` [replacing `URL-to-website` with the actual URL
+to your published website].
+
+Below the URL, please indicate who you were collaborating with.  
+
 
 We will look at your website, and from its URL, we can find the
 associated repo and examine your commit history to confirm that your

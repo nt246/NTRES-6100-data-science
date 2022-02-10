@@ -31,7 +31,9 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson6-files/")
 <br> 
 
 ## Announcements
-
+* Make sure you have a partner for Assignment 3. If you need a new partner, just let us know in the `logistics` channel on Slack  
+* As you're working with your partner on the assignment, we encourage you play around with avoiding and resolving merge conflicts. It's always good to get more practice
+* You'll "submit" Assignment 3 by adding the URL to your website to the README file of your class GitHub repo
 
 
 <br>
