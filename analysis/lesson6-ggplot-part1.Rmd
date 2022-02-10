@@ -67,7 +67,7 @@ Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html
 
 ### Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture
 
-As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6940-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
+As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
 <br>  
 
@@ -106,11 +106,11 @@ We will visualize some fuel economy data for 38 popular models of car using the 
 
 ### Inspect the data frame
 
-Before making any kind of graph, we will always need to know our data first. In R, data tables are most often stored as an object of the class `data.frame`. There are a few different ways to inspect these data tables. 
+Before making any kind of graph, we will always need get to know our data first. In R, data tables are most often stored as an object of the class `data.frame`. There are a few different ways to inspect these data tables. 
 
 * Directly type the name of the data frame
     
-    This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class. For now, just think of it as an upgraded type of data frame).car 
+    This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class. For now, just think of it as an upgraded type of data frame).
     
     But, if you do it with a larger, non-`tibble` data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read. 
     
@@ -143,7 +143,7 @@ Before making any kind of graph, we will always need to know our data first. In 
 
 * `?`
     
-    If the data frame included in an R package, typing `?data frame_name` will lead you to a help file with more information on the data frame.
+    If the data frame included in an R package, typing `?data_frame_name` will lead you to a help file with more information on the data frame.
     
 * `str()`, `dim()`, `colnames()`, `summary()`
 
@@ -177,6 +177,7 @@ Using `ggplot2`, the graphics package within the `tidyverse`, we will write repr
 So yeah... that `gg` is from “grammar of graphics.”
 
 ![](https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png)
+<br>
 
 These "same few components" that all `ggplot2` graphs share include the followings:
 
@@ -340,7 +341,7 @@ ggplot(data = mpg) +
 
 Here, we will add a trend line to the scatter plot above. We can do this by adding another geometric object (`geom_smooth()`) on top of the previous graph. Give it a try yourself first. 
 
-```{r}
+```{r, message = FALSE}
 ## exercise, then demo
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cyl), shape=1) +
@@ -349,7 +350,7 @@ ggplot(data = mpg) +
 
 Did you notice that for both geometric objects, `x` maps to `displ` and `y` maps `hwy`, so these auguments are repeated? In such cases, we can minimize the amount of repeat by defining how these aesthetics map to variables for all subsequent layers within `ggplot()`, as the following.
 
-```{r}
+```{r, message = FALSE}
 ## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color =class, size = cyl), shape = 1) +
@@ -364,7 +365,7 @@ One way to add additional variables is with aesthetics. Another way, particularl
 
 The `mpg` dataset contains cars made in 1999 and 2008. To check whether the relationship between `displ` and `hwy` remains the same across time, we can add a facet function to the previous plot and plot the two years side by side. 
 
-```{r}
+```{r, message = FALSE}
 ## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
@@ -388,9 +389,9 @@ ggplot(data = mpg) +
 
 ### Adjust figure size using chunk options
 
-Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use RMarkdown chunk options `fig.height` and `fig.width`.
+Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use RMarkdown chunk options `fig.height` and `fig.width`, e.g. starting your code chunk with `  ```{r fig.height=5, fig.width=10}`.
 
-```{r fig.height=5, fig.width=10}
+```{r fig.height=5, fig.width=10, message = FALSE}
 ## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
@@ -404,7 +405,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 While every element of a `ggplot2` graph is customizable, there are also built-in themes (`theme_*()`) that you can use to make some major headway before making smaller tweaks manually. Let's try one of them here.
 
-```{r fig.height=5, fig.width=10}
+```{r fig.height=5, fig.width=10, message = FALSE}
 ## demo (use theme_bw)
 ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) + 
   geom_point(mapping = aes(color=class, size=cyl), shape=1) +
@@ -415,11 +416,11 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
 
 <br>  
 
-## Arguments and functions you should know
+## Arguments and functions that are nice know
 
-Now, you've learned the central ideas behind `ggplot2`. In the next `ggplot2` lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about `ggplot2` is often through practice and Google, since the possibilities that you can have with `ggplot2` are quite limitless, and people's plotting needs vary. 
+Now, you've learned the central ideas behind `ggplot2`. In our next `ggplot2` lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about `ggplot2` is often through practice and Google, since the possibilities that you can have with `ggplot2` are quite limitless, and people's plotting needs vary. 
 
-That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) is a great resource for looking up other functionality.
+That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) is a great resource for looking up other functionality.
 
 <br>
 

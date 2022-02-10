@@ -13,13 +13,22 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -552,7 +511,7 @@ div.tocify {
 <p><br></p>
 <div id="create-an-r-script-or-an-rmarkdown-file-for-working-along-with-examples-and-doing-exercises-in-this-lecture" class="section level3">
 <h3>Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture</h3>
-<p>As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be <code>ntres-6940-YOUR_USERNAME</code> (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names <code>course-notes</code>, open an R-script or an RMarkdown file and save it in this subdirectory as <code>lecture6-ggplot1.R</code> [or whatever you want to call it].</p>
+<p>As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be <code>ntres-6100-YOUR_USERNAME</code> (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names <code>course-notes</code>, open an R-script or an RMarkdown file and save it in this subdirectory as <code>lecture6-ggplot1.R</code> [or whatever you want to call it].</p>
 <p><br></p>
 </div>
 </div>
@@ -582,26 +541,26 @@ div.tocify {
 <p><br></p>
 <div id="inspect-the-data-frame" class="section level3">
 <h3>Inspect the data frame</h3>
-<p>Before making any kind of graph, we will always need to know our data first. In R, data tables are most often stored as an object of the class <code>data.frame</code>. There are a few different ways to inspect these data tables.</p>
+<p>Before making any kind of graph, we will always need get to know our data first. In R, data tables are most often stored as an object of the class <code>data.frame</code>. There are a few different ways to inspect these data tables.</p>
 <ul>
 <li><p>Directly type the name of the data frame</p>
-<p>This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class <code>tibble</code> (we will learn more about <code>tibble</code> later in class. For now, just think of it as an upgraded type of data frame).car</p>
+<p>This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class <code>tibble</code> (we will learn more about <code>tibble</code> later in class. For now, just think of it as an upgraded type of data frame).</p>
 <p>But, if you do it with a larger, non-<code>tibble</code> data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read.</p>
 <pre class="r"><code>## demo (compare and contrast regular data frame and tibble)
 mpg</code></pre>
-<pre><code>## # A tibble: 234 x 11
-##    manufacturer model    displ  year   cyl trans   drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4         1.8  1999     4 auto(l… f        18    29 p     comp…
-##  2 audi         a4         1.8  1999     4 manual… f        21    29 p     comp…
-##  3 audi         a4         2    2008     4 manual… f        20    31 p     comp…
-##  4 audi         a4         2    2008     4 auto(a… f        21    30 p     comp…
-##  5 audi         a4         2.8  1999     6 auto(l… f        16    26 p     comp…
-##  6 audi         a4         2.8  1999     6 manual… f        18    26 p     comp…
-##  7 audi         a4         3.1  2008     6 auto(a… f        18    27 p     comp…
-##  8 audi         a4 quat…   1.8  1999     4 manual… 4        18    26 p     comp…
-##  9 audi         a4 quat…   1.8  1999     4 auto(l… 4        16    25 p     comp…
-## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p     comp…
+<pre><code>## # A tibble: 234 × 11
+##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
 ## # … with 224 more rows</code></pre>
 <pre class="r"><code>cars</code></pre>
 <pre><code>##    speed dist
@@ -664,7 +623,7 @@ View(mpg)</code></pre></li>
 <p><code>head()</code> and <code>tail()</code> can be used to check the first and last few rows of a data frame.</p>
 <pre class="r"><code>## demo
 head(mpg)</code></pre>
-<pre><code>## # A tibble: 6 x 11
+<pre><code>## # A tibble: 6 × 11
 ##   manufacturer model displ  year   cyl trans      drv     cty   hwy fl    class 
 ##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
 ## 1 audi         a4      1.8  1999     4 auto(l5)   f        18    29 p     compa…
@@ -674,17 +633,17 @@ head(mpg)</code></pre>
 ## 5 audi         a4      2.8  1999     6 auto(l5)   f        16    26 p     compa…
 ## 6 audi         a4      2.8  1999     6 manual(m5) f        18    26 p     compa…</code></pre>
 <pre class="r"><code>tail(mpg)</code></pre>
-<pre><code>## # A tibble: 6 x 11
-##   manufacturer model  displ  year   cyl trans     drv     cty   hwy fl    class 
-##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 volkswagen   passat   1.8  1999     4 auto(l5)  f        18    29 p     midsi…
-## 2 volkswagen   passat   2    2008     4 auto(s6)  f        19    28 p     midsi…
-## 3 volkswagen   passat   2    2008     4 manual(m… f        21    29 p     midsi…
-## 4 volkswagen   passat   2.8  1999     6 auto(l5)  f        16    26 p     midsi…
-## 5 volkswagen   passat   2.8  1999     6 manual(m… f        18    26 p     midsi…
-## 6 volkswagen   passat   3.6  2008     6 auto(s6)  f        17    26 p     midsi…</code></pre></li>
+<pre><code>## # A tibble: 6 × 11
+##   manufacturer model  displ  year   cyl trans      drv     cty   hwy fl    class
+##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 volkswagen   passat   1.8  1999     4 auto(l5)   f        18    29 p     mids…
+## 2 volkswagen   passat   2    2008     4 auto(s6)   f        19    28 p     mids…
+## 3 volkswagen   passat   2    2008     4 manual(m6) f        21    29 p     mids…
+## 4 volkswagen   passat   2.8  1999     6 auto(l5)   f        16    26 p     mids…
+## 5 volkswagen   passat   2.8  1999     6 manual(m5) f        18    26 p     mids…
+## 6 volkswagen   passat   3.6  2008     6 auto(s6)   f        17    26 p     mids…</code></pre></li>
 <li><p><code>?</code></p>
-<p>If the data frame included in an R package, typing <code>?data frame_name</code> will lead you to a help file with more information on the data frame.</p></li>
+<p>If the data frame included in an R package, typing <code>?data_frame_name</code> will lead you to a help file with more information on the data frame.</p></li>
 <li><p><code>str()</code>, <code>dim()</code>, <code>colnames()</code>, <code>summary()</code></p>
 <p>These functions return important information on the data frame and are particularly helpful when inspecting larger data frames. Give them a try and see what they do.</p>
 <pre class="r"><code>## exercise, then demo
@@ -746,7 +705,7 @@ str(mpg)</code></pre>
 <p>“ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places.” - R4DS</p>
 </blockquote>
 <p>So yeah… that <code>gg</code> is from “grammar of graphics.”</p>
-<p><img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" /></p>
+<p><img src="https://rstudio-conf-2020.github.io/r-for-excel/img/rstudio-cheatsheet-ggplot.png" /> <br></p>
 <p>These “same few components” that all <code>ggplot2</code> graphs share include the followings:</p>
 <p><img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" /></p>
 <p>Of these, <strong>data</strong>, <strong>aesthetics</strong>, and <strong>geometries</strong> are the components that must be specified when creating a graph.</p>
@@ -883,14 +842,12 @@ ggplot(data = mpg) +
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cyl), shape=1) +
   geom_smooth(mapping = aes(x = displ, y = hwy))</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Did you notice that for both geometric objects, <code>x</code> maps to <code>displ</code> and <code>y</code> maps <code>hwy</code>, so these auguments are repeated? In such cases, we can minimize the amount of repeat by defining how these aesthetics map to variables for all subsequent layers within <code>ggplot()</code>, as the following.</p>
 <pre class="r"><code>## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color =class, size = cyl), shape = 1) +
   geom_smooth()</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-12-1.png" width="672" /></p>
 <p><br></p>
 </div>
@@ -903,7 +860,6 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-13-1.png" width="672" /></p>
 <p><br></p>
 <div id="your-turn---exercise-4" class="section level4">
@@ -917,13 +873,12 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 </div>
 <div id="adjust-figure-size-using-chunk-options" class="section level3">
 <h3>Adjust figure size using chunk options</h3>
-<p>Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use RMarkdown chunk options <code>fig.height</code> and <code>fig.width</code>.</p>
+<p>Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use RMarkdown chunk options <code>fig.height</code> and <code>fig.width</code>, e.g. starting your code chunk with <code>```{r fig.height=5, fig.width=10}</code>.</p>
 <pre class="r"><code>## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-15-1.png" width="960" /></p>
 <p><br></p>
 </div>
@@ -936,15 +891,14 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1) +
   theme_bw()</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-16-1.png" width="960" /></p>
 <p><br></p>
 </div>
 </div>
-<div id="arguments-and-functions-you-should-know" class="section level2">
-<h2>Arguments and functions you should know</h2>
-<p>Now, you’ve learned the central ideas behind <code>ggplot2</code>. In the next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people’s plotting needs vary.</p>
-<p>That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let’s now go through some of these together in class. The <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
+<div id="arguments-and-functions-that-are-nice-know" class="section level2">
+<h2>Arguments and functions that are nice know</h2>
+<p>Now, you’ve learned the central ideas behind <code>ggplot2</code>. In our next <code>ggplot2</code> lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about <code>ggplot2</code> is often through practice and Google, since the possibilities that you can have with <code>ggplot2</code> are quite limitless, and people’s plotting needs vary.</p>
+<p>That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let’s now go through some of these together in class. The <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio ggplot cheatsheet</a> is a great resource for looking up other functionality.</p>
 <p><br></p>
 <div id="geometries" class="section level4">
 <h4>Geometries</h4>
@@ -1023,7 +977,8 @@ group_by(mpg, manufacturer, year, class, model) %&gt;%
   geom_point() +
   geom_line() +
   facet_wrap(~ manufacturer)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;manufacturer&#39;, &#39;year&#39;, &#39;class&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;manufacturer&#39;, &#39;year&#39;, &#39;class&#39;. You can
+## override using the `.groups` argument.</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-24-1.png" width="672" /></p></li>
 </ul>
 <p><br></p>
@@ -1143,7 +1098,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1152,6 +1107,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
