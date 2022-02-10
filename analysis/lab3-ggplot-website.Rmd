@@ -6,7 +6,7 @@ output:
     toc_depth: 4
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
@@ -79,11 +79,13 @@ library(tidyverse)
 
 Then, let's explore the `penguins` dataset. You might e.g. want to use functions like `View()`, `dim()`, `colnames()` , and `?`. You will see that the dataset includes the following variables:
 
-```{r include=FALSE}
+```{r echo=FALSE, fig.align='center', out.width=300}
 colnames(penguins) %>% 
   tibble(`Column names`=.) %>%
   knitr::kable()
+knitr::include_graphics("https://previews.123rf.com/images/aomeditor/aomeditor1903/aomeditor190300021/122254680-illustrator-of-body-parts-of-penguin.jpg")
 ```
+
 
 <br>
 <br>
@@ -128,7 +130,6 @@ Then, under the "Relationship between multiple traits" header, add some text and
 
 For example, what is the relationship between body mass and flipper length in penguins in this dataset? Does this relationship differ between species? Given the same body mass, which species of penguins tend to have the longest flippers?
 
-![](https://previews.123rf.com/images/aomeditor/aomeditor1903/aomeditor190300021/122254680-illustrator-of-body-parts-of-penguin.jpg)
 *One possible solution*
 <details>
   <summary>click to expand</summary>
