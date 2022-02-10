@@ -3,12 +3,14 @@ title: "Lab 3: Displaying data visualization on a website"
 output: 
   html_document:
     toc: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
+
 <br>
 
 ### Goals for today
@@ -24,135 +26,173 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-### Exercise 1: Explore the `gapminder` dataset with ggplot (50 mins)
+### Exercise 1: Explore the `penguins` dataset with ggplot (50 mins)
 
 <br>
 
 #### General instructions
 
-Today, we'll use ggplot to visually explore global trends in public health and economics compiled by the [Gapminder project](https://www.gapminder.org/about/). This project was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+Today, we'll use ggplot to visually explore patterns in morphological traits in three different species of penguin. This data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), and were compiled by [Dr. Allison Horst](https://www.allisonhorst.com/) and colleagues. 
 
-<br> 
-
-[Gapminder Motion Chart](http://www.gapminder.org/world)  
-[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
+![](https://www.gabemednick.com/post/penguin/featured.png)
 
 <br>
 <br>
-
+<br>
 
 #### Step 1: Get to know our data
-Take a few minutes to explore the [Gapminder Foundation](https://www.gapminder.org/about/)
+
+Take a few minutes to explore the [palmerpenguins homepage](https://allisonhorst.github.io/palmerpenguins/). (Note that this website is built using GitHub Pages!)
 
 <br>
 <br>
 
 #### Step 2: Set up a GitHub-linked RStudio project to work in
-Please create a new GitHub repo in your personal account named `gapminder`, clone the repo to your computer, and work on your data exploration in this new repo. 
+Please create a new GitHub repo in your personal account named `penguins`, clone the repo to your computer, and work on your data exploration in this new repo. 
 
 Open an .Rmd template file (File -> New File -> R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:
 
 - Data
-- Life expectancy
-- Fertility
-- Infant mortality
+- Single trait distribution
+- Relationship between multiple traits
+- Sexual dimorphism
 
 <br>
 
-Under the **Data** header, add a short description of the dataset we're using today (you can copy that from our description above).
+Under the **Data** header, add a short description of the dataset we're using today and a picture of penguins.
 
 <br>
 <br>
 
 #### Step 3: Load the data
-Today, we will work with a subset of the `gapminder` dataset provided in the R package `dslabs`. 
 
-Let's start by installing the `dslabs` package so we can access the data. After installing the package we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
+Today's dataset is provided in the R package `palmerpenguins`. 
+
+Let's start by installing the `palmerpenguins` package so we can access the data. After installing the package we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
 
 ```{r}
-
-library(dslabs) #install.packages("dslabs")
+library(palmerpenguins) #install.packages("palmerpenguins")
 library(tidyverse)
-
 ```
 
 <br>
 
-Let's start by exploring the data. You might e.g. want to use functions like `View()`, `dim()`, `colnames()` , and `?`. You will see that the dataset includes the following variables:
+Then, let's explore the `penguins` dataset. You might e.g. want to use functions like `View()`, `dim()`, `colnames()` , and `?`. You will see that the dataset includes the following variables:
 
-- country
-- year
-- infant_mortality (infant deaths per 1000)
-- life_expectancy
-- fertility (average number of children per woman)
-- population (per country)
-- gpd (per country)
-- continent
-- region (geographical region)
+```{r include=FALSE}
+colnames(penguins) %>% 
+  tibble(`Column names`=.) %>%
+  knitr::kable()
+```
 
 <br>
+<br>
 
-The dataset includes data from 1960-2016. Since we're just getting started with ggplot, we'll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we'll return to the full dataset.
+#### Step 4: Explore patterns in the data
 
-To subset the data, copy and run the following code. We'll discuss data subsetting in class next week, so don't worry about the notation for now.
+In groups or on your own, go and explore patterns in the data with ggplot. You can look back to our [lecture 6 notes](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know) or the [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+
+We provide one possible solution for each question, but we highly recommend that you **don't look at them unless you are really stuck**.
+
+<br>
+<br>
+
+##### *The distribution of a single trait*
+
+First, under the "Single trait distribution" header, add some text and code chunks to explore the distribution in any one of the morphological traits in the penguin dataset. 
+
+For example, what is the lowest and highest bill lengths do penguins in this dataset have? Do different species have different bill lengths? How much do they overlap?
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
 
 ```{r}
-
-gap2011 <- gapminder %>% 
-  as_tibble() %>% 
-  filter(year == 2011)
-
+penguins %>%
+  ggplot() +
+  geom_density(mapping = aes(x = bill_length_mm, fill=species), alpha=0.5)
+penguins %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = bill_length_mm, fill=species)) +
+  facet_wrap(~species, nrow=3)
 ```
 
-This creates the `gap2011` dataframe that you'll be working with for the rest of the day. Explore its dimensions and variables.
+</details>
 
 <br>
 <br>
 
-#### Step 4: Explore patterns in the data in breakout rooms
+##### *The relationship between multiple traits*
 
-In breakout rooms, go and explore patterns in the data with ggplot.
+Then, under the "Relationship between multiple traits" header, add some text and code chunks to explore the relationship between different morphological traits in the `penguins` dataset. 
 
-First, under your **Life expectancy** header, add some text and code chunks to plot patterns in the `life_expectancy` variable. Remember to use `gap2011` as your data.
+For example, what is the relationship between body mass and flipper length in penguins in this dataset? Does this relationship differ between species? Given the same body mass, which species of penguins tend to have the longest flippers?
 
-Some ideas to explore:
+![](https://previews.123rf.com/images/aomeditor/aomeditor1903/aomeditor190300021/122254680-illustrator-of-body-parts-of-penguin.jpg)
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
 
-- What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent? 
-- How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?
 
-You can look back to our [lecture 6 notes](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know) or the [RStudio ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+```{r fig.width=5, fig.height=4}
+penguins %>%
+  ggplot(mapping = aes(x = body_mass_g, y=flipper_length_mm, color=species)) +
+  geom_point() +
+  geom_smooth(method="lm")
+```
+
+</details>
 
 <br>
+<br>
 
-Here's an example plot:
+##### *The level of sexual dimorphism*
+
+Lastly, under the "Sexual dimorphism" header, add some text and code chunks to explore the level of sexual dimorphism in different morphological traits in the `penguins` dataset. 
+
+For example, what traits are sexually dimorphic in the `penguins` dataset? Is the level of sexual dimorphism the same in all three penguin species?
+
+*One possible solution*
+<details>
+  <summary>click to expand</summary>
+
+```{r fig.width=6, fig.height=2.5}
+penguins %>%
+  ggplot(mapping = aes(x = bill_length_mm, y=bill_depth_mm, color=sex)) +
+  geom_point(size=1) +
+  facet_wrap(~species)
+penguins %>%
+  ggplot(mapping = aes(x=flipper_length_mm, y=sex, color=sex)) +
+  geom_boxplot(outlier.alpha = 0, alpha=0) +
+  geom_jitter(width = 0, size=1) +
+  coord_flip() +
+  facet_wrap(~species)
+```
+
+</details>
+
+<br>
+<br>
+
+##### *Free exploration*
+
+If you have finished these suggested activities ahead of time, please feel free to explore other aspects of the data. For example, you can look at any temporal trend in the dataset, or patterns within the same species across different islands.
+
+*E.g., Sample size in different years and islands*
+<details>
+  <summary>click to expand</summary>
 
 ```{r}
-
-ggplot(data = gap2011) +
-  geom_point(mapping = aes(x = gdp, y = life_expectancy))
-
-# Can we add more information to this plot?
-  
+penguins %>%
+  ggplot() +
+  geom_bar(mapping = aes(x=year, fill=island)) +
+  facet_wrap(~species)
 ```
 
-<br>
-
-After you've done some exploration of life expectancy, move on to add some plots and text under your **Fertility** header.
+</details>
 
 <br>
-
-#### Breakout room information
-
-For this exercise, we will create three types of breakout rooms: **interactive**, **quiet**, and **solitary**. 
-
-  * For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be typing in their own document, you can share screen etc to work together). 
-  * For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.   
-  * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. 
-
-You will be able to choose your own rooms, but let's limit the group size to 4, so pick a different room if one already has this many participants. 
-
 <br>
-
 
 ### Recap (10 minutes)
 
@@ -166,26 +206,32 @@ Share your findings, challenges, and questions with the class.
 <br>
 <br>
 
-### Exercise 2: Publish your data visualizations on a website and explore different website styling options
+### Exercise 2: Publish your data visualizations on a website and explore different website styling options (35 minutes)
 
-<br>
 <br>
 
 #### General instructions 
 
-For this exercise, you will build a GitHub Pages website as described in [Lecture 5](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html) and display our gapminder data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.
+For this exercise, you will build a GitHub Pages website as described in [Lecture 5](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html) and display our `penguins` data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.
 
 <br>
 
 #### Suggested activities
 
-- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `about.Rmd`, `life_expectancy.Rmd`, `fertility.Rmd`, and `infant_mortality.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
+- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `index.Rmd`, `single_trait.Rmd`, `multiple_traits.Rmd`, and `sexual_dimorphism.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
 
 - You can then consider adding a table of contents and changing the styling (theme) of your website, as described [here](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website)
 
 <br>
 
 Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running `rmarkdown::render_site()`) in your Viewer pane in RStudio.
+
+<br>
+<br>
+
+### Recap (10 minutes)
+
+Share your findings, challenges, and questions with the class. 
 
 <br>
 <br>
