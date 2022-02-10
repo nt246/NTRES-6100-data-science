@@ -69,8 +69,8 @@ collaborate!)
 
 -   Check your repo on Github to make sure it synced properly.
 
--   Navigate to your repo settings on Github, select the *Manage access*
-    tab and invite your collaborator.
+-   Navigate to your repo Settings on Github, select the *Collaborators* option in the left side panel
+    and invite your collaborator.
 
 -   Check your email (the one linked to your personal Github account) to
     accept an invitation from your collaborator.
@@ -146,4 +146,4 @@ associated repo and examine your commit history to confirm that your
 partner successfully pushed a page to your site.
 
 **Please make sure to have your website ready and have posted the URL by
-10pm on Wednesday 03/03/21**.
+10pm on Thursday 02/17/21**.
