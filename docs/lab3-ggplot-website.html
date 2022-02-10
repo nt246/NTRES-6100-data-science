@@ -13,13 +13,22 @@
 
 <title>Lab 3: Displaying data visualization on a website</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -508,96 +467,161 @@ div.tocify {
 <p><br></p>
 <p><br></p>
 </div>
-<div id="exercise-1-explore-the-gapminder-dataset-with-ggplot-50-mins" class="section level3">
-<h3>Exercise 1: Explore the <code>gapminder</code> dataset with ggplot (50 mins)</h3>
+<div id="exercise-1-explore-the-penguins-dataset-with-ggplot-50-mins" class="section level3">
+<h3>Exercise 1: Explore the <code>penguins</code> dataset with ggplot (50 mins)</h3>
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>Today, we’ll use ggplot to visually explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>. This project was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
-<p><br></p>
-<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
-<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
-<p><br> <br></p>
+<p>Today, we’ll use ggplot to visually explore patterns in morphological traits in three different species of penguin. This data were collected and made available by <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr. Kristen Gorman</a> and the <a href="https://pal.lternet.edu/">Palmer Station, Antarctica LTER</a>, and were compiled by <a href="https://www.allisonhorst.com/">Dr. Allison Horst</a> and colleagues.</p>
+<p><img src="https://www.gabemednick.com/post/penguin/featured.png" /></p>
+<p><br> <br> <br></p>
 </div>
 <div id="step-1-get-to-know-our-data" class="section level4">
 <h4>Step 1: Get to know our data</h4>
-<p>Take a few minutes to explore the <a href="https://www.gapminder.org/about/">Gapminder Foundation</a></p>
+<p>Take a few minutes to explore the <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins homepage</a>. (Note that this website is built using GitHub Pages!)</p>
 <p><br> <br></p>
 </div>
 <div id="step-2-set-up-a-github-linked-rstudio-project-to-work-in" class="section level4">
 <h4>Step 2: Set up a GitHub-linked RStudio project to work in</h4>
-<p>Please create a new GitHub repo in your personal account named <code>gapminder</code>, clone the repo to your computer, and work on your data exploration in this new repo.</p>
+<p>Please create a new GitHub repo in your personal account named <code>penguins</code>, clone the repo to your computer, and work on your data exploration in this new repo.</p>
 <p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown…). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:</p>
 <ul>
 <li>Data</li>
-<li>Life expectancy</li>
-<li>Fertility</li>
-<li>Infant mortality</li>
+<li>Single trait distribution</li>
+<li>Relationship between multiple traits</li>
+<li>Sexual dimorphism</li>
 </ul>
 <p><br></p>
-<p>Under the <strong>Data</strong> header, add a short description of the dataset we’re using today (you can copy that from our description above).</p>
+<p>Under the <strong>Data</strong> header, add a short description of the dataset we’re using today and a picture of penguins.</p>
 <p><br> <br></p>
 </div>
 <div id="step-3-load-the-data" class="section level4">
 <h4>Step 3: Load the data</h4>
-<p>Today, we will work with a subset of the <code>gapminder</code> dataset provided in the R package <code>dslabs</code>.</p>
-<p>Let’s start by installing the <code>dslabs</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
-<pre class="r"><code>library(dslabs) #install.packages(&quot;dslabs&quot;)
+<p>Today’s dataset is provided in the R package <code>palmerpenguins</code>.</p>
+<p>Let’s start by installing the <code>palmerpenguins</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
+<pre class="r"><code>library(palmerpenguins) #install.packages(&quot;palmerpenguins&quot;)
 library(tidyverse)</code></pre>
 <p><br></p>
-<p>Let’s start by exploring the data. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
-<ul>
-<li>country</li>
-<li>year</li>
-<li>infant_mortality (infant deaths per 1000)</li>
-<li>life_expectancy</li>
-<li>fertility (average number of children per woman)</li>
-<li>population (per country)</li>
-<li>gpd (per country)</li>
-<li>continent</li>
-<li>region (geographical region)</li>
-</ul>
-<p><br></p>
-<p>The dataset includes data from 1960-2016. Since we’re just getting started with ggplot, we’ll only work with the 2011 data today (the most recent year for which the national GDPs are included in this dataset). Later in the course, we’ll return to the full dataset.</p>
-<p>To subset the data, copy and run the following code. We’ll discuss data subsetting in class next week, so don’t worry about the notation for now.</p>
-<pre class="r"><code>gap2011 &lt;- gapminder %&gt;% 
-  as_tibble() %&gt;% 
-  filter(year == 2011)</code></pre>
-<p>This creates the <code>gap2011</code> dataframe that you’ll be working with for the rest of the day. Explore its dimensions and variables.</p>
+<p>Then, let’s explore the <code>penguins</code> dataset. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Column names</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">species</td>
+</tr>
+<tr class="even">
+<td align="left">island</td>
+</tr>
+<tr class="odd">
+<td align="left">bill_length_mm</td>
+</tr>
+<tr class="even">
+<td align="left">bill_depth_mm</td>
+</tr>
+<tr class="odd">
+<td align="left">flipper_length_mm</td>
+</tr>
+<tr class="even">
+<td align="left">body_mass_g</td>
+</tr>
+<tr class="odd">
+<td align="left">sex</td>
+</tr>
+<tr class="even">
+<td align="left">year</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://previews.123rf.com/images/aomeditor/aomeditor1903/aomeditor190300021/122254680-illustrator-of-body-parts-of-penguin.jpg" width="300" style="display: block; margin: auto;" /></p>
 <p><br> <br></p>
 </div>
-<div id="step-4-explore-patterns-in-the-data-in-breakout-rooms" class="section level4">
-<h4>Step 4: Explore patterns in the data in breakout rooms</h4>
-<p>In breakout rooms, go and explore patterns in the data with ggplot.</p>
-<p>First, under your <strong>Life expectancy</strong> header, add some text and code chunks to plot patterns in the <code>life_expectancy</code> variable. Remember to use <code>gap2011</code> as your data.</p>
-<p>Some ideas to explore:</p>
-<ul>
-<li>What is the distribution of values (show e.g. in a histogram, a density plot, or boxplot (or all three!)) and does that vary based on continent?</li>
-<li>How does life expectancy relate to infant mortality rates, fertility, population size, or GDP? How many variables can you display on the same plot and is the most effective or visually appealing way to display the patterns?</li>
-</ul>
-<p>You can look back to our <a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture 6 notes</a> or the <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> for inspiration.</p>
-<p><br></p>
-<p>Here’s an example plot:</p>
-<pre class="r"><code>ggplot(data = gap2011) +
-  geom_point(mapping = aes(x = gdp, y = life_expectancy))</code></pre>
-<pre><code>## Warning: Removed 17 rows containing missing values (geom_point).</code></pre>
+<div id="step-4-explore-patterns-in-the-data" class="section level4">
+<h4>Step 4: Explore patterns in the data</h4>
+<p>In groups or on your own, go and explore patterns in the data with ggplot. You can look back to our <a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture 6 notes</a> or the <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> for inspiration.</p>
+<p>We provide one possible solution for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</p>
+<p><br> <br></p>
+<div id="the-distribution-of-a-single-trait" class="section level5">
+<h5><em>The distribution of a single trait</em></h5>
+<p>First, under the “Single trait distribution” header, add some text and code chunks to explore the distribution in any one of the morphological traits in the penguin dataset.</p>
+<p>For example, what is the lowest and highest bill lengths do penguins in this dataset have? Do different species have different bill lengths? How much do they overlap?</p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>penguins %&gt;%
+  ggplot() +
+  geom_density(mapping = aes(x = bill_length_mm, fill=species), alpha=0.5)</code></pre>
 <p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code># Can we add more information to this plot?</code></pre>
-<p><br></p>
-<p>After you’ve done some exploration of life expectancy, move on to add some plots and text under your <strong>Fertility</strong> header.</p>
-<p><br></p>
+<pre class="r"><code>penguins %&gt;%
+  ggplot() +
+  geom_histogram(mapping = aes(x = bill_length_mm, fill=species)) +
+  facet_wrap(~species, nrow=3)</code></pre>
+<p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</details>
+<p><br> <br></p>
 </div>
-<div id="breakout-room-information" class="section level4">
-<h4>Breakout room information</h4>
-<p>For this exercise, we will create three types of breakout rooms: <strong>interactive</strong>, <strong>quiet</strong>, and <strong>solitary</strong>.</p>
-<ul>
-<li>For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be typing in their own document, you can share screen etc to work together).</li>
-<li>For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.<br />
-</li>
-<li>For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own.</li>
-</ul>
-<p>You will be able to choose your own rooms, but let’s limit the group size to 4, so pick a different room if one already has this many participants.</p>
-<p><br></p>
+<div id="the-relationship-between-multiple-traits" class="section level5">
+<h5><em>The relationship between multiple traits</em></h5>
+<p>Then, under the “Relationship between multiple traits” header, add some text and code chunks to explore the relationship between different morphological traits in the <code>penguins</code> dataset.</p>
+<p>For example, what is the relationship between body mass and flipper length in penguins in this dataset? Does this relationship differ between species? Given the same body mass, which species of penguins tend to have the longest flippers?</p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>penguins %&gt;%
+  ggplot(mapping = aes(x = body_mass_g, y=flipper_length_mm, color=species)) +
+  geom_point() +
+  geom_smooth(method=&quot;lm&quot;)</code></pre>
+<p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-4-1.png" width="480" /></p>
+</details>
+<p><br> <br></p>
+</div>
+<div id="the-level-of-sexual-dimorphism" class="section level5">
+<h5><em>The level of sexual dimorphism</em></h5>
+<p>Lastly, under the “Sexual dimorphism” header, add some text and code chunks to explore the level of sexual dimorphism in different morphological traits in the <code>penguins</code> dataset.</p>
+<p>For example, what traits are sexually dimorphic in the <code>penguins</code> dataset? Is the level of sexual dimorphism the same in all three penguin species?</p>
+<em>One possible solution</em>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>penguins %&gt;%
+  ggplot(mapping = aes(x = bill_length_mm, y=bill_depth_mm, color=sex)) +
+  geom_point(size=1) +
+  facet_wrap(~species)</code></pre>
+<p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>penguins %&gt;%
+  ggplot(mapping = aes(x=flipper_length_mm, y=sex, color=sex)) +
+  geom_boxplot(outlier.alpha = 0, alpha=0) +
+  geom_jitter(width = 0, size=1) +
+  coord_flip() +
+  facet_wrap(~species)</code></pre>
+<p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-5-2.png" width="576" /></p>
+</details>
+<p><br> <br></p>
+</div>
+<div id="free-exploration" class="section level5">
+<h5><em>Free exploration</em></h5>
+<p>If you have finished these suggested activities ahead of time, please feel free to explore other aspects of the data. For example, you can look at any temporal trend in the dataset, or patterns within the same species across different islands.</p>
+<em>E.g., Sample size in different years and islands</em>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>penguins %&gt;%
+  ggplot() +
+  geom_bar(mapping = aes(x=year, fill=island)) +
+  facet_wrap(~species)</code></pre>
+<p><img src="lab3-ggplot-website_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</details>
+<p><br> <br></p>
+</div>
 </div>
 </div>
 <div id="recap-10-minutes" class="section level3">
@@ -609,27 +633,32 @@ library(tidyverse)</code></pre>
 <h3>Short break (10 minutes)</h3>
 <p><br> <br></p>
 </div>
-<div id="exercise-2-publish-your-data-visualizations-on-a-website-and-explore-different-website-styling-options" class="section level3">
-<h3>Exercise 2: Publish your data visualizations on a website and explore different website styling options</h3>
-<p><br> <br></p>
+<div id="exercise-2-publish-your-data-visualizations-on-a-website-and-explore-different-website-styling-options-35-minutes" class="section level3">
+<h3>Exercise 2: Publish your data visualizations on a website and explore different website styling options (35 minutes)</h3>
+<p><br></p>
 <div id="general-instructions-1" class="section level4">
 <h4>General instructions</h4>
-<p>For this exercise, you will build a GitHub Pages website as described in <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Lecture 5</a> and display our gapminder data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.</p>
+<p>For this exercise, you will build a GitHub Pages website as described in <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Lecture 5</a> and display our <code>penguins</code> data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.</p>
 <p><br></p>
 </div>
 <div id="suggested-activities" class="section level4">
 <h4>Suggested activities</h4>
 <ul>
-<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named <code>about.Rmd</code>, <code>life_expectancy.Rmd</code>, <code>fertility.Rmd</code>, and <code>infant_mortality.Rmd</code>, and the add those as tabs in a <code>_site.yml</code> file, as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture notes</a></p></li>
+<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named <code>index.Rmd</code>, <code>single_trait.Rmd</code>, <code>multiple_traits.Rmd</code>, and <code>sexual_dimorphism.Rmd</code>, and the add those as tabs in a <code>_site.yml</code> file, as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture notes</a></p></li>
 <li><p>You can then consider adding a table of contents and changing the styling (theme) of your website, as described <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website">here</a></p></li>
 </ul>
 <p><br></p>
 <p>Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running <code>rmarkdown::render_site()</code>) in your Viewer pane in RStudio.</p>
 <p><br> <br></p>
+</div>
+</div>
+<div id="recap-10-minutes-1" class="section level3">
+<h3>Recap (10 minutes)</h3>
+<p>Share your findings, challenges, and questions with the class.</p>
+<p><br> <br></p>
 <p><strong>END LAB 3</strong></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
-</div>
 </div>
 </div>
 
@@ -662,7 +691,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -672,6 +701,9 @@ $(document).ready(function () {
 <script>
 $(document).ready(function ()  {
 
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
         .removeClass('toc-ignore')
@@ -679,7 +711,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

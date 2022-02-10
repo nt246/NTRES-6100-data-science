@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 ## General instructions
 
-* Today, we'll combine the powerful data transformation tools in `dplyr` and the data visualization tools in `ggplot2` to continue our visual exploration of global trends in public health and economics compiled by the [Gapminder project](https://www.gapminder.org/about/).
+* Today, we'll combine the powerful data transformation tools in `dplyr` and the data visualization tools in `ggplot2` to explore global trends in public health and economics compiled by the [Gapminder project](https://www.gapminder.org/about/).
 
 <br>
 
@@ -33,18 +33,17 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* Now that you have learned how to subset data using different functions in `dplyr`, we will work with the full `gapminder` dataset provided in the R package `dslabs`. Let's start by installing the `dslabs` package if you don't have it installed already. Then, we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
+* We will work with the `gapminder` dataset provided in the R package `dslabs`. Let's start by installing the `dslabs` package if you don't have it installed already. Then, we need to load it with the `library()` function. We also need to load the `tidyverse` package because it contains ggplot.
 
 <br>
 
-```{r, }
+```{r}
 library(tidyverse)
 library(dslabs) #install.packages("dslabs")
 
 # After you have loaded the dslabs package, you can access the data stored in `gapminder`. Let's look at the top 5 lines 
 gapminder %>% as_tibble() %>% 
   head(5)
-
 ```
 
 <br>
@@ -68,9 +67,18 @@ gapminder %>% as_tibble() %>%
 
 <br>
 
+Today, we'll use ggplot to visually explore global trends in public health and economics compiled by the [Gapminder project](https://www.gapminder.org/about/). This project was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
+
+<br> 
+
+[Gapminder Motion Chart](http://www.gapminder.org/world)  
+[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)  
+
+<br> 
+
 The mission of the Gapminder Project is to "fight devastating ignorance with a fact-based worldview everyone can understand". Per their own description, Gapminder identifies systematic misconceptions about important global trends and proportions and uses reliable data to develop easy to understand teaching materials to rid people of their misconceptions.
 
-Several of the questions posted below have been borrowed from their [ignorance test](https://www.gapminder.org/ignorance/ignorance-test/)
+Several of the questions posted below have been borrowed from their [ignorance test](https://www.gapminder.org/ignorance/ignorance-test/).
 
 You may first answer these questions based on your intuition, and then use the `gapminder` dataset to verify if your intuition is correct, either with a summary table of the relevant statistics or with a visualization (ideally both!).
 
