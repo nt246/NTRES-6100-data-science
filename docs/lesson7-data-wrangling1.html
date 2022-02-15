@@ -13,13 +13,22 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -517,7 +476,12 @@ div.tocify {
 </div>
 <div id="class-announcements" class="section level2">
 <h2>Class announcements</h2>
-<p><br></p>
+<ul>
+<li>Please let us know immediately after class if you need a partner for assignment 3 (the collaborative website) - or if you’re not planning on submitting assignment 3, but would like more opportunity to practice collaborating with a partner on GitHub</li>
+<li>For “submitting” assignment 3, please add the URL of the <strong>GitHub Pages website</strong> to the README file, <strong>not the URL of the repo</strong></li>
+</ul>
+<p><br><br />
+<br></p>
 </div>
 <div id="learning-objectives-for-todays-class" class="section level2">
 <h2>Learning objectives for today’s class</h2>
@@ -554,15 +518,15 @@ div.tocify {
 </div>
 <div id="load-tidyverse-which-has-dplyr-inside" class="section level3">
 <h3>Load <code>tidyverse</code> (which has <code>dplyr</code> inside)</h3>
-<p>In your R Markdown file, let’s make sure we’ve got our libraries loaded. Write the following:</p>
+<p>In your R Markdown file, let’s make sure we’ve got our packages loaded. Write the following:</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)</code></pre>
-<p>This is becoming standard practice for how to load a library in a file, and if you get an error that the library doesn’t exist, you can install the package easily by running the code within the comment (highlight <code>install.packages("tidyverse")</code> and run it).</p>
-<p><br></p>
+<p>This is standard practice for how to load a package in a file, and if you get an error that the package doesn’t exist, you can install the package easily by running the code within the comment (highlight <code>install.packages("tidyverse")</code> and run it).</p>
+<p><br> <br></p>
 </div>
 </div>
 <div id="coronavirus-data-set" class="section level2">
 <h2>Coronavirus data set</h2>
-<p>As the COVID-19 crisis is at the forefront of everyone’s minds at the moment, lets use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic.</p>
+<p>As the COVID-19 crisis is at the forefront of everyone’s minds at the moment, let’s use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges.</p>
 <p><br></p>
 <p><img src="assets/2019-nCoV-CDC-23312_without_background.png" width="200px"></p>
 <p><br></p>
@@ -575,6 +539,7 @@ div.tocify {
 <pre class="r"><code># read in corona .csv
 coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <p>For today, don’t worry about how the <code>read_csv()</code> function works - we will cover the details of data import functions in a few weeks.</p>
+<p><br></p>
 <p>Once we have the data loaded, let’s start getting familiar with its content and format.</p>
 <p>Let’s inspect:</p>
 <pre class="r"><code>## explore the coronavirus dataset
@@ -586,7 +551,7 @@ tail(coronavirus) # shows last 6
 head(coronavirus, 10) # shows first X that you indicate
 tail(coronavirus, 12) # guess what this does!</code></pre>
 <p><br></p>
-<p>We can also see the <code>coronavirus</code> variable in RStudio’s Environment pane (top right)</p>
+<p>We can also see the <code>coronavirus</code> object along with its dimensions in RStudio’s Environment pane (top right)</p>
 <p>More ways to learn basic info on a data.frame.</p>
 <pre class="r"><code>names(coronavirus)
 dim(coronavirus)    # ?dim dimension
@@ -603,7 +568,7 @@ skim(coronavirus)</code></pre>
 <p><br></p>
 <div id="look-at-the-variables-inside-a-data.frame" class="section level3">
 <h3>Look at the variables inside a data.frame</h3>
-<p>To specify a single variable from a data.frame, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract of replace parts of an object — check out the help menu for <code>$</code>. It’s a common operator you’ll see in R.</p>
+<p>To specify a single variable from a data.frame, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract or replace parts of an object — check out the help menu for <code>$</code>. It’s a common operator you’ll see in R.</p>
 <pre class="r"><code>coronavirus$cases # very long! hard to make sense of...
 head(coronavirus$cases) # can do the same tests we tried before
 str(coronavirus$cases) # it is a single numeric vector
@@ -618,17 +583,17 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p><br></p>
 <ul>
 <li><p><strong><code>filter()</code></strong>: pick observations by their values</p>
-<img src="assets/rstudio-cheatsheet-filter.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-filter.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
 <li><p><strong><code>select()</code></strong>: pick variables by their names</p>
-<img src="assets/rstudio-cheatsheet-select.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-select.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
 <li><p><strong><code>mutate()</code></strong>: create new variables with functions of existing variables</p>
-<img src="assets/rstudio-cheatsheet-mutate.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-mutate.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <ul>
@@ -637,10 +602,10 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p><br></p>
 <ul>
 <li><p><strong><code>summarise()</code></strong>: collapse many values down to a single summary</p>
-<img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></li>
+<p><img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></p></li>
 </ul>
 <p><br></p>
-<p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. <strong>We will cover at least the first two today and continue with the rest on Wednesday.</strong></p>
+<p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. <strong>We will cover at least the first two today and continue with the rest on Thursday.</strong></p>
 <p><br></p>
 <p>All verbs work similarly:</p>
 <ol style="list-style-type: decimal">
@@ -671,6 +636,7 @@ summary(coronavirus$cases) # same information, formatted slightly differently</c
 <p><br></p>
 <p>A useful short-hand for this problem is <code>x %in% y</code>. This will select every row where <code>x</code> is one of the values in <code>y</code>. We could use it to rewrite the code above:</p>
 <pre class="r"><code>filter(coronavirus, country %in% c(&quot;US&quot;, &quot;Canada&quot;))</code></pre>
+<p><br></p>
 <p>How about if we want only the death counts in the US? You can pass filter different criteria:</p>
 <pre class="r"><code># We can use either of these notations:
 filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)
@@ -706,9 +672,9 @@ sum(filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)$ca
 <p><strong>Question 1b:</strong></p>
 <pre class="r"><code>#Example:
 
-filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2021-02-28&quot;)</code></pre>
+filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2022-02-14&quot;)</code></pre>
 </details>
-<p><br> <br></p>
+<p><br> <br> <br></p>
 </div>
 </div>
 <div id="select-subsets-data-column-wise-variables" class="section level2">
@@ -747,7 +713,7 @@ rename(coronavirus, casetype = type)</code></pre>
 </div>
 <div id="use-select-and-filter-together" class="section level2">
 <h2>Use <code>select()</code> and <code>filter()</code> together</h2>
-<p>We’ve explored the functions <code>select()</code> and <code>filter()</code> separately. Now let’s combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn’t currently have data broken down by US state). We’ll save this subsetted data as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on <code>coronavirus_us</code>, not <code>coronavirus</code>.</p>
+<p>We’ve explored the functions <code>select()</code> and <code>filter()</code> separately. Now let’s combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn’t currently have data broken down by US state). We’ll save this subsetted data as an object. Actually, as two temporary objects, which means that for the second one we need to operate on <code>coronavirus_us</code>, not <code>coronavirus</code>.</p>
 <pre class="r"><code>coronavirus_us  &lt;- filter(coronavirus, country == &quot;US&quot;)
 coronavirus_us2 &lt;- select(coronavirus_us, -lat, -long, -province) </code></pre>
 <p>We also could have called them both <code>coronavirus_us</code> and overwritten the first assignment. Either way, naming them and keeping track of them gets super cumbersome, which means more time to understand what’s going on and opportunities for confusion or error.</p>
@@ -756,13 +722,14 @@ coronavirus_us2 &lt;- select(coronavirus_us, -lat, -long, -province) </code></pr
 </div>
 <div id="meet-the-new-pipe-operator" class="section level2">
 <h2>Meet the new pipe <code>%&gt;%</code> operator</h2>
-<p>Before we go any further, we should explore the new pipe operator that <code>dplyr</code> imports from the <a href="https://github.com/smbache/magrittr"><code>magrittr</code></a> package by Stefan Bache. If you have have not used this before, <strong>this is going to change your life</strong> (at least your coding life…). You no longer need to enact multi-operation commands by nesting them inside each other. And we won’t need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.</p>
+<p>Before we go any further, we should explore the pipe operator that <code>dplyr</code> imports from the <a href="https://github.com/smbache/magrittr"><code>magrittr</code></a> package by Stefan Bache. If you have have not used this before, <strong>this is going to change your life</strong> (at least your coding life…). You no longer need to enact multi-operation commands by nesting them inside each other. And we won’t need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.</p>
 <p>Here’s what it looks like: <code>%&gt;%</code>. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).</p>
 <p>Let’s demo then I’ll explain:</p>
 <pre class="r"><code>coronavirus %&gt;% head()</code></pre>
 <p>This is equivalent to <code>head(coronavirus)</code>. This pipe operator takes the thing on the left-hand-side and <strong>pipes</strong> it into the function call on the right-hand-side. It literally drops it in as the first argument.</p>
 <p>Never fear, you can still specify other arguments to this function! To see the first 3 rows of coronavirus, we could say <code>head(coronavirus, 3)</code> or this:</p>
 <pre class="r"><code>coronavirus %&gt;% head(3)</code></pre>
+<p><br></p>
 <p><strong>I’ve advised you to think “gets” whenever you see the assignment operator, <code>&lt;-</code>. Similarly, you should think “and then” whenever you see the pipe operator, <code>%&gt;%</code>.</strong></p>
 <p>One of the most awesome things about this is that you START with the data before you say what you’re doing to DO to it. So above: “take the coronavirus data, and then give me the first three entries”.</p>
 <p>This means that instead of this:</p>
@@ -786,7 +753,8 @@ coronavirus_us2 &lt;- coronavirus_us %&gt;% select(-lat, -long, -province) </cod
 <blockquote>
 <p>“start with the <code>coronavirus</code> data, and then<br />
 filter for the US, and then<br />
-drop the variables lat, long, and province.” Being able to read a story out of code like this is really game-changing. We’ll continue using this syntax as we learn the other <code>dplyr</code> verbs.</p>
+drop the variables lat, long, and province.”<br />
+Being able to read a story out of code like this is really game-changing. We’ll continue using this syntax as we learn the other <code>dplyr</code> verbs.</p>
 </blockquote>
 <p>Compare with some base R code to accomplish the same things. Base R requires subsetting with the [rows, columns] notation. This notation is something you’ll see a lot in base R. The brackets [ ] allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.</p>
 <p>If we don’t write anything after the comma, that means “all columns”. And if we don’t write anything before the comma, that means “all rows”.</p>
@@ -810,7 +778,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
   filter(country == &quot;US&quot;) %&gt;%
   select(-lat, -long, -province) </code></pre>
 <p><br> <br></p>
-<p>Here’s a caricature slide Nicolas posted on Slack to help build intuition about the differences between the tidyverse and base R syntax for data wrangling</p>
+<p>Here’s a caricature slide to help build intuition about the differences between the tidyverse and base R syntax for data wrangling</p>
 <p><img src="assets/tidyverse_baseR.png" /> <br> <br></p>
 </div>
 </div>
@@ -818,7 +786,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 <div id="your-turn---exercise-3" class="section level2">
 <h2>Your turn - Exercise 3</h2>
 <p>Use the <code>%&gt;%</code> piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: <code>country</code>, <code>date</code>, <code>cases</code>.</p>
-<p>Then combine your new data wrangling skills with the ggplot skills to covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!</p>
+<p>Then combine your new data wrangling skills with the ggplot skills covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!</p>
 <p>If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare.</p>
 <p><br></p>
 <p><strong>Save your R script (knit if you’ve been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)</strong></p>
@@ -860,7 +828,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -869,6 +837,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

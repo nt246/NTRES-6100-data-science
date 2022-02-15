@@ -32,9 +32,12 @@ Chapter 5.1-5.5 in [R for Data Science](https://r4ds.had.co.nz/transform.html) b
 
 ## Class announcements  
 
+* Please let us know immediately after class if you need a partner for assignment 3 (the collaborative website) - or if you're not planning on submitting assignment 3, but would like more opportunity to practice collaborating with a partner on GitHub
+* For "submitting" assignment 3, please add the URL of the **GitHub Pages website** to the README file, **not the URL of the repo**
 
-  
-<br>
+
+<br>  
+<br>  
 
 ## Learning objectives for today's class
 
@@ -78,18 +81,19 @@ Just like last class, we'll keep practicing our GitHub/version control integrati
 
 ### Load `tidyverse` (which has `dplyr` inside)
 
-In your R Markdown file, let's make sure we've got our libraries loaded. Write the following: 
+In your R Markdown file, let's make sure we've got our packages loaded. Write the following: 
 
 ```{r, eval=FALSE}
 library(tidyverse)     ## install.packages("tidyverse")
 ```
 
-This is becoming standard practice for how to load a library in a file, and if you get an error that the library doesn't exist, you can install the package easily by running the code within the comment (highlight `install.packages("tidyverse")` and run it).
+This is standard practice for how to load a package in a file, and if you get an error that the package doesn't exist, you can install the package easily by running the code within the comment (highlight `install.packages("tidyverse")` and run it).
 
+<br>
 <br>
 
 ## Coronavirus data set
-As the COVID-19 crisis is at the forefront of everyone's minds at the moment, lets use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic.
+As the COVID-19 crisis is at the forefront of everyone's minds at the moment, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
 
 <br>
 
@@ -117,6 +121,8 @@ coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavir
 
 For today, don't worry about how the `read_csv()` function works - we will cover the details of data import functions in a few weeks.
 
+<br>
+
 Once we have the data loaded, let's start getting familiar with its content and format.
 
 Let's inspect: 
@@ -136,7 +142,7 @@ tail(coronavirus, 12) # guess what this does!
 
 <br>
 
-We can also see the `coronavirus` variable in RStudio's Environment pane (top right)
+We can also see the `coronavirus` object along with its dimensions in RStudio's Environment pane (top right)
 
 More ways to learn basic info on a data.frame. 
 ```{r names, eval=FALSE}
@@ -162,7 +168,7 @@ skim(coronavirus)
 
 ### Look at the variables inside a data.frame
 
-To specify a single variable from a data.frame, use the dollar sign `$`. The `$` operator is a way to extract of replace parts of an object — check out the help menu for `$`. It's a common operator you'll see in R. 
+To specify a single variable from a data.frame, use the dollar sign `$`. The `$` operator is a way to extract or replace parts of an object — check out the help menu for `$`. It's a common operator you'll see in R. 
 
 ```{r $, eval=FALSE}
 coronavirus$cases # very long! hard to make sense of...
@@ -209,7 +215,7 @@ There are five `dplyr` functions that you will use to do the vast majority of da
   
 <br>
   
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. **We will cover at least the first two today and continue with the rest on Wednesday.**
+These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation. **We will cover at least the first two today and continue with the rest on Thursday.**
 
 <br>
 
@@ -274,12 +280,15 @@ A useful short-hand for this problem is `x %in% y`. This will select every row w
 filter(coronavirus, country %in% c("US", "Canada"))
 ```
 
+<br>
+
 How about if we want only the death counts in the US? You can pass filter different criteria:
 
 ```{r, eval=FALSE}
 # We can use either of these notations:
 filter(coronavirus, country == "US", type == "death")
 filter(coronavirus, country == "US" & type == "death")
+
 ```
 
 <br>
@@ -321,12 +330,13 @@ sum(filter(coronavirus, country == "US", type == "death")$cases)
 ```{r, eval=FALSE}
 #Example:
 
-filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2021-02-28")
+filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2022-02-14")
 
 ```
 
 </details>
 
+<br>
 <br>
 <br>
 
@@ -388,7 +398,7 @@ rename(coronavirus, casetype = type)
 
 ## Use `select()` and `filter()` together
 
-We've explored the functions `select()` and `filter()` separately. Now let's combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn't currently have data broken down by US state). We'll save this subsetted data as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on `coronavirus_us`, not `coronavirus`. 
+We've explored the functions `select()` and `filter()` separately. Now let's combine them and filter to retain only records for the US and remove the lat, long and province columns (because this dataset doesn't currently have data broken down by US state). We'll save this subsetted data as an object. Actually, as two temporary objects, which means that for the second one we need to operate on `coronavirus_us`, not `coronavirus`. 
 
 ```{r, eval=FALSE}
 coronavirus_us  <- filter(coronavirus, country == "US")
@@ -403,7 +413,7 @@ Good thing there is an awesome alternative.
 
 ## Meet the new pipe `%>%` operator
 
-Before we go any further, we should explore the new pipe operator that `dplyr` imports from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
+Before we go any further, we should explore the pipe operator that `dplyr` imports from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
 
 Here's what it looks like: `%>%`. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).
 
@@ -418,6 +428,8 @@ Never fear, you can still specify other arguments to this function! To see the f
 ```{r, eval=FALSE}
 coronavirus %>% head(3)
 ```
+
+<br>
 
 **I've advised you to think "gets" whenever you see the assignment operator, `<-`. Similarly, you should think "and then" whenever you see the pipe operator, `%>%`.**
 
@@ -456,7 +468,7 @@ By using multiple lines I can actually read this like a story and there aren't t
 
 >"start with the `coronavirus` data, and then  
 filter for the US, and then  
-drop the variables lat, long, and province."
+drop the variables lat, long, and province."   
 Being able to read a story out of code like this is really game-changing. We'll continue using this syntax as we learn the other `dplyr` verbs. 
 
 Compare with some base R code to accomplish the same things. Base R requires subsetting with the [rows, columns] notation. This notation is something you’ll see a lot in base R. The brackets [ ] allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.
@@ -498,7 +510,7 @@ coronavirus_us  <- coronavirus %>%
 <br>
 <br>
 
-Here's a caricature slide Nicolas posted on Slack to help build intuition about the differences between the tidyverse and base R syntax for data wrangling
+Here's a caricature slide to help build intuition about the differences between the tidyverse and base R syntax for data wrangling
 
 ![](assets/tidyverse_baseR.png)
 <br>
@@ -508,7 +520,7 @@ Here's a caricature slide Nicolas posted on Slack to help build intuition about 
 
 Use the `%>%` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
 
-Then combine your new data wrangling skills with the ggplot skills to covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!
+Then combine your new data wrangling skills with the ggplot skills covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!
 
 If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare. 
 
