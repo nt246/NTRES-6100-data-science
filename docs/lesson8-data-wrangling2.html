@@ -13,13 +13,22 @@
 
 <title>Lesson 8: Data Wrangling Part 2</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -527,7 +486,7 @@ div.tocify {
 </ul>
 <p>Today, we’ll expand our data wrangling toolbox. By the end of today’s class, you should be able to:</p>
 <ul>
-<li>Subset, rearrange, and summarize data with key <code>dplyr</code> functions:
+<li>Subset, rearrange, and summarize data with additional key <code>dplyr</code> functions:
 <ul>
 <li>Create new variables with functions of existing variables with <code>mutate()</code></li>
 <li>Reorder the rows with <code>arrange()</code></li>
@@ -546,7 +505,8 @@ div.tocify {
 <p>Finally, load the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)
 library(skimr)        ## install.packages(&quot;skimr&quot;)</code></pre>
-<pre class="r"><code># read in corona .csv (don&#39;t worry for now about what the col_types parameter means, we&#39;ll discuss that next week)
+<pre class="r"><code># read in the coronavirus.csv file
+
 coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
 <p>Let’s remind ourselves of the data structure and content</p>
 <pre class="r"><code>skim(coronavirus)</code></pre>
@@ -571,6 +531,11 @@ coronavirus %&gt;%
   table()
 
 
+coronavirus %&gt;% 
+  filter(lat &gt; 60, type == &quot;confirmed&quot;) %&gt;% 
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = cases, color = country))
+
 # If you try to plot the counts by date, you may see a very rugged pattern for Canada because case counts here are reported for different provinces. To get total daily counts by country we&#39;ll have to first group_by country and date and then summarize the counts, as outlined below.</code></pre>
 </details>
 <p><br> <br> <br></p>
@@ -582,38 +547,49 @@ coronavirus %&gt;%
 <p>Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. That’s the job of <code>mutate()</code>.</p>
 <p>Visually, we are doing this (thanks RStudio for your <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
 <p><img src="assets/rstudio-cheatsheet-mutate.png" /></p>
-<p>The current variables in the coronavirus dataset don’t lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let’s reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don’t worry about how it works right now, we’ll get an opportunity to explore it in a few weeks.</p>
-<p>For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: 2020-01-22 to 2021-04-10):</p>
-<pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
-  select(country, type, cases) %&gt;%
-  group_by(country, type) %&gt;%
-  summarize(total_cases = sum(cases)) %&gt;%
-  pivot_wider(names_from = type,
-              values_from = total_cases) %&gt;%
-  arrange(-confirmed)
-
-# Let&#39;s have a look at the structure of that new rearranged dataset
-coronavirus_ttd</code></pre>
+<p>The current variables in the coronavirus dataset don’t lend themselves well to cross-computation, so to illustrate the power of the <code>mutate()</code> function, let’s look at the companion dataset from the <a href="https://github.com/RamiKrispin/coronavirus">coronavirus package</a> on global vaccination statistics.</p>
+<p>Details about the dataset can be found on the README file <a href="https://github.com/RamiKrispin/coronavirus">here</a>, and the raw .csv dataset is available here <a href="https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv" class="uri">https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv</a><br />
+(you can also navigate to it from the <code>cvs</code> subdirectory and click <code>View raw</code> to get the URL)</p>
 <p><br></p>
-<p>Imagine we want to compare the total death count to total the number of confirmed cases in each country. We can divide the case counts of <code>death</code> by <code>confirmed</code> to create a new column named <code>deathrate</code>. We do this with <code>mutate()</code> that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the <code>$</code> operator).</p>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  mutate(deathrate = death / confirmed) 
+<p>Let’s first load in the data the same way we did for the case counts dataset</p>
+<pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv&quot;)</code></pre>
+<pre><code>## Rows: 170903 Columns: 18
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (7): country_region, province_state, iso2, iso3, combined_key, continen...
+## dbl  (8): doses_admin, people_partially_vaccinated, people_fully_vaccinated,...
+## lgl  (1): fips
+## date (2): date, report_date_string
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># Let&#39;s have a look at this 
+View(vacc) # remember to run this only from the console or an R script. Don&#39;t put this command in an .Rmd file that you&#39;re going to knit</code></pre>
+<p><br></p>
+<p>This dataset has statistics on the <em>cumulative</em> number of vaccine doses administered and number of people vaccinated on each day in different countries. For now, let’s just look at the most recent day included in the dataset 2022-02-15.</p>
+<p>Imagine we want to compare the vaccination rate across countries. We can divide the <code>people_fully_vaccinated</code> column with the <code>population</code> column to create a new column named <code>vaxxrate</code>. We do this with <code>mutate()</code> that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the <code>$</code> operator). To make it easier to see what happens, we’ll also select just a subset of the variables to retain from our dataset.</p>
+<pre class="r"><code>vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(vaxxrate = people_fully_vaccinated / population)
+
 
 # We can modify the mutate equation in many ways. For example, if we want to adjust the number of significant digits printed, we can type
-coronavirus_ttd %&gt;%
-  mutate(deathrate = round(death / confirmed, 2)) </code></pre>
-<p>Note, however, that these estimated death rates may be misleading and should be interpreted with due caution as testing strategies have varied a lot between countries (e.g. do asymptomatic people get tested). Also:</p>
-<ul>
-<li>The comparison of total counts of confirmed cases and deaths in different countries is not an apple to apple comparison, as the outbreak did not start at the same time in all the affected countries.</li>
-<li>As age plays a critical role in the probability of survival from the virus, we cannot make a comparison between different cases without having more demographic information.</li>
-</ul>
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(vaxxrate = round(people_fully_vaccinated / population, 2))</code></pre>
 <p><br></p>
 <div id="your-turn---exercise-2" class="section level3">
 <h3>Your turn - Exercise 2</h3>
 <blockquote>
-<p>Add a new variable that shows the <em>proportion of confirmed cases</em> for which the outcome is still unknown (i.e. not counted as dead or recovered) for each country and show only countries with more than 3 million confirmed cases. Which country has the highest proportion of undetermined outcomes? Why might that be?</p>
-<p>When you’re done, sync your RMarkdown file to Github.com (pull, stage, commit, push).</p>
+<p>Add a new variable that shows how many doses of vaccine on average have been distributed per person considered fully vaccinated for each country. First look the patterns across all countries, then only show data for countries that have distributed more than 200 million doses. How many countries is that?</p>
 </blockquote>
+<blockquote>
+
+</blockquote>
+<p><br></p>
+<p><strong>When you’re done, sync your RMarkdown file to Github.com (pull, stage, commit, push).</strong></p>
 <p><br></p>
 <div id="answer-1" class="section level4">
 <h4>Answer</h4>
@@ -621,9 +597,35 @@ coronavirus_ttd %&gt;%
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  mutate(undet = (confirmed - death - recovered) / confirmed) %&gt;% 
-  filter(confirmed &gt; 3000000)</code></pre>
+<pre class="r"><code># To look at patterns across all countries
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) 
+  
+# We can scroll through the output and eyeball patterns, but we can also pipe the output directly into ggplot!
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %&gt;% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = dosesfull))
+
+
+# To subset the output, we can add another filter step
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %&gt;% 
+  filter(doses_admin &gt; 200000000)
+
+ 
+# We can also use this to identify outliers in our histogram above
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %&gt;% 
+  filter(dosesfull &gt; 4)</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -631,17 +633,26 @@ click to expand
 </div>
 <div id="arrange-orders-rows" class="section level2">
 <h2><code>arrange()</code> orders rows</h2>
-<p>For examining the output of our previous calculations, we may want to re-arrange the countries in ascending order for the proportion of confirmed cases for which the outcome remains unknown. The <code>dplyr</code> function for sorting rows is <code>arrange()</code>.</p>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  mutate(undet = (confirmed - death - recovered)/confirmed) %&gt;% 
-  filter(confirmed &gt; 3000000) %&gt;% 
-  arrange(undet)</code></pre>
+<p>For examining the output of our previous calculations, we may want to re-arrange the countries in ascending or descending order for vaccination rate. The <code>dplyr</code> function for sorting rows is <code>arrange()</code>.</p>
+<pre class="r"><code>vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %&gt;% 
+  arrange(vaxxrate)
+
+# or
+
+vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %&gt;% 
+  arrange(vaxxrate)</code></pre>
 <p>I advise that your analyses NEVER rely on rows or variables being in a specific order. But it’s still true that human beings write the code and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.</p>
 <p><br> <br></p>
 <div id="your-turn---exercise-3" class="section level3">
 <h3>Your turn - Exercise 3</h3>
 <blockquote>
-<p>How many countries have suffered more than 100,000 deaths so far and which five countries have recorded the highest death counts?</p>
+<p>How many countries have vaccination rates above 80% and which five countries have the highest vaccination rates, according to this dataset?</p>
 </blockquote>
 <div id="answer-2" class="section level4">
 <h4>Answer</h4>
@@ -649,9 +660,12 @@ click to expand
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  filter(death &gt; 100000) %&gt;% 
-  arrange(-death)</code></pre>
+<pre class="r"><code>vacc %&gt;% 
+  filter(date == &quot;2022-02-15&quot;) %&gt;% 
+  select(country_region:people_fully_vaccinated, population) %&gt;% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %&gt;% 
+  arrange(-vaxxrate) %&gt;% 
+  filter(vaxxrate &gt; 0.8)</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -869,7 +883,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -878,6 +892,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

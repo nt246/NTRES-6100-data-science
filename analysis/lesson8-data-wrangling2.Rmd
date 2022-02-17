@@ -41,7 +41,7 @@ Last class, we learned how to use `dplyr` functions
 
 Today, we'll expand our data wrangling toolbox. By the end of today's class, you should be able to:
 
-* Subset, rearrange, and summarize data with key `dplyr` functions:
+* Subset, rearrange, and summarize data with additional key `dplyr` functions:
   + Create new variables with functions of existing variables with `mutate()`
   + Reorder the rows with `arrange()`
   + Collapse many values down to a single summary with `summarize()` and `group_by()`
@@ -70,7 +70,8 @@ library(skimr)        ## install.packages("skimr")
 ```
 
 ```{r, eval = TRUE, include = TRUE, message = FALSE}
-# read in corona .csv (don't worry for now about what the col_types parameter means, we'll discuss that next week)
+# read in the coronavirus.csv file
+
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 ```
@@ -106,6 +107,11 @@ coronavirus %>%
   table()
 
 
+coronavirus %>% 
+  filter(lat > 60, type == "confirmed") %>% 
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = cases, color = country))
+
 # If you try to plot the counts by date, you may see a very rugged pattern for Canada because case counts here are reported for different provinces. To get total daily counts by country we'll have to first group_by country and date and then summarize the counts, as outlined below.
 
 ```
@@ -125,49 +131,59 @@ Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rst
 
 ![](assets/rstudio-cheatsheet-mutate.png)
 
-The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the `mutate()` function, let's reformat the dataset so that we get the counts of confirmed cases, deaths and recovered for each date and country in separate columns. The tidyverse has a very convenient function for making that kind of transformation. Don't worry about how it works right now, we'll get an opportunity to explore it in a few weeks.
+The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the `mutate()` function, let's look at the companion dataset from the [coronavirus package](https://github.com/RamiKrispin/coronavirus) on global vaccination statistics.
 
-For now, just copy the following code to summarize the total number of cases recorded by country and type (in the time period covered by this dataset: `r min(coronavirus$date)` to `r max(coronavirus$date)`):
+Details about the dataset can be found on the README file [here](https://github.com/RamiKrispin/coronavirus), and the raw .csv dataset is available here https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv   
+(you can also navigate to it from the `cvs` subdirectory and click `View raw` to get the URL)
+
+<br>
+
+Let's first load in the data the same way we did for the case counts dataset
+
+```{r}
+vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv")
+```
+
 
 ```{r, eval=FALSE}
-coronavirus_ttd <- coronavirus %>% 
-  select(country, type, cases) %>%
-  group_by(country, type) %>%
-  summarize(total_cases = sum(cases)) %>%
-  pivot_wider(names_from = type,
-              values_from = total_cases) %>%
-  arrange(-confirmed)
-
-# Let's have a look at the structure of that new rearranged dataset
-coronavirus_ttd
+# Let's have a look at this 
+View(vacc) # remember to run this only from the console or an R script. Don't put this command in an .Rmd file that you're going to knit
 
 ```
 
 <br>
 
-Imagine we want to compare the total death count to total the number of confirmed cases in each country. We can divide the case counts of `death` by `confirmed` to create a new column named `deathrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator).
+This dataset has statistics on the *cumulative* number of vaccine doses administered and number of people vaccinated on each day in different countries. For now, let's just look at the most recent day included in the dataset `r max(vacc$date)`. 
+
+Imagine we want to compare the vaccination rate across countries. We can divide the `people_fully_vaccinated` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
 
 ```{r, eval=FALSE}
-coronavirus_ttd %>%
-  mutate(deathrate = death / confirmed) 
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(vaxxrate = people_fully_vaccinated / population)
+
 
 # We can modify the mutate equation in many ways. For example, if we want to adjust the number of significant digits printed, we can type
-coronavirus_ttd %>%
-  mutate(deathrate = round(death / confirmed, 2)) 
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(vaxxrate = round(people_fully_vaccinated / population, 2))
+
 ```
 
-Note, however, that these estimated death rates may be misleading and should be interpreted with due caution as testing strategies have varied a lot between countries (e.g. do asymptomatic people get tested). Also:
-
-* The comparison of total counts of confirmed cases and deaths in different countries is not an apple to apple comparison, as the outbreak did not start at the same time in all the affected countries.
-* As age plays a critical role in the probability of survival from the virus, we cannot make a comparison between different cases without having more demographic information.
 
 <br>
 
 ### Your turn - Exercise 2
 
-> Add a new variable that shows the *proportion of confirmed cases* for which the outcome is still unknown (i.e. not counted as dead or recovered) for each country and show only countries with more than 3 million confirmed cases. Which country has the highest proportion of undetermined outcomes? Why might that be?
+> Add a new variable that shows how many doses of vaccine on average have been distributed per person considered fully vaccinated for each country. First look the patterns across all countries, then only show data for countries that have distributed more than 200 million doses. How many countries is that?
+
 >
-> When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).
+
+<br>
+
+**When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).**
 
 <br>
 
@@ -177,10 +193,36 @@ Note, however, that these estimated death rates may be misleading and should be 
 
 ```{r, eval=FALSE}
 
-coronavirus_ttd %>%
-  mutate(undet = (confirmed - death - recovered) / confirmed) %>% 
-  filter(confirmed > 3000000)
+# To look at patterns across all countries
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) 
   
+# We can scroll through the output and eyeball patterns, but we can also pipe the output directly into ggplot!
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = dosesfull))
+
+
+# To subset the output, we can add another filter step
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
+  filter(doses_admin > 200000000)
+
+ 
+# We can also use this to identify outliers in our histogram above
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
+  filter(dosesfull > 4)
+
 ```
 </details>
 
@@ -189,15 +231,24 @@ coronavirus_ttd %>%
   
 ## `arrange()` orders rows
 
-For examining the output of our previous calculations, we may want to re-arrange the countries in ascending order for the proportion of confirmed cases for which the outcome remains unknown. The `dplyr` function for sorting rows is `arrange()`. 
+For examining the output of our previous calculations, we may want to re-arrange the countries in ascending or descending order for vaccination rate. The `dplyr` function for sorting rows is `arrange()`. 
 
 ```{r, eval=FALSE}
 
-coronavirus_ttd %>%
-  mutate(undet = (confirmed - death - recovered)/confirmed) %>% 
-  filter(confirmed > 3000000) %>% 
-  arrange(undet)
-  
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
+  arrange(vaxxrate)
+
+# or
+
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
+  arrange(vaxxrate)
+
 ```
 
 I advise that your analyses NEVER rely on rows or variables being in a specific order. But it’s still true that human beings write the code and the interactive development process can be much nicer if you reorder the rows of your data as you go along. Also, once you are preparing tables for human eyeballs, it is imperative that you step up and take control of row order.
@@ -207,7 +258,7 @@ I advise that your analyses NEVER rely on rows or variables being in a specific 
 
 ### Your turn - Exercise 3
 
-> How many countries have suffered more than 100,000 deaths so far and which five countries have recorded the highest death counts?
+> How many countries have vaccination rates above 80% and which five countries have the highest vaccination rates, according to this dataset?
 
 #### Answer
 <details>
@@ -215,9 +266,12 @@ I advise that your analyses NEVER rely on rows or variables being in a specific 
 
 ```{r, eval = FALSE}
 
-coronavirus_ttd %>%
-  filter(death > 100000) %>% 
-  arrange(-death)
+vacc %>% 
+  filter(date == "2022-02-15") %>% 
+  select(country_region:people_fully_vaccinated, population) %>% 
+  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
+  arrange(-vaxxrate) %>% 
+  filter(vaxxrate > 0.8)
 
 ```
 </details>
