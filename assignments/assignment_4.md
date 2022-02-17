@@ -138,7 +138,9 @@ economist_data <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-d
 
 <br>
 
-#### 1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot. (Hint: `geom_jitter()` or `position_jitter()` might be useful.)
+#### 1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5 and do not show outlier points with the box plot. Instead, show all data points for each country in the same plot.
+
+*Hint: `geom_jitter()` or `position_jitter()` might be useful*
 
 ![](assignment_4_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
@@ -182,7 +184,7 @@ kable(head(Theoph))
 
 <br>
 
-For the following exercies, **transform the data as instructed**. Try to
+For the following exercise, **transform the data as instructed**. Try to
 use `tidyverse` functions even if you are more comfortable with base-R
 solutions. Show the **first 6 lines** of the transformed data in a table
 through RMarkdown **using the kable() function**, as shown above.
@@ -256,7 +258,7 @@ through RMarkdown **using the kable() function**, as shown above.
 
 Show data for the 6 subjects with the smallest sum of `Dose` as below.
 **Do not define new intermediate objects for this exercise; use pipes to
-chain together functions. **
+chain together functions.**
 
 | Subject | mean(conc) | sum(Dose) |
 |:--------|-----------:|----------:|
@@ -271,11 +273,12 @@ chain together functions. **
 
 ## Exercise 3. Unemployment in the US 1967-2015 (**OPTIONAL**)
 
-This excercise uses the dataset `economics` from the ggplot2 package. It
+This exercise uses the dataset `economics` from the ggplot2 package. It
 was produced from US economic time series data available from
-<http://research.stlouisfed.org/fred2>. It descibes the number of
-unemployed persons (`unemploy`), among other variables, in the US from
-1967 to 2015.
+<http://research.stlouisfed.org/fred2>. It describes the number of
+unemployed persons (`unemploy`, in thousands) and total population
+(`pop`, in thousands), among other variables, in each moth from 1967 to
+2015 in the US.
 
 ``` r
 head(economics) %>% kable()
@@ -298,8 +301,21 @@ head(economics) %>% kable()
 
 <br>
 
-#### 3.2 Edit the plot title and axis labels of the previous plot appropriately. Make y axis start from 0. Change the background theme to what is shown below. (Hint: search for help online if needed)
+#### 3.2 Edit the plot title and axis labels of the previous plot appropriately. Make y axis start from 0. Change the background theme to what is shown below.
+
+*Hint: search for help online if needed*
 
 ![](assignment_4_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 <br>
+
+#### 3.3 Can this general trend of rise in unemployed persons be explained by population growth? Use a figure to answer this question.
+
+*Hint: you can plot the trend in unemployment rate instead of the number
+of unemployed persons*
+
+#### 3.4 Which years in this dataset have the highest unemployment rate on average? List the top five of them in a table.
+
+*Hint: the `year()` function in the package `lubridate` could be useful
+for this question, in combination with `mutate()`, `group_by()`,
+`summarize()`, `arrange()`, and `head()`*
