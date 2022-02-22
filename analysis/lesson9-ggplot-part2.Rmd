@@ -34,6 +34,11 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson9-files/")
 <br>
 
 ## Announcements
+* Assignment 4 due this Thursday
+* This **Thursday's** lab will be on Zoom only
+* Unless you hear otherwise (keep an eye on Slack), Thursday's lecture and Friday's lab will be in person
+* Nicolas will be traveling this week, so he may be slower to respond to messages on Slack. Unless you're writing about a personal issue, please post in public channels rather than by direct message so others also can benefit from the answer or perhaps respond
+
 
 <br>
 
@@ -61,6 +66,7 @@ course by Julia Stewart Lowndes and Allison Horst and Chapter 3 of [Grolemund an
 This overview is borrowed from the [STAT545 course at UBC](https://stat545guidebook.netlify.com/intro-to-plotting-with-ggplot2-part-i.html)
 
 ![](https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png)
+<br>
 
 You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in **bold** are required to be specifed explicitly in ggplot2):
 
@@ -97,7 +103,7 @@ First, let's load our packages and read in our Coronavirus dataset
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
 
-coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv', col_types = cols(province = col_character()))
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 # Has it been updated? Check the latest date?
 max(coronavirus$date)
@@ -192,6 +198,8 @@ Some common arguments we'll use first are:
 - `size = `: update the element size (e.g. of points or line thickness)
 - `alpha = `: update element opacity (1 = opaque, 0 = transparent)
 
+<br>
+
 Building on our first line graph, let's update the line color to "purple" and make the line type "dashed": 
 
 ```{r, eval = TRUE}
@@ -256,6 +264,8 @@ We talked about this briefly a few classes ago, but let's explore a little furth
 
 Also, check out more examples by scrolling down [here](https://ggplot2.tidyverse.org/reference/ggtheme.html#examples). Pick one that you like and update your previous plot.
 
+<br>
+
 Here, let's update our previous graph with `theme_minimal()`:
 
 ```{R, eval = TRUE}
@@ -289,6 +299,8 @@ gg_base +
     subtitle = "Global sums"
   )
 ```
+
+<br>
 
 **Note**: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the `scales` package options and add `+ scale_y_continuous(labels = scales::comma)` (see more from the [R Cookbook](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/)). 
 
