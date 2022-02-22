@@ -474,6 +474,12 @@ div.tocify {
 </div>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
+<ul>
+<li>Assignment 4 due this Thursday</li>
+<li>This <strong>Thursday’s</strong> lab will be on Zoom only</li>
+<li>Unless you hear otherwise (keep an eye on Slack), Thursday’s lecture and Friday’s lab will be in person</li>
+<li>Nicolas will be traveling this week, so he may be slower to respond to messages on Slack. Unless you’re writing about a personal issue, please post in public channels rather than by direct message so others also can benefit from the answer or perhaps respond</li>
+</ul>
 <p><br></p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
@@ -492,7 +498,7 @@ div.tocify {
 <div id="recap-on-the-grammar-of-graphics-implemented-in-ggplot" class="section level2">
 <h2>Recap on the Grammar of Graphics implemented in <code>ggplot</code></h2>
 <p>This overview is borrowed from the <a href="https://stat545guidebook.netlify.com/intro-to-plotting-with-ggplot2-part-i.html">STAT545 course at UBC</a></p>
-<p><img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" /></p>
+<p><img src="https://cxlabsblog.files.wordpress.com/2017/10/2017-10-24-14_36_29-visualization-layers-of-ggplot-google-docs.png" /> <br></p>
 <p>You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in <strong>bold</strong> are required to be specifed explicitly in ggplot2):</p>
 <ul>
 <li><strong>Data</strong>
@@ -536,16 +542,16 @@ div.tocify {
 <pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
 
-coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;, col_types = cols(province = col_character()))
+coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
 
 # Has it been updated? Check the latest date?
 max(coronavirus$date)</code></pre>
-<pre><code>## [1] &quot;2022-01-23&quot;</code></pre>
+<pre><code>## [1] &quot;2022-02-21&quot;</code></pre>
 <p><br> <br></p>
 </div>
 <div id="combining-dplyr-and-ggplot" class="section level2">
 <h2>Combining <code>dplyr</code> and <code>ggplot</code></h2>
-<p>Let’s start with summarizing the total number of cases by type as of the most recent day in the dataset: 2022-01-23. Take a minute to try this for yourself, then you can look at our approach.</p>
+<p>Let’s start with summarizing the total number of cases by type as of the most recent day in the dataset: 2022-02-21. Take a minute to try this for yourself, then you can look at our approach.</p>
 <p><br></p>
 <details>
 <summary>
@@ -566,11 +572,11 @@ kable(total_cases)  # kable() just provides a nice output for the table</code></
 <tbody>
 <tr class="odd">
 <td align="left">confirmed</td>
-<td align="right">351378115</td>
+<td align="right">425942053</td>
 </tr>
 <tr class="even">
 <td align="left">death</td>
-<td align="right">5596504</td>
+<td align="right">5890818</td>
 </tr>
 <tr class="odd">
 <td align="left">recovery</td>
@@ -628,6 +634,7 @@ coronavirus %&gt;%
 <li><code>size =</code>: update the element size (e.g. of points or line thickness)</li>
 <li><code>alpha =</code>: update element opacity (1 = opaque, 0 = transparent)</li>
 </ul>
+<p><br></p>
 <p>Building on our first line graph, let’s update the line color to “purple” and make the line type “dashed”:</p>
 <pre class="r"><code>gg_base +
   geom_line(
@@ -674,6 +681,7 @@ coronavirus %&gt;%
 <li><code>theme_bw()</code></li>
 </ul>
 <p>Also, check out more examples by scrolling down <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html#examples">here</a>. Pick one that you like and update your previous plot.</p>
+<p><br></p>
 <p>Here, let’s update our previous graph with <code>theme_minimal()</code>:</p>
 <pre class="r"><code>gg_base + 
   geom_point(
@@ -683,7 +691,33 @@ coronavirus %&gt;%
   ) +
   theme_minimal()</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-10-1.png" width="672" /> <br></p>
-<p>You can play around with other themes - see an overview and instructions for how to customize themes <a href="https://ggplot2-book.org/polishing.html">here</a></p>
+<p>You can play around with other themes - see an overview and instructions for how to customize themes <a href="https://ggplot2-book.org/polishing.html">here</a>.</p>
+<p><br></p>
+<p>We could for example color the background of the legend</p>
+<pre class="r"><code>gg_base + 
+  geom_point(
+    aes(size = total_cases,
+        color = total_cases),
+    alpha = 0.5) +
+  theme_minimal() +
+  theme(legend.background = element_rect(
+    fill = &quot;lemonchiffon&quot;, 
+    colour = &quot;grey50&quot;, 
+    size = 1
+  ))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-11-1.png" width="672" /></p>
+<p><br></p>
+<p>Or we can remove the legend</p>
+<pre class="r"><code>gg_base + 
+  geom_point(
+    aes(size = total_cases,
+        color = total_cases),
+    alpha = 0.5) +
+  theme_minimal() +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-12-1.png" width="672" /></p>
+<p><br></p>
+<p>In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples <a href="https://towardsdatascience.com/themes-to-spice-up-visualizations-with-ggplot2-3e275038dafa">here</a></p>
 <p><br> <br></p>
 </div>
 <div id="updating-axis-labels-and-titles" class="section level2">
@@ -698,7 +732,8 @@ coronavirus %&gt;%
     title = &quot;Daily counts of new Coronavirus cases recorded&quot;,
     subtitle = &quot;Global sums&quot;
   )</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-13-1.png" width="672" /></p>
+<p><br></p>
 <p><strong>Note</strong>: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the <code>scales</code> package options and add <code>+ scale_y_continuous(labels = scales::comma)</code> (see more from the <a href="http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/">R Cookbook</a>).</p>
 <p><br> <br></p>
 </div>
@@ -736,205 +771,196 @@ coronavirus %&gt;%
   summarize(total_cases = sum(cases)) %&gt;% 
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-16-1.png" width="672" /></p>
+<p><br></p>
 <p>It looks like this is doing what we want, but it does not display well. There are too many countries! We could play around with the layout parameters to be able to see this plot. But let’s instead subset to only show the 10 countries with the highest total counts of confirmed cases.</p>
-<pre class="r"><code>top10_countries &lt;- coronavirus %&gt;% 
+<pre class="r"><code>top5_countries &lt;- coronavirus %&gt;% 
   filter(type == &quot;confirmed&quot;) %&gt;%
   group_by(country) %&gt;%
   summarize(total_cases = sum(cases)) %&gt;%
   arrange(-total_cases) %&gt;% 
-  head(10) %&gt;% 
+  head(5) %&gt;% 
   .$country</code></pre>
 <p><br></p>
 <p>Now let’s try to plot the daily counts of new cases just for those countries</p>
 <pre class="r"><code>coronavirus %&gt;%  
-  filter(type == &quot;confirmed&quot;, country %in% top10_countries) %&gt;% 
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries) %&gt;% 
   group_by(country, date) %&gt;% 
   summarize(total_cases = sum(cases)) %&gt;%  # Need this summarize because some countries have data broken down by Province.State
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-16-1.png" width="672" /> Much better!</p>
+<p><img src="lesson9-files/unnamed-chunk-18-1.png" width="672" /></p>
+<p><br></p>
+<p>Much better! But it looks messy because there are large large negative values reported for certain days. Why could that be? In a real data analysis, we would want to account for that, but for display purposes, let’s just remove those rows from our dataset for now.</p>
+<pre class="r"><code>coronavirus %&gt;%  
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;% 
+  group_by(country, date) %&gt;% 
+  summarize(total_cases = sum(cases)) %&gt;%  # Need this summarize because some countries have data broken down by Province.State
+  ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
+  geom_line()</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-19-1.png" width="672" /></p>
 <p><br></p>
 <p>We can also make a separate panel for each country</p>
 <pre class="r"><code>coronavirus %&gt;%  
-  filter(type == &quot;confirmed&quot;, country %in% top10_countries) %&gt;% 
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;% 
   group_by(country, date) %&gt;% 
   summarize(total_cases = sum(cases)) %&gt;% 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line() +
   facet_wrap(~country)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-20-1.png" width="672" /></p>
 <p><br></p>
 <p>Now let’s plot the cumulative sum of cases for each of those countries instead</p>
 <pre class="r"><code>coronavirus %&gt;%  
-  filter(type == &quot;confirmed&quot;, country %in% top10_countries) %&gt;%
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
   group_by(country) %&gt;% 
   arrange(date) %&gt;% 
   mutate(cum_count = cumsum(cases)) %&gt;% 
   ggplot(mapping = aes(x = date, y = cum_count, color = country)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-21-1.png" width="672" /></p>
 <p><br> <br></p>
 </div>
 </div>
 <div id="bar-charts" class="section level2">
 <h2>Bar charts</h2>
 <p>Another common plot type are bar charts. There are two types of bar charts in <code>ggplot</code>: <code>geom_bar()</code> and <code>geom_col()</code>. <code>geom_bar()</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col()</code> instead.</p>
-<p>Since our dataset reports counts of cases, let’s first start with <code>geom_col()</code> (we have already used it once today).</p>
+<p>Since our dataset reports counts of cases, let’s first start with <code>geom_col()</code> Let’s compare the total number of cases in each of the top 5 countries with the highest total counts</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  group_by(date) %&gt;%
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(country) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
-  geom_col(aes(x = date, y = cases), color = &quot;black&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-19-1.png" width="672" /></p>
-<p>If we want a stacked barplot separating out the different types of cases, we can use the fill aesthetic</p>
+  geom_col(aes(x = country, y = cases), color = &quot;black&quot;)</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-22-1.png" width="672" /></p>
+<p><br></p>
+<p>Next, let’s make a stacked barplot that also shows the total number of deaths in each country. First we’ll need to compute the total counts for each type of case, then we can use the <code>fill</code> aesthetic to create the stacked bars</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  group_by(date, type) %&gt;%
+  filter(type == &quot;confirmed&quot; | type == &quot;death&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(country, type) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), size=0.1)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-20-1.png" width="672" /></p>
-<p>If it looks like your chart is just made up of black bars, try making it bigger, or reduce the <code>size</code> argument (which controls the line thickness).</p>
+  geom_col(aes(x = country, y = cases, fill = type))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-23-1.png" width="672" /></p>
 <p><br></p>
 <p>We may want to flip this around</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  group_by(date, type) %&gt;%
+  filter(type == &quot;confirmed&quot; | type == &quot;death&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(country, type) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), size=0.1) +
+  geom_col(aes(x = country, y = cases, fill = type)) +
   coord_flip()</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-24-1.png" width="672" /></p>
 <p>This is useful because it puts the proportions in relation to the total daily counts. But it can be hard to compare proportions. We can make all bars the same height with ‘position adjustment’</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  group_by(date, type) %&gt;%
+  filter(type == &quot;confirmed&quot; | type == &quot;death&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(country, type) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
-  geom_col(aes(x=date, y = cases, fill = type), position = &quot;fill&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-22-1.png" width="672" /></p>
-<p><br></p>
-<p>Let’s check if we have negative cases.</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(cases &lt; 0)</code></pre>
-<pre><code>## # A tibble: 960 × 15
-##    date       province country   lat    long type  cases   uid iso2  iso3  code3
-##    &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
-##  1 2020-03-25 Alberta  Canada   53.9 -117.   conf…    -1 12401 CA    CAN     124
-##  2 2020-04-13 Austral… Austra… -35.5  149.   conf…    -1  3601 AU    AUS      36
-##  3 2022-01-07 Austral… Austra… -35.5  149.   conf…  -124  3601 AU    AUS      36
-##  4 2022-01-20 Austral… Austra… -35.5  149.   conf…   -38  3601 AU    AUS      36
-##  5 2021-06-28 Beijing  China    40.2  116.   conf…    -1 15602 CN    CHN     156
-##  6 2020-09-06 Channel… United…  49.4   -2.36 conf…    -5  8261 GB    GBR     826
-##  7 2021-04-28 Channel… United…  49.4   -2.36 conf…   -56  8261 GB    GBR     826
-##  8 2020-06-02 Diamond… Canada    0      0    conf…    -1 12413 CA    CAN     124
-##  9 2021-10-18 Falklan… United… -51.8  -59.5  conf…    -1   238 FK    FLK     238
-## 10 2021-10-25 Falklan… United… -51.8  -59.5  conf…    -1   238 FK    FLK     238
-## # … with 950 more rows, and 4 more variables: combined_key &lt;chr&gt;,
-## #   population &lt;dbl&gt;, continent_name &lt;chr&gt;, continent_code &lt;chr&gt;</code></pre>
-<pre class="r"><code># Let&#39;s remove those
-coronavirus %&gt;% 
-  filter(cases &gt; 0) %&gt;% 
-  group_by(date, type) %&gt;%
-  summarize(cases = sum(cases)) %&gt;%
-  ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = &quot;fill&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-23-1.png" width="672" /></p>
+  geom_col(aes(x = country, y = cases, fill = type), position = &quot;fill&quot;) +
+  coord_flip()</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-25-1.png" width="672" /></p>
+<p>While looking at the proportions of case types is helpful for comparing patterns, it doesn’t allow for comparison of the magnitude of case counts. We can do this better by scaling the bars by the raw case counts (not mapping a variable to the <code>fill</code> aesthetic).</p>
 <p><br></p>
 <p>We can also get the bars for the different types of cases each day stacked next to each other with another position adjustment option</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  filter(cases &gt; 0) %&gt;% 
-  group_by(date, type) %&gt;%
+  filter(type == &quot;confirmed&quot; | type == &quot;death&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(country, type) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = &quot;dodge&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-24-1.png" width="1440" /></p>
-<p><br></p>
-<p>Now, let’s break it down by country. Let’s again subset to only the top 10 countries with the highest counts</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(cases &gt; 0, country %in% top10_countries) %&gt;%
-  group_by(country, type, date) %&gt;%
-  summarize(cases = sum(cases)) %&gt;%
-  ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = &quot;fill&quot;, width = 1) +
-  facet_wrap(~country)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;, &#39;type&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-25-1.png" width="960" /></p>
-<p><br></p>
-<p>While looking at the proportions of case types in different areas is helpful for comparing patterns, they don’t allow for comparison of the magnitude of case counts. Let’s again scale the bars by the raw case counts.</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(cases &gt; 0, country %in% top10_countries) %&gt;%
-  group_by(country, type, date) %&gt;%
-  summarize(cases=sum(cases)) %&gt;%
-  ggplot() +
-  geom_col(aes(x=date, y = cases, fill = type), width = 1) +
-  facet_wrap(~country)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;, &#39;type&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-26-1.png" width="672" /></p>
+  geom_col(aes(x = country, y = cases, fill = type), position = &quot;dodge&quot;)</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-26-1.png" width="1440" /></p>
 <p><br> <br></p>
-<p>Now, let’s explore a different question. For each day, let’s plot how many different countries have at least one new confirmed case. For this we will need to count rows within grouped variables, so we’ll use the geom_bar()</p>
-<pre class="r"><code>#How many countries have at least one confirmed case each day
-coronavirus %&gt;%
-  filter(type == &quot;confirmed&quot;) %&gt;% 
-  group_by(country, date) %&gt;% 
-  summarize(total_cases = sum(cases)) %&gt;% 
-  filter(total_cases &gt; 0) %&gt;% 
-  ggplot() +
-  geom_bar(mapping = aes(x = date), color=&quot;black&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
+<p>Now, let’s explore a different question. Let’s compare for how many days each of the top five countries have had &gt; 100,000 new confirmed cases. For this we will need to count rows within grouped variables, so we’ll use the <code>geom_bar()</code></p>
+<pre class="r"><code>coronavirus %&gt;% 
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(date, country) %&gt;% 
+  summarize(cases = sum(cases)) %&gt;% 
+  filter(cases &gt;100000) %&gt;% 
+  ggplot +
+  geom_bar(aes(country))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-27-1.png" width="672" /></p>
-<pre class="r"><code>## Alternatively
-coronavirus %&gt;%
-  filter(type == &quot;confirmed&quot;) %&gt;% 
-  group_by(country, date) %&gt;% 
-  summarize(total_cases = sum(cases)) %&gt;% 
-  filter(total_cases &gt; 0) %&gt;% 
-  group_by(date) %&gt;%
-  summarise(count=n()) %&gt;%
-  ggplot() +
-  geom_line(mapping = aes(x = date, y=count), color=&quot;black&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-27-2.png" width="672" /></p>
 <p><br></p>
+<p>Alternatively, we could also pre-compute these counts and plot them with <code>geom_col()</code> like above, but sometimes it’s convenient to have ggplot compute the counts of observations directly with <code>geom_bar()</code></p>
+<pre class="r"><code>coronavirus %&gt;% 
+  filter(type == &quot;confirmed&quot;, country %in% top5_countries, cases &gt;= 0) %&gt;%
+  group_by(date, country) %&gt;% 
+  summarize(cases = sum(cases)) %&gt;% 
+  filter(cases &gt;100000) %&gt;% 
+  # note here that we need to change the grouping to now just be by country
+  group_by(country) %&gt;%   
+  summarize(count = n()) %&gt;% 
+  ggplot +
+  geom_col(aes(country, y = count))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-28-1.png" width="672" /></p>
+<p><br> <br></p>
 </div>
 <div id="plotting-with-labels" class="section level2">
 <h2>Plotting with labels</h2>
-<p>Now let’s look at the relationship between confirmed cases and deaths in each country. For this we will need our re-formatted wide data from last class.</p>
-<pre class="r"><code>coronavirus_ttd &lt;- coronavirus %&gt;% 
-  group_by(country, type) %&gt;%
-  summarize(total_cases = sum(cases)) %&gt;%
-  pivot_wider(names_from = type,
-              values_from = total_cases) %&gt;%
-  arrange(-confirmed)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<pre class="r"><code>coronavirus_ttd %&gt;%
+<p>To explore different types of x-y scatterplots, let’s return to the vaccination data we also looked at during the last lecture. Let’s first load it back in:</p>
+<pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv&quot;)</code></pre>
+<p><br></p>
+<p>Remember, this dataset shows cumulate counts, so let’s grab the counts from the most recent date included in the dataset 2022-02-20. We’ll also remove rows with missing data for variables we need (this is typically not necessary as those lines will automatically be expluded from plots, but we do it here because some of those rows have extreme values for other variables)</p>
+<pre class="r"><code># create a &quot;total to date&quot; subset of the data
+vacc_ttd &lt;- vacc %&gt;% 
+  filter(date == max(vacc$date), !is.na(people_fully_vaccinated), !is.na(population))
+
+# Let&#39;s look at our new tibble so make sure it makes sense
+vacc_ttd</code></pre>
+<pre><code>## # A tibble: 180 × 18
+##    country_region      date       doses_admin people_partially… people_fully_va…
+##    &lt;chr&gt;               &lt;date&gt;           &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Afghanistan         2022-02-20     5321308           4723416          4043580
+##  2 Albania             2022-02-20     2673183           1263745          1184292
+##  3 Algeria             2022-02-20    13461201           7403900          6003539
+##  4 Andorra             2022-02-20      140193             57709            53104
+##  5 Angola              2022-02-20    15505389          10241793          5088239
+##  6 Antigua and Barbuda 2022-02-20      124126             63244            60492
+##  7 Argentina           2022-02-20    92275649          40197226         35774080
+##  8 Armenia             2022-02-20     1894651           1067296           876951
+##  9 Australia           2022-02-20    53297217          21980295         20423361
+## 10 Austria             2022-02-20    17969646           6781590          6525616
+## # … with 170 more rows, and 13 more variables: report_date_string &lt;date&gt;,
+## #   uid &lt;dbl&gt;, province_state &lt;chr&gt;, iso2 &lt;chr&gt;, iso3 &lt;chr&gt;, code3 &lt;dbl&gt;,
+## #   fips &lt;lgl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;, combined_key &lt;chr&gt;, population &lt;dbl&gt;,
+## #   continent_name &lt;chr&gt;, continent_code &lt;chr&gt;</code></pre>
+<p><br></p>
+<p>We can start by just making a simple plot of the number of fully vaccinated people vs. the total population size in different countries</p>
+<pre class="r"><code>vacc_ttd %&gt;% 
   ggplot() +
-  geom_point(mapping = aes(x = confirmed, y = death))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-28-1.png" width="672" /></p>
-<p>That’s nice, but it would be useful to know which country is represented by each dot. <code>geom_label()</code> is our tool for that.</p>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  ggplot() +
-  geom_label(mapping = aes(x = confirmed, y = death, label = country))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-29-1.png" width="672" /> <br></p>
-<p>Let’s do a few things to make this easier to read</p>
-<p>We can remove countries with a small number of confirmed cases, and log transform the case counts</p>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  filter(confirmed &gt; 2000000) %&gt;%
-  ggplot() +
-  geom_label(mapping = aes(x = log(confirmed), y = log(death), label = country))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-30-1.png" width="672" /></p>
-<p>Or, we can zoom in on the region with low case counts</p>
-<pre class="r"><code>coronavirus_ttd %&gt;%
-  filter(confirmed &gt; 0, confirmed &lt; 20000) %&gt;%
-  ggplot() +
-  geom_label(mapping = aes(x = confirmed, y = death, label = country))</code></pre>
+  geom_point(mapping = aes(population, people_fully_vaccinated))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-31-1.png" width="672" /></p>
+<p><br></p>
+<p>That’s nice, but it would be useful to know which country is represented by each dot. geom_label() is our tool for that.</p>
+<pre class="r"><code>vacc_ttd %&gt;% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-32-1.png" width="672" /></p>
+<p><br></p>
+<p>Let’s do a few things to make this easier to read</p>
+<p>We can remove countries with a small population sizes, and log transform the population sizes</p>
+<pre class="r"><code>vacc_ttd %&gt;% 
+  filter(population &gt; 50000000) %&gt;% 
+  ggplot() +
+  geom_label(mapping = aes(log(population), people_fully_vaccinated, label = country_region))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-33-1.png" width="672" /></p>
+<p><br></p>
+<p>Or, we can zoom in on the part of the plot where most all countries than China and India are clustered together. We can do this in a few different ways. One is to just filter out rows with large population size (e.g. countries population sizes over 500 million).</p>
+<pre class="r"><code>vacc_ttd %&gt;% 
+  filter(population &lt; 5*10^8) %&gt;% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-34-1.png" width="672" /></p>
+<p><br></p>
+<p>Or we can just zoom in by adjusting what parts of the axes to display</p>
+<pre class="r"><code>vacc_ttd %&gt;% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region)) +
+  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 2.5*10^8))</code></pre>
+<p><img src="lesson9-files/unnamed-chunk-35-1.png" width="672" /></p>
+<p><br></p>
+<p>There are lots of other ways we can adjust label plotting. See e.g. <a href="https://www.r-graph-gallery.com/275-add-text-labels-with-ggplot2.html">here</a> or a more comprehensive overview in the book <a href="https://ggplot2-book.org/annotations.html">chapter 8 of the book “ggplot2: Elegant Graphics for Data Analysis”</a></p>
 <p><br> <br></p>
 <div id="bonus-spatial-plotting" class="section level3">
 <h3>Bonus: Spatial plotting</h3>
@@ -943,20 +969,13 @@ coronavirus %&gt;%
 <p>With some additional packages, we can also plot geographical patterns on a map. We can, for example, show which countries have new counts of &gt;5000 new confirmed cases on the most recent day from this dataset and scale the points with case counts.</p>
 <pre class="r"><code>library(&quot;rnaturalearth&quot;) # install.packages(&quot;rnaturalearth&quot;)
 library(&quot;rnaturalearthdata&quot;) # install.packages(&quot;rnaturalearthdata&quot;)
-library(&quot;rgeos&quot;) #install.packages(&quot;rgeos&quot;)</code></pre>
-<pre><code>## Loading required package: sp</code></pre>
-<pre><code>## rgeos version: 0.5-9, (SVN revision 684)
-##  GEOS runtime version: 3.8.1-CAPI-1.13.3 
-##  Please note that rgeos will be retired by the end of 2023,
-## plan transition to sf functions using GEOS at your earliest convenience.
-##  Linking to sp version: 1.4-6 
-##  Polygon checking: TRUE</code></pre>
-<pre class="r"><code>world &lt;- ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
+library(&quot;rgeos&quot;) #install.packages(&quot;rgeos&quot;)
+world &lt;- ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
 filter(coronavirus, date == max(coronavirus$date), type == &quot;confirmed&quot;, cases &gt; 5000) %&gt;%
   ggplot() +
   geom_sf(data = world) +
   geom_point(aes(x=long, y=lat, size=cases), color=&quot;red&quot;, fill=&quot;red&quot;, alpha=0.5, shape=21) </code></pre>
-<p><img src="lesson9-files/unnamed-chunk-32-1.png" width="1440" /></p>
+<p><img src="lesson9-files/unnamed-chunk-36-1.png" width="1440" /></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -985,8 +1004,7 @@ group_by(coronavirus, date, type) %&gt;%
   mutate(cases=cumsum(cases)) %&gt;%
   ggplot() +
   geom_line(aes(x=date, y=cases, color=type))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-37-1.png" width="672" /></p>
 <pre class="r"><code>## log scale
 group_by(coronavirus, date, type) %&gt;%
   summarise(cases = sum(cases)) %&gt;% 
@@ -994,14 +1012,13 @@ group_by(coronavirus, date, type) %&gt;%
   mutate(cases=cumsum(cases)) %&gt;%
   ggplot() +
   geom_line(aes(x=date, y=log(cases), color=type))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-33-2.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-37-2.png" width="672" /></p>
 <p><br></p>
 </div>
-<div id="trend-in-cumulative-case-count-in-the-10-most-infected-countries" class="section level4">
-<h4>Trend in cumulative case count in the 10 most infected countries</h4>
+<div id="trend-in-cumulative-case-count-in-the-5-most-infected-countries" class="section level4">
+<h4>Trend in cumulative case count in the 5 most infected countries</h4>
 <pre class="r"><code>## linear scale
-filter(coronavirus, country %in% top10_countries) %&gt;%
+filter(coronavirus, country %in% top5_countries) %&gt;%
   group_by(country, date, type) %&gt;%
   summarise(cases = sum(cases)) %&gt;% 
   group_by(country, type) %&gt;%
@@ -1010,8 +1027,7 @@ filter(coronavirus, country %in% top10_countries) %&gt;%
   geom_line(aes(x=date, y=cases/1000, color=type)) +
   ylab(&quot;cumulative count (in thousand)&quot;) +
   facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;, &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-34-1.png" width="1440" /></p>
+<p><img src="lesson9-files/unnamed-chunk-38-1.png" width="1440" /></p>
 <p><br></p>
 </div>
 <div id="trend-in-cumulative-death-rate" class="section level4">
@@ -1024,13 +1040,12 @@ filter(coronavirus, country %in% top10_countries) %&gt;%
   mutate(death_rate = death/confirmed) %&gt;%
   ggplot(aes(x=date, y=death_rate)) +
   geom_line()</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-39-1.png" width="672" /></p>
 <p><br></p>
 </div>
-<div id="trend-in-cumulative-death-rate-in-10-most-infected-countries" class="section level4">
-<h4>Trend in cumulative death rate in 10 most infected countries</h4>
-<pre class="r"><code>filter(coronavirus, country %in% top10_countries) %&gt;%
+<div id="trend-in-cumulative-death-rate-in-5-most-infected-countries" class="section level4">
+<h4>Trend in cumulative death rate in 5 most infected countries</h4>
+<pre class="r"><code>filter(coronavirus, country %in% top5_countries) %&gt;%
   group_by(country, date, type) %&gt;%
   summarise(cases = sum(cases)) %&gt;% 
   group_by(country, type) %&gt;%
@@ -1040,9 +1055,8 @@ filter(coronavirus, country %in% top10_countries) %&gt;%
   ggplot(aes(x=date, y=death_rate)) +
   geom_line() +
   facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;, &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## Warning: Removed 35 row(s) containing missing values (geom_path).</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-40-1.png" width="672" /></p>
 <p><br></p>
 </div>
 <div id="countries-that-had-their-first-reported-coronavirus-case-in-january" class="section level4">
@@ -1059,8 +1073,7 @@ filter(coronavirus, country %in% top10_countries) %&gt;%
   ggplot(aes(x=date, y=rank)) +
   geom_label(aes(label=country)) +
   theme_minimal()</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;country&#39;. You can override using the `.groups` argument.</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-37-1.png" width="960" /></p>
+<p><img src="lesson9-files/unnamed-chunk-41-1.png" width="960" /></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
 
 </div>

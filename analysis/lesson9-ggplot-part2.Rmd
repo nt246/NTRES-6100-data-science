@@ -8,7 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE, fig.path="lesson9-files/")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, fig.path="lesson9-files/")
 ```
 
 <br>
@@ -279,7 +279,46 @@ gg_base +
 ```
 <br>
 
-You can play around with other themes - see an overview and instructions for how to customize themes [here](https://ggplot2-book.org/polishing.html)
+You can play around with other themes - see an overview and instructions for how to customize themes [here](https://ggplot2-book.org/polishing.html). 
+
+<br>
+
+We could for example color the background of the legend
+
+```{r, eval = TRUE}
+gg_base + 
+  geom_point(
+    aes(size = total_cases,
+        color = total_cases),
+    alpha = 0.5) +
+  theme_minimal() +
+  theme(legend.background = element_rect(
+    fill = "lemonchiffon", 
+    colour = "grey50", 
+    size = 1
+  ))
+```
+
+<br>
+
+Or we can remove the legend
+
+```{r, eval = TRUE}
+gg_base + 
+  geom_point(
+    aes(size = total_cases,
+        color = total_cases),
+    alpha = 0.5) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+<br>
+
+
+
+In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples [here](https://towardsdatascience.com/themes-to-spice-up-visualizations-with-ggplot2-3e275038dafa)
 
 <br>
 <br>
@@ -355,15 +394,17 @@ coronavirus %>%
   geom_line()
 ```
 
+<br>
+
 It looks like this is doing what we want, but it does not display well. There are too many countries! We could play around with the layout parameters to be able to see this plot. But let's instead subset to only show the 10 countries with the highest total counts of confirmed cases.
 
 ```{R, eval = TRUE}
-top10_countries <- coronavirus %>% 
+top5_countries <- coronavirus %>% 
   filter(type == "confirmed") %>%
   group_by(country) %>%
   summarize(total_cases = sum(cases)) %>%
   arrange(-total_cases) %>% 
-  head(10) %>% 
+  head(5) %>% 
   .$country
 ```
 
@@ -373,13 +414,26 @@ Now let's try to plot the daily counts of new cases just for those countries
 
 ```{R, eval = TRUE}
 coronavirus %>%  
-  filter(type == "confirmed", country %in% top10_countries) %>% 
+  filter(type == "confirmed", country %in% top5_countries) %>% 
   group_by(country, date) %>% 
   summarize(total_cases = sum(cases)) %>%  # Need this summarize because some countries have data broken down by Province.State
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()
 ```
-Much better!
+
+<br>
+
+Much better! But it looks messy because there are large large negative values reported for certain days. Why could that be? In a real data analysis, we would want to account for that, but for display purposes, let's just remove those rows from our dataset for now.
+
+```{R, eval = TRUE}
+coronavirus %>%  
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>% 
+  group_by(country, date) %>% 
+  summarize(total_cases = sum(cases)) %>%  # Need this summarize because some countries have data broken down by Province.State
+  ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
+  geom_line()
+```
+
 
 <br>
 
@@ -387,7 +441,7 @@ We can also make a separate panel for each country
 
 ```{R, eval = TRUE}
 coronavirus %>%  
-  filter(type == "confirmed", country %in% top10_countries) %>% 
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>% 
   group_by(country, date) %>% 
   summarize(total_cases = sum(cases)) %>% 
   ggplot(mapping = aes(x = date, y = total_cases)) +
@@ -401,7 +455,7 @@ Now let's plot the cumulative sum of cases for each of those countries instead
 
 ```{R, eval = TRUE}
 coronavirus %>%  
-  filter(type == "confirmed", country %in% top10_countries) %>%
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>%
   group_by(country) %>% 
   arrange(date) %>% 
   mutate(cum_count = cumsum(cases)) %>% 
@@ -416,27 +470,31 @@ coronavirus %>%
 
 Another common plot type are bar charts. There are two types of bar charts in `ggplot`: `geom_bar()` and `geom_col()`. `geom_bar()` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col()` instead.
 
-Since our dataset reports counts of cases, let's first start with `geom_col()` (we have already used it once today).
+Since our dataset reports counts of cases, let's first start with `geom_col()`
+Let's compare the total number of cases in each of the top 5 countries with the highest total counts
 
 ```{R, eval = TRUE}
 coronavirus %>% 
-  group_by(date) %>%
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>%
+  group_by(country) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
-  geom_col(aes(x = date, y = cases), color = "black")
+  geom_col(aes(x = country, y = cases), color = "black")
 ```
 
-If we want a stacked barplot separating out the different types of cases, we can use the fill aesthetic
+<br>
+
+Next, let's make a stacked barplot that also shows the total number of deaths in each country. First we'll need to compute the total counts for each type of case, then we can use the `fill` aesthetic to create the stacked bars
 
 ```{R, eval = TRUE}
 coronavirus %>% 
-  group_by(date, type) %>%
+  filter(type == "confirmed" | type == "death", country %in% top5_countries, cases >= 0) %>%
+  group_by(country, type) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), size=0.1)
+  geom_col(aes(x = country, y = cases, fill = type))
 ```
 
-If it looks like your chart is just made up of black bars, try making it bigger, or reduce the `size` argument (which controls the line thickness).
 
 <br>
 
@@ -444,10 +502,11 @@ We may want to flip this around
 
 ```{R, eval = TRUE}
 coronavirus %>% 
-  group_by(date, type) %>%
+  filter(type == "confirmed" | type == "death", country %in% top5_countries, cases >= 0) %>%
+  group_by(country, type) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), size=0.1) +
+  geom_col(aes(x = country, y = cases, fill = type)) +
   coord_flip()
 ```
 
@@ -455,28 +514,16 @@ This is useful because it puts the proportions in relation to the total daily co
 
 ```{R, eval = TRUE}
 coronavirus %>% 
-  group_by(date, type) %>%
+  filter(type == "confirmed" | type == "death", country %in% top5_countries, cases >= 0) %>%
+  group_by(country, type) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
-  geom_col(aes(x=date, y = cases, fill = type), position = "fill")
+  geom_col(aes(x = country, y = cases, fill = type), position = "fill") +
+  coord_flip()
+
 ```
 
-<br>
- 
-Let's check if we have negative cases.
-
-```{R, eval = TRUE}
-coronavirus %>% 
-  filter(cases < 0)
-
-# Let's remove those
-coronavirus %>% 
-  filter(cases > 0) %>% 
-  group_by(date, type) %>%
-  summarize(cases = sum(cases)) %>%
-  ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = "fill")
-```
+While looking at the proportions of case types is helpful for comparing patterns, it doesn't allow for comparison of the magnitude of case counts. We can do this better by scaling the bars by the raw case counts (not mapping a variable to the `fill` aesthetic).
 
 <br>
 
@@ -484,115 +531,132 @@ We can also get the bars for the different types of cases each day stacked next 
 
 ```{R, eval = TRUE, fig.width=15, fig.height=8}
 coronavirus %>% 
-  filter(cases > 0) %>% 
-  group_by(date, type) %>%
+  filter(type == "confirmed" | type == "death", country %in% top5_countries, cases >= 0) %>%
+  group_by(country, type) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = "dodge")
-```
-
-<br>
- 
-Now, let's break it down by country. Let's again subset to only the top 10 countries with the highest counts
-
-```{R, eval = TRUE, fig.width=10}
-coronavirus %>% 
-  filter(cases > 0, country %in% top10_countries) %>%
-  group_by(country, type, date) %>%
-  summarize(cases = sum(cases)) %>%
-  ggplot() +
-  geom_col(aes(x = date, y = cases, fill = type), position = "fill", width = 1) +
-  facet_wrap(~country)
-```
-
-<br>
-
-While looking at the proportions of case types in different areas is helpful for comparing patterns, they don't allow for comparison of the magnitude of case counts. Let's again scale the bars by the raw case counts.
-
-```{r}
-coronavirus %>% 
-  filter(cases > 0, country %in% top10_countries) %>%
-  group_by(country, type, date) %>%
-  summarize(cases=sum(cases)) %>%
-  ggplot() +
-  geom_col(aes(x=date, y = cases, fill = type), width = 1) +
-  facet_wrap(~country)
+  geom_col(aes(x = country, y = cases, fill = type), position = "dodge")
 ```
 
 <br>
 <br>
 
-Now, let's explore a different question. For each day, let's plot how many different countries have at least one new confirmed case. For this we will need to count rows within grouped variables, so we'll use the geom_bar()  
+Now, let's explore a different question. Let's compare for how many days each of the top five countries have had > 100,000 new confirmed cases. For this we will need to count rows within grouped variables, so we'll use the `geom_bar()`
 
 
 ```{R, eval = TRUE}
-#How many countries have at least one confirmed case each day
-coronavirus %>%
-  filter(type == "confirmed") %>% 
-  group_by(country, date) %>% 
-  summarize(total_cases = sum(cases)) %>% 
-  filter(total_cases > 0) %>% 
-  ggplot() +
-  geom_bar(mapping = aes(x = date), color="black")
-## Alternatively
-coronavirus %>%
-  filter(type == "confirmed") %>% 
-  group_by(country, date) %>% 
-  summarize(total_cases = sum(cases)) %>% 
-  filter(total_cases > 0) %>% 
-  group_by(date) %>%
-  summarise(count=n()) %>%
-  ggplot() +
-  geom_line(mapping = aes(x = date, y=count), color="black")
+coronavirus %>% 
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>%
+  group_by(date, country) %>% 
+  summarize(cases = sum(cases)) %>% 
+  filter(cases >100000) %>% 
+  ggplot +
+  geom_bar(aes(country))
 ```
 
+<br>
+
+Alternatively, we could also pre-compute these counts and plot them with `geom_col()` like above, but sometimes it's convenient to have ggplot compute the counts of observations directly with `geom_bar()`
+
+```{R, eval = TRUE}
+coronavirus %>% 
+  filter(type == "confirmed", country %in% top5_countries, cases >= 0) %>%
+  group_by(date, country) %>% 
+  summarize(cases = sum(cases)) %>% 
+  filter(cases >100000) %>% 
+  # note here that we need to change the grouping to now just be by country
+  group_by(country) %>%   
+  summarize(count = n()) %>% 
+  ggplot +
+  geom_col(aes(country, y = count))
+```
+
+
+
+<br>
 <br>
 
 ## Plotting with labels
 
-Now let's look at the relationship between confirmed cases and deaths in each country. For this we will need our re-formatted wide data from last class.
+To explore different types of x-y scatterplots, let's return to the vaccination data we also looked at during the last lecture. Let's first load it back in:
 
-```{R, eval = TRUE}
-coronavirus_ttd <- coronavirus %>% 
-  group_by(country, type) %>%
-  summarize(total_cases = sum(cases)) %>%
-  pivot_wider(names_from = type,
-              values_from = total_cases) %>%
-  arrange(-confirmed)
-
-coronavirus_ttd %>%
-  ggplot() +
-  geom_point(mapping = aes(x = confirmed, y = death))
+```{r, message = FALSE}
+vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv")
 ```
 
-That's nice, but it would be useful to know which country is represented by each dot. `geom_label()` is our tool for that.
-
-```{R, eval = TRUE}
-coronavirus_ttd %>%
-  ggplot() +
-  geom_label(mapping = aes(x = confirmed, y = death, label = country))
-```
 <br>
 
-Let's do a few things to make this easier to read
-
-We can remove countries with a small number of confirmed cases, and log transform the case counts
-
-```{R, eval = TRUE}
-coronavirus_ttd %>%
-  filter(confirmed > 2000000) %>%
-  ggplot() +
-  geom_label(mapping = aes(x = log(confirmed), y = log(death), label = country))
-```
-
-Or, we can zoom in on the region with low case counts
+Remember, this dataset shows cumulate counts, so let's grab the counts from the most recent date included in the dataset `r max(vacc$date)`. We'll also remove rows with missing data for variables we need (this is typically not necessary as those lines will automatically be expluded from plots, but we do it here because some of those rows have extreme values for other variables)
 
 ```{r}
-coronavirus_ttd %>%
-  filter(confirmed > 0, confirmed < 20000) %>%
-  ggplot() +
-  geom_label(mapping = aes(x = confirmed, y = death, label = country))
+# create a "total to date" subset of the data
+vacc_ttd <- vacc %>% 
+  filter(date == max(vacc$date), !is.na(people_fully_vaccinated), !is.na(population))
+
+# Let's look at our new tibble so make sure it makes sense
+vacc_ttd
 ```
+
+<br>
+
+We can start by just making a simple plot of the number of fully vaccinated people vs. the total population size in different countries
+
+```{r}
+vacc_ttd %>% 
+  ggplot() +
+  geom_point(mapping = aes(population, people_fully_vaccinated))
+```
+
+<br>
+
+That’s nice, but it would be useful to know which country is represented by each dot. geom_label() is our tool for that.
+
+```{r}
+vacc_ttd %>% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))
+```
+
+<br>
+
+Let’s do a few things to make this easier to read
+
+We can remove countries with a small population sizes, and log transform the population sizes
+
+```{r}
+vacc_ttd %>% 
+  filter(population > 50000000) %>% 
+  ggplot() +
+  geom_label(mapping = aes(log(population), people_fully_vaccinated, label = country_region))
+```
+
+<br>
+
+Or, we can zoom in on the part of the plot where most all countries than China and India are clustered together. We can do this in a few different ways. One is to just filter out rows with large population size (e.g. countries population sizes over 500 million).
+
+```{r}
+vacc_ttd %>% 
+  filter(population < 5*10^8) %>% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))
+```
+
+<br>
+
+Or we can just zoom in by adjusting what parts of the axes to display
+
+```{r}
+vacc_ttd %>% 
+  ggplot() +
+  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region)) +
+  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 2.5*10^8))
+```
+
+<br>
+
+There are lots of other ways we can adjust label plotting. See e.g. [here](https://www.r-graph-gallery.com/275-add-text-labels-with-ggplot2.html) or a more comprehensive overview in the book [chapter 8 of the book "ggplot2: Elegant Graphics for Data Analysis"](https://ggplot2-book.org/annotations.html)
+
+
 
 <br>
 <br>
@@ -660,11 +724,11 @@ group_by(coronavirus, date, type) %>%
 
 <br>
 
-#### Trend in cumulative case count in the 10 most infected countries
+#### Trend in cumulative case count in the 5 most infected countries
 
 ```{R, eval = TRUE, fig.width=15}
 ## linear scale
-filter(coronavirus, country %in% top10_countries) %>%
+filter(coronavirus, country %in% top5_countries) %>%
   group_by(country, date, type) %>%
   summarise(cases = sum(cases)) %>% 
   group_by(country, type) %>%
@@ -692,10 +756,10 @@ group_by(coronavirus, date, type) %>%
 
 <br>
 
-#### Trend in cumulative death rate in 10 most infected countries
+#### Trend in cumulative death rate in 5 most infected countries
 
 ```{R, eval = TRUE}
-filter(coronavirus, country %in% top10_countries) %>%
+filter(coronavirus, country %in% top5_countries) %>%
   group_by(country, date, type) %>%
   summarise(cases = sum(cases)) %>% 
   group_by(country, type) %>%
