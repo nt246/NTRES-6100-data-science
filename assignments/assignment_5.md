@@ -32,7 +32,7 @@ Assignment 5: Data transformation and visualization - Part 2
         informative and important, so please examine them carefully and
         only turn them off when you finish the exercise).
 
--   Please note that Exercise 2.8 and 2.9 are **optional**.
+-   Please note that Questions 2.8-2.11 are **optional**.
 
 <br>
 
@@ -57,7 +57,9 @@ Services of Harvard University.
 
 ``` r
 housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
-kable(head(housing)) 
+housing %>%
+  head() %>% 
+  kable() 
 ```
 
 | State | region |    Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
@@ -120,7 +122,9 @@ It describes the life expectancy (`lifeExp`), GDP per capita
 **reproduce the following plots exactly as shown**.
 
 ``` r
-kable(head(gapminder))
+gapminder %>% 
+  head() %>% 
+  kable()
 ```
 
 | country     | continent | year | lifeExp |      pop | gdpPercap |
@@ -191,7 +195,7 @@ Answer: <span style="color:blue"> Write your response here. </span>
 
 <br>
 
-#### THE LAST TWO EXERCISES ARE OPTIONAL
+#### THE LAST FOUR QUESTIONS ARE OPTIONAL
 
 <br>
 
@@ -208,3 +212,13 @@ Answer: <span style="color:blue"> Write your response here. </span>
 Answer: <span style="color:blue"> Write your response here. </span>
 
 <br>
+
+#### 2.10 Starting from the full `gapminder` dataset, explore the relationship between per capita GDP (`gdpPercap`) and life expectancy (`lifeExp`) in 1952 and in 2007 using a scatter plot as shown below. Color the the points that represent different countries based on the continent that they are in, and make the size of the points proportional to the population size (**OPTIONAL**)
+
+![](assignment_5_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+<br>
+
+#### 2.11 Polish the previous plot to make it more informative and nicer looking. Below is an example of what you can do, but you don’t have to completely replicate this (**OPTIONAL**)
+
+![](assignment_5_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
