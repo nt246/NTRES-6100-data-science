@@ -421,6 +421,7 @@ coronavirus %>%
   geom_line()
 ```
 
+
 <br>
 
 Much better! But it looks messy because there are large large negative values reported for certain days. Why could that be? In a real data analysis, we would want to account for that, but for display purposes, let's just remove those rows from our dataset for now.

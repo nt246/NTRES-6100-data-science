@@ -463,7 +463,7 @@ div.tocify {
 <p><strong>Required</strong>:</p>
 <ul>
 <li><p><a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 <em>Tidy Data</em>, in R for Data Science</a> by Grolemund &amp; Wickham</p></li>
-<li><p><a href="https://twitter.com/juliesquid/status/1315710359404113920?s=21">This cool Twitter thread</a> by Julia Lowndes. If you can’t access the thread or want more detail, the same material is expanded upon on Julie’s <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes website</a>. <a href="https://www.openscapes.org/">Openscapes</a> is an awesome organization that champions open practices in environmental science - check it out!</p></li>
+<li><p><a href="https://twitter.com/juliesquid/status/1315710359404113920?s=21">This cool Twitter thread</a> by Julia Lowndes and Allison Horst. If you can’t access the thread or want more detail, the same material is expanded upon on Julie’s <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes website</a>. <a href="https://www.openscapes.org/">Openscapes</a> is an awesome organization that champions open practices in environmental science - check it out!</p></li>
 </ul>
 <p><br></p>
 <p><strong>Additional resources</strong>:</p>
@@ -472,7 +472,7 @@ div.tocify {
 <ul>
 <li>the repo this links to has some useful exercises too, but uses the outdated <code>spread()</code> and <code>gather()</code> functions so don’t get confused by the code.</li>
 </ul></li>
-<li><code>tidyr</code> [vignette on tidy data](<a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" class="uri">https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html</a><br />
+<li><code>tidyr</code> <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">vignette on tidy data</a><br />
 </li>
 <li><a href="https://vita.had.co.nz/papers/tidy-data.pdf">Hadley’s paper on tidy data</a> provides a thorough investigation</li>
 </ul>
@@ -481,8 +481,11 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>No class next Tuesday</p></li>
-<li><p>We’re half way through the course! We will send out a link to a mid-term evaluation form (we’ll use our own form because the official CALS version won’t be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together</p></li>
+<li><p>Assignment 4 due tonight - submit by pushing to your class GitHub repo</p></li>
+<li><p>Today’s lab will be over Zoom (with the option to participate from the Academic Surge A 109 classroom where the Zoom call will be projected)</p></li>
+<li><p>Tomorrow’s lab will be in-person (Fernow Hall G01)</p></li>
+<li><p>No class next Tuesday (February break)</p></li>
+<li><p>We’re half way through the course! We will send out a link to a mid-term evaluation form (we’ll use our own form because the official CALS version won’t be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.</p></li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -511,16 +514,11 @@ div.tocify {
 <li><p>Open the R Project associated with your personal class GitHub repository.</p></li>
 <li><p>PULL to make sure your project is up to date</p></li>
 <li><p>Create a new R script file and save it as <code>my_tidying.Rmd</code></p></li>
-<li><p>Load the packages we’ll use here (you will have to install <code>janitor</code> if you don’t already have it):</p>
-<ul>
-<li><code>tidyverse</code></li>
-<li><code>janitor</code></li>
-</ul></li>
+<li><p>Load the <code>tidyverse</code> package</p></li>
 </ul>
 <p><br></p>
 <pre class="r"><code># Load packages
-library(tidyverse)
-library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
+library(tidyverse)</code></pre>
 <p><br> <br></p>
 </div>
 </div>
@@ -565,7 +563,7 @@ library(janitor)  ## install.packages(&quot;janitor&quot;)</code></pre>
 </div>
 <div id="pivoting-between-long-and-wide-data-formats" class="section level3">
 <h3>Pivoting between long and wide data formats</h3>
-<p>Now that the motivation for wanting to work with data in tidy format hopefully is clear, let’s explore some powerful functions from the package <code>tidyr</code> for reshaping data. (<code>tidyr</code> comes bundles with the <code>tidyverse</code>, so we don’t have to install it separately).</p>
+<p>Now that the motivation for wanting to work with data in tidy format hopefully is clear, let’s explore some powerful functions from the package <code>tidyr</code> for reshaping data. (<code>tidyr</code> comes bundled with the <code>tidyverse</code>, so we don’t have to install it separately).</p>
 <p>Often, datasets will not be in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.</p>
 <p>This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. The second step is to resolve one of <strong>two common problems</strong>:</p>
 <ul>
@@ -723,18 +721,10 @@ lotr_tidy %&gt;%
 <div id="application-to-our-coronavirus-dataset" class="section level2">
 <h2>Application to our coronavirus dataset</h2>
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves of it’s structure</p>
-<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
-<pre><code>## Rows: 604725 Columns: 15</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (8): province, country, type, iso2, iso3, combined_key, continent_name,...
-## dbl  (6): lat, long, cases, uid, code3, population
-## date (1): date</code></pre>
-<pre><code>## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>coronavirus</code></pre>
-<pre><code>## # A tibble: 604,725 × 15
+<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
+
+coronavirus</code></pre>
+<pre><code>## # A tibble: 638,631 × 15
 ##    date       province country   lat  long type    cases   uid iso2  iso3  code3
 ##    &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
 ##  1 2020-01-22 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
@@ -747,17 +737,20 @@ lotr_tidy %&gt;%
 ##  8 2020-01-29 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
 ##  9 2020-01-30 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
 ## 10 2020-01-31 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
-## # … with 604,715 more rows, and 4 more variables: combined_key &lt;chr&gt;,
+## # … with 638,621 more rows, and 4 more variables: combined_key &lt;chr&gt;,
 ## #   population &lt;dbl&gt;, continent_name &lt;chr&gt;, continent_code &lt;chr&gt;</code></pre>
+<p><br></p>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
 <p><br></p>
-<p>Last class, we visualized the global case counts date</p>
-<pre class="r"><code>coronavirus %&gt;% 
+<p>Similar to what we did in the last class, we could visualize the global sums for the different types of case counts by date (note that in August 2021, the dataset stopped tracking recoveries)</p>
+<pre class="r"><code>coronavirus %&gt;%
+  filter(cases &gt; 0) %&gt;% 
   group_by(date, type) %&gt;%
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <p><img src="lesson10-files/unnamed-chunk-8-1.png" width="672" /> <br></p>
 <p>Let’s see how we would do that if the data had been in a wider format.</p>
 <p><br></p>
@@ -767,17 +760,28 @@ lotr_tidy %&gt;%
 <p><br></p>
 <div id="answer-1" class="section level5">
 <h5>Answer</h5>
-<pre class="r"><code>corona_wide &lt;- coronavirus %&gt;% 
+<pre class="r"><code># Let&#39;s just select a few key columns so we better can follow what happens to the data structure
+corona_wide &lt;- coronavirus %&gt;% 
+  select(date, country, type, cases) %&gt;% 
   pivot_wider(names_from = type, values_from = cases)</code></pre>
+<pre><code>## Warning: Values from `cases` are not uniquely identified; output will contain list-cols.
+## * Use `values_fn = list` to suppress this warning.
+## * Use `values_fn = {summary_fun}` to summarise duplicates.
+## * Use the following dplyr code to identify duplicates.
+##   {data} %&gt;%
+##     dplyr::group_by(date, country, type) %&gt;%
+##     dplyr::summarise(n = dplyr::n(), .groups = &quot;drop&quot;) %&gt;%
+##     dplyr::filter(n &gt; 1L)</code></pre>
 <p><br></p>
 <p>Now how do we reproduce the barchart of total cases per day broken down by type?</p>
 <p>And how would we plot the daily counts of different case types within a country?</p>
 <p>With the long format this is easy:</p>
 <pre class="r"><code>coronavirus %&gt;% 
-  filter(country == &quot;US&quot;) %&gt;% 
+  filter(cases &gt; 0, country == &quot;US&quot;) %&gt;% 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))</code></pre>
 <p><img src="lesson10-files/unnamed-chunk-10-1.png" width="672" /></p>
+<p><br></p>
 <p>How would we do this with the <code>coronavirus_wide</code> format? That would be much more difficult.</p>
 <p><br></p>
 <p>As mentioned above, however, there are plot types where the wide format provides the best input. In an earlier class, for example, I showed the example of plotting the total death count per country against the total count of confirmed cases. It would be cumbersome to pull these out of the long format because in <code>ggplot</code> we are mapping <em>variables</em> to <em>aesthetics</em> and now we want to map different levels of a variable to different aesthetics. So let’s make those different levels separate variables by widening the data.</p>

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 * [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
 
-* [This cool Twitter thread](https://twitter.com/juliesquid/status/1315710359404113920?s=21) by Julia Lowndes. If you can't access the thread or want more detail, the same material is expanded upon on Julie's [Openscapes website](https://www.openscapes.org/blog/2020/10/12/tidy-data/). [Openscapes](https://www.openscapes.org/) is an awesome organization that champions open practices in environmental science - check it out!
+* [This cool Twitter thread](https://twitter.com/juliesquid/status/1315710359404113920?s=21) by Julia Lowndes and Allison Horst. If you can't access the thread or want more detail, the same material is expanded upon on Julie's [Openscapes website](https://www.openscapes.org/blog/2020/10/12/tidy-data/). [Openscapes](https://www.openscapes.org/) is an awesome organization that champions open practices in environmental science - check it out!
 
 <br>
 
@@ -31,16 +31,22 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 * [Jenny Bryan's Intro to Tidy Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md)
   + the repo this links to has some useful exercises too, but uses the outdated `spread()` and `gather()` functions so don't get confused by the code.  
   
-* `tidyr` [vignette on tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html  
+* `tidyr` [vignette on tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)  
 * [Hadley's paper on tidy data](https://vita.had.co.nz/papers/tidy-data.pdf) provides a thorough investigation
 
 <br>
 
 ## Announcements
 
-* No class next Tuesday
+* Assignment 4 due tonight - submit by pushing to your class GitHub repo
 
-* We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together
+* Today's lab will be over Zoom (with the option to participate from the Academic Surge A 109 classroom where the Zoom call will be projected)
+
+* Tomorrow's lab will be in-person (Fernow Hall G01)
+
+* No class next Tuesday (February break)
+
+* We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
 
 <br>
 <br>
@@ -72,16 +78,13 @@ Todays lesson integrates material from multiple sources, including the excellent
 * PULL to make sure your project is up to date
 
 * Create a new R script file and save it as `my_tidying.Rmd`
-* Load the packages we'll use here (you will have to install `janitor` if you don't already have it):
-    - `tidyverse`
-    - `janitor`
+* Load the `tidyverse` package
 
 <br>
 
 ```{r, message = FALSE, warning = FALSE}
 # Load packages
 library(tidyverse)
-library(janitor)  ## install.packages("janitor")
 
 ```
 
@@ -153,7 +156,7 @@ Which representation is easiest to work with? Which is hardest? Why?
 
 
 ### Pivoting between long and wide data formats
-Now that the motivation for wanting to work with data in tidy format hopefully is clear, let's explore some powerful functions from the package `tidyr` for reshaping data. (`tidyr` comes bundles with the `tidyverse`, so we don't have to install it separately). 
+Now that the motivation for wanting to work with data in tidy format hopefully is clear, let's explore some powerful functions from the package `tidyr` for reshaping data. (`tidyr` comes bundled with the `tidyverse`, so we don't have to install it separately). 
 
 Often, datasets will not be in tidy format because they are organized to facilitate some use other than analysis. For example, data is often organized to make entry or reading by humans as easy as possible.
 
@@ -292,7 +295,7 @@ Write R code to compute the total number of words spoken in each film. Do this b
 
 Let's now return to our Coronavirus dataset. Let's remind ourselves of it's structure
 
-```{r}
+```{r, message = FALSE}
 
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
@@ -300,13 +303,16 @@ coronavirus
 
 ```
 
+<br>
+
 **QUESTION**: Is this in tidy format?
 
 <br>
 
-Last class, we visualized the global case counts date
+Similar to what we did in the last class, we could visualize the global sums for the different types of case counts by date (note that in August 2021, the dataset stopped tracking recoveries)
 ```{r}
-coronavirus %>% 
+coronavirus %>%
+  filter(cases > 0) %>% 
   group_by(date, type) %>%
   summarize(cases = sum(cases)) %>%
   ggplot() +
@@ -327,7 +333,9 @@ Convert the coronavirus dataset to a wider format where the confirmed cases, dea
 ##### Answer
 ```{r}
 
+# Let's just select a few key columns so we better can follow what happens to the data structure
 corona_wide <- coronavirus %>% 
+  select(date, country, type, cases) %>% 
   pivot_wider(names_from = type, values_from = cases)
 
 ```
@@ -343,11 +351,13 @@ With the long format this is easy:
 ```{r}
 
 coronavirus %>% 
-  filter(country == "US") %>% 
+  filter(cases > 0, country == "US") %>% 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))
 
 ```
+
+<br>
 
 How would we do this with the `coronavirus_wide` format? That would be much more difficult.
 
