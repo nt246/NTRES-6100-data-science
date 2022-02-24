@@ -70,7 +70,14 @@ Todays lesson integrates material from multiple sources, including the excellent
 <br>
 
 
-## Set-up
+## Renew our GitHub access token
+When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let's revisit how we can set up with a new token by working through the procedures described in [lessson 2](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)).
+
+<br>
+<br>
+
+
+## Set-up for today's exercises
 
 ### Create a new R script and load packages
 
@@ -250,7 +257,11 @@ write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
 
 <br>
 
-#### Answer
+
+
+<details>
+  <summary>click to see our approach</summary>
+
 
 ```{r}
 # let's get one variable per Race
@@ -267,6 +278,10 @@ lotr_tidy %>%
   pivot_wider(names_from = Race_Gender, values_from = Words)
 
 ```
+
+
+</details>
+
 
 <br>
 
@@ -310,7 +325,8 @@ coronavirus
 <br>
 
 Similar to what we did in the last class, we could visualize the global sums for the different types of case counts by date (note that in August 2021, the dataset stopped tracking recoveries)
-```{r}
+```{r, message = FALSE}
+
 coronavirus %>%
   filter(cases > 0) %>% 
   group_by(date, type) %>%
@@ -335,7 +351,7 @@ Convert the coronavirus dataset to a wider format where the confirmed cases, dea
 
 # Let's just select a few key columns so we better can follow what happens to the data structure
 corona_wide <- coronavirus %>% 
-  select(date, country, type, cases) %>% 
+  select(date, country, province, type, cases) %>% 
   pivot_wider(names_from = type, values_from = cases)
 
 ```

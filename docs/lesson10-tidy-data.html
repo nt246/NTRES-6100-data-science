@@ -506,8 +506,13 @@ div.tocify {
 <p><br></p>
 </div>
 </div>
-<div id="set-up" class="section level2">
-<h2>Set-up</h2>
+<div id="renew-our-github-access-token" class="section level2">
+<h2>Renew our GitHub access token</h2>
+<p>When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let’s revisit how we can set up with a new token by working through the procedures described in <a href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)">lessson 2</a>.</p>
+<p><br> <br></p>
+</div>
+<div id="set-up-for-todays-exercises" class="section level2">
+<h2>Set-up for today’s exercises</h2>
 <div id="create-a-new-r-script-and-load-packages" class="section level3">
 <h3>Create a new R script and load packages</h3>
 <ul>
@@ -660,8 +665,10 @@ lotr_tidy</code></pre>
 <li><p>OPTIONAL: Use the pivot_longer() function to transform you lotr_wide back to tidy format.</p></li>
 </ol>
 <p><br></p>
-<div id="answer" class="section level4">
-<h4>Answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
 <pre class="r"><code># let&#39;s get one variable per Race
 lotr_tidy %&gt;% 
   pivot_wider(names_from = Race, values_from = Words)</code></pre>
@@ -699,8 +706,8 @@ lotr_tidy %&gt;%
 ## 1 The Fellows…      971       1229        3644            14     1995          0
 ## 2 The Two Tow…      513        331        2463             0     3589        401
 ## 3 The Return …      510        183        2673             2     2459        268</code></pre>
+</details>
 <p><br></p>
-</div>
 </div>
 <div id="more-exercises-on-the-lotr-data-you-can-do-these-on-your-own-later" class="section level3">
 <h3>More exercises on the LOTR data (you can do these on your own later)</h3>
@@ -724,7 +731,7 @@ lotr_tidy %&gt;%
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
 
 coronavirus</code></pre>
-<pre><code>## # A tibble: 638,631 × 15
+<pre><code>## # A tibble: 639,468 × 15
 ##    date       province country   lat  long type    cases   uid iso2  iso3  code3
 ##    &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
 ##  1 2020-01-22 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
@@ -737,7 +744,7 @@ coronavirus</code></pre>
 ##  8 2020-01-29 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
 ##  9 2020-01-30 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
 ## 10 2020-01-31 Alberta  Canada   53.9 -117. confir…     0 12401 CA    CAN     124
-## # … with 638,621 more rows, and 4 more variables: combined_key &lt;chr&gt;,
+## # … with 639,458 more rows, and 4 more variables: combined_key &lt;chr&gt;,
 ## #   population &lt;dbl&gt;, continent_name &lt;chr&gt;, continent_code &lt;chr&gt;</code></pre>
 <p><br></p>
 <p><strong>QUESTION</strong>: Is this in tidy format?</p>
@@ -749,8 +756,6 @@ coronavirus</code></pre>
   summarize(cases = sum(cases)) %&gt;%
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the
-## `.groups` argument.</code></pre>
 <p><img src="lesson10-files/unnamed-chunk-8-1.png" width="672" /> <br></p>
 <p>Let’s see how we would do that if the data had been in a wider format.</p>
 <p><br></p>
@@ -758,20 +763,12 @@ coronavirus</code></pre>
 <h4>Your turn</h4>
 <p>Convert the coronavirus dataset to a wider format where the confirmed cases, deaths and recovered cases are shown in separate columns.</p>
 <p><br></p>
-<div id="answer-1" class="section level5">
+<div id="answer" class="section level5">
 <h5>Answer</h5>
 <pre class="r"><code># Let&#39;s just select a few key columns so we better can follow what happens to the data structure
 corona_wide &lt;- coronavirus %&gt;% 
-  select(date, country, type, cases) %&gt;% 
+  select(date, country, province, type, cases) %&gt;% 
   pivot_wider(names_from = type, values_from = cases)</code></pre>
-<pre><code>## Warning: Values from `cases` are not uniquely identified; output will contain list-cols.
-## * Use `values_fn = list` to suppress this warning.
-## * Use `values_fn = {summary_fun}` to summarise duplicates.
-## * Use the following dplyr code to identify duplicates.
-##   {data} %&gt;%
-##     dplyr::group_by(date, country, type) %&gt;%
-##     dplyr::summarise(n = dplyr::n(), .groups = &quot;drop&quot;) %&gt;%
-##     dplyr::filter(n &gt; 1L)</code></pre>
 <p><br></p>
 <p>Now how do we reproduce the barchart of total cases per day broken down by type?</p>
 <p>And how would we plot the daily counts of different case types within a country?</p>
