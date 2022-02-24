@@ -48,6 +48,10 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 * We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
 
+* Your GitHub PAT (personal access token) may expire soon (if you had set it to 30 days). We'll review how to renew it at the end of class
+
+
+
 <br>
 <br>
 
@@ -68,13 +72,8 @@ By the end of today's class, you should be able to:
 Todays lesson integrates material from multiple sources, including the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and several other sources specified below.
 
 <br>
-
-
-## Renew our GitHub access token
-When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let's revisit how we can set up with a new token by working through the procedures described in [lessson 2](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)).
-
 <br>
-<br>
+
 
 
 ## Set-up for today's exercises
@@ -397,5 +396,11 @@ ggplot(coronavirus_ttd) +
 This case highlights how the definition of what a variable and an observation is context-dependent so different formats of the same data can be considered tidy based on how we are thinking about the data and we may need to switch back and forth between long and wide formats to explore different levels of a dataset.
 
 <br>
+<br>
+<br>
+
+## Before we wrap up - Renew our GitHub access token
+When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let's revisit how we can set up with a new token by working through the procedures described in [lessson 2](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)).
+
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
