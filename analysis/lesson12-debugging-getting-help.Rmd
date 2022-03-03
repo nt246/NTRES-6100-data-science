@@ -16,10 +16,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Readings
 
+* Look over the [The tidyverse style guide](https://style.tidyverse.org/) for inspiration - **you don't have to read the whole guide carefully**
+
 <br>
 Today, Erika Mudrak from the Cornell Statistical Consultation Unit will give a guest lecture. Her slides are available [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Getting_Help_in_Stats_2021.pdf)
 
-**There are no required readings.**
 
 <br>
 

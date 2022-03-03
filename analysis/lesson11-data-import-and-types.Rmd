@@ -73,7 +73,7 @@ When working in the tidyverse, the most common import function we will use are t
 
 * `read_fwf()` reads fixed width files. You can specify fields either by their widths with `fwf_widths()` or their position with `fwf_positions()`. `read_table()` reads a common variation of fixed width files where columns are separated by white space.
 
-All the `readr::read_xx()` functions has many additional options including the ability to skip columns, skip rows, rename columns on import, trim whitespace, and much more. They all use the same syntax, so once you get familiar with one, you can easily apply your knowledge to all the other functions in `readr`.
+All the `readr::read_xx()` functions have many additional options including the ability to skip columns, skip rows, rename columns on import, trim whitespace, and much more. They all use the same syntax, so once you get familiar with one, you can easily apply your knowledge to all the other functions in `readr`.
 
 You can examine the options by looking at the documentation, e.g `?read_csv()`. There is also a very useful overview in [Chapter 11 of Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/data-import.html)
 
@@ -128,13 +128,41 @@ lotr_tidy <- read_csv("../datasets/lotr_tidy.csv")
 
 <br>
 
+We can also make an Excel file with the same data and try reading in from that (note that you need to first install the `readxl` package, if you don't already have it)
+```{r, eval = FALSE}
+
+library(readxl) ## install.packages("readxl")
+
+lotr_xlsx <- read_xlsx("datasets/LOTR.xlsx")
+
+# you can specify which sheet to read the data from with the "sheet = " argument
+
+```
+
+<br>
+
+Or we can read from a google sheet! If you want to just read from public sheets (set to "Anyone on the internet with this link can view/edit"), you want to first run `gs4_deauth()` to indicate there is no need for a token. If you want to access private sheets, check the instructions for configuring an authenticated user [here](authenticated Google user).
+
+```{r, eval = FALSE}
+library(googlesheets4) ## install.packages("googlesheets4")
+
+gs4_deauth()
+lotr_gs <- read_sheet("https://docs.google.com/spreadsheets/d/1X98JobRtA3JGBFacs_JSjiX-4DPQ0vZYtNl_ozqF6IE/edit#gid=754443596")
+
+```
+
+
+<br>
+<br>
+
+
 ### Why use the tidyverse/readr import functions instead of base-R?
 
 > From [R4DS](https://r4ds.had.co.nz/data-import.html#compared-to-base-r)
 
-If you’ve used R before, you might wonder why we’re not using read.csv(). There are a few good reasons to favour readr functions over the base equivalents:
+If you’ve used R before, you might wonder why we’re not using read.csv(). There are a few good reasons to favor readr functions over the base equivalents:
 
-* They are typically much faster (~10x) than their base equivalents. Long running jobs have a progress bar, so you can see what’s happening. If you’re looking for raw speed, try data.table::fread(). It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
+* They are typically much faster (~10x) than their base-R equivalents (e.g. `read.cvs()`). Long running jobs have a progress bar, so you can see what’s happening. If you’re looking for raw speed, try data.table::fread(). It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
 
 * They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names. These are common sources of frustration with the base R functions.
 
