@@ -14,7 +14,7 @@ Assignment 6: Data import and tidy data
 
     -   **Reproduce this markdown template**, except for this list of
         instructions which you **don’t** have to include. Pay attention
-        to all the formating in this file, including bullet points,
+        to all the formatting in this file, including bullet points,
         bolded characters, inserted code chunks, headings, text colors,
         blank lines, etc.
 
@@ -26,7 +26,9 @@ Assignment 6: Data import and tidy data
         informative and important, so please examine them carefully and
         only turn them off when you finish the exercise).
 
--   Please note that Exercise 3 is **optional**.
+-   Please note that you only need to finish **three out of the five**
+    questions in **Exercise 1** in order to get credit for that
+    exercise. Also, **Exercise 3** is **optional**.
 
 -   To start, first load all the required packages with the following
     code. Install them if they are not installed yet.
@@ -42,9 +44,12 @@ library(knitr)
 
 Import the data frames listed below into R and
 [parse](https://r4ds.had.co.nz/data-import.html#parsing-a-vector) the
-columns appropriately when needed. Watch out for the formating oddities
+columns appropriately when needed. Watch out for the formatting oddities
 of each dataset. Print the results directly, **without** using
 `kable()`.
+
+**You only need to finish any three out of the five questions in this
+exercise in order to get credit.**
 
 <br>
 
@@ -103,7 +108,7 @@ of each dataset. Print the results directly, **without** using
 
 <br>
 
-#### 1.5 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt` into R. Parse the columns properly. As a reminder, you can read about data formatting [here](https://r4ds.had.co.nz/data-import.html#readr-datetimes). Write this imported and parsed data frame into a new csv file named `dataset5_new.csv` in your `problem_sets` folder.
+#### 1.5 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset5.txt` into R. Parse the columns properly. As a reminder, you can read about parsing date and time data [here](https://r4ds.had.co.nz/data-import.html#readr-datetimes). Write this imported and parsed data frame into a new csv file named `dataset5_new.csv` in your `problem_sets` folder.
 
     ## # A tibble: 3 × 3
     ##   Name   `Expiration Date` Time  
@@ -124,7 +129,7 @@ Protection Administration, Executive Yuan, R.O.C. (Taiwan).
 
 -   The text file
     `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station_notes.txt`
-    contains desciptions of different variables collected by the
+    contains descriptions of different variables collected by the
     station.
 
 -   Import it into R and print it in a table as shown below with
@@ -226,7 +231,7 @@ After cleaning:
 
 #### 2.5 Plot the total rainfall per month in a bar chart, as shown below.
 
-*Hint: seperating date into three columns might be helpful.*
+*Hint: separating date into three columns might be helpful.*
 
 ![](assignment_6_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
