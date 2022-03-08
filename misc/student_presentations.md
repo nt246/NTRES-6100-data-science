@@ -24,10 +24,10 @@ Alternatively, if you’re using open science tools or strategies that we
 haven’t covered in class, but you think could be of interest to others,
 feel free to focus on those.
 
-**When:** April 14 2021 during class  
+**When:** Thursday March 31 2021 during class  
 **How long:** 1.5 minutes per student  
 **Who should do it:** A presentation is required from all students
 taking the course for credit. If you can’t make it to the live Zoom
-call, you can submit a video instead (due before class on April 14).
+call, you can submit a video instead (due before class on March 31).
 Auditors are also welcome to contribute if they would like to share with
 the class.
