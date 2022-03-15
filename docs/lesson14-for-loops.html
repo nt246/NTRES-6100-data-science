@@ -601,6 +601,7 @@ clean_names(gapminder)</code></pre>
 <p>In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let’s imagine the variables in the <code>dslab</code> version had been named differently. Run this code to change the variable names:</p>
 <pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
   rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
+<p><br></p>
 <p><strong>Now add the infant mortality and fertility from the <code>gap_dslabs_caps</code> to our original `gapminder data.</strong></p>
 <p><br> <br></p>
 <details>
@@ -802,17 +803,26 @@ gap_dslabs %&gt;%
 ## # … with 42 more rows</code></pre>
 <p><br></p>
 </div>
-<div id="join-problems-how-to-troubleshoot" class="section level4">
-<h4>Join problems – how to troubleshoot</h4>
+<div id="join-problems-how-to-troubleshoot" class="section level3">
+<h3>Join problems – how to troubleshoot</h3>
 <ul>
 <li>Start by identifying the variables that form the primary key in each table based on your understanding of the data</li>
 <li>Check that none of the variables in the primary key are missing. If a value is missing then it can’t identify an observation!</li>
 <li>Check that your foreign keys match primary keys in another table. The best way to do this is with an anti_join()</li>
 </ul>
 <p><br> <br></p>
-<p>Now let’s shift gears….</p>
-<p><br> <br></p>
+<p>Now let’s shift gears…</p>
 </div>
+</div>
+<div id="clone-repo-to-get-todays-exercise-sheet" class="section level2">
+<h2>Clone repo to get today’s exercise sheet</h2>
+<p>First, to refresh our memory on RStudio-GitHub integration, let’s start by cloning a repo with today’s exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
+<p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson 3</a>.</p>
+<p>Once you have an RStudio project linked to the <code>for-loop-exercises</code> repo, find the file <code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio project for your own class repo, and change the file name by replacing <code>name</code> with your name.</p>
+<p>Add a picture as instructed.</p>
+<p>Push your changes to GitHub. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson 3</a></p>
+<p>Check your class repo on GitHub (<a href="https://github.com/therkildsen-class/ntres-6100-USERNAME" class="uri">https://github.com/therkildsen-class/ntres-6100-USERNAME</a> [replace USERNAME with your GitHub user name]) to make sure your file shows up.</p>
+<p><br> <br> <br></p>
 </div>
 <div id="introduction-to-for-loops" class="section level2">
 <h2>Introduction to <code>for loops</code></h2>
@@ -828,16 +838,6 @@ gap_dslabs %&gt;%
 <p>One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We’ll go through a brief introduction to how to write functions in R next week.</p>
 <p>Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover <code>for</code> loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, <code>for</code> loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every <code>for</code> loop. Once you master <code>for</code> loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the <a href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R for Data Science</a> book.</p>
 <p>Today, we will illustrate the use of <code>for</code> loops with an example. We will also use conditional execution of code with <code>if</code> statements.</p>
-<p><br></p>
-</div>
-<div id="clone-repo-to-get-todays-exercise-sheet" class="section level2">
-<h2>Clone repo to get today’s exercise sheet</h2>
-<p>First, to refresh our memory on RStudio-GitHub integration, let’s start by cloning a repo with today’s exercise sheet. The repo is located here: <a href="https://github.com/nt246/for-loop-exercise" class="uri">https://github.com/nt246/for-loop-exercise</a></p>
-<p>Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson 3</a>.</p>
-<p>Once you have an RStudio project linked to the <code>for-loop-exercises</code> repo, find the file <code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio project for your own class repo, and change the file name by replacing <code>name</code> with your name.</p>
-<p>Add a picture as instructed.</p>
-<p>Push your changes to GitHub. If you need a reminder of how we do this, revisit <a href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson 3</a></p>
-<p>Check your class repo on GitHub (<a href="https://github.com/therkildsen-class/ntres-6100-USERNAME" class="uri">https://github.com/therkildsen-class/ntres-6100-USERNAME</a> [replace USERNAME with your GitHub user name]) to make sure your file shows up.</p>
 <p><br> <br></p>
 </div>
 <div id="analysis-plan" class="section level2">
