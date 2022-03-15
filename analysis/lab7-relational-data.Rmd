@@ -64,14 +64,14 @@ flights %>% head() %>% kable()
 
 
 ```{r, eval = FALSE}
-    library(maps) #install.packages("maps")
+library(maps) #install.packages("maps")
 
-    airports %>%
-      semi_join(flights, c("faa" = "dest")) %>%
-      ggplot(aes(lon, lat)) +
-        borders("state") +
-        geom_point() +
-        coord_quickmap()
+airports %>%
+  semi_join(flights, c("faa" = "dest")) %>%
+  ggplot(aes(lon, lat)) +
+    borders("state") +
+    geom_point() +
+    coord_quickmap()
 ```
 
 Don't worry if you don't understand what `semi_join()` does --- we will discuss it, or you can learn about it [here](https://r4ds.had.co.nz/relational-data.html#filtering-joins).
@@ -85,21 +85,18 @@ You might want to use the `size` or `colour` of the points to display the averag
   <summary>click to expand</summary>
 
 ```{r}
-
 avg_dest_delays <-
   flights %>%
   group_by(dest) %>%
   # arrival delay NA's are cancelled flights
   summarise(delay = mean(arr_delay, na.rm = TRUE)) %>%
   inner_join(airports, by = c(dest = "faa"))
-#> `summarise()` ungrouping output (override with `.groups` argument)
 
 avg_dest_delays %>%
   ggplot(aes(lon, lat, colour = delay)) +
   borders("state") +
   geom_point() +
   coord_quickmap()
-
 ```
 
 </details>
@@ -117,7 +114,31 @@ Hint: Think about which of our datasets have relevant information and how we nee
 <details>
   <summary>click to expand</summary>
 
-See [here](https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.3)
+```{r}
+plane_cohorts <- inner_join(flights,
+  select(planes, tailnum, year),
+  by = "tailnum",
+  suffix = c("_flight", "_plane")
+) %>%
+  mutate(age = year_flight - year_plane) %>%
+  filter(!is.na(age)) %>%
+  mutate(age = if_else(age > 25, 25L, age)) %>%
+  group_by(age) %>%
+  summarise(
+    dep_delay_mean = mean(dep_delay, na.rm = TRUE),
+    arr_delay_mean = mean(arr_delay, na.rm = TRUE)
+  )
+## Departure delays
+ggplot(plane_cohorts, aes(x = age, y = dep_delay_mean)) +
+  geom_point() +
+  scale_x_continuous("Age of plane (years)", breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous("Mean Departure Delay (minutes)")
+## Arrival delays
+ggplot(plane_cohorts, aes(x = age, y = arr_delay_mean)) +
+  geom_point() +
+  scale_x_continuous("Age of Plane (years)", breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous("Mean Arrival Delay (minutes)")
+```
 
 </details>
 
@@ -134,7 +155,25 @@ Hint: Think about which of our datasets have relevant information and how we nee
 <details>
   <summary>click to expand</summary>
 
-See [here](https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.4)
+```{r}
+flight_weather <-
+  flights %>%
+  inner_join(weather, by = c("origin", "year", "month", "day", "hour"))
+## Precipitation
+flight_weather %>%
+  group_by(precip) %>%
+  summarise(delay = mean(dep_delay, na.rm = TRUE)) %>%
+  ggplot(aes(x = precip, y = delay)) +
+  geom_line() + geom_point()
+# Visibility
+flight_weather %>%
+  ungroup() %>%
+  mutate(visib_cat = cut_interval(visib, n = 10)) %>%
+  group_by(visib_cat) %>%
+  summarise(dep_delay = mean(dep_delay, na.rm = TRUE)) %>%
+  ggplot(aes(x = visib_cat, y = dep_delay)) +
+  geom_point()
+```
 
 </details>
 

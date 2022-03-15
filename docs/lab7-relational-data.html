@@ -13,13 +13,22 @@
 
 <title>Lab 7: Relational data and tidy data</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,11 +46,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +58,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 
@@ -90,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,7 +294,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -488,7 +447,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -708,14 +667,14 @@ flights %&gt;% head() %&gt;% kable()</code></pre>
 <p><br></p>
 <div id="question-1-compute-the-average-delay-by-destination-then-join-on-the-airports-data-frame-so-you-can-show-the-spatial-distribution-of-delays.-heres-an-easy-way-to-draw-a-map-of-the-united-states" class="section level4">
 <h4>Question 1: Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</h4>
-<pre class="r"><code>    library(maps) #install.packages(&quot;maps&quot;)
+<pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
-    airports %&gt;%
-      semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
-      ggplot(aes(lon, lat)) +
-        borders(&quot;state&quot;) +
-        geom_point() +
-        coord_quickmap()</code></pre>
+airports %&gt;%
+  semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+  ggplot(aes(lon, lat)) +
+    borders(&quot;state&quot;) +
+    geom_point() +
+    coord_quickmap()</code></pre>
 <p>Don’t worry if you don’t understand what <code>semi_join()</code> does — we will discuss it, or you can learn about it <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">here</a>.</p>
 <p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p>
 <p><br></p>
@@ -730,7 +689,6 @@ click to expand
   # arrival delay NA&#39;s are cancelled flights
   summarise(delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
   inner_join(airports, by = c(dest = &quot;faa&quot;))
-#&gt; `summarise()` ungrouping output (override with `.groups` argument)
 
 avg_dest_delays %&gt;%
   ggplot(aes(lon, lat, colour = delay)) +
@@ -750,7 +708,31 @@ avg_dest_delays %&gt;%
 <summary>
 click to expand
 </summary>
-<p>See <a href="https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.3">here</a></p>
+<pre class="r"><code>plane_cohorts &lt;- inner_join(flights,
+  select(planes, tailnum, year),
+  by = &quot;tailnum&quot;,
+  suffix = c(&quot;_flight&quot;, &quot;_plane&quot;)
+) %&gt;%
+  mutate(age = year_flight - year_plane) %&gt;%
+  filter(!is.na(age)) %&gt;%
+  mutate(age = if_else(age &gt; 25, 25L, age)) %&gt;%
+  group_by(age) %&gt;%
+  summarise(
+    dep_delay_mean = mean(dep_delay, na.rm = TRUE),
+    arr_delay_mean = mean(arr_delay, na.rm = TRUE)
+  )
+## Departure delays
+ggplot(plane_cohorts, aes(x = age, y = dep_delay_mean)) +
+  geom_point() +
+  scale_x_continuous(&quot;Age of plane (years)&quot;, breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous(&quot;Mean Departure Delay (minutes)&quot;)</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>## Arrival delays
+ggplot(plane_cohorts, aes(x = age, y = arr_delay_mean)) +
+  geom_point() +
+  scale_x_continuous(&quot;Age of Plane (years)&quot;, breaks = seq(0, 30, by = 10)) +
+  scale_y_continuous(&quot;Mean Arrival Delay (minutes)&quot;)</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -763,7 +745,25 @@ click to expand
 <summary>
 click to expand
 </summary>
-<p>See <a href="https://jrnold.github.io/r4ds-exercise-solutions/relational-data.html#exercise-13.4.4">here</a></p>
+<pre class="r"><code>flight_weather &lt;-
+  flights %&gt;%
+  inner_join(weather, by = c(&quot;origin&quot;, &quot;year&quot;, &quot;month&quot;, &quot;day&quot;, &quot;hour&quot;))
+## Precipitation
+flight_weather %&gt;%
+  group_by(precip) %&gt;%
+  summarise(delay = mean(dep_delay, na.rm = TRUE)) %&gt;%
+  ggplot(aes(x = precip, y = delay)) +
+  geom_line() + geom_point()</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code># Visibility
+flight_weather %&gt;%
+  ungroup() %&gt;%
+  mutate(visib_cat = cut_interval(visib, n = 10)) %&gt;%
+  group_by(visib_cat) %&gt;%
+  summarise(dep_delay = mean(dep_delay, na.rm = TRUE)) %&gt;%
+  ggplot(aes(x = visib_cat, y = dep_delay)) +
+  geom_point()</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -902,7 +902,7 @@ babynames %&gt;%
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Note:</p>
 <ul>
 <li><code>slice_max(order_by = total_count, n = 6)</code> selects 6 rows with the highest values in <code>total_count</code> for each unique entry in the grouping variable (in this case, males and females)</li>
@@ -983,7 +983,7 @@ new_names %&gt;%
   ggplot(aes(x=year, y=n, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is an efficient way to replace all NAs in a dataset with 0s.</p>
 </details>
 <p><br> <br></p>
@@ -1116,7 +1116,7 @@ unisex_names %&gt;%
   ggplot(aes(x=count_M, y=count_F)) +
   ggrepel::geom_label_repel(aes(label=name)) +
   geom_point(data=unisex_names)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-1.png" width="960" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
 <pre class="r"><code>babynames %&gt;%
   filter(name %in% unisex_names$name[1:12]) %&gt;%
   pivot_wider(names_from = sex, values_from = c(n, prop)) %&gt;%
@@ -1127,7 +1127,7 @@ unisex_names %&gt;%
   geom_point(aes(size = average_popularity)) +
   facet_wrap(~name) +
   ylab(&quot;proportion of girls&quot;)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-2.png" width="960" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-2.png" width="960" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1171,7 +1171,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1180,6 +1180,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
