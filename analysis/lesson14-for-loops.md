@@ -38,7 +38,7 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
-By the end of today's and Wednesday's classes, you should be able to:
+By the end of today's and Thursday's class, you should be able to:
 
 * Write a `for` loop to repeat operations on different input
 * Implement `if` and `if else` statements for conditional execution of code
@@ -52,56 +52,20 @@ By the end of today's and Wednesday's classes, you should be able to:
 
 ## Recap on relational data
 
-Let's load the `tidyverse` and the `nycflights13` package:
+Let's load the `tidyverse` and `knitr`
 
 
 ```r
 library(tidyverse)
 library(knitr)
-library(nycflights13)  # install.packages("nycflights13")
 ```
-
-<br>
-
-#### Mutating joins
-
-We will first review the exercise we finished with last time:
-
-* Add the location of the origin and destination (i.e. the lat and lon) to `flights`
-
-<br>
-
-Here's a solution (note the suffix argument and try to remove it to see what it does):
-
-
-```r
-airport_locations <- airports %>%
-  select(faa, lat, lon)
-
-flights %>%
-  select(year:day, hour, origin, dest) %>%
-  left_join(
-    airport_locations,
-    by = c("origin" = "faa")
-  ) %>%
-  left_join(
-    airport_locations,
-    by = c("dest" = "faa"),
-    suffix = c("_origin", "_dest"))
-```
-
-<br>
-
-#### Filtering joins
-
-We'll review filtering joins and general strategies for combining information from multiple tables. We'll work through examples from [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins)
 
 <br>
 <br>
 
 #### The `gapminder` data
 
-Now, let's try this on a different dataset. Last class, we used the `gapminder` dataset to illustrate how column binding can be dangerous. We'll continue working with these data today. 
+Last class, we used the `nycflights13` datasets to explore the mutating joins. Let's recap by applying these to a different dataset. Today we'll return to the `gapminder` dataset that last lecture's notes used to illustrate how column binding can be dangerous. You may also remember this dataset from an earlier lab session.
 
 The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
  
@@ -135,7 +99,52 @@ head(gapminder) %>%  kable()
 <br>
 <br>
 
-In the lab section, we have been working with a different subset of this dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
+
+We can see that this dataset used camelCase (first word lowercase and capitalize all following words) for its column names. I always use snake_case (replace spaces with underscores), and it's going to look messy to have this inconsistent way of writing variable names. So I'm going to go ahead and clean these names up before I start working with the data. I can do this manually with the `rename()` or `colnames()` functions, e.g.
+
+
+```r
+gapminder %>% 
+  rename("life_exp" = lifeExp, "gdp_per_cap" = gdpPercap)
+```
+
+```
+## # A tibble: 1,704 × 6
+##    country     continent  year life_exp      pop gdp_per_cap
+##    <fct>       <fct>     <int>    <dbl>    <int>       <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.
+##  2 Afghanistan Asia       1957     30.3  9240934        821.
+##  3 Afghanistan Asia       1962     32.0 10267083        853.
+##  4 Afghanistan Asia       1967     34.0 11537966        836.
+##  5 Afghanistan Asia       1972     36.1 13079460        740.
+##  6 Afghanistan Asia       1977     38.4 14880372        786.
+##  7 Afghanistan Asia       1982     39.9 12881816        978.
+##  8 Afghanistan Asia       1987     40.8 13867957        852.
+##  9 Afghanistan Asia       1992     41.7 16317921        649.
+## 10 Afghanistan Asia       1997     41.8 22227415        635.
+## # … with 1,694 more rows
+```
+
+```r
+# Alternative
+colnames(gapminder) <- c("country", "continent", "year", "life_exp", "pop", "gdp_per_cap")
+```
+
+<br>
+
+Alternatively, I can use the `clean_names()` function from the `janitor` package
+
+
+```r
+library(janitor)
+
+clean_names(gapminder)
+```
+
+<br>
+<br>
+
+In the lab section, we have been working with a different subset of the gapminder dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
 
 
 
@@ -156,6 +165,8 @@ In this case, we were lucky that the variables that we wanted to join the tables
 gap_dslabs_caps <- gap_dslabs %>% 
   rename("Country" = country, "Year" = year)
 ```
+
+<br>
 
 **Now add the infant mortality and fertility from the `gap_dslabs_caps` to our original `gapminder data.**
 
@@ -179,20 +190,20 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 8
-##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
 ```
 
 ```r
@@ -202,20 +213,20 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 8
-##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
 ```
 
 ```r
@@ -225,20 +236,20 @@ gapminder %>%
 ```
 
 ```
-## # A tibble: 1,704 x 8
-##    country   continent  year lifeExp    pop gdpPercap infant_mortality fertility
-##    <chr>     <fct>     <dbl>   <dbl>  <int>     <dbl>            <dbl>     <dbl>
-##  1 Afghanis… Asia       1952    28.8 8.43e6      779.               NA        NA
-##  2 Afghanis… Asia       1957    30.3 9.24e6      821.               NA        NA
-##  3 Afghanis… Asia       1962    32.0 1.03e7      853.               NA        NA
-##  4 Afghanis… Asia       1967    34.0 1.15e7      836.               NA        NA
-##  5 Afghanis… Asia       1972    36.1 1.31e7      740.               NA        NA
-##  6 Afghanis… Asia       1977    38.4 1.49e7      786.               NA        NA
-##  7 Afghanis… Asia       1982    39.9 1.29e7      978.               NA        NA
-##  8 Afghanis… Asia       1987    40.8 1.39e7      852.               NA        NA
-##  9 Afghanis… Asia       1992    41.7 1.63e7      649.               NA        NA
-## 10 Afghanis… Asia       1997    41.8 2.22e7      635.               NA        NA
-## # … with 1,694 more rows
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
 ```
 
 ```r
@@ -246,6 +257,218 @@ gapminder %>%
 ```
 
 </details>
+
+<br>
+
+
+
+#### Filtering joins
+
+We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins). Here, we will illustrate with the `gapminder` data.
+
+<br>
+
+Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. There are two types:
+
+* `semi_join(x, y)` keeps all observations in x that have a match in y.
+* `anti_join(x, y)` drops all observations in x that have a match in y.
+
+Semi-joins are useful for matching filtered summary tables back to the original rows.
+
+<br>
+
+These functions can be useful when we want to filter based on more than one variable. If we wanted to grab all the records from Malawi, for example, we can use `filter()`
+
+
+```r
+gapminder %>% 
+  filter(country == "Malawi")
+```
+
+```
+## # A tibble: 12 × 6
+##    country continent  year life_exp      pop gdp_per_cap
+##    <fct>   <fct>     <int>    <dbl>    <int>       <dbl>
+##  1 Malawi  Africa     1952     36.3  2917802        369.
+##  2 Malawi  Africa     1957     37.2  3221238        416.
+##  3 Malawi  Africa     1962     38.4  3628608        428.
+##  4 Malawi  Africa     1967     39.5  4147252        496.
+##  5 Malawi  Africa     1972     41.8  4730997        585.
+##  6 Malawi  Africa     1977     43.8  5637246        663.
+##  7 Malawi  Africa     1982     45.6  6502825        633.
+##  8 Malawi  Africa     1987     47.5  7824747        636.
+##  9 Malawi  Africa     1992     49.4 10014249        563.
+## 10 Malawi  Africa     1997     47.5 10419991        692.
+## 11 Malawi  Africa     2002     45.0 11824495        665.
+## 12 Malawi  Africa     2007     48.3 13327079        759.
+```
+
+<br>
+
+However, say we wanted to extract the records from the countries and years that had the highest fertility rates recorded. It would be harder to do this with the `filter()` function in a single step. This is a case where `semi_join()` can be useful.
+
+
+```r
+top_fertility <- gap_dslabs %>% 
+  arrange(-fertility) %>% 
+  head(10)
+
+gapminder %>% 
+  semi_join(top_fertility)
+```
+
+```
+## Joining, by = c("country", "year")
+```
+
+```
+## # A tibble: 6 × 6
+##   country continent  year life_exp     pop gdp_per_cap
+##   <fct>   <fct>     <int>    <dbl>   <int>       <dbl>
+## 1 Oman    Asia       1982     62.7 1301048      12955.
+## 2 Rwanda  Africa     1962     43   3051242        597.
+## 3 Rwanda  Africa     1967     44.1 3451079        511.
+## 4 Rwanda  Africa     1972     44.6 3992121        591.
+## 5 Rwanda  Africa     1977     45   4657072        670.
+## 6 Rwanda  Africa     1982     46.2 5507565        882.
+```
+We notice here that our resulting tibble only include 6 rows, not the 10 we had expected. Upon inspection, we notice that the records from Yemen are missing. We can confirm that this is because the `gapminder` tibble doesn't include "Yemen" (written this way) as a country by examining the unique values included in the country variable.
+
+
+```r
+unique(gapminder$country)
+```
+
+```
+##   [1] Afghanistan              Albania                  Algeria                 
+##   [4] Angola                   Argentina                Australia               
+##   [7] Austria                  Bahrain                  Bangladesh              
+##  [10] Belgium                  Benin                    Bolivia                 
+##  [13] Bosnia and Herzegovina   Botswana                 Brazil                  
+##  [16] Bulgaria                 Burkina Faso             Burundi                 
+##  [19] Cambodia                 Cameroon                 Canada                  
+##  [22] Central African Republic Chad                     Chile                   
+##  [25] China                    Colombia                 Comoros                 
+##  [28] Congo, Dem. Rep.         Congo, Rep.              Costa Rica              
+##  [31] Cote d'Ivoire            Croatia                  Cuba                    
+##  [34] Czech Republic           Denmark                  Djibouti                
+##  [37] Dominican Republic       Ecuador                  Egypt                   
+##  [40] El Salvador              Equatorial Guinea        Eritrea                 
+##  [43] Ethiopia                 Finland                  France                  
+##  [46] Gabon                    Gambia                   Germany                 
+##  [49] Ghana                    Greece                   Guatemala               
+##  [52] Guinea                   Guinea-Bissau            Haiti                   
+##  [55] Honduras                 Hong Kong, China         Hungary                 
+##  [58] Iceland                  India                    Indonesia               
+##  [61] Iran                     Iraq                     Ireland                 
+##  [64] Israel                   Italy                    Jamaica                 
+##  [67] Japan                    Jordan                   Kenya                   
+##  [70] Korea, Dem. Rep.         Korea, Rep.              Kuwait                  
+##  [73] Lebanon                  Lesotho                  Liberia                 
+##  [76] Libya                    Madagascar               Malawi                  
+##  [79] Malaysia                 Mali                     Mauritania              
+##  [82] Mauritius                Mexico                   Mongolia                
+##  [85] Montenegro               Morocco                  Mozambique              
+##  [88] Myanmar                  Namibia                  Nepal                   
+##  [91] Netherlands              New Zealand              Nicaragua               
+##  [94] Niger                    Nigeria                  Norway                  
+##  [97] Oman                     Pakistan                 Panama                  
+## [100] Paraguay                 Peru                     Philippines             
+## [103] Poland                   Portugal                 Puerto Rico             
+## [106] Reunion                  Romania                  Rwanda                  
+## [109] Sao Tome and Principe    Saudi Arabia             Senegal                 
+## [112] Serbia                   Sierra Leone             Singapore               
+## [115] Slovak Republic          Slovenia                 Somalia                 
+## [118] South Africa             Spain                    Sri Lanka               
+## [121] Sudan                    Swaziland                Sweden                  
+## [124] Switzerland              Syria                    Taiwan                  
+## [127] Tanzania                 Thailand                 Togo                    
+## [130] Trinidad and Tobago      Tunisia                  Turkey                  
+## [133] Uganda                   United Kingdom           United States           
+## [136] Uruguay                  Venezuela                Vietnam                 
+## [139] West Bank and Gaza       Yemen, Rep.              Zambia                  
+## [142] Zimbabwe                
+## 142 Levels: Afghanistan Albania Algeria Angola Argentina Australia ... Zimbabwe
+```
+
+<br>
+
+So we would need to make sure country names are consistent in our two dataframes before proceeding (`str_replace()` is a good function for that).
+
+In general, the opposite of `semi_join()`, the `anti_join()` function is good for diagnosing mismatches.
+
+
+```r
+# What records in gapminder are not matched in gap_dslabs
+gapminder %>% 
+  anti_join(gap_dslabs, by = "country")  %>% 
+  count(country)
+```
+
+```
+## # A tibble: 9 × 2
+##   country                   n
+##   <fct>                 <int>
+## 1 Afghanistan              12
+## 2 Korea, Dem. Rep.         12
+## 3 Korea, Rep.              12
+## 4 Myanmar                  12
+## 5 Reunion                  12
+## 6 Sao Tome and Principe    12
+## 7 Somalia                  12
+## 8 Taiwan                   12
+## 9 Yemen, Rep.              12
+```
+
+```r
+# What records in gap_dslabs are not matched in gapminder
+gap_dslabs %>% 
+  anti_join(gapminder,  by = "country")  %>% 
+  count(country)
+```
+
+```
+## # A tibble: 52 × 2
+##    country                 n
+##    <chr>               <int>
+##  1 Antigua and Barbuda    10
+##  2 Armenia                10
+##  3 Aruba                  10
+##  4 Azerbaijan             10
+##  5 Bahamas                10
+##  6 Barbados               10
+##  7 Belarus                10
+##  8 Belize                 10
+##  9 Bhutan                 10
+## 10 Brunei                 10
+## # … with 42 more rows
+```
+
+<br>
+
+### Join problems – how to troubleshoot
+
+* Start by identifying the variables that form the primary key in each table based on your understanding of the data
+* Check that none of the variables in the primary key are missing. If a value is missing then it can’t identify an observation!
+* Check that your foreign keys match primary keys in another table. The best way to do this is with an anti_join()
+
+<br>
+<br>
+
+Now let's shift gears...
+
+## Clone repo to get today's exercise sheet
+First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: https://github.com/nt246/for-loop-exercise
+
+Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio).
+
+Once you have an RStudio project linked to the `for-loop-exercises` repo, find the file `for-loop-exercises-name.Rmd`. Copy it to your your RStudio project for your own class repo, and change the file name by replacing `name` with your name.
+
+Add a picture as instructed.
+
+Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
+
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
@@ -264,40 +487,26 @@ Whenever possible, we want to avoid duplication in our code (e.g. by copying-and
 
 * You’re likely to have fewer bugs because each line of code is used in more places.
 
-One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction of how to write functions in R next week. 
+One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction to how to write functions in R next week. 
 
 Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
 
 Today, we will illustrate the use of `for` loops with an example. We will also use conditional execution of code with `if` statements.
 
 <br>
-
-## Clone repo to get today's exercise sheet
-First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: https://github.com/nt246/for-loop-exercise
-
-Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio).
-
-Once you have an RStudio project linked to the `for-loop-exercises` repo, find the file `for-loop-exercises-name.Rmd`. Copy it to your your RStudio project for your own class repo, and change the file name by replacing `name` with your name.
-
-Add a picture as instructed.
-
-Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
-
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
-
 <br>
-<br>
+
 
 ## Analysis plan
 
-Here is the plan for our analysis: We want to plot how the gdpPercap for each country in the `gapminder` data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
+Here is the plan for our analysis: We want to plot how the gdp_per_cap for each country in the `gapminder` data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
 
 <br>
 
 
 ## Automation with `for` loops
 
-Our plan is to plot gdpPercap vs. year for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). We've worked with dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So here, we will use a `for` loop.
+Our plan is to plot gdp_per_cap vs. year for each country. This means that we want to do the same operation (plotting gdp_per_cap) on a bunch of different things (countries). We've worked with dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So here, we will use a `for` loop.
 
 Let's start off with what this would look like for just one country. I'm going to demonstrate with Afghanistan:
 
@@ -312,14 +521,14 @@ gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
 
 ## plot
-my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
   geom_point() +
   labs(title = "Afghanistan")
 ```
 
 <br>
 
-Let's actually give this a better title than just the country name. Let's use the `base::paste()` function to paste two strings together so that the title is more descriptive. Use `?paste` to see what the "sep" variable does. 
+Let's actually give this a better title than just the country name. Let's use the function `str_c()` to paste two strings together so that the title is more descriptive. Use `?str_c` to see what the "sep" variable does. 
 
 ```r
 ## filter the country to plot
@@ -327,10 +536,10 @@ gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
 
 ## plot
-my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
   geom_point() +
   ## add title and save
-  labs(title = paste("Afghanistan", "GDP per capita", sep = " "))
+  labs(title = str_c("Afghanistan", "GDP per capita", sep = " "))
 ```
 
 <br>
@@ -344,18 +553,19 @@ gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
 
 ## plot
-my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
   geom_point() +
   ## add title and save
-  labs(title = paste("Afghanistan", "GDP per capita", sep = " "))
-ggsave(filename = "Afghanistan_gdpPercap.png", plot = my_plot)
+  labs(title = str_c("Afghanistan", "GDP per capita", sep = " "))
+
+ggsave(filename = "Afghanistan_gdp_per_cap.png", plot = my_plot)
 ```
 
 <br>
 
 OK. So we can check our repo in the file pane (bottom right of RStudio) and see the generated figure:
 
-<img src="assets/Afghanistan_gdpPercap.png" width="50%" />
+<img src="assets/Afghanistan_gdp_per_cap.png" width="50%" />
 
 <br>
 <br>
@@ -374,7 +584,7 @@ cntry <- "Afghanistan"
 
 <br>
 
-Now, we can replace each `"Afghanistan"` with our variable `cntry`. We will have to introduce a `paste` statement here too, and we want to separate by nothing (`""`). 
+Now, we can replace each `"Afghanistan"` with our variable `cntry`. We will have to introduce a `str_c()` statement in the `ggsave()` function too, and we want to separate by nothing (`""`) because we don't want spaces in our filenames. 
 
 
 ```r
@@ -386,12 +596,13 @@ gap_to_plot <- gapminder %>%
   filter(country == cntry)
 
 ## plot
-my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
   geom_point() +
   ## add title and save
-  labs(title = paste(cntry, "GDP per capita", sep = " "))
-## note: there are many ways to create filenames with paste() or file.path(); we are doing this way for a reason.
-ggsave(filename = paste(cntry, "_gdpPercap.png", sep = ""), plot = my_plot)
+  labs(title = str_c(cntry, "GDP per capita", sep = " "))
+## note: there are many ways to create filenames with str_c(), str_c() or file.path(); we are doing this way for a reason.
+
+ggsave(filename = str_c(cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
 ```
 
 <br>
@@ -402,7 +613,7 @@ Let's run this. Great! it saved our figure (I can tell this because the timestam
 
 ### `for` loop basic structure
 
-Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn't actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the `cntry` variable, it would be very typo-prone. Plus, what if you wanted to instead plot lifeExp? You'd have to remember to change it each time... it quickly gets messy. 
+Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn't actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the `cntry` variable, it would be very typo-prone. Plus, what if you wanted to instead plot life_exp? You'd have to remember to change it each time... it quickly gets messy. 
 
 Better with a `for` loop. This will let us cycle through and do what we want to each thing in turn. If you want to iterate over a set of values, and perform the same operation on each, a `for` loop will do the job.
 
@@ -411,7 +622,7 @@ Better with a `for` loop. This will let us cycle through and do what we want to 
 The basic structure of a `for` loop is:
 
 ```r
-for (each item in set of items) {
+for (each_item in set_of_items) {
   do a thing
 }
 ```
@@ -427,19 +638,19 @@ Let's paste from what we had before, and modify it. I'm also going to use RStudi
 ```r
 ## create country variable
 cntry <- "Afghanistan"
-for (each cntry in a list of countries) {
+for (each cntry in a list_of_countries) {
   
   ## filter the country to plot
   gap_to_plot <- gapminder %>%
     filter(country == cntry)
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP per capita", sep = " "))
   
-  ggsave(filename = paste(cntry, "_gdpPercap.png", sep = ""), plot = my_plot)
+  ggsave(filename = str_c(cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
   
 }
 ```
@@ -462,12 +673,12 @@ for (cntry in country_list) {
     filter(country == cntry)
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP per capita", sep = " "))
   
-  ggsave(filename = paste(cntry, "_gdpPercap.png", sep = ""), plot = my_plot)
+  ggsave(filename = str_c(cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
 }
 ```
 
@@ -493,13 +704,13 @@ for (cntry in country_list) {
     filter(country == cntry)
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP per capita", sep = " "))
   
   ## add the figures/ folder
-  ggsave(filename = paste("figures/", cntry, "_gdpPercap.png", sep = ""), plot = my_plot)
+  ggsave(filename = str_c("figures/", cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
 } 
 ```
 
@@ -520,7 +731,7 @@ Use the worksheet we copied from the cloned GitHub repo to
 
 1. Modify our `for` loop so that it: 
     - loops through countries in Europe only
-    - plots the product of gdpPercap and population size per year (should approximate the total GDP) instead of the gdpPercap
+    - plots the product of gdp_per_cap and population size per year (should approximate the total GDP) instead of the gdp_per_cap
     - saves the plots to a new subfolder inside the (recreated) figures folder called "Europe".
 1. Sync to GitHub
 
@@ -540,7 +751,7 @@ dir.create("figures/Europe")
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe <- gapminder %>%
   filter(continent == "Europe") %>%
-  mutate(gdpTot = gdpPercap * pop)
+  mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 
@@ -551,19 +762,19 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what's plotting
-  print(paste("Plotting", cntry))
+  print(str_c("Plotting", cntry))
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP", sep = " "))
   
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpTot.png", sep = ""), plot = my_plot)
+  ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), plot = my_plot)
 } 
 ```
 
-Notice how we put the calculation of `gdpPercap` * `pop` outside the `for` loop. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the `for` loop). 
+Notice how we put the calculation of `gdp_per_cap` * `pop` outside the `for` loop. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the `for` loop). 
 
 </details>
 
@@ -587,7 +798,8 @@ In R and other languages, these are called "if statements".
 if (condition is true) {
   do something
 }
-# if ... else
+
+# if, else
 if (condition is true) {
   do something
 } else {  # that is, if the condition is false,
@@ -615,7 +827,7 @@ dir.create("figures/Europe")
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == "Europe") %>%
-  mutate(gdpTot = gdpPercap * pop)
+  mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 
@@ -626,19 +838,19 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what's plotting
-  print(paste("Plotting", cntry))
+  print(str_c("Plotting", cntry))
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP", sep = " "))
   
   ## if estimated, add that as a subtitle. 
   if (gap_to_plot$estimated == "yes") {
     
     ## add a print statement just to check
-    print(paste(cntry, "data are estimated"))
+    print(str_c(cntry, " data are estimated"))
     
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
@@ -647,7 +859,7 @@ for (cntry in country_list) { # (cntry = country_list[1])
   # In if (gap_to_plot$estimated == "yes") { :
   #   the condition has length > 1 and only the first element will be used
   
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpTot.png", sep = ""), 
+  ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), 
          plot = my_plot)
   
 } 
@@ -667,7 +879,7 @@ dir.create("figures/Europe")
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == "Europe") %>%
-  mutate(gdpTot = gdpPercap * pop)
+  mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 
@@ -678,25 +890,25 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what's plotting
-  print(paste("Plotting", cntry))
+  print(str_c("Plotting", cntry))
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP", sep = " "))
   
 ## if estimated, add that as a subtitle. 
 if (any(gap_to_plot$estimated == "yes")) { # any() will return a single TRUE or FALSE
   
     ## add a print statement just to check
-    print(paste(cntry, "data are estimated"))
+    print(str_c(cntry, " data are estimated"))
     
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
   }
   
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpTot.png", sep = ""), 
+  ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), 
          plot = my_plot)
   
 } 
@@ -716,7 +928,7 @@ dir.create("figures/Europe")
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == "Europe") %>%
-  mutate(gdpTot = gdpPercap * pop)
+  mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 
@@ -727,30 +939,30 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what's plotting
-  print(paste("Plotting", cntry))
+  print(str_c("Plotting", cntry))
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = str_c(cntry, "GDP", sep = " "))
   
 ## if estimated, add that as a subtitle. 
 if (any(gap_to_plot$estimated == "yes")) { # any() will return a single TRUE or FALSE
   
     ## add a print statement just to check
-    print(paste(cntry, "data are estimated"))
+    print(str_c(cntry, " data are estimated"))
     
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
 } else {
   
-  print(paste(cntry, "data are reported"))
+  print(str_c(cntry, " data are reported"))
   
   my_plot <- my_plot +
     labs(subtitle = "Reported data") }
 
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpTot.png", sep = ""), 
+  ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), 
          plot = my_plot)
   
 } 
@@ -762,13 +974,13 @@ Note that this works because we know there are only two conditions, `Estimated =
 ```r
   if (any(gap_to_plot$estimated == "yes")) { # any() will return a single TRUE or FALSE
     
-    print(paste(cntry, "data are estimated"))
+    print(str_c(cntry, "data are estimated"))
     
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
   } else if (any(gap_to_plot$estimated == "no")){
     
-    print(paste(cntry, "data are reported"))
+    print(str_c(cntry, "data are reported"))
     
     my_plot <- my_plot +
       labs(subtitle = "Reported data")
@@ -789,7 +1001,7 @@ We can also add the conditional addition of the plot subtitle with R's `ifelse()
 ifelse(condition is true, perform action, perform alternative action)
 ```
 
-where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial `labs()` layer of our plot for a more concise expression that achives the same goal: 
+where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial `labs()` layer of our plot for a more concise expression that achieves the same goal: 
 
 
 ```r
@@ -799,7 +1011,7 @@ dir.create("figures/Europe")
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == "Europe") %>%
-  mutate(gdpTot = gdpPercap * pop)
+  mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 
@@ -810,15 +1022,15 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what's plotting
-  print(paste("Plotting", cntry))
+  print(str_c("Plotting ", cntry))
   
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "), subtitle = ifelse(any(gap_to_plot$estimated == "yes"), "Estimated data", "Reported data"))
+    labs(title = str_c(cntry, "GDP", sep = " "), subtitle = ifelse(any(gap_to_plot$estimated == "yes"), "Estimated data", "Reported data"))
 
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpTot.png", sep = ""), 
+  ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), 
          plot = my_plot)
   
 } 
@@ -844,5 +1056,5 @@ Write `for` loops to:
 
 ## Concluding remarks
 
-`for` loops are typically slow compared to vector based methods and frequently not the best available solution for implementing iterations. We therefore recommend that you learn about other aproaches, especially the map functions and functional programming. However, `for` loops are easy to implement and easy to understand so in many cases they can be a good solution for simple iterations.
+`for` loops are typically slow compared to vector based methods and frequently not the best available solution for implementing iterations. We therefore recommend that you learn about other approaches, especially the map functions and functional programming. However, `for` loops are easy to implement and easy to understand so in many cases they can be a good solution for simple iterations.
 

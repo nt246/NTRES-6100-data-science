@@ -96,7 +96,7 @@ We will only cover the first three today. Let's click on the links in turn to wo
 <br>
 
 
-### Row and columns binding
+### Row and column binding
 
 We'll play around with the [Jenny Bryan's Lord of the Rings Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md) that we also used in our Tidy Data lecture.
 
