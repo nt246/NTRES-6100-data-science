@@ -53,7 +53,7 @@ In the `gapminder` example we've been using to build a for loop together, we've 
 
 ```r
 for (i in 1:10) {
-  print(paste("Part_", i, sep = ""))
+  print(str_c("Part_", i, sep = ""))
 }
 ```
 <br>

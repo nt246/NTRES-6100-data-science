@@ -488,7 +488,7 @@ div.tocify {
 <h2>Looping with an index and storing results</h2>
 <p>In the <code>gapminder</code> example we’ve been using to build a for loop together, we’ve been iterating over a list of countries (in turn assigning each of these to our <code>cntry</code> object). You may often see for loops iterating over a numerical index, often using <code>i</code> as the object that in turn gets assigned each number from a sequence. Here is an example:</p>
 <pre class="r"><code>for (i in 1:10) {
-  print(paste(&quot;Part_&quot;, i, sep = &quot;&quot;))
+  print(str_c(&quot;Part_&quot;, i, sep = &quot;&quot;))
 }</code></pre>
 <p><br></p>
 <p>As another example, last class, we needed to calculate the product of gdp-per-cap and population size for each year and each country. We did this efficiently in a single step for all years and countries with a <code>mutate()</code>, prior to defining our loop or function.</p>
