@@ -260,14 +260,14 @@ Show data for the 6 subjects with the smallest sum of `Dose` as below.
 **Do not define new intermediate objects for this exercise; use pipes to
 chain together functions.**
 
-| Subject | mean(conc) | sum(Dose) |
-|:--------|-----------:|----------:|
-| 9       |   4.893636 |     34.10 |
-| 6       |   3.525454 |     44.00 |
-| 1       |   6.439091 |     44.22 |
-| 2       |   4.823636 |     48.40 |
-| 4       |   4.940000 |     48.40 |
-| 8       |   4.271818 |     49.83 |
+| Subject | mean_conc | sum_dose |
+|:--------|----------:|---------:|
+| 9       |  4.893636 |    34.10 |
+| 6       |  3.525454 |    44.00 |
+| 1       |  6.439091 |    44.22 |
+| 2       |  4.823636 |    48.40 |
+| 4       |  4.940000 |    48.40 |
+| 8       |  4.271818 |    49.83 |
 
 <br>
 
