@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-* Next week is our last week - only two more classes left
+* Next week is our last week - only three more classes left
 * You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 31). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present.
 
 <br>
@@ -61,10 +61,182 @@ library(tidyverse)
 
 We will first introduce functions with [these slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf)
 
-Then we'll illustrate how to write a basic function with the example described in [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/)
+Then we'll illustrate how to write a basic function with an example slightly modified from the [Data Carpentry's semester program lecture notes](https://datacarpentry.org/semester-biology/materials/functions-R/). 
 
 <br>
 <br>
+
+### The basic syntax
+
+```{r, eval = FALSE}
+
+function_name <- function(inputs) {
+  output_value <- do_something(inputs)
+  return(output_value)
+}
+
+```
+
+<br>
+
+Here is an example of a function that will calculate the volume of a shrub.
+
+```{r}
+
+calc_shrub_vol <- function(length, width, height) {
+  area <- length * width
+  volume <- area * height
+  return(volume)
+}
+
+```
+
+<br>
+
+When we run this code, nothing seems to happen (we don't get any output). Creating a function doesn’t run it. But it stores it, so that we can run it later with some arguments (or without arguments if the function has specified defaults - more about this later). Let's assume that we've measured a shrub. Its length is 0.8, its width is 1.6, and its height is 2.0. We can now call our function with these numbers (entering each number at the relevant position, according to how arguments were listed when we defined the function (in this case length, width, height)).
+
+```{r}
+calc_shrub_vol(0.8, 1.6, 2.0)
+```
+<br>
+
+This code will just print the results to our console. We can also store the output for later use.
+
+```{r}
+shrub_vol <- calc_shrub_vol(0.8, 1.6, 2.0)
+```
+<br>
+<br>
+
+### Your turn: Exercise
+
+Copy the following function into your assignment and replace the ________ with variables names for the input and output.
+
+```{r, eval = FALSE}
+convert_pounds_to_grams <- function(________) {
+    grams = 453.6 * pounds
+    return(________)
+}
+```
+
+Use the function to calculate how many grams there are in 3.75 pounds.
+
+<br>
+<br>
+
+### Objects defined within functions
+
+It is important to note that even after we've defined and run a function, we can't access variables created inside the function. For example
+
+```{r, eval = FALSE}
+volume
+> object 'volume' not found
+
+width
+> object 'width' not found
+
+```
+
+<br>
+<br>
+
+### Default arguments
+
+Defaults can be set for common inputs. For example, many of our shrubs are the same height so for those shrubs we only measure the length and width. So we want a default value for the height for cases where we don’t measure it. We can over-write the default if we specify something different for `height`, but if we don't specify a value for this argument, the default will be used.
+
+```{r}
+calc_shrub_vol <- function(length, width, height = 1) {
+  area <- length * width
+  volume <- area * height
+  return(volume)
+}
+
+calc_shrub_vol(0.8, 1.6)
+calc_shrub_vol(0.8, 1.6, 2.0)
+calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
+```
+
+<br>
+<br>
+
+### Named vs unnamed arguments
+When to use or not use argument names. For example, we can call our function either by explicitly naming each of our arguments or just list them by position
+
+```{r, eval = FALSE}
+calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
+```
+
+OR
+
+```{r, eval = FALSE}
+calc_shrub_vol(0.8, 1.6, 2.0)
+```
+
+<br>
+
+You can always name your arguments (i.e. `length = 0.8` instead of just `0.8`). The value will get assigned to the argument of that name. When you're naming each argument, the order in which you list them does not matter.   
+
+If you're not naming your arguments (i.e. just `0.8` instead of `length = 0.8`), then order determines what argument each value gets assigned to. Here, the first listed value will be assigned to length, the second to width, and the third to height. If the order is hard to remember, name your arguments.  
+
+In many cases there are a lot of optional arguments (arguments that have defaults defined so that they don't need to be specified for the function to run). Convention to always name optional arguments. So, in our case, the most common approach would be
+
+```{r}
+calc_shrub_vol(0.8, 1.6, height = 2.0)
+```
+
+<br>
+<br>
+
+### Combining functions
+
+Each function should be single conceptual chunk of code. Functions can be combined to do larger tasks in two ways. 
+
+The first is to call multiple functions in a row
+```{r}
+est_shrub_mass <- function(volume){
+  mass <- 2.65 * volume^0.9
+}
+
+shrub_volume <- calc_shrub_vol(0.8, 1.6, 2.0)
+shrub_mass <- est_shrub_mass(shrub_volume)
+```
+
+<br>
+
+We can also use pipes with our own functions. The output from the first function becomes the first argument for the second function
+
+```{r}
+library(dplyr)
+
+shrub_mass <- calc_shrub_vol(0.8, 1.6, 2.0) %>%
+  est_shrub_mass()
+```
+
+<br>
+
+We can also nest functions, like this:
+
+```{r}
+shrub_mass <- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))
+```
+
+<br>
+
+We can also call functions from inside other functions. This allows organizing function calls into logical groups, like this:
+
+```{r, eval = FALSE}
+est_shrub_mass <- function(length, width, height){
+  volume = calc_shrub_vol(length, width, height)
+  mass <- est_shrub_mass(volume)
+  return(mass)
+}
+
+est_shrub_mass(0.8, 1.6, 2.0)
+```
+
+<br>
+<br>
+
 
 
 ## An example application

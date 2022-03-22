@@ -478,7 +478,7 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Next week is our last week - only two more classes left</li>
+<li>Next week is our last week - only three more classes left</li>
 <li>You will be giving your 1.5 minute <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">end-of-class student presentations</a> next Thursday (March 31). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present.</li>
 </ul>
 <p><br></p>
@@ -500,8 +500,111 @@ div.tocify {
 <pre class="r"><code>library(tidyverse)</code></pre>
 <p><br> <br></p>
 <p>We will first introduce functions with <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf">these slides</a></p>
-<p>Then we’ll illustrate how to write a basic function with the example described in <a href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data Carpentry’s semester program lecture notes</a></p>
+<p>Then we’ll illustrate how to write a basic function with an example slightly modified from the <a href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data Carpentry’s semester program lecture notes</a>.</p>
 <p><br> <br></p>
+<div id="the-basic-syntax" class="section level3">
+<h3>The basic syntax</h3>
+<pre class="r"><code>function_name &lt;- function(inputs) {
+  output_value &lt;- do_something(inputs)
+  return(output_value)
+}</code></pre>
+<p><br></p>
+<p>Here is an example of a function that will calculate the volume of a shrub.</p>
+<pre class="r"><code>calc_shrub_vol &lt;- function(length, width, height) {
+  area &lt;- length * width
+  volume &lt;- area * height
+  return(volume)
+}</code></pre>
+<p><br></p>
+<p>When we run this code, nothing seems to happen (we don’t get any output). Creating a function doesn’t run it. But it stores it, so that we can run it later with some arguments (or without arguments if the function has specified defaults - more about this later). Let’s assume that we’ve measured a shrub. Its length is 0.8, its width is 1.6, and its height is 2.0. We can now call our function with these numbers (entering each number at the relevant position, according to how arguments were listed when we defined the function (in this case length, width, height)).</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br></p>
+<p>This code will just print the results to our console. We can also store the output for later use.</p>
+<pre class="r"><code>shrub_vol &lt;- calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<p><br> <br></p>
+</div>
+<div id="your-turn-exercise" class="section level3">
+<h3>Your turn: Exercise</h3>
+<p>Copy the following function into your assignment and replace the ________ with variables names for the input and output.</p>
+<pre class="r"><code>convert_pounds_to_grams &lt;- function(________) {
+    grams = 453.6 * pounds
+    return(________)
+}</code></pre>
+<p>Use the function to calculate how many grams there are in 3.75 pounds.</p>
+<p><br> <br></p>
+</div>
+<div id="objects-defined-within-functions" class="section level3">
+<h3>Objects defined within functions</h3>
+<p>It is important to note that even after we’ve defined and run a function, we can’t access variables created inside the function. For example</p>
+<pre class="r"><code>volume
+&gt; object &#39;volume&#39; not found
+
+width
+&gt; object &#39;width&#39; not found</code></pre>
+<p><br> <br></p>
+</div>
+<div id="default-arguments" class="section level3">
+<h3>Default arguments</h3>
+<p>Defaults can be set for common inputs. For example, many of our shrubs are the same height so for those shrubs we only measure the length and width. So we want a default value for the height for cases where we don’t measure it. We can over-write the default if we specify something different for <code>height</code>, but if we don’t specify a value for this argument, the default will be used.</p>
+<pre class="r"><code>calc_shrub_vol &lt;- function(length, width, height = 1) {
+  area &lt;- length * width
+  volume &lt;- area * height
+  return(volume)
+}
+
+calc_shrub_vol(0.8, 1.6)</code></pre>
+<pre><code>## [1] 1.28</code></pre>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<pre class="r"><code>calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br> <br></p>
+</div>
+<div id="named-vs-unnamed-arguments" class="section level3">
+<h3>Named vs unnamed arguments</h3>
+<p>When to use or not use argument names. For example, we can call our function either by explicitly naming each of our arguments or just list them by position</p>
+<pre class="r"><code>calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)</code></pre>
+<p>OR</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<p><br></p>
+<p>You can always name your arguments (i.e. <code>length = 0.8</code> instead of just <code>0.8</code>). The value will get assigned to the argument of that name. When you’re naming each argument, the order in which you list them does not matter.</p>
+<p>If you’re not naming your arguments (i.e. just <code>0.8</code> instead of <code>length = 0.8</code>), then order determines what argument each value gets assigned to. Here, the first listed value will be assigned to length, the second to width, and the third to height. If the order is hard to remember, name your arguments.</p>
+<p>In many cases there are a lot of optional arguments (arguments that have defaults defined so that they don’t need to be specified for the function to run). Convention to always name optional arguments. So, in our case, the most common approach would be</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, height = 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br> <br></p>
+</div>
+<div id="combining-functions" class="section level3">
+<h3>Combining functions</h3>
+<p>Each function should be single conceptual chunk of code. Functions can be combined to do larger tasks in two ways.</p>
+<p>The first is to call multiple functions in a row</p>
+<pre class="r"><code>est_shrub_mass &lt;- function(volume){
+  mass &lt;- 2.65 * volume^0.9
+}
+
+shrub_volume &lt;- calc_shrub_vol(0.8, 1.6, 2.0)
+shrub_mass &lt;- est_shrub_mass(shrub_volume)</code></pre>
+<p><br></p>
+<p>We can also use pipes with our own functions. The output from the first function becomes the first argument for the second function</p>
+<pre class="r"><code>library(dplyr)
+
+shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) %&gt;%
+  est_shrub_mass()</code></pre>
+<p><br></p>
+<p>We can also nest functions, like this:</p>
+<pre class="r"><code>shrub_mass &lt;- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))</code></pre>
+<p><br></p>
+<p>We can also call functions from inside other functions. This allows organizing function calls into logical groups, like this:</p>
+<pre class="r"><code>est_shrub_mass &lt;- function(length, width, height){
+  volume = calc_shrub_vol(length, width, height)
+  mass &lt;- est_shrub_mass(volume)
+  return(mass)
+}
+
+est_shrub_mass(0.8, 1.6, 2.0)</code></pre>
+<p><br> <br></p>
+</div>
 </div>
 <div id="an-example-application" class="section level2">
 <h2>An example application</h2>
