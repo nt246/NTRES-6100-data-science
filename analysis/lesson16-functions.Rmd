@@ -114,7 +114,7 @@ Copy the following function into your assignment and replace the ________ with v
 
 ```{r, eval = FALSE}
 convert_pounds_to_grams <- function(________) {
-    grams = 453.6 * pounds
+    grams <- 453.6 * pounds
     return(________)
 }
 ```
@@ -195,6 +195,7 @@ The first is to call multiple functions in a row
 ```{r}
 est_shrub_mass <- function(volume){
   mass <- 2.65 * volume^0.9
+  return(mass)
 }
 
 shrub_volume <- calc_shrub_vol(0.8, 1.6, 2.0)
@@ -225,13 +226,13 @@ shrub_mass <- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))
 We can also call functions from inside other functions. This allows organizing function calls into logical groups, like this:
 
 ```{r, eval = FALSE}
-est_shrub_mass <- function(length, width, height){
+est_shrub_mass_from_raw <- function(length, width, height){
   volume = calc_shrub_vol(length, width, height)
   mass <- est_shrub_mass(volume)
   return(mass)
 }
 
-est_shrub_mass(0.8, 1.6, 2.0)
+est_shrub_mass_from_raw(0.8, 1.6, 2.0)
 ```
 
 <br>

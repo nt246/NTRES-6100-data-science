@@ -528,7 +528,7 @@ div.tocify {
 <h3>Your turn: Exercise</h3>
 <p>Copy the following function into your assignment and replace the ________ with variables names for the input and output.</p>
 <pre class="r"><code>convert_pounds_to_grams &lt;- function(________) {
-    grams = 453.6 * pounds
+    grams &lt;- 453.6 * pounds
     return(________)
 }</code></pre>
 <p>Use the function to calculate how many grams there are in 3.75 pounds.</p>
@@ -581,6 +581,7 @@ calc_shrub_vol(0.8, 1.6)</code></pre>
 <p>The first is to call multiple functions in a row</p>
 <pre class="r"><code>est_shrub_mass &lt;- function(volume){
   mass &lt;- 2.65 * volume^0.9
+  return(mass)
 }
 
 shrub_volume &lt;- calc_shrub_vol(0.8, 1.6, 2.0)
@@ -596,13 +597,13 @@ shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) %&gt;%
 <pre class="r"><code>shrub_mass &lt;- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))</code></pre>
 <p><br></p>
 <p>We can also call functions from inside other functions. This allows organizing function calls into logical groups, like this:</p>
-<pre class="r"><code>est_shrub_mass &lt;- function(length, width, height){
+<pre class="r"><code>est_shrub_mass_from_raw &lt;- function(length, width, height){
   volume = calc_shrub_vol(length, width, height)
   mass &lt;- est_shrub_mass(volume)
   return(mass)
 }
 
-est_shrub_mass(0.8, 1.6, 2.0)</code></pre>
+est_shrub_mass_from_raw(0.8, 1.6, 2.0)</code></pre>
 <p><br> <br></p>
 </div>
 </div>
