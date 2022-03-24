@@ -33,9 +33,12 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-
+* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 31). If you can't make it to class (and are taking the course for credit), please submit a video of your presentation before the class
+* Instead of a regular lab session next week, Nicolas will offer optional 30-min consultations to discuss your project or analysis need. If you're interested, please sign up [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). We will give preference to those enrolled in the lab sessions, but if there is availability, other's are welcome.
 
 <br>
+<br>
+
 
 ## Today's learning objectives
 By the end of today's class, you should be able to:
@@ -65,7 +68,7 @@ library(gridExtra)  #install.packages("gridExtra")
 
 ## Better plots with factor level manipulation 
 
-R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. As such, this data type looks like character data type from the outset, but it can contain additional information to manage the levels and the order (or sequence) of the categorical values. Factors are important for modeling also helpful for reordering character vectors to improve display. 
+R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. As such, this data type looks like character data type from the outset, but it can contain additional information to manage the levels and the order (or sequence) of the categorical values. Factors are important for modeling, but are also helpful for reordering character vectors to improve display in graphics. 
 
 We'll go over [Jenny Bryan's illustration](https://stat545.com/factors-boss.html) of how a few powerful functions from the `forcats` package can significantly improve our handling of factor variables and visualization of data with categorical variables. The code used in-class can be found [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/factors_in_lecture_code.R)
 

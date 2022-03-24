@@ -90,6 +90,26 @@ h_gap %>%
   mutate(country = fct_drop(country))
 
 
+### Exercise
+
+#Filter the gapminder data down to rows where population is less than a quarter of a million, i.e. 250,000. Get rid of the unused factor levels for country and continent in different ways, such as: droplevels() or fct_drop() inside mutate()
+
+small_countries <- gapminder %>% 
+  filter(pop < 250000)
+
+small_countries$country
+small_countries$continent
+
+small_countries <- gapminder %>% 
+  filter(pop < 250000) %>% 
+  droplevels()
+
+t <- small_countries %>% 
+  mutate(country = fct_drop(country))
+
+levels(t$country)
+
+
 
 # Sort factor levels by their frequency of occurrence ---------------------
 # A job for fct_infreq()
@@ -124,6 +144,7 @@ p3 <- gapminder %>%
 
 
 grid.arrange(p1, p2, p3, nrow = 1)
+grid.arrange(p1, p2, nrow = 1)
 
 
 
@@ -145,6 +166,34 @@ p2 <- gap_asia_2007 %>%
   geom_point()
 
 grid.arrange(p1, p2, nrow = 1)
+
+
+gap_asia_2007 <- gapminder %>% 
+  filter(year == 2007, continent == 'Asia') %>% 
+  arrange(lifeExp)
+
+p3 <- gap_asia_2007 %>% 
+  ggplot(aes(x = lifeExp, y = fct_inorder(country))) +
+  geom_point()
+
+
+# When you have a line chart of a quantitative x against another quantitative y and your factor provides the color. fct_reorder2() will change the factor level order so the legend appears in some order as the data! Contrast the legend on the left with the one on the right
+
+h_countries <- c("Egypt", "Haiti", "Romania", "Thailand", "Venezuela")
+
+h_gap <- gapminder %>%
+  filter(country %in% h_countries) %>% 
+  droplevels()
+
+p1 <- ggplot(h_gap, aes(x = year, y = lifeExp, color = country)) +
+  geom_line()
+p2 <- ggplot(h_gap, aes(x = year, y = lifeExp,
+                  color = fct_reorder2(country, year, lifeExp))) +
+  geom_line() +
+  labs(color = "country")
+
+grid.arrange(p1, p2, nrow = 1)
+
 
 
 
@@ -217,6 +266,8 @@ i_gap$country %>%
 
 
 # Combining datasets with different factor levels --------------------------------------------------
+# SKIP THIS SECTION, DEFAULT BEHAVIOR HAS CHANGED TO ALLOW MERGING
+
 
 df1 <- gapminder %>%
   filter(country %in% c("United States", "Mexico"), year > 2000) %>%
@@ -238,3 +289,5 @@ comb <- bind_rows(df1, df2)
 
 levels(comb$country)
 rbind(df1, df2)
+
+
