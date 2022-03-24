@@ -77,6 +77,8 @@ h_gap %>%
   ggplot(aes(year, lifeExp, col = country)) +
   geom_line()
 
+
+
 # Now dropping unused factor levels
 h_gap_dropped <- h_gap %>% 
   droplevels()
@@ -290,4 +292,69 @@ comb <- bind_rows(df1, df2)
 levels(comb$country)
 rbind(df1, df2)
 
+
+
+
+
+# gss_cat -----------------------------------------------------------------
+
+# Explore the distribution of rincome (reported income). What makes the default bar chart hard to understand? How could you improve the plot?
+
+gss_cat %>%
+  ggplot(aes(x = rincome)) +
+  geom_bar() +
+  coord_flip()
+
+# What is the most common relig in this survey? What’s the most common partyid?
+gss_cat %>%
+  count(relig) %>%
+  arrange(-n)
+
+
+# Modifying factor order
+# The average number of hours spent watching TV per day across religions:
+
+relig_summary <- gss_cat %>%
+  group_by(relig) %>%
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+#> `summarise()` ungrouping output (override with `.groups` argument)
+
+ggplot(relig_summary, aes(tvhours, relig)) + geom_point()
+
+
+ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
+  geom_point()
+
+# Better to pull out the factor modification 
+relig_summary %>%
+  mutate(relig = fct_reorder(relig, tvhours)) %>%
+  ggplot(aes(tvhours, relig)) +
+  geom_point()
+
+
+# Create a similar plot looking at how average age varies across reported income level?
+
+
+
+
+
+
+gss_cat %>%
+  ggplot(aes(fct_infreq(marital))) +
+  geom_bar()
+
+
+
+gss_cat %>%
+  mutate(partyid = fct_collapse(partyid,
+                                other = c("No answer", "Don't know", "Other party"),
+                                rep = c("Strong republican", "Not str republican"),
+                                ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+                                dem = c("Not str democrat", "Strong democrat")
+  )) %>%
+  count(partyid)
 
