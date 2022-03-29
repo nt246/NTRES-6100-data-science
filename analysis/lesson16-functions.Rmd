@@ -530,3 +530,9 @@ save_plot("Germany", "lifeExp", "jpg")
 ## Testing your functions
 
 If there is time, we'll walk through part of the example in [Chapters 18-21](https://stat545.com/functions-part1.html) in Jenny Bryan's STAT545 notes
+
+<br>
+<br>
+
+## Example code and good advice on functions
+Check out [this post](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0)

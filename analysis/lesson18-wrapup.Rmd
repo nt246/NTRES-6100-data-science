@@ -31,21 +31,23 @@ This course is still under very active development, so I would really value ever
 
 Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted. 
 
-If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the `feedback` channel on Slack. Remember you can post anonymously by prefacing your message with `/anon ` (e.g. `/anon Here is my message).
+If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the `feedback` channel on Slack. Remember you can post anonymously by prefacing your message with `/anon ` (e.g. `/anon Here is my message`).
 
 <br>
 
 ## Agenda for today's class
 
 * Quick review
-  - Batch data import and processing
-  - Applying functions to vectors or on columns of a dataframe (code [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/function_example.R), and nice take-home messages about functions [here](https://nicercode.github.io/guides/functions/))
+  - Data types in R
+  - Parse functions
+  - Good recap messages about functions [here](https://nicercode.github.io/guides/functions/))
 * Continued access to the course material
   - [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
   - Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep
   
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
+* [If we have time] Troubleshooting strategies
 
 <br>
 <br>
@@ -117,7 +119,8 @@ Some ways to make code more human-readable include:
 * Clear workflows
 * Use comments
 * Give objects meaningful names
-* Use well-named operations, e.g. `select(data, columnname)` instead of `data[,5]`
+* Use functions with meaningful names
+* Use well-named operations, e.g. `select(data, column_name)` instead of `data[,5]`
 
 <br>
 
@@ -207,7 +210,7 @@ For more examples, check out the [RStudio Flexdashboard website](https://rmarkdo
 
 Go to the RStudio Tips twitter account (https://twitter.com/rstudiotips) and find one tip that looks interesting. Practice using it!
 
-[Here](https://twitter.com/kc_analytics/status/1378770803454529538) is an example of recent very useful thread, listing RStudio shortcuts
+[Here](https://twitter.com/kc_analytics/status/1378770803454529538) is an example of a very useful thread, listing RStudio shortcuts
 
 
 <br>
@@ -264,9 +267,17 @@ If there are 3 things to communicate to others after this course, I think they w
 
 <br>
 
-## If we have time: Discussion questions as warm-up for Wednesday's presentations
+## If we have time: Discussion questions as warm-up for Thursday's presentations
 
 * What is the most valuable thing you have learned in this class?
 * Are you planning to implement any changes your workflow or practices moving forward
 * What are you excited about learning next or what existing skills do you want to improve?
 
+<br>
+<br>
+
+## Tips for troubleshooting
+
+> Getting help, or really helping you help yourself, means moving beyond “it’s not working” and towards solution-oriented approaches. Part of this is the mindset where you **expect that someone has encountered this problem before** and that **most likely the problem is your typo or misuse**, and not that R is broken or hates you.
+
+There is excellent advice for trouble-shooting R-code and how to get help in [Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27) by Allison Horst.

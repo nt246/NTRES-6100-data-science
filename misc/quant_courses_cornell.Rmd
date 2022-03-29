@@ -1,0 +1,25 @@
+---
+title: "Overview of quantitative courses at Cornell"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+## List of quantitative courses at Cornell
+
+Steve Ellner's modeling course is a nice overview of dynamic models in ecological systems with a heavy R component: https://classes.cornell.edu/browse/roster/SP22/class/BIOEE/7600
+
+NTRES3100	Applied Population Ecology	Evan Cooch
+CRP 7201	Research Design	Mildred Warner
+
+BTRY 6020	Statistical Methods II	Joe Guiness
+NTRES 6200	Spatial Modeling and Analysis	David Rossiter
+PLSCS 4290	Remote Sensing and Modeling	Ying Sun
+PAM 4101	Causal Reasoning & Policy Evaluation 1	Max Kapustin
+BEE 6310	Multivariate Statistics for Environmental Applications	Scott Steinschneider
+DEA 6560	Research Methods in Social Sciences	Nancy Wells
+CS 1380	Data Science for All	David Williamson
