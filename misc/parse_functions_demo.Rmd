@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GitHub Documents
+```{r}
+library(tidyverse)
+```
+
+```{r}
+a <- c("1.1", "4.2")
+sum(a)
+parse_double(a) %>% sum()
+b <- c("1/1/2022", "4/2/1999")
+parse_date(b, format = "%m/%d/%Y")
+tibble(a, b)
+tibble(a, b) %>%
+  mutate(a = parse_double(a), b = parse_date(b, format = "%m/%d/%Y"))
+  #type_convert(col_types = cols(a = col_double(), b = col_date(format = "%m/%d/%Y")))
+```
+
+```{r}
+weather <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv", col_types = cols(.default = "c"))
+weather %>% 
+  pivot_longer(cols = `00`:`23`, names_to = "hour", values_to = "value") %>%
+  mutate(date=parse_date(date)) %>%
+  filter(date < parse_date("2015-01-08"),
+         item == "AMB_TEMP") %>%
+  unite("date_time", date, hour, sep = " ") %>%
+  mutate(value = parse_double(value),
+         date_time = parse_datetime(date_time, format = "%Y-%m-%d %H")) %>%
+  ggplot() +
+  geom_line(aes(x=date_time, y=value))
+  
+```
+
