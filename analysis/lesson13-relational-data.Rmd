@@ -163,7 +163,7 @@ library(tidyverse)
 library(nycflights13) #install.packages("nycflights13")
 ```
 
-    ```{r, eval = FALSE}
+```{r, eval = FALSE}
     library(maps) #install.packages("maps")
 
     airports %>%
@@ -172,7 +172,7 @@ library(nycflights13) #install.packages("nycflights13")
         borders("state") +
         geom_point() +
         coord_quickmap()
-    ```
+```
 
     (Don't worry if you don't understand what `semi_join()` does --- you'll
     learn about it next.)

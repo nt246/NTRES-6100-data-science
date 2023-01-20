@@ -37,7 +37,9 @@ install.packages(c("nycflights13", "gapminder", "Lahman"))
 
 ### Install Slack and join workspace  
 
-Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/slack-ptl9289/shared_invite/zt-1nno6xmac-WRM7qtUiE53pWB1Wuz6J6A). We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
+Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/slack-ptl9289/shared_invite/zt-1nno6xmac-WRM7qtUiE53pWB1Wuz6J6A). 
+
+We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 
 When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. If you don't plan on using Slack regularly, please go to "Preferences" and check the box that says "Send me email notifications for mentions and direct messages". 
 
