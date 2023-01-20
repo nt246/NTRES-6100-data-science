@@ -13,7 +13,7 @@
 
 <title>Pre-course installation guide</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -457,18 +458,29 @@ div.tocify {
 
 
 <blockquote>
-<p>Please follow this guide to install the following free software on your laptop <strong>before our first lecture</strong>. It should only take about 20 minutes.</p>
+<p>Please follow this guide to install the following free software on
+your laptop <strong>before our first lecture</strong>. It should only
+take about 20 minutes.</p>
 </blockquote>
 <hr />
 <div id="install-r-and-rstudio" class="section level3">
 <h3>Install R and RStudio</h3>
-<p>Follow the instructions in <a href="https://r4ds.had.co.nz/introduction.html#prerequisites">section 1.4</a> of the R for Data Science book. Make sure to get the free open source license RStudio Desktop version.</p>
-<p><strong>Note</strong>: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.1.2 and RStudio v2021.09.2). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.</p>
+<p>Follow the instructions in <a
+href="https://r4ds.had.co.nz/introduction.html#prerequisites">section
+1.4</a> of the R for Data Science book. Make sure to get the free open
+source license RStudio Desktop version.</p>
+<p><strong>Note</strong>: If you already have R and RStudio installed,
+make sure you update to the most recent recent versions (R v4.1.2 and
+RStudio v2021.09.2). There have been recent changes to many packages and
+some of the functions that we will use are not available or have
+different names in outdated versions.</p>
 <hr />
 </div>
 <div id="install-r-packages" class="section level3">
 <h3>Install R packages</h3>
-<p>Please install the key R packages that we are going to use in this class. Install by copying the following code to RStudio console one line at a time and hit “Enter” to run.</p>
+<p>Please install the key R packages that we are going to use in this
+class. Install by copying the following code to RStudio console one line
+at a time and hit “Enter” to run.</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 install.packages(&quot;rmarkdown&quot;)
 install.packages(&quot;knitr&quot;)
@@ -478,22 +490,42 @@ install.packages(c(&quot;nycflights13&quot;, &quot;gapminder&quot;, &quot;Lahman
 </div>
 <div id="install-slack-and-join-workspace" class="section level3">
 <h3>Install Slack and join workspace</h3>
-<p>Please install <a href="https://slack.com/download">Slack</a> on your laptop, and then <a href="https://join.slack.com/t/ntres6100-sp22/shared_invite/zt-11ztkw0t3-34p8BoXwoQiwOLeXqE_u2Q">join the work space for our class</a>. We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.</p>
-<p>When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we’ll be able to continue using Slack for free. If you don’t plan on using Slack regularly, please go to “Preferences” and check the box that says “Send me email notifications for mentions and direct messages”.</p>
-<p><img src="https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460" /></p>
-<p>By clicking this option, you will able to receive all of our announcements via email without needing to log in on Slack every time.</p>
+<p>Please install <a href="https://slack.com/download">Slack</a> on your
+laptop, and then <a
+href="https://join.slack.com/t/slack-ptl9289/shared_invite/zt-1nno6xmac-WRM7qtUiE53pWB1Wuz6J6A">join
+the work space for our class</a>. We are going to use Slack as our
+primary communication channel for this course. Please consider adding a
+photo to your profile to make our workspace more personal.</p>
+<p>When you first enter our workspace, you may see a notice about a free
+trial version expiring soon. Just ignore that, we’ll be able to continue
+using Slack for free. If you don’t plan on using Slack regularly, please
+go to “Preferences” and check the box that says “Send me email
+notifications for mentions and direct messages”.</p>
+<p><img
+src="https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460" /></p>
+<p>By clicking this option, you will able to receive all of our
+announcements via email without needing to log in on Slack every
+time.</p>
 <hr />
 </div>
 <div id="create-a-github-account" class="section level3">
 <h3>Create a GitHub account</h3>
-<p>If you don’t have a GitHub account yet, create one <a href="https://github.com/join">here</a>. Give some thought to what you pick as your user name - see advice <a href="https://happygitwithr.com/github-acct.html#username-advice">here</a>.</p>
+<p>If you don’t have a GitHub account yet, create one <a
+href="https://github.com/join">here</a>. Give some thought to what you
+pick as your user name - see advice <a
+href="https://happygitwithr.com/github-acct.html#username-advice">here</a>.</p>
 <hr />
 </div>
 <div id="install-git" class="section level3">
 <h3>Install Git</h3>
-<p>Download and install Git: <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a><br />
-Follow your operating system’s normal installation process. Note: you will not see an application called Git listed but if the installation process completed it was likely successful, and we will confirm together in class.</p>
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<p>Download and install Git: <a href="https://git-scm.com/downloads"
+class="uri">https://git-scm.com/downloads</a><br />
+Follow your operating system’s normal installation process. Note: you
+will not see an application called Git listed but if the installation
+process completed it was likely successful, and we will confirm together
+in class.</p>
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 </div>
