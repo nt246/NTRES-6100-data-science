@@ -111,7 +111,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 *Subject to adjustment*  
 
 | Lecture#| Day | Date | Topic                                                                                         | Assignment due dates |
-|:--------|:----|:-----|:----------------------------------------------------------------------------------------------|:-----------------|
+|:--------|:----|:-----|:-----------------------------------------------------------------------------------------|:----------------------|
 | 1       | Tue | 1/24  | [Intro to the course and R/RStudio](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)|       |
 | 2       | Thu | 1/26 | [Markdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)   |                  |
 | 3       | Tue | 1/31  | [The Git workflow (version control)](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)| |
@@ -135,7 +135,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
-|:--------|:-----------|:-----------|:-----------------------------------------------------------------------------------------------|
+|:--------|:-------------|:------------|:-----------------------------------------------------------------------------------------------|
 | 1       | 1/26       | 1/27       | [RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)               |
 | 2       | 2/2        | 2/3        | [RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html) |
 | 3       | 2/9       | 2/10       | [Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html) |
