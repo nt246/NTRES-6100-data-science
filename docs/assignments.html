@@ -13,7 +13,7 @@
 
 <title>Assignments</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -456,34 +457,44 @@ div.tocify {
 </div>
 
 
-<p>Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT.</p>
+<p>Each week, we will assign a problem set that applies the concepts
+covered in class in a new context to reinforce your learning. The
+problem sets are due the following week at 10pm EDT.</p>
 <hr />
 <div id="assignment-1" class="section level3">
 <h3>Assignment 1</h3>
 <div id="r-markdown-template" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">R Markdown template</a></h4>
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">R
+Markdown template</a></h4>
 <blockquote>
-<p>Due Thu 02/03 by 10pm EDT</p>
+<p>Due Thu 02/02 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
 </div>
 <div id="assignment-2" class="section level3">
 <h3>Assignment 2</h3>
-<div id="put-one-of-your-pre-existing-projects-on-github" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Put one of your pre-existing projects on GitHub</a></h4>
+<div id="put-one-of-your-pre-existing-projects-on-github"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Put
+one of your pre-existing projects on GitHub</a></h4>
 <blockquote>
-<p>Due Thu 02/10 by 10pm EDT</p>
+<p>Due Thu 02/9 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
 </div>
 <div id="assignment-3" class="section level3">
 <h3>Assignment 3</h3>
-<div id="create-a-collaborative-website-with-github-pages" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md">Create a collaborative website with GitHub Pages</a></h4>
+<div id="create-a-collaborative-website-with-github-pages"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md">Create
+a collaborative website with GitHub Pages</a></h4>
 <blockquote>
-<p>Due Thu 02/17 by 10pm EDT</p>
+<p>Due Thu 02/16 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
@@ -491,19 +502,24 @@ div.tocify {
 <div id="assignment-4" class="section level3">
 <h3>Assignment 4</h3>
 <div id="data-transformation-and-visualization" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md">Data transformation and visualization</a></h4>
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md">Data
+transformation and visualization</a></h4>
 <blockquote>
-<p>Due Thu 02/24 by 10pm EDT</p>
+<p>Due Thu 02/23 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
 </div>
 <div id="assignment-5" class="section level3">
 <h3>Assignment 5</h3>
-<div id="data-transformation-and-visualization---part-2" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md">Data transformation and visualization - Part 2</a></h4>
+<div id="data-transformation-and-visualization---part-2"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md">Data
+transformation and visualization - Part 2</a></h4>
 <blockquote>
-<p>Due Thu 03/03 by 10pm EDT</p>
+<p>Due Thu 03/02 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
@@ -511,19 +527,25 @@ div.tocify {
 <div id="assignment-6" class="section level3">
 <h3>Assignment 6</h3>
 <div id="data-import-and-tidy-data" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md">Data import and tidy data</a></h4>
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md">Data
+import and tidy data</a></h4>
 <blockquote>
-<p>Due Thu 03/10 by 10pm EDT</p>
+<p>Due Thu 03/9 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
 </div>
 <div id="assignment-7" class="section level3">
 <h3>Assignment 7</h3>
-<div id="relational-data-plus-revisiting-data-wrangling-and-visualization" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md">Relational data plus revisiting data wrangling and visualization</a></h4>
+<div
+id="relational-data-plus-revisiting-data-wrangling-and-visualization"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md">Relational
+data plus revisiting data wrangling and visualization</a></h4>
 <blockquote>
-<p>Due Thu 03/17 by 10pm EDT</p>
+<p>Due Thu 03/16 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
@@ -531,9 +553,11 @@ div.tocify {
 <div id="assignment-8" class="section level3">
 <h3>Assignment 8</h3>
 <div id="iteration-and-conditional-execution" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md">Iteration and conditional execution</a></h4>
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md">Iteration
+and conditional execution</a></h4>
 <blockquote>
-<p>Due Thu 03/24 by 10pm EDT</p>
+<p>Due Thu 03/23 by 10pm EDT</p>
 </blockquote>
 <hr />
 </div>
@@ -541,12 +565,15 @@ div.tocify {
 <div id="assignment-9" class="section level3">
 <h3>Assignment 9</h3>
 <div id="functions-and-factors" class="section level4">
-<h4><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md">Functions and factors</a></h4>
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md">Functions
+and factors</a></h4>
 <blockquote>
-<p>Due Thu 03/31 by 10pm EDT</p>
+<p>Due Thu 03/30 by 10pm EDT</p>
 </blockquote>
 <hr />
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 </div>
