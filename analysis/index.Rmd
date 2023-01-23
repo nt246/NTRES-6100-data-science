@@ -9,31 +9,30 @@ site: workflowr::wflow_site
 
 ### NTRES 6100 
 
-#### Cornell University, Spring 2022
+#### Cornell University, Spring 2023
 
 
-This website complements the class [Canvas](https://canvas.cornell.edu/courses/39033) site.  
+This website complements the class [Canvas](https://canvas.cornell.edu/courses/51175) site.  
 
 ***
 
 **Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com)
 &nbsp;
-**TA**: PhD Student [Nicolas Lou](https://dnr.cals.cornell.edu/people/runyang-lou/)
+**TA**: PhD Student Azwad Iqbal
 
 ***
 #### Meeting times and locations
 
 **Lectures**:  
 Tuesday and Thursday 9:40am - 10:55am  
-(January 25 - March 31, 2022)   
-Emerson Hall 135  
+(January 24 - March 31, 2023)   
+Fernow Hall G24 
 
 **Optional lab sessions**:  
 *Hands-on practice sessions in groups and with TA support*  
-Thursday session: 12:25pm - 2:20pm, Academic Surge A 109  
+Thursday session: 12:25pm - 2:20pm, Fernow Hall G01  
 Friday session: 12:25pm - 2:20pm, Fernow Hall G01  
 
-Note that the first two weeks of class (both lectures and lab sessions) will be taught remotely. Zoom links will be available from the class [Canvas](https://canvas.cornell.edu/courses/39033) site.
 
 ***
 

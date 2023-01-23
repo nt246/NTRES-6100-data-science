@@ -10,11 +10,11 @@
 
 
 
-<meta name="date" content="2022-01-21" />
+<meta name="date" content="2023-01-23" />
 
 <title>Collaborative and Reproducible Data Science in R</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -61,6 +61,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -81,6 +82,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -138,11 +142,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -171,8 +179,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -180,16 +188,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -233,7 +234,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -246,7 +247,7 @@ $(document).ready(function () {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -310,7 +311,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -350,7 +351,7 @@ $(document).ready(function () {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -376,8 +377,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Collaborative and Reproducible Data Science in R</h1>
-<h4 class="date">2022-01-21</h4>
+<h1 class="title toc-ignore">Collaborative and Reproducible Data Science
+in R</h1>
+<h4 class="date">2023-01-23</h4>
 
 </div>
 
@@ -385,48 +387,67 @@ $(document).ready(function () {
 <p><img src="assets/logo.png" style="width:50.0%" /></p>
 <div id="ntres-6100" class="section level3">
 <h3>NTRES 6100</h3>
-<div id="cornell-university-spring-2022" class="section level4">
-<h4>Cornell University, Spring 2022</h4>
-<p>This website complements the class <a href="https://canvas.cornell.edu/courses/39033">Canvas</a> site.</p>
+<div id="cornell-university-spring-2023" class="section level4">
+<h4>Cornell University, Spring 2023</h4>
+<p>This website complements the class <a
+href="https://canvas.cornell.edu/courses/51175">Canvas</a> site.</p>
 <hr />
-<p><strong>Instructor</strong>: Assistant Professor <a href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a>   <strong>TA</strong>: PhD Student <a href="https://dnr.cals.cornell.edu/people/runyang-lou/">Nicolas Lou</a></p>
+<p><strong>Instructor</strong>: Assistant Professor <a
+href="https://www.therkildsenlab.com">Nina Overgaard Therkildsen</a>  
+<strong>TA</strong>: PhD Student Azwad Iqbal</p>
 <hr />
 </div>
 <div id="meeting-times-and-locations" class="section level4">
 <h4>Meeting times and locations</h4>
 <p><strong>Lectures</strong>:<br />
 Tuesday and Thursday 9:40am - 10:55am<br />
-(January 25 - March 31, 2022)<br />
-Emerson Hall 135</p>
+(January 24 - March 31, 2023)<br />
+Fernow Hall G24</p>
 <p><strong>Optional lab sessions</strong>:<br />
 <em>Hands-on practice sessions in groups and with TA support</em><br />
-Thursday session: 12:25pm - 2:20pm, Academic Surge A 109<br />
+Thursday session: 12:25pm - 2:20pm, Fernow Hall G01<br />
 Friday session: 12:25pm - 2:20pm, Fernow Hall G01</p>
-<p>Note that the first two weeks of class (both lectures and lab sessions) will be taught remotely. Zoom links will be available from the class <a href="https://canvas.cornell.edu/courses/39033">Canvas</a> site.</p>
 <hr />
 </div>
 <div id="course-description" class="section level4">
 <h4>Course description</h4>
-<p>As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and will be structured around hands-on (the keyboard) learning.</p>
-<p><strong>By the end of this course, students will be able to:</strong></p>
+<p>As datasets grow larger and more complex across all areas of science,
+computational skills are increasingly in high demand. This course
+introduces a series of practical tools that enable researchers to spend
+less time wrestling with software or repeating error-prone manual data
+processing and more time getting research done in efficient and
+transparent ways that facilitate collaboration and reproducibility. We
+will work in R/RStudio, primarily with the tidyverse packages and with
+Git and GitHub integration. The course emphasizes practical skill
+development and will be structured around hands-on (the keyboard)
+learning.</p>
+<p><strong>By the end of this course, students will be able
+to:</strong></p>
 <ul>
-<li>Describe strategies for ensuring that their data analysis is reproducible<br />
+<li>Describe strategies for ensuring that their data analysis is
+reproducible<br />
 </li>
-<li>Demonstrate best practices for coding and project-oriented workflows in RStudio<br />
+<li>Demonstrate best practices for coding and project-oriented workflows
+in RStudio<br />
 </li>
-<li>Import and clean messy data files using a variety of packages and functions in R<br />
+<li>Import and clean messy data files using a variety of packages and
+functions in R<br />
 </li>
 <li>Subset, reorganize, and merge diverse datasets in R<br />
 </li>
-<li>Effectively explore and visualize patterns in complex datasets with ggplot in R<br />
+<li>Effectively explore and visualize patterns in complex datasets with
+ggplot in R<br />
 </li>
-<li>Write simple functions/programs and data analysis pipelines in R<br />
+<li>Write simple functions/programs and data analysis pipelines in
+R<br />
 </li>
 <li>Automate repeated analysis tasks in R<br />
 </li>
-<li>Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub<br />
+<li>Track the history of file changes (version control) and collaborate
+effectively on scripts with others with Git and GitHub<br />
 </li>
-<li>Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations</li>
+<li>Use R Markdown to combine text, equations, code, tables, and figures
+into reports, websites, and presentations</li>
 </ul>
 </div>
 </div>
