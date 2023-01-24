@@ -163,3 +163,24 @@ survey$why_do_you_want_to_take_this_class %>%
   theme_minimal()
 ```
 
+
+
+## Added for 2023
+
+```{r}
+dat <- read_csv("/Users/nt246/github/2023SP_NTRES6100_001.csv")
+
+count(dat, `STUDENT PROGRAM`)
+# count(dat, `STUDENT PLAN`)
+
+count(dat, `STUDENT PROGRAM`) %>% 
+  arrange(n) %>% 
+  ggplot(aes(x=`STUDENT PROGRAM`, y=n, label=n)) +
+  geom_col() +
+  coord_flip() +
+  theme_cowplot()
+
+ggsave(file="misc/pre-course-survey-program-2023.png")
+
+```
+

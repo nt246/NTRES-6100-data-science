@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Overview
-Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2022_01_25.pdf) describing the focus, content, and goal of this course.
+Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2023_01_24.pdf) describing the focus, content, and goal of this course.
 
 <br>
 <br>
