@@ -13,7 +13,7 @@
 
 <title>Lab 1: RMarkdown</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -459,22 +460,36 @@ div.tocify {
 <p><br></p>
 <div id="goal-for-today" class="section level2">
 <h2>Goal for today</h2>
-<p>Explore more RMarkdown functionality and practice implementing it.</p>
+<p>Explore more RMarkdown functionality and practice implementing
+it.</p>
 <p><br> <br></p>
 </div>
-<div id="exercise-1-basic-formatting-and-code-chunk-options" class="section level2">
+<div id="exercise-1-basic-formatting-and-code-chunk-options"
+class="section level2">
 <h2>Exercise 1: Basic formatting and code chunk options</h2>
-<p>Let’s start by playing around with the basic RStudio RMarkdown template a little more. Open a fresh copy by clicking File -&gt; New File -&gt; R Markdown… We can enter “Lab exercise” in the Title field and keep HTML as the Default Output Format.</p>
+<p>Let’s start by playing around with the basic RStudio RMarkdown
+template a little more. Open a fresh copy by clicking File -&gt; New
+File -&gt; R Markdown… We can enter “Lab exercise” in the Title field
+and keep HTML as the Default Output Format.</p>
 <p><br></p>
 <div id="basic-formatting" class="section level3">
 <h3>Basic formatting</h3>
-<p>Let’s play around with the formatting of our document. Remember that you can find RStudio’s built-in RMarkdown reference under Help &gt; Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">this</a> or RStudio’s RMarkdown cheatsheet you can download from <a href="https://rstudio.com/resources/cheatsheets/">here</a> (scroll down to find it).</p>
-<p>As you’re making changes, knit often and see how your edits look in the rendered document.</p>
+<p>Let’s play around with the formatting of our document. Remember that
+you can find RStudio’s built-in RMarkdown reference under Help &gt;
+Markdown Quick Reference, or check out one of the many great cheatsheets
+you can find online, e.g. <a
+href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">this</a>
+or RStudio’s RMarkdown cheatsheet you can download from <a
+href="https://rstudio.com/resources/cheatsheets/">here</a> (scroll down
+to find it).</p>
+<p>As you’re making changes, knit often and see how your edits look in
+the rendered document.</p>
 <p>Some ideas of what you can try:</p>
 <p><br></p>
 <div id="add-different-header-levels" class="section level4">
 <h4>Add different header levels</h4>
-<p>Compare the output with different numbers of <code>#</code> in headers</p>
+<p>Compare the output with different numbers of <code>#</code> in
+headers</p>
 <p><br></p>
 </div>
 <div id="blank-space" class="section level4">
@@ -484,8 +499,16 @@ div.tocify {
 </div>
 <div id="in-line-code" class="section level4">
 <h4>In-line code</h4>
-<p>Another really cool and useful functionality is writing in-line code. Code results can be inserted directly into the text of a .Rmd file by enclosing the code with <code>r</code>. This way, you’re basically running code inside a sentence. R Markdown will always display the results of in-line code, but not the code, and apply relevant text formatting to the results. As a result, inline output is indistinguishable from the surrounding text, but will show up-to-date results of your code.</p>
-<p>We may for example want to summarize the dimensions of our dataset. We can do this by typing</p>
+<p>Another really cool and useful functionality is writing in-line code.
+Code results can be inserted directly into the text of a .Rmd file by
+enclosing the code with <code>r</code>. This way, you’re basically
+running code inside a sentence. R Markdown will always display the
+results of in-line code, but not the code, and apply relevant text
+formatting to the results. As a result, inline output is
+indistinguishable from the surrounding text, but will show up-to-date
+results of your code.</p>
+<p>We may for example want to summarize the dimensions of our dataset.
+We can do this by typing</p>
 <pre class="r"><code>There are `r nrow(cars)` observations in the cars dataset, 
 and `r ncol(cars)` variables.</code></pre>
 <p>See how that renders.</p>
@@ -493,47 +516,71 @@ and `r ncol(cars)` variables.</code></pre>
 </div>
 <div id="add-images" class="section level4">
 <h4>Add images</h4>
-<p>In addition to figures generated through R code in our code chunks, it’s easy to also add other images, e.g. jpg or png files that you have stored on your computer or find online.</p>
+<p>In addition to figures generated through R code in our code chunks,
+it’s easy to also add other images, e.g. jpg or png files that you have
+stored on your computer or find online.</p>
 <p>There are two ways we can do this:</p>
 <ol style="list-style-type: decimal">
 <li>With markdown syntax</li>
 <li>With <code>knitr::include_graphics()</code></li>
 </ol>
 <p><br></p>
-<p>The <strong>markdown syntax</strong> to insert an image is: <code>![caption]("path/to/image")</code></p>
-<p>The path can either be a path to an image stored on your computer, or it can be a URL to an image stored online. If you want to get the URL to an image you find, right click and select “Copy Image Address”.</p>
+<p>The <strong>markdown syntax</strong> to insert an image is:
+<code>![caption]("path/to/image")</code></p>
+<p>The path can either be a path to an image stored on your computer, or
+it can be a URL to an image stored online. If you want to get the URL to
+an image you find, right click and select “Copy Image Address”.</p>
 <p><br></p>
-<p>Using <em>knitr::include_graphics()</em>: If you want more control over the output, e.g. to center the image or make it smaller, you can use <code>knitr::include_graphics()</code>, and control the figure size using options such as <code>out.width</code> and <code>fig.align</code> and add a caption with fig.cap. More details <a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">here</a></p>
+<p>Using <em>knitr::include_graphics()</em>: If you want more control
+over the output, e.g. to center the image or make it smaller, you can
+use <code>knitr::include_graphics()</code>, and control the figure size
+using options such as <code>out.width</code> and <code>fig.align</code>
+and add a caption with fig.cap. More details <a
+href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">here</a></p>
 <p><br></p>
 </div>
 <div id="center-and-right-align-text" class="section level4">
 <h4>Center and right align text</h4>
-<p>You cannot align text with the native markdown syntex. However, depending on the output format, you can use other methods. For example, if you are knitting the RMarkdown file into an HTML file, you can use HTML tags such as the following:</p>
+<p>You cannot align text with the native markdown syntex. However,
+depending on the output format, you can use other methods. For example,
+if you are knitting the RMarkdown file into an HTML file, you can use
+HTML tags such as the following:</p>
 <pre><code>&lt;center&gt; Centered text (HTML) &lt;/center&gt;
 [Aligned right (HTML)]{style=&quot;float:right&quot;}</code></pre>
-<p>Alternatively, if you are knitting the RMarkdown file into a PDF file, you can use LaTeX commands. E.g.,</p>
+<p>Alternatively, if you are knitting the RMarkdown file into a PDF
+file, you can use LaTeX commands. E.g.,</p>
 <pre><code>\center Centered text (PDF) \center
 \hfill Aligned right (PDF)</code></pre>
 <p><br></p>
 </div>
 <div id="equations" class="section level4">
 <h4>Equations</h4>
-<p>Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won’t go through this in class, but you can find an easy introduction in <a href="https://rmd4sci.njtierney.com/math.html">R Markdown for Scientists</a>.</p>
+<p>Want to include equations in your writing? Easy. rmarkdown supports
+LaTeX style equation writing. We won’t go through this in class, but you
+can find an easy introduction in <a
+href="https://rmd4sci.njtierney.com/math.html">R Markdown for
+Scientists</a>.</p>
 <p><br></p>
 </div>
 </div>
 <div id="code-chunk-options" class="section level3">
 <h3>Code-chunk options</h3>
-<p>Remind yourself about the key code chunk options see overview <a href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks">here</a></p>
+<p>Remind yourself about the key code chunk options, see overview <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks">here</a></p>
 <ol style="list-style-type: decimal">
-<li><p>Add a few new code chunks to your document. Name them, add some simple code. Knit and see how the document renders.</p></li>
-<li><p>Now try changing the code chunk options. Explore the settings to show code, show output, execute output vs not etc.</p></li>
-<li><p>Now explore the first code chunk titled <code>setup</code>. What happens if you change it to <code>echo = FALSE</code>? Or if you add <code>eval = FALSE</code>? Why does this happen?</p></li>
+<li><p>Add a few new code chunks to your document. Name them, add some
+simple code. Knit and see how the document renders.</p></li>
+<li><p>Now try changing the code chunk options. Explore the settings to
+show code, show output, execute output vs not etc.</p></li>
+<li><p>Now explore the first code chunk titled <code>setup</code>. What
+happens if you change it to <code>echo = FALSE</code>? Or if you add
+<code>eval = FALSE</code>? Why does this happen?</p></li>
 </ol>
 <p><br> <br></p>
 </div>
 </div>
-<div id="exercise-2-document-styling-and-output-formats" class="section level2">
+<div id="exercise-2-document-styling-and-output-formats"
+class="section level2">
 <h2>Exercise 2: Document styling and output formats</h2>
 <div id="add-table-of-contents" class="section level3">
 <h3>Add table of contents</h3>
@@ -547,34 +594,67 @@ output:
     toc: true
     toc_depth: 2
 ---</code></pre>
-<p>More details about styling your table of contents <a href="https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents">here</a></p>
+<p>More details about styling your table of contents <a
+href="https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents">here</a></p>
 <p><br> <br></p>
 </div>
 <div id="output-formats" class="section level3">
 <h3>Output formats</h3>
-<p>Up until now, we’ve been rendering our .Rmd file to the default html format. That’s useful for lots of applications. But lots of other output formats are supported.</p>
-<p>Check what happens if you change the <code>output: html_document</code> in the YAML header to <code>output: word_document</code></p>
-<p>Now, check what happens if you change it to <code>output: pdf_document</code>. In order to convert the documents to PDF, they use a software called LaTeX (pronounced la-tek or lay-tek).</p>
-<p>Installing LaTeX can be a pain, but thankfully there is an easier way to install it - tinytex. tinytex is an R package that installs a sane, lightweight (&lt;200Mb) version of LaTeX.</p>
-<p>If you’re having trouble with the generating the pdf, see the note on installing <code>tinytex</code> <a href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a>.</p>
+<p>Up until now, we’ve been rendering our .Rmd file to the default html
+format. That’s useful for lots of applications. But lots of other output
+formats are supported.</p>
+<p>Check what happens if you change the
+<code>output: html_document</code> in the YAML header to
+<code>output: word_document</code></p>
+<p>Now, check what happens if you change it to
+<code>output: pdf_document</code>. In order to convert the documents to
+PDF, they use a software called LaTeX (pronounced la-tek or
+lay-tek).</p>
+<p>Installing LaTeX can be a pain, but thankfully there is an easier way
+to install it - tinytex. tinytex is an R package that installs a sane,
+lightweight (&lt;200Mb) version of LaTeX.</p>
+<p>If you’re having trouble with the generating the pdf, see the note on
+installing <code>tinytex</code> <a
+href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a>.</p>
 <p><br></p>
-<p>We can also make slides! There are several slide output formats. Try <code>output: beamer_presentation</code></p>
-<p>More details about styling beamer slides <a href="https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html">here</a></p>
+<p>We can also make slides! There are several slide output formats. Try
+<code>output: beamer_presentation</code></p>
+<p>More details about styling beamer slides <a
+href="https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html">here</a></p>
 <p><br> <br></p>
 </div>
 </div>
 <div id="exercise-3-make-a-cv" class="section level2">
 <h2>Exercise 3: Make a CV</h2>
-<p>Now, practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote. You can also add a photo, either of yourself, or something else you have handy or can find online.</p>
-<p>Render to html format, and if you’re comfortable, share with the class by posting it to the <code>lecture-chat</code> channel in Slack.</p>
-<p>You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. You could, for example, try one of these:</p>
-<p><a href="http://svmiller.com/blog/2016/03/svm-r-markdown-cv/" class="uri">http://svmiller.com/blog/2016/03/svm-r-markdown-cv/</a> <a href="https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/" class="uri">https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/</a></p>
+<p>Now, practice what you’ve learned by creating a brief CV. The title
+should be your name, and you should include headings for (at least)
+education or employment. Each of the sections should include a bulleted
+list of jobs/degrees. Highlight the year in bold and add a footnote. You
+can also add a photo, either of yourself, or something else you have
+handy or can find online.</p>
+<p>Render to html format, and if you’re comfortable, share with the
+class by posting it to the <code>lecture-chat</code> channel in
+Slack.</p>
+<p>You will have seen how quickly you can create a nicely formatted
+document. But there are also lots of great CV templates out there that
+we can use. You could, for example, try one of these:</p>
+<p><a href="http://svmiller.com/blog/2016/03/svm-r-markdown-cv/"
+class="uri">http://svmiller.com/blog/2016/03/svm-r-markdown-cv/</a> <a
+href="http://nickstrayer.me/datadrivencv/"
+class="uri">http://nickstrayer.me/datadrivencv/</a></p>
 <p><br> <br></p>
 </div>
-<div id="exercise-4-explore-other-rmarkdown-applications" class="section level2">
+<div id="exercise-4-explore-other-rmarkdown-applications"
+class="section level2">
 <h2>Exercise 4: Explore other RMarkdown applications</h2>
-<p>RMarkdown can be used for much more than making simple documents. In breakout rooms, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the <a href="https://rmarkdown.rstudio.com/gallery.html">RStudio Gallery</a></p>
-<p>Discuss in your groups which application you think is the coolest, and report back to the group.</p>
+<p>RMarkdown can be used for much more than making simple documents. In
+small groups, explore examples of interactive documents, dashboards,
+books, websites, rticles, and more. You can find examples of all of
+these in the <a
+href="https://rmarkdown.rstudio.com/gallery.html">RStudio
+Gallery</a></p>
+<p>Discuss in your groups which application you think is the coolest,
+and report back to the group.</p>
 <p><br> <br></p>
 <p><strong>END LAB 1</strong></p>
 </div>

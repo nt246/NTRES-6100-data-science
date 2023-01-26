@@ -105,7 +105,7 @@ Want to include equations in your writing? Easy. rmarkdown supports LaTeX style 
 <br>
 
 ### Code-chunk options
-Remind yourself about the key code chunk options see overview [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks)
+Remind yourself about the key code chunk options, see overview [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks)
 
 1. Add a few new code chunks to your document. Name them, add some simple code. Knit and see how the document renders.
 
@@ -170,14 +170,15 @@ Render to html format, and if you're comfortable, share with the class by postin
 
 You will have seen how quickly you can create a nicely formatted document. But there are also lots of great CV templates out there that we can use. You could, for example, try one of these:
 
-http://svmiller.com/blog/2016/03/svm-r-markdown-cv/ https://livefreeordichotomize.com/2019/09/04/building_a_data_driven_cv_with_r/
+http://svmiller.com/blog/2016/03/svm-r-markdown-cv/ 
+http://nickstrayer.me/datadrivencv/
 
 
 <br>
 <br>
 
 ## Exercise 4: Explore other RMarkdown applications
-RMarkdown can be used for much more than making simple documents. In breakout rooms, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the [RStudio Gallery](https://rmarkdown.rstudio.com/gallery.html)
+RMarkdown can be used for much more than making simple documents. In small groups, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the [RStudio Gallery](https://rmarkdown.rstudio.com/gallery.html)
 
 Discuss in your groups which application you think is the coolest, and report back to the group.
 
