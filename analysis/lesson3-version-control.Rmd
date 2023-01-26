@@ -111,8 +111,8 @@ Examples:
 
 <br>
 
-### Reconnecting with your course repo on GitHub
-As we discussed at the end of last class, we have created a GitHub Classroom organization for the class. You should all have accessed your personal course repo through which you will be submitting your assignments and communicating with us. If not, click [here](https://classroom.github.com/a/uJ9mUgA0) and select your name from the list (or just click continue if you don't see your name there).
+### Say hello to your course repo on GitHub
+First, let us each access our course repo. We have created a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here]https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7). Select your name from the list (or just click continue if you don't see your name there).
 
 Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
 
@@ -122,7 +122,7 @@ knitr::include_graphics("assets/star_repo.png")
 
 <br>
 
-Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
+Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/finding_starred_repos.png")  
@@ -141,7 +141,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Make sure you're in your class repo (`therkildsen-class/ntres-6100-YOUR_USER_NAME`)
+* Make sure you're in your class repo (`therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME`)
 * Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
 * Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.

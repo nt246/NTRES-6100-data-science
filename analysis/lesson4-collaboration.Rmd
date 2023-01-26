@@ -23,9 +23,7 @@ There are no required readings for today's lesson, but if you're keen to learn m
 
 * **Homework 1** is due at 10pm tonight (push it to your course GitHub repo)
 * Thanks for helping each other answer questions on Slack - keep it coming
-* Next Tuesday's lecture (lesson 5) will also be on Zoom (to facilitate teamwork without worrying about physical distancing). From next Thursday onwards, we'll meet in person, unless you hear otherwise 
 * We will send out a short evaluation form after today's class to briefly check in on how the course is going for you and whether we should make any adjustments
-* We'll need to work in pairs in breakout rooms today, so if you're logged on on multiple devices, please let us know in the `lecture-chat` channel in Slack and type both your participant "names", so we can make sure to put those in the same room with a partner
 
 <br>
 
