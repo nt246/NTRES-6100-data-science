@@ -50,7 +50,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/51175)
 * Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
 * [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) due 02/02 (we will go through how to submit through GitHub next week)  
-* Azwad will hold office hours Tuesdays 11.15-12.15 (room TBD)  
+* Azwad will hold office hours Tuesdays 11-12 in Mann 100
 
 <br>
 
@@ -146,7 +146,7 @@ Let's take a deeper look at these two files. So much of learning to code is look
 
 #### Activity
 
-In your breakout rooms, discuss what you notice with these two files. Then we will have a brief share-out with the group (5 mins)
+Pair up with the person next to you and discuss what you notice with these two files. Then we will have a brief share-out with the group (5 mins)
 
 <br>
 
@@ -487,10 +487,7 @@ Git will track and version your files, GitHub stores this online and enables you
 
 <br>
 
-### Say hello to your course repo
-First, let us each access our course repo. We have created a GitHub Classroom organization for the class. To access you personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/uJ9mUgA0)
 
-<br>
 
 ### Configure GitHub
 
@@ -543,14 +540,14 @@ If you see `Error in use_git_config() : could not find function "use_git_config"
 
 The next sections present highlights and borrows sections from:  
 
-* [9 Personal access token for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/https-pat.html)
+* [Chapter 9: Personal access token for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/https-pat.html)
 * [The Managing Git(Hub) Credentials Vignette from the usethis package](https://usethis.r-lib.org/articles/articles/git-credentials.html)
 
 If you want more detail, consult these sources.
 
 <br>
 
-When we interact with a remote Git server, such as GitHub, we have to include credentials in the request (to provide access to your account). This proves we are a specific GitHub user, who’s allowed to do whatever we’re asking to do. However, the password that you use to login to GitHub’s website is NOT an acceptable credential when talking to GitHub as a Git server (as we will be doing through RStudio). This was possible in the past (and may yet be true for other Git servers), but those days are over at GitHub. You can learn more in their blog post [Token authentication requirements for Git operations](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
+When we interact with a remote Git server, such as GitHub, we have to include credentials in the request (to provide access to your account). This proves we are a specific GitHub user, who’s allowed to do whatever we’re asking to do. However, the password that you use to login to GitHub’s website is NOT an acceptable credential when talking to GitHub as a Git server (as we will be doing through RStudio). This was possible in the past (and may still be true for other Git servers), but those days are over at GitHub. You can learn more in their blog post [Token authentication requirements for Git operations](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
 
 Git can communicate with a remote server using one of two protocols, HTTPS or SSH, and the different protocols use different credentials. We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/https-pat.html#https-vs-ssh) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
 
@@ -560,7 +557,7 @@ Git can communicate with a remote server using one of two protocols, HTTPS or SS
 
 Personal access tokens (PATs) are an alternative to using your username and password for authentication to GitHub. 
 
-Make sure you're signed into your [GitHub account](www.github.com) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
+Make sure you're signed into your [GitHub account](https://github.com/) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
 
 Now run `create_github_token()` (a function from the `usethis` package) in your RStudio console. This will take you to a pre-filled form to create a new PAT. Alternatively, you can get to the same page from ["Settings" in your GitHub account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) in the browser. The advantage of running `create_github_token()` is that the developers of the `usethis` package have pre-selected some recommended scopes, which you can look over and adjust.
 
