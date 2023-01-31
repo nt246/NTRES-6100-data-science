@@ -595,8 +595,8 @@ These can either be public or private.</li>
 <li><p><strong>User Accounts vs. Organization Accounts (aka
 “Org”)</strong>: All repositories belong to an account:</p>
 <ul>
-<li>A user account is the account you just made, and typically holds
-repositories related to your own work.</li>
+<li>A user account is the account you have made for yourself, and
+typically holds repositories related to your own work.</li>
 <li>An Organization account can be owned by multiple people, and
 typically holds repositories relevant to a group (like
 <code>therkildsen-class</code>).</li>
@@ -614,12 +614,13 @@ website</a> within Nina’s user account <code>nt246</code></li>
 <div id="say-hello-to-your-course-repo-on-github"
 class="section level3">
 <h3>Say hello to your course repo on GitHub</h3>
-<p>First, let us each access our course repo. We have created a GitHub
-Classroom organization for the class. To access your personal course
-repo through which you will be submitting your assignments and
-communicating with us, click [here]<a
-href="https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7"
-class="uri">https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7</a>).
+<p>In this course, you will not be working in repos in your own personal
+account because then we will not have edit access to your files.
+Instead, you will work within your personal course repo that we have
+created with a GitHub Classroom organization for the class. To access
+your personal course repo through which you will be submitting your
+assignments and communicating with us, click <a
+href="https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7">here</a>.
 Select your name from the list (or just click continue if you don’t see
 your name there).</p>
 <p>Once you land on your repo page, notice that it is hosted within our
@@ -730,30 +731,18 @@ class="section level2">
 <h2>Interfacing with GitHub from our local computers using RStudio</h2>
 <p>We should all have set up Git on our local computers by now and have
 it connected to RStudio. If you don’t, follow the instructions <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#GitGitHub:_Brief_intro__configuration">here</a></p>
+href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#GitGitHub:_Brief_intro__configuration">here</a>,
+and let us know if you run into problems.</p>
 <p><br></p>
 </div>
 <div id="clone-your-repository-using-rstudio" class="section level2">
 <h2>Clone your repository using RStudio</h2>
-<p>Let’s recap on the setup we rushed through at the end of last class.
-We have all identified our course repo on GitHub, i.e. in the cloud. At
-the end of last class, we used RStudio to establish it locally on our
+<p>We should all have identified our course repo on GitHub, i.e. in the
+cloud. Now, we will use RStudio to establish it locally on our
 computers: that is called “cloning”. Unlike downloading, cloning keeps
-all the version control and user information bundled with the files.</p>
-<p>Because our focus last week was just to confirm that our set-up has
-Git configured and connected to RStudio and GitHub correctly, let’s now
-repeat the cloning process and this time be more intentional about where
-on our computer we put our local version of the class repo. Cloning is
-an important task when working with GitHub, so we’ll do it over and over
-again to establish the habit.</p>
-<p>Before repeating the cloning step, let’s first get rid of the folder
-we created when we clones the repo last week. Just use your normal file
-navigation system to do to the folder and delete it. If you can’t
-remember where you put it, you can try searching for
-<code>ntres-6100</code>, which should be the beginning of the folder
-name. When working with GitHub version-controlled files, we can at any
-time delete our local copy of a repo and re-clone from the version
-stored on GitHub.</p>
+all the version control and user information bundled with the files.
+Cloning is an important task when working with GitHub, so we’ll do it
+over and over again to establish the habit.</p>
 <p><br></p>
 <div id="copy-the-repo-address" class="section level3">
 <h3>Copy the repo address</h3>
@@ -771,7 +760,7 @@ we will not get into that here.</p>
 </div>
 <div id="rstudio-new-project" class="section level3">
 <h3>RStudio: New Project</h3>
-<p>Now go back to RStudio, and click on New Project. There are a few
+<p>Now go to RStudio, and click on New Project. There are a few
 different ways; you could also go to File &gt; New Project…, or click
 the little green + with the R box in the top left.</p>
 <p><img src="assets/new_project1.png" width="80%" /></p>
@@ -787,12 +776,17 @@ the little green + with the R box in the top left.</p>
 <p>Since we are using Git.</p>
 <p><img src="assets/new_project3.png" width="80%" /></p>
 <p><br></p>
+<p>We got to this step during last class when we were confirming that
+our set-up has Git configured and connected to RStudio and GitHub
+correctly. Now, we will go ahead and actually clone our GitHub repo to
+our local computer.</p>
+<p><br> <br></p>
 </div>
 <div id="paste-the-repo-address" class="section level3">
 <h3>Paste the repo address</h3>
 <p>Paste the repo address (which is still in your clipboard) into in the
-“Repository URL” field. The “Project directory name” should autofill; if
-it does not press <em>tab</em>, or type it in. It is best practice to
+“Repository URL” field. The “Project directory name” should auto-fill;
+if it does not press <em>tab</em>, or type it in. It is best practice to
 keep the “Project directory name” THE SAME as the repository name.</p>
 <p>When cloned, this repository is going to become a folder on your
 computer.</p>
@@ -810,7 +804,7 @@ across users and machines easier if all your file paths start with
 <code>~/github/repo-name</code>.</p>
 <p><strong>IMPORTANT</strong>: Make sure to not place it in folder
 tracked by a cloud storage service (e.g. DropBox, Google Drive or Box)
-because problem can arise when trying to sync folders with multiple
+because problems can arise when trying to sync folders with multiple
 systems.</p>
 <p>Finally, click Create Project.</p>
 <p><br></p>
@@ -833,9 +827,9 @@ Explorer:</p>
 <p><br></p>
 <p>Let’s notice a few things:</p>
 <p>First, our working directory is set to
-<code>~/github/ntres-6100-USERNAME</code>, and
-<code>ntres-6100-USERNAME</code> is also named in the top right hand
-corner.</p>
+<code>~/github/ntres-6100-sp23-USERNAME</code>, and
+<code>ntres-6100-sp23-USERNAME</code> is also named in the top right
+hand corner.</p>
 <p>Second, we have a Git tab in the top right pane! Let’s click on
 it.</p>
 <p><br></p>
@@ -869,7 +863,7 @@ file, which is the same language we just learned with R Markdown. It’s
 like an R Markdown file without the abilities to run R code.</p>
 <p>We will edit the file and illustrate how GitHub tracks files that
 have been modified (to complement seeing how it tracks files that have
-been added.</p>
+been added).</p>
 <p>README files are common in programming; they are the first place that
 someone will look to see <strong>why code exists and how to run
 it</strong>.</p>
@@ -902,8 +896,8 @@ class="section level2">
 make sure that our local copy has the most up-to-date information that
 is available online. Right now, since we just created the repo and are
 the only ones that have permission to work on it, we can be pretty
-confident that there isn’t new information available. But we pull
-anyways because this is a very safe habit to get into for when you start
+confident that there isn’t new information available. But we pull anyway
+because this is a very safe habit to get into for when you start
 collaborating with yourself across computers or others. Best practice is
 to pull often: it costs nothing (other than an internet connection).</p>
 <p>Pull by clicking the teal Down Arrow. (Notice also how when you
@@ -1011,8 +1005,8 @@ projects and workflows for our data analyses.</p>
 <p>This GitHub repository is now also an RStudio Project (capital P
 Project). This just means that RStudio has saved this additional file
 with extension <code>.Rproj</code> (ours is
-<code>ntres-6100-USERNAME.Rproj</code>) to store specific settings for
-this project. It’s a bit of technology to help us get into the good
+<code>ntres-6100-sp23-USERNAME.Rproj</code>) to store specific settings
+for this project. It’s a bit of technology to help us get into the good
 habit of having a project-oriented workflow.</p>
 <p>A <a
 href="https://rstats.wtf/project-oriented-workflow.html">project-oriented
