@@ -3,35 +3,34 @@ Assignment 1: R markdown template
 
 ## Instructions: Please read through this before you begin
 
--   This assignment is due by **10pm on Thursday 02/02/23**.
+- This assignment is due by **10pm on Thursday 02/02/22**.
 
--   For this assignment, please **reproduce this markdown file exactly
-    as shown** using R markdown (including this list of instructions).
-    You do **NOT** need to fill out the code chunks (i.e. answer the
-    questions) for this assignment. We are just practicing markdown
-    formatting right now.
+- For this assignment, please **reproduce this markdown file exactly as
+  shown** using R markdown (including this list of instructions). You do
+  **NOT** need to fill out the code chunks (i.e. answer the questions)
+  for this assignment. We are just practicing markdown formatting right
+  now.
 
--   Please name your R markdown file `assignment_1.Rmd` and the knitted
-    markdown file `assignment_1.md`.
+- Please name your R markdown file `assignment_1.Rmd` and the knitted
+  markdown file `assignment_1.md`.
 
--   Pay attention to all the formatting in this file, including bullet
-    points, bold characters, inserted code chunks, headings, text
-    colors, blank lines, and etc. You will need to reproduce all of
-    these.
+- Pay attention to all the formatting in this file, including bullet
+  points, bold characters, inserted code chunks, headings, text colors,
+  blank lines, and etc. You will need to reproduce all of these.
 
--   You will use the product of this assignment as a template for your
-    fourth assignment, where you will actually fill out the code chunks.
+- You will use the product of this assignment as a template for your
+  fourth assignment, where you will actually fill out the code chunks.
 
--   You will have to submit your assignment through GitHub. You can
-    complete your template after Wednesday’s class (02/15/20), but don’t
-    worry about submitting it until after we have gone over how to
-    submit it through GitHub in Tuesday’s class (02/01/20). To do so,
-    you will first move `assignment_1.Rmd` and `assignment_1.md` to the
-    `problem_sets` folder in your own GitHub repository that you have
-    created in class through GitHub Classroom. (If you haven’t created
-    this repo yet, please use the following url:
-    <https://classroom.github.com/a/uJ9mUgA0>). Then, you can stage
-    these files, make a commit, and push the commit.
+- You will have to submit your assignment through GitHub. You can
+  complete your template after Thursday’s class (1/26/2023), but don’t
+  worry about submitting it until after we have gone over how to submit
+  it through GitHub in next Tuesday’s class (1/31/2023). To do so, you
+  will first move `assignment_1.Rmd` and `assignment_1.md` to the
+  `problem_sets` folder in your own GitHub repository that you have
+  created in class through GitHub Classroom. (If you haven’t created
+  this repo yet, please use the following url:
+  <https://classroom.github.com/a/cKaU744y>). Then, you can stage these
+  files, make a commit, and push the commit.
 
 ## Load packages
 
