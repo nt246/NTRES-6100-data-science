@@ -43,19 +43,7 @@ In Lab 1, you started to create a CV using RMarkdown, but we did not have much t
 
 **After you are done with this exercise**, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub. 
 
-<br>
-
-#### Breakout room information
-
-For this exercise, we will create three types of breakout rooms: **interactive**, **quiet**, and **solitary**. 
-
-  * For interactive rooms, participants are expected to have the camera and microphone on and troubleshoot as a group (although each person will be working on their own CV). 
-  * For quiet rooms, participants will work on their own, but can come up with questions for the group to discuss.   
-  * For solitary rooms, participants are not expected to interact with each other at all, and will completely work on their own. 
-
-You will be able to choose your own rooms, but don't join a room if it already has more than four people. 
-
-<br>
+<br>  
 
 #### Suggested activities
 
@@ -156,11 +144,6 @@ Add your partner as a collaborator for your CV repo. Then, clone your partner's 
 
 <br>
 
-#### Breakout room instructions
-
-We will randomly assign pairs of students into breakout rooms. Please let us know in advance if you have a preferred partner for this exercise.
-
-<br>
 
 #### Suggested Activities
 
