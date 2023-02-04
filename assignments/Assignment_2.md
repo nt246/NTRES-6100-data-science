@@ -17,14 +17,14 @@ that you feel is suitable for GitHub version control, you can set up a
 hypothetical research project repo instead and create a few hypothetical
 script and data files.
 
-#### This assignment is due by **10pm on Thursday 2/10/2021**.
+#### This assignment is due by **10pm on Thursday 2/9/2023**.
 
 To submit, paste the URL to the new project GitHub repo you will create
 here to the README file in your course repo. Below the table used to
 record grades, please type
 
-`Assignment 2: URL-to-repo` \[replacing `URL-to-repo` with the actual
-URL to your repo\].
+`Lab 2: URL-to-repo` \[replacing `URL-to-repo` with the actual URL to
+your repo\].
 
 <br>
 
@@ -32,15 +32,15 @@ URL to your repo\].
 
 These instructions are adapted from three sources:
 
--   [Chapter 16 of Happy Git with
-    R](https://happygitwithr.com/existing-github-first.html) by Jenny
-    Bryan
--   [FISH 497: Introduction to Environmental Data
-    Science](https://fish497.github.io/website/homework/week_01/hw_01_github_remotes.html)
-    by Mark Scheuerell
--   [Git and Github for Advanced Ecological Data
-    Analysis](https://afredston.github.io/learn-git/learn-git.html#1_Introduction)
-    by Alexa Fredston
+- [Chapter 16 of Happy Git with
+  R](https://happygitwithr.com/existing-github-first.html) by Jenny
+  Bryan
+- [FISH 497: Introduction to Environmental Data
+  Science](https://fish497.github.io/website/homework/week_01/hw_01_github_remotes.html)
+  by Mark Scheuerell
+- [Git and Github for Advanced Ecological Data
+  Analysis](https://afredston.github.io/learn-git/learn-git.html#1_Introduction)
+  by Alexa Fredston
 
 <br>
 
@@ -64,42 +64,40 @@ project. Select a short and descriptive name without spaces (you can use
 new repository on **GitHub** with that name. When setting up your repo,
 select the following features:
 
--   Make the repo **Private**
+- Make the repo **Private**
 
--   Add a `README.md`
+- Add a `README.md`
 
--   Just leave the `Add .gitignore` and “Choose license” boxes
-    unchecked.
+- Just leave the `Add .gitignore` and “Choose license” boxes unchecked.
 
 <br>
 
 ------------------------------------------------------------------------
 
-## Task 3: Invite Nicolas as a collaborator to allow grading
+## Task 3: Invite Katie (our grader) as a collaborator to allow grading
 
 Your repo is now ready. Since you made it private, only you can see it,
 so don’t worry about putting data and results up there. It will only be
 visible to people you explicitly invite as collaborators.
 
 To show us that you have completed the assignment, you will therefore
-need to add Nicolas as a collaborator temporarily. Once he has had a
+need to add Katie as a collaborator temporarily. Once he has had a
 chance to review your setup, you can revoke his collaborator privileges
 so he won’t have continued access.
 
-To give Nicolas access:
+To give Katie access:
 
--   Click on the “Settings” tab
+- Click on the “Settings” tab
 
--   Click on “Manage access” from the menu on the left
+- Click on “Collaborators” from the menu on the left
 
--   Click on the green button labeled **Invite a collaborator** (note
-    that you may be prompted to enter your **GitHub** password)
+- Click on the green button labeled **Add people** (note that you may be
+  prompted to enter your **GitHub** password)
 
--   In the search box that appears, type `nicolas931010` and select
-    Nicolas’ name/username
+- In the search box that appears, type `kld93` and select Katie Duggan’s
+  name/username
 
--   Click on the green button that says **Add nicolas931010 to this
-    repository**
+- Click on the green button that says **Add kld93 to this repository**
 
 <br>
 
@@ -127,12 +125,12 @@ folder you cloned your repo into (i.e. where your `.Rproj` and
 files, but a good place to start would be creating the following
 sub-directories:
 
--   `raw-data`
--   `scripts`
--   `processed-data`
--   `results`
--   `figures`
--   `rmarkdowns`
+- `raw-data`
+- `scripts`
+- `processed-data`
+- `results`
+- `figures`
+- `rmarkdowns`
 
 You can make these sub-directories either by clicking “New Folder” in
 the “Files” tab in RStudio, or with your computer’s file browser, like
@@ -147,19 +145,19 @@ your current workflow).
 Here’s one suggestion for organizing the content of sub-directories, but
 feel free to adapt to your particular needs:
 
--   `raw-data`: external data that you haven’t edited, like original
-    datasets you collected, got from collaborators, or downloaded.
-    Sometimes these have long file names or are super large or are
-    otherwise gnarly; that’s OK.
--   `scripts`: all of your scripts for data analysis or processing
--   `processed-data`: data produced by R scripts, e.g., cleaned, tidied,
-    or summarized for analysis (this may be empty right now, that’s OK!)
--   `results`: output results from your analysis, like model summary
-    files, tables etc (this may be empty right now, that’s OK!)
--   `figures`: images generated by R scripts that create plots (this may
-    be empty right now, that’s OK!)
--   `rmarkdown`: RMarkdown files (e.g. reports or analysis logs) that
-    help you keep track of your analysis and outputs
+- `raw-data`: external data that you haven’t edited, like original
+  datasets you collected, got from collaborators, or downloaded.
+  Sometimes these have long file names or are super large or are
+  otherwise gnarly; that’s OK.
+- `scripts`: all of your scripts for data analysis or processing
+- `processed-data`: data produced by R scripts, e.g., cleaned, tidied,
+  or summarized for analysis (this may be empty right now, that’s OK!)
+- `results`: output results from your analysis, like model summary
+  files, tables etc (this may be empty right now, that’s OK!)
+- `figures`: images generated by R scripts that create plots (this may
+  be empty right now, that’s OK!)
+- `rmarkdown`: RMarkdown files (e.g. reports or analysis logs) that help
+  you keep track of your analysis and outputs
 
 Why are we doing this? A well-organized repository will make it much
 easier for you to keep track of your data, analysis, and results, and
@@ -201,10 +199,10 @@ primarily for text-based or figure files (most of which are likely
 
 In RStudio, consult the Git pane and the file browser.
 
--   Are you seeing all the files? They should be here if your copy was
-    successful.
--   Are they showing up in the Git pane with questions marks? They
-    should be appearing as new untracked files.
+- Are you seeing all the files? They should be here if your copy was
+  successful.
+- Are they showing up in the Git pane with questions marks? They should
+  be appearing as new untracked files.
 
 Stage, commit and push your changes to GitHub.
 
