@@ -134,13 +134,15 @@ sub-directories:
 
 You can make these sub-directories either by clicking “New Folder” in
 the “Files” tab in RStudio, or with your computer’s file browser, like
-Finder on a Mac):
+Finder on a Mac). **Make at least four subdirectories of your choice.**
 
 Now, using your favorite method of moving or copying files, **copy** all
 the files that constitute your existing project (your code and data
 etc.) into the appropriate sub-directory for this new project (keep your
 original copy for now to not disrupt any dependencies of local paths in
-your current workflow).
+your current workflow). If you’re not copying a specific project, you
+can just add random files (e.g. an image saved from the internet, a text
+file with a few lines of text etc.).
 
 Here’s one suggestion for organizing the content of sub-directories, but
 feel free to adapt to your particular needs:
