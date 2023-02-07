@@ -41,8 +41,9 @@ There are no required readings for today, but if you did not join our lecture la
 
 * Thanks for the feedback! Feel free to add additional suggestions in the `feedback` channel on Slack
 * Assignment 2 is due this Thursday - let us know if you have any questions
-* Check your grading basis on Student Center to make sure you're happy with your enrollment status (lab section and grading basis)
-* You will do assignment 3 in collaboration you get assigned today, so make sure to exchange contact info before you leave class
+* Please check your grading basis on Student Center to make sure you're happy with your enrollment status (lab section and grading basis)
+* If you're still not formally enrolled or not enrolled in the section you wish to be in, please Direct Message Nina on Slack so we can get the remaining enrollments sorted out.
+* You will do assignment 3 (due Thursday Feb 16) in collaboration you get assigned today, so make sure to exchange contact info before you leave class
 
 
 
@@ -51,7 +52,7 @@ There are no required readings for today, but if you did not join our lecture la
 
 ## Plan for today
 
-We will continue practicing how to collaborate on a GitHub repo - now while setting up a free website through GitHub Pages! Because we may not have both partners from all the pairs we formed last week with us today, we will form new pairs and start over with setting up a new shared repo that both partners will each clone to their local computers. It's good to keep practicing that setup, and we'll quickly get back to where we left off.
+We will continue practicing how to collaborate on a GitHub repo - now while setting up a free website through [GitHub Pages](https://pages.github.com/)! Because we may not have both partners from all the pairs we formed last week with us today, we will form new pairs and start over with setting up a new shared repo that both partners will each clone to their local computers. It's good to keep practicing that setup, and we'll quickly get back to where we left off.
 
 <br>
 
@@ -119,7 +120,7 @@ Because everyone will have a new partner today, we'll practice one more time how
 * Create a new repo
 * Invite a collaborator
 
-When you get to your breakout rooms, decide who will be Partner 1 and Partner 2. 
+When you get paired up, decide who will be Partner 1 and Partner 2. 
 Partner 1 starts by creating a repo. You can call it `collab-website`. Add Partner 2 as a collaborator, as described in [giving your partner privileges section from Lesson 4](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html#Give_your_collaborator_(Partner_2)_privileges).
 
 Now, both of you should clone the collaborative repo to your local machines (check [Lesson 4](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html#Collaborating_with_GitHub) if you need a reminder of how to do this).
@@ -150,26 +151,40 @@ Next, have Partner 1 launch the website.
 
 <br>
 
-3. Scroll to the Github Pages section (second to last). It will say "Pages settings now has its own dedicated tab!" Click in `Check it out here!`
-
-<br>
+3. In the panel on the left side, click on the `Pages` option.
 
 <img src="assets/github-pages-own-tab.png" width="450px"> 
 
 <br>
 
-Then build your site by sourcing from the `main` branch and root directory. **Remember to click "save"** (on the same line as you chose the master branch as the source).
+Then build your site under the `Build and deployment` section. Leave the `Source` as the default option. Under `Branch`, select `main`, so we source from the `main` branch and root directory.
 
 <img src="assets/gh_pages.png" width="450px"> 
+
+
+<br>
 <br>
 
-Your repo is now a website!  
+**Remember to click "save"** (on the same line as you chose the master branch as the source).
 
-Where is it? Figure out your website's url from your github repo's url — pay attention to urls.    
+<img src="assets/save_github_pages.png" width="450px"> 
+
+<br>
+<br>
+
+
+Your repo is now a website! After a few minutes it will go live and you can see the URL
+
+<img src="assets/github_pages_live.png" width="450px"> 
+
+<br>
+
+
+We would also have figured out our website's URL from your GitHub repo's URL — pay attention to URLs.    
 
 - note that the url starts with my **username.github.io**   
 - my github repo: <https://github.com/nt246/collab-website/>
-- my website url: <https://nt246.github.io/collab-website/>
+- my website URL: <https://nt246.github.io/collab-website/>
 
     
 > ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
@@ -246,10 +261,11 @@ Remember the format of the URL. For example:
 
 <br>
 
-You can also always find the website by scrolling down to the `GitHub Pages` section under the `Settings` of your GitHub repo.
+You can also always find the website by going back to "Setting", the "Pages" (in the left-hand menu) within your GitHub repo.
 
-<img src="assets/gh_pages.png" width="450px"> 
+<img src="assets/github_pages_live.png" width="450px"> 
 
+<br>
 
 **Note  that it may take a few minutes before your changes become active.**. So don't despair if you don't see your changes showing up right away. Just double-check that you've pushed the rendered site and check back. In the meantime, you can explore your current website content and design in RStudio's Viewer in the bottom left pane. 
 
