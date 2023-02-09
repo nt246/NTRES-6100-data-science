@@ -31,8 +31,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson6-files/")
 <br> 
 
 ## Announcements
-* Make sure you have a partner for Assignment 3. If you need a new partner, just let us know in the `logistics` channel on Slack  
-* As you're working with your partner on the assignment, we encourage you play around with avoiding and resolving merge conflicts. It's always good to get more practice
+* Make sure you have a partner for Assignment 3. If you need a new partner, just let us know in the `assignment` channel on Slack  
+* As you're working with your partner on the assignment, we encourage you to play around with avoiding and resolving merge conflicts. It's always good to get more practice
 * You'll "submit" Assignment 3 by adding the URL to your website to the README file of your class GitHub repo
 
 
@@ -69,7 +69,7 @@ Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html
 
 ### Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture
 
-As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
+As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-sp23-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
 <br>  
 
@@ -112,7 +112,7 @@ Before making any kind of graph, we will always need get to know our data first.
 
 * Directly type the name of the data frame
     
-    This method works well if you run it from RMardown. If run in the R Console or if knitted on RMardkown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class. For now, just think of it as an upgraded type of data frame).
+    This method works well if you run it from RMarkdown. If run in the R Console or if knitted on RMarkdown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class - for now, just think of it as an upgraded type of data frame).
     
     But, if you do it with a larger, non-`tibble` data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read. 
     
@@ -197,7 +197,6 @@ You can think of the grammar of graphics as a systematic approach for describing
 
 **Required:**
 
-<br>
 
 - __Data__
     - Exactly as it sounds: the data that you're feeding into a plot.
@@ -256,7 +255,7 @@ Breaking that down:
     
 ### A simple scatter plot
 
-Let's first make a simple scatter plot to look at how engine displacement (`displ`), which is an expression of an engine's size, may affect the fuel economy of cars on highway (`hwy`). For this plot, what are the aesthetics, and what are the geometric objects? 
+Let's first make a simple scatter plot to look at how engine displacement (`displ`), which is an expression of an engine's size, may affect the fuel economy of cars on the highway (`hwy`). For this plot, what are the aesthetics, and what are the geometric objects? 
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/mpg-scatterplot.png")  
@@ -405,7 +404,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 ### Change the theme of a graph
 
-While every element of a `ggplot2` graph is customizable, there are also built-in themes (`theme_*()`) that you can use to make some major headway before making smaller tweaks manually. Let's try one of them here.
+While every element of a `ggplot2` graph is customizable, there are also built-in themes (`theme_*()`) that you can use to make some major headway before making smaller tweaks manually. Let's try one of them here. You can look at other built-in themes [here](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
 ```{r fig.height=5, fig.width=10, message = FALSE}
 ## demo (use theme_bw)
