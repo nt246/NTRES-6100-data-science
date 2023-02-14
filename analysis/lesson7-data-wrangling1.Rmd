@@ -75,7 +75,7 @@ For some things, base-R is more straightforward, and we'll show you that too.
 
 ### Taking notes
 
-Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script type along in the examples we'll go through together today (if that works for you), and for your exercises. 
+Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-sp23-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
 
 <br>
 
@@ -93,7 +93,7 @@ This is standard practice for how to load a package in a file, and if you get an
 <br>
 
 ## Coronavirus data set
-As the COVID-19 crisis is at the forefront of everyone's minds at the moment, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
+As the COVID-19 crisis remains at the forefront of everyone's minds at the moment, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
 
 <br>
 
@@ -101,7 +101,7 @@ As the COVID-19 crisis is at the forefront of everyone's minds at the moment, le
 
 <br>
 
-We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. This package (hosted on GitHub) pulls raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository and is frequently updated.
+We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. This package (hosted on GitHub) pulls raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository. It used to be updated daily. Unfortunately, it looks like the updating has recently been paused, but we can still use this dataset to explore patterns up to early 2023.
 
 The compiled package is available to install like any other package from CRAN with `install.packages`. However, it keeps getting updated, so to make sure that we're always working with the most current version, we will import the dataset directly from GitHub. 
 
@@ -112,7 +112,7 @@ If we click on the `coronavirus.csv` file, we'll see that it's too large to disp
 Copy the url for raw data: 
 https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv
 
-Now, let's go back to RStudio. In our R Markdown, let's read this csv file and name the variable "coronavirus". We will use the `read_csv()` function from the `readr` package (part of the tidyverse, so it's already installed!). 
+Now, let's go back to RStudio. In our R script, let's read this csv file and name the variable "coronavirus". We will use the `read_csv()` function from the `readr` package (part of the tidyverse, so it's already installed!). 
 
 ```{r, eval=FALSE}
 # read in corona .csv
@@ -300,7 +300,7 @@ filter(coronavirus, country == "US" & type == "death")
 > Hint: You can do this in 2 steps by assigning a variable and then using the `sum()` function.
 >
 >
-> **1b:** Subset the data to only show the death counts in three European countries yesterday.
+> **1b:** Subset the data to only show the death counts in three European countries on today's date last year.
 
 > Then, sync to Github.com (pull, stage, commit, push).
 
@@ -385,7 +385,7 @@ select(coronavirus, ends_with('e'))
 
 
 # Also, compare the output of these:
-select(coronavirus, casetype = type)
+select(coronavirus, date, country, casetype = type)
 select(coronavirus, casetype = type, everything())
 rename(coronavirus, casetype = type)
 
@@ -411,7 +411,7 @@ Good thing there is an awesome alternative.
 
 <br>
 
-## Meet the new pipe `%>%` operator
+## Meet the pipe `%>%` operator
 
 Before we go any further, we should explore the pipe operator that `dplyr` imports from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
 
@@ -525,6 +525,28 @@ Then combine your new data wrangling skills with the ggplot skills covered last 
 If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare. 
 
 <br>
+<br>
+
+<details>
+  <summary>click to see one approach</summary>
+
+This is one way to do it based on what we have learned so far:
+
+```{r, eval=FALSE}
+
+coronavirus %>% 
+  filter(country %in% c("US", "Canada", "Mexico"), type == "death") %>% 
+  select(country, date, cases) %>% 
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = cases, color = country))
+
+```
+
+<br>
+
+
+</details>
+
 
 **Save your R script (knit if you've been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)**
 
