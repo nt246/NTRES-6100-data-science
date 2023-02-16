@@ -35,9 +35,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, fig.path="lesson9-files/")
 
 ## Announcements
 * Assignment 4 due this Thursday
-* This **Thursday's** lab will be on Zoom only
-* Unless you hear otherwise (keep an eye on Slack), Thursday's lecture and Friday's lab will be in person
-* Nicolas will be traveling this week, so he may be slower to respond to messages on Slack. Unless you're writing about a personal issue, please post in public channels rather than by direct message so others also can benefit from the answer or perhaps respond
 
 
 <br>

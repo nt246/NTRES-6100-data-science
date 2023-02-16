@@ -4,31 +4,31 @@ visualization
 
 ## Instructions: Please read through this before you begin
 
--   This homework is due by **10pm on Thursday 03/17/20**. Please upload
-    it using your personal GitHub repository for this class.
+- This homework is due by **10pm on Thursday 03/16/20**. Please upload
+  it using your personal GitHub repository for this class.
 
--   Please name your R markdown file `assignment_7.Rmd` and the knitted
-    markdown file `assignment_7.md`.
+- Please name your R markdown file `assignment_7.Rmd` and the knitted
+  markdown file `assignment_7.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formating in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formating in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Have all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the R markdown file, and show
+    **BOTH your code and plots** in the knitted markdown file.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   To start, first load all the required packages with the following
-    code. Install them if they are not installed yet.
+- To start, first load all the required packages with the following
+  code. Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
@@ -46,14 +46,14 @@ following three datasets in the `dslabs` package, and use `join`
 function to connect them together. As a reminder, you can use `?` to
 learn more about these datasets.
 
--   `results_us_election_2016`: Election results (popular vote) and
-    electoral college votes from the 2016 presidential election.
+- `results_us_election_2016`: Election results (popular vote) and
+  electoral college votes from the 2016 presidential election.
 
--   `polls_us_election_2016`: Poll results from the 2016 presidential
-    elections.
+- `polls_us_election_2016`: Poll results from the 2016 presidential
+  elections.
 
--   `murders`: Gun murder data from FBI reports. It also contains the
-    population of each state.
+- `murders`: Gun murder data from FBI reports. It also contains the
+  population of each state.
 
 We will also use [this
 dataset](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv)
@@ -230,14 +230,14 @@ Check out the help file for `slice_max()` for more info.*
 function. The resulting dataset should only have 47 rows. Create the
 following new variables in this joined dataset.
 
--   `polling_margin`: difference between `adjpoll_clinton` and
-    `adjpoll_trump`
--   `actual_margin`: difference between `clinton` and `trump`
--   `polling_error`: difference between `polling_margin` and
-    `actual_margin`
--   `predicted_winner`: predicted winner based on `adjpoll_clinton` and
-    `adjpoll_trump`
--   `result = ifelse(winner == predicted_winner, "correct prediction", str_c("unexpected ", winner, " win"))`
+- `polling_margin`: difference between `adjpoll_clinton` and
+  `adjpoll_trump`
+- `actual_margin`: difference between `clinton` and `trump`
+- `polling_error`: difference between `polling_margin` and
+  `actual_margin`
+- `predicted_winner`: predicted winner based on `adjpoll_clinton` and
+  `adjpoll_trump`
+- `result = ifelse(winner == predicted_winner, "correct prediction", str_c("unexpected ", winner, " win"))`
 
 Keep only the columns `state`, `polling_error`, `result`,
 `electoral_votes`. Name the new dataset `q_4b` and show its first 6

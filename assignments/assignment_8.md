@@ -5,33 +5,33 @@ Assignment 8: Iteration and conditional execution
 
 ## Instructions: Please read through this before you begin
 
--   This homework is due by **10pm on Thursday 03/24/20**. Please upload
-    it using your personal GitHub repository for this class.
+- This homework is due by **10pm on Thursday 03/23/20**. Please upload
+  it using your personal GitHub repository for this class.
 
--   Please name your R markdown file `assignment_8.Rmd` and the knitted
-    markdown file `assignment_8.md`.
+- Please name your R markdown file `assignment_8.Rmd` and the knitted
+  markdown file `assignment_8.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formatting in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formatting in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Have all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the R markdown file, and show
+    **BOTH your code and plots** in the knitted markdown file.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   Please note that Questions 2.5 is **optional**.
+- Please note that Questions 2.5 is **optional**.
 
--   To start, first load all the required packages with the following
-    code. Install them if they are not installed yet.
+- To start, first load all the required packages with the following
+  code. Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
@@ -123,7 +123,7 @@ b_values <- c(3.63, 3.57, 3.51, 3.5, 3.65, 3.64, 3.6, 3.59, 3.58, 3.61, 3.55, 3.
 
 <br>
 
--   with vectorization:
+- with vectorization:
 
 <!-- -->
 
@@ -172,7 +172,7 @@ c(1, 2, 3) * c(4, 5, 6)
 
 <br>
 
--   with a for loop:
+- with a for loop:
 
 <!-- -->
 
@@ -221,20 +221,20 @@ time to draw 100000 samples from a normal distribution. Here, use
 `system.time()` to record the runtime of the vectorization approach and
 the for loop approach in the previous question.
 
--   vectorization:
+- vectorization:
 
 <!-- -->
 
     ##    user  system elapsed 
     ##       0       0       0
 
--   for loop (you will need to put the entire for loop inside the
-    brackets of `system.time()`:
+- for loop (you will need to put the entire for loop inside the brackets
+  of `system.time()`:
 
 <!-- -->
 
     ##    user  system elapsed 
-    ##   0.004   0.000   0.005
+    ##   0.002   0.000   0.002
 
 <br>
 
@@ -260,8 +260,8 @@ in the
 
 #### 2.1 Given the following code chunk for reading buoy data files from buoy 44013 for each year, describe the following:
 
--   What parts of your code are consistent across every line/code chunk?
--   What parts are different?
+- What parts of your code are consistent across every line/code chunk?
+- What parts are different?
 
 ``` r
 buoy_1987 <- read_csv('https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/buoydata/44013_1987.csv', na = c("99", "999", "99.00", "999.0"))
@@ -347,27 +347,26 @@ necessary to clean up the data in the loop before you can combine them.
 
 **Here are a few things that you should pay attention to:**
 
--   The first three column have consistently contained information on
-    year, month, and date (and in that order), but they have had
-    different names throughout the years.
+- The first three column have consistently contained information on
+  year, month, and date (and in that order), but they have had different
+  names throughout the years.
 
--   The first column (year) followed a two-digit format from 1987 to
-    1998, but has (understandably) switched to a four-digit format
-    since 1999.
+- The first column (year) followed a two-digit format from 1987 to 1998,
+  but has (understandably) switched to a four-digit format since 1999.
 
--   Starting from 2007, a second row appears after the header to show
-    the unit for each column, and it needs to be filtered out.
+- Starting from 2007, a second row appears after the header to show the
+  unit for each column, and it needs to be filtered out.
 
 **Hints**:
 
--   use conditional execution to deal with the inconsistencies above
+- use conditional execution to deal with the inconsistencies above
 
--   don’t worry about parsing failures in columns other than the ones
-    that you will use for this exercise
+- don’t worry about parsing failures in columns other than the ones that
+  you will use for this exercise
 
--   there is a lot of missing temperature data during the mid 90s,
-    resulting in a gap in the time series. The wave height data,
-    however, appears to be continuous
+- there is a lot of missing temperature data during the mid 90s,
+  resulting in a gap in the time series. The wave height data, however,
+  appears to be continuous
 
 ![](assignment_8_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->![](assignment_8_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
 

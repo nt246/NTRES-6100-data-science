@@ -3,35 +3,35 @@ Assignment 6: Data import and tidy data
 
 ## Instructions: Please read through this before you begin
 
--   This homework is due by **10pm on Thursday 03/10/20**. Please upload
-    it using your personal GitHub repository for this class.
+- This homework is due by **10pm on Thursday 03/09/20**. Please upload
+  it using your personal GitHub repository for this class.
 
--   Please name your R markdown file `assignment_6.Rmd` and the knitted
-    markdown file `assignment_6.md`.
+- Please name your R markdown file `assignment_6.Rmd` and the knitted
+  markdown file `assignment_6.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formatting in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formatting in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Have all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the R markdown file, and show
+    **BOTH your code and plots** in the knitted markdown file.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   Please note that you only need to finish **three out of the five**
-    questions in **Exercise 1** in order to get credit for that
-    exercise. Also, **Exercise 3** is **optional**.
+- Please note that you only need to finish **three out of the five**
+  questions in **Exercise 1** in order to get credit for that exercise.
+  Also, **Exercise 3** is **optional**.
 
--   To start, first load all the required packages with the following
-    code. Install them if they are not installed yet.
+- To start, first load all the required packages with the following
+  code. Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
@@ -97,7 +97,10 @@ exercise in order to get credit.**
 
 #### 1.4 Import `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/dataset4.txt` into R. Watch out for comments, units, and decimal marks (which are `,` in this case).
 
-    ## Warning: One or more parsing issues, see `problems()` for details
+    ## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+    ## e.g.:
+    ##   dat <- vroom(...)
+    ##   problems(dat)
 
     ## # A tibble: 3 × 3
     ##   Name   Weight Price
@@ -127,13 +130,12 @@ Protection Administration, Executive Yuan, R.O.C. (Taiwan).
 
 #### 2.1 Variable descriptions
 
--   The text file
-    `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station_notes.txt`
-    contains descriptions of different variables collected by the
-    station.
+- The text file
+  `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station_notes.txt`
+  contains descriptions of different variables collected by the station.
 
--   Import it into R and print it in a table as shown below with
-    `kable()`.
+- Import it into R and print it in a table as shown below with
+  `kable()`.
 
 <br>
 
@@ -165,24 +167,22 @@ blank indicates no data
 
 #### 2.2 Data tidying
 
--   Import
-    `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv`
-    into R. As you can see, this dataset is a classic example of untidy
-    data: values of a variable (i.e. hour of the day) are stored as
-    column names; variable names are stored in the `item` column.
+- Import
+  `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/2015y_Weather_Station.csv`
+  into R. As you can see, this dataset is a classic example of untidy
+  data: values of a variable (i.e. hour of the day) are stored as column
+  names; variable names are stored in the `item` column.
 
--   Clean this dataset up and restructure it into a tidy format.
+- Clean this dataset up and restructure it into a tidy format.
 
--   Parse the `date` variable into date format and parse `hour` into
-    time.
+- Parse the `date` variable into date format and parse `hour` into time.
 
--   Turn all invalid values into `NA` and turn `NR` in rainfall into
-    `0`.
+- Turn all invalid values into `NA` and turn `NR` in rainfall into `0`.
 
--   Parse all values into numbers.
+- Parse all values into numbers.
 
--   Show the first 6 rows and 10 columns of this cleaned dataset, as
-    shown below, *without* using `kable()`.
+- Show the first 6 rows and 10 columns of this cleaned dataset, as shown
+  below, *without* using `kable()`.
 
 *Hints: you don’t have to perform these tasks in the given order; also,
 warning messages are not necessarily signs of trouble.*
@@ -256,15 +256,15 @@ from the following website:
 
 #### 3.1 Split brand names and model names
 
--   Import
-    `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/camera.csv`
-    to R.
+- Import
+  `https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/camera.csv`
+  to R.
 
--   You will see that the `Model` columns contains both the brand names
-    and model names of cameras. Split this column into two, one with
-    brand name, and the other with model name, as shown below.
+- You will see that the `Model` columns contains both the brand names
+  and model names of cameras. Split this column into two, one with brand
+  name, and the other with model name, as shown below.
 
--   Print the first 6 rows of the new data frame with `kable()`.
+- Print the first 6 rows of the new data frame with `kable()`.
 
 *Hint: check the merge argument in `separate()`*
 
@@ -283,14 +283,14 @@ from the following website:
 
 #### 3.2 Split product line names and model names
 
--   Many model names start with a name for the product line, which is
-    then followed by a name for the particular model.
+- Many model names start with a name for the product line, which is then
+  followed by a name for the particular model.
 
--   Select all Canon cameras, and further split the model names into
-    product line names (in this case, they are either “Powershot” or
-    “EOS”) and model names.
+- Select all Canon cameras, and further split the model names into
+  product line names (in this case, they are either “Powershot” or
+  “EOS”) and model names.
 
--   Show the first 6 lines of this new data frame with `kable()`.
+- Show the first 6 lines of this new data frame with `kable()`.
 
 *Hint: notice that there are more than one possible separators.*
 

@@ -520,7 +520,7 @@ Here's a caricature slide to help build intuition about the differences between 
 
 Use the `%>%` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
 
-Then combine your new data wrangling skills with the ggplot skills covered last week visualize the how the daily death counts have changed over time in those three countries. Yes! You can pipe data into ggplot - try it!
+Then combine your new data wrangling skills with the ggplot skills we covered last week to visualize how the daily death counts have changed over time in those three countries. **Yes! You can pipe data into ggplot - try it!**
 
 If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare. 
 
@@ -547,6 +547,8 @@ coronavirus %>%
 
 </details>
 
+<br>
+<br>
 
 **Save your R script (knit if you've been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)**
 

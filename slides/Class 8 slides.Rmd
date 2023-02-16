@@ -1,0 +1,67 @@
+---
+title: "Lesson 8: Data Wrangling Part 2"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Learning objectives {.smaller}
+
+Last class, we learned how to use `dplyr` functions
+
+* `filter()` for subsetting data with row logic
+* `select()` for subsetting data variable- or column-wise
+* Use piping (`%>%`) to implement function chains
+
+Today, we'll expand our data wrangling toolbox. By the end of today's class, you should be able to:
+
+* Subset, rearrange, and summarize data with additional key `dplyr` functions:
+  + Create new variables with functions of existing variables with `mutate()`
+  + Reorder the rows with `arrange()`
+  + Collapse many values down to a single summary with `summarize()` and `group_by()`
+* Understand the basic differences between tidyverse and base R syntax
+
+
+## Your turn - Exercise
+
+Use the `%>%` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
+
+Then combine your new data wrangling skills with the ggplot skills we covered last week to visualize how the daily death counts have changed over time in those three countries. **Yes! You can pipe data into ggplot - try it!**
+
+If you have more time, try exploring other patterns in the data. Pick a different set of countries to display or show how the daily counts of confirmed cases, deaths and recoveries compare. 
+
+
+## Exercise: Piping together `select()` and `filter()` commands
+
+Subset the coronavirus dataset to only include the daily counts of confirmed cases in countries located above 60 degree latitude. What are those countries?
+
+If you have time, pipe it into ggplot() to visualize the trends over time in these countries.
+
+
+## Your turn - Exercise
+
+> Add a new variable that shows how many doses of vaccine on average have been distributed per person with at least one dose for each country. First look the patterns across all countries, then only show data for countries that have distributed more than 200 million doses. How many countries is that?
+
+
+## Your turn - Exercise
+
+> In how many countries do >90% of the population have at least one dose and which five countries have the highest vaccination rates (proportion of their population given at least one dose), according to this dataset?
+
+
+## Your turn again - Exercise
+
+> 1. Go back to our original dataset `coronavirus` and identify where and when the highest death count in a single day was observed. Hint: you can either use or `base::max` or `dplyr::arrange()`.  
+> 1. The first case was confirmed in the US on [January 20 2020](https://www.nejm.org/doi/full/10.1056/NEJMoa2001191), two days before the earliest day included in this dataset. When was the first confirmed case recorded in Canada?
+
+
+## Your turn - Exercise
+Which day has had the highest total death count globally reported in this dataset?
+
+<br>
+
+Pipe your global daily death counts into ggplot to visualize the trend over time.
+

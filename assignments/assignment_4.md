@@ -3,39 +3,40 @@ Assignment 4: Data transformation and visualization
 
 ## Instructions: Please read through this before you begin
 
--   This assignment is due by **10pm on Thursday 02/24/20**. Please
-    upload it using your personal GitHub repository for this class.
+- This assignment is due by **10pm on Thursday 02/23/20**. Please upload
+  it using your personal GitHub repository for this class.
 
--   You can start by making a copy of the R markdown template that you
-    created as `assignment_1.Rmd` and work from there.
+- You can start by making a copy of the R markdown template that you
+  created as `assignment_1.Rmd` and work from there (you wrote up most
+  of the template text needed here in assignment 1; now you’ll be
+  filling in the code chunks).
 
--   Please name your R markdown file `assignment_4.Rmd` and the knitted
-    markdown file `assignment_4.md`.
+- Please name your R markdown file `assignment_4.Rmd` and the knitted
+  markdown file `assignment_4.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formating in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formating in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Write code to reproduce all the figures and tables shown. Have
-        all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Write code to reproduce all the figures and tables shown. Have all
+    your code embedded within the R markdown file, and show **BOTH your
+    code and plots** in the knitted markdown file.
 
-    -   When a verbal response is needed, answer by editing the part in
-        the R markdown template where it says “Write your response
-        here”.
+  - When a verbal response is needed, answer by editing the part in the
+    R markdown template where it says “Write your response here”.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   Note that Exercise 3 is **optional** (only Exercise 1 and 2 are
-    required).
+- Note that Exercise 3 is **optional** (only Exercise 1 and 2 are
+  required).
 
 <br>
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="../docs/lesson8-files/")
 
 #### Required: 
 
-* Chapter 5.5-5.7 in [R for Data Science](https://r4ds.had.co.nz/transform.html#grouped-summaries-with-summarise) by Hadley Wickham & Garrett Grolemund
+* Chapter 5.5-5.7 in [R for Data Science](SUPER_12_30348716_30348745) by Hadley Wickham & Garrett Grolemund
 
 <br>
 
@@ -57,7 +57,7 @@ Today, we'll expand our data wrangling toolbox. By the end of today's class, you
 <br>
 
 ## Getting set up a reloading the Coronavirus dataset
-Let's jump back in where we left on Monday. Let's first clear out our workspace so we start with a fresh session by clicking "Session" -> "Restart R". Then let's open the R-script we were using to take notes, pull from GitHub to make sure we have the most recent version. You can use this script to type along as we're working through demos today (if you want, it's also fine to just watch). 
+Let's jump back in where we left off during last class. Let's first clear out our workspace so we start with a fresh session by clicking "Session" -> "Restart R". Then let's open the R-script we were using to take notes, pull from GitHub to make sure we have the most recent version. You can use this script to type along as we're working through demos today (if you want, it's also fine to just watch). 
 
 Today we'll also practice combining text and code in R Markdown files, so we'll do our in-class exercises in an R Markdown file. Do you remember how to create a new RMarkdown file? Go File -> New File -> R Markdown. Then change the output to GitHub document either as you're setting up the file or by manually editing the YAML header to say `output: github_document`. Now, delete the boilerplate text after the first setup code chunk and copy today's exercise questions into your document from [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/lesson8-in-class-exercises.md). As we work through the exercises, you will want to add a code chunk under each question to complete your answer.
 
@@ -141,7 +141,7 @@ Details about the dataset can be found on the README file [here](https://github.
 Let's first load in the data the same way we did for the case counts dataset
 
 ```{r}
-vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv")
+vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv")
 ```
 
 
@@ -155,21 +155,19 @@ View(vacc) # remember to run this only from the console or an R script. Don't pu
 
 This dataset has statistics on the *cumulative* number of vaccine doses administered and number of people vaccinated on each day in different countries. For now, let's just look at the most recent day included in the dataset `r max(vacc$date)`. 
 
-Imagine we want to compare the vaccination rate across countries. We can divide the `people_fully_vaccinated` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
+Imagine we want to compare the vaccination rate across countries. We can divide the `people_at_least_one_dose)` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
 
 ```{r, eval=FALSE}
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(vaxxrate = people_fully_vaccinated / population)
-
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, people_at_least_one_dose, population) %>% 
+  mutate(vaxxrate = people_at_least_one_dose / population) 
 
 # We can modify the mutate equation in many ways. For example, if we want to adjust the number of significant digits printed, we can type
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(vaxxrate = round(people_fully_vaccinated / population, 2))
-
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, people_at_least_one_dose, population) %>% 
+  mutate(vaxxrate = round(people_at_least_one_dose / population, 2))
 ```
 
 
@@ -181,9 +179,6 @@ vacc %>%
 
 >
 
-<br>
-
-**When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).**
 
 <br>
 
@@ -195,33 +190,33 @@ vacc %>%
 
 # To look at patterns across all countries
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(dosesfull = doses_admin / people_fully_vaccinated) 
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) 
   
 # We can scroll through the output and eyeball patterns, but we can also pipe the output directly into ggplot!
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %>%
   ggplot() +
-  geom_histogram(mapping = aes(x = dosesfull))
+  geom_histogram(mapping = aes(x = doses_per_vaxxed))
 
 
 # To subset the output, we can add another filter step
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
-  filter(doses_admin > 200000000)
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) %>% 
+  filter(doses_admin > 200 * 10^6)
 
  
 # We can also use this to identify outliers in our histogram above
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(dosesfull = doses_admin / people_fully_vaccinated) %>% 
-  filter(dosesfull > 4)
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %>% 
+  filter(doses_per_vaxxed > 3)
 
 ```
 </details>
@@ -229,6 +224,14 @@ vacc %>%
 <br> 
 <br>  
   
+
+
+**When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).**
+
+<br>
+<br>
+
+
 ## `arrange()` orders rows
 
 For examining the output of our previous calculations, we may want to re-arrange the countries in ascending or descending order for vaccination rate. The `dplyr` function for sorting rows is `arrange()`. 
@@ -236,18 +239,18 @@ For examining the output of our previous calculations, we may want to re-arrange
 ```{r, eval=FALSE}
 
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
-  arrange(vaxxrate)
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %>% 
+  arrange(doses_per_vaxxed)
 
 # or
 
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
-  arrange(vaxxrate)
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %>% 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %>% 
+  arrange(-doses_per_vaxxed)
 
 ```
 
@@ -258,7 +261,7 @@ I advise that your analyses NEVER rely on rows or variables being in a specific 
 
 ### Your turn - Exercise 3
 
-> How many countries have vaccination rates above 80% and which five countries have the highest vaccination rates, according to this dataset?
+> In how many countries do >90% of the population have at least one dose and which five countries have the highest vaccination rates (proportion of their population given at least one dose), according to this dataset?
 
 #### Answer
 <details>
@@ -267,11 +270,13 @@ I advise that your analyses NEVER rely on rows or variables being in a specific 
 ```{r, eval = FALSE}
 
 vacc %>% 
-  filter(date == "2022-02-15") %>% 
-  select(country_region:people_fully_vaccinated, population) %>% 
-  mutate(vaxxrate = people_fully_vaccinated / population) %>% 
+  filter(date == max(vacc$date)) %>% 
+  select(country_region, continent_name, people_at_least_one_dose, population) %>% 
+  mutate(vaxxrate = round(people_at_least_one_dose / population, 2)) %>% 
   arrange(-vaxxrate) %>% 
-  filter(vaxxrate > 0.8)
+  filter(vaxxrate > 0.9)
+
+  
 
 ```
 </details>
@@ -316,6 +321,7 @@ coronavirus %>%
 
 **Knit your RMarkdown file, and sync it to GitHub (pull, stage, commit, push)**
 
+<br>
 <br>
 <br>
 
@@ -366,12 +372,12 @@ Why do some countries have much higher counts than others?
 
 <br>
 
-We can also do multi-level grouping. If we wanted to know how many of each type of case there were globally on Monday (March 1) we could chain these functions together:
+We can also do multi-level grouping. If we wanted to know how many of each type of case there were globally on Jan 1, 2023, we could chain these functions together:
 ```{r, eval = FALSE}
 coronavirus %>% 
   group_by(date, type) %>% 
   summarize(total = sum(cases)) %>%  # sums the count across countries
-  filter(date == "2021-03-01")
+  filter(date == "2023-01-01")
 
 ```
 
@@ -379,7 +385,7 @@ coronavirus %>%
 <br>
 
 ## Your turn - Exercise 5
-Which day has had the highest total death count globally so far?
+Which day has had the highest total death count globally reported in this dataset?
 
 <br>
 
@@ -417,6 +423,16 @@ coronavirus %>%
   arrange(-total_deaths) %>% 
   ggplot() +
     geom_line(aes(x = date, y = total_deaths))
+
+## We see that the last day of the dataset has a much higher reported count than all other dates, so let's remove that
+
+coronavirus %>% 
+  filter(type == "death", date != "2023-01-04") %>% 
+  group_by(date) %>% 
+  summarize(total_deaths = sum(cases)) %>% 
+  arrange(-total_deaths) %>% 
+  ggplot() +
+  geom_line(aes(x = date, y = total_deaths))
 
 ```
 </details>

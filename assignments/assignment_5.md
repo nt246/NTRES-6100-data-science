@@ -5,34 +5,33 @@ Assignment 5: Data transformation and visualization - Part 2
 
 ## Instructions: Please read through this before you begin
 
--   This assignment is due by **10pm on Thursday 03/03/20**. Please
-    upload it using your personal GitHub repository for this class.
+- This assignment is due by **10pm on Thursday 03/02/20**. Please upload
+  it using your personal GitHub repository for this class.
 
--   Please name your R markdown file `assignment_5.Rmd` and the knitted
-    markdown file `assignment_5.md`.
+- Please name your R markdown file `assignment_5.Rmd` and the knitted
+  markdown file `assignment_5.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formating in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formating in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Have all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the R markdown file, and show
+    **BOTH your code and plots** in the knitted markdown file.
 
-    -   When a verbal response is needed, answer by editing the part in
-        the R markdown template where it says “Write your response
-        here”.
+  - When a verbal response is needed, answer by editing the part in the
+    R markdown template where it says “Write your response here”.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   Please note that Questions 2.8-2.11 are **optional**.
+- Please note that Questions 2.8-2.11 are **optional**.
 
 <br>
 
@@ -75,11 +74,11 @@ housing %>%
 
 #### 1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:
 
--   ###### Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
+- ###### Change the region of DC to “South” (Hint: there are multiple ways to do this, but `mutate()` and `ifelse()` might be helpful)
 
--   ###### Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
+- ###### Create a new tibble or regular dataframe consisting of this new updated `region` variable along with the original variables `State`, `Date` and `Land.Value` (and no others)
 
--   ###### Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
+- ###### Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
 
 | region | State | Land.Value |    Date |
 |:-------|:------|-----------:|--------:|
