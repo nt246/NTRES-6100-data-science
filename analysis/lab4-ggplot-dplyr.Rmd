@@ -63,7 +63,7 @@ gapminder %>% as_tibble() %>%
 <br>
 <br>
 
-## Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (45 min)
+## Exercise 1: Use data transformation and visualization to answer the following questions (45 min)
 
 <br>
 
@@ -142,7 +142,7 @@ gapminder %>%
 ### Question 3. What is the general relationship between per-capita GDP and fertility rate? 
 
 A. Positive relationship  
-B. Negetive relationship  
+B. Negative relationship  
 C. No relationship  
 
 Hint: use the data from 2000
@@ -302,7 +302,7 @@ Share your findings, challenges, and questions with the class.
 <br>
 <br>
 
-## Exercise 2: Use data transformation and visualization to explore the following open-ended question in breakout rooms (40 min)
+## Exercise 2: Use data transformation and visualization to explore the following open-ended question (40 min)
 
 <br>
 

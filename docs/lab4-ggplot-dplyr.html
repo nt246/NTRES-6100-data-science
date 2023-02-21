@@ -13,7 +13,7 @@
 
 <title>Lab 4: Data exploration with the gapminder dataset</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -451,7 +452,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 4: Data exploration with the gapminder dataset</h1>
+<h1 class="title toc-ignore">Lab 4: Data exploration with the gapminder
+dataset</h1>
 
 </div>
 
@@ -460,24 +462,39 @@ div.tocify {
 <div id="goals-for-today" class="section level2">
 <h2>Goals for today</h2>
 <ol style="list-style-type: decimal">
-<li><p>Continue to practice data visualization with <code>ggplot2</code></p></li>
-<li><p>Continue to practice data transformation with <code>dplyr</code></p></li>
-<li><p>Integrate 1) and 2) to explore the <code>gapminder</code> dataset</p></li>
+<li><p>Continue to practice data visualization with
+<code>ggplot2</code></p></li>
+<li><p>Continue to practice data transformation with
+<code>dplyr</code></p></li>
+<li><p>Integrate 1) and 2) to explore the <code>gapminder</code>
+dataset</p></li>
 </ol>
 <p><br> <br></p>
 </div>
 <div id="general-instructions" class="section level2">
 <h2>General instructions</h2>
 <ul>
-<li>Today, we’ll combine the powerful data transformation tools in <code>dplyr</code> and the data visualization tools in <code>ggplot2</code> to explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>.</li>
+<li>Today, we’ll combine the powerful data transformation tools in
+<code>dplyr</code> and the data visualization tools in
+<code>ggplot2</code> to explore global trends in public health and
+economics compiled by the <a
+href="https://www.gapminder.org/about/">Gapminder project</a>.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set the output format to <code>github_document</code>, save it in your <code>lab</code> folder as <code>lab4.Rmd</code>, and work in this RMarkdown file for the rest of this lab.</li>
+<li>To start, first open a new RMarkdown file in your course repo, set
+the output format to <code>github_document</code>, save it in your
+<code>lab</code> folder as <code>lab4.Rmd</code>, and work in this
+RMarkdown file for the rest of this lab.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>Now that you have learned how to subset data using different functions in <code>dplyr</code>, we will work with the full <code>gapminder</code> dataset provided in the R package <code>dslabs</code>. Let’s start by installing the <code>dslabs</code> package if you don’t have it installed already. Then, we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</li>
+<li>We will work with the <code>gapminder</code> dataset provided in the
+R package <code>dslabs</code>. Let’s start by installing the
+<code>dslabs</code> package if you don’t have it installed already.
+Then, we need to load it with the <code>library()</code> function. We
+also need to load the <code>tidyverse</code> package because it contains
+ggplot.</li>
 </ul>
 <p><br></p>
 <pre class="r"><code>library(tidyverse)
@@ -487,17 +504,21 @@ library(dslabs) #install.packages(&quot;dslabs&quot;)
 gapminder %&gt;% as_tibble() %&gt;% 
   head(5)</code></pre>
 <pre><code>## # A tibble: 5 × 9
-##   country    year infant_mortality life_expectancy fertility population      gdp
-##   &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Albania    1960            115.             62.9      6.19    1636054 NA      
-## 2 Algeria    1960            148.             47.5      7.65   11124892  1.38e10
-## 3 Angola     1960            208              36.0      7.32    5270844 NA      
-## 4 Antigua …  1960             NA              63.0      4.43      54681 NA      
-## 5 Argentina  1960             59.9            65.4      3.11   20619075  1.08e11
-## # … with 2 more variables: continent &lt;fct&gt;, region &lt;fct&gt;</code></pre>
+##   country           year infan…¹ life_…² ferti…³ popul…⁴      gdp conti…⁵ region
+##   &lt;fct&gt;            &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;   &lt;fct&gt; 
+## 1 Albania           1960   115.     62.9    6.19  1.64e6 NA       Europe  South…
+## 2 Algeria           1960   148.     47.5    7.65  1.11e7  1.38e10 Africa  North…
+## 3 Angola            1960   208      36.0    7.32  5.27e6 NA       Africa  Middl…
+## 4 Antigua and Bar…  1960    NA      63.0    4.43  5.47e4 NA       Americ… Carib…
+## 5 Argentina         1960    59.9    65.4    3.11  2.06e7  1.08e11 Americ… South…
+## # … with abbreviated variable names ¹​infant_mortality, ²​life_expectancy,
+## #   ³​fertility, ⁴​population, ⁵​continent</code></pre>
 <p><br></p>
 <ul>
-<li><p>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
+<li><p>As a reminder, to get familar with this dataset, you might want
+to use functions like <code>View()</code>, <code>dim()</code>,
+<code>colnames()</code> , and <code>?</code>. You will see that the
+dataset includes the following variables:</p>
 <ul>
 <li>country</li>
 <li>year</li>
@@ -512,21 +533,53 @@ gapminder %&gt;% as_tibble() %&gt;%
 </ul>
 <p><br> <br></p>
 </div>
-<div id="exercise-1-use-data-transformation-and-visualization-to-answer-the-following-questions-in-breakout-rooms-45-min" class="section level2">
-<h2>Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (45 min)</h2>
+<div
+id="exercise-1-use-data-transformation-and-visualization-to-answer-the-following-questions-45-min"
+class="section level2">
+<h2>Exercise 1: Use data transformation and visualization to answer the
+following questions (45 min)</h2>
 <p><br></p>
-<p>Today, we’ll use ggplot to visually explore global trends in public health and economics compiled by the <a href="https://www.gapminder.org/about/">Gapminder project</a>. This project was pioneered by <a href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006 TED Talk: The best stats you’ve ever seen</a>:</p>
+<p>Today, we’ll use ggplot to visually explore global trends in public
+health and economics compiled by the <a
+href="https://www.gapminder.org/about/">Gapminder project</a>. This
+project was pioneered by <a
+href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who
+is famous for describing the prosperity of nations over time through
+famines, wars and other historic events with this beautiful data
+visualization in his <a
+href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006
+TED Talk: The best stats you’ve ever seen</a>:</p>
 <p><br></p>
-<p><a href="http://www.gapminder.org/world">Gapminder Motion Chart</a><br />
-<a href="http://www.gapminder.org/world"><img src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png" alt="Gapminder Motion Chart" /></a></p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion
+Chart</a><br />
+<a href="http://www.gapminder.org/world"><img
+src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png"
+alt="Gapminder Motion Chart" /></a></p>
 <p><br></p>
-<p>The mission of the Gapminder Project is to “fight devastating ignorance with a fact-based worldview everyone can understand”. Per their own description, Gapminder identifies systematic misconceptions about important global trends and proportions and uses reliable data to develop easy to understand teaching materials to rid people of their misconceptions.</p>
-<p>Several of the questions posted below have been borrowed from their <a href="https://www.gapminder.org/ignorance/ignorance-test/">ignorance test</a></p>
-<p>You may first answer these questions based on your intuition, and then use the <code>gapminder</code> dataset to verify if your intuition is correct, either with a summary table of the relevant statistics or with a visualization (ideally both!).</p>
-<p>We provide one possible solution for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</p>
+<p>The mission of the Gapminder Project is to “fight devastating
+ignorance with a fact-based worldview everyone can understand”. Per
+their own description, Gapminder identifies systematic misconceptions
+about important global trends and proportions and uses reliable data to
+develop easy to understand teaching materials to rid people of their
+misconceptions.</p>
+<p>Several of the questions posted below have been borrowed from their
+<a href="https://www.gapminder.org/ignorance/ignorance-test/">ignorance
+test</a>.</p>
+<p>You may first answer these questions based on your intuition, and
+then use the <code>gapminder</code> dataset to verify if your intuition
+is correct, either with a summary table of the relevant statistics or
+with a visualization (ideally both!).</p>
+<p>We provide one possible solution for each question, but we highly
+recommend that you <strong>don’t look at them unless you are really
+stuck</strong>.</p>
 <p><br> <br></p>
-<div id="question-1-which-five-countries-had-the-largest-population-size-in-2015-the-most-recent-year-for-which-population-sizes-are-included-in-this-dataset-and-how-has-the-population-sizes-in-those-countries-changes-since-1960" class="section level3">
-<h3>Question 1: Which five countries had the largest population size in 2015 (the most recent year for which population sizes are included in this dataset), and how has the population sizes in those countries changes since 1960?</h3>
+<div
+id="question-1-which-five-countries-had-the-largest-population-size-in-2015-the-most-recent-year-for-which-population-sizes-are-included-in-this-dataset-and-how-has-the-population-sizes-in-those-countries-changes-since-1960"
+class="section level3">
+<h3>Question 1: Which five countries had the largest population size in
+2015 (the most recent year for which population sizes are included in
+this dataset), and how has the population sizes in those countries
+changes since 1960?</h3>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -545,13 +598,16 @@ gapminder %&gt;%
   filter(country %in% top5_countries) %&gt;% 
   ggplot() +
   geom_line(mapping = aes(x = year, y = population, color = country))</code></pre>
-<pre><code>## Warning: Removed 5 row(s) containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (`geom_line()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-2.-rank-the-following-countries-in-infant-mortality-rate-in-2015." class="section level3">
-<h3>Question 2. Rank the following countries in infant mortality rate in 2015.</h3>
+<div
+id="question-2.-rank-the-following-countries-in-infant-mortality-rate-in-2015."
+class="section level3">
+<h3>Question 2. Rank the following countries in infant mortality rate in
+2015.</h3>
 <p>Turkey, Poland, South Korea, Russia, Vietnam, South Africa</p>
 <p><br></p>
 <em>One possible solution</em>
@@ -601,10 +657,13 @@ click to expand
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-3.-what-is-the-general-relationship-between-per-capita-gdp-and-fertility-rate" class="section level3">
-<h3>Question 3. What is the general relationship between per-capita GDP and fertility rate?</h3>
+<div
+id="question-3.-what-is-the-general-relationship-between-per-capita-gdp-and-fertility-rate"
+class="section level3">
+<h3>Question 3. What is the general relationship between per-capita GDP
+and fertility rate?</h3>
 <p>A. Positive relationship<br />
-B. Negetive relationship<br />
+B. Negative relationship<br />
 C. No relationship</p>
 <p>Hint: use the data from 2000</p>
 <p><br></p>
@@ -622,8 +681,12 @@ click to expand
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-4.-if-you-break-down-the-relationship-between-per-capita-gdp-and-fertility-rate-by-continent-which-continent-or-regions-stands-out-as-an-outlier-bonus-question-why-might-this-be" class="section level3">
-<h3>Question 4. If you break down the relationship between per-capita GDP and fertility rate by continent, which continent (or regions) stands out as an outlier? (Bonus question: why might this be?)</h3>
+<div
+id="question-4.-if-you-break-down-the-relationship-between-per-capita-gdp-and-fertility-rate-by-continent-which-continent-or-regions-stands-out-as-an-outlier-bonus-question-why-might-this-be"
+class="section level3">
+<h3>Question 4. If you break down the relationship between per-capita
+GDP and fertility rate by continent, which continent (or regions) stands
+out as an outlier? (Bonus question: why might this be?)</h3>
 <p>A. Africa<br />
 B. Asia<br />
 C. Europe</p>
@@ -652,9 +715,14 @@ eu_2000 %&gt;%
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-5.-there-are-roughly-seven-billion-people-in-the-world-today.-which-map-shows-where-people-live-each-figure-represents-1-billion-people." class="section level3">
-<h3>Question 5. There are roughly seven billion people in the world today. Which map shows where people live? (Each figure represents 1 billion people.)</h3>
-<p><img src="https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20170330195501/Results-for-the-Swedish-Public-on-the-Gapminder-Test-2017%E2%80%99-1024x244.jpg" /></p>
+<div
+id="question-5.-there-are-roughly-seven-billion-people-in-the-world-today.-which-map-shows-where-people-live-each-figure-represents-1-billion-people."
+class="section level3">
+<h3>Question 5. There are roughly seven billion people in the world
+today. Which map shows where people live? (Each figure represents 1
+billion people.)</h3>
+<p><img
+src="https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20170330195501/Results-for-the-Swedish-Public-on-the-Gapminder-Test-2017%E2%80%99-1024x244.jpg" /></p>
 <p>Hint: use the data from 2015</p>
 <p><br></p>
 <em>One possible solution</em>
@@ -672,8 +740,11 @@ click to expand
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-6.-what-is-the-overall-life-expectancy-for-the-world-population-i.e.-global-average" class="section level3">
-<h3>Question 6. What is the overall life expectancy for the world population (i.e. global average)?</h3>
+<div
+id="question-6.-what-is-the-overall-life-expectancy-for-the-world-population-i.e.-global-average"
+class="section level3">
+<h3>Question 6. What is the overall life expectancy for the world
+population (i.e. global average)?</h3>
 <p>A. 50 years<br />
 B. 60 years<br />
 C. 70 years</p>
@@ -692,8 +763,11 @@ click to expand
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-7.-what-is-the-gap-in-life-expectancy-between-europe-and-africa" class="section level3">
-<h3>Question 7. What is the gap in life expectancy between Europe and Africa?</h3>
+<div
+id="question-7.-what-is-the-gap-in-life-expectancy-between-europe-and-africa"
+class="section level3">
+<h3>Question 7. What is the gap in life expectancy between Europe and
+Africa?</h3>
 <p>A. 5 years<br />
 B. 15 years<br />
 C. 25 years</p>
@@ -730,21 +804,39 @@ click to expand
 <h2>Short break (10 min)</h2>
 <p><br> <br></p>
 </div>
-<div id="exercise-2-use-data-transformation-and-visualization-to-explore-the-following-open-ended-question-in-breakout-rooms-40-min" class="section level2">
-<h2>Exercise 2: Use data transformation and visualization to explore the following open-ended question in breakout rooms (40 min)</h2>
+<div
+id="exercise-2-use-data-transformation-and-visualization-to-explore-the-following-open-ended-question-40-min"
+class="section level2">
+<h2>Exercise 2: Use data transformation and visualization to explore the
+following open-ended question (40 min)</h2>
 <p><br></p>
-<p>This question is borrowed from the excellent <a href="https://rafalab.github.io/dsbook/gapminder.html">Chapter 9 in Rafael A. Irizarry’s Introduction to Data Science book</a></p>
+<p>This question is borrowed from the excellent <a
+href="https://rafalab.github.io/dsbook/gapminder.html">Chapter 9 in
+Rafael A. Irizarry’s Introduction to Data Science book</a></p>
 <p><br></p>
-<div id="explore-how-much-the-gap-in-infant-mortality-life-expectancy-and-per-capita-gdp-between-western-countries-and-the-rest-of-the-world-have-changed-from-1960-to-2010." class="section level3">
-<h3>Explore how much the gap in infant mortality, life expectancy, and per capita GDP between Western countries and the rest of the world have changed from 1960 to 2010.</h3>
+<div
+id="explore-how-much-the-gap-in-infant-mortality-life-expectancy-and-per-capita-gdp-between-western-countries-and-the-rest-of-the-world-have-changed-from-1960-to-2010."
+class="section level3">
+<h3>Explore how much the gap in infant mortality, life expectancy, and
+per capita GDP between Western countries and the rest of the world have
+changed from 1960 to 2010.</h3>
 <p><br></p>
 <p>Suggestions:</p>
 <ul>
-<li><p>Visualizing the entire time series and taking certain snapshots of time (e.g. one data point every decade) can both be useful approaches.</p></li>
-<li><p>The range in per capita GDP can be very high, with most countries having low values but a few countries having very high values, so a log transformation may be useful.</p></li>
-<li><p>You can try different definitions of “Western countries” and the “rest of the world”.</p></li>
-<li><p>You can also analyze different subgroups within the broad categorizations of “Western countries” and the “rest of the world” separately.</p></li>
-<li><p>Try to explore different geometric objects. Line plot, scatter plot, density plot, box plot, bar plot, and others can all be useful.</p></li>
+<li><p>Visualizing the entire time series and taking certain snapshots
+of time (e.g. one data point every decade) can both be useful
+approaches.</p></li>
+<li><p>The range in per capita GDP can be very high, with most countries
+having low values but a few countries having very high values, so a log
+transformation may be useful.</p></li>
+<li><p>You can try different definitions of “Western countries” and the
+“rest of the world”.</p></li>
+<li><p>You can also analyze different subgroups within the broad
+categorizations of “Western countries” and the “rest of the world”
+separately.</p></li>
+<li><p>Try to explore different geometric objects. Line plot, scatter
+plot, density plot, box plot, bar plot, and others can all be
+useful.</p></li>
 </ul>
 <p><br></p>
 <em>Some ideas if you are really stuck</em>
@@ -759,7 +851,7 @@ gapminder %&gt;%
   ggplot(aes(log(gdp/population), life_expectancy, col = continent)) +
   geom_point() +
   facet_wrap(~year) </code></pre>
-<pre><code>## Warning: Removed 148 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 148 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>gapminder %&gt;% 
   filter(continent %in% continents) %&gt;%
@@ -778,21 +870,24 @@ gapminder %&gt;%
   ggplot(aes(x=log(gdp/population), fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) </code></pre>
-<pre><code>## Warning: Removed 99 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 99 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
 <pre class="r"><code>gapminder %&gt;% 
   filter(year %in% c(1960, 2010)) %&gt;%
   ggplot(aes(continent, log(gdp/population), fill = as.character(year))) +
   geom_boxplot()</code></pre>
-<pre><code>## Warning: Removed 99 rows containing non-finite values (stat_boxplot).</code></pre>
+<pre><code>## Warning: Removed 99 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-5.png" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
 <div id="if-you-have-more-time" class="section level3">
 <h3>If you have more time:</h3>
-<div id="think-of-another-interesting-question-you-can-answer-with-this-dataset-and-explore-different-strategies-for-getting-your-answer." class="section level4">
-<h4>Think of another interesting question you can answer with this dataset and explore different strategies for getting your answer.</h4>
+<div
+id="think-of-another-interesting-question-you-can-answer-with-this-dataset-and-explore-different-strategies-for-getting-your-answer."
+class="section level4">
+<h4>Think of another interesting question you can answer with this
+dataset and explore different strategies for getting your answer.</h4>
 <p><br> <br></p>
 </div>
 </div>
@@ -802,7 +897,8 @@ gapminder %&gt;%
 <p>Share your findings, challenges, and questions with the class.</p>
 <p><br></p>
 <p><strong>END LAB 3</strong></p>
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 </div>
