@@ -334,8 +334,7 @@ gg_base +
     x = "Date",
     y = "Total confirmed cases",
     title = str_c("Daily counts of new Coronavirus cases recorded per ", max(coronavirus$date)),
-    subtitle = "Global sums"
-  )
+    subtitle = "Global sums")
 ```
 
 <br>

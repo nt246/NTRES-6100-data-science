@@ -607,6 +607,8 @@ For more details on how to use `ggsave()` see slides 50-56 in [Jenny Bryan's ggp
 
 ### Example ggsave() options
 
+<br>
+
 If the plot is on your screen
 ```{r, eval = FALSE}
 ggsave("path_to_figure/filename.png")
