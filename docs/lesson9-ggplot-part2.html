@@ -580,16 +580,10 @@ this a useful way to specify graphics.</p>
 <p>We’ll return to exploring the Coronavirus dataset. I’ll try to focus
 on typical beginner’s errors along the way so we can get used to
 trouble-shooting together.</p>
-<p>Before we start, please open the R Project associated with your class
-GitHub repository. Then create a new RMarkdown file, select
-<code>github_document</code> output format, and save it to your lecture
-note folder. Copy today’s <a
-href="https://github.com/nt246/NTRES6940-data-science/blob/master/in_class_exercises/lesson9_in-class-worksheet.Rmd">template
-for in-class exercises</a> into your RMarkdown document and save it. You
-can follow along in this worksheet as we go through the lecture.</p>
 <p><br></p>
-<p>First, let’s load our packages and read in our Coronavirus
-dataset</p>
+<p>First, let’s load our packages and read in our Coronavirus dataset.
+You can choose to either work in an R-script or an RMarkdown document
+today.</p>
 <pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
 
@@ -699,6 +693,10 @@ thickness)</li>
 <li><code>alpha =</code>: update element opacity (1 = opaque, 0 =
 transparent)</li>
 </ul>
+<p><br></p>
+<p>There are many overviews of the different arguments to
+<code>linetype</code>, <code>shape</code> etc on the internet, e.g. <a
+href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">here</a>.</p>
 <p><br></p>
 <p>Building on our first line graph, let’s update the line color to
 “purple” and make the line type “dashed”:</p>
@@ -814,10 +812,8 @@ href="https://ggplot2-book.org/polishing.html">here</a>.</p>
   theme(legend.background = element_rect(
     fill = &quot;lemonchiffon&quot;, 
     colour = &quot;grey50&quot;, 
-    size = 1
+    linewidth = 1
   ))</code></pre>
-<pre><code>## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
-## ℹ Please use the `linewidth` argument instead.</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-11-1.png" width="672" /></p>
 <p><br></p>
 <p>Or we can remove the legend</p>
@@ -845,9 +841,8 @@ subtitle to your ggplot graph.</p>
   labs(
     x = &quot;Date&quot;,
     y = &quot;Total confirmed cases&quot;,
-    title = &quot;Daily counts of new Coronavirus cases recorded&quot;,
-    subtitle = &quot;Global sums&quot;
-  )</code></pre>
+    title = str_c(&quot;Daily counts of new Coronavirus cases recorded per &quot;, max(coronavirus$date)),
+    subtitle = &quot;Global sums&quot;)</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-13-1.png" width="672" /></p>
 <p><br></p>
 <p><strong>Note</strong>: If you want to update the formatting of axis
@@ -902,7 +897,7 @@ aesthetic</p>
 <p>It looks like this is doing what we want, but it does not display
 well. There are too many countries! We could play around with the layout
 parameters to be able to see this plot. But let’s instead subset to only
-show the 10 countries with the highest total counts of confirmed
+show the 5 countries with the highest total counts of confirmed
 cases.</p>
 <pre class="r"><code>top5_countries &lt;- coronavirus %&gt;% 
   filter(type == &quot;confirmed&quot;) %&gt;%
@@ -1012,7 +1007,8 @@ make all bars the same height with ‘position adjustment’</p>
 <p>While looking at the proportions of case types is helpful for
 comparing patterns, it doesn’t allow for comparison of the magnitude of
 case counts. We can do this better by scaling the bars by the raw case
-counts (not mapping a variable to the <code>fill</code> aesthetic).</p>
+counts (not mapping a variable to the <code>fill</code> aesthetic), as
+we did above.</p>
 <p><br></p>
 <p>We can also get the bars for the different types of cases each day
 stacked next to each other with another position adjustment option</p>
@@ -1059,52 +1055,52 @@ to have ggplot compute the counts of observations directly with
 <p>To explore different types of x-y scatterplots, let’s return to the
 vaccination data we also looked at during the last lecture. Let’s first
 load it back in:</p>
-<pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv&quot;)</code></pre>
+<pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv&quot;)</code></pre>
 <p><br></p>
 <p>Remember, this dataset shows cumulate counts, so let’s grab the
-counts from the most recent date included in the dataset 2022-09-20.
+counts from the most recent date included in the dataset 2023-02-14.
 We’ll also remove rows with missing data for variables we need (this is
-typically not necessary as those lines will automatically be expluded
+typically not necessary as those lines will automatically be excluded
 from plots, but we do it here because some of those rows have extreme
 values for other variables)</p>
 <pre class="r"><code># create a &quot;total to date&quot; subset of the data
 vacc_ttd &lt;- vacc %&gt;% 
-  filter(date == max(vacc$date), !is.na(people_fully_vaccinated), !is.na(population))
+  filter(date == max(vacc$date), !is.na(people_at_least_one_dose), !is.na(population))
 
 # Let&#39;s look at our new tibble so make sure it makes sense
 vacc_ttd</code></pre>
-<pre><code>## # A tibble: 175 × 18
-##    country_r…¹ date       doses…² peopl…³ peopl…⁴ report_d…⁵   uid provi…⁶ iso2 
-##    &lt;chr&gt;       &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
-##  1 Afghanistan 2022-09-20  1.18e7  1.08e7  1.01e7 2022-09-21     4 &lt;NA&gt;    AF   
-##  2 Albania     2022-09-20  2.97e6  1.34e6  1.26e6 2022-09-21     8 &lt;NA&gt;    AL   
-##  3 Algeria     2022-09-20  1.53e7  7.84e6  6.48e6 2022-09-21    12 &lt;NA&gt;    DZ   
-##  4 Andorra     2022-09-20  1.54e5  5.79e4  5.35e4 2022-09-21    20 &lt;NA&gt;    AD   
-##  5 Angola      2022-09-20  2.22e7  1.42e7  7.81e6 2022-09-21    24 &lt;NA&gt;    AO   
-##  6 Antigua an… 2022-09-20  1.37e5  6.41e4  6.20e4 2022-09-21    28 &lt;NA&gt;    AG   
-##  7 Argentina   2022-09-20  1.09e8  4.13e7  3.78e7 2022-09-21    32 &lt;NA&gt;    AR   
-##  8 Armenia     2022-09-20  2.15e6  1.13e6  9.86e5 2022-09-21    51 &lt;NA&gt;    AM   
-##  9 Australia   2022-09-20  6.33e7  2.24e7  2.18e7 2022-09-21    36 &lt;NA&gt;    AU   
-## 10 Austria     2022-09-20  1.92e7  6.89e6  6.82e6 2022-09-21    40 &lt;NA&gt;    AT   
-## # … with 165 more rows, 9 more variables: iso3 &lt;chr&gt;, code3 &lt;dbl&gt;, fips &lt;lgl&gt;,
-## #   lat &lt;dbl&gt;, long &lt;dbl&gt;, combined_key &lt;chr&gt;, population &lt;dbl&gt;,
-## #   continent_name &lt;chr&gt;, continent_code &lt;chr&gt;, and abbreviated variable names
-## #   ¹​country_region, ²​doses_admin, ³​people_partially_vaccinated,
-## #   ⁴​people_fully_vaccinated, ⁵​report_date_string, ⁶​province_state</code></pre>
+<pre><code>## # A tibble: 191 × 15
+##    date       country_re…¹ conti…² conti…³ combi…⁴ doses…⁵ peopl…⁶ popul…⁷   uid
+##    &lt;date&gt;     &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+##  1 2023-02-14 Afghanistan  Asia    AS      Afghan…  1.27e7  1.17e7  3.89e7     4
+##  2 2023-02-14 Albania      Europe  EU      Albania  3.05e6  1.34e6  2.88e6     8
+##  3 2023-02-14 Algeria      Africa  AF      Algeria  1.53e7  7.84e6  4.39e7    12
+##  4 2023-02-14 Andorra      Europe  EU      Andorra  1.56e5  5.79e4  7.73e4    20
+##  5 2023-02-14 Angola       Africa  AF      Angola   2.39e7  1.51e7  3.29e7    24
+##  6 2023-02-14 Antigua and… North … &lt;NA&gt;    Antigu…  1.37e5  6.43e4  9.79e4    28
+##  7 2023-02-14 Argentina    South … SA      Argent…  1.15e8  4.15e7  4.52e7    32
+##  8 2023-02-14 Armenia      Asia    AS      Armenia  2.15e6  1.13e6  2.96e6    51
+##  9 2023-02-14 Australia    Oceania OC      Austra…  6.45e7  2.22e7  2.55e7    36
+## 10 2023-02-14 Austria      Europe  EU      Austria  2.04e7  6.90e6  9.01e6    40
+## # … with 181 more rows, 6 more variables: iso2 &lt;chr&gt;, iso3 &lt;chr&gt;, code3 &lt;dbl&gt;,
+## #   fips &lt;lgl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;, and abbreviated variable names
+## #   ¹​country_region, ²​continent_name, ³​continent_code, ⁴​combined_key,
+## #   ⁵​doses_admin, ⁶​people_at_least_one_dose, ⁷​population</code></pre>
 <p><br></p>
 <p>We can start by just making a simple plot of the number of fully
 vaccinated people vs. the total population size in different
 countries</p>
 <pre class="r"><code>vacc_ttd %&gt;% 
   ggplot() +
-  geom_point(mapping = aes(population, people_fully_vaccinated))</code></pre>
+  geom_point(mapping = aes(population, people_at_least_one_dose))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-31-1.png" width="672" /></p>
 <p><br></p>
 <p>That’s nice, but it would be useful to know which country is
-represented by each dot. geom_label() is our tool for that.</p>
+represented by each dot. <code>geom_label()</code> is our tool for
+that.</p>
 <pre class="r"><code>vacc_ttd %&gt;% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))</code></pre>
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-32-1.png" width="672" /></p>
 <p><br></p>
 <p>Let’s do a few things to make this easier to read</p>
@@ -1113,25 +1109,25 @@ transform the population sizes</p>
 <pre class="r"><code>vacc_ttd %&gt;% 
   filter(population &gt; 50000000) %&gt;% 
   ggplot() +
-  geom_label(mapping = aes(log(population), people_fully_vaccinated, label = country_region))</code></pre>
+  geom_label(mapping = aes(log(population), people_at_least_one_dose, label = country_region))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-33-1.png" width="672" /></p>
 <p><br></p>
-<p>Or, we can zoom in on the part of the plot where most all countries
-than China and India are clustered together. We can do this in a few
-different ways. One is to just filter out rows with large population
-size (e.g. countries population sizes over 500 million).</p>
+<p>Or, we can zoom in on the part of the plot where almost all countries
+other than China and India are clustered together. We can do this in a
+few different ways. One is to just filter out rows with large population
+size (e.g. countries with population sizes over 500 million).</p>
 <pre class="r"><code>vacc_ttd %&gt;% 
   filter(population &lt; 5*10^8) %&gt;% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))</code></pre>
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-34-1.png" width="672" /></p>
 <p><br></p>
 <p>Or we can just zoom in by adjusting what parts of the axes to
 display</p>
 <pre class="r"><code>vacc_ttd %&gt;% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region)) +
-  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 2.5*10^8))</code></pre>
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region)) +
+  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 3*10^8))</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-35-1.png" width="672" /></p>
 <p><br></p>
 <p>There are lots of other ways we can adjust label plotting. See

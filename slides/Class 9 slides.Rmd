@@ -1,0 +1,46 @@
+---
+title: "Lesson 9: ggplot Part 2"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+```
+
+```{r}
+library(tidyverse)
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+
+```
+
+
+
+## Learning objectives 
+
+By the end of this class, you should be able to:
+
+* Use different geometric objects and aesthetics to explore various plot types in ggplot
+* Chain together steps for data wrangling (dplyr) and plotting (ggplot)
+
+
+## Exercise
+
+Reproduce this plot showing the history of daily counts of new confirmed cases worldwide (we need the total count of confirmed cases per day)
+
+```{r, echo = FALSE}
+coronavirus %>%  
+  filter(type == "confirmed") %>% 
+  group_by(date) %>% 
+  summarize(total_cases = sum(cases)) %>% 
+  ggplot(mapping = aes(x = date, y = total_cases)) +
+  geom_line()
+```
+
+
+## Exercise
+
+Now generate a plot with a separate line showing the daily reports of new confirmed cases in each country
+
