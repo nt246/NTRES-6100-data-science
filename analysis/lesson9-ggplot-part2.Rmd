@@ -90,11 +90,9 @@ These components are like parameters of statistical graphics, defining the “sp
 
 We'll return to exploring the Coronavirus dataset. I'll try to focus on typical beginner's errors along the way so we can get used to trouble-shooting together.
 
-Before we start, please open the R Project associated with your class GitHub repository. Then create a new RMarkdown file, select `github_document` output format, and save it to your lecture note folder. Copy today's [template for in-class exercises](https://github.com/nt246/NTRES6940-data-science/blob/master/in_class_exercises/lesson9_in-class-worksheet.Rmd) into your RMarkdown document and save it. You can follow along in this worksheet as we go through the lecture.
-
 <br>
 
-First, let's load our packages and read in our Coronavirus dataset
+First, let's load our packages and read in our Coronavirus dataset. You can choose to either work in an R-script or an RMarkdown document today.
 
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
@@ -197,6 +195,10 @@ Some common arguments we'll use first are:
 
 <br>
 
+There are many overviews of the different arguments to `linetype`, `shape` etc on the internet, e.g. [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
+
+<br>
+
 Building on our first line graph, let's update the line color to "purple" and make the line type "dashed": 
 
 ```{r, eval = TRUE}
@@ -292,7 +294,7 @@ gg_base +
   theme(legend.background = element_rect(
     fill = "lemonchiffon", 
     colour = "grey50", 
-    size = 1
+    linewidth = 1
   ))
 ```
 
@@ -331,7 +333,7 @@ gg_base +
   labs(
     x = "Date",
     y = "Total confirmed cases",
-    title = "Daily counts of new Coronavirus cases recorded",
+    title = str_c("Daily counts of new Coronavirus cases recorded per ", max(coronavirus$date)),
     subtitle = "Global sums"
   )
 ```
@@ -393,7 +395,7 @@ coronavirus %>%
 
 <br>
 
-It looks like this is doing what we want, but it does not display well. There are too many countries! We could play around with the layout parameters to be able to see this plot. But let's instead subset to only show the 10 countries with the highest total counts of confirmed cases.
+It looks like this is doing what we want, but it does not display well. There are too many countries! We could play around with the layout parameters to be able to see this plot. But let's instead subset to only show the 5 countries with the highest total counts of confirmed cases.
 
 ```{R, eval = TRUE}
 top5_countries <- coronavirus %>% 
@@ -521,7 +523,7 @@ coronavirus %>%
 
 ```
 
-While looking at the proportions of case types is helpful for comparing patterns, it doesn't allow for comparison of the magnitude of case counts. We can do this better by scaling the bars by the raw case counts (not mapping a variable to the `fill` aesthetic).
+While looking at the proportions of case types is helpful for comparing patterns, it doesn't allow for comparison of the magnitude of case counts. We can do this better by scaling the bars by the raw case counts (not mapping a variable to the `fill` aesthetic), as we did above.
 
 <br>
 
@@ -579,17 +581,17 @@ coronavirus %>%
 To explore different types of x-y scatterplots, let's return to the vaccination data we also looked at during the last lecture. Let's first load it back in:
 
 ```{r, message = FALSE}
-vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv")
+vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv")
 ```
 
 <br>
 
-Remember, this dataset shows cumulate counts, so let's grab the counts from the most recent date included in the dataset `r max(vacc$date)`. We'll also remove rows with missing data for variables we need (this is typically not necessary as those lines will automatically be expluded from plots, but we do it here because some of those rows have extreme values for other variables)
+Remember, this dataset shows cumulate counts, so let's grab the counts from the most recent date included in the dataset `r max(vacc$date)`. We'll also remove rows with missing data for variables we need (this is typically not necessary as those lines will automatically be excluded from plots, but we do it here because some of those rows have extreme values for other variables)
 
 ```{r}
 # create a "total to date" subset of the data
 vacc_ttd <- vacc %>% 
-  filter(date == max(vacc$date), !is.na(people_fully_vaccinated), !is.na(population))
+  filter(date == max(vacc$date), !is.na(people_at_least_one_dose), !is.na(population))
 
 # Let's look at our new tibble so make sure it makes sense
 vacc_ttd
@@ -602,17 +604,17 @@ We can start by just making a simple plot of the number of fully vaccinated peop
 ```{r}
 vacc_ttd %>% 
   ggplot() +
-  geom_point(mapping = aes(population, people_fully_vaccinated))
+  geom_point(mapping = aes(population, people_at_least_one_dose))
 ```
 
 <br>
 
-That’s nice, but it would be useful to know which country is represented by each dot. geom_label() is our tool for that.
+That’s nice, but it would be useful to know which country is represented by each dot. `geom_label()` is our tool for that.
 
 ```{r}
 vacc_ttd %>% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))
 ```
 
 <br>
@@ -625,18 +627,18 @@ We can remove countries with a small population sizes, and log transform the pop
 vacc_ttd %>% 
   filter(population > 50000000) %>% 
   ggplot() +
-  geom_label(mapping = aes(log(population), people_fully_vaccinated, label = country_region))
+  geom_label(mapping = aes(log(population), people_at_least_one_dose, label = country_region))
 ```
 
 <br>
 
-Or, we can zoom in on the part of the plot where most all countries than China and India are clustered together. We can do this in a few different ways. One is to just filter out rows with large population size (e.g. countries population sizes over 500 million).
+Or, we can zoom in on the part of the plot where almost all countries other than China and India are clustered together. We can do this in a few different ways. One is to just filter out rows with large population size (e.g. countries with population sizes over 500 million).
 
 ```{r}
 vacc_ttd %>% 
   filter(population < 5*10^8) %>% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region))
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))
 ```
 
 <br>
@@ -646,8 +648,8 @@ Or we can just zoom in by adjusting what parts of the axes to display
 ```{r}
 vacc_ttd %>% 
   ggplot() +
-  geom_label(mapping = aes(population, people_fully_vaccinated, label = country_region)) +
-  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 2.5*10^8))
+  geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region)) +
+  coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 3*10^8))
 ```
 
 <br>

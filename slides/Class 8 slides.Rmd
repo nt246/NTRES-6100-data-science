@@ -15,10 +15,13 @@ Last class, we learned how to use `dplyr` functions
 
 * `filter()` for subsetting data with row logic
 * `select()` for subsetting data variable- or column-wise
-* Use piping (`%>%`) to implement function chains
+
+
+<br>
 
 Today, we'll expand our data wrangling toolbox. By the end of today's class, you should be able to:
 
+* Use piping (`%>%`) to implement function chains
 * Subset, rearrange, and summarize data with additional key `dplyr` functions:
   + Create new variables with functions of existing variables with `mutate()`
   + Reorder the rows with `arrange()`

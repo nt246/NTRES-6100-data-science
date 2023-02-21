@@ -605,6 +605,41 @@ For more details on how to use `ggsave()` see slides 50-56 in [Jenny Bryan's ggp
 
 <br>
 
+### Example ggsave() options
+
+If the plot is on your screen
+```{r, eval = FALSE}
+ggsave("path_to_figure/filename.png")
+```
+ <br>
+ 
+If your plot is assigned to an object
+```{r, eval = FALSE}
+ggsave(plot1, file = "path_to_figure/filename.png")
+```
+
+<br>
+
+Specify a size
+```{r, eval = FALSE}
+ggsave(file = "path_to_figure/filename.png", width = 5, height = 3)
+
+```
+
+<br>
+
+Or any format (pdf, png, eps, jpp, svg)
+```{r, eval = FALSE}
+ggsave(file = "path_to_figure/filename.png")
+ggsave(file = "path_to_figure/filename.pdf")
+ggsave(file = "path_to_figure/filename.jpg")
+```
+
+
+<br>
+<br>
+
+
 Now we're done for today
 
 <br>
