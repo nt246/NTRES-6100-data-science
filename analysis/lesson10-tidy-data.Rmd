@@ -240,7 +240,7 @@ To explain our call to `pivot_longer()` above, let’s read it from right to lef
 Now we write this multi-film, tidy dataset to file for use in various downstream scripts for further analysis and visualization.
 
 ```{r eval=FALSE}
-write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
+write_csv(lotr_tidy, file = "datasets/lotr_tidy.csv")
 ```
 
 <br>
@@ -248,7 +248,7 @@ write_csv(lotr_tidy, path = "../datasets/lotr_tidy.csv")
 ### Your turn
 1. After tidying the data and completing your analysis, you may want to output a table that has each race in its own column. Let's use the `pivot_wider()` function to make such a table and save it as "lotr_wide"
 
-2. OPTIONAL: Use the pivot_longer() function to transform you lotr_wide back to tidy format.
+2. OPTIONAL: Use the `pivot_longer()` function to transform you lotr_wide back to tidy format.
 
 <br>
 
@@ -341,7 +341,10 @@ Convert the coronavirus dataset to a wider format where the confirmed cases, dea
 
 <br>
 
-##### Answer
+<details>
+  <summary>click to see our approach</summary>
+
+
 ```{r}
 
 # Let's just select a few key columns so we better can follow what happens to the data structure
@@ -350,6 +353,8 @@ corona_wide <- coronavirus %>%
   pivot_wider(names_from = type, values_from = cases)
 
 ```
+
+</details>
 
 <br>
 
@@ -396,7 +401,7 @@ This case highlights how the definition of what a variable and an observation is
 <br>
 
 ## Before we wrap up - Renew our GitHub access token
-When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let's revisit how we can set up with a new token by working through the procedures described in [lessson 2](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)).
+When we configured git to connect with our GitHub account through RStudio, many of you may have used a PAT (personal access token) that was only valid for 30 days. Let's revisit how we can set up with a new token by working through the procedures described in [Lesson 2](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Entering_a_GitHub_Personal_Access_Token_(PAT)).
 
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>

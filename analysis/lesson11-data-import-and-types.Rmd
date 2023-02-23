@@ -49,7 +49,7 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
-## Loading libraries
+## Loading packages
 
 ```{r message=FALSE, warning=FALSE}
 

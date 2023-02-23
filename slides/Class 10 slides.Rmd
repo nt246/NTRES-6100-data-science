@@ -1,0 +1,75 @@
+---
+title: "Lesson 10: Tidy data"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+```
+
+```{r}
+library(tidyverse)
+coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
+
+```
+
+## Announcements
+
+* Assignment 4 due tonight - submit by pushing to your class GitHub repo
+
+* No class next Tuesday (February break)
+
+* We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
+
+* Your GitHub PAT (personal access token) may expire soon (if you had set it to 30 days). We'll review how to renew it at the end of class
+
+
+
+## Learning objectives 
+
+By the end of this class, you should be able to:
+
+- Describe the concept of tidy data
+- Determine whether a dataset is in tidy format
+- Use `tidyr::pivot_wider()` and `tidyr::pivot_longer()` to reshape data frames
+- Use `tidyr::unite()` and `tidyr::separate()` to merge or separate information from different columns
+
+
+## Exercise
+
+We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together.
+
+Now calculate this same statistic from `table2` and `table4a` + `table4b`. 
+
+You will need to perform four operations:
+
+1. Extract the number of TB cases per country per year.
+2. Extract the matching population per country per year.
+3. Divide cases by population, and multiply by 10000.
+4. Store back in the appropriate place.
+
+<br>
+
+Which representation is easiest to work with? Which is hardest? Why?
+
+## Tidy data - Two common problems
+
+* **One variable might be spread across multiple columns**.
+
+* **One observation might be scattered across multiple rows**.
+
+
+
+## Exercise
+
+1. After tidying the data and completing your analysis, you may want to output a table that has each race in its own column. Let's use the `pivot_wider()` function to make such a table and save it as "lotr_wide"
+
+2. OPTIONAL: Use the `pivot_longer()` function to transform you lotr_wide back to tidy format.
+
+
+## Exercise
+Convert the coronavirus dataset to a wider format where the confirmed cases, deaths and recovered cases are shown in separate columns.
+
