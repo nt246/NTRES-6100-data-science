@@ -40,10 +40,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 * Assignment 4 due tonight - submit by pushing to your class GitHub repo
 
-* Today's lab will be over Zoom (with the option to participate from the Academic Surge A 109 classroom where the Zoom call will be projected)
-
-* Tomorrow's lab will be in-person (Fernow Hall G01)
-
 * No class next Tuesday (February break)
 
 * We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
