@@ -72,7 +72,7 @@ Note: Age is fractional if less than 1. If the age is estimated, it is in the fo
 <br>
 <br>
 
-## Exercise 1: Use data transformation and visualization to answer the following questions in breakout rooms (50 min)
+## Exercise 1: Use data transformation and visualization to answer the following questions (50 min):
 
 <br>
 
