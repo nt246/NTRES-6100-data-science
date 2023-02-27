@@ -141,7 +141,7 @@ lotr_xlsx <- read_xlsx("datasets/LOTR.xlsx")
 
 <br>
 
-Or we can read from a google sheet! If you want to just read from public sheets (set to "Anyone on the internet with this link can view/edit"), you want to first run `gs4_deauth()` to indicate there is no need for a token. If you want to access private sheets, check the instructions for configuring an authenticated user [here](authenticated Google user).
+Or we can read from a google sheet! If you want to just read from public sheets (set to "Anyone on the internet with this link can view/edit"), you want to first run `gs4_deauth()` to indicate there is no need for a token. If you want to access private sheets, check the instructions for configuring an authenticated user [here](https://search.r-project.org/CRAN/refmans/googlesheets4/html/gs4_auth.html).
 
 ```{r, eval = FALSE}
 library(googlesheets4) ## install.packages("googlesheets4")
