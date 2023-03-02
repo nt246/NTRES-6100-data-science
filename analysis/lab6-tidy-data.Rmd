@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-Tidy up the messy `whales` dataset in breakout rooms.
+Tidy up the messy `whales` dataset.
 
 <br>
 
@@ -257,7 +257,7 @@ Share your findings, challenges, and questions with the class.
 
 <br>
 
-Use data tidying, transformation, and visualization to answer the following questions about baby names in breakout rooms
+Use data tidying, transformation, and visualization to answer the following questions about baby names:
 
 <br>
 
