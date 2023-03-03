@@ -124,8 +124,8 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 10      | Thu | 2/23 | [Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)          | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
 |         | Tue | 2/28  | **NO CLASS** - February Break                                |                  |
 | 11      | Thu | 3/2  | [Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)                            | [Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md) |
-| 12      | Tue | 3/7  | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson12-debugging-getting-help.html) |  |
-| 13      | Thu | 3/9 | [Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html) | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
+| 12      | Tue | 3/7  | [Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html) |  |
+| 13      | Thu | 3/9 | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson13-debugging-getting-help.html) | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
 | 14      | Tue | 3/14 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops.html)    |                  |
 | 15      | Thu | 3/16 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)                                        | [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md) |
 | 16      | Tue | 3/21  | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)    |                  |
