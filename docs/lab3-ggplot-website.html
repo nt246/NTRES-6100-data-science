@@ -13,7 +13,7 @@
 
 <title>Lab 3: Displaying data visualization on a website</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -362,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -451,7 +452,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 3: Displaying data visualization on a website</h1>
+<h1 class="title toc-ignore">Lab 3: Displaying data visualization on a
+website</h1>
 
 </div>
 
@@ -461,30 +463,49 @@ div.tocify {
 <h3>Goals for today</h3>
 <ol style="list-style-type: decimal">
 <li><p>Continue to explore and practice graphing with ggplot</p></li>
-<li><p>Continue to explore and practice website setup and styling with GitHub Pages</p></li>
-<li><p>Integrate 1) and 2) to publish your data visualization on a website</p></li>
+<li><p>Continue to explore and practice website setup and styling with
+GitHub Pages</p></li>
+<li><p>Integrate 1) and 2) to publish your data visualization on a
+website</p></li>
 </ol>
 <p><br></p>
 <p><br></p>
 </div>
-<div id="exercise-1-explore-the-penguins-dataset-with-ggplot-50-mins" class="section level3">
-<h3>Exercise 1: Explore the <code>penguins</code> dataset with ggplot (50 mins)</h3>
+<div id="exercise-1-explore-the-penguins-dataset-with-ggplot-50-mins"
+class="section level3">
+<h3>Exercise 1: Explore the <code>penguins</code> dataset with ggplot
+(50 mins)</h3>
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>Today, we’ll use ggplot to visually explore patterns in morphological traits in three different species of penguin. This data were collected and made available by <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr. Kristen Gorman</a> and the <a href="https://pal.lternet.edu/">Palmer Station, Antarctica LTER</a>, and were compiled by <a href="https://www.allisonhorst.com/">Dr. Allison Horst</a> and colleagues.</p>
-<p><img src="https://www.gabemednick.com/post/penguin/featured.png" /></p>
+<p>Today, we’ll use ggplot to visually explore patterns in morphological
+traits in three different species of penguin. This data were collected
+and made available by <a
+href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr. Kristen
+Gorman</a> and the <a href="https://pal.lternet.edu/">Palmer Station,
+Antarctica LTER</a>, and were compiled by <a
+href="https://www.allisonhorst.com/">Dr. Allison Horst</a> and
+colleagues.</p>
+<p><img
+src="https://www.gabemednick.com/post/penguin/featured.png" /></p>
 <p><br> <br> <br></p>
 </div>
 <div id="step-1-get-to-know-our-data" class="section level4">
 <h4>Step 1: Get to know our data</h4>
-<p>Take a few minutes to explore the <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins homepage</a>. (Note that this website is built using GitHub Pages!)</p>
+<p>Take a few minutes to explore the <a
+href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins
+homepage</a>. (Note that this website is built using GitHub Pages!)</p>
 <p><br> <br></p>
 </div>
-<div id="step-2-set-up-a-github-linked-rstudio-project-to-work-in" class="section level4">
+<div id="step-2-set-up-a-github-linked-rstudio-project-to-work-in"
+class="section level4">
 <h4>Step 2: Set up a GitHub-linked RStudio project to work in</h4>
-<p>Please create a new GitHub repo in your personal account named <code>penguins</code>, clone the repo to your computer, and work on your data exploration in this new repo.</p>
-<p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown…). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:</p>
+<p>Please create a new GitHub repo in your personal account named
+<code>penguins</code>, clone the repo to your computer, and work on your
+data exploration in this new repo.</p>
+<p>Open an .Rmd template file (File -&gt; New File -&gt; R Markdown…).
+Delete the boilerplate text under the setup chunk (you can keep that
+chunk) and make four level 2 headers:</p>
 <ul>
 <li>Data</li>
 <li>Single trait distribution</li>
@@ -492,17 +513,25 @@ div.tocify {
 <li>Sexual dimorphism</li>
 </ul>
 <p><br></p>
-<p>Under the <strong>Data</strong> header, add a short description of the dataset we’re using today and a picture of penguins.</p>
+<p>Under the <strong>Data</strong> header, add a short description of
+the dataset we’re using today and a picture of penguins.</p>
 <p><br> <br></p>
 </div>
 <div id="step-3-load-the-data" class="section level4">
 <h4>Step 3: Load the data</h4>
-<p>Today’s dataset is provided in the R package <code>palmerpenguins</code>.</p>
-<p>Let’s start by installing the <code>palmerpenguins</code> package so we can access the data. After installing the package we need to load it with the <code>library()</code> function. We also need to load the <code>tidyverse</code> package because it contains ggplot.</p>
+<p>Today’s dataset is provided in the R package
+<code>palmerpenguins</code>.</p>
+<p>Let’s start by installing the <code>palmerpenguins</code> package so
+we can access the data. After installing the package we need to load it
+with the <code>library()</code> function. We also need to load the
+<code>tidyverse</code> package because it contains ggplot.</p>
 <pre class="r"><code>library(palmerpenguins) #install.packages(&quot;palmerpenguins&quot;)
 library(tidyverse)</code></pre>
 <p><br></p>
-<p>Then, let’s explore the <code>penguins</code> dataset. You might e.g. want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>. You will see that the dataset includes the following variables:</p>
+<p>Then, let’s explore the <code>penguins</code> dataset. You might
+e.g. want to use functions like <code>View()</code>, <code>dim()</code>,
+<code>colnames()</code> , and <code>?</code>. You will see that the
+dataset includes the following variables:</p>
 <table>
 <thead>
 <tr class="header">
@@ -541,13 +570,24 @@ library(tidyverse)</code></pre>
 </div>
 <div id="step-4-explore-patterns-in-the-data" class="section level4">
 <h4>Step 4: Explore patterns in the data</h4>
-<p>In groups or on your own, go and explore patterns in the data with ggplot. You can look back to our <a href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture 6 notes</a> or the <a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio ggplot cheatsheet</a> for inspiration.</p>
-<p>We provide one possible solution for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</p>
+<p>In groups or on your own, go and explore patterns in the data with
+ggplot. You can look back to our <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html#Arguments_and_functions_you_should_know">lecture
+6 notes</a> or the <a
+href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">RStudio
+ggplot cheatsheet</a> for inspiration.</p>
+<p>We provide one possible solution for each question, but we highly
+recommend that you <strong>don’t look at them unless you are really
+stuck</strong>.</p>
 <p><br> <br></p>
 <div id="the-distribution-of-a-single-trait" class="section level5">
 <h5><em>The distribution of a single trait</em></h5>
-<p>First, under the “Single trait distribution” header, add some text and code chunks to explore the distribution in any one of the morphological traits in the penguin dataset.</p>
-<p>For example, what is the lowest and highest bill lengths do penguins in this dataset have? Do different species have different bill lengths? How much do they overlap?</p>
+<p>First, under the “Single trait distribution” header, add some text
+and code chunks to explore the distribution in any one of the
+morphological traits in the penguin dataset.</p>
+<p>For example, what is the lowest and highest bill lengths do penguins
+in this dataset have? Do different species have different bill lengths?
+How much do they overlap?</p>
 <em>One possible solution</em>
 <details>
 <summary>
@@ -565,10 +605,16 @@ click to expand
 </details>
 <p><br> <br></p>
 </div>
-<div id="the-relationship-between-multiple-traits" class="section level5">
+<div id="the-relationship-between-multiple-traits"
+class="section level5">
 <h5><em>The relationship between multiple traits</em></h5>
-<p>Then, under the “Relationship between multiple traits” header, add some text and code chunks to explore the relationship between different morphological traits in the <code>penguins</code> dataset.</p>
-<p>For example, what is the relationship between body mass and flipper length in penguins in this dataset? Does this relationship differ between species? Given the same body mass, which species of penguins tend to have the longest flippers?</p>
+<p>Then, under the “Relationship between multiple traits” header, add
+some text and code chunks to explore the relationship between different
+morphological traits in the <code>penguins</code> dataset.</p>
+<p>For example, what is the relationship between body mass and flipper
+length in penguins in this dataset? Does this relationship differ
+between species? Given the same body mass, which species of penguins
+tend to have the longest flippers?</p>
 <em>One possible solution</em>
 <details>
 <summary>
@@ -584,8 +630,12 @@ click to expand
 </div>
 <div id="the-level-of-sexual-dimorphism" class="section level5">
 <h5><em>The level of sexual dimorphism</em></h5>
-<p>Lastly, under the “Sexual dimorphism” header, add some text and code chunks to explore the level of sexual dimorphism in different morphological traits in the <code>penguins</code> dataset.</p>
-<p>For example, what traits are sexually dimorphic in the <code>penguins</code> dataset? Is the level of sexual dimorphism the same in all three penguin species?</p>
+<p>Lastly, under the “Sexual dimorphism” header, add some text and code
+chunks to explore the level of sexual dimorphism in different
+morphological traits in the <code>penguins</code> dataset.</p>
+<p>For example, what traits are sexually dimorphic in the
+<code>penguins</code> dataset? Is the level of sexual dimorphism the
+same in all three penguin species?</p>
 <em>One possible solution</em>
 <details>
 <summary>
@@ -608,7 +658,10 @@ click to expand
 </div>
 <div id="free-exploration" class="section level5">
 <h5><em>Free exploration</em></h5>
-<p>If you have finished these suggested activities ahead of time, please feel free to explore other aspects of the data. For example, you can look at any temporal trend in the dataset, or patterns within the same species across different islands.</p>
+<p>If you have finished these suggested activities ahead of time, please
+feel free to explore other aspects of the data. For example, you can
+look at any temporal trend in the dataset, or patterns within the same
+species across different islands.</p>
 <em>E.g., Sample size in different years and islands</em>
 <details>
 <summary>
@@ -633,22 +686,44 @@ click to expand
 <h3>Short break (10 minutes)</h3>
 <p><br> <br></p>
 </div>
-<div id="exercise-2-publish-your-data-visualizations-on-a-website-and-explore-different-website-styling-options-35-minutes" class="section level3">
-<h3>Exercise 2: Publish your data visualizations on a website and explore different website styling options (35 minutes)</h3>
+<div
+id="exercise-2-publish-your-data-visualizations-on-a-website-and-explore-different-website-styling-options-35-minutes"
+class="section level3">
+<h3>Exercise 2: Publish your data visualizations on a website and
+explore different website styling options (35 minutes)</h3>
 <p><br></p>
 <div id="general-instructions-1" class="section level4">
 <h4>General instructions</h4>
-<p>For this exercise, you will build a GitHub Pages website as described in <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Lecture 5</a> and display our <code>penguins</code> data visualization result on this website. For this website, you will each build your own, so there is no need to invite a collaborator. Just make sure your repo is public to be able to build the site.</p>
+<p>For this exercise, you will build a GitHub Pages website as described
+in <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html">Lecture
+5</a> and display our <code>penguins</code> data visualization result on
+this website. For this website, you will each build your own, so there
+is no need to invite a collaborator. Just make sure your repo is public
+to be able to build the site.</p>
 <p><br></p>
 </div>
 <div id="suggested-activities" class="section level4">
 <h4>Suggested activities</h4>
 <ul>
-<li><p>You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named <code>index.Rmd</code>, <code>single_trait.Rmd</code>, <code>multiple_traits.Rmd</code>, and <code>sexual_dimorphism.Rmd</code>, and the add those as tabs in a <code>_site.yml</code> file, as described in the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture notes</a></p></li>
-<li><p>You can then consider adding a table of contents and changing the styling (theme) of your website, as described <a href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website">here</a></p></li>
+<li><p>You can split your RMarkdown file into separate files, so each
+section (i.e. data, life expectancy, fertility, infant mortality)
+becomes a separate page and can get it own tab. You can e.g. split your
+content into files named <code>index.Rmd</code>,
+<code>single_trait.Rmd</code>, <code>multiple_traits.Rmd</code>, and
+<code>sexual_dimorphism.Rmd</code>, and the add those as tabs in a
+<code>_site.yml</code> file, as described in the <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website">lecture
+notes</a></p></li>
+<li><p>You can then consider adding a table of contents and changing the
+styling (theme) of your website, as described <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website">here</a></p></li>
 </ul>
 <p><br></p>
-<p>Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running <code>rmarkdown::render_site()</code>) in your Viewer pane in RStudio.</p>
+<p>Remember that it may take a little while for your website to update
+after you have pushed your changes to GitHub, but you can always check
+the current build (after running <code>rmarkdown::render_site()</code>)
+in your Viewer pane in RStudio.</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -657,7 +732,8 @@ click to expand
 <p>Share your findings, challenges, and questions with the class.</p>
 <p><br> <br></p>
 <p><strong>END LAB 3</strong></p>
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 </div>

@@ -13,7 +13,7 @@
 
 <title>Lesson 15: Iteration with for loops and conditional execution with if statements - Part 2</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -362,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -451,7 +452,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lesson 15: Iteration with <code>for</code> loops and conditional execution with <code>if</code> statements - Part 2</h1>
+<h1 class="title toc-ignore">Lesson 15: Iteration with <code>for</code>
+loops and conditional execution with <code>if</code> statements - Part
+2</h1>
 
 </div>
 
@@ -461,12 +464,16 @@ div.tocify {
 <h2>Readings</h2>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p>If you didn’t have a chance to read it yet, have a look at <a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p>If you didn’t have a chance to read it yet, have a look at <a
+href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for Data
+Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
-<p>We will be working through <a href="http://ohi-science.org/data-science-training/programming.html">this tutorial</a> developed by the Ocean Health Index Data Science Team</p>
+<p>We will be working through <a
+href="http://ohi-science.org/data-science-training/programming.html">this
+tutorial</a> developed by the Ocean Health Index Data Science Team</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -474,42 +481,78 @@ div.tocify {
 <h2>Today’s learning objectives</h2>
 <p>By the end of today’s class, you should be able to:</p>
 <ul>
-<li>Write a <code>for</code> loop to repeat operations on different input</li>
-<li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
+<li>Write a <code>for</code> loop to repeat operations on different
+input</li>
+<li>Implement <code>if</code> and <code>if else</code> statements for
+conditional execution of code</li>
 </ul>
 <p><br></p>
-<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with permission) from the excellent <a href="http://ohi-science.org/data-science-training/programming.html">Ocean Health Index Data Science Training</a>.</p>
+<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with
+permission) from the excellent <a
+href="http://ohi-science.org/data-science-training/programming.html">Ocean
+Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
-<p>We’ll first finish where we left off in lesson 14 and work through the rest of that lesson. Then we’ll look at some other ways to write for loops by working through <a href="https://datacarpentry.org/semester-biology/materials/for-loops-R/">these Data Carpentry’s notes</a>.</p>
+<p>We’ll first finish where we left off in lesson 14 and work through
+the rest of that lesson. Then we’ll look at some other ways to write for
+loops by working through <a
+href="https://datacarpentry.org/semester-biology/materials/for-loops-R/">these
+Data Carpentry’s notes</a>.</p>
 <p>We can also apply this to the <code>gapminder</code> data.</p>
 <p><br> <br></p>
 </div>
-<div id="looping-with-an-index-and-storing-results" class="section level2">
+<div id="looping-with-an-index-and-storing-results"
+class="section level2">
 <h2>Looping with an index and storing results</h2>
-<p>In the <code>gapminder</code> example we’ve been using to build a for loop together, we’ve been iterating over a list of countries (in turn assigning each of these to our <code>cntry</code> object). You may often see for loops iterating over a numerical index, often using <code>i</code> as the object that in turn gets assigned each number from a sequence. Here is an example:</p>
+<p>In the <code>gapminder</code> example we’ve been using to build a for
+loop together, we’ve been iterating over a list of countries (in turn
+assigning each of these to our <code>cntry</code> object). You may often
+see for loops iterating over a numerical index, often using
+<code>i</code> as the object that in turn gets assigned each number from
+a sequence. Here is an example:</p>
 <pre class="r"><code>for (i in 1:10) {
   print(str_c(&quot;Part_&quot;, i, sep = &quot;&quot;))
 }</code></pre>
 <p><br></p>
-<p>As another example, last class, we needed to calculate the product of gdp-per-cap and population size for each year and each country. We did this efficiently in a single step for all years and countries with a <code>mutate()</code>, prior to defining our loop or function.</p>
+<p>As another example, last class, we needed to calculate the product of
+gdp-per-cap and population size for each year and each country. We did
+this efficiently in a single step for all years and countries with a
+<code>mutate()</code>, prior to defining our loop or function.</p>
 <pre class="r"><code>gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == &quot;Europe&quot;) %&gt;%
   mutate(gdp_tot = gdp_per_cap * pop)</code></pre>
 <p><br></p>
-<p>A (not very computationally efficient) alternative would be to do this calculation for a specific country with a <code>for</code> loop and using square bracket indexing to select the i’th element of a vector.</p>
+<p>A (not very computationally efficient) alternative would be to do
+this calculation for a specific country with a <code>for</code> loop and
+using square bracket indexing to select the i’th element of a
+vector.</p>
 <pre class="r"><code>gapminder$gdp_tot &lt;-  vector(length = nrow(gapminder))
 
 for (i in 1:nrow(gapminder)) {
   gapminder$gdp_tot[i] &lt;- gapminder$gdp_per_cap[i] * gapminder$pop[i]
 } </code></pre>
 <p><br></p>
-<p>To understand how this loop is working exactly the same way as our previous loop, have a look of the list of elements <code>1:nrow(gapminder)</code> that we loop over.</p>
+<p>To understand how this loop is working exactly the same way as our
+previous loop, have a look of the list of elements
+<code>1:nrow(gapminder)</code> that we loop over.</p>
 <pre class="r"><code>1:nrow(gapminder)</code></pre>
-<p>You see that this just gives a vector of integers from 1 to the number of rows in the gapminder data. Each of these numbers in turn get assigned to i as we run through the loop.</p>
+<p>You see that this just gives a vector of integers from 1 to the
+number of rows in the gapminder data. Each of these numbers in turn get
+assigned to i as we run through the loop.</p>
 <p><br> <br></p>
-<div id="functional-programming-and-map-functions" class="section level3">
+<div id="functional-programming-and-map-functions"
+class="section level3">
 <h3>Functional programming and map functions</h3>
-<p>For loops are a great place to start implementing iteration in our code because they make iteration very explicit, so it’s obvious what’s happening. However, for loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every for loop. Functional programming (FP) offers tools to extract out this duplicated code, so each common for loop pattern gets its own function. If you are going to implement a lot of iteration in your code (which many of us will), I strongly recommend that you learn about the map functions in the purr package. <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">R4DS</a> provides a great introduction.</p>
+<p>For loops are a great place to start implementing iteration in our
+code because they make iteration very explicit, so it’s obvious what’s
+happening. However, for loops are quite verbose, and require quite a bit
+of bookkeeping code that is duplicated for every for loop. Functional
+programming (FP) offers tools to extract out this duplicated code, so
+each common for loop pattern gets its own function. If you are going to
+implement a lot of iteration in your code (which many of us will), I
+strongly recommend that you learn about the map functions in the purr
+package. <a
+href="https://r4ds.had.co.nz/iteration.html#the-map-functions">R4DS</a>
+provides a great introduction.</p>
 </div>
 </div>
 

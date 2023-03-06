@@ -363,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -1058,7 +1058,7 @@ load it back in:</p>
 <pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv&quot;)</code></pre>
 <p><br></p>
 <p>Remember, this dataset shows cumulate counts, so let’s grab the
-counts from the most recent date included in the dataset 2023-02-14.
+counts from the most recent date included in the dataset 2023-03-04.
 We’ll also remove rows with missing data for variables we need (this is
 typically not necessary as those lines will automatically be excluded
 from plots, but we do it here because some of those rows have extreme
@@ -1072,16 +1072,16 @@ vacc_ttd</code></pre>
 <pre><code>## # A tibble: 191 × 15
 ##    date       country_re…¹ conti…² conti…³ combi…⁴ doses…⁵ peopl…⁶ popul…⁷   uid
 ##    &lt;date&gt;     &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-##  1 2023-02-14 Afghanistan  Asia    AS      Afghan…  1.27e7  1.17e7  3.89e7     4
-##  2 2023-02-14 Albania      Europe  EU      Albania  3.05e6  1.34e6  2.88e6     8
-##  3 2023-02-14 Algeria      Africa  AF      Algeria  1.53e7  7.84e6  4.39e7    12
-##  4 2023-02-14 Andorra      Europe  EU      Andorra  1.56e5  5.79e4  7.73e4    20
-##  5 2023-02-14 Angola       Africa  AF      Angola   2.39e7  1.51e7  3.29e7    24
-##  6 2023-02-14 Antigua and… North … &lt;NA&gt;    Antigu…  1.37e5  6.43e4  9.79e4    28
-##  7 2023-02-14 Argentina    South … SA      Argent…  1.15e8  4.15e7  4.52e7    32
-##  8 2023-02-14 Armenia      Asia    AS      Armenia  2.15e6  1.13e6  2.96e6    51
-##  9 2023-02-14 Australia    Oceania OC      Austra…  6.45e7  2.22e7  2.55e7    36
-## 10 2023-02-14 Austria      Europe  EU      Austria  2.04e7  6.90e6  9.01e6    40
+##  1 2023-03-04 Afghanistan  Asia    AS      Afghan…  1.51e7  1.34e7  3.89e7     4
+##  2 2023-03-04 Albania      Europe  EU      Albania  3.06e6  1.35e6  2.88e6     8
+##  3 2023-03-04 Algeria      Africa  AF      Algeria  1.53e7  7.84e6  4.39e7    12
+##  4 2023-03-04 Andorra      Europe  EU      Andorra  1.57e5  5.79e4  7.73e4    20
+##  5 2023-03-04 Angola       Africa  AF      Angola   2.45e7  1.53e7  3.29e7    24
+##  6 2023-03-04 Antigua and… North … &lt;NA&gt;    Antigu…  1.37e5  6.43e4  9.79e4    28
+##  7 2023-03-04 Argentina    South … SA      Argent…  1.15e8  4.15e7  4.52e7    32
+##  8 2023-03-04 Armenia      Asia    AS      Armenia  2.15e6  1.13e6  2.96e6    51
+##  9 2023-03-04 Australia    Oceania OC      Austra…  6.49e7  2.22e7  2.55e7    36
+## 10 2023-03-04 Austria      Europe  EU      Austria  2.04e7  6.90e6  9.01e6    40
 ## # … with 181 more rows, 6 more variables: iso2 &lt;chr&gt;, iso3 &lt;chr&gt;, code3 &lt;dbl&gt;,
 ## #   fips &lt;lgl&gt;, lat &lt;dbl&gt;, long &lt;dbl&gt;, and abbreviated variable names
 ## #   ¹​country_region, ²​continent_name, ³​continent_code, ⁴​combined_key,

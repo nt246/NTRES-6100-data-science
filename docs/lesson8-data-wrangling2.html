@@ -363,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -612,7 +612,7 @@ click <code>View raw</code> to get the URL)</p>
 <p>Let’s first load in the data the same way we did for the case counts
 dataset</p>
 <pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv&quot;)</code></pre>
-<pre><code>## Rows: 138146 Columns: 15
+<pre><code>## Rows: 141622 Columns: 15
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (6): country_region, continent_name, continent_code, combined_key, iso2...
@@ -628,7 +628,7 @@ View(vacc) # remember to run this only from the console or an R script. Don&#39;
 <p>This dataset has statistics on the <em>cumulative</em> number of
 vaccine doses administered and number of people vaccinated on each day
 in different countries. For now, let’s just look at the most recent day
-included in the dataset 2023-02-14.</p>
+included in the dataset 2023-03-04.</p>
 <p>Imagine we want to compare the vaccination rate across countries. We
 can divide the <code>people_at_least_one_dose)</code> column with the
 <code>population</code> column to create a new column named

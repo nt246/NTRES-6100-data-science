@@ -13,7 +13,7 @@
 
 <title>Lesson 17: Factors in R</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -362,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -463,15 +464,19 @@ div.tocify {
 <div id="required" class="section level4">
 <h4>Required:</h4>
 <ul>
-<li><p><a href="https://stat545.com/factors-boss.html">Chapter 10: Be the boss of your factors</a> in Jenny Bryan’s STAT545 notes</p></li>
-<li><p>Skim the <a href="https://style.tidyverse.org/">The tidyverse style guide</a> for inspiration - <strong>you don’t have to read the whole guide carefully</strong></p></li>
+<li><p><a href="https://stat545.com/factors-boss.html">Chapter 10: Be
+the boss of your factors</a> in Jenny Bryan’s STAT545 notes</p></li>
+<li><p>Skim the <a href="https://style.tidyverse.org/">The tidyverse
+style guide</a> for inspiration - <strong>you don’t have to read the
+whole guide carefully</strong></p></li>
 </ul>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
 <ul>
-<li><a href="https://r4ds.had.co.nz/factors.html">Chapter 15</a> in R for Data Science by Hadley Wickham &amp; Garrett Grolemund</li>
+<li><a href="https://r4ds.had.co.nz/factors.html">Chapter 15</a> in R
+for Data Science by Hadley Wickham &amp; Garrett Grolemund</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -479,8 +484,17 @@ div.tocify {
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Reminder about the <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">end-of-class student presentations</a> next Thursday (March 31). If you can’t make it to class (and are taking the course for credit), please submit a video of your presentation before the class</li>
-<li>Instead of a regular lab session next week, Nicolas will offer optional 30-min consultations to discuss your project or analysis need. If you’re interested, please sign up <a href="https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0">here</a>. We will give preference to those enrolled in the lab sessions, but if there is availability, other’s are welcome.</li>
+<li>Reminder about the <a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">end-of-class
+student presentations</a> next Thursday (March 31). If you can’t make it
+to class (and are taking the course for credit), please submit a video
+of your presentation before the class</li>
+<li>Instead of a regular lab session next week, Nicolas will offer
+optional 30-min consultations to discuss your project or analysis need.
+If you’re interested, please sign up <a
+href="https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0">here</a>.
+We will give preference to those enrolled in the lab sessions, but if
+there is availability, other’s are welcome.</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -495,7 +509,8 @@ div.tocify {
 </div>
 <div id="getting-set-up" class="section level2">
 <h2>Getting set up</h2>
-<p>We will continue working with the gapminder dataset, so let’s first load that back in, along with the tidyverse.</p>
+<p>We will continue working with the gapminder dataset, so let’s first
+load that back in, along with the tidyverse.</p>
 <pre class="r"><code>library(tidyverse)
 library(gapminder)  #install.packages(&quot;gapminder&quot;)
 
@@ -503,10 +518,22 @@ library(gapminder)  #install.packages(&quot;gapminder&quot;)
 library(gridExtra)  #install.packages(&quot;gridExtra&quot;)</code></pre>
 <p><br> <br></p>
 </div>
-<div id="better-plots-with-factor-level-manipulation" class="section level2">
+<div id="better-plots-with-factor-level-manipulation"
+class="section level2">
 <h2>Better plots with factor level manipulation</h2>
-<p>R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. As such, this data type looks like character data type from the outset, but it can contain additional information to manage the levels and the order (or sequence) of the categorical values. Factors are important for modeling, but are also helpful for reordering character vectors to improve display in graphics.</p>
-<p>We’ll go over <a href="https://stat545.com/factors-boss.html">Jenny Bryan’s illustration</a> of how a few powerful functions from the <code>forcats</code> package can significantly improve our handling of factor variables and visualization of data with categorical variables. The code used in-class can be found <a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/factors_in_lecture_code.R">here</a></p>
+<p>R uses factors to handle categorical variables, variables that have a
+fixed and known set of possible values. As such, this data type looks
+like character data type from the outset, but it can contain additional
+information to manage the levels and the order (or sequence) of the
+categorical values. Factors are important for modeling, but are also
+helpful for reordering character vectors to improve display in
+graphics.</p>
+<p>We’ll go over <a href="https://stat545.com/factors-boss.html">Jenny
+Bryan’s illustration</a> of how a few powerful functions from the
+<code>forcats</code> package can significantly improve our handling of
+factor variables and visualization of data with categorical variables.
+The code used in-class can be found <a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/factors_in_lecture_code.R">here</a></p>
 <p><br> <br></p>
 </div>
 

@@ -13,7 +13,7 @@
 
 <title>Lab 7: Relational data and tidy data</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -362,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -461,28 +462,45 @@ div.tocify {
 <div id="goals-for-today" class="section level2">
 <h2>Goals for today</h2>
 <ol style="list-style-type: decimal">
-<li><p>Practice connecting relational data with <code>join</code> functions in <code>dplyr</code></p></li>
-<li><p>Continue to practice data tidying with <code>tidyr</code></p></li>
-<li><p>Continue to practice data visualization with <code>ggplot2</code></p></li>
-<li><p>Continue to practice data transformation with <code>dplyr</code></p></li>
-<li><p>Integrate 1), 2), 3) and 4) to continue our exploration of the <code>babynames</code> dataset, and …</p></li>
+<li><p>Practice connecting relational data with <code>join</code>
+functions in <code>dplyr</code></p></li>
+<li><p>Continue to practice data tidying with
+<code>tidyr</code></p></li>
+<li><p>Continue to practice data visualization with
+<code>ggplot2</code></p></li>
+<li><p>Continue to practice data transformation with
+<code>dplyr</code></p></li>
+<li><p>Integrate 1), 2), 3) and 4) to continue our exploration of the
+<code>babynames</code> dataset, and …</p></li>
 </ol>
 <p><br> <br></p>
 </div>
 <div id="general-instructions" class="section level2">
 <h2>General instructions</h2>
 <ul>
-<li>Today, we will combine the <code>join</code> functions and data transformation tools in <code>dplyr</code>, the data visualization tools in <code>ggplot2</code>, and the data tidying tools in <code>tidyr</code> to continue our exploration of patterns and trends in the <code>nycflights13</code> datasets we explored in class and the <code>babynames</code> dataset we worked with last week.</li>
+<li>Today, we will combine the <code>join</code> functions and data
+transformation tools in <code>dplyr</code>, the data visualization tools
+in <code>ggplot2</code>, and the data tidying tools in
+<code>tidyr</code> to continue our exploration of patterns and trends in
+the <code>nycflights13</code> datasets we explored in class and the
+<code>babynames</code> dataset we worked with last week.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set the output format to <code>github_document</code>, save it in your <code>lab</code> folder as <code>lab7.Rmd</code>, and work in this RMarkdown file for the rest of this lab.</li>
+<li>To start, first open a new RMarkdown file in your course repo, set
+the output format to <code>github_document</code>, save it in your
+<code>lab</code> folder as <code>lab7.Rmd</code>, and work in this
+RMarkdown file for the rest of this lab.</li>
 </ul>
 <p><br> <br></p>
 </div>
-<div id="exercise-1-exploration-of-the-nycflights13-data-50-min" class="section level2">
-<h2>Exercise 1: Exploration of the <code>nycflights13</code> data (50 min)</h2>
-<p>We will start out with some further exploration of the datasets included in the <code>nycflights13</code> package that we worked with in Wednesday’s lecture.</p>
+<div id="exercise-1-exploration-of-the-nycflights13-data-50-min"
+class="section level2">
+<h2>Exercise 1: Exploration of the <code>nycflights13</code> data (50
+min)</h2>
+<p>We will start out with some further exploration of the datasets
+included in the <code>nycflights13</code> package that we worked with in
+Wednesday’s lecture.</p>
 <p>Let’s first load in the required packages and data</p>
 <pre class="r"><code># Load required packages
 library(tidyverse)
@@ -665,8 +683,13 @@ flights %&gt;% head() %&gt;% kable()</code></pre>
 </tbody>
 </table>
 <p><br></p>
-<div id="question-1-compute-the-average-delay-by-destination-then-join-on-the-airports-data-frame-so-you-can-show-the-spatial-distribution-of-delays.-heres-an-easy-way-to-draw-a-map-of-the-united-states" class="section level4">
-<h4>Question 1: Compute the average delay by destination, then join on the <code>airports</code> data frame so you can show the spatial distribution of delays. Here’s an easy way to draw a map of the United States:</h4>
+<div
+id="question-1-compute-the-average-delay-by-destination-then-join-on-the-airports-data-frame-so-you-can-show-the-spatial-distribution-of-delays.-heres-an-easy-way-to-draw-a-map-of-the-united-states"
+class="section level4">
+<h4>Question 1: Compute the average delay by destination, then join on
+the <code>airports</code> data frame so you can show the spatial
+distribution of delays. Here’s an easy way to draw a map of the United
+States:</h4>
 <pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
 airports %&gt;%
@@ -675,8 +698,11 @@ airports %&gt;%
     borders(&quot;state&quot;) +
     geom_point() +
     coord_quickmap()</code></pre>
-<p>Don’t worry if you don’t understand what <code>semi_join()</code> does — we will discuss it, or you can learn about it <a href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">here</a>.</p>
-<p>You might want to use the <code>size</code> or <code>colour</code> of the points to display the average delay for each airport.</p>
+<p>Don’t worry if you don’t understand what <code>semi_join()</code>
+does — we will discuss it, or you can learn about it <a
+href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">here</a>.</p>
+<p>You might want to use the <code>size</code> or <code>colour</code> of
+the points to display the average delay for each airport.</p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -699,9 +725,13 @@ avg_dest_delays %&gt;%
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-2-is-there-a-relationship-between-the-age-of-a-plane-and-its-delays" class="section level4">
-<h4>Question 2: Is there a relationship between the age of a plane and its delays?</h4>
-<p>Hint: Think about which of our datasets have relevant information and how we need to connect them.</p>
+<div
+id="question-2-is-there-a-relationship-between-the-age-of-a-plane-and-its-delays"
+class="section level4">
+<h4>Question 2: Is there a relationship between the age of a plane and
+its delays?</h4>
+<p>Hint: Think about which of our datasets have relevant information and
+how we need to connect them.</p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -736,9 +766,13 @@ ggplot(plane_cohorts, aes(x = age, y = arr_delay_mean)) +
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-3-what-weather-conditions-make-it-more-likely-to-see-a-delay" class="section level4">
-<h4>Question 3: What weather conditions make it more likely to see a delay?</h4>
-<p>Hint: Think about which of our datasets have relevant information and how we need to connect them.</p>
+<div
+id="question-3-what-weather-conditions-make-it-more-likely-to-see-a-delay"
+class="section level4">
+<h4>Question 3: What weather conditions make it more likely to see a
+delay?</h4>
+<p>Hint: Think about which of our datasets have relevant information and
+how we need to connect them.</p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -781,9 +815,14 @@ flight_weather %&gt;%
 <div id="exercise-2-baby-names-45-min" class="section level2">
 <h2>Exercise 2: Baby names (45 min)</h2>
 <p><br></p>
-<p>Use data tidying, transformation, and visualization to answer the following questions about baby names in breakout rooms</p>
+<p>Use data tidying, transformation, and visualization to answer the
+following questions about baby names in breakout rooms</p>
 <p><br></p>
 <table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">top boy names</th>
@@ -792,15 +831,18 @@ flight_weather %&gt;%
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><img src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985571871-AWAM0VICLVSKXHQZ9H8V/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+boy+names.png?format=500w" /></td>
-<td align="center"><img src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985603694-1G1HBXOTRB17QEP1234D/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+girl+names.png?format=500w" /></td>
+<td align="center"><img
+src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985571871-AWAM0VICLVSKXHQZ9H8V/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+boy+names.png?format=500w" /></td>
+<td align="center"><img
+src="https://images.squarespace-cdn.com/content/v1/5c80324b29f2cc57eb5a3e1f/1581985603694-1G1HBXOTRB17QEP1234D/ke17ZwdGBToddI8pDm48kBapyj43L202fvtEGa0NsU97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5275-4EsLh0HBIeyNph8KOLVRHevxluj5VQW3JRQYgm4bjm9DAHF2kOsIZRJKXnA/top+10+baby+girl+names.png?format=500w" /></td>
 </tr>
 </tbody>
 </table>
 <p><br> <br></p>
 <p><strong>Instructions:</strong></p>
 <ul>
-<li>Load the required packages and read in the data with the following code:</li>
+<li>Load the required packages and read in the data with the following
+code:</li>
 </ul>
 <p><br></p>
 <pre class="r"><code># Load required packages
@@ -864,25 +906,42 @@ babynames %&gt;% head() %&gt;% kable()</code></pre>
 </table>
 <p><br></p>
 <ul>
-<li>The <code>babynames</code> dataset provides the number of children of each sex given each name from 1880 to 2017 in the US. All names with more than 5 uses are included. This dataset is provided by the US Social Security Administration.</li>
+<li>The <code>babynames</code> dataset provides the number of children
+of each sex given each name from 1880 to 2017 in the US. All names with
+more than 5 uses are included. This dataset is provided by the US Social
+Security Administration.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>As a reminder, to get familar with this dataset, you might want to use functions like <code>View()</code>, <code>dim()</code>, <code>colnames()</code> , and <code>?</code>.</li>
+<li>As a reminder, to get familar with this dataset, you might want to
+use functions like <code>View()</code>, <code>dim()</code>,
+<code>colnames()</code> , and <code>?</code>.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>Make sure that you use figures and/or tables to support your answer.</li>
+<li>Make sure that you use figures and/or tables to support your
+answer.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>We provide some possible solutions for each question, but we highly recommend that you <strong>don’t look at them unless you are really stuck</strong>.</li>
+<li>We provide some possible solutions for each question, but we highly
+recommend that you <strong>don’t look at them unless you are really
+stuck</strong>.</li>
 </ul>
 <p><br> <br></p>
-<div id="question-1-what-are-the-6-most-popular-boy-names-and-girl-names-of-all-time-how-has-the-popularity-of-each-of-these-names-changed-over-time-this-time-use-the-slice_max-function-in-combination-with-a-join-function-to-answer-this-question." class="section level4">
-<h4>Question 1: What are the 6 most popular boy names and girl names of all time? How has the popularity of each of these names changed over time? This time, use the <code>slice_max()</code> function in combination with a <code>join</code> function to answer this question.</h4>
+<div
+id="question-1-what-are-the-6-most-popular-boy-names-and-girl-names-of-all-time-how-has-the-popularity-of-each-of-these-names-changed-over-time-this-time-use-the-slice_max-function-in-combination-with-a-join-function-to-answer-this-question."
+class="section level4">
+<h4>Question 1: What are the 6 most popular boy names and girl names of
+all time? How has the popularity of each of these names changed over
+time? This time, use the <code>slice_max()</code> function in
+combination with a <code>join</code> function to answer this
+question.</h4>
 <p><br></p>
-<p><em>Hint: You can start by finding the 6 most popular names for each sex in one step using <code>group_by()</code> and <code>slice_max()</code>, and then use a filtering join function to subset the original dataset.</em></p>
+<p><em>Hint: You can start by finding the 6 most popular names for each
+sex in one step using <code>group_by()</code> and
+<code>slice_max()</code>, and then use a filtering join function to
+subset the original dataset.</em></p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -905,17 +964,26 @@ babynames %&gt;%
 <p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Note:</p>
 <ul>
-<li><code>slice_max(order_by = total_count, n = 6)</code> selects 6 rows with the highest values in <code>total_count</code> for each unique entry in the grouping variable (in this case, males and females)</li>
+<li><code>slice_max(order_by = total_count, n = 6)</code> selects 6 rows
+with the highest values in <code>total_count</code> for each unique
+entry in the grouping variable (in this case, males and females)</li>
 </ul>
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-2.-find-the-names-that-have-not-appeared-in-this-dataset-until-2010-but-were-used-more-than-1000-times-2010-2017-boys-and-girls-combined.-do-you-recognize-any-pop-culture-influence-in-these" class="section level4">
-<h4>Question 2. Find the names that have not appeared in this dataset until 2010, but were used more than 1000 times 2010-2017 (boys and girls combined). Do you recognize any pop culture influence in these?</h4>
+<div
+id="question-2.-find-the-names-that-have-not-appeared-in-this-dataset-until-2010-but-were-used-more-than-1000-times-2010-2017-boys-and-girls-combined.-do-you-recognize-any-pop-culture-influence-in-these"
+class="section level4">
+<h4>Question 2. Find the names that have not appeared in this dataset
+until 2010, but were used more than 1000 times 2010-2017 (boys and girls
+combined). Do you recognize any pop culture influence in these?</h4>
 <p><br></p>
-<p><em>Hint: You may start by creating a variable to indicate whether a row is before or after 2010.</em></p>
+<p><em>Hint: You may start by creating a variable to indicate whether a
+row is before or after 2010.</em></p>
 <p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
-<p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
+<p><em>Hint: you may need to replace NAs with 0s for this exercise.
+<code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code>
+may become handy.</em></p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -984,18 +1052,27 @@ new_names %&gt;%
   geom_line() +
   facet_wrap(~name)</code></pre>
 <p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is an efficient way to replace all NAs in a dataset with 0s.</p>
+<p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is
+an efficient way to replace all NAs in a dataset with 0s.</p>
 </details>
 <p><br> <br></p>
 </div>
-<div id="question-3.-find-the-12-most-popular-unisex-names.-how-have-the-proportion-of-girls-for-each-of-them-changed-over-time" class="section level4">
-<h4>Question 3. Find the 12 most popular unisex names. How have the proportion of girls for each of them changed over time?</h4>
+<div
+id="question-3.-find-the-12-most-popular-unisex-names.-how-have-the-proportion-of-girls-for-each-of-them-changed-over-time"
+class="section level4">
+<h4>Question 3. Find the 12 most popular unisex names. How have the
+proportion of girls for each of them changed over time?</h4>
 <p><br></p>
-<p>The definition of unisex names is arbitrary, but for this exercise, let’s define them as names which have proportion of girls between 10% and 90% across all time.</p>
+<p>The definition of unisex names is arbitrary, but for this exercise,
+let’s define them as names which have proportion of girls between 10%
+and 90% across all time.</p>
 <p><br></p>
-<p><em>Hint: You may start by summing over years in order to get a list of unisex names</em></p>
+<p><em>Hint: You may start by summing over years in order to get a list
+of unisex names</em></p>
 <p><em>Hint: <code>pivot_wider()</code> may be helpful</em></p>
-<p><em>Hint: you may need to replace NAs with 0s for this exercise. <code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code> may become handy.</em></p>
+<p><em>Hint: you may need to replace NAs with 0s for this exercise.
+<code>mutate()</code>, <code>ifelse()</code>, and <code>is.na()</code>
+may become handy.</em></p>
 <p><br></p>
 <em>One possible solution</em>
 <details>
@@ -1137,7 +1214,8 @@ unisex_names %&gt;%
 <p>Share your findings, challenges, and questions with the class.</p>
 <p><br> <br></p>
 <p><strong>END LAB 7</strong></p>
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;">
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
 
 </div>
 </div>

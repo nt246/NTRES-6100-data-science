@@ -13,7 +13,7 @@
 
 <title>Lesson 18: Wrapping up and looking ahead</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -63,6 +63,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -83,6 +84,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -140,11 +144,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -173,8 +181,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -182,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -308,7 +309,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -321,7 +322,7 @@ div.tocify {
   <a href="syllabus.html">Syllabus</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lectures
      
     <span class="caret"></span>
@@ -362,10 +363,10 @@ div.tocify {
       <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
     </li>
     <li>
-      <a href="lesson12-debugging-getting-help.html">Lesson 12: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-relational-data.html">Lesson 13: Relational data</a>
+      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
@@ -385,7 +386,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Labs
      
     <span class="caret"></span>
@@ -425,7 +426,7 @@ div.tocify {
   <a href="assignments.html">Assignments</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Resources
      
     <span class="caret"></span>
@@ -451,7 +452,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lesson 18: Wrapping up and looking ahead</h1>
+<h1 class="title toc-ignore">Lesson 18: Wrapping up and looking
+ahead</h1>
 
 </div>
 
@@ -459,21 +461,47 @@ div.tocify {
 <p><br></p>
 <div id="today-is-our-second-to-last-class" class="section level2">
 <h2>Today is our second-to-last class!</h2>
-<div id="thank-you-for-joining-us-this-semester.-it-has-been-great-to-have-you-all-in-the-course." class="section level4">
-<h4><strong>Thank you</strong> for joining us this semester. It has been great to have you all in the course.</h4>
+<div
+id="thank-you-for-joining-us-this-semester.-it-has-been-great-to-have-you-all-in-the-course."
+class="section level4">
+<h4><strong>Thank you</strong> for joining us this semester. It has been
+great to have you all in the course.</h4>
 <p><br></p>
-<p><strong>Instead</strong> of a regular lab this week, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest <a href="https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0">here</a>. If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you’re interested by <strong>6pm on Wednesday</strong>.</p>
+<p><strong>Instead</strong> of a regular lab this week, we will offer
+OPTIONAL project consultations. If you would like a discuss a particular
+aspect of your own work, or if there is a topic you would like to
+discuss with us further, please indicate your interest <a
+href="https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0">here</a>.
+If demand exceeds our available time, we will have to prioritize
+students enrolled in the lab, or potentially group people with similar
+interest. But please sign up if you’re interested by <strong>6pm on
+Wednesday</strong>.</p>
 <p><br></p>
 </div>
 </div>
 <div id="course-evaluations" class="section level2">
 <h2>Course evaluations</h2>
-<div id="please-complete-the-course-evaluations-when-they-become-available-at-the-end-of-the-semester" class="section level4">
-<h4>Please complete the course evaluations when they become available at the end of the semester</h4>
-<p>Unfortunately, we will not be able to get our course evaluations until the end of the semester. Students formally enrolled (both for credit or audit) should get an email with a link to the evaluation at that time, and I would really appreciate it if you can take a few minutes to answer the questions.</p>
-<p>This course is still under very active development, so I would really value everybody’s feedback on how we can improve it and make it as useful as possible.</p>
-<p>Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted.</p>
-<p>If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the <code>feedback</code> channel on Slack. Remember you can post anonymously by prefacing your message with <code>/anon</code> (e.g. <code>/anon Here is my message</code>).</p>
+<div
+id="please-complete-the-course-evaluations-when-they-become-available-at-the-end-of-the-semester"
+class="section level4">
+<h4>Please complete the course evaluations when they become available at
+the end of the semester</h4>
+<p>Unfortunately, we will not be able to get our course evaluations
+until the end of the semester. Students formally enrolled (both for
+credit or audit) should get an email with a link to the evaluation at
+that time, and I would really appreciate it if you can take a few
+minutes to answer the questions.</p>
+<p>This course is still under very active development, so I would really
+value everybody’s feedback on how we can improve it and make it as
+useful as possible.</p>
+<p>Please share your candid thoughts and suggestions in the evaluation.
+Remember that all comments are completely anonymous and I only get to
+see it after S/U decisions have been submitted.</p>
+<p>If anyone has feedback or suggestions they would like to share right
+away, we would be happy to hear your thoughts! You can either private
+message, email, or post in the <code>feedback</code> channel on Slack.
+Remember you can post anonymously by prefacing your message with
+<code>/anon</code> (e.g. <code>/anon Here is my message</code>).</p>
 <p><br></p>
 </div>
 </div>
@@ -484,12 +512,18 @@ div.tocify {
 <ul>
 <li>Data types in R</li>
 <li>Parse functions</li>
-<li>Good recap messages about functions <a href="https://nicercode.github.io/guides/functions/">here</a>)</li>
+<li>Good recap messages about functions <a
+href="https://nicercode.github.io/guides/functions/">here</a>)</li>
 </ul></li>
 <li>Continued access to the course material
 <ul>
-<li><a href="https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git">Fork or clone</a> a copy of our <a href="https://github.com/nt246/NTRES-6100-data-science">course repo</a> if you want a permanent copy of the course notes</li>
-<li>Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep</li>
+<li><a
+href="https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git">Fork
+or clone</a> a copy of our <a
+href="https://github.com/nt246/NTRES-6100-data-science">course repo</a>
+if you want a permanent copy of the course notes</li>
+<li>Zoom recordings will remain available for 120 days on Canvas. You
+can download any videos you would like to keep</li>
 </ul></li>
 <li>Important take-home messages and a review of good practices</li>
 <li>Where to learn more and connect with the R user community</li>
@@ -502,46 +536,90 @@ div.tocify {
 <p><br></p>
 <div id="keep-your-raw-data-raw" class="section level3">
 <h3>1. Keep your raw data raw</h3>
-<p>Resist the temptation to manually edit or reformat your original file because if your documentation of the changes is imperfect, you may lose important information. Clean up the data in R. Your R code, along with appropriate documentation will be a record of the changes. The code can be modified and rerun, using the raw data file as input, if needed.</p>
+<p>Resist the temptation to manually edit or reformat your original file
+because if your documentation of the changes is imperfect, you may lose
+important information. Clean up the data in R. Your R code, along with
+appropriate documentation will be a record of the changes. The code can
+be modified and rerun, using the raw data file as input, if needed.</p>
 <p><br></p>
 </div>
-<div id="make-sure-all-your-processing-steps-are-included-in-your-scripts-and-test-that-your-code-can-run-in-a-new-environment" class="section level3">
-<h3>2. Make sure all your processing steps are included in your scripts and test that your code can run in a new environment</h3>
-<p>Make sure that your code does not rely on objects or functions defined outside of your script. If that is the case, it can’t readily be run by yourself or someone else in the future.</p>
-<p>Make sure to frequently re-start R as you’re working, as elaborated on by Jenny Bryan <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">here</a>.</p>
-<p>Also, if you haven’t already, follow the <a href="https://r4ds.had.co.nz/workflow-projects.html#what-is-real">instructions from r4ds</a> on how ensure that RStudio does not restore your workspace between sessions, so you start with a clean environment every time. Make sure this option is selected under your RStudio preferences:</p>
+<div
+id="make-sure-all-your-processing-steps-are-included-in-your-scripts-and-test-that-your-code-can-run-in-a-new-environment"
+class="section level3">
+<h3>2. Make sure all your processing steps are included in your scripts
+and test that your code can run in a new environment</h3>
+<p>Make sure that your code does not rely on objects or functions
+defined outside of your script. If that is the case, it can’t readily be
+run by yourself or someone else in the future.</p>
+<p>Make sure to frequently re-start R as you’re working, as elaborated
+on by Jenny Bryan <a
+href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">here</a>.</p>
+<p>Also, if you haven’t already, follow the <a
+href="https://r4ds.had.co.nz/workflow-projects.html#what-is-real">instructions
+from r4ds</a> on how ensure that RStudio does not restore your workspace
+between sessions, so you start with a clean environment every time. Make
+sure this option is selected under your RStudio preferences:</p>
 <p><img src="assets/rstudio-workspace.png" width="50%" /></p>
 <p><br> <br></p>
-<p>Slides from <a href="https://www.slideshare.net/jenniferbryan5811/cm002-deep-thoughts">Deep thoughts</a> by Jenny Bryan:</p>
+<p>Slides from <a
+href="https://www.slideshare.net/jenniferbryan5811/cm002-deep-thoughts">Deep
+thoughts</a> by Jenny Bryan:</p>
 <p><img src="assets/small-mistake.png" /></p>
 <p><br> <br></p>
 <p><img src="assets/redo-analysis.png" /></p>
 <p><br></p>
 </div>
-<div id="organizing-your-work-into-r-projects-within-rstudio-makes-life-easier" class="section level3">
-<h3>3. Organizing your work into R projects within RStudio makes life easier</h3>
-<p>Organizing your work into RStudio projects avoids issues with absolute file paths and makes it easier to keep track of the code used to generate plots and reports, share your code with others, and work on multiple different projects in parallel. Not convinced yet? Check out <a href="https://rstats.wtf/project-oriented-workflow.html">What they forgot to teach you about R</a></p>
+<div
+id="organizing-your-work-into-r-projects-within-rstudio-makes-life-easier"
+class="section level3">
+<h3>3. Organizing your work into R projects within RStudio makes life
+easier</h3>
+<p>Organizing your work into RStudio projects avoids issues with
+absolute file paths and makes it easier to keep track of the code used
+to generate plots and reports, share your code with others, and work on
+multiple different projects in parallel. Not convinced yet? Check out <a
+href="https://rstats.wtf/project-oriented-workflow.html">What they
+forgot to teach you about R</a></p>
 <p><br></p>
 </div>
-<div id="explain-and-document-your-thought-process-with-notes-and-comments" class="section level3">
-<h3>4. Explain and document your thought process with notes and comments</h3>
-<p>Document the big-picture structure both within files (comments) and between files (README’s). In general, comments (and Git commit messages) should explain the why not the what (which should be self-evident from well-written code). Can a collaborator or you-in-six-months quickly figure out what’s going on in your code?</p>
+<div
+id="explain-and-document-your-thought-process-with-notes-and-comments"
+class="section level3">
+<h3>4. Explain and document your thought process with notes and
+comments</h3>
+<p>Document the big-picture structure both within files (comments) and
+between files (README’s). In general, comments (and Git commit messages)
+should explain the why not the what (which should be self-evident from
+well-written code). Can a collaborator or you-in-six-months quickly
+figure out what’s going on in your code?</p>
 <p><br></p>
 </div>
-<div id="develop-a-consistent-coding-style-that-maximizes-readability" class="section level3">
+<div id="develop-a-consistent-coding-style-that-maximizes-readability"
+class="section level3">
 <h3>5. Develop a consistent coding style that maximizes readability</h3>
-<p>Developing a consistent style in your coding, makes it a lot easier to read. Here is some inspiration:</p>
+<p>Developing a consistent style in your coding, makes it a lot easier
+to read. Here is some inspiration:</p>
 <ul>
-<li>The <a href="https://style.tidyverse.org/">tidyverse style guide</a></li>
-<li>A more <a href="http://adv-r.had.co.nz/Style.html">concise overview of the style Hadley Wickham uses</a> in his books “R for Data Science” and “Advanced R”</li>
-<li>There are also great tips for styling, organizing and optimizing your code in the blogpost <a href="https://blog.quantinsti.com/r-best-practices-r-you-writing-the-r-way/?utm_campaign=News&amp;utm_medium=Community&amp;utm_source=DataCamp.com">R Best Practices: R you writing the R way!</a> by Milind Paradkar</li>
-<li>Many of the same principles are also summarized by JEFworks <a href="https://jef.works/R-style-guide/">here</a></li>
+<li>The <a href="https://style.tidyverse.org/">tidyverse style
+guide</a></li>
+<li>A more <a href="http://adv-r.had.co.nz/Style.html">concise overview
+of the style Hadley Wickham uses</a> in his books “R for Data Science”
+and “Advanced R”</li>
+<li>There are also great tips for styling, organizing and optimizing
+your code in the blogpost <a
+href="https://blog.quantinsti.com/r-best-practices-r-you-writing-the-r-way/?utm_campaign=News&amp;utm_medium=Community&amp;utm_source=DataCamp.com">R
+Best Practices: R you writing the R way!</a> by Milind Paradkar</li>
+<li>Many of the same principles are also summarized by JEFworks <a
+href="https://jef.works/R-style-guide/">here</a></li>
 </ul>
 <p><br></p>
 </div>
-<div id="write-code-for-humans-write-data-for-computers" class="section level3">
+<div id="write-code-for-humans-write-data-for-computers"
+class="section level3">
 <h3>6. “Write code for humans, write data for computers”</h3>
-<p>Very important advice from <a href="https://twitter.com/vsbuffalo/status/358699162679787521">Vince Buffalo</a></p>
+<p>Very important advice from <a
+href="https://twitter.com/vsbuffalo/status/358699162679787521">Vince
+Buffalo</a></p>
 <p><br></p>
 <p>Some ways to make code more human-readable include:</p>
 <ul>
@@ -549,13 +627,22 @@ div.tocify {
 <li>Use comments</li>
 <li>Give objects meaningful names</li>
 <li>Use functions with meaningful names</li>
-<li>Use well-named operations, e.g. <code>select(data, column_name)</code> instead of <code>data[,5]</code></li>
+<li>Use well-named operations,
+e.g. <code>select(data, column_name)</code> instead of
+<code>data[,5]</code></li>
 </ul>
 <p><br></p>
 </div>
 <div id="make-your-data-tidy" class="section level3">
 <h3>7. Make your data tidy</h3>
-<p>An important principle for “writing data for computers” is to clean up and reshape your data into tidy format for analysis. That way, you can take advantage of the powerful set of tools available in the tidyverse and beyond instead of having to invent your own roundabout approaches, and this will both make your code more robust, concise, and readable. As a reminder, have another look at the <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes tidy data blog post</a></p>
+<p>An important principle for “writing data for computers” is to clean
+up and reshape your data into tidy format for analysis. That way, you
+can take advantage of the powerful set of tools available in the
+tidyverse and beyond instead of having to invent your own roundabout
+approaches, and this will both make your code more robust, concise, and
+readable. As a reminder, have another look at the <a
+href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes
+tidy data blog post</a></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -565,110 +652,199 @@ div.tocify {
 <div id="r-and-the-tidyverse" class="section level4">
 <h4>R and the tidyverse</h4>
 <ul>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Garrett Grolemund and Hadley Wickham. See also answers to the exercises <a href="https://jrnold.github.io/r4ds-exercise-solutions/">here</a> and other places you can find on google and a dedicated <a href="https://www.rfordatasci.com/">R4DS Slack workspace</a> for community learning. [I strongly recommend working through the chapters of this book that we have not covered]</li>
-<li><a href="https://adv-r.hadley.nz/">Advanced R</a> by Hadley Wickham</li>
-<li><a href="https://rstats.wtf/">What they forgot to teach you about R</a> by Jenny Bryan and Jim Hester</li>
-<li><a href="https://rfortherestofus.com/resources/">R for the Rest of Us - Resources page</a> - a curated list of excellent tutorials</li>
-<li><a href="https://stat545.com/">Course notes for STAT545</a> by Jenny Bryan</li>
-<li><a href="https://peerj.com/collections/50-practicaldatascistats/">Practical Data Science for Stats - a PeerJ Collection</a></li>
-<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham</li>
-<li><a href="https://swirlstats.com/">swirl: learn R, in R</a> - a platform for learning R programming and data science interactively, at your own pace, and right in the R console</li>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Garrett
+Grolemund and Hadley Wickham. See also answers to the exercises <a
+href="https://jrnold.github.io/r4ds-exercise-solutions/">here</a> and
+other places you can find on google and a dedicated <a
+href="https://www.rfordatasci.com/">R4DS Slack workspace</a> for
+community learning. [I strongly recommend working through the chapters
+of this book that we have not covered]</li>
+<li><a href="https://adv-r.hadley.nz/">Advanced R</a> by Hadley
+Wickham</li>
+<li><a href="https://rstats.wtf/">What they forgot to teach you about
+R</a> by Jenny Bryan and Jim Hester</li>
+<li><a href="https://rfortherestofus.com/resources/">R for the Rest of
+Us - Resources page</a> - a curated list of excellent tutorials</li>
+<li><a href="https://stat545.com/">Course notes for STAT545</a> by Jenny
+Bryan</li>
+<li><a
+href="https://peerj.com/collections/50-practicaldatascistats/">Practical
+Data Science for Stats - a PeerJ Collection</a></li>
+<li><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for
+Data Analysis</a> by Hadley Wickham</li>
+<li><a href="https://swirlstats.com/">swirl: learn R, in R</a> - a
+platform for learning R programming and data science interactively, at
+your own pace, and right in the R console</li>
 </ul>
 <p><br></p>
 <p>Here are a few other books you might want to check out:</p>
 <ul>
-<li><a href="https://moderndive.com/">A ModernDive into R and the tidyverse</a> by Chester Ismay and Albert Y. Kim<br />
+<li><a href="https://moderndive.com/">A ModernDive into R and the
+tidyverse</a> by Chester Ismay and Albert Y. Kim<br />
 </li>
-<li><a href="https://rafalab.github.io/dsbook/">Introduction to Data Science: Data Analysis and Prediction Algorithms with R</a> by Rafael A. Irizarry<br />
+<li><a href="https://rafalab.github.io/dsbook/">Introduction to Data
+Science: Data Analysis and Prediction Algorithms with R</a> by Rafael A.
+Irizarry<br />
 </li>
-<li><a href="https://rc2e.com/">The R Cookbook</a> by James Long and Paul Teetor (primarily base-R, but also uses some tidyverse packages/functions)</li>
+<li><a href="https://rc2e.com/">The R Cookbook</a> by James Long and
+Paul Teetor (primarily base-R, but also uses some tidyverse
+packages/functions)</li>
 </ul>
-<p>And for getting help, check out the <a href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide deck</a> or <a href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not subsettable” at the 2020 RStudio conference. You can also check out her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex webinar</a>.</p>
+<p>And for getting help, check out the <a
+href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide
+deck</a> or <a
+href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded
+talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not
+subsettable” at the 2020 RStudio conference. You can also check out her
+<a
+href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex
+webinar</a>.</p>
 <p><br></p>
 </div>
 <div id="rmarkdown" class="section level4">
 <h4>RMarkdown</h4>
 <ul>
-<li><a href="https://rmd4sci.njtierney.com/">RMarkdown for Scientists</a> by Nicholas Tierney</li>
-<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire, and Garrett Grolemund</li>
+<li><a href="https://rmd4sci.njtierney.com/">RMarkdown for
+Scientists</a> by Nicholas Tierney</li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The
+Definitive Guide</a> by Yihui Xie, J. J. Allaire, and Garrett
+Grolemund</li>
 </ul>
 <p><br></p>
 </div>
 <div id="github" class="section level4">
 <h4>GitHub</h4>
 <ul>
-<li><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> by Jenny Bryan</li>
-<li>If you want to get started with command line workflows, the <a href="https://swcarpentry.github.io/git-novice/">Software Carpentry Lesson on Git</a> is a good place to start</li>
+<li><a href="https://happygitwithr.com/">Happy Git and GitHub for the
+useR</a> by Jenny Bryan</li>
+<li>If you want to get started with command line workflows, the <a
+href="https://swcarpentry.github.io/git-novice/">Software Carpentry
+Lesson on Git</a> is a good place to start</li>
 </ul>
 <p><br></p>
 </div>
-<div id="open-practices-in-environmental-data-science" class="section level4">
+<div id="open-practices-in-environmental-data-science"
+class="section level4">
 <h4>Open practices in environmental data science</h4>
 <ul>
-<li>Check out and follow developments at <a href="https://www.openscapes.org/">Openscapes</a>, an awesome organization led by Julia Stewart Lowndes aimed at empowering environmental scientists to do better science in less time through open and collaborative practices.</li>
+<li>Check out and follow developments at <a
+href="https://www.openscapes.org/">Openscapes</a>, an awesome
+organization led by Julia Stewart Lowndes aimed at empowering
+environmental scientists to do better science in less time through open
+and collaborative practices.</li>
 </ul>
 <p><br></p>
 </div>
 <div id="more-cool-r-applications" class="section level3">
 <h3>More cool R applications</h3>
 <p><strong>Dashboards:</strong></p>
-<p>Check out the <a href="https://ramikrispin.github.io/coronavirus_dashboard/#summary">Dashboard</a> developed for the continually updated <a href="https://github.com/RamiKrispin/coronavirus">Coronavirus dataset</a> we worked with earlier in the course. Note that you can grab all the code under <code>Source code</code> in the top right corner.</p>
-<p>Dashboards can also be made interactive with dynamic and user-controlled displays of data through use of <a href="https://shiny.rstudio.com/">Shiny</a>, an R package that makes it easy to build interactive web apps straight from R.</p>
-<p>For an example, check out <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&amp;url=v1">this dynamic visualization</a> of the gapminder dataset we worked with in our last class (make sure to check out the <a href="https://www.youtube.com/watch?v=jbkSRLYSojo">cool video</a> with Hans Rosling)</p>
-<p>Shiny let’s you create similar interactive displays. See for example a very simple example <a href="https://rebjoh.shinyapps.io/Gapminder-app/">here</a>, and materials for building a more advanced version <a href="https://uomresearchit.github.io/r-shiny-course/">here</a></p>
-<p>For more examples, check out the <a href="https://rmarkdown.rstudio.com/flexdashboard/">RStudio Flexdashboard website</a>. And check out <a href="https://mastering-shiny.org/">Mastering shiny</a> by Hadley Wickham</p>
+<p>Check out the <a
+href="https://ramikrispin.github.io/coronavirus_dashboard/#summary">Dashboard</a>
+developed for the continually updated <a
+href="https://github.com/RamiKrispin/coronavirus">Coronavirus
+dataset</a> we worked with earlier in the course. Note that you can grab
+all the code under <code>Source code</code> in the top right corner.</p>
+<p>Dashboards can also be made interactive with dynamic and
+user-controlled displays of data through use of <a
+href="https://shiny.rstudio.com/">Shiny</a>, an R package that makes it
+easy to build interactive web apps straight from R.</p>
+<p>For an example, check out <a
+href="https://www.gapminder.org/tools/#$chart-type=bubbles&amp;url=v1">this
+dynamic visualization</a> of the gapminder dataset we worked with in our
+last class (make sure to check out the <a
+href="https://www.youtube.com/watch?v=jbkSRLYSojo">cool video</a> with
+Hans Rosling)</p>
+<p>Shiny let’s you create similar interactive displays. See for example
+a very simple example <a
+href="https://rebjoh.shinyapps.io/Gapminder-app/">here</a>, and
+materials for building a more advanced version <a
+href="https://uomresearchit.github.io/r-shiny-course/">here</a></p>
+<p>For more examples, check out the <a
+href="https://rmarkdown.rstudio.com/flexdashboard/">RStudio
+Flexdashboard website</a>. And check out <a
+href="https://mastering-shiny.org/">Mastering shiny</a> by Hadley
+Wickham</p>
 <p><br></p>
 </div>
 </div>
 <div id="connecting-with-the-r-stats-community" class="section level2">
 <h2>Connecting with the R stats community</h2>
 <ul>
-<li><p>NTRES-6100 alums Slack Channel - a low-pressure environment where you can continue to support each other and share resources. We will send an invite on Slack</p></li>
-<li><p><a href="https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities">Tips on how to start engaging on twitter</a> from R for Excel Users by Julia Lowndes and Allison Horst</p></li>
-<li><p><a href="https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf">Finding the YOU in the R community</a> by Thomas Mock</p></li>
+<li><p>NTRES-6100 alums Slack Channel - a low-pressure environment where
+you can continue to support each other and share resources. We will send
+an invite on Slack</p></li>
+<li><p><a
+href="https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities">Tips
+on how to start engaging on twitter</a> from R for Excel Users by Julia
+Lowndes and Allison Horst</p></li>
+<li><p><a
+href="https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf">Finding
+the YOU in the R community</a> by Thomas Mock</p></li>
 </ul>
 <p><br></p>
 <div id="exercise" class="section level3">
 <h3>Exercise</h3>
-<p>Go to the RStudio Tips twitter account (<a href="https://twitter.com/rstudiotips" class="uri">https://twitter.com/rstudiotips</a>) and find one tip that looks interesting. Practice using it!</p>
-<p><a href="https://twitter.com/kc_analytics/status/1378770803454529538">Here</a> is an example of a very useful thread, listing RStudio shortcuts</p>
+<p>Go to the RStudio Tips twitter account (<a
+href="https://twitter.com/rstudiotips"
+class="uri">https://twitter.com/rstudiotips</a>) and find one tip that
+looks interesting. Practice using it!</p>
+<p><a
+href="https://twitter.com/kc_analytics/status/1378770803454529538">Here</a>
+is an example of a very useful thread, listing RStudio shortcuts</p>
 <p><br> <br></p>
 </div>
 </div>
 <div id="take-home-messages" class="section level2">
 <h2>Take-home messages</h2>
 <blockquote>
-<p>From the <a href="http://ohi-science.org/data-science-training/champion.html#three-messages">Ocean Health Index Data Science Training</a>:</p>
+<p>From the <a
+href="http://ohi-science.org/data-science-training/champion.html#three-messages">Ocean
+Health Index Data Science Training</a>:</p>
 </blockquote>
 <div id="three-messages" class="section level3">
 <h3>Three messages</h3>
-<p>If there are 3 things to communicate to others after this course, I think they would be:</p>
+<p>If there are 3 things to communicate to others after this course, I
+think they would be:</p>
 <p><br></p>
-<p><strong>1. Data science is a discipline that can improve your analyses</strong></p>
+<p><strong>1. Data science is a discipline that can improve your
+analyses</strong></p>
 <ul>
-<li>There are concepts, theory, and tools for thinking about and working with data.</li>
-<li>Your study system is not unique when it comes to data, and accepting this will speed up your analyses.</li>
+<li>There are concepts, theory, and tools for thinking about and working
+with data.</li>
+<li>Your study system is not unique when it comes to data, and accepting
+this will speed up your analyses.</li>
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
-<li>Think deliberately about data: when you distinguish data questions from research questions, you’ll learn how and who to ask for help</li>
+<li>Think deliberately about data: when you distinguish data questions
+from research questions, you’ll learn how and who to ask for help</li>
 <li>Save heartache: you don’t have to reinvent the wheel</li>
-<li>Save time: when you expect there’s a better way to do what you are doing, you’ll find the solution faster. Focus on the science.</li>
+<li>Save time: when you expect there’s a better way to do what you are
+doing, you’ll find the solution faster. Focus on the science.</li>
 </ul>
 <p><br></p>
 <p><strong>2. Open data science tools exist</strong></p>
 <ul>
-<li>Data science tools that enable open science are game-changing for analysis, collaboration and communication.</li>
-<li>Open science is “the concept of transparency at all stages of the research process, coupled with free and open access to data, code, and papers” (<a href="http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract">Hampton et al. 2015</a>))</li>
+<li>Data science tools that enable open science are game-changing for
+analysis, collaboration and communication.</li>
+<li>Open science is “the concept of transparency at all stages of the
+research process, coupled with free and open access to data, code, and
+papers” (<a
+href="http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract">Hampton
+et al. 2015</a>))</li>
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
-<li>Have confidence in your analyses from this traceable, reusable record</li>
-<li>Save time through automation, thinking ahead of your immediate task, reduced bookkeeping, and collaboration</li>
-<li>Take advantage of convenient access: working openly online is like having an extended memory</li>
+<li>Have confidence in your analyses from this traceable, reusable
+record</li>
+<li>Save time through automation, thinking ahead of your immediate task,
+reduced bookkeeping, and collaboration</li>
+<li>Take advantage of convenient access: working openly online is like
+having an extended memory</li>
 </ul>
 <p><br></p>
-<p><strong>3. Learn these tools with collaborators and community (redefined):</strong></p>
+<p><strong>3. Learn these tools with collaborators and community
+(redefined):</strong></p>
 <ul>
 <li>Your most important collaborator is Future You.</li>
 <li>Community should also be beyond the colleagues in your field.</li>
@@ -676,28 +852,44 @@ div.tocify {
 </ul>
 <p><em>This helps your science:</em></p>
 <ul>
-<li>If you learn to talk about your data, you’ll find solutions faster.</li>
-<li>Build confidence: these skills are transferable beyond your science.</li>
+<li>If you learn to talk about your data, you’ll find solutions
+faster.</li>
+<li>Build confidence: these skills are transferable beyond your
+science.</li>
 <li>Be empathetic and inclusive and build a network of allies</li>
 </ul>
 <p><br></p>
 </div>
 </div>
-<div id="if-we-have-time-discussion-questions-as-warm-up-for-thursdays-presentations" class="section level2">
-<h2>If we have time: Discussion questions as warm-up for Thursday’s presentations</h2>
+<div
+id="if-we-have-time-discussion-questions-as-warm-up-for-thursdays-presentations"
+class="section level2">
+<h2>If we have time: Discussion questions as warm-up for Thursday’s
+presentations</h2>
 <ul>
 <li>What is the most valuable thing you have learned in this class?</li>
-<li>Are you planning to implement any changes your workflow or practices moving forward</li>
-<li>What are you excited about learning next or what existing skills do you want to improve?</li>
+<li>Are you planning to implement any changes your workflow or practices
+moving forward</li>
+<li>What are you excited about learning next or what existing skills do
+you want to improve?</li>
 </ul>
 <p><br> <br></p>
 </div>
 <div id="tips-for-troubleshooting" class="section level2">
 <h2>Tips for troubleshooting</h2>
 <blockquote>
-<p>Getting help, or really helping you help yourself, means moving beyond “it’s not working” and towards solution-oriented approaches. Part of this is the mindset where you <strong>expect that someone has encountered this problem before</strong> and that <strong>most likely the problem is your typo or misuse</strong>, and not that R is broken or hates you.</p>
+<p>Getting help, or really helping you help yourself, means moving
+beyond “it’s not working” and towards solution-oriented approaches. Part
+of this is the mindset where you <strong>expect that someone has
+encountered this problem before</strong> and that <strong>most likely
+the problem is your typo or misuse</strong>, and not that R is broken or
+hates you.</p>
 </blockquote>
-<p>There is excellent advice for trouble-shooting R-code and how to get help in <a href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture 2 from ESM 206: Statistics and Data Analysis in Environmental Science and Management</a> by Allison Horst.</p>
+<p>There is excellent advice for trouble-shooting R-code and how to get
+help in <a
+href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture
+2 from ESM 206: Statistics and Data Analysis in Environmental Science
+and Management</a> by Allison Horst.</p>
 </div>
 
 
