@@ -191,19 +191,20 @@ gapminder %>%
 
 ```
 ## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
+##    country     continent  year life_exp      pop gdp_per_cap infant_mo…¹ ferti…²
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>       <dbl>   <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.          NA      NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.          NA      NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.          NA      NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.          NA      NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.          NA      NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.          NA      NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.          NA      NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.          NA      NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.          NA      NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.          NA      NA
+## # … with 1,694 more rows, and abbreviated variable names ¹​infant_mortality,
+## #   ²​fertility
 ```
 
 ```r
@@ -214,19 +215,20 @@ gapminder %>%
 
 ```
 ## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
+##    country     continent  year life_exp      pop gdp_per_cap infant_mo…¹ ferti…²
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>       <dbl>   <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.          NA      NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.          NA      NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.          NA      NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.          NA      NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.          NA      NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.          NA      NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.          NA      NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.          NA      NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.          NA      NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.          NA      NA
+## # … with 1,694 more rows, and abbreviated variable names ¹​infant_mortality,
+## #   ²​fertility
 ```
 
 ```r
@@ -237,19 +239,20 @@ gapminder %>%
 
 ```
 ## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # … with 1,694 more rows, and 1 more variable: fertility <dbl>
+##    country     continent  year life_exp      pop gdp_per_cap infant_mo…¹ ferti…²
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>       <dbl>   <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.          NA      NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.          NA      NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.          NA      NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.          NA      NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.          NA      NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.          NA      NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.          NA      NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.          NA      NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.          NA      NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.          NA      NA
+## # … with 1,694 more rows, and abbreviated variable names ¹​infant_mortality,
+## #   ²​fertility
 ```
 
 ```r
