@@ -132,9 +132,9 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 16      | Thu | 3/23  | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)    |             |
 | 17      | Tue | 3/28 | [Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)                                                                                  |   |
 | 18      | Thu | 3/30 | Student presentations, wrapping up and looking ahead                                          | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)        |
-|       | Tue | 4/6 | SPRING BREAK                                                                                  |                  |
+|       | Tue | 4/4 | SPRING BREAK                                                                                  |                  |
 |       | Tue | 4/6 | SPRING BREAK                                                                                   |                  |
-| 19      | Tue | 4/11 | [SNOW DAY MAKE UP: Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)                                                                                   |   [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)               |
+| 19      | Tue | 4/11 | [SNOW DAY MAKE-UP: Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)                                                                                   |   [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)               |
 
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
