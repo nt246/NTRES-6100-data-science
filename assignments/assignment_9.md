@@ -5,31 +5,31 @@ Assignment 9: Functions and factors
 
 ## Instructions: Please read through this before you begin
 
--   This homework is due by **10pm on Thursday 03/31/20**. Please upload
-    it using your personal GitHub repository for this class.
+- This homework is due by **10pm on Thursday 4/11/23**. Please upload it
+  using your personal GitHub repository for this class.
 
--   Please name your R markdown file `assignment_9.Rmd` and the knitted
-    markdown file `assignment_9.md`.
+- Please name your R markdown file `assignment_9.Rmd` and the knitted
+  markdown file `assignment_9.md`.
 
--   For this assignment, please **reproduce this markdown file** using R
-    markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using R
+  markdown. This includes the followings:
 
-    -   **Reproduce this markdown template**, except for this list of
-        instructions which you **don’t** have to include. Pay attention
-        to all the formating in this file, including bullet points,
-        bolded characters, inserted code chunks, headings, text colors,
-        blank lines, etc.
+  - **Reproduce this markdown template**, except for this list of
+    instructions which you **don’t** have to include. Pay attention to
+    all the formating in this file, including bullet points, bolded
+    characters, inserted code chunks, headings, text colors, blank
+    lines, etc.
 
-    -   Have all your code embedded within the R markdown file, and show
-        **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the R markdown file, and show
+    **BOTH your code and plots** in the knitted markdown file.
 
-    -   Use R Markdown functionalities to **hide messages and warnings
-        when needed**. (Suggestion: messages and warnings can often be
-        informative and important, so please examine them carefully and
-        only turn them off when you finish the exercise).
+  - Use R Markdown functionalities to **hide messages and warnings when
+    needed**. (Suggestion: messages and warnings can often be
+    informative and important, so please examine them carefully and only
+    turn them off when you finish the exercise).
 
--   To start, first load all the required packages with the following
-    code. Install them if they are not installed yet.
+- To start, first load all the required packages with the following
+  code. Install them if they are not installed yet.
 
 ``` r
 library(tidyverse)
@@ -85,14 +85,13 @@ or too hot for to to care about the exact value. **Modify the f_to_c
 function below to print the following**, and check if your function
 works properly using the input of **-10 F, 60 F, and 90 F**.
 
--   If the temperature is less than -20 C, print “Don’t bother going
-    out.”
+- If the temperature is less than -20 C, print “Don’t bother going out.”
 
--   If the temperature is greater than 30 C, print “I’m moving back to
-    Canada.”
+- If the temperature is greater than 30 C, print “I’m moving back to
+  Canada.”
 
--   If the temperature is between -20 C and 30 C, print the temperature
-    in Celsius.
+- If the temperature is between -20 C and 30 C, print the temperature in
+  Celsius.
 
 The following is how it should work:
 
@@ -193,19 +192,19 @@ of cylinders (`cyl`).
 
 **Hints:**
 
--   Start by reordering the factor levels of the `model` column based on
-    values in the `mpg` column.
+- Start by reordering the factor levels of the `model` column based on
+  values in the `mpg` column.
 
--   You may also need to convert `cyl` first into a character variable
-    (`as.character()`) or a factor (`factor` or `as_factor()`), and then
-    (re)set its factor levels.
+- You may also need to convert `cyl` first into a character variable
+  (`as.character()`) or a factor (`factor` or `as_factor()`), and then
+  (re)set its factor levels.
 
--   When making the plot, please pay attention to the following elements
-    of the plot that need to be specified.
+- When making the plot, please pay attention to the following elements
+  of the plot that need to be specified.
 
-    -   Horizontal adjustment of the text labels (“`hjust`” option in
-        `geom_text()`)
-    -   The range of the x-axis (`xlim()`)
-    -   x-axis label and legend titles (`labs()`)
-    -   The preset theme (`theme_*()`)
-    -   The removal of the y-axis (`theme()`)
+  - Horizontal adjustment of the text labels (“`hjust`” option in
+    `geom_text()`)
+  - The range of the x-axis (`xlim()`)
+  - x-axis label and legend titles (`labs()`)
+  - The preset theme (`theme_*()`)
+  - The removal of the y-axis (`theme()`)

@@ -282,7 +282,7 @@ Add a picture as instructed.
 
 Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
 
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-sp23-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
@@ -623,7 +623,7 @@ if (condition is true) {
 
 <br>
 
-Let's bring this concept into our `for` loop for Europe that we've just created. What if we want to add the label "Estimated" to countries for which the figures were estimated rather than based on official reported statistics? Here's what we'd do.
+Let's bring this concept into our `for` loop for Europe that we've just created. What if we want to add the label "Estimated" to countries for which the values were estimated rather than based on official reported statistics? Here's what we'd do.
 
 First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:
 

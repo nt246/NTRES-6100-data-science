@@ -5,7 +5,7 @@ Assignment 8: Iteration and conditional execution
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 03/23/20**. Please upload
+- This homework is due by **10pm on Thursday 03/30/23**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your R markdown file `assignment_8.Rmd` and the knitted
@@ -234,7 +234,7 @@ the for loop approach in the previous question.
 <!-- -->
 
     ##    user  system elapsed 
-    ##   0.002   0.000   0.002
+    ##   0.001   0.000   0.001
 
 <br>
 
