@@ -13,12 +13,13 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 ## Change of course schedule
 
+Because of the snow day and cancelled class on Tuesday, we have updated the syllabus. We have shifted lectures down and added a make-up lecture the Tuesday after Spring Break
+* Assignment 7 is still due today
+* Assignment 8 will not be due until 3/30
+* Assignment 9 will be due Tuesday after Spring Break (4/11)
 
-## Assignments
+Postdoc Jessi Rick will offer a two-session follow-up workshop during our regular lecture slot on 4/13 and 4/13 about open data science and data sharing/management. This is an optional not-for-credit add-on workshop. More details next week.
 
-* Assignment 7 due this Thursday
-
-* Updated assignment schedule
 
 
 
