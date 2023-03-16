@@ -484,13 +484,12 @@ tutorial</a> developed by the Ocean Health Index Data Science Team</p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
-<p>We’ll start by working through the parts of <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data">lesson
-13</a> that we didn’t have time to cover last time (filtering joins) and
-recap on strategies for successfully integrating data from multiples
-tables. Then we’ll shift gears to begin exploring the key programming
-concepts of iteration and conditional execution.</p>
-<p>By the end of today’s and Thursday’s class, you should be able
+<p>We’ll start by working through a few exercises on using integrating
+data from multiple tibbles (using <code>join()</code> functions) and
+recap on strategies for successfully integrating relational data. Then
+we’ll shift gears to begin exploring the key programming concepts of
+iteration and conditional execution.</p>
+<p>By the end of today’s and next Tuesday’s class, you should be able
 to:</p>
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different
@@ -516,9 +515,8 @@ library(knitr)</code></pre>
 <p>Last class, we used the <code>nycflights13</code> datasets to explore
 the mutating joins. Let’s recap by applying these to a different
 dataset. Today we’ll return to the <code>gapminder</code> dataset that
-last lecture’s notes used to illustrate how column binding can be
-dangerous. You may also remember this dataset from an earlier lab
-session.</p>
+many of you have started exploring in the lab session a few weeks
+ago.</p>
 <p>The data in the <code>gapminder</code> package is a subset of the <a
 href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder
 dataset</a>, which contains data on the health and wealth of nations

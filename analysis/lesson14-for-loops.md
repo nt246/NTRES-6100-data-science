@@ -36,9 +36,9 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Today's learning objectives
 
-We'll start by working through the parts of [lesson 13](https://nt246.github.io/NTRES-6100-data-science/lesson13-relational-data.html#Relational_data) that we didn't have time to cover last time (filtering joins) and recap on strategies for successfully integrating data from multiples tables. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+We'll start by working through a few exercises on using integrating data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
-By the end of today's and Thursday's class, you should be able to:
+By the end of today's and next Tuesday's class, you should be able to:
 
 * Write a `for` loop to repeat operations on different input
 * Implement `if` and `if else` statements for conditional execution of code
@@ -65,7 +65,7 @@ library(knitr)
 
 #### The `gapminder` data
 
-Last class, we used the `nycflights13` datasets to explore the mutating joins. Let's recap by applying these to a different dataset. Today we'll return to the `gapminder` dataset that last lecture's notes used to illustrate how column binding can be dangerous. You may also remember this dataset from an earlier lab session.
+Last class, we used the `nycflights13` datasets to explore the mutating joins. Let's recap by applying these to a different dataset. Today we'll return to the `gapminder` dataset that many of you have started exploring in the lab session a few weeks ago. 
 
 The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
  

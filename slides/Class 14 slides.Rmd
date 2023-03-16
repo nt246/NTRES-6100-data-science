@@ -1,0 +1,35 @@
+---
+title: "Lesson 14: Iteration Part 1"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+```
+
+
+## Change of course schedule
+
+
+## Assignments
+
+* Assignment 7 due this Thursday
+
+* Updated assignment schedule
+
+
+
+## Learning objectives 
+
+We'll start by working through a few exercises on using integrating data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+
+By the end of today's and next Tuesday's class, you should be able to:
+
+* Write a `for` loop to repeat operations on different input
+* Implement `if` and `if else` statements for conditional execution of code
+
+
+## Exercise
