@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lesson 14: Iteration Part 1</title>
+  <title>Lesson 16: Functions</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Lesson 14: Iteration Part 1',
+                title: 'Lesson 16: Functions',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -3194,61 +3194,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Change of course schedule</h2></hgroup><article  id="change-of-course-schedule">
+<slide class=""><hgroup><h2>Final Presentations</h2></hgroup><article  id="final-presentations">
 
-<p>Because of the snow day and cancelled class on Tuesday, we have updated the syllabus. We have shifted lectures down and added a make-up lecture the Tuesday after Spring Break</p>
+<p>Please indicate whether you will be giving a final class presentation next Thursday</p>
 
 <ul>
-<li>Assignment 7 is still due today</li>
-<li>Assignment 8 will not be due until 3/30</li>
-<li>Assignment 9 will be due Tuesday after Spring Break (4/11)</li>
+<li>Show us how you either already have or could think of applying any part of the course material to your own work</li>
+<li>Be as specific as possible</li>
+<li>Very short ~ 1.5 mins</li>
+<li>Required of students taking the course for credit</li>
+<li>Auditors are highly encouraged to share as well!</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Optional two-session follow-up workshop after the course</h2></hgroup><article  id="optional-two-session-follow-up-workshop-after-the-course">
+</article></slide><slide class=""><hgroup><h2>Today’s learning objectives</h2></hgroup><article  id="todays-learning-objectives">
 
-<p>Postdoc Jessi Rick will offer a two-session follow-up workshop during our regular lecture slot on 4/13 and 4/13 about open data science and data sharing/management. This is an optional not-for-credit add-on workshop. More details next week.</p>
+<p>Today, we will cover a brief introduction to how to write your own functions in R.</p>
 
-</article></slide><slide class=""><hgroup><h2>Learning objectives</h2></hgroup><article  id="learning-objectives">
-
-<p>We’ll start by working through a few exercises on using integrating data from multiple tibbles (using <code>join()</code> functions) and recap on strategies for successfully integrating relational data. Then we’ll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
-
-<p>By the end of today’s and next Tuesday’s class, you should be able to:</p>
+<p>By the end of today’s class, you should be able to:</p>
 
 <ul>
-<li>Write a <code>for</code> loop to repeat operations on different input</li>
-<li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
+<li>Write a simple function to automate a task</li>
+<li>Set default values for function arguments</li>
+<li>Explain why we should divide code into small, single-purpose functions</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
 
-<p>Add the infant mortality and fertility data to our original gapminder data.</p>
+<p>We’ve talked about how we can change the file type that <code>ggsave()</code> will output just by changing the extension of the specified name we want to give the file. It works like this:</p>
 
-<p>Run</p>
+<pre class = 'prettyprint lang-r'># To save a .png file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.png&quot;, plot = my_plot)
+# To save a .jpg file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.jpg&quot;, plot = my_plot)
+# To save a .pdf file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.pdf&quot;, plot = my_plot)</pre>
 
-<pre class = 'prettyprint lang-r'>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
-  rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</pre>
+<p><strong>Your task:</strong> Add an argument to our function that specifies the file type you want for the plot and edit the function so that it will output the requested file type.</p>
 
-<p><br></p>
-
-<p>Now add the infant mortality and fertility from the gap_dslabs_caps to our original `gapminder data</p>
-
-<p><br></p>
-
-<p>Do we have those statistics for all observations? What is a good way to figure out which countries we don’t have mortality and fertility data for?</p>
-
-</article></slide><slide class=""><hgroup><h2>Code duplication</h2></hgroup><article  id="code-duplication">
-
-<p>Three main benefits:</p>
-
-<ul>
-<li><p>It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same.</p></li>
-<li><p>It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).</p></li>
-<li><p>You’re likely to have fewer bugs because each line of code is used in more places.</p></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>The basic structure of a <code>for</code> loop is:</h2></hgroup><article  id="the-basic-structure-of-a-for-loop-is">
-
-<h3>if statement basic structure</h3></article></slide>
+<p>If you have more time, you can also add an additional argument that specifies the plot type (x-y scatter, line plot etc) and adjust the function to accommodate this.</p></article></slide>
 
 
   <slide class="backdrop"></slide>

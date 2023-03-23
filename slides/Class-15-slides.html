@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lesson 14: Iteration Part 1</title>
+  <title>Lesson 15: Iteration Part 2</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Lesson 14: Iteration Part 1',
+                title: 'Lesson 15: Iteration Part 2',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -3194,47 +3194,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Change of course schedule</h2></hgroup><article  id="change-of-course-schedule">
+<slide class=""><hgroup><h2>Assignments</h2></hgroup><article  id="assignments">
 
-<p>Because of the snow day and cancelled class on Tuesday, we have updated the syllabus. We have shifted lectures down and added a make-up lecture the Tuesday after Spring Break</p>
+<p>No assignment due this week, but we have covered most of the material for Assignment 8, so you may want to start that and submit early.</p>
+
+</article></slide><slide class=""><hgroup><h2>Final Presentations</h2></hgroup><article  id="final-presentations">
+
+<p>Please indicate whether you will be giving a final class presentation next Thursday</p>
 
 <ul>
-<li>Assignment 7 is still due today</li>
-<li>Assignment 8 will not be due until 3/30</li>
-<li>Assignment 9 will be due Tuesday after Spring Break (4/11)</li>
+<li>Show us how you either already have or could think of applying any part of the course material to your own work</li>
+<li>Be as specific as possible</li>
+<li>Very short ~ 1.5 mins</li>
+<li>Required of students taking the course for credit</li>
+<li>Auditors are highly encouraged to share as well!</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Optional two-session follow-up workshop after the course</h2></hgroup><article  id="optional-two-session-follow-up-workshop-after-the-course">
+</article></slide><slide class=""><hgroup><h2>Learning objectives for today</h2></hgroup><article  id="learning-objectives-for-today">
 
-<p>Postdoc Jessi Rick will offer a two-session follow-up workshop during our regular lecture slot on 4/13 and 4/13 about open data science and data sharing/management. This is an optional not-for-credit add-on workshop. More details next week.</p>
-
-</article></slide><slide class=""><hgroup><h2>Learning objectives</h2></hgroup><article  id="learning-objectives">
-
-<p>We’ll start by working through a few exercises on using integrating data from multiple tibbles (using <code>join()</code> functions) and recap on strategies for successfully integrating relational data. Then we’ll shift gears to begin exploring the key programming concepts of iteration and conditional execution.</p>
-
-<p>By the end of today’s and next Tuesday’s class, you should be able to:</p>
+<p>By the end of today’s class, you should be able to:</p>
 
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different input</li>
 <li>Implement <code>if</code> and <code>if else</code> statements for conditional execution of code</li>
 </ul>
-
-</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
-
-<p>Add the infant mortality and fertility data to our original gapminder data.</p>
-
-<p>Run</p>
-
-<pre class = 'prettyprint lang-r'>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
-  rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</pre>
-
-<p><br></p>
-
-<p>Now add the infant mortality and fertility from the gap_dslabs_caps to our original `gapminder data</p>
-
-<p><br></p>
-
-<p>Do we have those statistics for all observations? What is a good way to figure out which countries we don’t have mortality and fertility data for?</p>
 
 </article></slide><slide class=""><hgroup><h2>Code duplication</h2></hgroup><article  id="code-duplication">
 
@@ -3248,7 +3231,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 
 </article></slide><slide class=""><hgroup><h2>The basic structure of a <code>for</code> loop is:</h2></hgroup><article  id="the-basic-structure-of-a-for-loop-is">
 
-<h3>if statement basic structure</h3></article></slide>
+<pre class = 'prettyprint lang-r'>for (each_item in set_of_items) {
+  do a thing
+}</pre>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
+
+<p>Start with the for loop we developed last class</p>
+
+<ol>
+<li>Modify our <code>for</code> loop so that it:
+
+<ul>
+<li>loops through countries in Europe only</li>
+<li>plots the product of gdp_per_cap and population size per year (should approximate the total GDP) instead of the gdp_per_cap</li>
+<li>saves the plots to a new subfolder inside the (recreated) figures folder called &ldquo;Europe&rdquo;.</li>
+</ul></li>
+<li>Sync to GitHub</li>
+</ol>
+
+</article></slide><slide class=""><hgroup><h2>.gitignore files</h2></hgroup><article  id="gitignore-files">
+
+<p>Lists files that git should ignore</p>
+
+<p><br></p>
+
+<p>Can be specific files, entire folders, or file types</p>
+
+<p>Can use <code>*</code> as wildcards, e.g. <code>plots/*.pdf</code></p>
+
+</article></slide><slide class=""><hgroup><h2>if statement basic structure</h2></hgroup><article  id="if-statement-basic-structure">
+
+<pre class = 'prettyprint lang-r'># if
+if (condition is true) {
+  do something
+}
+
+# if, else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}</pre>
+
+</article></slide><slide class=""><hgroup><h2>ifelse() function</h2></hgroup><article  id="ifelse-function">
+
+<pre class = 'prettyprint lang-r'>ifelse(condition is true, perform action, perform alternative action)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-1">
+
+<p>Compute the mean of every column in the dataset <code>mtcars</code> (comes with R)</p></article></slide>
 
 
   <slide class="backdrop"></slide>

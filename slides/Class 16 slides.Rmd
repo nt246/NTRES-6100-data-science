@@ -1,0 +1,53 @@
+---
+title: "Lesson 16: Functions"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+```
+
+
+
+## Final Presentations
+
+Please indicate whether you will be giving a final class presentation next Thursday 
+
+* Show us how you either already have or could think of applying any part of the course material to your own work
+* Be as specific as possible
+* Very short ~ 1.5 mins
+* Required of students taking the course for credit
+* Auditors are highly encouraged to share as well!
+
+
+## Today's learning objectives
+Today, we will cover a brief introduction to how to write your own functions in R.
+
+By the end of today's class, you should be able to:
+
+* Write a simple function to automate a task
+* Set default values for function arguments
+* Explain why we should divide code into small, single-purpose functions
+
+
+## Exercise 
+We've talked about how we can change the file type that `ggsave()` will output just by changing the extension of the specified name we want to give the file. It works like this:
+
+```{r, eval = FALSE}
+
+# To save a .png file
+ggsave(filename = "figures/Europe/Germany_gdpPercap.png", plot = my_plot)
+# To save a .jpg file
+ggsave(filename = "figures/Europe/Germany_gdpPercap.jpg", plot = my_plot)
+# To save a .pdf file
+ggsave(filename = "figures/Europe/Germany_gdpPercap.pdf", plot = my_plot)
+
+```
+
+
+**Your task:** Add an argument to our function that specifies the file type you want for the plot and edit the function so that it will output the requested file type.
+
+If you have more time, you can also add an additional argument that specifies the plot type (x-y scatter, line plot etc) and adjust the function to accommodate this.

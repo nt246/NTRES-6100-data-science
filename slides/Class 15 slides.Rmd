@@ -1,0 +1,107 @@
+---
+title: "Lesson 15: Iteration Part 2"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+```
+
+
+## Assignments
+
+No assignment due this week, but we have covered most of the material for Assignment 8, so you may want to start that and submit early.
+
+
+## Final Presentations
+
+Please indicate whether you will be giving a final class presentation next Thursday 
+
+* Show us how you either already have or could think of applying any part of the course material to your own work
+* Be as specific as possible
+* Very short ~ 1.5 mins
+* Required of students taking the course for credit
+* Auditors are highly encouraged to share as well!
+
+
+
+## Learning objectives for today
+
+By the end of today's class, you should be able to:
+
+* Write a `for` loop to repeat operations on different input
+* Implement `if` and `if else` statements for conditional execution of code
+
+
+## Code duplication
+
+Three main benefits:
+
+* It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same.
+
+* It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+
+* You’re likely to have fewer bugs because each line of code is used in more places.
+
+
+## The basic structure of a `for` loop is:
+```{r, eval=FALSE}
+for (each_item in set_of_items) {
+  do a thing
+}
+```
+
+
+## Exercise
+
+Start with the for loop we developed last class
+
+1. Modify our `for` loop so that it: 
+    - loops through countries in Europe only
+    - plots the product of gdp_per_cap and population size per year (should approximate the total GDP) instead of the gdp_per_cap
+    - saves the plots to a new subfolder inside the (recreated) figures folder called "Europe".
+1. Sync to GitHub
+
+
+## .gitignore files
+
+Lists files that git should ignore
+
+<br>
+
+Can be specific files, entire folders, or file types
+
+Can use `*` as wildcards, e.g. `plots/*.pdf`
+
+
+
+## if statement basic structure
+
+```{r, eval=FALSE}
+# if
+if (condition is true) {
+  do something
+}
+
+# if, else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}
+```
+
+
+## ifelse() function
+
+```{r, eval = FALSE}
+ifelse(condition is true, perform action, perform alternative action)
+```
+
+
+## Exercise
+
+Compute the mean of every column in the dataset `mtcars` (comes with R)

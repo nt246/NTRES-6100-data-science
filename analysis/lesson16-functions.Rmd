@@ -29,8 +29,8 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-* Next week is our last week - only three more classes left
-* You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 31). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present.
+* We're getting towards the end of the course - only three more classes left
+* You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 30). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present. 
 
 <br>
 
@@ -110,7 +110,7 @@ shrub_vol <- calc_shrub_vol(0.8, 1.6, 2.0)
 
 ### Your turn: Exercise
 
-Copy the following function into your assignment and replace the ________ with variables names for the input and output.
+Copy the following function into your R script and replace the ________ with variables names for the input and output.
 
 ```{r, eval = FALSE}
 convert_pounds_to_grams <- function(________) {
@@ -333,7 +333,7 @@ save_plot <- function(cntry) {
 
 <br>
 
-We can not run this function on specific countries
+We can now run this function on specific countries
 
 ```{r, eval = FALSE}
 
@@ -534,5 +534,3 @@ If there is time, we'll walk through part of the example in [Chapters 18-21](htt
 <br>
 <br>
 
-## Example code and good advice on functions
-Check out [this post](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0)
