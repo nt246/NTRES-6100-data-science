@@ -534,3 +534,7 @@ If there is time, we'll walk through part of the example in [Chapters 18-21](htt
 <br>
 <br>
 
+
+
+## Example code and good advice on functions
+Check out [this post](https://towardsdatascience.com/writing-better-r-functions-best-practices-and-tips-d48ef0691c24)
