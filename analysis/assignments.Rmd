@@ -61,7 +61,7 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ### Assignment 9
 #### [Functions and factors](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)  
->Due Thu 4/11 by 10pm EDT  
+>Due Thu 4/13 by 10pm EDT  
 
 ***
 
