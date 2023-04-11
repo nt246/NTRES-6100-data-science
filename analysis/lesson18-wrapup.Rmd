@@ -13,13 +13,9 @@ library(knitr)
 
 <br>
 
-## Today is our second-to-last class! 
+## Today is our last class! 
 
 #### **Thank you** for joining us this semester. It has been great to have you all in the course.
-
-<br>
-
-**Instead** of a regular lab this week, we will offer OPTIONAL project consultations. If you would like a discuss a particular aspect of your own work, or if there is a topic you would like to discuss with us further, please indicate your interest [here](https://docs.google.com/spreadsheets/d/1pSCsHBltGWZ_GlTL7XKrIsYn3EYuExvojNXc1N6ClyA/edit#gid=0). If demand exceeds our available time, we will have to prioritize students enrolled in the lab, or potentially group people with similar interest. But please sign up if you're interested by **6pm on Wednesday**.
 
 <br>
 
@@ -35,19 +31,31 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 
 <br>
 
+## Reminder: The final homework assignment is due this Thursday 4/13
+
+<br>
+
 ## Agenda for today's class
 
+* Remaining student presentations
 * Quick review
-  - Data types in R
-  - Parse functions
   - Good recap messages about functions [here](https://nicercode.github.io/guides/functions/))
+  - For loops
+  - geom_jitter()
+  - maps
 * Continued access to the course material
-  - [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
-  - Zoom recordings will remain available for 120 days on Canvas. You can download any videos you would like to keep
-  
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
+* ChatGPT and other AI applications
 * [If we have time] Troubleshooting strategies
+
+
+## Continued access to the course material
+* The course website will stay up, but will get updated next time we teach the course (probably Fall 2024)
+* [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
+* Zoom recordings will remain on [this video-on-demand channel](https://vod.video.cornell.edu/channel/NTRES%2B6100%2B%2B-%2BSpring%2B2023/297848782). I will keep the videos for at least one year. You can download any videos you would like to keep.
+* Consider joining our NTRES 6100 alumni Slack workspace (click [this invite link](https://join.slack.com/t/ntres6100alums/shared_invite/zt-16chfq8sm-PhYUUYO7dapR4MzHk4jOkg) to join)
+
 
 <br>
 <br>

@@ -1,0 +1,84 @@
+---
+title: "Lesson 17: Factors"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+```
+
+
+
+## Final Presentations on Thursday
+
+* Show us how you either already have or could think of applying any part of the course material to your own work
+* Be as specific as possible
+* You can share screen on Zoom to illustrate your work
+* Very short: 1.5 - 2 mins
+* If you can't make class on Thursday (in person or Zoom), please upload a video of your presentation to Canvas before class
+ 
+
+
+## Reminder: Individual Project Consultations
+
+There will be no regular lab sessions this week. Instead, Azwad will offer individual project consultations. Sign up if you're interested.
+
+
+## Remaining Assignments
+
+* Assignment 8 due this Thursday (3/30)
+* Assignment 9 due Thursday after Spring Break (4/13)
+
+
+## Final Class wrap-up Tuesday after Spring Break
+Recap, take-home message, and resources for learning more
+
+
+## Follow-up workshop on open science and how to share your scripts and data
+
+* Sign-up is open
+* See link to description in Slack `announcements`
+
+
+## Today's learning objectives 
+
+By the end of today's class, you should be able to:
+
+* Describe key features of factor variables in R
+* Manipulate factor levels to improve plots of categorical data
+
+
+
+## Factors
+
+* Categorical variables
+* Have a fixed and known set of possible values
+* Levels are ordered
+* Have human readable names, but under the hood, R is really storing integer codes 1, 2, 3, etc.
+
+
+## Exercise
+
+Exercise: Filter the gapminder data down to rows where population is less than a quarter of a million, i.e. 250,000. Get rid of the unused factor levels for country and continent in different ways, such as:
+
+* `droplevels()`
+* `fct_drop()` inside `mutate()`
+
+## Exercise
+
+Isolate the data for "Australia", "Korea, Dem. Rep.", and "Korea, Rep." in the 2000x. Revalue the country factor levels to "Oz", "North Korea", and "South Korea"
+
+
+## fct_*() functions covered today
+
+* fct_infreq()
+* fct_rev()
+* fct_reorder()
+* fct_reorder2()
+* fct_relevel()
+* fct_recode()
+
+
