@@ -18,6 +18,27 @@ library(knitr)
 #### **Thank you** for joining us this semester. It has been great to have you all in the course.
 
 <br>
+<br>
+
+## Reminder
+### Follow-up workshop on open science and how to share your scripts and data next week
+
+**OPTIONAL: Tuesday April 18 + Thursday April 20 9.40-10.55am (taught by Jessica Rick)**
+
+<br>
+
+#### Learning outcomes: 
+By the end of this course, students will be able to:
+* Define knowledge justice and synthesize the ways that open science practices can contribute to it, as well what deficiencies and obstacles remain.
+* Identify the main principles of open science, and justify what each of these contributes to the advancement of science or their specific field.
+* Make a plan for how to prepare their research products for sharing in an open and reproducible manner.
+
+**Signup:** 
+https://docs.google.com/forms/d/e/1FAIpQLSesfCEfMIO4sbNoYO4aF6MljCTDsA89vh9B7EXmu8zeaflNZw/viewform 
+
+<br>
+<br>
+
 
 ## Course evaluations
 #### Please complete the course evaluations when they become available at the end of the semester
@@ -31,30 +52,35 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 
 <br>
 
-## Reminder: The final homework assignment is due this Thursday 4/13
+## Reminder: 
+### The final homework assignment is due this Thursday 4/13
 
+<br>
 <br>
 
 ## Agenda for today's class
 
 * Remaining student presentations
-* Quick review
-  - Good recap messages about functions [here](https://nicercode.github.io/guides/functions/))
-  - For loops
-  - geom_jitter()
-  - maps
 * Continued access to the course material
+* Quick review
+  - Good recap messages about functions [here](https://nicercode.github.io/guides/functions/)
+  - Will post tutorials for additional review topics
+      - `for` loops
+      - `geom_jitter()`
+      - making and working with maps
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
 * ChatGPT and other AI applications
 * [If we have time] Troubleshooting strategies
 
+<br>
+<br>
 
 ## Continued access to the course material
 * The course website will stay up, but will get updated next time we teach the course (probably Fall 2024)
 * [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
-* Zoom recordings will remain on [this video-on-demand channel](https://vod.video.cornell.edu/channel/NTRES%2B6100%2B%2B-%2BSpring%2B2023/297848782). I will keep the videos for at least one year. You can download any videos you would like to keep.
-* Consider joining our NTRES 6100 alumni Slack workspace (click [this invite link](https://join.slack.com/t/ntres6100alums/shared_invite/zt-16chfq8sm-PhYUUYO7dapR4MzHk4jOkg) to join)
+* Zoom recordings stay on Canvas for 120 days. But we will keep them all available on [this video-on-demand channel](https://vod.video.cornell.edu/channel/NTRES%2B6100%2B%2B-%2BSpring%2B2023/297848782) for at least one year. You can download any videos you would like to keep.
+* Consider joining our NTRES 6100 alumni Slack workspace (see invite link in the Slack workspace)
 
 
 <br>
@@ -187,6 +213,14 @@ And for getting help, check out the [slide deck](https://resources.rstudio.com/r
 * Check out and follow developments at [Openscapes](https://www.openscapes.org/), an awesome organization led by Julia Stewart Lowndes aimed at empowering environmental scientists to do better science in less time through open and collaborative practices.
 
 <br>
+
+#### Learn to leverage chatGPT and other AI applications
+Can help write code and troubleshoot. But always important to check for accuracy.
+Can also help you learn R better (see e.g. [here](https://pyoflife.com/tips-to-learn-r-using-chatgpt/))
+
+<br>
+<br>
+
 
 ### More cool R applications
 
