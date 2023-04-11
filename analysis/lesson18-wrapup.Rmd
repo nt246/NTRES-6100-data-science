@@ -86,7 +86,13 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 <br>
 <br>
 
-## Good practices
+---
+
+
+
+<br>
+
+# Good practices
 
 <br>
  
@@ -309,7 +315,7 @@ If there are 3 things to communicate to others after this course, I think they w
 
 <br>
 
-## If we have time: Discussion questions as warm-up for Thursday's presentations
+## Reflection questions as we wrap up the course
 
 * What is the most valuable thing you have learned in this class?
 * Are you planning to implement any changes your workflow or practices moving forward
