@@ -9,30 +9,28 @@ site: workflowr::wflow_site
 
 ### NTRES 6100 
 
-#### Cornell University, Spring 2023
+#### Cornell University, Fall 2024
 
 
 This website complements the class [Canvas](https://canvas.cornell.edu/courses/51175) site.  
 
 ***
 
-**Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com)
+**Instructor**: Associate Professor [Nina Overgaard Therkildsen](https://cals.cornell.edu/nina-overgaard-therkildsen)
 &nbsp;
-**TA**: Ph.D. Student Azwad Iqbal
+**TA**: Ph.D. Student Jaime Ortiz Pachar
 
 ***
 #### Meeting times and locations
 
 **Lectures**:  
-Tuesday and Thursday 9:40am - 10:55am  
-(January 24 - March 31, 2023)   
-Fernow Hall G24 
+Tuesdays and Thursdays 10.10am - 11:25am (August 27 - November 5, 2024)
+Morrison Hall 163
 
 **Optional lab sessions**:  
 *Hands-on practice sessions in groups and with TA support*  
-Thursday session: 12:25pm - 2:20pm, Fernow Hall G01  
-Friday session: 12:25pm - 2:20pm, Fernow Hall G01  
-
+Thursdays **or** Fridays 12:20pm - 2:15pm
+Kennedy Hall 101
 
 ***
 
