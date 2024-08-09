@@ -130,7 +130,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 |16|Tue|10/22|[Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)||
 |17|Thu|10/24|[Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)|[Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)|
 |18|Tue|10/29|TBD (using ChatGPT) |||
-|19|Thu|10/31|Student presentations, wrapping up and looking ahead|[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) (due 4/13)|
+|19|Thu|10/31|Student presentations, wrapping up and looking ahead|[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)|
 |20|Tue|11/5|[Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)|
 
 
