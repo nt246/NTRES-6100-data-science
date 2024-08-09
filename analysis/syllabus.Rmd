@@ -9,20 +9,19 @@ output:
 
 > NTRES 6100   
 Collaborative and Reproducible Data Science in R  
-Cornell University, Spring 2023  
+Cornell University, Fall 2024  
 
 #### Course Info  
 
 
-**Lectures**:  Tuesdays and Thursdays 9:40am - 10:55am (January 24 - March 31, 2023), Fernow Hall G24  
-
-**Optional lab sessions**: Thursdays **or** Fridays 12:25pm - 2:20pm, Fernow Hall G01
+**Lectures**:  Tuesdays and Thursdays 10.10am - 11:25am (August 27 - November 5, 2024), Morrison Hall 163  
+**Optional lab sessions**: Thursdays **or** Fridays 12:20pm - 2:15pm, Kennedy Hall 101
 
 **Instructor**: Assistant Professor [Nina Overgaard Therkildsen](https://www.therkildsenlab.com) (nt246@cornell.edu)  
 
-**TA**: PhD Student Azwad Iqbal (ari22@cornell.edu)  
+**TA**: PhD Student Jaime Pachar (jdo53@cornell.edu)  
 
-**Office hours**: Nina: by appointment; Azwad: Tuesdays, 11:00am - 12:00pm in Fernow 210 or by appointment ([Zoom link](https://cornell.zoom.us/j/6451464840?pwd=ejhNd0hGdElJaXR3RWF3Znl1N3hJdz09))
+**Office hours**: Nina: by appointment; Jaime: Tuesdays, TBD in Fernow 210 or by appointment
 
 **Grading**: S/U (2 credits / 3 credits with lab)  
 
@@ -74,7 +73,7 @@ It takes practice to acquire and internalize data science skills, and what you g
 
 #### Course materials
 
-All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily [Grolemund and Wickham's R For Data Science](https://r4ds.had.co.nz/) and the [STAT545 course developed by Jenny Bryan](https://stat545.com/).  
+All assigned readings are freely available online and will be linked to from the course website. We will draw from a variety of sources, primarily [Wickham, Çetinkaya-Rundel, and Grolemund's R For Data Science](https://r4ds.hadley.nz/) and the [STAT545 course developed by Jenny Bryan](https://stat545.com/).  
 
 All students will need to bring a laptop to each session. Students who do not have their own laptop can arrange to borrow one from the Mann Library.
 
@@ -112,29 +111,27 @@ This semester, the course is offered fully in-person and we expect you to show u
 
 | Lecture#| Day | Date | Topic                                                                                         | Assignment due dates |
 |:--------|:----|:-----|:-----------------------------------------------------------------------------------------|:----------------------|
-| 1       | Tue | 1/24  | [Intro to the course and R/RStudio](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)|       |
-| 2       | Thu | 1/26 | [Markdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)   |                  |
-| 3       | Tue | 1/31  | [The Git workflow (version control)](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)| |
-| 4       | Thu | 2/2  | [Collaborating with GitHub Part 1](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html) | [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) |
-| 5       | Tue | 2/7  | [Collaborating with GitHub Part 2](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)| |
-| 6       | Thu | 2/9 | [Plotting with ggplot part 1](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html) | [Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md) |
-| 7       | Tue | 2/14 | [Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html) |       |
-| 8       | Thu | 2/16 | [Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html) | [Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md) |
-| 9       | Tue | 2/21 | [Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html) | |
-| 10      | Thu | 2/23 | [Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)          | [Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md) |
-|         | Tue | 2/28  | **NO CLASS** - February Break                                |                  |
-| 11      | Thu | 3/2  | [Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)                            | [Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md) |
-| 12      | Tue | 3/7  | [Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html) |  |
-| 13      | Thu | 3/9 | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson13-debugging-getting-help.html) | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md) |
-|         | Tue | 3/14 | SNOW DAY
-| 14      | Thu | 3/16 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops.html)    |          [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)             |
-| 15      | Tue | 3/21 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)                                        |   |
-| 16      | Thu | 3/23  | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)    |             |
-| 17      | Tue | 3/28 | [Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)                                                                                  |   |
-| 18      | Thu | 3/30 | Student presentations, wrapping up and looking ahead                                          | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)        |
-|       | Tue | 4/4 | SPRING BREAK                                                                                  |                  |
-|       | Tue | 4/6 | SPRING BREAK                                                                                   |                  |
-| 19      | Tue | 4/11 | [SNOW DAY MAKE-UP: Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)                                                                                   |   [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) (due 4/13)               |
+|1|Tue|8/27|Intro to the course and R/RStudio|(https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)||
+|2|Thu|8/29|Markdown and GitHub|(https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)||
+|3|Tue|9/3|The Git workflow (version control)|(https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)||
+|4|Thu|9/5|Collaborating with GitHub Part 1|(https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html)|[Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)|
+|5|Tue|9/10|Collaborating with GitHub Part 2|(https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)||
+|6|Thu|9/12|Plotting with ggplot part 1|(https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html)|[Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)|
+|7|Tue|9/17|Data wrangling part 1 (dplyr::filter, mutate, select, arrange)|(https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)||
+|8|Thu|9/19|Data wrangling part 2 (dplyr::summarize, group_by)|(https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html)|[Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)|
+|9|Tue|9/24|Plotting with ggplot part 2 + good coding practices|(https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)||
+|10|Thu|9/26|Tidy data|(https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)|[Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)|
+|11|Tue|10/1|Data import, export, and conversion between data types|||
+|12|Thu|10/3|Relational data|(https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)|[Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)|
+|13|Tue|10/8|Good coding practices, debugging strategies, and getting help|(https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html)||
+|14|Thu|10/10|Iteration (for loops) and conditional execution part 1|(https://nt246.github.io/NTRES-6100-data-science/lesson13-debugging-getting-help.html)|[Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)|
+||Tue|10/15|FALL BREAK (no class)|||
+|15|Thu|10/17|Iteration (for loops) and conditional execution part 2|(https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)|[Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)|
+|16|Tue|10/22|Functions|(https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)||
+|17|Thu|10/24|Factors in R|(https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)|[Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)|
+|18|Tue|10/29|TBD (using ChatGPT - should come earlier)|||
+|19|Thu|10/31|Student presentations, wrapping up and looking ahead||[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) (due 4/13)|
+|20|Tue|11/5|Wrapping up and resources for learning more|(https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)|
 
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
