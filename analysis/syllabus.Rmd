@@ -129,21 +129,22 @@ This semester, the course is offered fully in-person and we expect you to show u
 |15|Thu|10/17|[Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson15-for-loops-part2.html)|[Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)|
 |16|Tue|10/22|[Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)||
 |17|Thu|10/24|[Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)|[Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)|
-|18|Tue|10/29|TBD (using ChatGPT - should come earlier)|||
-|19|Thu|10/31|[Student presentations, wrapping up and looking ahead||[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) (due 4/13)|
+|18|Tue|10/29|TBD (using ChatGPT) |||
+|19|Thu|10/31|Student presentations, wrapping up and looking ahead||[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) (due 4/13)|
 |20|Tue|11/5|[Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)|
 
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
 |:--------|:-------------|:------------|:-----------------------------------------------------------------------------------------------|
-| 1       | 1/26       | 1/27       | [RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)               |
-| 2       | 2/2        | 2/3        | [RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html) |
-| 3       | 2/9       | 2/10       | [Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html) |
-| 4       | 2/16       | 2/17       | [Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html) |
-| 5       | 2/23       | 2/24       | [Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html) |
-| 6       | 3/2        | 3/3        | [Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html) |
-| 7       | 3/9       | 3/10       | [Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html) |
-| 8       | 3/16       | 3/17       | [Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html) |
-| 9       | 3/23       | 3/24       | [Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html) |
-| 10      | 3/30       | 3/31        | OPTIONAL: Bring your own project                                                               |
+|1|8/29|8/30|RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)|
+|2|9/5|9/6|RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)|
+|3|9/12|9/13|Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)|
+|4|9/19|9/20|Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)|
+|5|9/26|9/27|Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)|
+|6|10/3|10/4|Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)|
+|7|10/10|10/11|Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html)|
+|8|10/17|10/18|Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)|
+|9|10/24|10/25|Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)|
+|10|10/31|11/1|OPTIONAL: Bring your own project| 
+
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
