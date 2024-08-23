@@ -12,7 +12,7 @@ site: workflowr::wflow_site
 #### Cornell University, Fall 2024
 
 
-This website complements the class [Canvas](https://canvas.cornell.edu/courses/51175) site.  
+This website complements the class [Canvas](https://canvas.cornell.edu/courses/65313) site.  
 
 ***
 
