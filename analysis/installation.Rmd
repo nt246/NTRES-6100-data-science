@@ -15,7 +15,7 @@ output:
 
 Follow the instructions in [section 1.4](https://r4ds.had.co.nz/introduction.html#prerequisites) of the R for Data Science book. Make sure to get the free open source license RStudio Desktop version.
 
-**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.2.2 and RStudio v1.4.1106). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
+**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.4.1 and RStudio 2024.04.2+764). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
 
 
 ***
@@ -37,7 +37,7 @@ install.packages(c("nycflights13", "gapminder", "Lahman"))
 
 ### Install Slack and join workspace  
 
-Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/slack-ptl9289/shared_invite/zt-1nno6xmac-WRM7qtUiE53pWB1Wuz6J6A). 
+Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres-6100-fa24/shared_invite/zt-2p09olzw7-dt0oemdHx72vfUK7ZQ2Apg). 
 
 We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 
