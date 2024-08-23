@@ -101,7 +101,7 @@ In compliance with the Cornell University policy and equal access laws, we are a
 
 #### Online participation
 
-This semester, the course is offered fully in-person and we expect you to show up for class. However, in an effort to accommodate special needs and keep everyone safe and healthy, we will also provide a Zoom link for joining lectures online **when you are not able to participate in-person**. You can use the Zoom link posted on the the course [Canvas](https://canvas.cornell.edu/courses/51175) site instead of showing up in person if you are sick, think you have been exposed to COVID19, or have another reasonable justification. However, we are not able to accommodate fully hybrid participation, and we strongly encourage you to participate in-person whenever possible. Online participation will not be possible for the lab sessions.
+This semester, the course is offered fully in-person and we expect you to show up for class. However, in an effort to accommodate special needs and keep everyone safe and healthy, we will also provide a Zoom link for joining lectures online **when you are not able to participate in-person**. You can use the Zoom link posted on the the course [Canvas](https://canvas.cornell.edu/courses/65313) site instead of showing up in person if you are sick, or have another reasonable justification. However, we are not able to accommodate fully hybrid participation, and we strongly encourage you to participate in-person whenever possible. Online participation will not be possible for the lab sessions.
 
 ***
 
@@ -136,15 +136,15 @@ This semester, the course is offered fully in-person and we expect you to show u
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
 |:--------|:-------------|:------------|:-----------------------------------------------------------------------------------------------|
-|1|8/29|8/30|RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)|
-|2|9/5|9/6|RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)|
-|3|9/12|9/13|Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)|
-|4|9/19|9/20|Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)|
-|5|9/26|9/27|Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)|
-|6|10/3|10/4|Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)|
-|7|10/10|10/11|Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html)|
-|8|10/17|10/18|Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)|
-|9|10/24|10/25|Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)|
+|1|8/29|8/30|[RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)|
+|2|9/5|9/6|[RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)|
+|3|9/12|9/13|[Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)|
+|4|9/19|9/20|[Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)|
+|5|9/26|9/27|[Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)|
+|6|10/3|10/4|[Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)|
+|7|10/10|10/11|[Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html)|
+|8|10/17|10/18|[Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)|
+|9|10/24|10/25|[Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)|
 |10|10/31|11/1|OPTIONAL: Bring your own project| 
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
