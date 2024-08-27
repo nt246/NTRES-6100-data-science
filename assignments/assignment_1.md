@@ -3,7 +3,7 @@ Assignment 1: R markdown template
 
 ## Instructions: Please read through this before you begin
 
-- This assignment is due by **10pm on Thursday 02/02/22**.
+- This assignment is due by **10pm on Thursday 09/05/2024**.
 
 - For this assignment, please **reproduce this markdown file exactly as
   shown** using R markdown (including this list of instructions). You do
