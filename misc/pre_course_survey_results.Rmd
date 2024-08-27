@@ -182,5 +182,32 @@ count(dat, `STUDENT PROGRAM`) %>%
 
 ggsave(file="misc/pre-course-survey-program-2023.png")
 
+
+
+# 2024
+
+
+library(tidyverse)
+library(scales) #install.packages("scales")
+
+dat <- read_tsv("/Users/nt246/Dropbox/From_Box/Teaching/NTRES_6100/FA24/Departments.txt")
+
+dat %>% 
+  ggplot(aes(x=fct_rev(fct_infreq(`STUDENT PROGRAM`)))) +
+  geom_bar() +
+  coord_flip() +
+  scale_y_continuous(breaks= pretty_breaks()) +
+  labs(x = "Student Program") +
+  theme_classic()
+
+ggsave(file="misc/pre-course-survey-program-2024.png", width = 4, height = 3.5)
+
+
+
+
+
+
+
+
 ```
 
