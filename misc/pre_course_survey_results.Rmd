@@ -205,6 +205,25 @@ ggsave(file="misc/pre-course-survey-program-2024.png", width = 4, height = 3.5)
 
 
 
+data <- read_csv("/Users/nt246/Dropbox/From_Box/Teaching/NTRES_6100/FA24/2024FA_NTRES6100_001_Aug_27_2024.csv")
+
+View(dat)
+
+count(data, `STUDENT PROGRAM`)
+# count(dat, `STUDENT PLAN`)
+
+count(dat, `STUDENT PROGRAM`) %>% 
+  arrange(n) %>% 
+  ggplot(aes(x=`STUDENT PROGRAM`, y=n, label=n)) +
+  geom_col() +
+  coord_flip() +
+  theme_bw()
+
+ggsave(file="misc/pre-course-survey-program-2023.png")
+
+
+
+
 
 
 
