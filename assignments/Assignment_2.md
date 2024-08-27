@@ -17,14 +17,14 @@ that you feel is suitable for GitHub version control, you can set up a
 hypothetical research project repo instead and create a few hypothetical
 script and data files.
 
-#### This assignment is due by **10pm on Thursday 2/9/2023**.
+#### This assignment is due by **10pm on Thursday 09/12/2024**.
 
 To submit, paste the URL to the new project GitHub repo you will create
 here to the README file in your course repo. Below the table used to
 record grades, please type
 
-`Lab 2: URL-to-repo` \[replacing `URL-to-repo` with the actual URL to
-your repo\].
+`Assignment 2: URL-to-repo` \[replacing `URL-to-repo` with the actual
+URL to your repo\].
 
 <br>
 
@@ -74,30 +74,31 @@ select the following features:
 
 ------------------------------------------------------------------------
 
-## Task 3: Invite Katie (our grader) as a collaborator to allow grading
+## Task 3: Invite Nicolas as a collaborator to allow grading
 
 Your repo is now ready. Since you made it private, only you can see it,
 so don’t worry about putting data and results up there. It will only be
 visible to people you explicitly invite as collaborators.
 
 To show us that you have completed the assignment, you will therefore
-need to add Katie as a collaborator temporarily. Once he has had a
+need to add Nicolas as a collaborator temporarily. Once he has had a
 chance to review your setup, you can revoke his collaborator privileges
 so he won’t have continued access.
 
-To give Katie access:
+To give Nicolas access:
 
 - Click on the “Settings” tab
 
-- Click on “Collaborators” from the menu on the left
+- Click on “Manage access” from the menu on the left
 
-- Click on the green button labeled **Add people** (note that you may be
-  prompted to enter your **GitHub** password)
+- Click on the green button labeled **Invite a collaborator** (note that
+  you may be prompted to enter your **GitHub** password)
 
-- In the search box that appears, type `kld93` and select Katie Duggan’s
-  name/username
+- In the search box that appears, type `nicolas931010` and select
+  Nicolas’ name/username
 
-- Click on the green button that says **Add kld93 to this repository**
+- Click on the green button that says **Add nicolas931010 to this
+  repository**
 
 <br>
 
@@ -134,15 +135,13 @@ sub-directories:
 
 You can make these sub-directories either by clicking “New Folder” in
 the “Files” tab in RStudio, or with your computer’s file browser, like
-Finder on a Mac). **Make at least four subdirectories of your choice.**
+Finder on a Mac):
 
 Now, using your favorite method of moving or copying files, **copy** all
 the files that constitute your existing project (your code and data
 etc.) into the appropriate sub-directory for this new project (keep your
 original copy for now to not disrupt any dependencies of local paths in
-your current workflow). If you’re not copying a specific project, you
-can just add random files (e.g. an image saved from the internet, a text
-file with a few lines of text etc.).
+your current workflow).
 
 Here’s one suggestion for organizing the content of sub-directories, but
 feel free to adapt to your particular needs:
