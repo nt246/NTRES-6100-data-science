@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Overview
-Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_2023_01_24.pdf) describing the focus, content, and goal of this course.
+Welcome to the course. Please review the [introductory slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_Class1_FA2024.pdf) describing the focus, content, and goal of this course.
 
 <br>
 <br>
@@ -272,7 +272,7 @@ rm(list = ls())
 
 or click the broom in RStudio's Environment pane. 
 
-But this command is problematic -see [Jenny Bryan's explanation](https://rstats.wtf/save-source.html#rm-list-ls).
+But this command is problematic -see [Jenny Bryan's explanation](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/).
 
 <br>
 
@@ -311,7 +311,7 @@ On Wednesday, we will set up an RStudio project for you to work in during this c
 
 ## Saving your code in scripts
 
-See [Chapter 6 in Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/workflow-projects.html#where-does-your-analysis-live)
+See [Chapter 6 in Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/workflow-scripts.html)
 
 <br>
 <br>
