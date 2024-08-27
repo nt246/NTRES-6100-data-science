@@ -305,7 +305,7 @@ See [sections 8.2-8.4 in Grolemund and Wickham's R for Data Science](https://r4d
 
 Additional tips on RStudio projects [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 
-On Wednesday, we will set up an RStudio project for you to work in during this course (we're waiting until Wednesday because we want to integrate it with GitHub from the get-go).
+During next class, we will set up an RStudio project for you to work in during this course (we're waiting until next class because we want to integrate it with GitHub from the get-go).
 
 <br>
 
@@ -316,6 +316,6 @@ See [Chapter 6 in Grolemund and Wickham's R for Data Science](https://r4ds.had.c
 <br>
 <br>
 
-**If you're new to R, this may all seem a little overwhelming right now. Don't worry, we'll keep coming back to revisit some of the key concepts outlined above as wwe work through the course.**
+**If you're new to R, this may all seem a little overwhelming right now. Don't worry, we'll keep coming back to revisit some of the key concepts outlined above as we work through the course.**
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
