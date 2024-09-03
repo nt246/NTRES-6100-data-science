@@ -22,14 +22,14 @@ Assignment 1: R markdown template
   fourth assignment, where you will actually fill out the code chunks.
 
 - You will have to submit your assignment through GitHub. You can
-  complete your template after Thursday’s class (1/26/2023), but don’t
+  complete your template after Thursday’s class, but don’t
   worry about submitting it until after we have gone over how to submit
-  it through GitHub in next Tuesday’s class (1/31/2023). To do so, you
+  it through GitHub in next Tuesday’s class. To do so, you
   will first move `assignment_1.Rmd` and `assignment_1.md` to the
   `problem_sets` folder in your own GitHub repository that you have
   created in class through GitHub Classroom. (If you haven’t created
   this repo yet, please use the following url:
-  <https://classroom.github.com/a/cKaU744y>). Then, you can stage these
+  <https://classroom.github.com/a/o8r_gQtD>). Then, you can stage these
   files, make a commit, and push the commit.
 
 ## Load packages
