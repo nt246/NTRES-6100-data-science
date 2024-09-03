@@ -22,13 +22,25 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 #### Other resources:  
-* [GitHub Guides](https://guides.github.com/) has a number of tutorials. "Hello World" is a good place to start
+* [GitHub's Get Started Documentation](https://docs.github.com/en/get-started) has a number of tutorials. ["Hello World"](https://docs.github.com/en/get-started/start-your-journey/hello-world) is a good place to start
 
 * [Happy Git with R](https://happygitwithr.com/) by Jenny Bryan
 
 * [GitHub for Project Management](https://openscapes.github.io/series/github-issues.html) by Openscapes
 
 <br>
+<br>
+
+## Announcements
+
+* Unfortunately, no better classroom is available during our meeting time, so we will have to stick with our current room assignment and make the best of it. Please talk to us or write in the `feedback` channel if you have suggestions for how we can make things work better in the room.
+* **Homework 1** is due this Thursday at 10pm (submit through GitHub! – we’ll demo later).
+* Auditors are welcome to submit homework assignments for useful practice and feedback.
+* Jaime will host office hours Wednesday 10-11am in 311 Fernow Hall.
+* Nina will host office hours 11.30-12am (right after class) this Thursday in the lobby area at the entrance of Morrison Hall.
+
+
+<br>  
 <br>
 
 ## Learning objectives
@@ -112,17 +124,17 @@ Examples:
 <br>
 
 ### Say hello to your course repo on GitHub
-In this course, you will not be working in repos in your own personal account because then we will not have edit access to your files. Instead, you will work within your personal course repo that we have created with a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7). Select your name from the list (or just click continue if you don't see your name there).
+In this course, you will not be working in repos in your own personal account because then we will not have edit access to your files. Instead, you will work within your personal course repo that we have created with a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/o8r_gQtD). Select your name from the list (or just click continue if you don't see your name there).
 
 Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("assets/star_repo.png")  
+knitr::include_graphics("assets/star_repo_24FA.png")  
 ```
 
 <br>
 
-Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
+Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/finding_starred_repos.png")  
@@ -141,7 +153,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Make sure you're in your class repo (`therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME`)
+* Make sure you're in your class repo (`therkildsen-class/therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME`)
 * Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
 * Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.
@@ -315,7 +327,7 @@ knitr::include_graphics("assets/new_project6.png")
 
 Let's notice a few things: 
 
-First, our working directory is set to `~/github/ntres-6100-sp23-USERNAME`, and `ntres-6100-sp23-USERNAME` is also named in the top right hand corner.
+First, our working directory is set to `~/github/ntres-6100-fa2024-USERNAME`, and `ntres-6100-fa2024-USERNAME` is also named in the top right hand corner.
 
 Second, we have a Git tab in the top right pane! Let's click on it. 
 
@@ -400,7 +412,7 @@ Let's click the boxes next to each file. This is called "staging a file": you ar
 - .Rproj and .gitignore files: the question marks turn into an A because these are new files that have been added to your repo (automatically by RStudio, not by you). 
 - README.md file: the M indicates that this was modified (by you)
 
-These are the codes used to describe how the files are changed, (from the RStudio [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)):
+These are the codes used to describe how the files are changed, (from the RStudio [cheatsheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)):
 
 <br>
 
@@ -506,13 +518,13 @@ Let's also explore the commit history. The 2 commits we've made (the first was w
 
 Let's go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. 
 
-This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-sp23-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
+This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-fa2024-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
 
-A [project-oriented workflow](https://rstats.wtf/project-oriented-workflow.html) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
+A [project-oriented workflow](https://rstats.wtf/projects) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
 
 R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
 
-Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers. If you're not convinced, please check Jenny Bryan's arguments [here](https://rstats.wtf/project-oriented-workflow.html) or [here](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) and [Chapter 8 in Grolemund and Wickham's R4DS](https://r4ds.had.co.nz/workflow-projects.html). 
+Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers. If you're not convinced, please check Jenny Bryan's arguments [here](https://rstats.wtf/projects) or [here](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) and [Chapter 6 in R4DS(2e)](https://r4ds.hadley.nz/workflow-scripts). 
 
 <br>
 
@@ -593,9 +605,6 @@ The nicely formatted files you see on GitHub (e.g. typical README pages) are mar
 
 <br>
 
-![](https://camo.githubusercontent.com/a10832533c888e1af7f9a110dfb635e507951151/687474703a2f2f6161726f6e626167676574742e636f6d2f696d616765732f66726f6d5f74656d706c6174652e706e67)
-
-<br>
 
 * At the top of an RMarkdown file, manually edit the output of the GitHub document using the following syntax
 

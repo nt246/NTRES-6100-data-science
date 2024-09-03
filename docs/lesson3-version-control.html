@@ -13,7 +13,7 @@
 
 <title>Lesson 3: Version control and the Git/GitHub workflow</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -473,8 +473,10 @@ moment to talk about version control?</a> by Jenny Bryan</li>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
 <ul>
-<li><p><a href="https://guides.github.com/">GitHub Guides</a> has a
-number of tutorials. “Hello World” is a good place to start</p></li>
+<li><p><a href="https://docs.github.com/en/get-started">GitHub’s Get
+Started Documentation</a> has a number of tutorials. <a
+href="https://docs.github.com/en/get-started/start-your-journey/hello-world">“Hello
+World”</a> is a good place to start</p></li>
 <li><p><a href="https://happygitwithr.com/">Happy Git with R</a> by
 Jenny Bryan</p></li>
 <li><p><a
@@ -483,6 +485,26 @@ Project Management</a> by Openscapes</p></li>
 </ul>
 <p><br> <br></p>
 </div>
+</div>
+<div id="announcements" class="section level2">
+<h2>Announcements</h2>
+<ul>
+<li>Unfortunately, no better classroom is available during our meeting
+time, so we will have to stick with our current room assignment and make
+the best of it. Please talk to us or write in the <code>feedback</code>
+channel if you have suggestions for how we can make things work better
+in the room.</li>
+<li><strong>Homework 1</strong> is due this Thursday at 10pm (submit
+through GitHub! – we’ll demo later).</li>
+<li>Auditors are welcome to submit homework assignments for useful
+practice and feedback.</li>
+<li>Jaime will host office hours Wednesday 10-11am in 311 Fernow
+Hall.</li>
+<li>Nina will host office hours 11.30-12am (right after class) this
+Thursday in the lobby area at the entrance of Morrison Hall.</li>
+</ul>
+<p><br><br />
+<br></p>
 </div>
 <div id="learning-objectives" class="section level2">
 <h2>Learning objectives</h2>
@@ -620,22 +642,22 @@ Instead, you will work within your personal course repo that we have
 created with a GitHub Classroom organization for the class. To access
 your personal course repo through which you will be submitting your
 assignments and communicating with us, click <a
-href="https://classroom.github.com/assignment-invitations/045e5a291bd69e01902decb6c08a8ef7">here</a>.
-Select your name from the list (or just click continue if you don’t see
-your name there).</p>
+href="https://classroom.github.com/a/o8r_gQtD">here</a>. Select your
+name from the list (or just click continue if you don’t see your name
+there).</p>
 <p>Once you land on your repo page, notice that it is hosted within our
 course organizational account <code>therkildsen-class</code>, not your
 personal account (see the path in the top left corner). To make this
 repo also show up on your personal account page, click the “Star” button
 on the top right of the page.</p>
-<p><img src="assets/star_repo.png" width="80%" /></p>
+<p><img src="assets/star_repo_24FA.png" width="80%" /></p>
 <p><br></p>
 <p>Now if you click on the profile information in the very top right
 corner, and select the “Your stars” option, you’ll be taken to a list of
 all the repos you have starred and your course repo should show up here
 (it should be named something like
-<code>therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME</code>). Click on
-the repo name to return to your course repo.</p>
+<code>therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME</code>). Click
+on the repo name to return to your course repo.</p>
 <p><img src="assets/finding_starred_repos.png" width="80%" /></p>
 <p><br> <br> <br></p>
 </div>
@@ -649,7 +671,7 @@ the repo name to return to your course repo.</p>
 <h4>Together:</h4>
 <ul>
 <li>Make sure you’re in your class repo
-(<code>therkildsen-class/ntres-6100-sp23-YOUR_USER_NAME</code>)</li>
+(<code>therkildsen-class/therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME</code>)</li>
 <li>Click on the “Add File” button on your repository’s home page, and
 select the “Create new file” option</li>
 <li>Call the file <code>navigating_github.md</code></li>
@@ -827,8 +849,8 @@ Explorer:</p>
 <p><br></p>
 <p>Let’s notice a few things:</p>
 <p>First, our working directory is set to
-<code>~/github/ntres-6100-sp23-USERNAME</code>, and
-<code>ntres-6100-sp23-USERNAME</code> is also named in the top right
+<code>~/github/ntres-6100-fa2024-USERNAME</code>, and
+<code>ntres-6100-fa2024-USERNAME</code> is also named in the top right
 hand corner.</p>
 <p>Second, we have a Git tab in the top right pane! Let’s click on
 it.</p>
@@ -919,7 +941,7 @@ because these are new files that have been added to your repo
 </ul>
 <p>These are the codes used to describe how the files are changed, (from
 the RStudio <a
-href="http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">cheatsheet</a>):</p>
+href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">cheatsheet</a>):</p>
 <p><br></p>
 <p><img src="assets/commit_codes_added_modified.png" width="30%" /></p>
 <p><br></p>
@@ -1005,15 +1027,13 @@ projects and workflows for our data analyses.</p>
 <p>This GitHub repository is now also an RStudio Project (capital P
 Project). This just means that RStudio has saved this additional file
 with extension <code>.Rproj</code> (ours is
-<code>ntres-6100-sp23-USERNAME.Rproj</code>) to store specific settings
-for this project. It’s a bit of technology to help us get into the good
-habit of having a project-oriented workflow.</p>
-<p>A <a
-href="https://rstats.wtf/project-oriented-workflow.html">project-oriented
-workflow</a> means that we are going to organize all of the relevant
-things we need for our analyses in the same place. That means that this
-is the place where we keep all of our data, code, figures, notes,
-etc.</p>
+<code>ntres-6100-fa2024-USERNAME.Rproj</code>) to store specific
+settings for this project. It’s a bit of technology to help us get into
+the good habit of having a project-oriented workflow.</p>
+<p>A <a href="https://rstats.wtf/projects">project-oriented workflow</a>
+means that we are going to organize all of the relevant things we need
+for our analyses in the same place. That means that this is the place
+where we keep all of our data, code, figures, notes, etc.</p>
 <p>R Projects are great for reproducibility, because our self-contained
 working directory will be the <strong>first</strong> place R looks for
 files.</p>
@@ -1026,10 +1046,10 @@ filepaths. So using RStudio Projects and having a project-oriented
 workflow and mindset makes our analysis less brittle and more portable —
 across people, time, and computers. If you’re not convinced, please
 check Jenny Bryan’s arguments <a
-href="https://rstats.wtf/project-oriented-workflow.html">here</a> or <a
+href="https://rstats.wtf/projects">here</a> or <a
 href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">here</a>
-and <a href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in
-Grolemund and Wickham’s R4DS</a>.</p>
+and <a href="https://r4ds.hadley.nz/workflow-scripts">Chapter 6 in
+R4DS(2e)</a>.</p>
 <p><br></p>
 <div id="working-directory" class="section level3">
 <h3>Working directory</h3>
@@ -1123,9 +1143,6 @@ GitHub flavored markdown by doing one of the following:</p>
 <li>When creating your RMarkdown file, click “From template”, and then
 select “GitHub Document (Markdown)”</li>
 </ul>
-<p><br></p>
-<p><img
-src="https://camo.githubusercontent.com/a10832533c888e1af7f9a110dfb635e507951151/687474703a2f2f6161726f6e626167676574742e636f6d2f696d616765732f66726f6d5f74656d706c6174652e706e67" /></p>
 <p><br></p>
 <ul>
 <li>At the top of an RMarkdown file, manually edit the output of the
