@@ -74,30 +74,30 @@ select the following features:
 
 ------------------------------------------------------------------------
 
-## Task 3: Invite Nicolas as a collaborator to allow grading
+## Task 3: Invite Azwad as a collaborator to allow grading
 
 Your repo is now ready. Since you made it private, only you can see it,
-so don’t worry about putting data and results up there. It will only be
+so don’t worry that you're putting your data and results up there. It will only be
 visible to people you explicitly invite as collaborators.
 
 To show us that you have completed the assignment, you will therefore
-need to add Nicolas as a collaborator temporarily. Once he has had a
+need to add Azwad as a collaborator temporarily. Once he has had a
 chance to review your setup, you can revoke his collaborator privileges
 so he won’t have continued access.
 
-To give Nicolas access:
+To give Azwad access:
 
 - Click on the “Settings” tab
 
-- Click on “Manage access” from the menu on the left
+- Click on “Collaborators” from the menu on the left
 
-- Click on the green button labeled **Invite a collaborator** (note that
+- Click on the green button labeled **Add people** (note that
   you may be prompted to enter your **GitHub** password)
 
-- In the search box that appears, type `nicolas931010` and select
-  Nicolas’ name/username
+- In the search box that appears, type `azwadriqbal` and select
+  Azwad’ name/username
 
-- Click on the green button that says **Add nicolas931010 to this
+- Click on the green button that says **Add azwadriqbal to this
   repository**
 
 <br>
