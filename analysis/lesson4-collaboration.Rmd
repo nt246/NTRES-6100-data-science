@@ -46,7 +46,7 @@ By the end of this class you will be able to:
 
 ## Collaborating with GitHub
 
-We're going to collaborate with a partner to set up a new repository. First sit back and watch as we demo, then you will get sent to a breakout room with a partner and get to practice.
+We're going to collaborate with a partner to set up a new repository. First sit back and watch as we demo, then you will pair up with a partner and get to practice.
 
 <br>
 
@@ -446,6 +446,7 @@ Branches afford explicit workflows for integrating different lines of work on yo
 
 Go back to Github.com and have a look at the commit history of your collaborative repo. You’ll see that the number of commits for the repo has increased, let’s have a look. You can see the history of what both Partner 1 and 2 have done.
 
+<br>
 
 ### Blame
 

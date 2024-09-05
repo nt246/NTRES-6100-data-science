@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Readings
 
-There are no required readings for today, but if you did not join our lecture last Thursday, please read through the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html) and watch the recording posted on [Canvas](https://canvas.cornell.edu/courses/51175)
+There are no required readings for today, but if you did not join our lecture last Thursday, please read through the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html) and watch the recording posted on [Canvas](https://canvas.cornell.edu/courses/65313)
 
 <br>
 
@@ -43,7 +43,7 @@ There are no required readings for today, but if you did not join our lecture la
 * Assignment 2 is due this Thursday - let us know if you have any questions
 * Please check your grading basis on Student Center to make sure you're happy with your enrollment status (lab section and grading basis)
 * If you're still not formally enrolled or not enrolled in the section you wish to be in, please Direct Message Nina on Slack so we can get the remaining enrollments sorted out.
-* You will do assignment 3 (due Thursday Feb 16) in collaboration you get assigned today, so make sure to exchange contact info before you leave class
+* You will do assignment 3 (due Thursday Sept 19) in collaboration you get assigned today, so make sure to exchange contact info before you leave class
 
 
 
