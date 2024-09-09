@@ -7,7 +7,7 @@ Assignment 3
 
 ### Instructions: Please read through before you begin
 
-#### This assignment is due by **10pm on Thursday 02/16/23**.
+#### This assignment is due by **10pm on Thursday 09/19/2024**.
 
 Pair up with the classmate you worked with during lecture 5 and exchange
 usernames of your personal Github accounts. If you missed lecture 5 or
@@ -145,4 +145,4 @@ associated repo and examine your commit history to confirm that your
 partner successfully pushed a page to your site.
 
 **Please make sure to have your website ready and have posted the URL by
-10pm on Thursday 02/16/23**.
+10pm on Thursday 09/19/2024**.
