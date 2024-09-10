@@ -239,6 +239,30 @@ GitHub provides some guidance: either commit this work first, or "stash it", whi
 
 Let's follow their advice and have Partner 1 commit. Great. Now let's try pulling again. 
 
+When you first try this, you will likely see this error:  
+
+```{r merge-conflict-img, echo=FALSE, out.width="80%"}
+knitr::include_graphics("assets/github_reconcile_branches.png")  
+```
+
+<br>
+
+This warning was added in Git 2.27 (i.e. you might not see something similar just as a warning, not an error message in earlier versions). Git makes it mandatory to define the default behavior for reconciliation of branches when merging in git config. Hence, when there is no default method defined, this warning is shown until we define a default behavior.
+
+You can read more about the different options for setting default behavior [here](https://confluence.atlassian.com/bbkb/git-pull-fails-with-a-warning-about-reconciling-divergent-branches-1271693522.html). We're going to set the default behavior to make a merge commit when branches have diverged. We do this by running the following command in our **Terminal** window (not the R console):
+
+`git config --global pull.rebase false`  
+
+<br>
+By adding the flag `--global` we are defining the same behavior for all repositories instead of having to do it each time we open a new repository.
+
+<br>
+<br>
+
+Now, we're ready pull again. Try that.
+
+<br>
+
 New error: "Merge conflict in README...fix conflicts and then commit the result". 
 
 So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it's asking me to now compare these changes, choose a preference, and commit. 
