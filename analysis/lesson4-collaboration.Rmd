@@ -241,7 +241,7 @@ Let's follow their advice and have Partner 1 commit. Great. Now let's try pullin
 
 When you first try this, you will likely see this error:  
 
-```{r merge-conflict-img, echo=FALSE, out.width="80%"}
+```{r reconconcile-branches, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/github_reconcile_branches.png")  
 ```
 

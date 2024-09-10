@@ -707,6 +707,28 @@ repository so that you can successfully pull and then decide your next
 steps.</p>
 <p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s
 try pulling again.</p>
+<p>When you first try this, you will likely see this error:</p>
+<p><img src="assets/github_reconcile_branches.png" width="80%" /></p>
+<p><br></p>
+<p>This warning was added in Git 2.27 (i.e. you might not see something
+similar just as a warning, not an error message in earlier versions).
+Git makes it mandatory to define the default behavior for reconciliation
+of branches when merging in git config. Hence, when there is no default
+method defined, this warning is shown until we define a default
+behavior.</p>
+<p>You can read more about the different options for setting default
+behavior <a
+href="https://confluence.atlassian.com/bbkb/git-pull-fails-with-a-warning-about-reconciling-divergent-branches-1271693522.html">here</a>.
+We’re going to set the default behavior to make a merge commit when
+branches have diverged. We do this by running the following command in
+our <strong>Terminal</strong> window (not the R console):</p>
+<p><code>git config --global pull.rebase false</code></p>
+<p><br> By adding the flag <code>--global</code> we are defining the
+same behavior for all repositories instead of having to do it each time
+we open a new repository.</p>
+<p><br> <br></p>
+<p>Now, we’re ready pull again. Try that.</p>
+<p><br></p>
 <p>New error: “Merge conflict in README…fix conflicts and then commit
 the result”.</p>
 <p>So this error is different from the previous: GitHub knows what has
