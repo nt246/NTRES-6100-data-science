@@ -617,14 +617,14 @@ ggsave("path_to_figure/filename.png")
  
 If your plot is assigned to an object
 ```{r, eval = FALSE}
-ggsave(plot1, file = "path_to_figure/filename.png")
+ggsave(filename = "path_to_figure/filename.png", plot1)
 ```
 
 <br>
 
 Specify a size
 ```{r, eval = FALSE}
-ggsave(file = "path_to_figure/filename.png", width = 5, height = 3)
+ggsave(filename = "path_to_figure/filename.png", width = 5, height = 3)
 
 ```
 
@@ -632,9 +632,9 @@ ggsave(file = "path_to_figure/filename.png", width = 5, height = 3)
 
 Or any format (pdf, png, eps, jpp, svg)
 ```{r, eval = FALSE}
-ggsave(file = "path_to_figure/filename.png")
-ggsave(file = "path_to_figure/filename.pdf")
-ggsave(file = "path_to_figure/filename.jpg")
+ggsave(filename = "path_to_figure/filename.png")
+ggsave(filename = "path_to_figure/filename.pdf")
+ggsave(filename = "path_to_figure/filename.jpg")
 ```
 
 

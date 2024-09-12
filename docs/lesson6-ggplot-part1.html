@@ -1280,15 +1280,15 @@ Bryan’s ggplot tutorial</a></p>
 <pre class="r"><code>ggsave(&quot;path_to_figure/filename.png&quot;)</code></pre>
 <p><br></p>
 <p>If your plot is assigned to an object</p>
-<pre class="r"><code>ggsave(plot1, file = &quot;path_to_figure/filename.png&quot;)</code></pre>
+<pre class="r"><code>ggsave(filename = &quot;path_to_figure/filename.png&quot;, plot1)</code></pre>
 <p><br></p>
 <p>Specify a size</p>
-<pre class="r"><code>ggsave(file = &quot;path_to_figure/filename.png&quot;, width = 5, height = 3)</code></pre>
+<pre class="r"><code>ggsave(filename = &quot;path_to_figure/filename.png&quot;, width = 5, height = 3)</code></pre>
 <p><br></p>
 <p>Or any format (pdf, png, eps, jpp, svg)</p>
-<pre class="r"><code>ggsave(file = &quot;path_to_figure/filename.png&quot;)
-ggsave(file = &quot;path_to_figure/filename.pdf&quot;)
-ggsave(file = &quot;path_to_figure/filename.jpg&quot;)</code></pre>
+<pre class="r"><code>ggsave(filename = &quot;path_to_figure/filename.png&quot;)
+ggsave(filename = &quot;path_to_figure/filename.pdf&quot;)
+ggsave(filename = &quot;path_to_figure/filename.jpg&quot;)</code></pre>
 <p><br> <br></p>
 <p>Now we’re done for today</p>
 <p><br></p>
