@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson7-files/")
 
 #### Required: 
 
-Chapter 5.1-5.5 in [R for Data Science](https://r4ds.had.co.nz/transform.html) by Hadley Wickham & Garrett Grolemund
+Chapter 3 in [R for Data Science (2e)](https://r4ds.hadley.nz/data-transform.html) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
 
 <br>
 
@@ -26,7 +26,7 @@ Chapter 5.1-5.5 in [R for Data Science](https://r4ds.had.co.nz/transform.html) b
 
 * Jenny Bryan's lectures from STAT545 at UBC: [Introduction to dplyr](http://stat545.com/block009_dplyr-intro.html)
 
-* Software Carpentry's R for reproducible scientific analysis materials: [Dataframe manipulation with dplyr](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
+* Software Carpentry's R for reproducible scientific analysis materials: [Dataframe manipulation with dplyr](https://swcarpentry.github.io/r-novice-gapminder/12-dplyr.html)
 
 <br>
 

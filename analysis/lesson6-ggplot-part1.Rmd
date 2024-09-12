@@ -69,7 +69,7 @@ Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html
 
 ### Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture
 
-As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-sp23-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
+As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-fa2024-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
 <br>  
 
@@ -291,7 +291,7 @@ ggplot(data = mpg) +
 
 <br>
 
-### Make the size of points corresponds to the number of cylinders (`cyl`), and the color of points corresponds to the type of car (`class`)
+### Make the size of points correspond to the number of cylinders (`cyl`), and the color of points corresponds to the type of car (`class`)
 
 The scatter plot shows that there is a negative correlation between engine size and fuel economy. However, there are a few points that show up as outliers from this general trend. Why might this be?
 

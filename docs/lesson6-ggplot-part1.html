@@ -13,7 +13,7 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -557,7 +557,7 @@ examples and doing exercises in this lecture</h3>
 <p>As we start working in RStudio, we want to continue practicing how to
 sync our work to GitHub. So before we start, please open the R Project
 that is associated with your class repository (the name should be
-<code>ntres-6100-sp23-YOUR_USERNAME</code> (replace YOUR_USERNAME with
+<code>ntres-6100-fa2024-YOUR_USERNAME</code> (replace YOUR_USERNAME with
 your GitHub user ID). Then create a new subdirectory names
 <code>course-notes</code>, open an R-script or an RMarkdown file and
 save it in this subdirectory as <code>lecture6-ggplot1.R</code> [or
@@ -633,7 +633,7 @@ mpg</code></pre>
 ##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
 ##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
 ## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
-## # … with 224 more rows</code></pre>
+## # ℹ 224 more rows</code></pre>
 <pre class="r"><code>cars</code></pre>
 <pre><code>##    speed dist
 ## 1      4    2
@@ -952,9 +952,9 @@ useful?</p></li>
 <p><br></p>
 </div>
 <div
-id="make-the-size-of-points-corresponds-to-the-number-of-cylinders-cyl-and-the-color-of-points-corresponds-to-the-type-of-car-class"
+id="make-the-size-of-points-correspond-to-the-number-of-cylinders-cyl-and-the-color-of-points-corresponds-to-the-type-of-car-class"
 class="section level3">
-<h3>Make the size of points corresponds to the number of cylinders
+<h3>Make the size of points correspond to the number of cylinders
 (<code>cyl</code>), and the color of points corresponds to the type of
 car (<code>class</code>)</h3>
 <p>The scatter plot shows that there is a negative correlation between
