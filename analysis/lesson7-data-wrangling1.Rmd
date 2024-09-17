@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson7-files/")
 
 #### Required: 
 
-Chapter 3 in [R for Data Science (2e)](https://r4ds.hadley.nz/data-transform.html) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
+Chapter 3.1 - 3.4 in [R for Data Science (2e)](https://r4ds.hadley.nz/data-transform.html) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
 
 <br>
 
@@ -54,7 +54,7 @@ By the end of today's class, you should be able to:
 * Subset and rearrange data with key `dplyr` functions
   + Pick observations by their values `filter()`
   + Pick variables by their names `select()`
-* Use piping (`%>%`) to implement function chains
+* Use piping (`|>`) to implement function chains
 * Make sure your RStudio working files are sync'ed to GitHub
 
 <br>
@@ -75,7 +75,7 @@ For some things, base-R is more straightforward, and we'll show you that too.
 
 ### Taking notes
 
-Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-sp23-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
+Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-fa2024-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
 
 <br>
 
@@ -93,7 +93,7 @@ This is standard practice for how to load a package in a file, and if you get an
 <br>
 
 ## Coronavirus data set
-As the COVID-19 crisis remains at the forefront of everyone's minds at the moment, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
+As the COVID-19 crisis was recently at the forefront of everyone's minds, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
 
 <br>
 
@@ -101,9 +101,9 @@ As the COVID-19 crisis remains at the forefront of everyone's minds at the momen
 
 <br>
 
-We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. This package (hosted on GitHub) pulls raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository. It used to be updated daily. Unfortunately, it looks like the updating has recently been paused, but we can still use this dataset to explore patterns up to early 2023.
+We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. The dataset includes daily new and death cases between January 2020 and March 2023 and recovery cases until August 2022, and during that period was updated daily, pulling raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository.
 
-The compiled package is available to install like any other package from CRAN with `install.packages`. However, it keeps getting updated, so to make sure that we're always working with the most current version, we will import the dataset directly from GitHub. 
+The compiled package is available to install like any other package from CRAN with `install.packages`. However, in case it was getting updated, let's make sure that we're always working with the most current version and import the dataset directly from GitHub. 
 
 Let's first check when the `coronavirus.csv` file on the [coronavirus package GitHub page](https://github.com/RamiKrispin/coronavirus/tree/master/csv) was last updated.
 
@@ -209,9 +209,9 @@ There are five `dplyr` functions that you will use to do the vast majority of da
 
 <br>
 
-- **`summarise()`**: collapse many values down to a single summary 
+- **`summarize()`**: collapse many values down to a single summary 
 
-  `r htmltools::img(src='assets/rstudio-cheatsheet-summarise.png', width=300)`
+  `r htmltools::img(src='assets/rstudio-cheatsheet-summarize.png', width=300)`
   
 <br>
   
@@ -296,11 +296,11 @@ filter(coronavirus, country == "US" & type == "death")
 
 ## Your turn - Exercise 1
 
-> **1a:** What is the total number of deaths in the US reported in this dataset up to now?   
+> **1a:** What is the total number of deaths in the US reported in this dataset (up to March 2023)?   
 > Hint: You can do this in 2 steps by assigning a variable and then using the `sum()` function.
 >
 >
-> **1b:** Subset the data to only show the death counts in three European countries on today's date last year.
+> **1b:** Subset the data to only show the death counts in three European countries on today's date in 2021.
 
 > Then, sync to Github.com (pull, stage, commit, push).
 
@@ -411,27 +411,40 @@ Good thing there is an awesome alternative.
 
 <br>
 
-## Meet the pipe `%>%` operator
+## Meet the pipe `|>` operator
 
-Before we go any further, we should explore the pipe operator that `dplyr` imports from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
+Before we go any further, we should explore the pipe operator `|>`. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
 
-Here's what it looks like: `%>%`. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).
+<br>
+
+> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use %>% whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). I will update the course notes to use the native R pipe `|>`.
+
+<br>
+
+We can either type the pipe symbol `|>`, or in RStudio, we can use the keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac), but only after we have changed our RStudio Global Settings (under "Tools") to use `|>` instead of `%>%` as shown here:
+
+<img src="assets/rstudio-pipe-options.png" width="200px"> 
+
+
+<br>
+<br>
+
 
 Let's demo then I'll explain:
 ```{r, eval=FALSE}
-coronavirus %>% head()
+coronavirus |> head()
 ```
 
 This is equivalent to `head(coronavirus)`. This pipe operator takes the thing on the left-hand-side and __pipes__ it into the function call on the right-hand-side. It literally drops it in as the first argument.
 
 Never fear, you can still specify other arguments to this function! To see the first 3 rows of coronavirus, we could say `head(coronavirus, 3)` or this:
 ```{r, eval=FALSE}
-coronavirus %>% head(3)
+coronavirus |> head(3)
 ```
 
 <br>
 
-**I've advised you to think "gets" whenever you see the assignment operator, `<-`. Similarly, you should think "and then" whenever you see the pipe operator, `%>%`.**
+**I've advised you to think "gets" whenever you see the assignment operator, `<-`. Similarly, you should think "and then" whenever you see the pipe operator, `|>`.**
 
 One of the most awesome things about this is that you START with the data before you say what you're doing to DO to it. So above: "take the coronavirus data, and then give me the first three entries".
 
@@ -442,8 +455,8 @@ This means that instead of this:
 coronavirus_us  <- filter(coronavirus, country == "US")
 coronavirus_us2 <- select(coronavirus_us, -lat, -long, -province) 
 ## ...we can do this
-coronavirus_us  <- coronavirus %>% filter(country == "US")
-coronavirus_us2 <- coronavirus_us %>% select(-lat, -long, -province) 
+coronavirus_us  <- coronavirus |> filter(country == "US")
+coronavirus_us2 <- coronavirus_us |> select(-lat, -long, -province) 
 ```
 
 So you can see that we'll start with coronavirus in the first example line, and then coronavirus_us in the second. This makes it a bit easier to see what data we are starting with and what we are doing to it.
@@ -457,8 +470,8 @@ So you can see that we'll start with coronavirus in the first example line, and 
 We can use the pipe to chain those two operations together:
 
 ```{r, eval=FALSE}
-coronavirus_us  <- coronavirus %>% 
-  filter(country == "US") %>%
+coronavirus_us  <- coronavirus |> 
+  filter(country == "US") |>
   select(-lat, -long, -province) 
 ```
 
@@ -502,8 +515,8 @@ Why is this a terrible idea?
 
 This call explains itself and is fairly robust.
 ```{r, eval=FALSE}
-coronavirus_us  <- coronavirus %>% 
-  filter(country == "US") %>%
+coronavirus_us  <- coronavirus |> 
+  filter(country == "US") |>
   select(-lat, -long, -province) 
 ```
 
@@ -518,7 +531,7 @@ Here's a caricature slide to help build intuition about the differences between 
 
 ## Your turn - Exercise 3
 
-Use the `%>%` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
+Use the `|>` piping function to subset the coronavirus dataset to only include the daily death counts in the US, Canada, and Mexico and including only the following variables in this order: `country`, `date`, `cases`.
 
 Then combine your new data wrangling skills with the ggplot skills we covered last week to visualize how the daily death counts have changed over time in those three countries. **Yes! You can pipe data into ggplot - try it!**
 
@@ -534,9 +547,9 @@ This is one way to do it based on what we have learned so far:
 
 ```{r, eval=FALSE}
 
-coronavirus %>% 
-  filter(country %in% c("US", "Canada", "Mexico"), type == "death") %>% 
-  select(country, date, cases) %>% 
+coronavirus |> 
+  filter(country %in% c("US", "Canada", "Mexico"), type == "death") |> 
+  select(country, date, cases) |> 
   ggplot() +
   geom_line(mapping = aes(x = date, y = cases, color = country))
 

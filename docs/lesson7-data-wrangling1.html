@@ -462,9 +462,10 @@ div.tocify {
 <h2>Readings</h2>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p>Chapter 3 in <a href="https://r4ds.hadley.nz/data-transform.html">R
-for Data Science (2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp;
-Garrett Grolemund</p>
+<p>Chapter 3.1 - 3.4 in <a
+href="https://r4ds.hadley.nz/data-transform.html">R for Data Science
+(2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett
+Grolemund</p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
@@ -523,7 +524,7 @@ href="http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdl
 <li>Pick observations by their values <code>filter()</code></li>
 <li>Pick variables by their names <code>select()</code></li>
 </ul></li>
-<li>Use piping (<code>%&gt;%</code>) to implement function chains</li>
+<li>Use piping (<code>|&gt;</code>) to implement function chains</li>
 <li>Make sure your RStudio working files are sync’ed to GitHub</li>
 </ul>
 <p><br></p>
@@ -564,7 +565,7 @@ that too.</p>
 <p>Just like last class, we’ll keep practicing our GitHub/version
 control integration by pushing our notes onto our course repo. Please
 open the R Project that is associated with your class repository (the
-name should be <code>ntres-6100-sp23-YOUR_USERNAME</code> (replace
+name should be <code>ntres-6100-fa2024-YOUR_USERNAME</code> (replace
 YOUR_USERNAME with your GitHub user ID). Open an R-script or an
 RMarkdown file and save it within your <code>course-notes</code>
 subdirectory as <code>data_wrangling.R</code> [or whatever you want to
@@ -588,10 +589,10 @@ package easily by running the code within the comment (highlight
 </div>
 <div id="coronavirus-data-set" class="section level2">
 <h2>Coronavirus data set</h2>
-<p>As the COVID-19 crisis remains at the forefront of everyone’s minds
-at the moment, let’s use a dataset tallying daily developments in
-recorded Coronavirus cases across the world, so that we can develop our
-data wrangling skills by exploring global patterns in the pandemic. We
+<p>As the COVID-19 crisis was recently at the forefront of everyone’s
+minds, let’s use a dataset tallying daily developments in recorded
+Coronavirus cases across the world, so that we can develop our data
+wrangling skills by exploring global patterns in the pandemic. We
 acknowledge the stress and grief associated with the reality
 underpinning these data, but we think they represent a strong example of
 how we can use data science tools to explore patterns that will improve
@@ -601,16 +602,15 @@ our understanding of global challenges.</p>
 <p><br></p>
 <p>We will use a dataset compiled in the <a
 href="https://github.com/RamiKrispin/coronavirus"><code>coronavirus</code>
-R package</a> developed by Rami Krispin. This package (hosted on GitHub)
-pulls raw data from the Johns Hopkins University Center for Systems
-Science and Engineering (JHU CCSE) Coronavirus repository. It used to be
-updated daily. Unfortunately, it looks like the updating has recently
-been paused, but we can still use this dataset to explore patterns up to
-early 2023.</p>
+R package</a> developed by Rami Krispin. The dataset includes daily new
+and death cases between January 2020 and March 2023 and recovery cases
+until August 2022, and during that period was updated daily, pulling raw
+data from the Johns Hopkins University Center for Systems Science and
+Engineering (JHU CCSE) Coronavirus repository.</p>
 <p>The compiled package is available to install like any other package
-from CRAN with <code>install.packages</code>. However, it keeps getting
-updated, so to make sure that we’re always working with the most current
-version, we will import the dataset directly from GitHub.</p>
+from CRAN with <code>install.packages</code>. However, in case it was
+getting updated, let’s make sure that we’re always working with the most
+current version and import the dataset directly from GitHub.</p>
 <p>Let’s first check when the <code>coronavirus.csv</code> file on the
 <a
 href="https://github.com/RamiKrispin/coronavirus/tree/master/csv">coronavirus
@@ -706,9 +706,9 @@ functions of existing variables</p>
 </ul>
 <p><br></p>
 <ul>
-<li><p><strong><code>summarise()</code></strong>: collapse many values
+<li><p><strong><code>summarize()</code></strong>: collapse many values
 down to a single summary</p>
-<p><img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></p></li>
+<p><img src="assets/rstudio-cheatsheet-summarize.png" width="300"/></p></li>
 </ul>
 <p><br></p>
 <p>These can all be used in conjunction with <code>group_by()</code>
@@ -786,11 +786,11 @@ filter(coronavirus, country == &quot;US&quot; &amp; type == &quot;death&quot;)</
 <h2>Your turn - Exercise 1</h2>
 <blockquote>
 <p><strong>1a:</strong> What is the total number of deaths in the US
-reported in this dataset up to now?<br />
+reported in this dataset (up to March 2023)?<br />
 Hint: You can do this in 2 steps by assigning a variable and then using
 the <code>sum()</code> function.</p>
 <p><strong>1b:</strong> Subset the data to only show the death counts in
-three European countries on today’s date last year.</p>
+three European countries on today’s date in 2021.</p>
 </blockquote>
 <blockquote>
 <p>Then, sync to Github.com (pull, stage, commit, push).</p>
@@ -882,21 +882,39 @@ what’s going on and opportunities for confusion or error.</p>
 <p><br></p>
 </div>
 <div id="meet-the-pipe-operator" class="section level2">
-<h2>Meet the pipe <code>%&gt;%</code> operator</h2>
-<p>Before we go any further, we should explore the pipe operator that
-<code>dplyr</code> imports from the <a
-href="https://github.com/smbache/magrittr"><code>magrittr</code></a>
-package by Stefan Bache. If you have have not used this before,
-<strong>this is going to change your life</strong> (at least your coding
-life…). You no longer need to enact multi-operation commands by nesting
-them inside each other. And we won’t need to make temporary variables
-like we did in the US example above. This new syntax leads to code that
-is much easier to write and to read: it actually tells the story of your
-analysis.</p>
-<p>Here’s what it looks like: <code>%&gt;%</code>. The RStudio keyboard
-shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).</p>
+<h2>Meet the pipe <code>|&gt;</code> operator</h2>
+<p>Before we go any further, we should explore the pipe operator
+<code>|&gt;</code>. If you have have not used this before, <strong>this
+is going to change your life</strong> (at least your coding life…). You
+no longer need to enact multi-operation commands by nesting them inside
+each other. And we won’t need to make temporary variables like we did in
+the US example above. This new syntax leads to code that is much easier
+to write and to read: it actually tells the story of your analysis.</p>
+<p><br></p>
+<blockquote>
+<p>The tidyverse originally used the <code>%&gt;%</code> pipe provided
+by the <a
+href="https://github.com/smbache/magrittr"><code>magrittr package</code></a>
+package, so if you’ve been using tidyverse for a while, that is probably
+what you have been used to seeing and implementing yourself. The
+magrittr package is included in the core tidyverse, so you can use
+%&gt;% whenever you load the tidyverse. However, R version 4.1.0
+introduced a native pipe operator <code>|&gt;</code>, which is now the
+recommended syntax (more details <a
+href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">here</a>).
+I will update the course notes to use the native R pipe
+<code>|&gt;</code>.</p>
+</blockquote>
+<p><br></p>
+<p>We can either type the pipe symbol <code>|&gt;</code>, or in RStudio,
+we can use the keyboard shortcut: Ctrl + Shift + M (Windows), Cmd +
+Shift + M (Mac), but only after we have changed our RStudio Global
+Settings (under “Tools”) to use <code>|&gt;</code> instead of
+<code>%&gt;%</code> as shown here:</p>
+<p><img src="assets/rstudio-pipe-options.png" width="200px"></p>
+<p><br> <br></p>
 <p>Let’s demo then I’ll explain:</p>
-<pre class="r"><code>coronavirus %&gt;% head()</code></pre>
+<pre class="r"><code>coronavirus |&gt; head()</code></pre>
 <p>This is equivalent to <code>head(coronavirus)</code>. This pipe
 operator takes the thing on the left-hand-side and
 <strong>pipes</strong> it into the function call on the right-hand-side.
@@ -904,12 +922,12 @@ It literally drops it in as the first argument.</p>
 <p>Never fear, you can still specify other arguments to this function!
 To see the first 3 rows of coronavirus, we could say
 <code>head(coronavirus, 3)</code> or this:</p>
-<pre class="r"><code>coronavirus %&gt;% head(3)</code></pre>
+<pre class="r"><code>coronavirus |&gt; head(3)</code></pre>
 <p><br></p>
 <p><strong>I’ve advised you to think “gets” whenever you see the
 assignment operator, <code>&lt;-</code>. Similarly, you should think
 “and then” whenever you see the pipe operator,
-<code>%&gt;%</code>.</strong></p>
+<code>|&gt;</code>.</strong></p>
 <p>One of the most awesome things about this is that you START with the
 data before you say what you’re doing to DO to it. So above: “take the
 coronavirus data, and then give me the first three entries”.</p>
@@ -918,8 +936,8 @@ coronavirus data, and then give me the first three entries”.</p>
 coronavirus_us  &lt;- filter(coronavirus, country == &quot;US&quot;)
 coronavirus_us2 &lt;- select(coronavirus_us, -lat, -long, -province) 
 ## ...we can do this
-coronavirus_us  &lt;- coronavirus %&gt;% filter(country == &quot;US&quot;)
-coronavirus_us2 &lt;- coronavirus_us %&gt;% select(-lat, -long, -province) </code></pre>
+coronavirus_us  &lt;- coronavirus |&gt; filter(country == &quot;US&quot;)
+coronavirus_us2 &lt;- coronavirus_us |&gt; select(-lat, -long, -province) </code></pre>
 <p>So you can see that we’ll start with coronavirus in the first example
 line, and then coronavirus_us in the second. This makes it a bit easier
 to see what data we are starting with and what we are doing to it.</p>
@@ -929,8 +947,8 @@ better off. But get ready to be majorly impressed:</p>
 <div id="revel-in-the-convenience" class="section level3">
 <h3>Revel in the convenience</h3>
 <p>We can use the pipe to chain those two operations together:</p>
-<pre class="r"><code>coronavirus_us  &lt;- coronavirus %&gt;% 
-  filter(country == &quot;US&quot;) %&gt;%
+<pre class="r"><code>coronavirus_us  &lt;- coronavirus |&gt; 
+  filter(country == &quot;US&quot;) |&gt;
   select(-lat, -long, -province) </code></pre>
 <p>What’s happening here? In the second line, we were able to delete
 <code>coronavirus_us2 &lt;- coronavirus_us</code>, and put the pipe
@@ -981,8 +999,8 @@ sorting action earlier in the script would then give unexpected
 results.</li>
 </ul>
 <p>This call explains itself and is fairly robust.</p>
-<pre class="r"><code>coronavirus_us  &lt;- coronavirus %&gt;% 
-  filter(country == &quot;US&quot;) %&gt;%
+<pre class="r"><code>coronavirus_us  &lt;- coronavirus |&gt; 
+  filter(country == &quot;US&quot;) |&gt;
   select(-lat, -long, -province) </code></pre>
 <p><br> <br></p>
 <p>Here’s a caricature slide to help build intuition about the
@@ -994,7 +1012,7 @@ wrangling</p>
 </div>
 <div id="your-turn---exercise-3" class="section level2">
 <h2>Your turn - Exercise 3</h2>
-<p>Use the <code>%&gt;%</code> piping function to subset the coronavirus
+<p>Use the <code>|&gt;</code> piping function to subset the coronavirus
 dataset to only include the daily death counts in the US, Canada, and
 Mexico and including only the following variables in this order:
 <code>country</code>, <code>date</code>, <code>cases</code>.</p>
@@ -1011,9 +1029,9 @@ confirmed cases, deaths and recoveries compare.</p>
 click to see one approach
 </summary>
 <p>This is one way to do it based on what we have learned so far:</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(country %in% c(&quot;US&quot;, &quot;Canada&quot;, &quot;Mexico&quot;), type == &quot;death&quot;) %&gt;% 
-  select(country, date, cases) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  filter(country %in% c(&quot;US&quot;, &quot;Canada&quot;, &quot;Mexico&quot;), type == &quot;death&quot;) |&gt; 
+  select(country, date, cases) |&gt; 
   ggplot() +
   geom_line(mapping = aes(x = date, y = cases, color = country))</code></pre>
 <p><br></p>

@@ -4,7 +4,7 @@ visualization
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 03/16/20**. Please upload
+- This homework is due by **10pm on Thursday 10/17/2024**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your R markdown file `assignment_7.Rmd` and the knitted

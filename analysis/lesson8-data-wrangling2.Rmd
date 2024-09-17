@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="../docs/lesson8-files/")
 
 #### Required: 
 
-* Chapter 5.5-5.7 in [R for Data Science](SUPER_12_30348716_30348745) by Hadley Wickham & Garrett Grolemund
+* [Chapter 3.5-3.7 in R for Data Science (2e)](https://r4ds.hadley.nz/data-transform.html#groups) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
 
 <br>
 

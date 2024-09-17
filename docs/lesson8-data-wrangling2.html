@@ -13,7 +13,7 @@
 
 <title>Lesson 8: Data Wrangling Part 2</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -463,8 +463,9 @@ div.tocify {
 <div id="required" class="section level4">
 <h4>Required:</h4>
 <ul>
-<li>Chapter 5.5-5.7 in <a href="SUPER_12_30348716_30348745">R for Data
-Science</a> by Hadley Wickham &amp; Garrett Grolemund</li>
+<li><a href="https://r4ds.hadley.nz/data-transform.html#groups">Chapter
+3.5-3.7 in R for Data Science (2e)</a> by Hadley Wickham, Mine
+Çetinkaya-Rundel &amp; Garrett Grolemund</li>
 </ul>
 <p><br></p>
 </div>
@@ -612,7 +613,7 @@ click <code>View raw</code> to get the URL)</p>
 <p>Let’s first load in the data the same way we did for the case counts
 dataset</p>
 <pre class="r"><code>vacc &lt;- read_csv(&quot;https://raw.githubusercontent.com/RamiKrispin/coronavirus/main/csv/covid19_vaccine.csv&quot;)</code></pre>
-<pre><code>## Rows: 141622 Columns: 15
+<pre><code>## Rows: 142597 Columns: 15
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (6): country_region, continent_name, continent_code, combined_key, iso2...
@@ -628,7 +629,7 @@ View(vacc) # remember to run this only from the console or an R script. Don&#39;
 <p>This dataset has statistics on the <em>cumulative</em> number of
 vaccine doses administered and number of people vaccinated on each day
 in different countries. For now, let’s just look at the most recent day
-included in the dataset 2023-03-04.</p>
+included in the dataset 2023-03-09.</p>
 <p>Imagine we want to compare the vaccination rate across countries. We
 can divide the <code>people_at_least_one_dose)</code> column with the
 <code>population</code> column to create a new column named
