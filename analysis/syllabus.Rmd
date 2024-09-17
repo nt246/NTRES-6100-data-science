@@ -121,7 +121,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 |8|Thu|9/19|[Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html)|[Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)|
 |9|Tue|9/24|[Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)||
 |10|Thu|9/26|[Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)|[Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)|
-|11|Tue|10/1|[Data import, export, and conversion between data types|||
+|11|Tue|10/1|[Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)|||
 |12|Thu|10/3|[Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)|[Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)|
 |13|Tue|10/8|[Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html)||
 |14|Thu|10/10|[Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-debugging-getting-help.html)|[Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)|

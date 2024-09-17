@@ -155,7 +155,7 @@ View(vacc) # remember to run this only from the console or an R script. Don't pu
 
 This dataset has statistics on the *cumulative* number of vaccine doses administered and number of people vaccinated on each day in different countries. For now, let's just look at the most recent day included in the dataset `r max(vacc$date)`. 
 
-Imagine we want to compare the vaccination rate across countries. We can divide the `people_at_least_one_dose)` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
+Imagine we want to compare the vaccination rate across countries. We can divide the `people_at_least_one_dose` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
 
 ```{r, eval=FALSE}
 vacc |> 

@@ -1,0 +1,73 @@
+---
+title: "ggplot recap"
+date: "2024-09-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## GGplot recap exercises
+
+
+Load the tidyverse
+```{r}
+library(tidyverse)
+```
+
+
+These exercises are all based on the `mpg` dataset we played with during our last class.  
+Remember you can learn about the variables by typing `?mpg`
+
+<br>
+
+
+Why is this code not generating a plot? Can you fix it.
+```{r}
+ggplot(data = mpg) 
++ geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+
+
+Change the size of the displayed datapoints in this plot
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+
+
+Here's another plot. What is the problem here? Can you fix it? And then can you make the trendline thicker?
+
+```{r}
+ggplot(mpg) + 
+  geom_point(aes(x = displ, y = hwy)) +
+  geom_smooth()
+
+```
+
+
+
+Here's another plot. What is the problem here? Can you fix it? And then can you make the trend line thicker?
+
+```{r}
+ggplot(mpg) + 
+  geom_point(aes(x = displ, y = hwy)) +
+  geom_smooth()
+
+```
+
+
+Can you split this into separate plots for cars with different number of cylinders?
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class))
+```
+ 
+

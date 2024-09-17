@@ -211,7 +211,7 @@ There are five `dplyr` functions that you will use to do the vast majority of da
 
 - **`summarize()`**: collapse many values down to a single summary 
 
-  `r htmltools::img(src='assets/rstudio-cheatsheet-summarize.png', width=300)`
+![](assets/rstudio-cheatsheet-summarise.png)
   
 <br>
   
@@ -417,7 +417,7 @@ Before we go any further, we should explore the pipe operator `|>`. If you have 
 
 <br>
 
-> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use %>% whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). I will update the course notes to use the native R pipe `|>`.
+> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). I will update the course notes to use the native R pipe `|>`.
 
 <br>
 
