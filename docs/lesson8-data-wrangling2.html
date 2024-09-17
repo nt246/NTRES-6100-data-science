@@ -493,7 +493,7 @@ manipulation with dplyr</a></p></li>
 <li><code>filter()</code> for subsetting data with row logic</li>
 <li><code>select()</code> for subsetting data variable- or
 column-wise</li>
-<li>Use piping (<code>%&gt;%</code>) to implement function chains</li>
+<li>Use piping (<code>|&gt;</code>) to implement function chains</li>
 </ul>
 <p>Today, we’ll expand our data wrangling toolbox. By the end of today’s
 class, you should be able to:</p>
@@ -572,14 +572,14 @@ click to expand
 </summary>
 <pre class="r"><code># One way to do this:
 
-coronavirus %&gt;% 
-  filter(lat &gt; 60, type == &quot;confirmed&quot;) %&gt;% 
-  select(country) %&gt;% 
+coronavirus |&gt; 
+  filter(lat &gt; 60, type == &quot;confirmed&quot;) |&gt; 
+  select(country) |&gt; 
   table()
 
 
-coronavirus %&gt;% 
-  filter(lat &gt; 60, type == &quot;confirmed&quot;) %&gt;% 
+coronavirus |&gt; 
+  filter(lat &gt; 60, type == &quot;confirmed&quot;) |&gt; 
   ggplot() +
   geom_line(mapping = aes(x = date, y = cases, color = country))
 
@@ -639,15 +639,15 @@ refer to existing variables diretly by name (i.e. without the
 <code>$</code> operator). To make it easier to see what happens, we’ll
 also select just a subset of the variables to retain from our
 dataset.</p>
-<pre class="r"><code>vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, people_at_least_one_dose, population) %&gt;% 
+<pre class="r"><code>vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, people_at_least_one_dose, population) |&gt; 
   mutate(vaxxrate = people_at_least_one_dose / population) 
 
 # We can modify the mutate equation in many ways. For example, if we want to adjust the number of significant digits printed, we can type
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, people_at_least_one_dose, population) %&gt;% 
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, people_at_least_one_dose, population) |&gt; 
   mutate(vaxxrate = round(people_at_least_one_dose / population, 2))</code></pre>
 <p><br></p>
 <div id="your-turn---exercise-2" class="section level3">
@@ -670,33 +670,33 @@ How many countries is that?</p>
 click to expand
 </summary>
 <pre class="r"><code># To look at patterns across all countries
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) 
   
 # We can scroll through the output and eyeball patterns, but we can also pipe the output directly into ggplot!
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
-  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %&gt;%
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |&gt;
   ggplot() +
   geom_histogram(mapping = aes(x = doses_per_vaxxed))
 
 
 # To subset the output, we can add another filter step
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
-  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) %&gt;% 
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) |&gt; 
   filter(doses_admin &gt; 200 * 10^6)
 
  
 # We can also use this to identify outliers in our histogram above
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
-  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %&gt;% 
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |&gt; 
   filter(doses_per_vaxxed &gt; 3)</code></pre>
 </details>
 <p><br> <br></p>
@@ -712,18 +712,18 @@ vacc %&gt;%
 re-arrange the countries in ascending or descending order for
 vaccination rate. The <code>dplyr</code> function for sorting rows is
 <code>arrange()</code>.</p>
-<pre class="r"><code>vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
-  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %&gt;% 
+<pre class="r"><code>vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |&gt; 
   arrange(doses_per_vaxxed)
 
 # or
 
-vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) %&gt;% 
-  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  %&gt;% 
+vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
+  mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |&gt; 
   arrange(-doses_per_vaxxed)</code></pre>
 <p>I advise that your analyses NEVER rely on rows or variables being in
 a specific order. But it’s still true that human beings write the code
@@ -746,11 +746,11 @@ this dataset?</p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>vacc %&gt;% 
-  filter(date == max(vacc$date)) %&gt;% 
-  select(country_region, continent_name, people_at_least_one_dose, population) %&gt;% 
-  mutate(vaxxrate = round(people_at_least_one_dose / population, 2)) %&gt;% 
-  arrange(-vaxxrate) %&gt;% 
+<pre class="r"><code>vacc |&gt; 
+  filter(date == max(vacc$date)) |&gt; 
+  select(country_region, continent_name, people_at_least_one_dose, population) |&gt; 
+  mutate(vaxxrate = round(people_at_least_one_dose / population, 2)) |&gt; 
+  arrange(-vaxxrate) |&gt; 
   filter(vaxxrate &gt; 0.9)</code></pre>
 </details>
 <p><br> <br></p>
@@ -779,18 +779,18 @@ When was the first confirmed case recorded in Canada?</li>
 click to expand
 </summary>
 <pre class="r"><code># Identifying the record with the highest death count
-coronavirus %&gt;% 
-  filter(type == &quot;death&quot;) %&gt;% 
+coronavirus |&gt; 
+  filter(type == &quot;death&quot;) |&gt; 
   arrange(-cases)
 
 # We can also just identify the top hit 
-coronavirus %&gt;% 
-  filter(type == &quot;death&quot;) %&gt;% 
+coronavirus |&gt; 
+  filter(type == &quot;death&quot;) |&gt; 
   filter(cases == max(cases))
 
 # The first recorded case in Canada
-coronavirus %&gt;% 
-  filter(country == &quot;Canada&quot;, cases &gt; 0) %&gt;% 
+coronavirus |&gt; 
+  filter(country == &quot;Canada&quot;, cases &gt; 0) |&gt; 
   arrange(date)</code></pre>
 </details>
 <p><br></p>
@@ -811,8 +811,8 @@ href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatshee
 <p><img src="assets/rstudio-cheatsheet-summarise.png" /></p>
 <p>We can use it to calculate the total number of confirmed cases
 detected globally since 1-22-2020 (the beginning of this dataset)</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(type == &quot;confirmed&quot;) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  filter(type == &quot;confirmed&quot;) |&gt; 
   summarize(sum = sum(cases))</code></pre>
 <p><br></p>
 <p>This number could also easily have been computed with base-R
@@ -823,26 +823,26 @@ use the <code>dplyr</code> verbs on a grouped data frame they’ll be
 automatically applied “by group”. For example, if we applied exactly the
 same code to a data frame grouped by country, we get the total number of
 confirmed cases for each country or region.</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(type == &quot;confirmed&quot;) %&gt;%
-  group_by(country) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  filter(type == &quot;confirmed&quot;) |&gt;
+  group_by(country) |&gt; 
   summarize(total_cases = sum(cases))</code></pre>
 <p>Now that’s a lot more useful!</p>
 <p><br> <br></p>
 <p>We can also use <code>summarize()</code> to check how many
 observations (dates) we have for each country</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(type == &quot;confirmed&quot;) %&gt;%
-  group_by(country) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  filter(type == &quot;confirmed&quot;) |&gt;
+  group_by(country) |&gt; 
   summarize(n = n())</code></pre>
 <p>Why do some countries have much higher counts than others?</p>
 <p><br></p>
 <p>We can also do multi-level grouping. If we wanted to know how many of
 each type of case there were globally on Jan 1, 2023, we could chain
 these functions together:</p>
-<pre class="r"><code>coronavirus %&gt;% 
-  group_by(date, type) %&gt;% 
-  summarize(total = sum(cases)) %&gt;%  # sums the count across countries
+<pre class="r"><code>coronavirus |&gt; 
+  group_by(date, type) |&gt; 
+  summarize(total = sum(cases)) |&gt;  # sums the count across countries
   filter(date == &quot;2023-01-01&quot;)</code></pre>
 <p><br> <br></p>
 </div>
@@ -860,37 +860,37 @@ trend over time.</p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>coronavirus %&gt;% 
-  filter(type == &quot;death&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_deaths = sum(cases)) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  filter(type == &quot;death&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_deaths = sum(cases)) |&gt; 
   arrange(-total_deaths)
 
 # Or
 
-coronavirus %&gt;% 
-  filter(type == &quot;death&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_deaths = sum(cases)) %&gt;% 
+coronavirus |&gt; 
+  filter(type == &quot;death&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_deaths = sum(cases)) |&gt; 
   filter(total_deaths == max(total_deaths))
 
 # With plotting
 
-coronavirus %&gt;% 
-  filter(type == &quot;death&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_deaths = sum(cases)) %&gt;% 
-  arrange(-total_deaths) %&gt;% 
+coronavirus |&gt; 
+  filter(type == &quot;death&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_deaths = sum(cases)) |&gt; 
+  arrange(-total_deaths) |&gt; 
   ggplot() +
     geom_line(aes(x = date, y = total_deaths))
 
 ## We see that the last day of the dataset has a much higher reported count than all other dates, so let&#39;s remove that
 
-coronavirus %&gt;% 
-  filter(type == &quot;death&quot;, date != &quot;2023-01-04&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_deaths = sum(cases)) %&gt;% 
-  arrange(-total_deaths) %&gt;% 
+coronavirus |&gt; 
+  filter(type == &quot;death&quot;, date != &quot;2023-01-04&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_deaths = sum(cases)) |&gt; 
+  arrange(-total_deaths) |&gt; 
   ggplot() +
   geom_line(aes(x = date, y = total_deaths))</code></pre>
 </details>
@@ -913,11 +913,11 @@ click to expand
 </summary>
 <pre class="r"><code>library(lubridate) #install.packages(&#39;lubridate&#39;)
 
-coronavirus %&gt;% 
-  mutate(month = month(date), year = year(date)) %&gt;% 
-  filter(type == &quot;death&quot;, month == 2, year == 2021) %&gt;% 
-  group_by(country) %&gt;% 
-  summarize(total_death = sum(cases)) %&gt;% 
+coronavirus |&gt; 
+  mutate(month = month(date), year = year(date)) |&gt; 
+  filter(type == &quot;death&quot;, month == 2, year == 2021) |&gt; 
+  group_by(country) |&gt; 
+  summarize(total_death = sum(cases)) |&gt; 
   filter(total_death &gt; 10000)</code></pre>
 </details>
 <p><br> <br></p>
@@ -937,9 +937,9 @@ class="section level4">
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>coronavirus %&gt;% 
-  select(-lat, -long) %&gt;% 
-  filter(date == &quot;2020-10-04&quot;, type == &quot;death&quot;) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  select(-lat, -long) |&gt; 
+  filter(date == &quot;2020-10-04&quot;, type == &quot;death&quot;) |&gt; 
   arrange(-cases)</code></pre>
 </details>
 <p><br> <br></p>
@@ -959,11 +959,11 @@ click to expand
 </summary>
 <pre class="r"><code>library(lubridate) #install.packages(&#39;lubridate&#39;)
 
-coronavirus %&gt;% 
-  mutate(month = month(date), year = year(date)) %&gt;% 
-  filter(type == &quot;confirmed&quot;, month == 1, year == 2021) %&gt;% 
-  group_by(country) %&gt;% 
-  summarize(total_death = sum(cases)) %&gt;% 
+coronavirus |&gt; 
+  mutate(month = month(date), year = year(date)) |&gt; 
+  filter(type == &quot;confirmed&quot;, month == 1, year == 2021) |&gt; 
+  group_by(country) |&gt; 
+  summarize(total_death = sum(cases)) |&gt; 
   arrange(-total_death)</code></pre>
 </details>
 <p><br> If you’re used to working in base R, answer the same question
@@ -980,11 +980,11 @@ class="section level4">
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>coronavirus %&gt;% 
-  group_by(country, date) %&gt;% 
-  summarize(n = n()) %&gt;% 
-  group_by(country) %&gt;% 
-  summarize(maxcount = max(n)) %&gt;% 
+<pre class="r"><code>coronavirus |&gt; 
+  group_by(country, date) |&gt; 
+  summarize(n = n()) |&gt; 
+  group_by(country) |&gt; 
+  summarize(maxcount = max(n)) |&gt; 
   filter(maxcount &gt; 3)</code></pre>
 </details>
 </div>

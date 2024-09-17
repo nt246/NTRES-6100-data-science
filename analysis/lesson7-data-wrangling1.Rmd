@@ -423,7 +423,8 @@ Before we go any further, we should explore the pipe operator `|>`. If you have 
 
 We can either type the pipe symbol `|>`, or in RStudio, we can use the keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac), but only after we have changed our RStudio Global Settings (under "Tools") to use `|>` instead of `%>%` as shown here:
 
-<img src="assets/rstudio-pipe-options.png" width="200px"> 
+![](assets/rstudio-pipe-options.png) 
+
 
 
 <br>
