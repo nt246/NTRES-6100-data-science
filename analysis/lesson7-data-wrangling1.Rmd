@@ -571,7 +571,7 @@ coronavirus |>
 
 ## More ways to select columns
 
-If we have time, we'll explore some [additional options for `select()`](https://r4ds.had.co.nz/transform.html#select)
+If we have time, we'll explore some [additional options for `select()`](https://r4ds.hadley.nz/data-transform#sec-select)
 
 <br>
 <br>

@@ -127,7 +127,7 @@ Alright, let's keep going.
 
 Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. That’s the job of `mutate()`.
 
-Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): 
+Visually, we are doing this (image from an earlier version of RStudio's dplyr cheatsheet):
 
 ![](assets/rstudio-cheatsheet-mutate.png)
 
@@ -159,13 +159,13 @@ Imagine we want to compare the vaccination rate across countries. We can divide 
 
 ```{r, eval=FALSE}
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, people_at_least_one_dose, population) |> 
   mutate(vaxxrate = people_at_least_one_dose / population) 
 
 # We can modify the mutate equation in many ways. For example, if we want to adjust the number of significant digits printed, we can type
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, people_at_least_one_dose, population) |> 
   mutate(vaxxrate = round(people_at_least_one_dose / population, 2))
 ```
@@ -190,13 +190,13 @@ vacc |>
 
 # To look at patterns across all countries
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |> 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) 
   
 # We can scroll through the output and eyeball patterns, but we can also pipe the output directly into ggplot!
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |> 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |>
   ggplot() +
@@ -205,7 +205,7 @@ vacc |>
 
 # To subset the output, we can add another filter step
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |> 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose) |> 
   filter(doses_admin > 200 * 10^6)
@@ -213,7 +213,7 @@ vacc |>
  
 # We can also use this to identify outliers in our histogram above
 vacc |> 
-  filter(date == max(vacc$date)) |> 
+  filter(date == max(date)) |> 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |> 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |> 
   filter(doses_per_vaxxed > 3)
@@ -327,7 +327,7 @@ coronavirus |>
 
 ## Grouped summaries with `summarize()` and `group_by`
 
-The last key `dplyr` verb is `summarize()`. It collapses a data frame to a single row. Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): 
+The last key `dplyr` verb is `summarize()`. It collapses a data frame to a single row. Visually, we are doing this (image from an earlier version of RStudio's dplyr cheatsheet): 
  
 ![](assets/rstudio-cheatsheet-summarise.png)
 
@@ -442,7 +442,7 @@ coronavirus |>
 
 ## If you have more time, here is an optional question
 
-The `month()` function from the package `lubridate` extracts the month from a date and `year()` extracts the year. How many countries already have more than 10,000 deaths in February of this year?
+The `month()` function from the package `lubridate` extracts the month from a date and `year()` extracts the year. How many countries already had more than 10,000 deaths in February of 2021?
 
 <br>
 <br>
