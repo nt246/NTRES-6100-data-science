@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 **Required**:  
 
-* [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
+* [Chapter 5 in in R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
 
 * [This cool Twitter thread](https://twitter.com/juliesquid/status/1315710359404113920?s=21) by Julia Lowndes and Allison Horst. If you can't access the thread or want more detail, the same material is expanded upon on Julie's [Openscapes website](https://www.openscapes.org/blog/2020/10/12/tidy-data/). [Openscapes](https://www.openscapes.org/) is an awesome organization that champions open practices in environmental science - check it out!
 
@@ -39,8 +39,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 ## Announcements
 
 * Assignment 4 due tonight - submit by pushing to your class GitHub repo
-
-* No class next Tuesday (February break)
 
 * We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
 
@@ -260,16 +258,16 @@ write_csv(lotr_tidy, file = "datasets/lotr_tidy.csv")
 
 ```{r}
 # let's get one variable per Race
-lotr_tidy %>% 
+lotr_tidy |> 
   pivot_wider(names_from = Race, values_from = Words)
 
 # let's get one variable per Gender
-lotr_tidy %>% 
+lotr_tidy |> 
   pivot_wider(names_from = Gender, values_from = Words)
 
 # let's get one variable per combo of Race and Gender
-lotr_tidy %>% 
-  unite(Race_Gender, Race, Gender) %>% 
+lotr_tidy |> 
+  unite(Race_Gender, Race, Gender) |> 
   pivot_wider(names_from = Race_Gender, values_from = Words)
 
 ```
@@ -322,10 +320,10 @@ coronavirus
 Similar to what we did in the last class, we could visualize the global sums for the different types of case counts by date (note that in August 2021, the dataset stopped tracking recoveries)
 ```{r, message = FALSE}
 
-coronavirus %>%
-  filter(cases > 0) %>% 
-  group_by(date, type) %>%
-  summarize(cases = sum(cases)) %>%
+coronavirus |>
+  filter(cases > 0) |> 
+  group_by(date, type) |>
+  summarize(cases = sum(cases)) |>
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))
 
@@ -348,8 +346,8 @@ Convert the coronavirus dataset to a wider format where the confirmed cases, dea
 ```{r}
 
 # Let's just select a few key columns so we better can follow what happens to the data structure
-corona_wide <- coronavirus %>% 
-  select(date, country, province, type, cases) %>% 
+corona_wide <- coronavirus |> 
+  select(date, country, province, type, cases) |> 
   pivot_wider(names_from = type, values_from = cases)
 
 ```
@@ -366,8 +364,8 @@ With the long format this is easy:
 
 ```{r}
 
-coronavirus %>% 
-  filter(cases > 0, country == "US") %>% 
+coronavirus |> 
+  filter(cases > 0, country == "US") |> 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))
 
@@ -383,9 +381,9 @@ As mentioned above, however, there are plot types where the wide format provides
 
 ```{R, eval = TRUE, message = FALSE}
 
-coronavirus_ttd <- coronavirus %>% 
-  group_by(country, type) %>%
-  summarize(total_cases = sum(cases)) %>%
+coronavirus_ttd <- coronavirus |> 
+  group_by(country, type) |>
+  summarize(total_cases = sum(cases)) |>
   pivot_wider(names_from = type, values_from = total_cases)
 
 # Now we can plot this easily

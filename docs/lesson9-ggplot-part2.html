@@ -665,7 +665,7 @@ specify the geom</p>
   geom_point()</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>gg_base +
-  geom_col(color=&quot;red&quot;)</code></pre>
+  geom_col(color = &quot;red&quot;)</code></pre>
 <p><img src="lesson9-files/unnamed-chunk-6-2.png" width="672" /></p>
 <pre class="r"><code>gg_base +
   geom_area()</code></pre>
@@ -800,7 +800,8 @@ Pick one that you like and update your previous plot.</p>
 <br></p>
 <p>You can play around with other themes - see an overview and
 instructions for how to customize themes <a
-href="https://ggplot2-book.org/polishing.html">here</a>.</p>
+href="https://ggplot2-book.org/themes">here</a> and <a
+href="https://r4ds.hadley.nz/communication">here</a>.</p>
 <p><br></p>
 <p>We could for example color the background of the legend</p>
 <pre class="r"><code>gg_base + 
@@ -828,7 +829,7 @@ href="https://ggplot2-book.org/polishing.html">here</a>.</p>
 <p><br></p>
 <p>In addition to the themes built into ggplot, there are lots packages
 that implement additional fun themes, see some examples <a
-href="https://towardsdatascience.com/themes-to-spice-up-visualizations-with-ggplot2-3e275038dafa">here</a></p>
+href="https://jrnold.github.io/ggthemes/">here</a></p>
 <p><br> <br></p>
 </div>
 <div id="updating-axis-labels-and-titles" class="section level2">
@@ -957,10 +958,10 @@ countries instead</p>
 <p>Another common plot type are bar charts. There are two types of bar
 charts in <code>ggplot</code>: <code>geom_bar()</code> and
 <code>geom_col()</code>. <code>geom_bar()</code> makes the height of the
-bar proportional to the number of cases in each group (or if the weight
-aesthetic is supplied, the sum of the weights). If you want the heights
-of the bars to represent values in the data, use <code>geom_col()</code>
-instead.</p>
+bar proportional to the number of records in each group (or if the
+weight aesthetic is supplied, the sum of the weights). If you want the
+heights of the bars to represent values in the data, use
+<code>geom_col()</code> instead.</p>
 <p>Since our dataset reports counts of cases, let’s first start with
 <code>geom_col()</code> Let’s compare the total number of cases in each
 of the top 5 countries with the highest total counts</p>
@@ -1065,7 +1066,7 @@ from plots, but we do it here because some of those rows have extreme
 values for other variables)</p>
 <pre class="r"><code># create a &quot;total to date&quot; subset of the data
 vacc_ttd &lt;- vacc |&gt; 
-  filter(date == max(vacc$date), !is.na(people_at_least_one_dose), !is.na(population))
+  filter(date == max(date), !is.na(people_at_least_one_dose), !is.na(population))
 
 # Let&#39;s look at our new tibble so make sure it makes sense
 vacc_ttd</code></pre>

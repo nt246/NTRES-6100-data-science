@@ -170,7 +170,7 @@ gg_base +
   geom_point()
 
 gg_base +
-  geom_col(color="red")
+  geom_col(color = "red")
 
 gg_base +
   geom_area()
@@ -278,7 +278,7 @@ gg_base +
 ```
 <br>
 
-You can play around with other themes - see an overview and instructions for how to customize themes [here](https://ggplot2-book.org/polishing.html). 
+You can play around with other themes - see an overview and instructions for how to customize themes [here](https://ggplot2-book.org/themes) and [here](https://r4ds.hadley.nz/communication). 
 
 <br>
 
@@ -317,7 +317,7 @@ gg_base +
 
 
 
-In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples [here](https://towardsdatascience.com/themes-to-spice-up-visualizations-with-ggplot2-3e275038dafa)
+In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples [here](https://jrnold.github.io/ggthemes/)
 
 <br>
 <br>
@@ -467,7 +467,7 @@ coronavirus |>
 
 ## Bar charts
 
-Another common plot type are bar charts. There are two types of bar charts in `ggplot`: `geom_bar()` and `geom_col()`. `geom_bar()` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col()` instead.
+Another common plot type are bar charts. There are two types of bar charts in `ggplot`: `geom_bar()` and `geom_col()`. `geom_bar()` makes the height of the bar proportional to the number of records in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col()` instead.
 
 Since our dataset reports counts of cases, let's first start with `geom_col()`
 Let's compare the total number of cases in each of the top 5 countries with the highest total counts
@@ -590,7 +590,7 @@ Remember, this dataset shows cumulate counts, so let's grab the counts from the 
 ```{r}
 # create a "total to date" subset of the data
 vacc_ttd <- vacc |> 
-  filter(date == max(vacc$date), !is.na(people_at_least_one_dose), !is.na(population))
+  filter(date == max(date), !is.na(people_at_least_one_dose), !is.na(population))
 
 # Let's look at our new tibble so make sure it makes sense
 vacc_ttd
