@@ -338,7 +338,7 @@ mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES6940-data-science/
 Let's clean up the `price` column
 
 ```{r}
-mess %>% 
+mess |> 
   mutate(price = parse_number(price))
 ```
 
@@ -424,10 +424,10 @@ Let's look at an example. Say we wanted to save a summary we had generated a few
 ```{r}
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
-coronavirus %>%  
-  filter(type == "confirmed") %>% 
-  group_by(date) %>% 
-  summarize(total_cases = sum(cases)) %>% 
+coronavirus |>  
+  filter(type == "confirmed") |> 
+  group_by(date) |> 
+  summarize(total_cases = sum(cases)) |> 
   write_csv(file = "../datasets/daily_casecount.csv")
 ```
 
@@ -443,10 +443,10 @@ We also briefly talked about how to save plots a few classes ago. To recap here:
 Use `ggsave()`
 
 ```{r, message = FALSE}
-coronavirus %>%  
-  filter(type == "confirmed") %>% 
-  group_by(date) %>% 
-  summarize(total_cases = sum(cases)) %>% 
+coronavirus |>  
+  filter(type == "confirmed") |> 
+  group_by(date) |> 
+  summarize(total_cases = sum(cases)) |> 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()
   
@@ -484,7 +484,7 @@ x <- tibble(
   "price" = c(5, 4, 6)
 )
 
-kable(x) %>% 
+kable(x) |> 
   kable_paper("hover", full_width = F, position = "left")
 ```
 <br>
@@ -497,7 +497,7 @@ y <- tibble(
  "C" = A + B
 )
 
-kable(y) %>% 
+kable(y) |> 
   kable_paper("hover", full_width = F, position = "left")
 
 ```

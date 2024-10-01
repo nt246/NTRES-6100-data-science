@@ -317,7 +317,7 @@ gg_base +
 
 
 
-In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples [here](https://jrnold.github.io/ggthemes/)
+In addition to the themes built into ggplot, there are lots packages that implement additional fun themes, see some examples [here](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes//)
 
 <br>
 <br>

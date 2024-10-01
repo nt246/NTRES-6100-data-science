@@ -13,7 +13,7 @@
 
 <title>Lesson 11: Data import, export, and conversion between data types</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -715,8 +715,7 @@ It’s always a good idea to explicitly pull out the problems(), so you
 can explore them in more depth:</p>
 <pre class="r"><code>problems(challenge)</code></pre>
 <pre><code>## # A tibble: 0 × 5
-## # … with 5 variables: row &lt;int&gt;, col &lt;int&gt;, expected &lt;chr&gt;, actual &lt;chr&gt;,
-## #   file &lt;chr&gt;</code></pre>
+## # ℹ 5 variables: row &lt;int&gt;, col &lt;int&gt;, expected &lt;chr&gt;, actual &lt;chr&gt;, file &lt;chr&gt;</code></pre>
 <p><br></p>
 <p>A good strategy is to work column by column until there are no
 problems remaining. Here we can see that there are a lot of parsing
@@ -865,7 +864,7 @@ functions</h4>
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code># What happens if we run this without the locale argument?</code></pre>
 <p>Let’s clean up the <code>price</code> column</p>
-<pre class="r"><code>mess %&gt;% 
+<pre class="r"><code>mess |&gt; 
   mutate(price = parse_number(price))</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   item  price  size
@@ -989,28 +988,28 @@ generated a few week ago of the coronavirus data:</p>
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>coronavirus %&gt;%  
-  filter(type == &quot;confirmed&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_cases = sum(cases)) %&gt;% 
+<pre class="r"><code>coronavirus |&gt;  
+  filter(type == &quot;confirmed&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_cases = sum(cases)) |&gt; 
   write_csv(file = &quot;../datasets/daily_casecount.csv&quot;)</code></pre>
 <p><br></p>
 <p>We also briefly talked about how to save plots a few classes ago. To
 recap here:</p>
-<div class="figure">
+<div class="float">
 <img
 src="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-slides/ggplot2-tutorial-slides.050.png?raw=true"
-alt="" />
-<p class="caption">Slide from Jenny Bryan’s ggplot tutorial <a
+alt="Slide from Jenny Bryan’s ggplot tutorial https://github.com/jennybc/ggplot2-tutorial" />
+<div class="figcaption">Slide from Jenny Bryan’s ggplot tutorial <a
 href="https://github.com/jennybc/ggplot2-tutorial"
-class="uri">https://github.com/jennybc/ggplot2-tutorial</a></p>
+class="uri">https://github.com/jennybc/ggplot2-tutorial</a></div>
 </div>
 <p><br></p>
 <p>Use <code>ggsave()</code></p>
-<pre class="r"><code>coronavirus %&gt;%  
-  filter(type == &quot;confirmed&quot;) %&gt;% 
-  group_by(date) %&gt;% 
-  summarize(total_cases = sum(cases)) %&gt;% 
+<pre class="r"><code>coronavirus |&gt;  
+  filter(type == &quot;confirmed&quot;) |&gt; 
+  group_by(date) |&gt; 
+  summarize(total_cases = sum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()</code></pre>
 <p><img src="lesson13-files/unnamed-chunk-21-1.png" width="672" /></p>

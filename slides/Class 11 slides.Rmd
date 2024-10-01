@@ -1,0 +1,88 @@
+---
+title: "Lesson 11: Data import and export"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+```
+
+
+
+## Assignments
+
+* Assignment 5 due this Thursday
+
+* Make sure to fix submission errors for prior assignments
+
+
+
+## When submitting assignments
+
+* Make sure your RMarkdown "output type" is set to "github_document" (this will create an .md file when you knit rather than .html)
+* Do not put `echo=FALSE` , `include=FALSE`, or `eval=FALSE` in your exercise code chunks. These will tell R to either not show your code, not show your plots, or not run the code at all. We need to see your code AND output for grading
+* Knit your RMarkdown document - this will create the .md file
+* Commit/push the RMarkdown (.Rmd), the knitted file (.md), AND the assignment "files" folder (this consists of the plot images - your plots will not appear in your knitted document if you do not push this folder)
+
+
+## First recap and wrap-up: Tidy data
+
+
+
+## Exercise
+
+* Convert the coronavirus dataset to a wider format where the confirmed cases, deaths and recovered cases are shown in separate columns
+ 
+* With this wide format data, make a bar chart of the total number of confirmed cases, deaths, and recoveries per day for the US
+
+
+
+## Conclusion
+
+>If I had one thing to tell biologists learning bioinformatics, it would be “write code for humans, write data for computers”.
+— Vince Buffalo (@vsbuffalo)
+
+
+
+
+
+## Learning objectives
+
+By the end of today’s class, you should be able to:
+
+* Read data files into R with a variety of readr functions
+* Parse different types of data and make sure R is interpreting your variable types correctly
+* Use janitor::clean_names() to make column headers more manageable
+* Write text output to your disk
+* Save plots
+
+
+## Data types
+
+* logical: contains only “F”, “T”, “FALSE”, or “TRUE”.
+* integer: contains only numeric characters (and -).
+* double: contains only valid doubles (including numbers like 4.5e-5).
+* number: contains valid doubles with the grouping mark inside.
+* time: matches the default time_format.
+* date: matches the default date_format.
+* date-time: any ISO8601 date.
+
+
+## Why numbers can be tricky
+
+* People write numbers differently in different parts of the world. For example, some countries use . in between the integer and fractional parts of a real number, while others use ,.
+
+* Numbers are often surrounded by other characters that provide some context, like “$1000” or “10%”.
+
+* Numbers often contain “grouping” characters to make them easier to read, like “1,000,000”, and these grouping characters vary around the world.
+
+
+## Standardizing names
+
+![](assets/case.jpg)
+
+
+
