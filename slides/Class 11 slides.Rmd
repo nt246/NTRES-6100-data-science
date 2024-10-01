@@ -28,7 +28,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 * Commit/push the RMarkdown (.Rmd), the knitted file (.md), AND the assignment "files" folder (this consists of the plot images - your plots will not appear in your knitted document if you do not push this folder)
 
 
-## First recap and wrap-up: Tidy data
+## First recap and wrap-up: 
+## Tidy data
 
 
 
@@ -60,6 +61,25 @@ By the end of today’s class, you should be able to:
 * Save plots
 
 
+## Data import functions
+
+* `read_csv()` reads comma delimited files, `read_csv2()` reads semicolon separated files, `read_tsv()` reads tab delimited files, and `read_delim()` reads in files with any delimiter.
+
+* `read_fwf()` reads fixed width files. You can specify fields either by their widths with `fwf_widths()` or their position with `fwf_positions()`. `read_table()` reads a common variation of fixed width files where columns are separated by white space.
+
+
+
+
+## Why use the tidyverse/readr import functions instead of base-R?
+
+* They are typically much faster (~10x) than their base-R equivalents (e.g. `read.cvs()`)
+
+* They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names
+
+* They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.
+
+
+
 ## Data types
 
 * logical: contains only “F”, “T”, “FALSE”, or “TRUE”.
@@ -81,6 +101,7 @@ By the end of today’s class, you should be able to:
 
 
 ## Standardizing names
+
 
 ![](assets/case.jpg)
 

@@ -3150,7 +3150,9 @@ ul.task-list{list-style: none;}
 <li>Commit/push the RMarkdown (.Rmd), the knitted file (.md), AND the assignment &ldquo;files&rdquo; folder (this consists of the plot images - your plots will not appear in your knitted document if you do not push this folder)</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>First recap and wrap-up: Tidy data</h2></hgroup><article  id="first-recap-and-wrap-up-tidy-data">
+</article></slide><slide class=""><hgroup><h2>First recap and wrap-up:</h2></hgroup><article  id="first-recap-and-wrap-up">
+
+</article></slide><slide class=""><hgroup><h2>Tidy data</h2></hgroup><article  id="tidy-data">
 
 </article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
 
@@ -3175,6 +3177,21 @@ ul.task-list{list-style: none;}
 <li>Use janitor::clean_names() to make column headers more manageable</li>
 <li>Write text output to your disk</li>
 <li>Save plots</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Data import functions</h2></hgroup><article  id="data-import-functions">
+
+<ul>
+<li><p><code>read_csv()</code> reads comma delimited files, <code>read_csv2()</code> reads semicolon separated files, <code>read_tsv()</code> reads tab delimited files, and <code>read_delim()</code> reads in files with any delimiter.</p></li>
+<li><p><code>read_fwf()</code> reads fixed width files. You can specify fields either by their widths with <code>fwf_widths()</code> or their position with <code>fwf_positions()</code>. <code>read_table()</code> reads a common variation of fixed width files where columns are separated by white space.</p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Why use the tidyverse/readr import functions instead of base-R?</h2></hgroup><article  id="why-use-the-tidyversereadr-import-functions-instead-of-base-r">
+
+<ul>
+<li><p>They are typically much faster (~10x) than their base-R equivalents (e.g. <code>read.cvs()</code>)</p></li>
+<li><p>They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names</p></li>
+<li><p>They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Data types</h2></hgroup><article  id="data-types">
