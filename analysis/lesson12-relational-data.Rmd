@@ -132,7 +132,7 @@ To practice the `join` functions, we'll subset the `flights` dataframe as follow
 
 ```{r, eval = FALSE}
 
-flights2 <- flights %>% 
+flights2 <- flights |> 
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2
 
@@ -168,8 +168,8 @@ library(nycflights13) #install.packages("nycflights13")
 ```{r, eval = FALSE}
     library(maps) #install.packages("maps")
 
-    airports %>%
-      semi_join(flights, c("faa" = "dest")) %>%
+    airports |>
+      semi_join(flights, c("faa" = "dest")) |>
       ggplot(aes(lon, lat)) +
         borders("state") +
         geom_point() +

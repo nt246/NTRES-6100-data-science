@@ -575,7 +575,7 @@ href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tas
 <h3>Join functions</h3>
 <p>To practice the <code>join</code> functions, we’ll subset the
 <code>flights</code> dataframe as follows</p>
-<pre class="r"><code>flights2 &lt;- flights %&gt;% 
+<pre class="r"><code>flights2 &lt;- flights |&gt; 
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2</code></pre>
 <p><br></p>
@@ -606,8 +606,8 @@ States:</li>
 </ol>
 <pre class="r"><code>    library(maps) #install.packages(&quot;maps&quot;)
 
-    airports %&gt;%
-      semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+    airports |&gt;
+      semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) |&gt;
       ggplot(aes(lon, lat)) +
         borders(&quot;state&quot;) +
         geom_point() +
