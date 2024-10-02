@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 * [Jenny Bryan's Intro to Tidy Data](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md)
   + the repo this links to has some useful exercises too, but uses the outdated `spread()` and `gather()` functions so don't get confused by the code.  
   
-* `tidyr` [vignette on tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)  
+* `tidyr` [vignette on tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html)  
 * [Hadley's paper on tidy data](https://vita.had.co.nz/papers/tidy-data.pdf) provides a thorough investigation
 
 <br>

@@ -13,7 +13,7 @@
 
 <title>Lesson 12: Relational data</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -463,8 +463,11 @@ div.tocify {
 <p><br></p>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p><a href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in
-‘R for Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<ul>
+<li><a href="https://r4ds.hadley.nz/joins">Chapter 19 in in R for Data
+Science (2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett
+Grolemund</li>
+</ul>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
@@ -531,11 +534,11 @@ tables:</p>
 href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tasks"><strong>Binding</strong></a>,
 which simply stacks tables on top of or beside each other</p></li>
 <li><p><a
-href="https://r4ds.had.co.nz/relational-data.html#mutating-joins"><strong>Mutating
+href="https://r4ds.hadley.nz/joins#mutating-joins"><strong>Mutating
 joins</strong></a>, which add new variables to one data frame from
 matching observations in another</p></li>
 <li><p><a
-href="https://r4ds.had.co.nz/relational-data.html#filtering-joins"><strong>Filtering
+href="https://r4ds.hadley.nz/joins#filtering-joins"><strong>Filtering
 joins</strong></a>, which filter observations from one data frame based
 on whether or not they match an observation in the other table</p></li>
 <li><p><strong>Set operations</strong>, which treat observations as if
@@ -576,9 +579,9 @@ href="https://stat545.com/multiple-tibbles.html#typology-of-data-combination-tas
   select(year:day, hour, origin, dest, tailnum, carrier)
 flights2</code></pre>
 <p><br></p>
-<p>Then we’ll review Wickham and Grolemund’s overview of <a
-href="https://r4ds.had.co.nz/relational-data.html">join functions</a>
-summarized in these <a
+<p>Then we’ll review the r4ds overview of <a
+href="https://r4ds.hadley.nz/joins">join functions</a> summarized in
+these <a
 href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf">slides</a></p>
 <p><br></p>
 <div id="key-point" class="section level4">
