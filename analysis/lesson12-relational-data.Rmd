@@ -41,13 +41,7 @@ Jenny Bryan's [STAT545 Chapter 14 When one tibble is not enough](https://stat545
 
 ## Plan for today and learning objectives
 
-<br>
-
-First, we'll finish talking about data export (wrap up of lecture 11 from last week) and recap on how to save data and plots.
-
-<br>
-
-Then we'll switch gears to talk about relational data. By the end of today's class, you should be able to:
+Today we'll talk about relational data. By the end of today's class, you should be able to:
 
 * Combine information from multiple tables into one
 * Describe the difference between the four `join` and two `filter` functions in `dplyr`
@@ -66,7 +60,7 @@ library(tidyverse)
 
 <br>
 
-Today, we will be practicing joins on data on flights departing NYC in 2013. These data are compiled in a package that we will install and load
+We will be practicing joins on data on flights departing NYC in 2013. These data are compiled in a package that we will install and load
 ```{r, eval = FALSE}
 
 install.packages("nycflights13")
