@@ -41,7 +41,7 @@ Also check out the [slide deck](https://resources.rstudio.com/rstudio-conf-2020/
 
 ## Announcements
 
-* Homework 6 is due tonight
+* Homework 7 is due tonight
 * Reminder that we will have short students presentations during our final class on March 31 (details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)) - start thinking about what you want to show the class
 
 <br>

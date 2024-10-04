@@ -466,12 +466,17 @@ with <code>if</code> statements</h1>
 <h4>Required:</h4>
 <p><strong>Relational data</strong>:</p>
 <p>If you didn’t get a chance to read it last week, have a look at <a
-href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in ‘R for
-Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+href="https://r4ds.hadley.nz/joins">Chapter 19 in in R for Data Science
+(2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett
+Grolemund</p>
 <p><br></p>
 <p><strong>Iteration</strong>:</p>
-<p><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for
-Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p>The short <a href="https://r4ds.hadley.nz/base-r#for-loops">Section
+27.5 on for loops in R for Data Science (2e)</a></p>
+<p>OPTIONAL (for a more detailed overview of other types of iteration
+than those we will cover in class): <a
+href="https://r4ds.hadley.nz/iteration">Chapter 26 on iteration in R for
+Data Science (2e)</a></p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
@@ -481,19 +486,6 @@ href="http://ohi-science.org/data-science-training/programming.html">this
 tutorial</a> developed by the Ocean Health Index Data Science Team</p>
 <p><br> <br></p>
 </div>
-</div>
-<div id="announcements" class="section level2">
-<h2>Announcements</h2>
-<p>Because of the snow day and cancelled class on Tuesday, we have
-updated the syllabus. We have shifted lectures down and added a make-up
-lecture the Tuesday after Spring Break * Assignment 7 is still due today
-* Assignment 8 will not be due until 3/30 * Assignment 9 will be due
-Tuesday after Spring Break (4/11)</p>
-<p>Postdoc Jessi Rick will offer a two-session follow-up workshop during
-our regular lecture slot on 4/13 and 4/13 about open data science and
-data sharing/management. This is an optional not-for-credit add-on
-workshop. More details next week.</p>
-<p><br></p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
@@ -552,7 +544,7 @@ package and load it, along with the tidyverse. Then have a look at the
 data in <code>gapminder</code></p>
 <pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
 
-head(gapminder) %&gt;%  kable()</code></pre>
+head(gapminder) |&gt;  kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -623,7 +615,7 @@ messy to have this inconsistent way of writing variable names. So I’m
 going to go ahead and clean these names up before I start working with
 the data. I can do this manually with the <code>rename()</code> or
 <code>colnames()</code> functions, e.g.</p>
-<pre class="r"><code>gapminder %&gt;% 
+<pre class="r"><code>gapminder |&gt; 
   rename(&quot;life_exp&quot; = lifeExp, &quot;gdp_per_cap&quot; = gdpPercap)</code></pre>
 <pre><code>## # A tibble: 1,704 × 6
 ##    country     continent  year life_exp      pop gdp_per_cap
@@ -664,7 +656,7 @@ observations?</strong></p>
 the tables by had identical names in the two datasets. Now, let’s
 imagine the variables in the <code>dslab</code> version had been named
 differently. Run this code to change the variable names:</p>
-<pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
+<pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs |&gt; 
   rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
 <p><br></p>
 <p><strong>Now add the infant mortality and fertility from the
@@ -678,7 +670,7 @@ Click here for a solution
 <pre class="r"><code>## When variable names are identical
 
 # Natural join
-gapminder %&gt;% 
+gapminder |&gt; 
   left_join(gap_dslabs)</code></pre>
 <pre><code>## Joining with `by = join_by(country, year)`</code></pre>
 <pre><code>## # A tibble: 1,704 × 8
@@ -697,7 +689,7 @@ gapminder %&gt;%
 ## # ℹ 1,694 more rows
 ## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
 <pre class="r"><code># Specifying the variables to join by (useful if some variables mean different things in the two tables you&#39;re joining)
-gapminder %&gt;% 
+gapminder |&gt; 
   left_join(gap_dslabs, by = c(&quot;country&quot;, &quot;year&quot;))</code></pre>
 <pre><code>## # A tibble: 1,704 × 8
 ##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
@@ -715,7 +707,7 @@ gapminder %&gt;%
 ## # ℹ 1,694 more rows
 ## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
 <pre class="r"><code># When variable names are not identical
-gapminder %&gt;% 
+gapminder |&gt; 
   left_join(gap_dslabs_caps, by = c(&quot;country&quot; = &quot;Country&quot;, &quot;year&quot; = &quot;Year&quot;))</code></pre>
 <pre><code>## # A tibble: 1,704 × 8
 ##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
@@ -758,7 +750,7 @@ the original rows.</p>
 <p>These functions can be useful when we want to filter based on more
 than one variable. If we wanted to grab all the records from Malawi, for
 example, we can use <code>filter()</code></p>
-<pre class="r"><code>gapminder %&gt;% 
+<pre class="r"><code>gapminder |&gt; 
   filter(country == &quot;Malawi&quot;)</code></pre>
 <pre><code>## # A tibble: 12 × 6
 ##    country continent  year life_exp      pop gdp_per_cap
@@ -780,11 +772,11 @@ example, we can use <code>filter()</code></p>
 years that had the highest fertility rates recorded. It would be harder
 to do this with the <code>filter()</code> function in a single step.
 This is a case where <code>semi_join()</code> can be useful.</p>
-<pre class="r"><code>top_fertility &lt;- gap_dslabs %&gt;% 
-  arrange(-fertility) %&gt;% 
+<pre class="r"><code>top_fertility &lt;- gap_dslabs |&gt; 
+  arrange(-fertility) |&gt; 
   head(10)
 
-gapminder %&gt;% 
+gapminder |&gt; 
   semi_join(top_fertility)</code></pre>
 <pre><code>## Joining with `by = join_by(country, year)`</code></pre>
 <pre><code>## # A tibble: 6 × 6
@@ -859,8 +851,8 @@ function for that).</p>
 <p>In general, the opposite of <code>semi_join()</code>, the
 <code>anti_join()</code> function is good for diagnosing mismatches.</p>
 <pre class="r"><code># What records in gapminder are not matched in gap_dslabs
-gapminder %&gt;% 
-  anti_join(gap_dslabs, by = &quot;country&quot;)  %&gt;% 
+gapminder |&gt; 
+  anti_join(gap_dslabs, by = &quot;country&quot;)  |&gt; 
   count(country)</code></pre>
 <pre><code>## # A tibble: 9 × 2
 ##   country                   n
@@ -875,8 +867,8 @@ gapminder %&gt;%
 ## 8 Taiwan                   12
 ## 9 Yemen, Rep.              12</code></pre>
 <pre class="r"><code># What records in gap_dslabs are not matched in gapminder
-gap_dslabs %&gt;% 
-  anti_join(gapminder,  by = &quot;country&quot;)  %&gt;% 
+gap_dslabs |&gt; 
+  anti_join(gapminder,  by = &quot;country&quot;)  |&gt; 
   count(country)</code></pre>
 <pre><code>## # A tibble: 52 × 2
 ##    country                 n
@@ -1006,7 +998,7 @@ I’m going to demonstrate with Afghanistan:</p>
 For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too. 
 --->
 <pre class="r"><code>## filter the country to plot
-gap_to_plot &lt;- gapminder %&gt;%
+gap_to_plot &lt;- gapminder |&gt;
   filter(country == &quot;Afghanistan&quot;)
 
 ## plot
@@ -1019,7 +1011,7 @@ Let’s use the function <code>str_c()</code> to paste two strings
 together so that the title is more descriptive. Use <code>?str_c</code>
 to see what the “sep” variable does.</p>
 <pre class="r"><code>## filter the country to plot
-gap_to_plot &lt;- gapminder %&gt;%
+gap_to_plot &lt;- gapminder |&gt;
   filter(country == &quot;Afghanistan&quot;)
 
 ## plot
@@ -1030,7 +1022,7 @@ my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) +
 <p><br></p>
 <p>And as a last step, let’s save this figure.</p>
 <pre class="r"><code>## filter the country to plot
-gap_to_plot &lt;- gapminder %&gt;%
+gap_to_plot &lt;- gapminder |&gt;
   filter(country == &quot;Afghanistan&quot;)
 
 ## plot
@@ -1069,7 +1061,7 @@ our filenames.</p>
 cntry &lt;- &quot;Afghanistan&quot;
 
 ## filter the country to plot
-gap_to_plot &lt;- gapminder %&gt;%
+gap_to_plot &lt;- gapminder |&gt;
   filter(country == cntry)
 
 ## plot
@@ -1122,7 +1114,7 @@ cntry &lt;- &quot;Afghanistan&quot;
 for (each cntry in a list_of_countries) {
   
   ## filter the country to plot
-  gap_to_plot &lt;- gapminder %&gt;%
+  gap_to_plot &lt;- gapminder |&gt;
     filter(country == cntry)
   
   ## plot
@@ -1147,7 +1139,7 @@ country_list &lt;- c(&quot;Albania&quot;, &quot;Canada&quot;, &quot;Spain&quot;)
 for (cntry in country_list) {
   
   ## filter the country to plot
-  gap_to_plot &lt;- gapminder %&gt;%
+  gap_to_plot &lt;- gapminder |&gt;
     filter(country == cntry)
   
   ## plot
@@ -1180,7 +1172,7 @@ country_list &lt;- unique(gapminder$country) # ?unique() returns the unique valu
 for (cntry in country_list) {
   
   ## filter the country to plot
-  gap_to_plot &lt;- gapminder %&gt;%
+  gap_to_plot &lt;- gapminder |&gt;
     filter(country == cntry)
   
   ## plot
@@ -1234,8 +1226,8 @@ click to see our approach
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -1243,7 +1235,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -1302,8 +1294,8 @@ gapminder_est &lt;- left_join(gapminder, est)</code></pre>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder_est |&gt;  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -1311,7 +1303,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -1354,8 +1346,8 @@ the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder_est |&gt;  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -1363,7 +1355,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -1402,8 +1394,8 @@ reported, to be extra explicit about it?</p>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder_est |&gt;  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -1411,7 +1403,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -1480,8 +1472,8 @@ expression that achieves the same goal:</p>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder_est |&gt;  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -1489,7 +1481,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting

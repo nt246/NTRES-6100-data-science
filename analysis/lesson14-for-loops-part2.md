@@ -14,7 +14,11 @@ output:
 
 #### Required:
 
-If you didn't have a chance to read it yet, have a look at [Chapter 21 in 'R for Data Science'](https://r4ds.had.co.nz/iteration.html) by Hadley Wickham & Garrett Grolemund
+If you didn't have a chance to read it yet, have a look at the short [Section 27.5 on for loops in R for Data Science (2e)](https://r4ds.hadley.nz/base-r#for-loops)
+
+OPTIONAL (for a more detailed overview of other types of iteration than those we will cover in class): [Chapter 26 on iteration in R for Data Science (2e)](https://r4ds.hadley.nz/iteration)
+
+
 
 
 <br>
@@ -40,7 +44,7 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
-We'll first finish where we left off in lesson 14 and work through the rest of that lesson. Then we'll look at some other ways to write for loops by working through [these Data Carpentry's notes](https://datacarpentry.org/semester-biology/materials/for-loops-R/).
+We'll first finish where we left off last time and work through the rest of that lesson. Then we'll look at some other ways to write for loops by working through [these Data Carpentry's notes](https://datacarpentry.org/semester-biology/materials/for-loops-R/).
 
 We can also apply this to the `gapminder` data. 
 
@@ -62,8 +66,8 @@ As another example, last class, we needed to calculate the product of gdp-per-ca
 
 
 ``` r
-gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder_est |>  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == "Europe") |>
   mutate(gdp_tot = gdp_per_cap * pop)
 ```
 

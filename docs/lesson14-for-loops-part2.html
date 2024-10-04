@@ -464,9 +464,13 @@ loops and conditional execution with <code>if</code> statements - Part
 <h2>Readings</h2>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p>If you didn’t have a chance to read it yet, have a look at <a
-href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for Data
-Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p>If you didn’t have a chance to read it yet, have a look at the short
+<a href="https://r4ds.hadley.nz/base-r#for-loops">Section 27.5 on for
+loops in R for Data Science (2e)</a></p>
+<p>OPTIONAL (for a more detailed overview of other types of iteration
+than those we will cover in class): <a
+href="https://r4ds.hadley.nz/iteration">Chapter 26 on iteration in R for
+Data Science (2e)</a></p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
@@ -492,8 +496,8 @@ permission) from the excellent <a
 href="http://ohi-science.org/data-science-training/programming.html">Ocean
 Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
-<p>We’ll first finish where we left off in lesson 14 and work through
-the rest of that lesson. Then we’ll look at some other ways to write for
+<p>We’ll first finish where we left off last time and work through the
+rest of that lesson. Then we’ll look at some other ways to write for
 loops by working through <a
 href="https://datacarpentry.org/semester-biology/materials/for-loops-R/">these
 Data Carpentry’s notes</a>.</p>
@@ -517,8 +521,8 @@ a sequence. Here is an example:</p>
 gdp-per-cap and population size for each year and each country. We did
 this efficiently in a single step for all years and countries with a
 <code>mutate()</code>, prior to defining our loop or function.</p>
-<pre class="r"><code>gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
-  filter(continent == &quot;Europe&quot;) %&gt;%
+<pre class="r"><code>gap_europe &lt;- gapminder_est |&gt;  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdp_tot = gdp_per_cap * pop)</code></pre>
 <p><br></p>
 <p>A (not very computationally efficient) alternative would be to do
