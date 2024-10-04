@@ -1,15 +1,12 @@
 ---
-title: "Lesson 14: Wrap-up of relational data, then on to iteration with `for` loops and conditional execution with `if` statements"
+title: "Lesson 13: Wrap-up of relational data, then on to iteration with `for` loops and conditional execution with `if` statements"
 output: 
   html_document:
     keep_md: yes 
     toc: true
 ---
   
-```{r setup, include=FALSE}
-knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
-knitr::opts_chunk$set(echo = TRUE, fig.path="lesson14-files/")
-```
+
 
 <br>
 
@@ -67,10 +64,10 @@ By the end of today's and next Tuesday's class, you should be able to:
 
 Let's load the `tidyverse` and `knitr`
 
-```{r, message = FALSE}
+
+``` r
 library(tidyverse)
 library(knitr)
-
 ```
 
 <br>
@@ -91,13 +88,23 @@ The data in the `gapminder` package is a subset of the [Gapminder dataset](https
 
 We will primarily use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
 
-```{r, message=FALSE, warning=FALSE}
 
+``` r
 library(gapminder) #install.packages("gapminder")
 
 head(gapminder) %>%  kable()
-
 ```
+
+
+
+|country     |continent | year| lifeExp|      pop| gdpPercap|
+|:-----------|:---------|----:|-------:|--------:|---------:|
+|Afghanistan |Asia      | 1952|  28.801|  8425333|  779.4453|
+|Afghanistan |Asia      | 1957|  30.332|  9240934|  820.8530|
+|Afghanistan |Asia      | 1962|  31.997| 10267083|  853.1007|
+|Afghanistan |Asia      | 1967|  34.020| 11537966|  836.1971|
+|Afghanistan |Asia      | 1972|  36.088| 13079460|  739.9811|
+|Afghanistan |Asia      | 1977|  38.438| 14880372|  786.1134|
 
 <br>
 <br>
@@ -105,25 +112,43 @@ head(gapminder) %>%  kable()
 
 We can see that this dataset used camelCase (first word lowercase and capitalize all following words) for its column names. I always use snake_case (replace spaces with underscores), and it's going to look messy to have this inconsistent way of writing variable names. So I'm going to go ahead and clean these names up before I start working with the data. I can do this manually with the `rename()` or `colnames()` functions, e.g.
 
-```{r}
+
+``` r
 gapminder %>% 
   rename("life_exp" = lifeExp, "gdp_per_cap" = gdpPercap)
+```
 
+```
+## # A tibble: 1,704 × 6
+##    country     continent  year life_exp      pop gdp_per_cap
+##    <fct>       <fct>     <int>    <dbl>    <int>       <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.
+##  2 Afghanistan Asia       1957     30.3  9240934        821.
+##  3 Afghanistan Asia       1962     32.0 10267083        853.
+##  4 Afghanistan Asia       1967     34.0 11537966        836.
+##  5 Afghanistan Asia       1972     36.1 13079460        740.
+##  6 Afghanistan Asia       1977     38.4 14880372        786.
+##  7 Afghanistan Asia       1982     39.9 12881816        978.
+##  8 Afghanistan Asia       1987     40.8 13867957        852.
+##  9 Afghanistan Asia       1992     41.7 16317921        649.
+## 10 Afghanistan Asia       1997     41.8 22227415        635.
+## # ℹ 1,694 more rows
+```
 
+``` r
 # Alternative
 colnames(gapminder) <- c("country", "continent", "year", "life_exp", "pop", "gdp_per_cap")
-
 ```
 
 <br>
 
 Alternatively, I can use the `clean_names()` function from the `janitor` package
 
-```{r, eval = FALSE}
+
+``` r
 library(janitor)
 
 clean_names(gapminder)
-
 ```
 
 <br>
@@ -131,32 +156,11 @@ clean_names(gapminder)
 
 In the lab section, we have been working with a different subset of the gapminder dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
 
-```{r eval=FALSE, include=FALSE}
-
-# Write a dataframe to join to gapminder::gapminder
-
-library(dslabs)
-
-dslabs::gapminder %>% 
-  as_tibble() %>% 
-  select(country, year, infant_mortality, fertility)  %>% 
-  filter(year %in% years) %>% 
-  write_csv(file = "datasets/gapminder_dslabs_subset_original_names.csv")
-
-dslabs::gapminder %>% 
-  as_tibble() %>% 
-  select(country, year, infant_mortality, fertility)  %>% 
-  filter(year %in% years) %>%
-  rename("Country" = country, "Year" = year) %>% 
-  write_csv(file = "datasets/gapminder_dslabs_subset_caps_names.csv")
 
 
-```
 
-```{r, message = FALSE}
-
+``` r
 gap_dslabs <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv")
-
 ```
 <br>
 
@@ -166,10 +170,10 @@ gap_dslabs <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-
 
 In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let's imagine the variables in the `dslab` version had been named differently. Run this code to change the variable names:
 
-```{r}
+
+``` r
 gap_dslabs_caps <- gap_dslabs %>% 
   rename("Country" = country, "Year" = year)
-
 ```
 
 <br>
@@ -182,25 +186,87 @@ gap_dslabs_caps <- gap_dslabs %>%
 <details>
   <summary>Click here for a solution</summary>
 
-```{r}
 
+``` r
 ## When variable names are identical
 
 # Natural join
 gapminder %>% 
   left_join(gap_dslabs)
+```
 
+```
+## Joining with `by = join_by(country, year)`
+```
+
+```
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility <dbl>
+```
+
+``` r
 # Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
 gapminder %>% 
   left_join(gap_dslabs, by = c("country", "year"))
+```
 
+```
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility <dbl>
+```
+
+``` r
 # When variable names are not identical
 gapminder %>% 
   left_join(gap_dslabs_caps, by = c("country" = "Country", "year" = "Year"))
+```
 
+```
+## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    <chr>       <fct>     <dbl>    <dbl>    <int>       <dbl>            <dbl>
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility <dbl>
+```
+
+``` r
 ## Note, gap_dslabs doesn't have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.
-
-
 ```
 
 </details>
@@ -226,16 +292,36 @@ Semi-joins are useful for matching filtered summary tables back to the original 
 
 These functions can be useful when we want to filter based on more than one variable. If we wanted to grab all the records from Malawi, for example, we can use `filter()`
 
-```{r}
+
+``` r
 gapminder %>% 
   filter(country == "Malawi")
+```
+
+```
+## # A tibble: 12 × 6
+##    country continent  year life_exp      pop gdp_per_cap
+##    <fct>   <fct>     <int>    <dbl>    <int>       <dbl>
+##  1 Malawi  Africa     1952     36.3  2917802        369.
+##  2 Malawi  Africa     1957     37.2  3221238        416.
+##  3 Malawi  Africa     1962     38.4  3628608        428.
+##  4 Malawi  Africa     1967     39.5  4147252        496.
+##  5 Malawi  Africa     1972     41.8  4730997        585.
+##  6 Malawi  Africa     1977     43.8  5637246        663.
+##  7 Malawi  Africa     1982     45.6  6502825        633.
+##  8 Malawi  Africa     1987     47.5  7824747        636.
+##  9 Malawi  Africa     1992     49.4 10014249        563.
+## 10 Malawi  Africa     1997     47.5 10419991        692.
+## 11 Malawi  Africa     2002     45.0 11824495        665.
+## 12 Malawi  Africa     2007     48.3 13327079        759.
 ```
 
 <br>
 
 However, say we wanted to extract the records from the countries and years that had the highest fertility rates recorded. It would be harder to do this with the `filter()` function in a single step. This is a case where `semi_join()` can be useful.
 
-```{r}
+
+``` r
 top_fertility <- gap_dslabs %>% 
   arrange(-fertility) %>% 
   head(10)
@@ -243,10 +329,79 @@ top_fertility <- gap_dslabs %>%
 gapminder %>% 
   semi_join(top_fertility)
 ```
+
+```
+## Joining with `by = join_by(country, year)`
+```
+
+```
+## # A tibble: 6 × 6
+##   country continent  year life_exp     pop gdp_per_cap
+##   <fct>   <fct>     <int>    <dbl>   <int>       <dbl>
+## 1 Oman    Asia       1982     62.7 1301048      12955.
+## 2 Rwanda  Africa     1962     43   3051242        597.
+## 3 Rwanda  Africa     1967     44.1 3451079        511.
+## 4 Rwanda  Africa     1972     44.6 3992121        591.
+## 5 Rwanda  Africa     1977     45   4657072        670.
+## 6 Rwanda  Africa     1982     46.2 5507565        882.
+```
 We notice here that our resulting tibble only include 6 rows, not the 10 we had expected. Upon inspection, we notice that the records from Yemen are missing. We can confirm that this is because the `gapminder` tibble doesn't include "Yemen" (written this way) as a country by examining the unique values included in the country variable.
 
-```{r}
+
+``` r
 unique(gapminder$country)
+```
+
+```
+##   [1] Afghanistan              Albania                  Algeria                 
+##   [4] Angola                   Argentina                Australia               
+##   [7] Austria                  Bahrain                  Bangladesh              
+##  [10] Belgium                  Benin                    Bolivia                 
+##  [13] Bosnia and Herzegovina   Botswana                 Brazil                  
+##  [16] Bulgaria                 Burkina Faso             Burundi                 
+##  [19] Cambodia                 Cameroon                 Canada                  
+##  [22] Central African Republic Chad                     Chile                   
+##  [25] China                    Colombia                 Comoros                 
+##  [28] Congo, Dem. Rep.         Congo, Rep.              Costa Rica              
+##  [31] Cote d'Ivoire            Croatia                  Cuba                    
+##  [34] Czech Republic           Denmark                  Djibouti                
+##  [37] Dominican Republic       Ecuador                  Egypt                   
+##  [40] El Salvador              Equatorial Guinea        Eritrea                 
+##  [43] Ethiopia                 Finland                  France                  
+##  [46] Gabon                    Gambia                   Germany                 
+##  [49] Ghana                    Greece                   Guatemala               
+##  [52] Guinea                   Guinea-Bissau            Haiti                   
+##  [55] Honduras                 Hong Kong, China         Hungary                 
+##  [58] Iceland                  India                    Indonesia               
+##  [61] Iran                     Iraq                     Ireland                 
+##  [64] Israel                   Italy                    Jamaica                 
+##  [67] Japan                    Jordan                   Kenya                   
+##  [70] Korea, Dem. Rep.         Korea, Rep.              Kuwait                  
+##  [73] Lebanon                  Lesotho                  Liberia                 
+##  [76] Libya                    Madagascar               Malawi                  
+##  [79] Malaysia                 Mali                     Mauritania              
+##  [82] Mauritius                Mexico                   Mongolia                
+##  [85] Montenegro               Morocco                  Mozambique              
+##  [88] Myanmar                  Namibia                  Nepal                   
+##  [91] Netherlands              New Zealand              Nicaragua               
+##  [94] Niger                    Nigeria                  Norway                  
+##  [97] Oman                     Pakistan                 Panama                  
+## [100] Paraguay                 Peru                     Philippines             
+## [103] Poland                   Portugal                 Puerto Rico             
+## [106] Reunion                  Romania                  Rwanda                  
+## [109] Sao Tome and Principe    Saudi Arabia             Senegal                 
+## [112] Serbia                   Sierra Leone             Singapore               
+## [115] Slovak Republic          Slovenia                 Somalia                 
+## [118] South Africa             Spain                    Sri Lanka               
+## [121] Sudan                    Swaziland                Sweden                  
+## [124] Switzerland              Syria                    Taiwan                  
+## [127] Tanzania                 Thailand                 Togo                    
+## [130] Trinidad and Tobago      Tunisia                  Turkey                  
+## [133] Uganda                   United Kingdom           United States           
+## [136] Uruguay                  Venezuela                Vietnam                 
+## [139] West Bank and Gaza       Yemen, Rep.              Zambia                  
+## [142] Zimbabwe                
+## 142 Levels: Afghanistan Albania Algeria Angola Argentina Australia ... Zimbabwe
 ```
 
 <br>
@@ -255,17 +410,51 @@ So we would need to make sure country names are consistent in our two dataframes
 
 In general, the opposite of `semi_join()`, the `anti_join()` function is good for diagnosing mismatches.
 
-```{r}
+
+``` r
 # What records in gapminder are not matched in gap_dslabs
 gapminder %>% 
   anti_join(gap_dslabs, by = "country")  %>% 
   count(country)
+```
 
+```
+## # A tibble: 9 × 2
+##   country                   n
+##   <fct>                 <int>
+## 1 Afghanistan              12
+## 2 Korea, Dem. Rep.         12
+## 3 Korea, Rep.              12
+## 4 Myanmar                  12
+## 5 Reunion                  12
+## 6 Sao Tome and Principe    12
+## 7 Somalia                  12
+## 8 Taiwan                   12
+## 9 Yemen, Rep.              12
+```
+
+``` r
 # What records in gap_dslabs are not matched in gapminder
 gap_dslabs %>% 
   anti_join(gapminder,  by = "country")  %>% 
   count(country)
+```
 
+```
+## # A tibble: 52 × 2
+##    country                 n
+##    <chr>               <int>
+##  1 Antigua and Barbuda    10
+##  2 Armenia                10
+##  3 Aruba                  10
+##  4 Azerbaijan             10
+##  5 Bahamas                10
+##  6 Barbados               10
+##  7 Belarus                10
+##  8 Belize                 10
+##  9 Bhutan                 10
+## 10 Brunei                 10
+## # ℹ 42 more rows
 ```
 
 <br>
@@ -338,8 +527,8 @@ Let's start off with what this would look like for just one country. I'm going t
 For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too. 
 --->
 
-```{r}
 
+``` r
 ## filter the country to plot
 gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
@@ -348,14 +537,13 @@ gap_to_plot <- gapminder %>%
 my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
   geom_point() +
   labs(title = "Afghanistan")
-
 ```
 
 <br>
 
 Let's actually give this a better title than just the country name. Let's use the function `str_c()` to paste two strings together so that the title is more descriptive. Use `?str_c` to see what the "sep" variable does. 
-```{r}
 
+``` r
 ## filter the country to plot
 gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
@@ -365,14 +553,14 @@ my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) +
   geom_point() +
   ## add title and save
   labs(title = str_c("Afghanistan", "GDP per capita", sep = " "))
-
 ```
 
 <br>
 
 And as a last step, let's save this figure. 
 
-```{r, eval = FALSE}
+
+``` r
 ## filter the country to plot
 gap_to_plot <- gapminder %>%
   filter(country == "Afghanistan")
@@ -384,16 +572,13 @@ my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) +
   labs(title = str_c("Afghanistan", "GDP per capita", sep = " "))
 
 ggsave(filename = "Afghanistan_gdp_per_cap.png", plot = my_plot)
-
 ```
 
 <br>
 
 OK. So we can check our repo in the file pane (bottom right of RStudio) and see the generated figure:
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("assets/Afghanistan_gdp_per_cap.png")  
-```
+<img src="assets/Afghanistan_gdp_per_cap.png" width="50%" />
 
 <br>
 <br>
@@ -404,7 +589,8 @@ Now, in our code above, we've had to write out "Afghanistan" several times. This
 
 Instead of having "Afghanistan" written 3 times, let's instead create an object that we will assign "Afghanistan" to. We won't name our object "country" because that's a column header with gapminder, and will just confuse us. Let's make it distinctive: let's write cntry (country without vowels):
 
-```{r, eval = FALSE}
+
+``` r
 ## create country variable
 cntry <- "Afghanistan"
 ```
@@ -413,8 +599,8 @@ cntry <- "Afghanistan"
 
 Now, we can replace each `"Afghanistan"` with our variable `cntry`. We will have to introduce a `str_c()` statement in the `ggsave()` function too, and we want to separate by nothing (`""`) because we don't want spaces in our filenames. 
 
-```{r, eval = FALSE}
 
+``` r
 ## create country variable
 cntry <- "Afghanistan"
 
@@ -430,7 +616,6 @@ my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) +
 ## note: there are many ways to create filenames with str_c(), str_c() or file.path(); we are doing this way for a reason.
 
 ggsave(filename = str_c(cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
-
 ```
 
 <br>
@@ -448,7 +633,8 @@ Better with a `for` loop. This will let us cycle through and do what we want to 
 **Sit back and watch me for a few minutes while we develop the `for` loop.** Then we'll give you time to do this on your computers as well. 
 
 The basic structure of a `for` loop is:
-```{r, eval=FALSE}
+
+``` r
 for (each_item in set_of_items) {
   do a thing
 }
@@ -461,7 +647,8 @@ So looking back at our Afghanistan code: all of this is pretty much the "do a th
 <br>
 
 Let's paste from what we had before, and modify it. I'm also going to use RStudio's indentation help to indent the lines within the `for` loop by highlighting the code in this chunk and going to Code > Reindent Lines (shortcut: command I)
-```{r, eval=FALSE}
+
+``` r
 ## create country variable
 cntry <- "Afghanistan"
 for (each cntry in a list_of_countries) {
@@ -487,7 +674,8 @@ for (each cntry in a list_of_countries) {
 
 OK. So let's start with the beginning of the `for` loop. We want a list of countries that we will iterate through. We can do that by adding this code before the `for` loop.
 
-```{r, eval=FALSE}
+
+``` r
 ## create a list of countries
 country_list <- c("Albania", "Canada", "Spain")
 
@@ -515,7 +703,8 @@ Great! And it doesn't matter if we just use these three countries or all the cou
 
 But first let's create a figure directory and make sure it saves there since it's going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the "Files" pane in RStudio by clicking "New Folder" (green plus button). But we are going to do it in R. A folder is called a directory:
 
-```{r, eval=FALSE}
+
+``` r
 dir.create("figures") 
 
 ## create a list of countries
@@ -536,7 +725,6 @@ for (cntry in country_list) {
   ## add the figures/ folder
   ggsave(filename = str_c("figures/", cntry, "_gdp_per_cap.png", sep = ""), plot = my_plot)
 } 
-
 ```
 
 So that took a little longer than just the 3, but still super fast. `for` loops are sometimes just the thing you need to iterate over many things in your analyses. 
@@ -568,7 +756,8 @@ Use the worksheet we copied from the cloned GitHub repo to
 <details>
   <summary>click to see our approach</summary>
   
-```{r, eval=FALSE}
+
+``` r
 dir.create("figures") 
 dir.create("figures/Europe") 
 
@@ -596,7 +785,6 @@ for (cntry in country_list) { # (cntry = country_list[1])
   
   ggsave(filename = str_c("figures/Europe/", cntry, "_gdp_tot.png", sep = ""), plot = my_plot)
 } 
-
 ```
 
 Notice how we put the calculation of `gdp_per_cap` * `pop` outside the `for` loop. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the `for` loop). 
@@ -617,7 +805,8 @@ In R and other languages, these are called "if statements".
 
 ### if statement basic structure
 
-```{r, eval=FALSE}
+
+``` r
 # if
 if (condition is true) {
   do something
@@ -637,14 +826,14 @@ Let's bring this concept into our `for` loop for Europe that we've just created.
 
 First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:
 
-```{r, eval = FALSE}
 
+``` r
 est <- read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv')
 gapminder_est <- left_join(gapminder, est)
-
 ```
 
-```{r, eval=FALSE}
+
+``` r
 dir.create("figures") 
 dir.create("figures/Europe") 
 
@@ -695,7 +884,8 @@ This worked, but we got a warning message with the `if` statement. This is becau
 
 ### Executable if statement
 
-```{r, eval=FALSE}
+
+``` r
 dir.create("figures") 
 dir.create("figures/Europe") 
 
@@ -743,7 +933,8 @@ OK so this is working as we expect! Note that we do not need an `else` statement
 
 ### Executable if/else statement
 
-```{r, eval=FALSE}
+
+``` r
 dir.create("figures") 
 dir.create("figures/Europe") 
 
@@ -792,7 +983,8 @@ if (any(gap_to_plot$estimated == "yes")) { # any() will return a single TRUE or 
 
 Note that this works because we know there are only two conditions, `Estimated == yes` and `Estimated == no`. In the first `if` statement we asked for estimated data, and the `else` condition gives us everything else (which we know is reported). We can be explicit about setting these conditions in the `else` clause by instead using an `else if` statement. Below is how you would construct this in your `for` loop, similar to above:
 
-```{r, eval = FALSE}
+
+``` r
   if (any(gap_to_plot$estimated == "yes")) { # any() will return a single TRUE or FALSE
     
     print(str_c(cntry, "data are estimated"))
@@ -817,14 +1009,15 @@ This construction is necessary if you have more than two conditions to test for.
 
 We can also add the conditional addition of the plot subtitle with R's `ifelse()` function. It works like this
 
-```{r, eval = FALSE}
+
+``` r
 ifelse(condition is true, perform action, perform alternative action)
 ```
 
 where the first argument is the condition or set of conditions to be evaluated, the second argument is the action that is performed if the condition is true, and the third argument is the action to be performed if the condition is not true. We can add this directly within the initial `labs()` layer of our plot for a more concise expression that achieves the same goal: 
 
-```{r, eval=FALSE}
 
+``` r
 dir.create("figures") 
 dir.create("figures/Europe") 
 
@@ -854,7 +1047,6 @@ for (cntry in country_list) { # (cntry = country_list[1])
          plot = my_plot)
   
 } 
-
 ```
 
 <br>

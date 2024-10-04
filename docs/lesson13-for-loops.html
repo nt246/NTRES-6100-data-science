@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 13: Wrap-up of relational data, then on to iteration with for loops and conditional execution with if statements</title>
+
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+    </li>
+    <li>
+      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+    </li>
+    <li>
+      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+    </li>
+    <li>
+      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+    </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
+    </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 13: Wrap-up of relational data, then
+on to iteration with <code>for</code> loops and conditional execution
+with <code>if</code> statements</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<div id="required" class="section level4">
+<h4>Required:</h4>
+<p><strong>Relational data</strong>:</p>
+<p>If you didn’t get a chance to read it last week, have a look at <a
+href="https://r4ds.had.co.nz/relational-data.html">Chapter 13 in ‘R for
+Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><br></p>
+<p><strong>Iteration</strong>:</p>
+<p><a href="https://r4ds.had.co.nz/iteration.html">Chapter 21 in ‘R for
+Data Science’</a> by Hadley Wickham &amp; Garrett Grolemund</p>
+<p><br></p>
+</div>
+<div id="other-resources" class="section level4">
+<h4>Other resources:</h4>
+<p>We will be working through <a
+href="http://ohi-science.org/data-science-training/programming.html">this
+tutorial</a> developed by the Ocean Health Index Data Science Team</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="announcements" class="section level2">
+<h2>Announcements</h2>
+<p>Because of the snow day and cancelled class on Tuesday, we have
+updated the syllabus. We have shifted lectures down and added a make-up
+lecture the Tuesday after Spring Break * Assignment 7 is still due today
+* Assignment 8 will not be due until 3/30 * Assignment 9 will be due
+Tuesday after Spring Break (4/11)</p>
+<p>Postdoc Jessi Rick will offer a two-session follow-up workshop during
+our regular lecture slot on 4/13 and 4/13 about open data science and
+data sharing/management. This is an optional not-for-credit add-on
+workshop. More details next week.</p>
+<p><br></p>
+</div>
+<div id="todays-learning-objectives" class="section level2">
+<h2>Today’s learning objectives</h2>
+<p>We’ll start by working through a few exercises on using integrating
+data from multiple tibbles (using <code>join()</code> functions) and
+recap on strategies for successfully integrating relational data. Then
+we’ll shift gears to begin exploring the key programming concepts of
+iteration and conditional execution.</p>
+<p>By the end of today’s and next Tuesday’s class, you should be able
+to:</p>
+<ul>
+<li>Write a <code>for</code> loop to repeat operations on different
+input</li>
+<li>Implement <code>if</code> and <code>if else</code> statements for
+conditional execution of code</li>
+</ul>
+<p><br></p>
+<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with
+permission) from the excellent <a
+href="http://ohi-science.org/data-science-training/programming.html">Ocean
+Health Index Data Science Training</a>.</p>
+<p><br> <br></p>
+</div>
+<div id="recap-on-relational-data" class="section level2">
+<h2>Recap on relational data</h2>
+<p>Let’s load the <code>tidyverse</code> and <code>knitr</code></p>
+<pre class="r"><code>library(tidyverse)
+library(knitr)</code></pre>
+<p><br> <br></p>
+<div id="the-gapminder-data" class="section level4">
+<h4>The <code>gapminder</code> data</h4>
+<p>Last class, we used the <code>nycflights13</code> datasets to explore
+the mutating joins. Let’s recap by applying these to a different
+dataset. Today we’ll return to the <code>gapminder</code> dataset that
+many of you have started exploring in the lab session a few weeks
+ago.</p>
+<p>The data in the <code>gapminder</code> package is a subset of the <a
+href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder
+dataset</a>, which contains data on the health and wealth of nations
+over the past decades. It was pioneered by <a
+href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who
+is famous for describing the prosperity of nations over time through
+famines, wars and other historic events with this beautiful data
+visualization in his <a
+href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006
+TED Talk: The best stats you’ve ever seen</a>:</p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion
+Chart</a><br />
+<a href="http://www.gapminder.org/world"><img
+src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png"
+alt="Gapminder Motion Chart" /></a></p>
+<p><br></p>
+<p>We will primarily use a subset of the gapminder data included in the
+R package <code>gapminder</code>. So first we need to install that
+package and load it, along with the tidyverse. Then have a look at the
+data in <code>gapminder</code></p>
+<pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
+
+head(gapminder) %&gt;%  kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">28.801</td>
+<td align="right">8425333</td>
+<td align="right">779.4453</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">30.332</td>
+<td align="right">9240934</td>
+<td align="right">820.8530</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1962</td>
+<td align="right">31.997</td>
+<td align="right">10267083</td>
+<td align="right">853.1007</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1967</td>
+<td align="right">34.020</td>
+<td align="right">11537966</td>
+<td align="right">836.1971</td>
+</tr>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1972</td>
+<td align="right">36.088</td>
+<td align="right">13079460</td>
+<td align="right">739.9811</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">1977</td>
+<td align="right">38.438</td>
+<td align="right">14880372</td>
+<td align="right">786.1134</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<p>We can see that this dataset used camelCase (first word lowercase and
+capitalize all following words) for its column names. I always use
+snake_case (replace spaces with underscores), and it’s going to look
+messy to have this inconsistent way of writing variable names. So I’m
+going to go ahead and clean these names up before I start working with
+the data. I can do this manually with the <code>rename()</code> or
+<code>colnames()</code> functions, e.g.</p>
+<pre class="r"><code>gapminder %&gt;% 
+  rename(&quot;life_exp&quot; = lifeExp, &quot;gdp_per_cap&quot; = gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 × 6
+##    country     continent  year life_exp      pop gdp_per_cap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;
+##  1 Afghanistan Asia       1952     28.8  8425333        779.
+##  2 Afghanistan Asia       1957     30.3  9240934        821.
+##  3 Afghanistan Asia       1962     32.0 10267083        853.
+##  4 Afghanistan Asia       1967     34.0 11537966        836.
+##  5 Afghanistan Asia       1972     36.1 13079460        740.
+##  6 Afghanistan Asia       1977     38.4 14880372        786.
+##  7 Afghanistan Asia       1982     39.9 12881816        978.
+##  8 Afghanistan Asia       1987     40.8 13867957        852.
+##  9 Afghanistan Asia       1992     41.7 16317921        649.
+## 10 Afghanistan Asia       1997     41.8 22227415        635.
+## # ℹ 1,694 more rows</code></pre>
+<pre class="r"><code># Alternative
+colnames(gapminder) &lt;- c(&quot;country&quot;, &quot;continent&quot;, &quot;year&quot;, &quot;life_exp&quot;, &quot;pop&quot;, &quot;gdp_per_cap&quot;)</code></pre>
+<p><br></p>
+<p>Alternatively, I can use the <code>clean_names()</code> function from
+the <code>janitor</code> package</p>
+<pre class="r"><code>library(janitor)
+
+clean_names(gapminder)</code></pre>
+<p><br> <br></p>
+<p>In the lab section, we have been working with a different subset of
+the gapminder dataset that comes with the <code>dslabs</code> package.
+Let’s import a chunk of those data that we’ve saved in our class GitHub
+repo:</p>
+<pre class="r"><code>gap_dslabs &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv&quot;)</code></pre>
+<p><br></p>
+</div>
+<div id="exercise" class="section level4">
+<h4>Exercise</h4>
+<p><strong>Add the infant mortality and fertility data to our original
+<code>gapminder</code> data. Do we have those statistics for all
+observations?</strong></p>
+<p>In this case, we were lucky that the variables that we wanted to join
+the tables by had identical names in the two datasets. Now, let’s
+imagine the variables in the <code>dslab</code> version had been named
+differently. Run this code to change the variable names:</p>
+<pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs %&gt;% 
+  rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
+<p><br></p>
+<p><strong>Now add the infant mortality and fertility from the
+<code>gap_dslabs_caps</code> to our original `gapminder
+data.</strong></p>
+<p><br> <br></p>
+<details>
+<summary>
+Click here for a solution
+</summary>
+<pre class="r"><code>## When variable names are identical
+
+# Natural join
+gapminder %&gt;% 
+  left_join(gap_dslabs)</code></pre>
+<pre><code>## Joining with `by = join_by(country, year)`</code></pre>
+<pre><code>## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
+<pre class="r"><code># Specifying the variables to join by (useful if some variables mean different things in the two tables you&#39;re joining)
+gapminder %&gt;% 
+  left_join(gap_dslabs, by = c(&quot;country&quot;, &quot;year&quot;))</code></pre>
+<pre><code>## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
+<pre class="r"><code># When variable names are not identical
+gapminder %&gt;% 
+  left_join(gap_dslabs_caps, by = c(&quot;country&quot; = &quot;Country&quot;, &quot;year&quot; = &quot;Year&quot;))</code></pre>
+<pre><code>## # A tibble: 1,704 × 8
+##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
+##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
+##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
+##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
+##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
+##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
+##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
+##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
+##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
+##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
+## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
+## # ℹ 1,694 more rows
+## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
+<pre class="r"><code>## Note, gap_dslabs doesn&#39;t have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.</code></pre>
+</details>
+<p><br></p>
+</div>
+<div id="filtering-joins" class="section level4">
+<h4>Filtering joins</h4>
+<p>We’ll review filtering joins and general strategies for combining
+information from multiple tables. There are some good examples with the
+<code>flights</code> data in <a
+href="https://r4ds.had.co.nz/relational-data.html#filtering-joins">R4DS</a>.
+Here, we will illustrate with the <code>gapminder</code> data.</p>
+<p><br></p>
+<p>Filtering joins match observations in the same way as mutating joins,
+but affect the observations, not the variables. There are two types:</p>
+<ul>
+<li><code>semi_join(x, y)</code> keeps all observations in x that have a
+match in y.</li>
+<li><code>anti_join(x, y)</code> drops all observations in x that have a
+match in y.</li>
+</ul>
+<p>Semi-joins are useful for matching filtered summary tables back to
+the original rows.</p>
+<p><br></p>
+<p>These functions can be useful when we want to filter based on more
+than one variable. If we wanted to grab all the records from Malawi, for
+example, we can use <code>filter()</code></p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country == &quot;Malawi&quot;)</code></pre>
+<pre><code>## # A tibble: 12 × 6
+##    country continent  year life_exp      pop gdp_per_cap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;
+##  1 Malawi  Africa     1952     36.3  2917802        369.
+##  2 Malawi  Africa     1957     37.2  3221238        416.
+##  3 Malawi  Africa     1962     38.4  3628608        428.
+##  4 Malawi  Africa     1967     39.5  4147252        496.
+##  5 Malawi  Africa     1972     41.8  4730997        585.
+##  6 Malawi  Africa     1977     43.8  5637246        663.
+##  7 Malawi  Africa     1982     45.6  6502825        633.
+##  8 Malawi  Africa     1987     47.5  7824747        636.
+##  9 Malawi  Africa     1992     49.4 10014249        563.
+## 10 Malawi  Africa     1997     47.5 10419991        692.
+## 11 Malawi  Africa     2002     45.0 11824495        665.
+## 12 Malawi  Africa     2007     48.3 13327079        759.</code></pre>
+<p><br></p>
+<p>However, say we wanted to extract the records from the countries and
+years that had the highest fertility rates recorded. It would be harder
+to do this with the <code>filter()</code> function in a single step.
+This is a case where <code>semi_join()</code> can be useful.</p>
+<pre class="r"><code>top_fertility &lt;- gap_dslabs %&gt;% 
+  arrange(-fertility) %&gt;% 
+  head(10)
+
+gapminder %&gt;% 
+  semi_join(top_fertility)</code></pre>
+<pre><code>## Joining with `by = join_by(country, year)`</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   country continent  year life_exp     pop gdp_per_cap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;   &lt;int&gt;       &lt;dbl&gt;
+## 1 Oman    Asia       1982     62.7 1301048      12955.
+## 2 Rwanda  Africa     1962     43   3051242        597.
+## 3 Rwanda  Africa     1967     44.1 3451079        511.
+## 4 Rwanda  Africa     1972     44.6 3992121        591.
+## 5 Rwanda  Africa     1977     45   4657072        670.
+## 6 Rwanda  Africa     1982     46.2 5507565        882.</code></pre>
+<p>We notice here that our resulting tibble only include 6 rows, not the
+10 we had expected. Upon inspection, we notice that the records from
+Yemen are missing. We can confirm that this is because the
+<code>gapminder</code> tibble doesn’t include “Yemen” (written this way)
+as a country by examining the unique values included in the country
+variable.</p>
+<pre class="r"><code>unique(gapminder$country)</code></pre>
+<pre><code>##   [1] Afghanistan              Albania                  Algeria                 
+##   [4] Angola                   Argentina                Australia               
+##   [7] Austria                  Bahrain                  Bangladesh              
+##  [10] Belgium                  Benin                    Bolivia                 
+##  [13] Bosnia and Herzegovina   Botswana                 Brazil                  
+##  [16] Bulgaria                 Burkina Faso             Burundi                 
+##  [19] Cambodia                 Cameroon                 Canada                  
+##  [22] Central African Republic Chad                     Chile                   
+##  [25] China                    Colombia                 Comoros                 
+##  [28] Congo, Dem. Rep.         Congo, Rep.              Costa Rica              
+##  [31] Cote d&#39;Ivoire            Croatia                  Cuba                    
+##  [34] Czech Republic           Denmark                  Djibouti                
+##  [37] Dominican Republic       Ecuador                  Egypt                   
+##  [40] El Salvador              Equatorial Guinea        Eritrea                 
+##  [43] Ethiopia                 Finland                  France                  
+##  [46] Gabon                    Gambia                   Germany                 
+##  [49] Ghana                    Greece                   Guatemala               
+##  [52] Guinea                   Guinea-Bissau            Haiti                   
+##  [55] Honduras                 Hong Kong, China         Hungary                 
+##  [58] Iceland                  India                    Indonesia               
+##  [61] Iran                     Iraq                     Ireland                 
+##  [64] Israel                   Italy                    Jamaica                 
+##  [67] Japan                    Jordan                   Kenya                   
+##  [70] Korea, Dem. Rep.         Korea, Rep.              Kuwait                  
+##  [73] Lebanon                  Lesotho                  Liberia                 
+##  [76] Libya                    Madagascar               Malawi                  
+##  [79] Malaysia                 Mali                     Mauritania              
+##  [82] Mauritius                Mexico                   Mongolia                
+##  [85] Montenegro               Morocco                  Mozambique              
+##  [88] Myanmar                  Namibia                  Nepal                   
+##  [91] Netherlands              New Zealand              Nicaragua               
+##  [94] Niger                    Nigeria                  Norway                  
+##  [97] Oman                     Pakistan                 Panama                  
+## [100] Paraguay                 Peru                     Philippines             
+## [103] Poland                   Portugal                 Puerto Rico             
+## [106] Reunion                  Romania                  Rwanda                  
+## [109] Sao Tome and Principe    Saudi Arabia             Senegal                 
+## [112] Serbia                   Sierra Leone             Singapore               
+## [115] Slovak Republic          Slovenia                 Somalia                 
+## [118] South Africa             Spain                    Sri Lanka               
+## [121] Sudan                    Swaziland                Sweden                  
+## [124] Switzerland              Syria                    Taiwan                  
+## [127] Tanzania                 Thailand                 Togo                    
+## [130] Trinidad and Tobago      Tunisia                  Turkey                  
+## [133] Uganda                   United Kingdom           United States           
+## [136] Uruguay                  Venezuela                Vietnam                 
+## [139] West Bank and Gaza       Yemen, Rep.              Zambia                  
+## [142] Zimbabwe                
+## 142 Levels: Afghanistan Albania Algeria Angola Argentina Australia ... Zimbabwe</code></pre>
+<p><br></p>
+<p>So we would need to make sure country names are consistent in our two
+dataframes before proceeding (<code>str_replace()</code> is a good
+function for that).</p>
+<p>In general, the opposite of <code>semi_join()</code>, the
+<code>anti_join()</code> function is good for diagnosing mismatches.</p>
+<pre class="r"><code># What records in gapminder are not matched in gap_dslabs
+gapminder %&gt;% 
+  anti_join(gap_dslabs, by = &quot;country&quot;)  %&gt;% 
+  count(country)</code></pre>
+<pre><code>## # A tibble: 9 × 2
+##   country                   n
+##   &lt;fct&gt;                 &lt;int&gt;
+## 1 Afghanistan              12
+## 2 Korea, Dem. Rep.         12
+## 3 Korea, Rep.              12
+## 4 Myanmar                  12
+## 5 Reunion                  12
+## 6 Sao Tome and Principe    12
+## 7 Somalia                  12
+## 8 Taiwan                   12
+## 9 Yemen, Rep.              12</code></pre>
+<pre class="r"><code># What records in gap_dslabs are not matched in gapminder
+gap_dslabs %&gt;% 
+  anti_join(gapminder,  by = &quot;country&quot;)  %&gt;% 
+  count(country)</code></pre>
+<pre><code>## # A tibble: 52 × 2
+##    country                 n
+##    &lt;chr&gt;               &lt;int&gt;
+##  1 Antigua and Barbuda    10
+##  2 Armenia                10
+##  3 Aruba                  10
+##  4 Azerbaijan             10
+##  5 Bahamas                10
+##  6 Barbados               10
+##  7 Belarus                10
+##  8 Belize                 10
+##  9 Bhutan                 10
+## 10 Brunei                 10
+## # ℹ 42 more rows</code></pre>
+<p><br></p>
+</div>
+<div id="join-problems-how-to-troubleshoot" class="section level3">
+<h3>Join problems – how to troubleshoot</h3>
+<ul>
+<li>Start by identifying the variables that form the primary key in each
+table based on your understanding of the data</li>
+<li>Check that none of the variables in the primary key are missing. If
+a value is missing then it can’t identify an observation!</li>
+<li>Check that your foreign keys match primary keys in another table.
+The best way to do this is with an anti_join()</li>
+</ul>
+<p><br> <br></p>
+<p>Now let’s shift gears…</p>
+</div>
+</div>
+<div id="clone-repo-to-get-todays-exercise-sheet"
+class="section level2">
+<h2>Clone repo to get today’s exercise sheet</h2>
+<p>First, to refresh our memory on RStudio-GitHub integration, let’s
+start by cloning a repo with today’s exercise sheet. The repo is located
+here: <a href="https://github.com/nt246/for-loop-exercise"
+class="uri">https://github.com/nt246/for-loop-exercise</a></p>
+<p>Clone it to your local machine. Try first to see if you remember how.
+If you need a reminder of how we do this, revisit <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson
+3</a>.</p>
+<p>Once you have an RStudio project linked to the
+<code>for-loop-exercises</code> repo, find the file
+<code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio
+project for your own class repo, and change the file name by replacing
+<code>name</code> with your name.</p>
+<p>Add a picture as instructed.</p>
+<p>Push your changes to GitHub. If you need a reminder of how we do
+this, revisit <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson
+3</a></p>
+<p>Check your class repo on GitHub (<a
+href="https://github.com/therkildsen-class/ntres-6100-sp23-USERNAME"
+class="uri">https://github.com/therkildsen-class/ntres-6100-sp23-USERNAME</a>
+[replace USERNAME with your GitHub user name]) to make sure your file
+shows up.</p>
+<p><br> <br> <br></p>
+</div>
+<div id="introduction-to-for-loops" class="section level2">
+<h2>Introduction to <code>for loops</code></h2>
+<blockquote>
+<p>This section is modified from <a
+href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R
+for Data Science</a></p>
+</blockquote>
+<p>Whenever possible, we want to avoid duplication in our code (e.g. by
+copying-and-pasting sections of our script that we want to repeat with
+different input). Reducing code duplication has three main benefits:</p>
+<ul>
+<li><p>It’s easier to see the intent of your code, because your eyes are
+drawn to what’s different, not what stays the same.</p></li>
+<li><p>It’s easier to respond to changes in requirements. As your needs
+change, you only need to make changes in one place, rather than
+remembering to change every place that you copied-and-pasted the code.
+You eliminate the chance of making incidental mistakes when you copy and
+paste (i.e. updating a variable name in one place, but not in
+another).</p></li>
+<li><p>You’re likely to have fewer bugs because each line of code is
+used in more places.</p></li>
+</ul>
+<p>One tool for reducing duplication is functions, which reduce
+duplication by identifying repeated patterns of code and extract them
+out into independent pieces that can be easily reused and updated. We’ll
+go through a brief introduction to how to write functions in R next
+week.</p>
+<p>Another tool for reducing duplication is iteration, which helps you
+when you need to do the same thing to multiple inputs, e.g. repeating
+the same operation on different columns, or on different datasets. There
+are several ways to iterate in R. Today we will only cover
+<code>for</code> loops, which are a great place to start because they
+make iteration very explicit, so it’s obvious what’s happening. However,
+<code>for</code> loops are quite verbose, and require quite a bit of
+bookkeeping code that is duplicated for every <code>for</code> loop.
+Once you master <code>for</code> loops, you can solve many common
+iteration problems with less code, more ease, and fewer errors using
+functional programming, which I encourage you to explore on your own,
+for example in the <a
+href="https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals">R
+for Data Science</a> book.</p>
+<p>Today, we will illustrate the use of <code>for</code> loops with an
+example. We will also use conditional execution of code with
+<code>if</code> statements.</p>
+<p><br> <br></p>
+</div>
+<div id="analysis-plan" class="section level2">
+<h2>Analysis plan</h2>
+<p>Here is the plan for our analysis: We want to plot how the
+gdp_per_cap for each country in the <code>gapminder</code> data frame
+has changed over time. So that’s 142 separate plots! We will automate
+this, labeling each plot with its name and saving it in a folder called
+figures. We will learn a bunch of things as we go.</p>
+<p><br></p>
+</div>
+<div id="automation-with-for-loops" class="section level2">
+<h2>Automation with <code>for</code> loops</h2>
+<p>Our plan is to plot gdp_per_cap vs. year for each country. This means
+that we want to do the same operation (plotting gdp_per_cap) on a bunch
+of different things (countries). We’ve worked with dplyr’s
+<code>group_by()</code> function, and this is super powerful to automate
+through groups. But there are things that you may not want to do with
+<code>group_by()</code>, like plotting. So here, we will use a
+<code>for</code> loop.</p>
+<p>Let’s start off with what this would look like for just one country.
+I’m going to demonstrate with Afghanistan:</p>
+<!---TODO
+For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too. 
+--->
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+  geom_point() +
+  labs(title = &quot;Afghanistan&quot;)</code></pre>
+<p><br></p>
+<p>Let’s actually give this a better title than just the country name.
+Let’s use the function <code>str_c()</code> to paste two strings
+together so that the title is more descriptive. Use <code>?str_c</code>
+to see what the “sep” variable does.</p>
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = str_c(&quot;Afghanistan&quot;, &quot;GDP per capita&quot;, sep = &quot; &quot;))</code></pre>
+<p><br></p>
+<p>And as a last step, let’s save this figure.</p>
+<pre class="r"><code>## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == &quot;Afghanistan&quot;)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = str_c(&quot;Afghanistan&quot;, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+
+ggsave(filename = &quot;Afghanistan_gdp_per_cap.png&quot;, plot = my_plot)</code></pre>
+<p><br></p>
+<p>OK. So we can check our repo in the file pane (bottom right of
+RStudio) and see the generated figure:</p>
+<p><img src="assets/Afghanistan_gdp_per_cap.png" width="50%" /></p>
+<p><br> <br></p>
+<div id="thinking-ahead-cleaning-up-our-code" class="section level3">
+<h3>Thinking ahead: cleaning up our code</h3>
+<p>Now, in our code above, we’ve had to write out “Afghanistan” several
+times. This makes it not only typo-prone as we type it each time, but if
+we wanted to plot another country, we’d have to write that in 3 places
+too. It is not setting us up for an easy time in our future, and
+thinking ahead in programming is something to keep in mind.</p>
+<p>Instead of having “Afghanistan” written 3 times, let’s instead create
+an object that we will assign “Afghanistan” to. We won’t name our object
+“country” because that’s a column header with gapminder, and will just
+confuse us. Let’s make it distinctive: let’s write cntry (country
+without vowels):</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;</code></pre>
+<p><br></p>
+<p>Now, we can replace each <code>"Afghanistan"</code> with our variable
+<code>cntry</code>. We will have to introduce a <code>str_c()</code>
+statement in the <code>ggsave()</code> function too, and we want to
+separate by nothing (<code>""</code>) because we don’t want spaces in
+our filenames.</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;
+
+## filter the country to plot
+gap_to_plot &lt;- gapminder %&gt;%
+  filter(country == cntry)
+
+## plot
+my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+  geom_point() +
+  ## add title and save
+  labs(title = str_c(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+## note: there are many ways to create filenames with str_c(), str_c() or file.path(); we are doing this way for a reason.
+
+ggsave(filename = str_c(cntry, &quot;_gdp_per_cap.png&quot;, sep = &quot;&quot;), plot = my_plot)</code></pre>
+<p><br></p>
+<p>Let’s run this. Great! it saved our figure (I can tell this because
+the timestamp in the Files pane has updated!)</p>
+<p><br></p>
+</div>
+<div id="for-loop-basic-structure" class="section level3">
+<h3><code>for</code> loop basic structure</h3>
+<p>Now, how about if we want to plot not only Afghanistan, but other
+countries as well? There wasn’t actually that much code needed to get us
+here, but we definitely do not want to copy this for every country. Even
+if we copy-pasted and switched out the country assigned to the
+<code>cntry</code> variable, it would be very typo-prone. Plus, what if
+you wanted to instead plot life_exp? You’d have to remember to change it
+each time… it quickly gets messy.</p>
+<p>Better with a <code>for</code> loop. This will let us cycle through
+and do what we want to each thing in turn. If you want to iterate over a
+set of values, and perform the same operation on each, a
+<code>for</code> loop will do the job.</p>
+<p><strong>Sit back and watch me for a few minutes while we develop the
+<code>for</code> loop.</strong> Then we’ll give you time to do this on
+your computers as well.</p>
+<p>The basic structure of a <code>for</code> loop is:</p>
+<pre class="r"><code>for (each_item in set_of_items) {
+  do a thing
+}</code></pre>
+<p>Note the <code>( )</code> and the <code>{ }</code>. We talk about
+iterating through each item in the <code>for</code> loop, which makes
+each item an iterator.</p>
+<p>So looking back at our Afghanistan code: all of this is pretty much
+the “do a thing” part. And we can see that there are only a few places
+that are specific to Afghanistan. If we could make those places not
+specific to Afghanistan, we would be set.</p>
+<p><img src="assets/for_loop_logic.png" /> <br></p>
+<p>Let’s paste from what we had before, and modify it. I’m also going to
+use RStudio’s indentation help to indent the lines within the
+<code>for</code> loop by highlighting the code in this chunk and going
+to Code &gt; Reindent Lines (shortcut: command I)</p>
+<pre class="r"><code>## create country variable
+cntry &lt;- &quot;Afghanistan&quot;
+for (each cntry in a list_of_countries) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = str_c(cntry, &quot;_gdp_per_cap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+  
+}</code></pre>
+<p><br></p>
+</div>
+<div id="executable-for-loop" class="section level3">
+<h3>Executable <code>for</code> loop!</h3>
+<p>OK. So let’s start with the beginning of the <code>for</code> loop.
+We want a list of countries that we will iterate through. We can do that
+by adding this code before the <code>for</code> loop.</p>
+<pre class="r"><code>## create a list of countries
+country_list &lt;- c(&quot;Albania&quot;, &quot;Canada&quot;, &quot;Spain&quot;)
+
+for (cntry in country_list) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = str_c(cntry, &quot;_gdp_per_cap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+}</code></pre>
+<p><br></p>
+<p>At this point, we do have a functioning <code>for</code> loop. For
+each item in the <code>country_list</code>, the <code>for</code> loop
+will iterate over the code within the <code>{ }</code>, changing
+<code>cntry</code> each time as it goes through the list. And we can see
+it works because we can see them appear in the files pane at the bottom
+right of RStudio!</p>
+<p>Great! And it doesn’t matter if we just use these three countries or
+all the countries–let’s try it.</p>
+<p>But first let’s create a figure directory and make sure it saves
+there since it’s going to get out of hand quickly. We could do this from
+the Finder/Windows Explorer, or from the “Files” pane in RStudio by
+clicking “New Folder” (green plus button). But we are going to do it in
+R. A folder is called a directory:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+
+## create a list of countries
+country_list &lt;- unique(gapminder$country) # ?unique() returns the unique values
+
+for (cntry in country_list) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gapminder %&gt;%
+    filter(country == cntry)
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_per_cap)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ## add the figures/ folder
+  ggsave(filename = str_c(&quot;figures/&quot;, cntry, &quot;_gdp_per_cap.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p>So that took a little longer than just the 3, but still super fast.
+<code>for</code> loops are sometimes just the thing you need to iterate
+over many things in your analyses.</p>
+<p><br></p>
+</div>
+<div id="clean-up-our-repo" class="section level3">
+<h3>Clean up our repo</h3>
+<p>OK we now have 142 figures that we just created. They exist locally
+on our computer, and we have the code to recreate them anytime. But, we
+don’t really need to push them to GitHub. Let’s delete the figures/
+folder and see it disappear from the Git tab. An alternative to deleting
+the figures would be to add them to our .gitignore file. Read more about
+that <a
+href="https://carpentries-incubator.github.io/git-Rstudio-course/02-ignore/index.html">here</a>
+and play around with it.</p>
+<p><br> <br></p>
+</div>
+<div id="your-turn" class="section level3">
+<h3>Your turn</h3>
+<p>Use the worksheet we copied from the cloned GitHub repo to</p>
+<ol style="list-style-type: decimal">
+<li>Modify our <code>for</code> loop so that it:
+<ul>
+<li>loops through countries in Europe only</li>
+<li>plots the product of gdp_per_cap and population size per year
+(should approximate the total GDP) instead of the gdp_per_cap</li>
+<li>saves the plots to a new subfolder inside the (recreated) figures
+folder called “Europe”.</li>
+</ul></li>
+<li>Sync to GitHub</li>
+</ol>
+<p><br> <br></p>
+<div id="answer" class="section level4">
+<h4>Answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder %&gt;%
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(str_c(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdp_tot.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p>Notice how we put the calculation of <code>gdp_per_cap</code> *
+<code>pop</code> outside the <code>for</code> loop. It could have gone
+inside, but it’s an operation that could be done just one time before
+hand (outside the loop) rather than multiple times as you go (inside the
+<code>for</code> loop).</p>
+</details>
+<p><br> <br></p>
+</div>
+</div>
+</div>
+<div id="conditional-statements-with-if-and-else"
+class="section level2">
+<h2>Conditional statements with <code>if</code> and
+<code>else</code></h2>
+<p>Often when we’re coding we want to control the flow of our actions.
+This can be done by setting actions to occur only if a condition or a
+set of conditions are met.</p>
+<p>In R and other languages, these are called “if statements”.</p>
+<p><br></p>
+<div id="if-statement-basic-structure" class="section level3">
+<h3>if statement basic structure</h3>
+<pre class="r"><code># if
+if (condition is true) {
+  do something
+}
+
+# if, else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}</code></pre>
+<p><br></p>
+<p>Let’s bring this concept into our <code>for</code> loop for Europe
+that we’ve just created. What if we want to add the label “Estimated” to
+countries for which the values were estimated rather than based on
+official reported statistics? Here’s what we’d do.</p>
+<p>First, import csv file with information on whether data was estimated
+or reported, and join to gapminder dataset:</p>
+<pre class="r"><code>est &lt;- read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/countries_estimated.csv&#39;)
+gapminder_est &lt;- left_join(gapminder, est)</code></pre>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(str_c(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP&quot;, sep = &quot; &quot;))
+  
+  ## if estimated, add that as a subtitle. 
+  if (gap_to_plot$estimated == &quot;yes&quot;) {
+    
+    ## add a print statement just to check
+    print(str_c(cntry, &quot; data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  }
+  #   Warning message:
+  # In if (gap_to_plot$estimated == &quot;yes&quot;) { :
+  #   the condition has length &gt; 1 and only the first element will be used
+  
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdp_tot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>This worked, but we got a warning message with the <code>if</code>
+statement. This is because if we look at
+<code>gap_to_plot$estimated</code>, it is many “yes”s or “no”s, and the
+if statement works just on the first one. We know that if any are yes,
+all are yes, but you can imagine that this could lead to problems down
+the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
+<p><br></p>
+</div>
+<div id="executable-if-statement" class="section level3">
+<h3>Executable if statement</h3>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(str_c(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP&quot;, sep = &quot; &quot;))
+  
+## if estimated, add that as a subtitle. 
+if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+  
+    ## add a print statement just to check
+    print(str_c(cntry, &quot; data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  }
+  
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdp_tot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>OK so this is working as we expect! Note that we do not need an
+<code>else</code> statement above, because we only want to do something
+(add a subtitle) if one condition is met. But what if we want to add a
+different subtitle based on another condition, say where the data are
+reported, to be extra explicit about it?</p>
+<p><br></p>
+</div>
+<div id="executable-ifelse-statement" class="section level3">
+<h3>Executable if/else statement</h3>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(str_c(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP&quot;, sep = &quot; &quot;))
+  
+## if estimated, add that as a subtitle. 
+if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+  
+    ## add a print statement just to check
+    print(str_c(cntry, &quot; data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+} else {
+  
+  print(str_c(cntry, &quot; data are reported&quot;))
+  
+  my_plot &lt;- my_plot +
+    labs(subtitle = &quot;Reported data&quot;) }
+
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdp_tot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p>Note that this works because we know there are only two conditions,
+<code>Estimated == yes</code> and <code>Estimated == no</code>. In the
+first <code>if</code> statement we asked for estimated data, and the
+<code>else</code> condition gives us everything else (which we know is
+reported). We can be explicit about setting these conditions in the
+<code>else</code> clause by instead using an <code>else if</code>
+statement. Below is how you would construct this in your
+<code>for</code> loop, similar to above:</p>
+<pre class="r"><code>  if (any(gap_to_plot$estimated == &quot;yes&quot;)) { # any() will return a single TRUE or FALSE
+    
+    print(str_c(cntry, &quot;data are estimated&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Estimated data&quot;)
+  } else if (any(gap_to_plot$estimated == &quot;no&quot;)){
+    
+    print(str_c(cntry, &quot;data are reported&quot;))
+    
+    my_plot &lt;- my_plot +
+      labs(subtitle = &quot;Reported data&quot;)
+    
+  }</code></pre>
+<p>This construction is necessary if you have more than two conditions
+to test for.</p>
+<p><br> <br></p>
+<p>We can also add the conditional addition of the plot subtitle with
+R’s <code>ifelse()</code> function. It works like this</p>
+<pre class="r"><code>ifelse(condition is true, perform action, perform alternative action)</code></pre>
+<p>where the first argument is the condition or set of conditions to be
+evaluated, the second argument is the action that is performed if the
+condition is true, and the third argument is the action to be performed
+if the condition is not true. We can add this directly within the
+initial <code>labs()</code> layer of our plot for a more concise
+expression that achieves the same goal:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder_est %&gt;%  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == &quot;Europe&quot;) %&gt;%
+  mutate(gdp_tot = gdp_per_cap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe %&gt;%
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(str_c(&quot;Plotting &quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdp_tot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = str_c(cntry, &quot;GDP&quot;, sep = &quot; &quot;), subtitle = ifelse(any(gap_to_plot$estimated == &quot;yes&quot;), &quot;Estimated data&quot;, &quot;Reported data&quot;))
+
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdp_tot.png&quot;, sep = &quot;&quot;), 
+         plot = my_plot)
+  
+} </code></pre>
+<p><br> <br></p>
+</div>
+</div>
+<div id="exercises-if-time-allows" class="section level2">
+<h2>Exercises (if time allows)</h2>
+<p>Exercises from <a
+href="https://r4ds.had.co.nz/iteration.html#exercises-58">R for Data
+Science</a></p>
+<p>Work with the specified datasets that are built into R or in the
+listed packages. You can access them just by typing the name (for
+<code>flights</code> you will have to first load the
+<code>nycflights13</code> package).</p>
+<p>Write <code>for</code> loops to:</p>
+<ul>
+<li>Compute the mean of every column in <code>mtcars</code></li>
+<li>Determine the type of each column in
+<code>nycflights13::flights</code></li>
+<li>Compute the number of unique values in each column of
+<code>iris</code></li>
+</ul>
+<p><br></p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p><code>for</code> loops are typically slow compared to vector based
+methods and frequently not the best available solution for implementing
+iterations. We therefore recommend that you learn about other
+approaches, especially the map functions and functional programming.
+However, <code>for</code> loops are easy to implement and easy to
+understand so in many cases they can be a good solution for simple
+iterations.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

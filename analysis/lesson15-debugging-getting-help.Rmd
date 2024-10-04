@@ -1,5 +1,5 @@
 ---
-title: "Lesson 13: Good coding practices, debugging strategies, and getting help"
+title: "Lesson 15: Good coding practices, debugging strategies, and getting help"
 output: 
   html_document:
     toc: true

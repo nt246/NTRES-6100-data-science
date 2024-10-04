@@ -1,5 +1,5 @@
 ---
-title: "Lesson 15: Iteration with `for` loops and conditional execution with `if` statements - Part 2"
+title: "Lesson 14: Iteration with `for` loops and conditional execution with `if` statements - Part 2"
 output: 
   html_document:
     keep_md: yes 
@@ -51,7 +51,7 @@ We can also apply this to the `gapminder` data.
 In the `gapminder` example we've been using to build a for loop together, we've been iterating over a list of countries (in turn assigning each of these to our `cntry` object). You may often see for loops iterating over a numerical index, often using `i` as the object that in turn gets assigned each number from a sequence. Here is an example:
 
 
-```r
+``` r
 for (i in 1:10) {
   print(str_c("Part_", i, sep = ""))
 }
@@ -61,7 +61,7 @@ for (i in 1:10) {
 As another example, last class, we needed to calculate the product of gdp-per-cap and population size for each year and each country. We did this efficiently in a single step for all years and countries with a `mutate()`, prior to defining our loop or function. 
 
 
-```r
+``` r
 gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes information on whether data were estimated
   filter(continent == "Europe") %>%
   mutate(gdp_tot = gdp_per_cap * pop)
@@ -72,7 +72,7 @@ gap_europe <- gapminder_est %>%  # Here we use the gapminder_est that includes i
 A (not very computationally efficient) alternative would be to do this calculation for a specific country with a `for` loop and using square bracket indexing to select the i'th element of a vector.
 
 
-```r
+``` r
 gapminder$gdp_tot <-  vector(length = nrow(gapminder))
 
 for (i in 1:nrow(gapminder)) {
@@ -85,7 +85,7 @@ for (i in 1:nrow(gapminder)) {
 To understand how this loop is working exactly the same way as our previous loop, have a look of the list of elements `1:nrow(gapminder)` that we loop over.
 
 
-```r
+``` r
 1:nrow(gapminder)
 ```
 

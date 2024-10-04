@@ -1,5 +1,5 @@
 ---
-title: "Lesson 15: Iteration with `for` loops and conditional execution with `if` statements - Part 2"
+title: "Lesson 14: Iteration with `for` loops and conditional execution with `if` statements - Part 2"
 output: 
   html_document:
     keep_md: yes 
