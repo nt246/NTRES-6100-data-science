@@ -116,7 +116,7 @@ for (i in 1:length(n_iterations)){
 }
 
 tibble(n_iterations, approach_1, approach_2) %>%
-  pivot_longer(2:3, "approach", values_to = "runtime") %>%
+  pivot_longer(2:3, names_to = "approach", values_to = "runtime") %>%
   ggplot(aes(x=n_iterations, y=runtime, color=approach)) +
   geom_line()
 ```
