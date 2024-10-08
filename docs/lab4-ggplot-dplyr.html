@@ -13,7 +13,7 @@
 
 <title>Lab 4: Data exploration with the gapminder dataset</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -366,13 +366,13 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
+      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson15-for-loops-part2.html">Lesson 15: Iteration - part 2</a>
+      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson16-functions.html">Lesson 16: Functions</a>
@@ -504,15 +504,14 @@ library(dslabs) #install.packages(&quot;dslabs&quot;)
 gapminder %&gt;% as_tibble() %&gt;% 
   head(5)</code></pre>
 <pre><code>## # A tibble: 5 × 9
-##   country           year infan…¹ life_…² ferti…³ popul…⁴      gdp conti…⁵ region
-##   &lt;fct&gt;            &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;   &lt;fct&gt; 
-## 1 Albania           1960   115.     62.9    6.19  1.64e6 NA       Europe  South…
-## 2 Algeria           1960   148.     47.5    7.65  1.11e7  1.38e10 Africa  North…
-## 3 Angola            1960   208      36.0    7.32  5.27e6 NA       Africa  Middl…
-## 4 Antigua and Bar…  1960    NA      63.0    4.43  5.47e4 NA       Americ… Carib…
-## 5 Argentina         1960    59.9    65.4    3.11  2.06e7  1.08e11 Americ… South…
-## # … with abbreviated variable names ¹​infant_mortality, ²​life_expectancy,
-## #   ³​fertility, ⁴​population, ⁵​continent</code></pre>
+##   country    year infant_mortality life_expectancy fertility population      gdp
+##   &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Albania    1960            115.             62.9      6.19    1636054 NA      
+## 2 Algeria    1960            148.             47.5      7.65   11124892  1.38e10
+## 3 Angola     1960            208              36.0      7.32    5270844 NA      
+## 4 Antigua …  1960             NA              63.0      4.43      54681 NA      
+## 5 Argentina  1960             59.9            65.4      3.11   20619075  1.08e11
+## # ℹ 2 more variables: continent &lt;fct&gt;, region &lt;fct&gt;</code></pre>
 <p><br></p>
 <ul>
 <li><p>As a reminder, to get familar with this dataset, you might want
@@ -598,7 +597,8 @@ gapminder %&gt;%
   filter(country %in% top5_countries) %&gt;% 
   ggplot() +
   geom_line(mapping = aes(x = year, y = population, color = country))</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values or values outside the scale range
+## (`geom_line()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </details>
 <p><br> <br></p>
@@ -851,7 +851,8 @@ gapminder %&gt;%
   ggplot(aes(log(gdp/population), life_expectancy, col = continent)) +
   geom_point() +
   facet_wrap(~year) </code></pre>
-<pre><code>## Warning: Removed 148 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 148 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code>gapminder %&gt;% 
   filter(continent %in% continents) %&gt;%
@@ -870,13 +871,15 @@ gapminder %&gt;%
   ggplot(aes(x=log(gdp/population), fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) </code></pre>
-<pre><code>## Warning: Removed 99 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 99 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
 <pre class="r"><code>gapminder %&gt;% 
   filter(year %in% c(1960, 2010)) %&gt;%
   ggplot(aes(continent, log(gdp/population), fill = as.character(year))) +
   geom_boxplot()</code></pre>
-<pre><code>## Warning: Removed 99 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 99 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-5.png" width="672" /></p>
 </details>
 <p><br> <br></p>

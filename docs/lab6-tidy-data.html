@@ -13,7 +13,7 @@
 
 <title>Lab 6: Data cleaning and tidy data</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -366,13 +366,13 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-debugging-getting-help.html">Lesson 13: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson14-for-loops.html">Lesson 14: Iteration - part 1</a>
+      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson15-for-loops-part2.html">Lesson 15: Iteration - part 2</a>
+      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
       <a href="lesson16-functions.html">Lesson 16: Functions</a>
@@ -969,7 +969,8 @@ click to expand
   ggplot(aes(x=date, y = size, color=outcome)) +
   geom_point() +
   facet_grid(ocean~species)</code></pre>
-<pre><code>## Warning: Removed 8 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </details>
 <p><br> <br></p>
@@ -1182,7 +1183,10 @@ babynames %&gt;%
   ggrepel::geom_label_repel(aes(label=name)) +
   cowplot::theme_cowplot()</code></pre>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.</code></pre>
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <p><img src="lab6-tidy-data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Note: In this case, <code>slice_max()</code> cannot be replaced by
 <code>arrange()</code> and <code>head()</code>, because the latter does
