@@ -107,6 +107,6 @@ You see that this just gives a vector of integers from 1 to the number of rows i
 
 
 ### Functional programming and map functions
-For loops are a great place to start implementing iteration in our code because they make iteration very explicit, so it’s obvious what’s happening. However, for loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every for loop. Functional programming (FP) offers tools to extract out this duplicated code, so each common for loop pattern gets its own function. If you are going to implement a lot of iteration in your code (which many of us will), I strongly recommend that you learn about the map functions in the purr package. [R4DS](https://r4ds.had.co.nz/iteration.html#the-map-functions) provides a great introduction.
+For loops are a great place to start implementing iteration in our code because they make iteration very explicit, so it’s obvious what’s happening. However, for loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every for loop. Functional programming (FP) offers tools to extract out this duplicated code, so each common for loop pattern gets its own function. If you are going to implement a lot of iteration in your code (which many of us will), I strongly recommend that you learn about the map functions in the purr package. [R4DS (2e)](https://r4ds.hadley.nz/iteration) provides a great introduction.
 
 

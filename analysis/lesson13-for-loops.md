@@ -38,9 +38,9 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Today's learning objectives
 
-We'll start by working through a few exercises on using integrating data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+We'll start by working through a few exercises on combining data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
-By the end of today's and next Tuesday's class, you should be able to:
+By the end of today and next class, you should be able to:
 
 * Write a `for` loop to repeat operations on different input
 * Implement `if` and `if else` statements for conditional execution of code
@@ -84,7 +84,8 @@ We will primarily use a subset of the gapminder data included in the R package `
 ``` r
 library(gapminder) #install.packages("gapminder")
 
-head(gapminder) |>  kable()
+head(gapminder) |>
+  kable()
 ```
 
 
@@ -106,28 +107,10 @@ We can see that this dataset used camelCase (first word lowercase and capitalize
 
 
 ``` r
-gapminder |> 
+gapminder <- gapminder |> 
   rename("life_exp" = lifeExp, "gdp_per_cap" = gdpPercap)
-```
 
-```
-## # A tibble: 1,704 × 6
-##    country     continent  year life_exp      pop gdp_per_cap
-##    <fct>       <fct>     <int>    <dbl>    <int>       <dbl>
-##  1 Afghanistan Asia       1952     28.8  8425333        779.
-##  2 Afghanistan Asia       1957     30.3  9240934        821.
-##  3 Afghanistan Asia       1962     32.0 10267083        853.
-##  4 Afghanistan Asia       1967     34.0 11537966        836.
-##  5 Afghanistan Asia       1972     36.1 13079460        740.
-##  6 Afghanistan Asia       1977     38.4 14880372        786.
-##  7 Afghanistan Asia       1982     39.9 12881816        978.
-##  8 Afghanistan Asia       1987     40.8 13867957        852.
-##  9 Afghanistan Asia       1992     41.7 16317921        649.
-## 10 Afghanistan Asia       1997     41.8 22227415        635.
-## # ℹ 1,694 more rows
-```
 
-``` r
 # Alternative
 colnames(gapminder) <- c("country", "continent", "year", "life_exp", "pop", "gdp_per_cap")
 ```
@@ -212,7 +195,7 @@ gapminder |>
 ``` r
 # Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
 gapminder |> 
-  left_join(gap_dslabs, by = c("country", "year"))
+  left_join(gap_dslabs, join_by(country, year))
 ```
 
 ```
@@ -236,7 +219,7 @@ gapminder |>
 ``` r
 # When variable names are not identical
 gapminder |> 
-  left_join(gap_dslabs_caps, by = c("country" = "Country", "year" = "Year"))
+  left_join(gap_dslabs_caps, join_by(country == Country, year == Year))
 ```
 
 ```
@@ -264,12 +247,13 @@ gapminder |>
 </details>
 
 <br>
+<br>
 
 
 
 #### Filtering joins
 
-We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins). Here, we will illustrate with the `gapminder` data.
+We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.hadley.nz/joins#filtering-joins). Here, we will illustrate with the `gapminder` data.
 
 <br>
 
@@ -341,59 +325,161 @@ We notice here that our resulting tibble only include 6 rows, not the 10 we had 
 
 
 ``` r
-unique(gapminder$country)
+gapminder |> 
+  distinct(country) |> 
+  print(n = Inf)
 ```
 
 ```
-##   [1] Afghanistan              Albania                  Algeria                 
-##   [4] Angola                   Argentina                Australia               
-##   [7] Austria                  Bahrain                  Bangladesh              
-##  [10] Belgium                  Benin                    Bolivia                 
-##  [13] Bosnia and Herzegovina   Botswana                 Brazil                  
-##  [16] Bulgaria                 Burkina Faso             Burundi                 
-##  [19] Cambodia                 Cameroon                 Canada                  
-##  [22] Central African Republic Chad                     Chile                   
-##  [25] China                    Colombia                 Comoros                 
-##  [28] Congo, Dem. Rep.         Congo, Rep.              Costa Rica              
-##  [31] Cote d'Ivoire            Croatia                  Cuba                    
-##  [34] Czech Republic           Denmark                  Djibouti                
-##  [37] Dominican Republic       Ecuador                  Egypt                   
-##  [40] El Salvador              Equatorial Guinea        Eritrea                 
-##  [43] Ethiopia                 Finland                  France                  
-##  [46] Gabon                    Gambia                   Germany                 
-##  [49] Ghana                    Greece                   Guatemala               
-##  [52] Guinea                   Guinea-Bissau            Haiti                   
-##  [55] Honduras                 Hong Kong, China         Hungary                 
-##  [58] Iceland                  India                    Indonesia               
-##  [61] Iran                     Iraq                     Ireland                 
-##  [64] Israel                   Italy                    Jamaica                 
-##  [67] Japan                    Jordan                   Kenya                   
-##  [70] Korea, Dem. Rep.         Korea, Rep.              Kuwait                  
-##  [73] Lebanon                  Lesotho                  Liberia                 
-##  [76] Libya                    Madagascar               Malawi                  
-##  [79] Malaysia                 Mali                     Mauritania              
-##  [82] Mauritius                Mexico                   Mongolia                
-##  [85] Montenegro               Morocco                  Mozambique              
-##  [88] Myanmar                  Namibia                  Nepal                   
-##  [91] Netherlands              New Zealand              Nicaragua               
-##  [94] Niger                    Nigeria                  Norway                  
-##  [97] Oman                     Pakistan                 Panama                  
-## [100] Paraguay                 Peru                     Philippines             
-## [103] Poland                   Portugal                 Puerto Rico             
-## [106] Reunion                  Romania                  Rwanda                  
-## [109] Sao Tome and Principe    Saudi Arabia             Senegal                 
-## [112] Serbia                   Sierra Leone             Singapore               
-## [115] Slovak Republic          Slovenia                 Somalia                 
-## [118] South Africa             Spain                    Sri Lanka               
-## [121] Sudan                    Swaziland                Sweden                  
-## [124] Switzerland              Syria                    Taiwan                  
-## [127] Tanzania                 Thailand                 Togo                    
-## [130] Trinidad and Tobago      Tunisia                  Turkey                  
-## [133] Uganda                   United Kingdom           United States           
-## [136] Uruguay                  Venezuela                Vietnam                 
-## [139] West Bank and Gaza       Yemen, Rep.              Zambia                  
-## [142] Zimbabwe                
-## 142 Levels: Afghanistan Albania Algeria Angola Argentina Australia ... Zimbabwe
+## # A tibble: 142 × 1
+##     country                 
+##     <fct>                   
+##   1 Afghanistan             
+##   2 Albania                 
+##   3 Algeria                 
+##   4 Angola                  
+##   5 Argentina               
+##   6 Australia               
+##   7 Austria                 
+##   8 Bahrain                 
+##   9 Bangladesh              
+##  10 Belgium                 
+##  11 Benin                   
+##  12 Bolivia                 
+##  13 Bosnia and Herzegovina  
+##  14 Botswana                
+##  15 Brazil                  
+##  16 Bulgaria                
+##  17 Burkina Faso            
+##  18 Burundi                 
+##  19 Cambodia                
+##  20 Cameroon                
+##  21 Canada                  
+##  22 Central African Republic
+##  23 Chad                    
+##  24 Chile                   
+##  25 China                   
+##  26 Colombia                
+##  27 Comoros                 
+##  28 Congo, Dem. Rep.        
+##  29 Congo, Rep.             
+##  30 Costa Rica              
+##  31 Cote d'Ivoire           
+##  32 Croatia                 
+##  33 Cuba                    
+##  34 Czech Republic          
+##  35 Denmark                 
+##  36 Djibouti                
+##  37 Dominican Republic      
+##  38 Ecuador                 
+##  39 Egypt                   
+##  40 El Salvador             
+##  41 Equatorial Guinea       
+##  42 Eritrea                 
+##  43 Ethiopia                
+##  44 Finland                 
+##  45 France                  
+##  46 Gabon                   
+##  47 Gambia                  
+##  48 Germany                 
+##  49 Ghana                   
+##  50 Greece                  
+##  51 Guatemala               
+##  52 Guinea                  
+##  53 Guinea-Bissau           
+##  54 Haiti                   
+##  55 Honduras                
+##  56 Hong Kong, China        
+##  57 Hungary                 
+##  58 Iceland                 
+##  59 India                   
+##  60 Indonesia               
+##  61 Iran                    
+##  62 Iraq                    
+##  63 Ireland                 
+##  64 Israel                  
+##  65 Italy                   
+##  66 Jamaica                 
+##  67 Japan                   
+##  68 Jordan                  
+##  69 Kenya                   
+##  70 Korea, Dem. Rep.        
+##  71 Korea, Rep.             
+##  72 Kuwait                  
+##  73 Lebanon                 
+##  74 Lesotho                 
+##  75 Liberia                 
+##  76 Libya                   
+##  77 Madagascar              
+##  78 Malawi                  
+##  79 Malaysia                
+##  80 Mali                    
+##  81 Mauritania              
+##  82 Mauritius               
+##  83 Mexico                  
+##  84 Mongolia                
+##  85 Montenegro              
+##  86 Morocco                 
+##  87 Mozambique              
+##  88 Myanmar                 
+##  89 Namibia                 
+##  90 Nepal                   
+##  91 Netherlands             
+##  92 New Zealand             
+##  93 Nicaragua               
+##  94 Niger                   
+##  95 Nigeria                 
+##  96 Norway                  
+##  97 Oman                    
+##  98 Pakistan                
+##  99 Panama                  
+## 100 Paraguay                
+## 101 Peru                    
+## 102 Philippines             
+## 103 Poland                  
+## 104 Portugal                
+## 105 Puerto Rico             
+## 106 Reunion                 
+## 107 Romania                 
+## 108 Rwanda                  
+## 109 Sao Tome and Principe   
+## 110 Saudi Arabia            
+## 111 Senegal                 
+## 112 Serbia                  
+## 113 Sierra Leone            
+## 114 Singapore               
+## 115 Slovak Republic         
+## 116 Slovenia                
+## 117 Somalia                 
+## 118 South Africa            
+## 119 Spain                   
+## 120 Sri Lanka               
+## 121 Sudan                   
+## 122 Swaziland               
+## 123 Sweden                  
+## 124 Switzerland             
+## 125 Syria                   
+## 126 Taiwan                  
+## 127 Tanzania                
+## 128 Thailand                
+## 129 Togo                    
+## 130 Trinidad and Tobago     
+## 131 Tunisia                 
+## 132 Turkey                  
+## 133 Uganda                  
+## 134 United Kingdom          
+## 135 United States           
+## 136 Uruguay                 
+## 137 Venezuela               
+## 138 Vietnam                 
+## 139 West Bank and Gaza      
+## 140 Yemen, Rep.             
+## 141 Zambia                  
+## 142 Zimbabwe
+```
+
+``` r
+# Could also use `unique(gapminder$country)`
 ```
 
 <br>
@@ -406,46 +492,46 @@ In general, the opposite of `semi_join()`, the `anti_join()` function is good fo
 ``` r
 # What records in gapminder are not matched in gap_dslabs
 gapminder |> 
-  anti_join(gap_dslabs, by = "country")  |> 
-  count(country)
+  anti_join(gap_dslabs, join_by(country))  |> 
+  distinct(country)
 ```
 
 ```
-## # A tibble: 9 × 2
-##   country                   n
-##   <fct>                 <int>
-## 1 Afghanistan              12
-## 2 Korea, Dem. Rep.         12
-## 3 Korea, Rep.              12
-## 4 Myanmar                  12
-## 5 Reunion                  12
-## 6 Sao Tome and Principe    12
-## 7 Somalia                  12
-## 8 Taiwan                   12
-## 9 Yemen, Rep.              12
+## # A tibble: 9 × 1
+##   country              
+##   <fct>                
+## 1 Afghanistan          
+## 2 Korea, Dem. Rep.     
+## 3 Korea, Rep.          
+## 4 Myanmar              
+## 5 Reunion              
+## 6 Sao Tome and Principe
+## 7 Somalia              
+## 8 Taiwan               
+## 9 Yemen, Rep.
 ```
 
 ``` r
 # What records in gap_dslabs are not matched in gapminder
 gap_dslabs |> 
-  anti_join(gapminder,  by = "country")  |> 
-  count(country)
+  anti_join(gapminder,  join_by(country))  |> 
+  distinct(country)
 ```
 
 ```
-## # A tibble: 52 × 2
-##    country                 n
-##    <chr>               <int>
-##  1 Antigua and Barbuda    10
-##  2 Armenia                10
-##  3 Aruba                  10
-##  4 Azerbaijan             10
-##  5 Bahamas                10
-##  6 Barbados               10
-##  7 Belarus                10
-##  8 Belize                 10
-##  9 Bhutan                 10
-## 10 Brunei                 10
+## # A tibble: 52 × 1
+##    country            
+##    <chr>              
+##  1 Antigua and Barbuda
+##  2 Armenia            
+##  3 Aruba              
+##  4 Azerbaijan         
+##  5 Bahamas            
+##  6 Barbados           
+##  7 Belarus            
+##  8 Belize             
+##  9 Bhutan             
+## 10 Brunei             
 ## # ℹ 42 more rows
 ```
 
@@ -473,7 +559,7 @@ Add a picture as instructed.
 
 Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
 
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-sp23-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-fa2024-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
@@ -494,7 +580,7 @@ Whenever possible, we want to avoid duplication in our code (e.g. by copying-and
 
 One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction to how to write functions in R next week. 
 
-Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
+Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science (2e)](https://r4ds.hadley.nz/iteration) book.
 
 Today, we will illustrate the use of `for` loops with an example. We will also use conditional execution of code with `if` statements.
 
@@ -691,7 +777,7 @@ for (cntry in country_list) {
 
 At this point, we do have a functioning `for` loop. For each item in the `country_list`, the `for` loop will iterate over the code within the `{ }`, changing `cntry` each time as it goes through the list. And we can see it works because we can see them appear in the files pane at the bottom right of RStudio!
 
-Great! And it doesn't matter if we just use these three countries or all the countries--let's try it. 
+Great! And it doesn't matter if we just use these three countries or all the countries - let's try it. 
 
 But first let's create a figure directory and make sure it saves there since it's going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the "Files" pane in RStudio by clicking "New Folder" (green plus button). But we are going to do it in R. A folder is called a directory:
 
@@ -816,7 +902,7 @@ if (condition is true) {
 
 Let's bring this concept into our `for` loop for Europe that we've just created. What if we want to add the label "Estimated" to countries for which the values were estimated rather than based on official reported statistics? Here's what we'd do.
 
-First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:
+First, import a csv file with information on whether data was estimated or reported, and join to gapminder dataset:
 
 
 ``` r

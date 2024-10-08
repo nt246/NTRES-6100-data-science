@@ -41,9 +41,9 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Today's learning objectives
 
-We'll start by working through a few exercises on using integrating data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
+We'll start by working through a few exercises on combining data from multiple tibbles (using `join()` functions) and recap on strategies for successfully integrating relational data. Then we'll shift gears to begin exploring the key programming concepts of iteration and conditional execution.
 
-By the end of today's and next Tuesday's class, you should be able to:
+By the end of today and next class, you should be able to:
 
 * Write a `for` loop to repeat operations on different input
 * Implement `if` and `if else` statements for conditional execution of code
@@ -87,7 +87,8 @@ We will primarily use a subset of the gapminder data included in the R package `
 
 library(gapminder) #install.packages("gapminder")
 
-head(gapminder) |>  kable()
+head(gapminder) |>
+  kable()
 
 ```
 
@@ -98,7 +99,7 @@ head(gapminder) |>  kable()
 We can see that this dataset used camelCase (first word lowercase and capitalize all following words) for its column names. I always use snake_case (replace spaces with underscores), and it's going to look messy to have this inconsistent way of writing variable names. So I'm going to go ahead and clean these names up before I start working with the data. I can do this manually with the `rename()` or `colnames()` functions, e.g.
 
 ```{r}
-gapminder |> 
+gapminder <- gapminder |> 
   rename("life_exp" = lifeExp, "gdp_per_cap" = gdpPercap)
 
 
@@ -184,11 +185,11 @@ gapminder |>
 
 # Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
 gapminder |> 
-  left_join(gap_dslabs, by = c("country", "year"))
+  left_join(gap_dslabs, join_by(country, year))
 
 # When variable names are not identical
 gapminder |> 
-  left_join(gap_dslabs_caps, by = c("country" = "Country", "year" = "Year"))
+  left_join(gap_dslabs_caps, join_by(country == Country, year == Year))
 
 ## Note, gap_dslabs doesn't have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.
 
@@ -198,12 +199,13 @@ gapminder |>
 </details>
 
 <br>
+<br>
 
 
 
 #### Filtering joins
 
-We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.had.co.nz/relational-data.html#filtering-joins). Here, we will illustrate with the `gapminder` data.
+We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.hadley.nz/joins#filtering-joins). Here, we will illustrate with the `gapminder` data.
 
 <br>
 
@@ -238,7 +240,11 @@ gapminder |>
 We notice here that our resulting tibble only include 6 rows, not the 10 we had expected. Upon inspection, we notice that the records from Yemen are missing. We can confirm that this is because the `gapminder` tibble doesn't include "Yemen" (written this way) as a country by examining the unique values included in the country variable.
 
 ```{r}
-unique(gapminder$country)
+gapminder |> 
+  distinct(country) |> 
+  print(n = Inf)
+
+# Could also use `unique(gapminder$country)`
 ```
 
 <br>
@@ -250,13 +256,13 @@ In general, the opposite of `semi_join()`, the `anti_join()` function is good fo
 ```{r}
 # What records in gapminder are not matched in gap_dslabs
 gapminder |> 
-  anti_join(gap_dslabs, by = "country")  |> 
-  count(country)
+  anti_join(gap_dslabs, join_by(country))  |> 
+  distinct(country)
 
 # What records in gap_dslabs are not matched in gapminder
 gap_dslabs |> 
-  anti_join(gapminder,  by = "country")  |> 
-  count(country)
+  anti_join(gapminder,  join_by(country))  |> 
+  distinct(country)
 
 ```
 
@@ -284,7 +290,7 @@ Add a picture as instructed.
 
 Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
 
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-sp23-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
+Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-fa2024-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
 
 <br>
 <br>
@@ -305,7 +311,7 @@ Whenever possible, we want to avoid duplication in our code (e.g. by copying-and
 
 One tool for reducing duplication is functions, which reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated. We'll go through a brief introduction to how to write functions in R next week. 
 
-Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science](https://r4ds.had.co.nz/iteration.html#for-loops-vs.functionals) book.
+Another tool for reducing duplication is iteration, which helps you when you need to do the same thing to multiple inputs, e.g. repeating the same operation on different columns, or on different datasets. There are several ways to iterate in R. Today we will only cover `for` loops, which are a great place to start because they make iteration very explicit, so it’s obvious what’s happening. However, `for` loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every `for` loop. Once you master `for` loops, you can solve many common iteration problems with less code, more ease, and fewer errors using functional programming, which I encourage you to explore on your own, for example in the [R for Data Science (2e)](https://r4ds.hadley.nz/iteration) book.
 
 Today, we will illustrate the use of `for` loops with an example. We will also use conditional execution of code with `if` statements.
 
@@ -503,7 +509,7 @@ for (cntry in country_list) {
 
 At this point, we do have a functioning `for` loop. For each item in the `country_list`, the `for` loop will iterate over the code within the `{ }`, changing `cntry` each time as it goes through the list. And we can see it works because we can see them appear in the files pane at the bottom right of RStudio!
 
-Great! And it doesn't matter if we just use these three countries or all the countries--let's try it. 
+Great! And it doesn't matter if we just use these three countries or all the countries - let's try it. 
 
 But first let's create a figure directory and make sure it saves there since it's going to get out of hand quickly. We could do this from the Finder/Windows Explorer, or from the "Files" pane in RStudio by clicking "New Folder" (green plus button). But we are going to do it in R. A folder is called a directory:
 
@@ -627,7 +633,7 @@ if (condition is true) {
 
 Let's bring this concept into our `for` loop for Europe that we've just created. What if we want to add the label "Estimated" to countries for which the values were estimated rather than based on official reported statistics? Here's what we'd do.
 
-First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:
+First, import a csv file with information on whether data was estimated or reported, and join to gapminder dataset:
 
 ```{r, eval = FALSE}
 
