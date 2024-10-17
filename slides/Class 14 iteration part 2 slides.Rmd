@@ -1,0 +1,123 @@
+---
+title: "Lesson 14: Iteration Part 2"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+```
+
+
+## Next week
+
+Tuesday: No class (Fall break)
+
+Thursday: Guest lecture by Erika Mudrak, CSCU
+
+
+
+
+## Assignments
+
+Assignment 6 due today
+
+
+## When submitting assignments
+
+* Make sure your RMarkdown "output type" is set to "github_document" (this will create an .md file when you knit rather than .html)
+* Do not put `echo=FALSE` , `include=FALSE`, or `eval=FALSE` in your exercise code chunks. These will tell R to either not show your code, not show your plots, or not run the code at all. We need to see your code AND output for grading
+* Knit your RMarkdown document - this will create the .md file
+* Commit/push the RMarkdown (.Rmd), the knitted file (.md), AND the assignment "files" folder (this consists of the plot images - your plots will not appear in your knitted document if you do not push this folder)
+
+
+
+## Learning objectives for today
+
+By the end of today's class, you should be able to:
+
+* Write a `for` loop to repeat operations on different input
+* Implement `if` and `if else` statements for conditional execution of code
+
+
+## Code duplication
+
+Three main benefits:
+
+* It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same.
+
+* It’s easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+
+* You’re likely to have fewer bugs because each line of code is used in more places.
+
+
+## The basic structure of a `for` loop is:
+```{r, eval=FALSE}
+for (each_item in set_of_items) {
+  do a thing
+}
+```
+
+
+## .gitignore files
+
+Lists files that git should ignore
+
+<br>
+
+Can be specific files, entire folders, or file types
+
+Can use `*` as wildcards, e.g. `plots/*.pdf`
+
+
+
+## if statement basic structure
+
+```{r, eval=FALSE}
+# if
+if (condition is true) {
+  do something
+}
+
+# if, else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}
+```
+
+
+## ifelse() function
+
+```{r, eval = FALSE}
+ifelse(condition is true, perform action, perform alternative action)
+```
+
+
+
+## Exercise
+
+Write a for loop that for each year creates a separate .csv file with the gapminder data for all countries for that year
+
+
+## Exercise
+
+You have a vector
+
+```{r, eval = FALSE}
+mass_lbs <- c(2.2, 3.5, 9.6, 1.2)
+```
+
+First, write a for loop that loops over this vector and prints out the mass in kilograms 
+
+```{r, eval = FALSE}
+mass_kg = 2.2 * mass_lbs
+```
+
+Second, write a for loop that stores the calculated mass in kg values in a second vector
+
+
+
