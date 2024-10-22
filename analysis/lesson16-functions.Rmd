@@ -29,9 +29,19 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-* We're getting towards the end of the course - only three more classes left
-* You will be giving your 1.5 minute [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) next Thursday (March 30). The presentations are part of the requirements to pass the course. Auditors are encouraged, but not required, to present. 
+If you haven't already, please indicate in the signup sheet linked in the `General` channel on Slack whether you will be giving a final class presentation next Thursday 
 
+* Show us how you either already have or could think of applying any part of the course material to your own work
+* Be as specific as possible
+* Very short ~ 1.5 mins
+* Required of students taking the course for credit
+* Auditors are highly encouraged to share as well!
+
+<br>
+
+Next Tuesday (10/29): Guest lecture by data librarian Sarah Wright on archiving data and code
+
+<br>
 <br>
 
 ## Today's learning objectives
@@ -209,7 +219,7 @@ We can also use pipes with our own functions. The output from the first function
 ```{r}
 library(dplyr)
 
-shrub_mass <- calc_shrub_vol(0.8, 1.6, 2.0) %>%
+shrub_mass <- calc_shrub_vol(0.8, 1.6, 2.0) |>
   est_shrub_mass()
 ```
 
@@ -263,8 +273,8 @@ dir.create("figures")
 dir.create("figures/Europe") 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe <- gapminder %>%
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder |>
+  filter(continent == "Europe") |>
   mutate(gdpTot = gdpPercap * pop)
 
 country_list <- unique(gap_europe$country) # ?unique() returns the unique values
@@ -272,7 +282,7 @@ country_list <- unique(gap_europe$country) # ?unique() returns the unique values
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot <- gap_europe %>%
+  gap_to_plot <- gap_europe |>
     filter(country == cntry)
   
   ## add a print message to see what's plotting
@@ -306,15 +316,15 @@ dir.create("figures")
 dir.create("figures/Europe") 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe <- gapminder %>%
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder |>
+  filter(continent == "Europe") |>
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot <- function(cntry) {
   
   ## filter the country to plot
-  gap_to_plot <- gap_europe %>%
+  gap_to_plot <- gap_europe |>
     filter(country == cntry)
   
   ## add a print message to see what's plotting
@@ -363,15 +373,15 @@ dir.create("figures")
 dir.create("figures/Europe") 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe <- gapminder %>%
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder |>
+  filter(continent == "Europe") |>
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot <- function(cntry, stat) {   # Here I'm adding an additional argument to the function, which we'll use to specify what statistic we want plotted
   
   ## filter the country to plot
-  gap_to_plot <- gap_europe %>%
+  gap_to_plot <- gap_europe |>
     filter(country == cntry)
   
   ## add a print message to see what's plotting
@@ -422,15 +432,15 @@ dir.create("figures")
 dir.create("figures/Europe") 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe <- gapminder %>%
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder |>
+  filter(continent == "Europe") |>
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot <- function(cntry, stat = "gdpPercap") {   # Here I'm adding an additional argument to the function, which we'll use to specify what statistic we want plotted
   
   ## filter the country to plot
-  gap_to_plot <- gap_europe %>%
+  gap_to_plot <- gap_europe |>
     filter(country == cntry)
   
   ## add a print message to see what's plotting
@@ -492,15 +502,15 @@ dir.create("figures")
 dir.create("figures/Europe") 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe <- gapminder %>%
-  filter(continent == "Europe") %>%
+gap_europe <- gapminder |>
+  filter(continent == "Europe") |>
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot <- function(cntry, stat = "gdpPercap", filetype = "pdf") {   # Here I'm adding additional arguments to the function, which we'll use to specify what statistic we want plotted and what filetype we want
   
   ## filter the country to plot
-  gap_to_plot <- gap_europe %>%
+  gap_to_plot <- gap_europe |>
     filter(country == cntry)
   
   ## add a print message to see what's plotting

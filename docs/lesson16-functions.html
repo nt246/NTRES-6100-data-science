@@ -480,16 +480,21 @@ for Data Science by Hadley Wickham &amp; Garrett Grolemund</li>
 </div>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
+<p>If you haven’t already, please indicate in the signup sheet linked in
+the <code>General</code> channel on Slack whether you will be giving a
+final class presentation next Thursday</p>
 <ul>
-<li>We’re getting towards the end of the course - only three more
-classes left</li>
-<li>You will be giving your 1.5 minute <a
-href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">end-of-class
-student presentations</a> next Thursday (March 30). The presentations
-are part of the requirements to pass the course. Auditors are
-encouraged, but not required, to present.</li>
+<li>Show us how you either already have or could think of applying any
+part of the course material to your own work</li>
+<li>Be as specific as possible</li>
+<li>Very short ~ 1.5 mins</li>
+<li>Required of students taking the course for credit</li>
+<li>Auditors are highly encouraged to share as well!</li>
 </ul>
 <p><br></p>
+<p>Next Tuesday (10/29): Guest lecture by data librarian Sarah Wright on
+archiving data and code</p>
+<p><br> <br></p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
@@ -639,7 +644,7 @@ shrub_mass &lt;- est_shrub_mass(shrub_volume)</code></pre>
 first function becomes the first argument for the second function</p>
 <pre class="r"><code>library(dplyr)
 
-shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) %&gt;%
+shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) |&gt;
   est_shrub_mass()</code></pre>
 <p><br></p>
 <p>We can also nest functions, like this:</p>
@@ -674,8 +679,8 @@ before we added the conditional statements:</p>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## create a list of countries. Calculations go here, not in the for loop
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
@@ -683,7 +688,7 @@ country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique val
 for (cntry in country_list) { # (cntry = country_list[1])
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -706,15 +711,15 @@ for (cntry in country_list) { # (cntry = country_list[1])
 dir.create(&quot;figures/Europe&quot;) 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot &lt;- function(cntry) {
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -752,15 +757,15 @@ define) the function.</p>
 dir.create(&quot;figures/Europe&quot;) 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot &lt;- function(cntry, stat) {   # Here I&#39;m adding an additional argument to the function, which we&#39;ll use to specify what statistic we want plotted
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -797,15 +802,15 @@ will execute with this specified default option. The default gets
 dir.create(&quot;figures/Europe&quot;) 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {   # Here I&#39;m adding an additional argument to the function, which we&#39;ll use to specify what statistic we want plotted
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
@@ -859,15 +864,15 @@ click to see our approach
 dir.create(&quot;figures/Europe&quot;) 
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
-gap_europe &lt;- gapminder %&gt;%
-  filter(continent == &quot;Europe&quot;) %&gt;%
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
 save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;pdf&quot;) {   # Here I&#39;m adding additional arguments to the function, which we&#39;ll use to specify what statistic we want plotted and what filetype we want
   
   ## filter the country to plot
-  gap_to_plot &lt;- gap_europe %&gt;%
+  gap_to_plot &lt;- gap_europe |&gt;
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
