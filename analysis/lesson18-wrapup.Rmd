@@ -20,71 +20,41 @@ library(knitr)
 <br>
 <br>
 
-## Reminder
-### Follow-up workshop on open science and how to share your scripts and data next week
-
-**OPTIONAL: Tuesday April 18 + Thursday April 20 9.40-10.55am (taught by Jessica Rick)**
-
-<br>
-
-#### Learning outcomes: 
-By the end of this course, students will be able to:
-* Define knowledge justice and synthesize the ways that open science practices can contribute to it, as well what deficiencies and obstacles remain.
-* Identify the main principles of open science, and justify what each of these contributes to the advancement of science or their specific field.
-* Make a plan for how to prepare their research products for sharing in an open and reproducible manner.
-
-**Signup:** 
-https://docs.google.com/forms/d/e/1FAIpQLSesfCEfMIO4sbNoYO4aF6MljCTDsA89vh9B7EXmu8zeaflNZw/viewform 
-
-<br>
-<br>
-
 
 ## Course evaluations
 #### Please complete the course evaluations when they become available at the end of the semester
 Unfortunately, we will not be able to get our course evaluations until the end of the semester. Students formally enrolled (both for credit or audit) should get an email with a link to the evaluation at that time, and I would really appreciate it if you can take a few minutes to answer the questions.
 
-This course is still under very active development, so I would really value everybody's feedback on how we can improve it and make it as useful as possible.
+This course is continuously under active development, so I would really value everybody's feedback on how we can improve it and make it as useful as possible.
 
 Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted. 
 
-If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the `feedback` channel on Slack. Remember you can post anonymously by prefacing your message with `/anon ` (e.g. `/anon Here is my message`).
-
-<br>
-
-## Reminder: 
-### The final homework assignment is due this Thursday 4/13
+If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the `feedback` channel on Slack. 
 
 <br>
 <br>
+
 
 ## Agenda for today's class
 
-* Remaining student presentations
 * Continued access to the course material
-* Quick review
-  - Good recap messages about functions [here](https://nicercode.github.io/guides/functions/)
-  - Will post tutorials for additional review topics
-      - `for` loops
-      - `geom_jitter()`
-      - making and working with maps
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
-* ChatGPT and other AI applications
-* [If we have time] Troubleshooting strategies
+* Other applications
+
 
 <br>
 <br>
 
 ## Continued access to the course material
-* The course website will stay up, but will get updated next time we teach the course (probably Fall 2024)
+* The course website will stay up, but will get updated next time we teach the course (probably Fall 2025)
 * [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
-* Zoom recordings stay on Canvas for 120 days. But we will keep them all available on [this video-on-demand channel](https://vod.video.cornell.edu/channel/NTRES%2B6100%2B%2B-%2BSpring%2B2023/297848782) for at least one year. You can download any videos you would like to keep.
-* Consider joining our NTRES 6100 alumni Slack workspace (see invite link in the Slack workspace)
+* Zoom recordings stay on Canvas for 120 days
 
 
 <br>
 <br>
+
 
 ---
 
@@ -130,7 +100,7 @@ Slides from [Deep thoughts](https://www.slideshare.net/jenniferbryan5811/cm002-d
 <br>
 
 ### 3. Organizing your work into R projects within RStudio makes life easier
-Organizing your work into RStudio projects avoids issues with absolute file paths and makes it easier to keep track of the code used to generate plots and reports, share your code with others, and work on multiple different projects in parallel. Not convinced yet? Check out [What they forgot to teach you about R](https://rstats.wtf/project-oriented-workflow.html)
+Organizing your work into RStudio projects avoids issues with absolute file paths and makes it easier to keep track of the code used to generate plots and reports, share your code with others, and work on multiple different projects in parallel. Not convinced yet? Check out [What they forgot to teach you about R](https://rstats.wtf/projects)
 
 <br>
 
@@ -178,21 +148,20 @@ An important principle for “writing data for computers” is to clean up and r
 
 #### R and the tidyverse
 
-* [R for Data Science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham. See also answers to the exercises [here](https://jrnold.github.io/r4ds-exercise-solutions/) and other places you can find on google and a dedicated [R4DS Slack workspace](https://www.rfordatasci.com/) for community learning. [I strongly recommend working through the chapters of this book that we have not covered]
+* [R for Data Science](https://r4ds.hadley.nz/) by Wickham, Çetinkaya-Rundel, and Grolemund. See also answers to the exercises [here](https://mine-cetinkaya-rundel.github.io/r4ds-solutions/) or [here](https://jrnold.github.io/r4ds-exercise-solutions/) for solutions to the [first edition of R4DS](https://r4ds.had.co.nz/index.html), as well as a dedicated [R4DS Slack workspace](https://dslc.io/) for community learning. [I strongly recommend working through the chapters of this book that we have not covered]
 * [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 * [What they forgot to teach you about R](https://rstats.wtf/) by Jenny Bryan and Jim Hester
 * [R for the Rest of Us - Resources page](https://rfortherestofus.com/resources/) - a curated list of excellent tutorials
 * [Course notes for STAT545](https://stat545.com/) by Jenny Bryan
 * [Practical Data Science for Stats - a PeerJ Collection](https://peerj.com/collections/50-practicaldatascistats/)
 * [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) by Hadley Wickham
-* [swirl: learn R, in R](https://swirlstats.com/) - a platform for learning R programming and data science interactively, at your own pace, and right in the R console
 
 
 <br>
 
 Here are a few other books you might want to check out:
 
-* [A ModernDive into R and the tidyverse](https://moderndive.com/) by Chester Ismay and Albert Y. Kim  
+* [A ModernDive into R and the tidyverse](https://moderndive.com/v2/) by Chester Ismay and Albert Y. Kim  
 * [Introduction to Data Science: Data Analysis and Prediction Algorithms with R](https://rafalab.github.io/dsbook/) by Rafael A. Irizarry  
 * [The R Cookbook](https://rc2e.com/) by James Long and Paul Teetor  (primarily base-R, but also uses some tidyverse packages/functions)
 
@@ -232,9 +201,9 @@ Can also help you learn R better (see e.g. [here](https://pyoflife.com/tips-to-l
 
 **Dashboards:**
 
-Check out the [Dashboard](https://ramikrispin.github.io/coronavirus_dashboard/#summary) developed for the continually updated [Coronavirus dataset](https://github.com/RamiKrispin/coronavirus) we worked with earlier in the course. Note that you can grab all the code under `Source code` in the top right corner.
+Check out the [Dashboard](https://ramikrispin.github.io/coronavirus_dashboard/#summary) developed for the continually updated [Coronavirus dataset](https://github.com/RamiKrispin/coronavirus) we worked with earlier in the course. Note that you can grab all the code in the [linked GitHub repo](https://github.com/RamiKrispin/coronavirus_dashboard/tree/master)
 
-Dashboards can also be made interactive with dynamic and user-controlled displays of data through use of [Shiny](https://shiny.rstudio.com/), an R package that makes it easy to build interactive web apps straight from R.
+Dashboards can also be made interactive with dynamic and user-controlled displays of data through use of [Shiny](https://shiny.posit.co/), an R package that makes it easy to build interactive web apps straight from R.
 
 For an example, check out [this dynamic visualization](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1) of the gapminder dataset we worked with in our last class (make sure to check out the [cool video](https://www.youtube.com/watch?v=jbkSRLYSojo) with Hans Rosling) 
 
@@ -243,10 +212,29 @@ Shiny let's you create similar interactive displays. See for example a very simp
 For more examples, check out the [RStudio Flexdashboard website](https://rmarkdown.rstudio.com/flexdashboard/). And check out [Mastering shiny](https://mastering-shiny.org/) by Hadley Wickham
 
 <br>
+<br>
+
+### Making cool maps
+
+https://github.com/eriqande/make-a-BGP-map?tab=readme-ov-file
+
+<br>
+<br>
+
+### Integrating R and python code
+
+If you need to use Python for part of your analysis, check out the [reticulate package](https://rstudio.github.io/reticulate/) that facilitates interoperability between Python and R. 
+
+<br>
+<br>
+
+### Quarto
+If you're integrating multiple languages, also consider adopting [Quarto](https://quarto.org/) in place of RMarkdown.
+
+<br>
+<br>
 
 ## Connecting with the R stats community 
-
-* NTRES-6100 alums Slack Channel - a low-pressure environment where you can continue to support each other and share resources. We will send an invite on Slack
 
 * [Tips on how to start engaging on twitter](https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities) from R for Excel Users by Julia Lowndes and Allison Horst 
 
