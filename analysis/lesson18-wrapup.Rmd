@@ -216,7 +216,22 @@ For more examples, check out the [RStudio Flexdashboard website](https://rmarkdo
 
 ### Making cool maps
 
+R has lots of functionality for making maps. See some examples of a beautiful application to illustrate the distribution patterns of birdpopulations through the [Bird Genoscape Project](https://www.birdgenoscape.org/american-redstart/)
+
+Some example code for making similar maps:
 https://github.com/eriqande/make-a-BGP-map?tab=readme-ov-file
+https://eriqande.github.io/rep-res-eeb-2017/plotting-spatial-data-with-ggplot.html
+https://eriqande.github.io/rep-res-eeb-2017/a-tidy-approach-to-spatial-data-simple-features.html
+
+<br>
+
+Here are some other useful tutorials:
+https://www.andrewheiss.com/blog/2023/07/28/gradient-map-fills-r-sf/index.html
+https://learning.nceas.ucsb.edu/2023-04-coreR/session_15.html
+
+Here's the cheatsheet for the very useful package sf
+https://github.com/rstudio/cheatsheets/blob/main/sf.pdf
+
 
 <br>
 <br>
@@ -229,7 +244,7 @@ If you need to use Python for part of your analysis, check out the [reticulate p
 <br>
 
 ### Quarto
-If you're integrating multiple languages, also consider adopting [Quarto](https://quarto.org/) in place of RMarkdown.
+If you're integrating multiple languages, or if you want to compile different types of outputs, also consider adopting [Quarto](https://quarto.org/) in place of RMarkdown. Quarto is a multi-language, next-generation version of R Markdown from Posit and includes dozens of new features and capabilities while at the same being able to render most existing Rmd files without modification. Quarto combines the functionality of R Markdown, bookdown, distill, xaringian, etc into a single consistent system with “batteries included”, the developers say it reflects everything we’ve learned from R Markdown over the past 10 years. See an introductory tutorial for RStudio users [here](https://quarto.org/docs/get-started/hello/rstudio.html)
 
 <br>
 <br>
