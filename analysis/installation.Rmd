@@ -13,9 +13,10 @@ output:
 
 ### Install R and RStudio  
 
-Follow the instructions in [section 1.4](https://r4ds.had.co.nz/introduction.html#prerequisites) of the R for Data Science book. Make sure to get the free open source license RStudio Desktop version.
+Follow the instructions [prerequisites in the R for Data Science (2e) book](https://r4ds.hadley.nz/intro.html#r). Make sure to get the free open source license RStudio Desktop version.
 
-**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.4.1 and RStudio 2024.04.2+764). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions.  
+**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.5.1 and RStudio 2025.05.1+513). There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions. 
+
 
 
 ***
