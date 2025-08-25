@@ -9,13 +9,15 @@ output:
 
 > NTRES 6100   
 Collaborative and Reproducible Data Science in R  
-Cornell University, Fall 2024  
+Cornell University, Fall 2025  
 
 #### Course Info  
 
 
-**Lectures**:  Tuesdays and Thursdays 10:10am - 11:25am (August 27 - November 5, 2024), Morrison Hall 163  
-**Optional lab sessions**: Thursdays **or** Fridays 12:20pm - 2:15pm, Kennedy Hall 101
+**Lectures**:  Tuesdays and Thursdays 10:10am - 11:25am (August 26 - November 4, 2025), Warren Hall 101
+
+**Optional lab sessions** (*Hands-on practice sessions in groups and with TA support*):  
+Thursdays (Kennedy Hall 105) **or** Fridays (Warren Hall 101), 12:20pm - 2:15pm 
 
 **Instructor**: Associate Professor [Nina Overgaard Therkildsen](https://cals.cornell.edu/nina-overgaard-therkildsen) (nt246@cornell.edu)  
 
@@ -111,40 +113,40 @@ This semester, the course is offered fully in-person and we expect you to show u
 
 | Lecture#| Day | Date | Topic                                                                                         | Assignment due dates |
 |:--------|:----|:-----|:-----------------------------------------------------------------------------------------|:----------------------|
-|1|Tue|8/27|[Intro to the course and R/RStudio](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)||
-|2|Thu|8/29|[Markdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)||
-|3|Tue|9/3|[The Git workflow (version control)](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)||
-|4|Thu|9/5|[Collaborating with GitHub Part 1](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html)|[Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)|
-|5|Tue|9/10|[Collaborating with GitHub Part 2](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)||
-|6|Thu|9/12|[Plotting with ggplot part 1](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html)|[Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)|
-|7|Tue|9/17|[Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)||
-|8|Thu|9/19|[Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html)|[Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)|
-|9|Tue|9/24|[Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)||
-|10|Thu|9/26|[Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)|[Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)|
-|11|Tue|10/1|[Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)|||
-|12|Thu|10/3|[Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html)|[Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)|
-|13|Tue|10/8|[Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-for-loops.html)||
-|14|Thu|10/10|[Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops-part2.html)|[Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)|
-||Tue|10/15|FALL BREAK (no class)|||
-|15|Thu|10/17|[Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson15-debugging-getting-help.html)|[Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)|
-|16|Tue|10/22|[Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)||
-|17|Thu|10/24|[Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)|[Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)|
-|18|Tue|10/29|Archiving data and code |||
-|19|Thu|10/31|Student presentations|[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)|
-|20|Tue|11/5|[Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)|
+|1|Tue|8/26|[Intro to the course and R/RStudio](https://nt246.github.io/NTRES-6100-data-science/lesson1-rstudio.html)||
+|2|Thu|8/28|[Markdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html)||
+|3|Tue|9/2|[The Git workflow (version control)](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)||
+|4|Thu|9/4|[Collaborating with GitHub Part 1](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html)|[Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)|
+|5|Tue|9/9|[Collaborating with GitHub Part 2](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html)||
+|6|Thu|9/11|[Plotting with ggplot part 1](https://nt246.github.io/NTRES-6100-data-science/lesson6-ggplot-part1.html)|[Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)|
+|7|Tue|9/16|[Data wrangling part 1 (dplyr::filter, mutate, select, arrange)](https://nt246.github.io/NTRES-6100-data-science/lesson7-data-wrangling1.html)||
+|8|Thu|9/18|[Data wrangling part 2 (dplyr::summarize, group_by)](https://nt246.github.io/NTRES-6100-data-science/lesson8-data-wrangling2.html)|[Assignment 3](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)|
+|9|Tue|9/23|[Plotting with ggplot part 2 + good coding practices](https://nt246.github.io/NTRES-6100-data-science/lesson9-ggplot-part2.html)||
+|10|Thu|9/25|[Tidy data](https://nt246.github.io/NTRES-6100-data-science/lesson10-tidy-data.html)|[Assignment 4](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)|
+|11|Tue|9/30|[Data import, export, and conversion between data types](https://nt246.github.io/NTRES-6100-data-science/lesson11-data-import-and-types.html)|||
+|12|Thu|10/2|[Relational data](https://nt246.github.io/NTRES-6100-data-science/lesson12-relational-data.html)|[Assignment 5](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)|
+|13|Tue|10/7|[Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-for-loops.html)||
+|14|Thu|10/9|[Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops-part2.html)|[Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)|
+||Tue|10/14|FALL BREAK (no class)|||
+|15|Thu|10/16|[Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson15-debugging-getting-help.html)|[Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)|
+|16|Tue|10/21|[Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html)||
+|17|Thu|10/23|[Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson17-factors.html)|[Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)|
+|18|Tue|10/28|Archiving data and code |||
+|19|Thu|10/30|Student presentations|[Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)|
+|20|Tue|11/4|[Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html)|
 
 
 | Lab#    | Date (Thu) | Date (Fri) | Topic                                                                                          |
 |:--------|:-------------|:------------|:-----------------------------------------------------------------------------------------------|
-|1|8/29|8/30|[RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)|
-|2|9/5|9/6|[RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)|
-|3|9/12|9/13|[Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)|
-|4|9/19|9/20|[Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)|
-|5|9/26|9/27|[Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)|
-|6|10/3|10/4|[Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)|
-|7|10/10|10/11|[Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html)|
-|8|10/17|10/18|[Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)|
-|9|10/24|10/25|[Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)|
-|10|10/31|11/1|OPTIONAL: Bring your own project| 
+|1|8/28|8/29|[RMarkdown](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html)|
+|2|9/4|9/5|[RMarkdown and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html)|
+|3|9/11|9/12|[Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html)|
+|4|9/18|9/19|[Data exploration with the gapminder dataset](https://nt246.github.io/NTRES-6100-data-science/lab4-ggplot-dplyr.html)|
+|5|9/25|9/26|[Data exploration with the Titanic dataset](https://nt246.github.io/NTRES-6100-data-science/lab5-titanic.html)|
+|6|10/2|10/3|[Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html)|
+|7|10/9|10/10|[Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html)|
+|8|10/16|10/17|[Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html)|
+|9|10/23|10/24|[Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)|
+|10|10/30|10/31|OPTIONAL: Bring your own project| 
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
