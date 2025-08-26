@@ -15,11 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-### RMarkdown
+### Quarto
 
 **Required**:  
-- [Chapter 27 in Grolemund and Wickham's R for Data Science](https://r4ds.had.co.nz/r-markdown.html)  
-- Have a look at the [RMarkdown website](https://rmarkdown.rstudio.com/lesson-1.html) including [this video](https://rmarkdown.rstudio.com/authoring_quick_tour.html)
+- [Chapters 28 and 29 in R for Data Science (2e)](https://r4ds.hadley.nz/quarto.html)   
+- Have a look at the [Quarto website](https://quarto.org/)  
+
+
+
 
 **Additional resources**:  
 - [RStudio's R markdown cheatsheet](https://github.com/nt246/NTRES-6100-data-science/blob/main/docs/assets/rmarkdown.pdf)  
@@ -46,11 +49,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Class announcements 
 
 * Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc. 
-* We will use the `lecture-chat` channel in Slack (also people on Zoom). Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture 
-* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/65313)
+* We will use the `lecture-chat` channel in Slack. Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture 
+* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/76776)
 * Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
-* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/5 (we will go through how to submit through GitHub next week)  
-* Jaime will hold regular office hours. Time and place TBD
+* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/4 (we will go through how to submit through GitHub next week)  
+* Jaime will hold regular office hours Mondays in Fernow 311
 
 <br>
 
@@ -58,7 +61,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 By the end of today’s class, students are expected to be able to:
 
-* Write documents in RMarkdown, and render these documents to html with RStudio.
+* Generate documents with Quarto, and render these documents to html with RStudio.
 * Understand the basic formatting used to combine text, code, tables and plots in RMarkdown documents
 * Demonstrate at least two Rmd code chunk options
 * Configure git to integrate with RStudio
