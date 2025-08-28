@@ -1,6 +1,8 @@
 ---
 title: "Lesson 2: Quarto and GitHub"
-format: revealjs
+format:
+  revealjs:
+    incremental: true
 editor: visual
 ---
 
@@ -31,6 +33,33 @@ By the end of today’s class, students are expected to be able to:
 -   For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code).
 
 -   As an environment in which to do data science, as a modern-day lab notebook where you can capture not only what you did, but also what you were thinking.
+
+
+## Text formatting
+
+Notice the syntax for:
+
+- **headers** with `#`, `##`, ..., `#######`
+- **bold** with `**text**`
+- *italic* with `*text*`
+- `verbatim code` with `` `text` ``
+- <span style="color: red;">change text color with</span>`<span style="color: red;">text</span>`
+- [link a url to your text with](https://i.pinimg.com/originals/e8/a5/cd/e8a5cd9c5dbccfabcdeea5c4a16e5e10.png) `[text](url)`
+- insert a blank line with `<br>`
+
+To see more of the rules, let's look at RStudio's built-in reference. Let's do this: Help > Markdown Quick Reference
+
+
+## Activity
+Make the following changes to your RMarkdown document:
+
+* Add some italic text
+* Make a numbered list
+* Add some subheaders
+
+You can find hints in the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
+
+Re-knit your html file to see how your formatting works out. If you have more time, try adding a URL and a table
 
 
 ## ![](images/clipboard-3610724621.png)

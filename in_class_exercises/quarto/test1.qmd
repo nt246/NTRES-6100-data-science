@@ -1,6 +1,6 @@
 ---
 title: "Test3"
-format: github
+format: gfm
 editor: visual
 ---
 

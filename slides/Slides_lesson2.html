@@ -135,26 +135,59 @@
 <section id="class-announcements" class="slide level2">
 <h2>Class announcements</h2>
 <ul>
-<li>Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.</li>
-<li>We will use the <code>lecture-chat</code> channel in Slack. Feel free to post questions or let us know if you’re having software issues or can’t get demos to work on your computer during the lecture</li>
-<li>Zoom recordings are available at the <a href="https://canvas.cornell.edu/courses/76776">course Canvas site</a></li>
-<li>Course website and readings - see the Lectures tab of the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">course website</a>. You do NOT have to do the exercises in the assigned chapter before class</li>
-<li><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">Assignment 1</a> is due 9/4 (we will go through how to submit through GitHub next week)</li>
-<li>Jaime will hold regular office hours Mondays in Fernow 311</li>
+<li class="fragment">Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.</li>
+<li class="fragment">We will use the <code>lecture-chat</code> channel in Slack. Feel free to post questions or let us know if you’re having software issues or can’t get demos to work on your computer during the lecture</li>
+<li class="fragment">Zoom recordings are available at the <a href="https://canvas.cornell.edu/courses/76776">course Canvas site</a></li>
+<li class="fragment">Course website and readings - see the Lectures tab of the <a href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">course website</a>. You do NOT have to do the exercises in the assigned chapter before class</li>
+<li class="fragment"><a href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">Assignment 1</a> is due 9/4 (we will go through how to submit through GitHub next week)</li>
+<li class="fragment">Jaime will hold regular office hours Mondays in Fernow 311</li>
 </ul>
 </section>
 <section id="learning-objectives-for-todays-class" class="slide level2">
 <h2>Learning objectives for today’s class</h2>
 <p>By the end of today’s class, students are expected to be able to:</p>
 <ul>
-<li>Generate documents with Quarto, and render these documents to html with RStudio.</li>
-<li>Use the visual editor to combine text, code, tables and plots in Quarto documents, and understand the underlying markdown syntax</li>
-<li>Demonstrate at least two Quarto code chunk options</li>
-<li>Configure git to integrate with RStudio</li>
+<li class="fragment">Generate documents with Quarto, and render these documents to html with RStudio.</li>
+<li class="fragment">Use the visual editor to combine text, code, tables and plots in Quarto documents, and understand the underlying markdown syntax</li>
+<li class="fragment">Demonstrate at least two Quarto code chunk options</li>
+<li class="fragment">Configure git to integrate with RStudio</li>
 </ul>
 </section>
 <section id="section" class="slide level2">
 <h2><img data-src="images/clipboard-1603190774.png"></h2>
+</section>
+<section id="quarto-files-are-designed-to-be-used-in-three-ways" class="slide level2">
+<h2>Quarto files are designed to be used in three ways:</h2>
+<ul>
+<li class="fragment"><p>For communicating to decision-makers, who want to focus on the conclusions, not the code behind the analysis.</p></li>
+<li class="fragment"><p>For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e.&nbsp;the code).</p></li>
+<li class="fragment"><p>As an environment in which to do data science, as a modern-day lab notebook where you can capture not only what you did, but also what you were thinking.</p></li>
+</ul>
+</section>
+<section id="text-formatting" class="slide level2">
+<h2>Text formatting</h2>
+<p>Notice the syntax for:</p>
+<ul>
+<li class="fragment"><strong>headers</strong> with <code>#</code>, <code>##</code>, …, <code>#######</code></li>
+<li class="fragment"><strong>bold</strong> with <code>**text**</code></li>
+<li class="fragment"><em>italic</em> with <code>*text*</code></li>
+<li class="fragment"><code>verbatim code</code> with <code>`text`</code></li>
+<li class="fragment"><span style="color: red;">change text color with</span><code>&lt;span style="color: red;"&gt;text&lt;/span&gt;</code></li>
+<li class="fragment"><a href="https://i.pinimg.com/originals/e8/a5/cd/e8a5cd9c5dbccfabcdeea5c4a16e5e10.png">link a url to your text with</a> <code>[text](url)</code></li>
+<li class="fragment">insert a blank line with <code>&lt;br&gt;</code></li>
+</ul>
+<p>To see more of the rules, let’s look at RStudio’s built-in reference. Let’s do this: Help &gt; Markdown Quick Reference</p>
+</section>
+<section id="activity" class="slide level2">
+<h2>Activity</h2>
+<p>Make the following changes to your RMarkdown document:</p>
+<ul>
+<li class="fragment">Add some italic text</li>
+<li class="fragment">Make a numbered list</li>
+<li class="fragment">Add some subheaders</li>
+</ul>
+<p>You can find hints in the Markdown Quick Reference (in the menu bar: Help &gt; Markdown Quick Reference).</p>
+<p>Re-knit your html file to see how your formatting works out. If you have more time, try adding a URL and a table</p>
 </section>
 <section id="section-1" class="slide level2">
 <h2><img data-src="images/clipboard-3610724621.png"></h2>
