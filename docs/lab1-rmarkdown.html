@@ -11,9 +11,9 @@
 
 
 
-<title>Lab 1: RMarkdown</title>
+<title>Lab 1: Quarto</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -452,7 +452,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 1: RMarkdown</h1>
+<h1 class="title toc-ignore">Lab 1: Quarto</h1>
 
 </div>
 
@@ -460,26 +460,25 @@ div.tocify {
 <p><br></p>
 <div id="goal-for-today" class="section level2">
 <h2>Goal for today</h2>
-<p>Explore more RMarkdown functionality and practice implementing
-it.</p>
+<p>Explore more Quarto functionality and practice implementing it.</p>
 <p><br> <br></p>
 </div>
 <div id="exercise-1-basic-formatting-and-code-chunk-options"
 class="section level2">
 <h2>Exercise 1: Basic formatting and code chunk options</h2>
-<p>Let’s start by playing around with the basic RStudio RMarkdown
-template a little more. Open a fresh copy by clicking File -&gt; New
-File -&gt; R Markdown… We can enter “Lab exercise” in the Title field
-and keep HTML as the Default Output Format.</p>
+<p>Let’s start by playing around with the basic RStudio Quarto template
+a little more. Open a fresh copy by clicking File -&gt; New File -&gt;
+Quarto… We can enter “Lab exercise” in the Title field and keep HTML as
+the Default Output Format.</p>
 <p><br></p>
 <div id="basic-formatting" class="section level3">
 <h3>Basic formatting</h3>
 <p>Let’s play around with the formatting of our document. Remember that
-you can find RStudio’s built-in RMarkdown reference under Help &gt;
-Markdown Quick Reference, or check out one of the many great cheatsheets
-you can find online, e.g. <a
-href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">this</a>
-or RStudio’s RMarkdown cheatsheet you can download from <a
+you can find RStudio’s built-in Quarto reference under Help &gt; Cheat
+Sheets &gt; Browse Cheat Sheets … and find Quarto Cheat Sheet, or check
+out one of the many great cheatsheets you can find online, e.g. <a
+href="https://www.datacamp.com/cheat-sheet/quarto-cheat-sheet-previously-known-as-r-markdown">this</a>
+or RStudio’s Quarto cheatsheet you can download from <a
 href="https://rstudio.com/resources/cheatsheets/">here</a> (scroll down
 to find it).</p>
 <p>As you’re making changes, knit often and see how your edits look in
@@ -543,19 +542,19 @@ href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images
 <h4>Center and right align text</h4>
 <p>You cannot align text with the native markdown syntex. However,
 depending on the output format, you can use other methods. For example,
-if you are knitting the RMarkdown file into an HTML file, you can use
-HTML tags such as the following:</p>
+if you are knitting the Quarto file into an HTML file, you can use HTML
+tags such as the following:</p>
 <pre><code>&lt;center&gt; Centered text (HTML) &lt;/center&gt;
 [Aligned right (HTML)]{style=&quot;float:right&quot;}</code></pre>
-<p>Alternatively, if you are knitting the RMarkdown file into a PDF
-file, you can use LaTeX commands. E.g.,</p>
+<p>Alternatively, if you are knitting the Quarto file into a PDF file,
+you can use LaTeX commands. E.g.,</p>
 <pre><code>\center Centered text (PDF) \center
 \hfill Aligned right (PDF)</code></pre>
 <p><br></p>
 </div>
 <div id="equations" class="section level4">
 <h4>Equations</h4>
-<p>Want to include equations in your writing? Easy. rmarkdown supports
+<p>Want to include equations in your writing? Easy. Quarto supports
 LaTeX style equation writing. We won’t go through this in class, but you
 can find an easy introduction in <a
 href="https://rmd4sci.njtierney.com/math.html">R Markdown for
@@ -566,7 +565,7 @@ Scientists</a>.</p>
 <div id="code-chunk-options" class="section level3">
 <h3>Code-chunk options</h3>
 <p>Remind yourself about the key code chunk options, see overview <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks">here</a></p>
+href="https://nt246.github.io/NTRES-6100-data-science/lesson2-Quarto-github.html#Code_chunks">here</a></p>
 <ol style="list-style-type: decimal">
 <li><p>Add a few new code chunks to your document. Name them, add some
 simple code. Knit and see how the document renders.</p></li>
@@ -595,7 +594,7 @@ output:
     toc_depth: 2
 ---</code></pre>
 <p>More details about styling your table of contents <a
-href="https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents">here</a></p>
+href="https://bookdown.org/yihui/Quarto/html-document.html#table-of-contents">here</a></p>
 <p><br> <br></p>
 </div>
 <div id="output-formats" class="section level3">
@@ -613,6 +612,8 @@ lay-tek).</p>
 <p>Installing LaTeX can be a pain, but thankfully there is an easier way
 to install it - tinytex. tinytex is an R package that installs a sane,
 lightweight (&lt;200Mb) version of LaTeX.</p>
+<p>Just go to your <code>Terminal</code> tab in Rstudio and type:</p>
+<p><code>quarto install tinytex</code></p>
 <p>If you’re having trouble with the generating the pdf, see the note on
 installing <code>tinytex</code> <a
 href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a>.</p>
@@ -620,7 +621,7 @@ href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a>.</
 <p>We can also make slides! There are several slide output formats. Try
 <code>output: beamer_presentation</code></p>
 <p>More details about styling beamer slides <a
-href="https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html">here</a></p>
+href="https://garrettgman.github.io/Quarto/beamer_presentation_format.html">here</a></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -644,14 +645,13 @@ href="http://nickstrayer.me/datadrivencv/"
 class="uri">http://nickstrayer.me/datadrivencv/</a></p>
 <p><br> <br></p>
 </div>
-<div id="exercise-4-explore-other-rmarkdown-applications"
+<div id="exercise-4-explore-other-quarto-applications"
 class="section level2">
-<h2>Exercise 4: Explore other RMarkdown applications</h2>
-<p>RMarkdown can be used for much more than making simple documents. In
+<h2>Exercise 4: Explore other Quarto applications</h2>
+<p>Quarto can be used for much more than making simple documents. In
 small groups, explore examples of interactive documents, dashboards,
 books, websites, rticles, and more. You can find examples of all of
-these in the <a
-href="https://rmarkdown.rstudio.com/gallery.html">RStudio
+these in the <a href="https://quarto.org/docs/gallery/">Quarto
 Gallery</a></p>
 <p>Discuss in your groups which application you think is the coolest,
 and report back to the group.</p>
