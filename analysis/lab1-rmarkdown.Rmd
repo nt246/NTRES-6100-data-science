@@ -212,7 +212,13 @@ installing `tinytex`
 <br>
 
 We can also make slides! There are several slide output formats. Try
-`output: beamer_presentation`
+`format: beamer`
+
+<br>
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+<br>
 
 More details about styling beamer slides
 [here](https://garrettgman.github.io/Quarto/beamer_presentation_format.html)
