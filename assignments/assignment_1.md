@@ -1,4 +1,4 @@
-Assignment 1: R markdown template
+Assignment 1: Quarto template
 ================
 
 ## Instructions: Please read through this before you begin
@@ -6,13 +6,12 @@ Assignment 1: R markdown template
 - This assignment is due by **10pm on Thursday 09/04/2024**.
 
 - For this assignment, please **reproduce this markdown file exactly as
-  shown** using R markdown (including this list of instructions). You do
+  shown** using Quarto (including this list of instructions). You do
   **NOT** need to fill out the code chunks (i.e. answer the questions)
   for this assignment. We are just practicing markdown formatting right
   now.
 
-- Please name your R markdown file `assignment_1.Rmd` and the knitted
-  markdown file `assignment_1.md`.
+- Please name your Quarto file `assignment_1.qmd`
 
 - Pay attention to all the formatting in this file, including bullet
   points, bold characters, inserted code chunks, headings, text colors,
@@ -25,7 +24,7 @@ Assignment 1: R markdown template
   complete your template after Thursday’s class, but don’t
   worry about submitting it until after we have gone over how to submit
   it through GitHub in next Tuesday’s class. To do so, you
-  will first move `assignment_1.Rmd` and `assignment_1.md` to the
+  will first move `assignment_1.qmd` and `assignment_1.html` to the
   `problem_sets` folder in your own GitHub repository that you have
   created in class through GitHub Classroom. (If you haven’t created
   this repo yet, please use the following url:
