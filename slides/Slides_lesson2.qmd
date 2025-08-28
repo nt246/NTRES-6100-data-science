@@ -1,0 +1,38 @@
+---
+title: "Lesson 2: Quarto and GitHub"
+format: revealjs
+editor: visual
+---
+
+## Class announcements
+
+-   Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc.
+-   We will use the `lecture-chat` channel in Slack. Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture
+-   Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/76776)
+-   Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
+-   [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/4 (we will go through how to submit through GitHub next week)
+-   Jaime will hold regular office hours Mondays in Fernow 311
+
+## Learning objectives for today's class
+
+By the end of today’s class, students are expected to be able to:
+
+-   Generate documents with Quarto, and render these documents to html with RStudio.
+-   Use the visual editor to combine text, code, tables and plots in Quarto documents, and understand the underlying markdown syntax
+-   Demonstrate at least two Quarto code chunk options
+-   Configure git to integrate with RStudio
+
+## ![](images/clipboard-1603190774.png)
+
+## Quarto files are designed to be used in three ways:
+
+-   For communicating to decision-makers, who want to focus on the conclusions, not the code behind the analysis.
+
+-   For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code).
+
+-   As an environment in which to do data science, as a modern-day lab notebook where you can capture not only what you did, but also what you were thinking.
+
+
+## ![](images/clipboard-3610724621.png)
+
+
