@@ -241,9 +241,9 @@ You will have seen how quickly you can create a nicely formatted
 document. But there are also lots of great CV templates out there that
 we can use. You could, for example, try one of these:
 <br>
-<http://svmiller.com/blog/2016/03/svm-r-markdown-cv/>
+<https://github.com/mps9506/quarto-cv/tree/main>
 <br>
-<http://nickstrayer.me/datadrivencv/>
+<https://alexbass.me/posts/resume/>
 <br>
 <https://github.com/schochastics/quarto-cv?tab=readme-ov-file>
 
