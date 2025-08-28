@@ -27,7 +27,7 @@ Assignment 1: Quarto template
   complete your template after Thursday’s class, but don’t
   worry about submitting it until after we have gone over how to submit
   it through GitHub in next Tuesday’s class. To do so, you
-  will first move `assignment_1.qmd` and `assignment_1.html` to the
+  will first move `assignment_1.qmd` and `assignment_1.md` to the
   `problem_sets` folder in your own GitHub repository that you have
   created in class through GitHub Classroom. (If you haven’t created
   this repo yet, please use the following url:
