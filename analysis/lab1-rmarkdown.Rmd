@@ -1,5 +1,5 @@
 ---
-title: "Lab 1: RMarkdown"
+title: "Lab 1: Quarto"
 output: 
   html_document:
     toc: true
@@ -13,21 +13,21 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## Goal for today
 
-Explore more RMarkdown functionality and practice implementing it.
+Explore more Quarto functionality and practice implementing it.
 
 <br>
 <br>
 
 ## Exercise 1: Basic formatting and code chunk options
 
-Let's start by playing around with the basic RStudio RMarkdown template a little more. Open a fresh copy by clicking File -> New File -> R Markdown... We can enter "Lab exercise" in the Title field and keep HTML as the Default Output Format.
+Let's start by playing around with the basic RStudio Quarto template a little more. Open a fresh copy by clicking File -> New File -> Quarto... We can enter "Lab exercise" in the Title field and keep HTML as the Default Output Format.
 
 <br>
 
 ### Basic formatting
 
 Let's play around with the formatting of our document. Remember that you can find 
-RStudio's built-in RMarkdown reference under Help > Markdown Quick Reference, or check out one of the many great cheatsheets you can find online, e.g. [this](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) or RStudio's RMarkdown cheatsheet you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
+RStudio's built-in Quarto reference under Help > Cheat Sheets > Browse Cheat Sheets ... and find Quarto Cheat Sheet, or check out one of the many great cheatsheets you can find online, e.g. [this](https://www.datacamp.com/cheat-sheet/quarto-cheat-sheet-previously-known-as-r-markdown) or RStudio's Quarto cheatsheet you can download from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it).
 
 As you're making changes, knit often and see how your edits look in the rendered document.
 
@@ -83,14 +83,14 @@ If you want more control over the output, e.g. to center the image or make it sm
 
 #### Center and right align text
 
-You cannot align text with the native markdown syntex. However, depending on the output format, you can use other methods. For example, if you are knitting the RMarkdown file into an HTML file, you can use HTML tags such as the following:
+You cannot align text with the native markdown syntex. However, depending on the output format, you can use other methods. For example, if you are knitting the Quarto file into an HTML file, you can use HTML tags such as the following:
 
 ```
 <center> Centered text (HTML) </center>
 [Aligned right (HTML)]{style="float:right"}
 ```
 
-Alternatively, if you are knitting the RMarkdown file into a PDF file, you can use LaTeX commands. E.g.,
+Alternatively, if you are knitting the Quarto file into a PDF file, you can use LaTeX commands. E.g.,
 
 ```
 \center Centered text (PDF) \center
@@ -100,12 +100,12 @@ Alternatively, if you are knitting the RMarkdown file into a PDF file, you can u
 <br>
 
 #### Equations
-Want to include equations in your writing? Easy. rmarkdown supports LaTeX style equation writing. We won't go through this in class, but you can find an easy introduction in [R Markdown for Scientists](https://rmd4sci.njtierney.com/math.html).
+Want to include equations in your writing? Easy. Quarto supports LaTeX style equation writing. We won't go through this in class, but you can find an easy introduction in [R Markdown for Scientists](https://rmd4sci.njtierney.com/math.html).
 
 <br>
 
 ### Code-chunk options
-Remind yourself about the key code chunk options, see overview [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Code_chunks)
+Remind yourself about the key code chunk options, see overview [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-Quarto-github.html#Code_chunks)
 
 1. Add a few new code chunks to your document. Name them, add some simple code. Knit and see how the document renders.
 
@@ -136,7 +136,7 @@ output:
 ---
 ```
 
-More details about styling your table of contents [here](https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents)
+More details about styling your table of contents [here](https://bookdown.org/yihui/Quarto/html-document.html#table-of-contents)
 
 <br>
 <br>
@@ -151,13 +151,17 @@ Now, check what happens if you change it to `output: pdf_document`. In order to 
 
 Installing LaTeX can be a pain, but thankfully there is an easier way to install it - tinytex. tinytex is an R package that installs a sane, lightweight (<200Mb) version of LaTeX.
 
+Just go to your `Terminal` tab in Rstudio and type:
+
+`quarto install tinytex`
+
 If you're having trouble with the generating the pdf, see the note on installing `tinytex` [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf).
 
 <br>
 
 We can also make slides! There are several slide output formats. Try `output: beamer_presentation`
 
-More details about styling beamer slides [here](https://garrettgman.github.io/rmarkdown/beamer_presentation_format.html)
+More details about styling beamer slides [here](https://garrettgman.github.io/Quarto/beamer_presentation_format.html)
 
 <br>
 <br>
@@ -177,8 +181,8 @@ http://nickstrayer.me/datadrivencv/
 <br>
 <br>
 
-## Exercise 4: Explore other RMarkdown applications
-RMarkdown can be used for much more than making simple documents. In small groups, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the [RStudio Gallery](https://rmarkdown.rstudio.com/gallery.html)
+## Exercise 4: Explore other Quarto applications
+Quarto can be used for much more than making simple documents. In small groups, explore examples of interactive documents, dashboards, books, websites, rticles, and more. You can find examples of all of these in the [Quarto Gallery](https://quarto.org/docs/gallery/) 
 
 Discuss in your groups which application you think is the coolest, and report back to the group.
 
