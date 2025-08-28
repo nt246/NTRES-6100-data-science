@@ -237,6 +237,7 @@ we can use. You could, for example, try one of these:
 
 <http://svmiller.com/blog/2016/03/svm-r-markdown-cv/>
 <http://nickstrayer.me/datadrivencv/>
+<https://github.com/schochastics/quarto-cv?tab=readme-ov-file>
 
 <br> <br>
 
