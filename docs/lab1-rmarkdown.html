@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -602,13 +602,11 @@ href="https://bookdown.org/yihui/Quarto/html-document.html#table-of-contents">he
 <p>Up until now, we’ve been rendering our .Rmd file to the default html
 format. That’s useful for lots of applications. But lots of other output
 formats are supported.</p>
-<p>Check what happens if you change the
-<code>output: html_document</code> in the YAML header to
-<code>output: word_document</code></p>
-<p>Now, check what happens if you change it to
-<code>output: pdf_document</code>. In order to convert the documents to
-PDF, they use a software called LaTeX (pronounced la-tek or
-lay-tek).</p>
+<p>Check what happens if you change the <code>format: html</code> in the
+YAML header to <code>format: docx</code></p>
+<p>Now, check what happens if you change it to <code>format: pdf</code>.
+In order to convert the documents to PDF, they use a software called
+LaTeX (pronounced la-tek or lay-tek).</p>
 <p>Installing LaTeX can be a pain, but thankfully there is an easier way
 to install it - tinytex. tinytex is an R package that installs a sane,
 lightweight (&lt;200Mb) version of LaTeX.</p>
