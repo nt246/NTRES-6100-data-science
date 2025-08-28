@@ -3,7 +3,7 @@ Assignment 1: Quarto template
 
 ## Instructions: Please read through this before you begin
 
-- This assignment is due by **10pm on Thursday 09/04/2024**.
+- This assignment is due by **10pm on Thursday 09/04/2025**.
 
 - For this assignment, please **reproduce this markdown file exactly as
   shown** using Quarto (including this list of instructions). You do
@@ -12,6 +12,9 @@ Assignment 1: Quarto template
   now.
 
 - Please name your Quarto file `assignment_1.qmd`
+
+- Set the output format to `gfm` to produce the correct `.md` file for github
+  rendering.
 
 - Pay attention to all the formatting in this file, including bullet
   points, bold characters, inserted code chunks, headings, text colors,
