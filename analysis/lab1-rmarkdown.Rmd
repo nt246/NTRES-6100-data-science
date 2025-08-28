@@ -190,10 +190,10 @@ Up until now, we've been rendering our .Rmd file to the default html
 format. That's useful for lots of applications. But lots of other output
 formats are supported.
 
-Check what happens if you change the `output: html_document` in the YAML
-header to `output: word_document`
+Check what happens if you change the `format: html` in the YAML
+header to `format: docx`
 
-Now, check what happens if you change it to `output: pdf_document`. In
+Now, check what happens if you change it to `format: pdf`. In
 order to convert the documents to PDF, they use a software called LaTeX
 (pronounced la-tek or lay-tek).
 
