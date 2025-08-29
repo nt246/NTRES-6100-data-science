@@ -499,17 +499,23 @@ headers</p>
 <div id="in-line-code" class="section level4">
 <h4>In-line code</h4>
 <p>Another really cool and useful functionality is writing in-line code.
-Code results can be inserted directly into the text of a .Rmd file by
+Code results can be inserted directly into the text of a .qmd file by
 enclosing the code with <code>r</code>. This way, you’re basically
-running code inside a sentence. R Markdown will always display the
-results of in-line code, but not the code, and apply relevant text
-formatting to the results. As a result, inline output is
-indistinguishable from the surrounding text, but will show up-to-date
-results of your code.</p>
-<p>We may for example want to summarize the dimensions of our dataset.
-We can do this by typing</p>
-<pre class="r"><code>There are `r nrow(cars)` observations in the cars dataset, 
-and `r ncol(cars)` variables.</code></pre>
+running code inside a sentence. Quarto will always display the results
+of in-line code, but not the code, and apply relevant text formatting to
+the results. As a result, inline output is indistinguishable from the
+surrounding text, but will show up-to-date results of your code.
+However, we first need to add an additional option to the header YAML of
+our Quarto document.</p>
+<pre class="r"><code>---
+title: &quot;Example&quot;
+format: html
+engine: knitr #Add this to your YAML header
+---</code></pre>
+<p>Once this is done, we may for example want to summarize the
+dimensions of our dataset. We can do this by typing</p>
+<pre class="r"><code>There are `{r} nrow(cars)` observations in the cars dataset, 
+and `{r} ncol(cars)` variables.</code></pre>
 <p>See how that renders.</p>
 <p><br></p>
 </div>
