@@ -182,10 +182,10 @@ Add toc details to your YAML header <br>
 title: "Lab1_doc"
 author: "Nina"
 date: "2/12/2021"
-output:
-  html_document:
+format:
+  html:
     toc: true
-    toc_depth: 2
+    toc-depth: 3   
 ---
 ```
 
