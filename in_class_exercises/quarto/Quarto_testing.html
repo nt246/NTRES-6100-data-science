@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nina">
 
-<title>Test3</title>
+<title>Learning about Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,16 +58,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="test1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="test1_files/libs/quarto-html/quarto.js"></script>
-<script src="test1_files/libs/quarto-html/popper.min.js"></script>
-<script src="test1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="test1_files/libs/quarto-html/anchor.min.js"></script>
-<link href="test1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="test1_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="test1_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="test1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="test1_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Quarto_testing_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Quarto_testing_files/libs/quarto-html/quarto.js"></script>
+<script src="Quarto_testing_files/libs/quarto-html/popper.min.js"></script>
+<script src="Quarto_testing_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Quarto_testing_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Quarto_testing_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Quarto_testing_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Quarto_testing_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Quarto_testing_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Quarto_testing_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -79,13 +80,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Test3</h1>
+<h1 class="title">Learning about Quarto</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nina </p>
+          </div>
+  </div>
     
   
     
@@ -98,11 +105,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<p>Quarto enables you to weave together <em>content and executable</em> code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="bullet-list" class="level4">
+<h4 class="anchored" data-anchor-id="bullet-list">Bullet list</h4>
+<ul>
+<li><p>point1</p></li>
+<li><p>point2</p></li>
+<li><p>point3</p></li>
+</ul>
+</section>
 </section>
 <section id="running-code" class="level2">
 <h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document <em>will be generated</em> that includes both content and the output of embedded code. You can embed code like this:</p>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -111,60 +126,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can add options to executable code like this</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> short_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 12</code></pre>
 </div>
 </div>
 <p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
-</section>
-<section id="trying-formatting" class="level2">
-<h2 class="anchored" data-anchor-id="trying-formatting"><strong>Trying formatting</strong></h2>
-<ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
-</ul>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Col1</th>
-<th>Col2</th>
-<th>Col3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2</td>
-<td>4</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="now-cars" class="level2">
-<h2 class="anchored" data-anchor-id="now-cars">Now cars</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   speed dist
+1      4    2
+2      4   10
+3      7    4
+4      7   22
+5      8   16
+6      9   10
+7     10   18
+8     10   26
+9     10   34
+10    11   17
+11    11   28
+12    12   14
+13    12   20
+14    12   24
+15    12   28
+16    13   26
+17    13   34
+18    13   34
+19    13   46
+20    14   26
+21    14   36
+22    14   60
+23    14   80
+24    15   20
+25    15   26
+26    15   54
+27    16   32
+28    16   40
+29    17   32
+30    17   40
+31    17   50
+32    18   42
+33    18   56
+34    18   76
+35    18   84
+36    19   36
+37    19   46
+38    19   68
+39    20   32
+40    20   48
+41    20   52
+42    20   56
+43    20   64
+44    22   66
+45    23   54
+46    24   70
+47    24   92
+48    24   93
+49    24  120
+50    25   85</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="test1_files/figure-html/cars-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Quarto_testing_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode fasm code-with-copy"><code class="sourceCode fasm"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>I like puppies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="https://media.4-paws.org/1/e/d/6/1ed6da75afe37d82757142dc7c6633a532f53a7d/VIER%20PFOTEN_2019-03-15_001-2886x1999-1920x1330.jpg" class="img-fluid"></p>
-<pre><code>It's a beautiful day</code></pre>
+<p><img src="https://pictures.dealer.com/g/garberhondarochesterny/0301/a8f0084797fea1cb2e207b161280017ax.jpg?impolicy=resize&amp;w=1024" class="img-fluid"></p>
 </section>
 
 </main>

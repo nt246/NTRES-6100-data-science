@@ -13,7 +13,7 @@
 
 <title>Lesson 3: Version control and the Git/GitHub workflow</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -489,19 +489,18 @@ Project Management</a> by Openscapes</p></li>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Unfortunately, no better classroom is available during our meeting
-time, so we will have to stick with our current room assignment and make
-the best of it. Please talk to us or write in the <code>feedback</code>
-channel if you have suggestions for how we can make things work better
-in the room.</li>
-<li><strong>Homework 1</strong> is due this Thursday at 10pm (submit
+<li>The classroom is a little wide so it might be hard to see the screen
+from the edges of the room. Please talk to us or write in the
+<code>feedback</code> channel if you have suggestions for how we can
+make things work better in the room.</li>
+<li><strong>Homework 1</strong> is due this Thursday at 10pm (submit
 through GitHub! – we’ll demo later).</li>
 <li>Auditors are welcome to submit homework assignments for useful
 practice and feedback.</li>
 <li>Jaime will host office hours Wednesday 10-11am in 311 Fernow
 Hall.</li>
 <li>Nina will host office hours 11.30-12am (right after class) this
-Thursday in the lobby area at the entrance of Morrison Hall.</li>
+Thursday on the benches outside the classroom.</li>
 </ul>
 <p><br><br />
 <br></p>
@@ -526,8 +525,8 @@ and set up a version-controlled project directory on your computer</li>
 the excellent <a
 href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel
 users</a> course by Julia Stewart Lowndes and Allison Horst and the <a
-href="https://stat545guidebook.netlify.com/the-version-control-workflow.html">STAT457
-course at UBC</a>.</p>
+href="https://stat545.stat.ubc.ca/notes/notes-a02/">STAT457 course at
+UBC</a>.</p>
 <p><br></p>
 </div>
 <div id="introduction-to-git-and-github" class="section level2">
@@ -642,7 +641,7 @@ Instead, you will work within your personal course repo that we have
 created with a GitHub Classroom organization for the class. To access
 your personal course repo through which you will be submitting your
 assignments and communicating with us, click <a
-href="https://classroom.github.com/a/o8r_gQtD">here</a>. Select your
+href="https://classroom.github.com/a/StaRJQLV">here</a>. Select your
 name from the list (or just click continue if you don’t see your name
 there).</p>
 <p>Once you land on your repo page, notice that it is hosted within our
@@ -656,8 +655,8 @@ on the top right of the page.</p>
 corner, and select the “Your stars” option, you’ll be taken to a list of
 all the repos you have starred and your course repo should show up here
 (it should be named something like
-<code>therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME</code>). Click
-on the repo name to return to your course repo.</p>
+<code>therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME</code>).
+Click on the repo name to return to your course repo.</p>
 <p><img src="assets/finding_starred_repos.png" width="80%" /></p>
 <p><br> <br> <br></p>
 </div>
@@ -671,7 +670,7 @@ on the repo name to return to your course repo.</p>
 <h4>Together:</h4>
 <ul>
 <li>Make sure you’re in your class repo
-(<code>therkildsen-class/therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME</code>)</li>
+(<code>therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME</code>)</li>
 <li>Click on the “Add File” button on your repository’s home page, and
 select the “Create new file” option</li>
 <li>Call the file <code>navigating_github.md</code></li>
@@ -721,7 +720,7 @@ history.</p>
 need to take a snapshot of all your files each time.</li>
 <li>The actual changes are called a diff.</li>
 </ul>
-<p>Demostration:</p>
+<p>Demonstration:</p>
 <ul>
 <li>View commit history of the <a
 href="https://github.com/nt246/NTRES-6100-data-science">course website
@@ -849,9 +848,9 @@ Explorer:</p>
 <p><br></p>
 <p>Let’s notice a few things:</p>
 <p>First, our working directory is set to
-<code>~/github/ntres-6100-fa2024-USERNAME</code>, and
-<code>ntres-6100-fa2024-USERNAME</code> is also named in the top right
-hand corner.</p>
+<code>~/github/ntres-6100-assignments-USERNAME</code>, and
+<code>ntres-6100-assignments-USERNAME</code> is also named in the top
+right hand corner.</p>
 <p>Second, we have a Git tab in the top right pane! Let’s click on
 it.</p>
 <p><br></p>
@@ -881,8 +880,9 @@ file.</p>
 <div id="edit-your-readme-file" class="section level3">
 <h3>Edit your README file</h3>
 <p>Let’s also open up the <code>README.md</code>. This is a Markdown
-file, which is the same language we just learned with R Markdown. It’s
-like an R Markdown file without the abilities to run R code.</p>
+file, which is the same language we just learned with Quarto / R
+Markdown. It’s like a Quarto file without the abilities to run code (but
+we can see much of the formatting in the visual editor.</p>
 <p>We will edit the file and illustrate how GitHub tracks files that
 have been modified (to complement seeing how it tracks files that have
 been added).</p>
@@ -1027,7 +1027,7 @@ projects and workflows for our data analyses.</p>
 <p>This GitHub repository is now also an RStudio Project (capital P
 Project). This just means that RStudio has saved this additional file
 with extension <code>.Rproj</code> (ours is
-<code>ntres-6100-fa2024-USERNAME.Rproj</code>) to store specific
+<code>ntres-6100-assignments-USERNAME.Rproj</code>) to store specific
 settings for this project. It’s a bit of technology to help us get into
 the good habit of having a project-oriented workflow.</p>
 <p>A <a href="https://rstats.wtf/projects">project-oriented workflow</a>
@@ -1067,19 +1067,19 @@ interact with your files as you are here.</p>
 <div id="project-oriented-workflows-in-action-aka-our-analytical-setup"
 class="section level2">
 <h2>Project-oriented workflows in action (aka our analytical setup)</h2>
-<p>Let’s get a bit organized. First, let’s create a new R Markdown file
-for notes that you want to take as we work through the different modules
-of this course.</p>
+<p>Let’s get a bit organized. First, let’s create a new Quarto file for
+notes that you want to take as we work through the different modules of
+this course.</p>
 <p><br></p>
 <div id="create-a-new-rmd-file" class="section level3">
 <h3>Create a new Rmd file</h3>
 <p>So let’s do this (again):</p>
-<p>File &gt; New File &gt; R Markdown … (or click the green plus in the
-top left corner).</p>
+<p>File &gt; New File &gt; Quarto Document … (or click the green plus in
+the top left corner).</p>
 <p>Let’s set up this file so it’s ready for us to enter notes into. I’m
-going to update the header with a new title and add my name, and then
-I’m going to delete the rest of the document so that we have a clean
-start.</p>
+going to update the header with a new title and add my name, for now
+leave the output as html, and then I’m going to delete the rest of the
+document so that we have a clean start.</p>
 <blockquote>
 <p><strong>Efficiency Tip</strong>: I use Shift - Command - Down Arrow
 to highlight text from my cursor to the end of the document</p>
@@ -1087,19 +1087,20 @@ to highlight text from my cursor to the end of the document</p>
 <pre><code>---
 title: &quot;Notes for NTRES 6100 lectures&quot;
 author: &quot;Nina Overgaard Therkildsen&quot;
-date: &quot;09/21/2020&quot;
-output: html_document
+format: html
+editor: visual
 ---
 
 # Course notes
 We&#39;re going to learn a lot about GitHub and the tidyverse and it&#39;s going to be fun.</code></pre>
-<p><br></p>
+<p><br> <br></p>
 <p>Now, let’s save it. I’m going to call my file
-<code>course-notes.Rmd</code>.</p>
+<code>course-notes.qmd</code>.</p>
 <p>Notice that when we save this file, it pops up in our Git tab. Git
 knows that there is something new in our repo.</p>
-<p>Let’s also knit this file. And look: Git also sees the knitted
-.html.</p>
+<p>Let’s also render this file. And look: Git also sees the rendered
+.html file.</p>
+<p><br></p>
 <p>And let’s practice syncing our file to to GitHub: pull, stage,
 commit, push</p>
 <blockquote>
@@ -1134,33 +1135,23 @@ file should show up in our GitHub repo after we push it. But how does it
 look? GitHub just displays the raw html text file, not the nice-looking
 rendered version we’ll see in a browser.</p>
 <p>The nicely formatted files you see on GitHub (e.g. typical README
-pages) are markdown files (.md in contrast to .Rmd). Fortunately,
-RMarkdown can output to this format, along with several others including
-pdf and word documents. We can change the output format by changing the
-settings in the YAML header of our RMarkdown document. We can change to
-GitHub flavored markdown by doing one of the following:</p>
-<ul>
-<li>When creating your RMarkdown file, click “From template”, and then
-select “GitHub Document (Markdown)”</li>
-</ul>
-<p><br></p>
-<ul>
-<li>At the top of an RMarkdown file, manually edit the output of the
-GitHub document using the following syntax</li>
-</ul>
+pages) are markdown files (.md in contrast to .Rmd). Fortunately, Quarto
+can output to this format, along with several others including pdf and
+word documents. We can change the output format in the YAML header at
+the top of our Quarto document. For the rendered output to display
+nicely on GitHub, we want to select <code>output: gfm</code> (GitHub
+Flavored Markdown).</p>
 <pre><code>---
-title: &quot;Title&quot;
-output: 
-  github_document: 
-    toc: true
----</code></pre>
-<p>Note: <code>toc: true</code> is optional, but it can automatically
-set up a table of content for you.</p>
-<p>You can find much more information about RMarkdown output formats <a
-href="https://r4ds.had.co.nz/r-markdown-formats.html">here</a>. For most
-of our work in this course, we will want to use the
-<code>github_document</code> output type because this displays nicely on
-the GitHub website.</p>
+title: &quot;Notes for NTRES 6100 lectures&quot;
+author: &quot;Nina Overgaard Therkildsen&quot;
+format: gfm
+editor: visual
+---
+</code></pre>
+<p>You can find much more information about Quarto output formats <a
+href="https://r4ds.hadley.nz/quarto-formats.html">here</a>. For most of
+our work in this course, we will want to use the <code>gfm</code> output
+type because this displays nicely on the GitHub website.</p>
 <p><br></p>
 </div>
 <div id="move-files-to-data-folder" class="section level3">
@@ -1169,9 +1160,10 @@ the GitHub website.</p>
 can push it to GitHub. One of the data files you will need for your next
 problem set is located <a
 href="https://github.com/nt246/NTRES-6100-data-science/blob/main/datasets/EconomistData.csv">here</a>.
-Save this file (using File -&gt; Save Page As in your internet browser)
-into the ‘data’ subfolder of your R project (the folder you have created
-for the project (in the cloning process) on your local computer).</p>
+Save this file (using the “Download raw file” icon in the top right of
+the file display area) into the ‘data’ subfolder of your R project (the
+folder you have created for the project (in the cloning process) on your
+local computer).</p>
 <p>Now let’s go back to RStudio. We can click on the data folder in the
 Files tab and now see this new file.</p>
 <p>The data folder also shows up in your Git tab. But the figures folder
@@ -1194,7 +1186,7 @@ syncing (pull, stage, commit, push). For example,</p>
 <li>Add a picture of yourself (see instructions from last class <a
 href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Activity">here</a>)</li>
 </ul>
-<p>Explore your Commit History.</p>
+<p>Explore your Commit History</p>
 <p><br></p>
 </div>
 </div>
@@ -1215,7 +1207,10 @@ class="section level2">
 want to add version control through GitHub. You can easily set that up
 with <a
 href="https://happygitwithr.com/existing-github-first.html">these
-instructions</a> by from Happy Git with R by Jenny Bryan.</p>
+instructions</a> by from Happy Git with R by Jenny Bryan. In fact, we
+will do this for our <a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Assignment
+2</a>!</p>
 <p><br> <br></p>
 <div id="end-github-session" class="section level3">
 <h3>END <strong>GitHub</strong> session!</h3>

@@ -13,7 +13,7 @@ editor: visual
 -   Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/76776)
 -   Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
 -   [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/4 (we will go through how to submit through GitHub next week)
--   Jaime will hold regular office hours Mondays in Fernow 311
+-   Jaime will hold regular office hours Mondays 3-4pm in Fernow 311
 
 ## Learning objectives for today's class
 
@@ -24,7 +24,16 @@ By the end of today’s class, students are expected to be able to:
 -   Demonstrate at least two Quarto code chunk options
 -   Configure git to integrate with RStudio
 
+
+## What is Quarto
+
+-   Quarto provides a unified authoring framework for data science, combining your code, its results, and your prose. 
+
+-   Quarto documents are fully reproducible and support dozens of output formats, like PDFs, Word files, presentations, and more.
+
+
 ## ![](images/clipboard-1603190774.png)
+
 
 ## Quarto files are designed to be used in three ways:
 

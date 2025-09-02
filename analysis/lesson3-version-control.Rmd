@@ -33,11 +33,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Announcements
 
-* Unfortunately, no better classroom is available during our meeting time, so we will have to stick with our current room assignment and make the best of it. Please talk to us or write in the `feedback` channel if you have suggestions for how we can make things work better in the room.
-* **Homework 1** is due this Thursday at 10pm (submit through GitHub! – we’ll demo later).
+* The classroom is a little wide so it might be hard to see the screen from the edges of the room. Please talk to us or write in the `feedback` channel if you have suggestions for how we can make things work better in the room.
+* **Homework 1** is due this Thursday at 10pm (submit through GitHub! – we’ll demo later).
 * Auditors are welcome to submit homework assignments for useful practice and feedback.
 * Jaime will host office hours Wednesday 10-11am in 311 Fernow Hall.
-* Nina will host office hours 11.30-12am (right after class) this Thursday in the lobby area at the entrance of Morrison Hall.
+* Nina will host office hours 11.30-12am (right after class) this Thursday on the benches outside the classroom.
 
 
 <br>  
@@ -56,7 +56,7 @@ By the end of this class you will be able to:
 
 <br>
 
-**Acknowledgements**: Today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [STAT457 course at UBC](https://stat545guidebook.netlify.com/the-version-control-workflow.html).
+**Acknowledgements**: Today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [STAT457 course at UBC](https://stat545.stat.ubc.ca/notes/notes-a02/).
 
 <br>
 
@@ -124,7 +124,7 @@ Examples:
 <br>
 
 ### Say hello to your course repo on GitHub
-In this course, you will not be working in repos in your own personal account because then we will not have edit access to your files. Instead, you will work within your personal course repo that we have created with a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/o8r_gQtD). Select your name from the list (or just click continue if you don't see your name there).
+In this course, you will not be working in repos in your own personal account because then we will not have edit access to your files. Instead, you will work within your personal course repo that we have created with a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/StaRJQLV). Select your name from the list (or just click continue if you don't see your name there).
 
 Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
 
@@ -134,7 +134,7 @@ knitr::include_graphics("assets/star_repo_24FA.png")
 
 <br>
 
-Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
+Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/finding_starred_repos.png")  
@@ -153,7 +153,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Make sure you're in your class repo (`therkildsen-class/therkildsen-class/ntres-6100-fa2024-YOUR_USER_NAME`)
+* Make sure you're in your class repo (`therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME`)
 * Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
 * Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.
@@ -191,7 +191,7 @@ Users make “commits” to form a commit history
 * Git only tracks the changes associated with a commit, so it doesn’t need to take a snapshot of all your files each time.
 * The actual changes are called a diff.
 
-Demostration:
+Demonstration:
 
 * View commit history of the [course website repo](https://github.com/nt246/NTRES-6100-data-science) by clicking on the “commits” button on the repo home page.
 * View a recent diff by clicking on the button with the SHA or hash code (something like `6c0a5f1`).
@@ -327,7 +327,7 @@ knitr::include_graphics("assets/new_project6.png")
 
 Let's notice a few things: 
 
-First, our working directory is set to `~/github/ntres-6100-fa2024-USERNAME`, and `ntres-6100-fa2024-USERNAME` is also named in the top right hand corner.
+First, our working directory is set to `~/github/ntres-6100-assignments-USERNAME`, and `ntres-6100-assignments-USERNAME` is also named in the top right hand corner.
 
 Second, we have a Git tab in the top right pane! Let's click on it. 
 
@@ -354,7 +354,7 @@ We will handle this in a moment; first let's look at the README.md file.
 
 ### Edit your README file
 
-Let's also open up the `README.md`. This is a Markdown file, which is the same language we just learned with R Markdown. It's like an R Markdown file without the abilities to run R code. 
+Let's also open up the `README.md`. This is a Markdown file, which is the same language we just learned with Quarto / R Markdown. It's like a Quarto file without the abilities to run code (but we can see much of the formatting in the visual editor. 
 
 We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added). 
 
@@ -518,7 +518,7 @@ Let's also explore the commit history. The 2 commits we've made (the first was w
 
 Let's go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. 
 
-This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-fa2024-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
+This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-assignments-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
 
 A [project-oriented workflow](https://rstats.wtf/projects) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
 
@@ -542,7 +542,7 @@ knitr::include_graphics("assets/RStudio_IDE_projdir.png")
 
 ## Project-oriented workflows in action (aka our analytical setup)
 
-Let's get a bit organized. First, let's create a new R Markdown file for notes that you want to take as we work through the different modules of this course.
+Let's get a bit organized. First, let's create a new Quarto file for notes that you want to take as we work through the different modules of this course.
 
 <br>
 
@@ -550,17 +550,18 @@ Let's get a bit organized. First, let's create a new R Markdown file for notes t
 
 So let's do this (again): 
 
-File > New File > R Markdown ... (or click the green plus in the top left corner).
+File > New File > Quarto Document ... (or click the green plus in the top left corner).
 
-Let's set up this file so it's ready for us to enter notes into. I'm going to update the header with a new title and add my name, and then I'm going to delete the rest of the document so that we have a clean start. 
+Let's set up this file so it's ready for us to enter notes into. I'm going to update the header with a new title and add my name, for now leave the output as html, and then I'm going to delete the rest of the document so that we have a clean start. 
 
 > **Efficiency Tip**: I use Shift - Command - Down Arrow to highlight text from my cursor to the end of the document
+
 ```
 ---
 title: "Notes for NTRES 6100 lectures"
 author: "Nina Overgaard Therkildsen"
-date: "09/21/2020"
-output: html_document
+format: html
+editor: visual
 ---
 
 # Course notes
@@ -568,13 +569,16 @@ We're going to learn a lot about GitHub and the tidyverse and it's going to be f
 ```
 
 <br>
+<br>
 
-Now, let's save it. I'm going to call my file `course-notes.Rmd`. 
+
+Now, let's save it. I'm going to call my file `course-notes.qmd`. 
 
 Notice that when we save this file, it pops up in our Git tab. Git knows that there is something new in our repo. 
 
-Let's also knit this file. And look: Git also sees the knitted .html. 
+Let's also render this file. And look: Git also sees the rendered .html file. 
 
+<br>
 
 And let's practice syncing our file to to GitHub: pull, stage, commit, push
 
@@ -599,33 +603,24 @@ Now let's go to our Finder or Windows Explorer: our new folders are there as wel
 
 After pushing, the rendered html of `course-notes.Rmd` file should show up in our GitHub repo after we push it. But how does it look? GitHub just displays the raw html text file, not the nice-looking rendered version we'll see in a browser. 
 
-The nicely formatted files you see on GitHub (e.g. typical README pages) are markdown files (.md in contrast to .Rmd). Fortunately, RMarkdown can output to this format, along with several others including pdf and word documents. We can change the output format by changing the settings in the YAML header of our RMarkdown document. We can change to GitHub flavored markdown by doing one of the following:
-
-* When creating your RMarkdown file, click "From template", and then select "GitHub Document (Markdown)"
-
-<br>
-
-
-* At the top of an RMarkdown file, manually edit the output of the GitHub document using the following syntax
-
+The nicely formatted files you see on GitHub (e.g. typical README pages) are markdown files (.md in contrast to .Rmd). Fortunately, Quarto can output to this format, along with several others including pdf and word documents. We can change the output format in the YAML header at the top of our Quarto document. For the rendered output to display nicely on GitHub, we want to select `output: gfm` (GitHub Flavored Markdown). 
 ```
 ---
-title: "Title"
-output: 
-  github_document: 
-    toc: true
+title: "Notes for NTRES 6100 lectures"
+author: "Nina Overgaard Therkildsen"
+format: gfm
+editor: visual
 ---
+
 ```
 
-Note: `toc: true` is optional, but it can automatically set up a table of content for you. 
-
-You can find much more information about RMarkdown output formats [here](https://r4ds.had.co.nz/r-markdown-formats.html). For most of our work in this course, we will want to use the `github_document` output type because this displays nicely on the GitHub website.
+You can find much more information about Quarto output formats [here](https://r4ds.hadley.nz/quarto-formats.html). For most of our work in this course, we will want to use the `gfm` output type because this displays nicely on the GitHub website.
 
 <br>
 
 ### Move files to data folder
 
-Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/datasets/EconomistData.csv). Save this file (using File -> Save Page As in your internet browser) into the 'data' subfolder of your R project (the folder you have created for the project (in the cloning process) on your local computer).  
+Now let's try adding a file to our local RStudio project folder so we can push it to GitHub. One of the data files you will need for your next problem set is located [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/datasets/EconomistData.csv). Save this file (using the "Download raw file" icon in the top right of the file display area) into the 'data' subfolder of your R project (the folder you have created for the project (in the cloning process) on your local computer).  
 
 Now let's go back to RStudio. We can click on the data folder in the Files tab and now see this new file.
 
@@ -644,7 +639,7 @@ Edit your README either directly on GitHub or in RStudio and practice syncing (p
 * Add another line of text
 * Add a picture of yourself (see instructions from last class [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Activity))
 
-Explore your Commit History. 
+Explore your Commit History
 
 <br>
 
@@ -657,7 +652,7 @@ I tend to do this every time I finish a task (basically when I start getting ner
 <br>
 
 ## Adding version control to a pre-existing R-project
-You may have been working on an RStudio project earlier and now you want to add version control through GitHub. You can easily set that up with [these instructions](https://happygitwithr.com/existing-github-first.html) by from Happy Git with R by Jenny Bryan.
+You may have been working on an RStudio project earlier and now you want to add version control through GitHub. You can easily set that up with [these instructions](https://happygitwithr.com/existing-github-first.html) by from Happy Git with R by Jenny Bryan. In fact, we will do this for our [Assignment 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)!
 
 <br>
 <br>
