@@ -131,7 +131,7 @@ Aligned left (HTML): [Aligned right and italic (HTML)]{style="float:right"}
 
 #### Issues and projects
 
-Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedback, making plans, assigning tasks, and tracking progress. We will first do a quick demo before you start your exercise, but [here](https://fish497.github.io/website/lectures/week_02/lec_04_intro_github.html#Issues) is a good tutorial for these features. 
+Issues and projects are useful GitHub features that can facilitate your project management, especially in collaborative projects. They can be used for providing feedback, making plans, assigning tasks, and tracking progress. We will explore these useful GitHub features, please follow this detailed  [tutorial](https://fish497.github.io/website/lectures/week_02/lec_04_intro_github.html#Issues). 
 
 <br>
 
