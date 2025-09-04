@@ -13,7 +13,7 @@
 
 <title>Lesson 4: Collaborating with GitHub - Part 1</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -463,7 +463,7 @@ div.tocify {
 <h2>Readings</h2>
 <p>There are no required readings for today’s lesson, but if you’re keen
 to learn more, check out the other resources listed under <a
-href="https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html">Lesson
+href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html">Lesson
 3</a></p>
 <p><br></p>
 </div>
@@ -836,14 +836,15 @@ yourselves.</p>
 <div id="when-you-and-your-collaborator-have-worked-on-separate-files"
 class="section level3">
 <h3>When you and your collaborator have worked on separate files</h3>
-<p>Let’s have Partner 2 create a new RMarkdown file and name it
-<code>analysis.Rmd</code>. Here’s what you will do:</p>
+<p>Let’s have Partner 2 create a new Quarto file and name it
+<code>analysis.qmd</code>. Here’s what you will do:</p>
 <ol style="list-style-type: decimal">
 <li>Pull! (in case Partner 1 has pushed something in the meantime)</li>
-<li>Create a new RMarkdown file and name it <code>analysis.Rmd</code>.
-Choose Github Document as the output format (find it under the “From
-Template” option on the left).</li>
-<li>Change the title inside the Rmd, call it “Our Collaborative
+<li>Create a new Quarto file and name it <code>analysis.qmd</code>.
+Choose html as the output format if you’re using the “Create Quarto
+document wizard, but change it to <code>output: gfm</code> in the file
+(GitHub Flavored Markdown, to display nicely on GitHub.</li>
+<li>Change the title inside the .qmd file, call it “Our Collaborative
 Analysis”</li>
 <li>Knit</li>
 <li>Save and sync your .Rmd and your .md files
@@ -866,12 +867,11 @@ Local after &#39;git pull&#39;:   A--B--C--(uncommitted changes)</code></pre>
 <div id="when-you-have-worked-in-different-parts-of-the-same-file"
 class="section level3">
 <h3>When you have worked in different parts of the same file</h3>
-<p>Now you both have a copy of the <code>analysis.Rmd</code> file.
-Partner 2 can add a new header just under the setup code chunk
-(e.g. line 12), then pull, stage, commit, push.</p>
-<p>Now Partner 1 can add a note under the
-<code>## Including Plots</code> header around line 22. Then try to pull.
-Then commit, and pull, stage, push.</p>
+<p>Now you both have a copy of the <code>analysis.qmd</code> file.
+Partner 2 can add a new header just before the <code>Running Code</code>
+header (e.g. line 11), then pull, stage, commit, push.</p>
+<p>Now Partner 1 can add a note under the last code chunk, around line
+27. Then try to pull. Then commit, and pull, stage, push.</p>
 <p>Again, this time the versions should merge smoothly because we were
 working in different parts of the document.</p>
 <p><br></p>
@@ -880,13 +880,12 @@ working in different parts of the document.</p>
 class="section level3">
 <h3>When you have worked on the same part of a file</h3>
 <p>This is where problems arise. Now Partner 2 makes a change to the
-first code chunk. Change <code>summary(cars)</code> to a different
-function, e.g. <code>dim(cars)</code>. Then pull, stage, commit,
-push</p>
+first code chunk. Change <code>1 + 1</code> to something else,
+e.g. <code>7 + 8</code>. Then pull, stage, commit, push</p>
 <p>Partner 1 should not pull yet, but instead also make a change to that
-first code chunk, so change <code>summary(cars)</code>, e.g. to
-<code>nrow(cars)</code>. Then try to pull (will be rejected). Then
-stage, commit and pull.</p>
+first code chunk, so change <code>1 + 1</code>, e.g. to
+<code>3 + 4</code>. Then try to pull (will be rejected). Then stage,
+commit and pull.</p>
 <p>As we have seen earlier, this will result in a merge conflict.
 Resolve as described in the <a
 href="https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html#merge_conflicts">Merge

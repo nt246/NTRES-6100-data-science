@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Readings
 
-There are no required readings for today's lesson, but if you're keen to learn more, check out the other resources listed under [Lesson 3](https://nt246.github.io/NTRES6940-data-science/lesson3-version-control.html)
+There are no required readings for today's lesson, but if you're keen to learn more, check out the other resources listed under [Lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html)
 
 <br>
 
@@ -354,11 +354,11 @@ Watch first, then you'll get a chance to work through the steps for yourselves.
 
 ### When you and your collaborator have worked on separate files 
 
-Let's have Partner 2 create a new RMarkdown file and name it `analysis.Rmd`. Here's what you will do: 
+Let's have Partner 2 create a new Quarto file and name it `analysis.qmd`. Here's what you will do: 
 
 1. Pull! (in case Partner 1 has pushed something in the meantime)
-2. Create a new RMarkdown file and name it `analysis.Rmd`. Choose Github Document as the output format (find it under the "From Template" option on the left). 
-3. Change the title inside the Rmd, call it "Our Collaborative Analysis"
+2. Create a new Quarto file and name it `analysis.qmd`. Choose html as the output format if you're using the "Create Quarto document wizard, but change it to `output: gfm` in the file (GitHub Flavored Markdown, to display nicely on GitHub. 
+3. Change the title inside the .qmd file, call it "Our Collaborative Analysis"
 4. Knit
 5. Save and sync your .Rmd and your .md files 
     - (pull, stage, commit, push)
@@ -381,9 +381,9 @@ Local after 'git pull':   A--B--C--(uncommitted changes)
 
 ### When you have worked in different parts of the same file 
 
-Now you both have a copy of the `analysis.Rmd` file. Partner 2 can add a new header just under the setup code chunk (e.g. line 12), then pull, stage, commit, push.
+Now you both have a copy of the `analysis.qmd` file. Partner 2 can add a new header just before the `Running Code` header (e.g. line 11), then pull, stage, commit, push.
 
-Now Partner 1 can add a note under the `## Including Plots` header around line 22. Then try to pull. Then commit, and pull, stage, push.
+Now Partner 1 can add a note under the last code chunk, around line 27. Then try to pull. Then commit, and pull, stage, push.
 
 Again, this time the versions should merge smoothly because we were working in different parts of the document.
 
@@ -391,9 +391,9 @@ Again, this time the versions should merge smoothly because we were working in d
 
 ### When you have worked on the same part of a file
 
-This is where problems arise. Now Partner 2 makes a change to the first code chunk. Change `summary(cars)` to a different function, e.g. `dim(cars)`. Then pull, stage, commit, push
+This is where problems arise. Now Partner 2 makes a change to the first code chunk. Change `1 + 1` to something else, e.g. `7 + 8`. Then pull, stage, commit, push
 
-Partner 1 should not pull yet, but instead also make a change to that first code chunk, so change `summary(cars)`, e.g. to `nrow(cars)`. Then try to pull (will be rejected). Then stage, commit and pull. 
+Partner 1 should not pull yet, but instead also make a change to that first code chunk, so change `1 + 1`, e.g. to `3 + 4`. Then try to pull (will be rejected). Then stage, commit and pull. 
 
 As we have seen earlier, this will result in a merge conflict. Resolve as described in the [Merge Conflicts Section](https://nt246.github.io/NTRES6940-data-science/lesson4-collaboration.html#merge_conflicts).
 
