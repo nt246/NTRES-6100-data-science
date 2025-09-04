@@ -11,9 +11,9 @@
 
 
 
-<title>Lab 2: RMarkdown and GitHub</title>
+<title>Lab 2: Quarto and GitHub</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -452,7 +452,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 2: RMarkdown and GitHub</h1>
+<h1 class="title toc-ignore">Lab 2: Quarto and GitHub</h1>
 
 </div>
 
@@ -461,7 +461,7 @@ div.tocify {
 <div id="goals-for-today" class="section level2">
 <h2>Goals for today</h2>
 <ol style="list-style-type: decimal">
-<li><p>Continue to practice RMarkdown.</p></li>
+<li><p>Continue to practice Markdown syntax in Quarto.</p></li>
 <li><p>Continue to practice collaboration on GitHub.</p></li>
 <li><p>Learn to use “Issues” and “Projects” features on GitHub for
 project management.</p></li>
@@ -480,7 +480,7 @@ communication during the lab.</p>
 <p><br></p>
 <div id="general-instructions" class="section level4">
 <h4>General instructions</h4>
-<p>In Lab 1, you started to create a CV using RMarkdown, but we did not
+<p>In Lab 1, you started to create a CV using Quarto, but we did not
 have much time to work on it. Today, you will have more time to continue
 this exercise and you’ll get your CV version-controlled on GitHub.</p>
 <p><strong>Before you start</strong>, please create a new GitHub repo
@@ -494,8 +494,8 @@ made. Therefore, if you do not feel comfortable sharing your own CV,
 feel free to make a CV for one of your favorite scientists or a
 fictional character instead.</p>
 <p><strong>After you are done with this exercise</strong>, please make a
-few obvious typos (~5) in the document, knit it, and commit and push the
-final version to GitHub.</p>
+few obvious typos (~5) in the document, render it, and commit and push
+the final version to GitHub.</p>
 <p><br></p>
 </div>
 <div id="suggested-activities" class="section level4">
@@ -504,20 +504,23 @@ final version to GitHub.</p>
 don’t have to complete all of them; just pick the ones that seem most
 interesting to you.</p>
 <ul>
-<li><p>Center some section titles, e.g.,
-<code>md     &lt;center&gt; **Centered and bolded text (HTML)** &lt;/center&gt;     \center __Centered and bolded text (PDF)__ \center</code></p>
-<ul>
-<li><p>or, for HTML output only, you can add the following code chunk to
-center level 1-3 headers</p>
-<pre class="md"><code>```{css, echo=FALSE}
-h1, h2, h3 {
-  text-align: center;
-}
-```</code></pre></li>
-</ul></li>
+<li><p>Center some section titles, e.g.,</p>
+<pre class="md"><code>&lt;div style=&quot;text-align:center&quot;&gt;&lt;strong&gt;Centered and bolded text (HTML)&lt;/strong&gt;&lt;/div&gt;
+
+\begin{center}\textbf{Centered and bolded text (PDF)}\end{center}
+</code></pre></li>
+<li><p>or, for HTML output only, you can add the following CSS to center
+level 1-3 headers (inline alternative for HTML only):</p>
+<pre><code>````md
+&lt;style&gt;
+h1, h2, h3 { text-align: center; }
+&lt;/style&gt;
+
+````</code></pre></li>
 <li><p>Right align some text, e.g.,</p>
-<pre class="md"><code>Aligned left (HTML) [*Aligned right and italic (HTML)*]{style=&quot;float:right&quot;}
-Aligned left (PDF) \hfill _Aligned right and italic (PDF)_</code></pre></li>
+<pre class="md"><code>Aligned right (HTML) {.content-visible when-format=&quot;html&quot;}
+Aligned left (HTML): [Aligned right and italic (HTML)]{style=&quot;float:right&quot;}
+Aligned right (PDF) \begin{flushright}\emph{Aligned right and italic (PDF)}\end{flushright}</code></pre></li>
 <li><p>Add some line dividers and/or space between sections, e.g.,</p>
 <pre class="md"><code>---
 &lt;br&gt;</code></pre></li>
@@ -531,26 +534,22 @@ Aligned left (PDF) \hfill _Aligned right and italic (PDF)_</code></pre></li>
 ___Bolded and italic text (HTML or PDF)___
 &lt;ins&gt; Underlined text (HTML) &lt;/ins&gt;</code></pre></li>
 <li><p>Insert a picture of yourself at a select location in the
-document, e.g.,</p>
-<pre class="md"><code>```{r, fig.align=&quot;center&quot;, eval=TRUE, echo=FALSE}
-knitr::include_graphics(&quot;https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg&quot;)
-```</code></pre>
-<ul>
-<li><p>or, for HTML output only, the following syntax also works</p>
-<pre class="md"><code>&lt;center&gt;![](https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg)&lt;/center&gt;</code></pre></li>
-</ul></li>
-<li><p>Knit the same Rmd file in different ouput formats and compare the
-results, or start a new Rmd file for outputting in a different
+document. For this, use the Visual editor since Quarto makes some
+internal changes to the image file path.</p></li>
+<li><p>render the same qmd file in different output formats and compare
+the results, or start a new qmd file for outputting in a different
 format.</p></li>
-<li><p>Use a CV template. If you have LaTeX installed on your computer,
-<a href="https://github.com/svmiller/stevetemplates">this template</a>
-can be a great one. <a
-href="https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&amp;hl=en_US">Here</a>
-is an example of its output. If you would like to get a lightweight
-version of LaTeX installed that will let you knit to PDF, <a
-href="https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf">here</a>
-are some instructions (the process could take some time
-though).</p></li>
+<li><p>Use a CV template. If you have LaTeX installed on your computer
+(see Lab 1 handout for instructions to install LaTeX), you can use some
+templates: <br> <a href="https://github.com/mps9506/quarto-cv/tree/main"
+class="uri">https://github.com/mps9506/quarto-cv/tree/main</a> <br> <a
+href="https://alexbass.me/posts/resume/"
+class="uri">https://alexbass.me/posts/resume/</a> <br> <a
+href="https://github.com/schochastics/quarto-cv?tab=readme-ov-file"
+class="uri">https://github.com/schochastics/quarto-cv?tab=readme-ov-file</a></p></li>
+</ul>
+<p><br> <br></p>
+<ul>
 <li><p>For PDF output only, add your favorite <a
 href="https://rmd4sci.njtierney.com/math.html">equation</a>.</p></li>
 <li><p>Use Google to find and add one or more features to your CV that
@@ -597,32 +596,32 @@ following steps.</p>
 resolve merge conflicts, and how to avoid them when possible.</p>
 <ol style="list-style-type: lower-alpha">
 <li>First, both partners could correct a same typo in one partner’s
-<code>Rmd</code> file in slightly different ways. <strong>Do not knit
-the <code>Rmd</code> file yet.</strong> Then, both partners can commit
-their changed <code>Rmd</code> file. One partner can push first, and the
+<code>qmd</code> file in slightly different ways. <strong>Do not render
+the <code>qmd</code> file yet.</strong> Then, both partners can commit
+their changed <code>qmd</code> file. One partner can push first, and the
 other partner will pull, and will get a merge conflict. They can then
-address this merge conflict, <strong>knit</strong>, push the resolved
+address this merge conflict, <strong>render</strong>, push the resolved
 version to GitHub, and the other partner can pull. After this, partners
 can switch roles.</li>
 <li>Then, partners can correct typos in different lines in one person’s
-<code>Rmd</code> file. <strong>Similarly, neither should knit at this
+<code>qmd</code> file. <strong>Similarly, neither should render at this
 point.</strong> Again, they will both commit their changes, one partner
 will push first, and when the other pulls, the changes should be merged
-automatically. They can now knit, push, and the other partner can
+automatically. They can now render, push, and the other partner can
 pull.</li>
 </ol></li>
 <li><p>In the previous step, we emphasized that neither partners should
-knit their changed <code>Rmd</code> file before pulling other’s changes.
-This is because conflicted versions of <code>Rmd</code> files can
-usually be merged without too much of a hassle, but with the knitted
-<code>markdown</code>, <code>html</code>, or <code>pdf</code> files, you
-might get unwieldy merge conflicts because of different system
-configurations between partners. There is, however, a very simple fix to
-this: the partner who has received the unwieldy merge conflict could
-just <strong>deleted the knitted output</strong>, and
-<strong>reknit</strong> the <code>Rmd</code> file once merge conflicts
+render their changed <code>qmd</code> file before pulling other’s
+changes. This is because conflicted versions of <code>qmd</code> files
+can usually be merged without too much of a hassle, but with the
+rendered <code>markdown</code>, <code>html</code>, or <code>pdf</code>
+files, you might get unwieldy merge conflicts because of different
+system configurations between partners. There is, however, a very simple
+fix to this: the partner who has received the unwieldy merge conflict
+could just <strong>deleted the knitted output</strong>, and
+<strong>render</strong> the <code>qmd</code> file once merge conflicts
 (if any) are resolved. Now, try step 1a again, but both partners can
-knit this time.</p></li>
+render this time.</p></li>
 <li><p>Use the GitHub’s Issue feature to provide feedback to your
 partner on their CV.</p></li>
 <li><p>Create a GitHub Project under the CV repo, and assign the Issues
