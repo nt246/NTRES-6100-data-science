@@ -1,5 +1,5 @@
 ---
-title: "Lab 2: RMarkdown and GitHub"
+title: "Lab 2: Quarto and GitHub"
 output: 
   html_document:
     toc: true
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## Goals for today
 
-1. Continue to practice RMarkdown.
+1. Continue to practice Markdown syntax in Quarto.
  
 2. Continue to practice collaboration on GitHub.
 
@@ -35,13 +35,13 @@ Please join the `lab-chat` channel on Slack for communication during the lab.
 
 #### General instructions
 
-In Lab 1, you started to create a CV using RMarkdown, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you'll get your CV version-controlled on GitHub. 
+In Lab 1, you started to create a CV using Quarto, but we did not have much time to work on it. Today, you will have more time to continue this exercise and you'll get your CV version-controlled on GitHub. 
 
 **Before you start**, please create a new GitHub repo named `cv-yourname` (replace `yourname` with your name), clone the repo to your computer, and work on your CV in this new repo. If you already have a draft CV from Lab 1, feel free to copy this draft to your new repo.
 
 **IMPORTANT NOTE**: For the next exercise, you will be paired with another student to peer review the CVs that you have just made. Therefore, if you do not feel comfortable sharing your own CV, feel free to make a CV for one of your favorite scientists or a fictional character instead. 
 
-**After you are done with this exercise**, please make a few obvious typos (~5) in the document, knit it, and commit and push the final version to GitHub. 
+**After you are done with this exercise**, please make a few obvious typos (~5) in the document, render it, and commit and push the final version to GitHub. 
 
 <br>  
 
@@ -96,23 +96,19 @@ Here are some suggested activities you can try with your CV. You don't have to c
     <ins> Underlined text (HTML) </ins>
     ```
     
-  * Insert a picture of yourself at a select location in the document, e.g.,
-    
-    ````md
-    ```{r, fig.align="center", eval=TRUE, echo=FALSE}`r ''`
-    knitr::include_graphics("https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg")
-    ```
-    ````
-    
-    * or, for HTML output only, the following syntax also works
-      
-        ```md
-        <center>![](https://www.nydailynews.com/resizer/sQ6gQYnTk2r34Qfvp62cZotsZFE=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/O4TVS77I2W4OWA2UCLZP34EM4Q.jpg)</center>
-        ```
+  * Insert a picture of yourself at a select location in the document. For this, use the Visual editor since Quarto makes some internal changes to the image file path.
 
-  * Knit the same Rmd file in different ouput formats and compare the results, or start a new Rmd file for outputting in a different format.
+  * Knit the same qmd file in different output formats and compare the results, or start a new qmd file for outputting in a different format.
   
-  * Use a CV template. If you have LaTeX installed on your computer, [this template](https://github.com/svmiller/stevetemplates) can be a great one. [Here](https://docs.google.com/viewerng/viewer?url=https://dl.dropboxusercontent.com/s/kmsyii075scmqtk/svm-rmarkdown-cv.pdf?dl%3D0&hl=en_US) is an example of its output. If you would like to get a lightweight version of LaTeX installed that will let you knit to PDF, [here](https://rmd4sci.njtierney.com/installation.html#a-note-on-pdf) are some instructions (the process could take some time though).
+  * Use a CV template. If you have LaTeX installed on your computer (see Lab 1 handout for instructions to install LaTeX), you can use some templates:
+  <br>
+<https://github.com/mps9506/quarto-cv/tree/main>
+<br>
+<https://alexbass.me/posts/resume/>
+<br>
+<https://github.com/schochastics/quarto-cv?tab=readme-ov-file>
+
+<br> <br>
   
   * For PDF output only, add your favorite [equation](https://rmd4sci.njtierney.com/math.html). 
   
