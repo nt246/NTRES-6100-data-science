@@ -31,7 +31,7 @@ Assignment 1: Quarto template
   `problem_sets` folder in your own GitHub repository that you have
   created in class through GitHub Classroom. (If you haven’t created
   this repo yet, please use the following url:
-  <https://classroom.github.com/a/o8r_gQtD>). Then, you can stage these
+  https://classroom.github.com/a/StaRJQLV). Then, you can stage these
   files, make a commit, and push the commit.
 
 ## Load packages
