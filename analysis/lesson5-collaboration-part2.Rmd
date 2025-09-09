@@ -30,9 +30,13 @@ There are no required readings for today, but if you did not join our lecture la
 
 * Check out the video and other tutorials directly at [GitHub Pages](https://pages.github.com/)
 
-* A good starting point is [this brief tutorial](https://jules32.github.io/rmarkdown-website-tutorial/index.html) by Julia Lowndes
+* There are many additional details available in the [Quarto Documentation](https://quarto.org/docs/websites/)
 
-* There are also good tips in this [tutorial by Karl Broman](https://kbroman.org/simple_site/)
+<br>
+
+## Acknowledgements
+
+Today's lesson borrows from the excellent tutorial [Creating your personal website using Quarto](https://ucsb-meds.github.io/creating-quarto-websites/) by Sam Shanny-Csik
 
 <br>
 <br>
@@ -43,7 +47,7 @@ There are no required readings for today, but if you did not join our lecture la
 * Assignment 2 is due this Thursday - let us know if you have any questions
 * Please check your grading basis on Student Center to make sure you're happy with your enrollment status (lab section and grading basis)
 * If you're still not formally enrolled or not enrolled in the section you wish to be in, please Direct Message Nina on Slack so we can get the remaining enrollments sorted out.
-* You will do assignment 3 (due Thursday Sept 19) in collaboration with the partner you get assigned today, so make sure to exchange contact info before you leave class
+* You will do assignment 3 (due Thursday Sept 18) in collaboration with the partner you get assigned today, so make sure to exchange contact info before you leave class
 
 
 
@@ -109,13 +113,15 @@ If you get stuck with git error messages that you can't make sense of or resolve
 
 ## Now, let's get set up for today's exercise
 
-Because everyone will have a new partner today, we'll practice one more time how to
+There are several different ways we can set up a website with Quarto. To keep practicing the workflow we used during last class, we'll here use a "GitHub first" approach (see details about other ways to set up Quarto website projects at the end of this lesson). 
+
+We also want to keep practicing collaboration, so we'll again split into teams. Because everyone will have a new partner today, we'll practice one more time how to
 
 * Create a new repo
 * Invite a collaborator
 
 When you get paired up, decide who will be Partner 1 and Partner 2. 
-Partner 1 starts by creating a repo. You can call it `collab-website`. Add Partner 2 as a collaborator, as described in [giving your partner privileges section from Lesson 4](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html#Give_your_collaborator_(Partner_2)_privileges).
+Partner 1 starts by creating a repo. You can call it `collab-website`. Add Partner 2 as a collaborator, as described in [giving your partner privileges section from Lesson 4](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html#Give_your_collaborator_(Partner_2)_privileges). 
 
 Now, both of you should clone the collaborative repo to your local machines (check [Lesson 4](https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html#Collaborating_with_GitHub) if you need a reminder of how to do this).
 
@@ -125,54 +131,108 @@ Now, both of you should clone the collaborative repo to your local machines (che
 
 ## Setting up your collaborative website
 
-Now it's going to get fun. Let's start by making a super simple website. First, we'll have Partner 2 create a new RMarkdown file. Here's what they will do: 
+Now it's going to get fun. Let's start by making a super simple website. Quarto has built-in functionality to create all the basic files we need for a simple website. Unfortunately, there is no way to access that functionality through point-and-click in the RStudio GUI or a single command in the R Console (since Quarto is fundamentally a command-line tool). So instead we will have to run the command in the Terminal tab (in the bottom left left) [i.e. NOT in the Console tab]
 
-1. Pull!
-1. Create a new RMarkdown file, just keep all the boilerplate text, select the html output format **and save it as `index.Rmd`**. Make sure it's all lowercase, and named `index.Rmd` (it is important that you give the file exactly this name). This will be the homepage for our website! 
-1. Maybe change the title inside the Rmd, call it "Our website"
-1. Knit!
-1. Save and sync your .Rmd and your .html files 
-    - (pull, stage, commit, push)
+In the Terminal tab, have Partner 2 type and run the following command:
+
+`quarto create-project --type website`  
+
+[only Partner 2 should do this]
+
+This adds the the default files (`_quarto.yml`, `index.qmd`, `about.qmd`, and  `styles.css`) that we need for getting started on our website. 
+
+Check to see if a Build tab now shows up in your top right pane:
+
+<img src="assets/rstudio-build-tab.png" width="450px"> 
 
 <br>
 
-Next, have Partner 1 launch the website.
+If not, try closing your RStudio Project and re-open it (e.g. by clicking File -> Open Project in New Session)
+
+<img src="assets/rstudio-open-project.png" width="250px"> 
+
+<br>
+
+That should bring up the Build pane, so you can click Render Website
+
+<img src="assets/rstudio-render-website.png" width="450px"> 
+
+<br>
+
+This will render our very basic, but functional website. It should pop up in your Viewer tab in the bottom left pane, and you can open it in a browser by clicking the "show in new window" icon.
+
+<img src="assets/rstudio-website-preview.png" width="450px"> 
+
+<br>
+
+After you have previewed your website, have Partner 2 push the changes to Github.
+
+<br>
+<br>
+
+
+## Build & prepare to publish your site with GitHub Pages
+
+There are many ways to publish a Quarto website (more details [here](https://quarto.org/docs/publishing/)). We will use [GitHub Pages](https://docs.github.com/en/pages), which allows you to publish a website from any GitHub repository (for free!). To do so, there are a few configuration steps that we will have Partner 1 set up.
+
+**Step 1**  
+
+Create a file named `.nojekyll` in your repository’s root directory (e.g. `collab-website/`), which is required to disable some processing of HTML files that GitHub does by default. From RStudio’s Files pane, click New File > Text File, then type .nojekyll > click OK (you can use the Text File option to create any file type).
+
+<br>
+**Step 2**  
+
+Open the `_quarto.yml` file and edit the header to set the output directory to a subdirectory named `docs` [it's important that you use exactly this name] by adding the line `output-dir: docs` under the project section, so the file contents will look like this:
+
+```{r, eval = FALSE}
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "collab-website"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+```
+
+<br>
+**Step 3**  
+
+Save your changes and render your website again by clicking "Render Website" under the Build tab in the top right pane. You will see a `docs` folder appear, which is where all your rendered .html (and other important) files will automatically be saved to when you “Build” your website – that is, when you convert all your .qmd files to the .html files that your web browser can interpret / display.
+
+>Note: your website is currently being hosted by your local machine, not at a searchable URL. We’ll get there soon though!
+
+But first, Partner 1 must stage, commit, and push their changes to GitHub.
+
+<br>
+<br>
+
+## Configure your GitHub Pages setup to launch your website
 
 1. Go to your new collaborative repo on Github
-2. Navigate to the repo settings
+2. Navigate to the repo settings, then select the Pages tab from the left-hand menu bar
+3. Make sure that Branch is set to `main` and that the selected folder is set to `/docs`. **Remember to click save** (on the same line as you chose the main branch as the source).
 
-<img src="assets/gh_repo_settings.png" width="450px"> 
-
-<br>
-
-3. In the panel on the left side, click on the `Pages` option.
-
-<img src="assets/github-pages-own-tab.png" width="450px"> 
+<img src="assets/ghpages-settings-docs.png" width="450px"> 
 
 <br>
 
-Then build your site under the `Build and deployment` section. Leave the `Source` as the default option. Under `Branch`, select `main`, so we source from the `main` branch and root directory.
-
-<img src="assets/gh_pages.png" width="450px"> 
-
-
-<br>
-<br>
-
-**Remember to click "save"** (on the same line as you chose the master branch as the source).
-
-<img src="assets/save_github_pages.png" width="450px"> 
-
-<br>
-<br>
-
-
-Your repo is now a website! After a few minutes it will go live and you can see the URL
+Your repo is now a website! After a few minutes it will go live and you can see the URL inside a box at the top of the page (you may have to try refreshing a few times).
 
 <img src="assets/github_pages_live.png" width="450px"> 
 
 <br>
-
 
 We would also have figured out our website's URL from your GitHub repo's URL — pay attention to URLs.    
 
@@ -183,170 +243,22 @@ We would also have figured out our website's URL from your GitHub repo's URL —
     
 > ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
     
-### So cool!! You've just set up an actual website in just a few minutes!    
-
-<br>
-<br>
-
-## Collaborate to build your website
-
-1. Check that your website is working. Then let's add some more content!
-2. Partner 1 should pull to make sure they get a local copy of the `index.Rmd` file
-3. Now each of you find an image online that you'd like to add (maybe a picture of a car?). Right click on it and select "copy image address". The add it to the top of the `index.Rmd` with 
-`![](url-to-image)`. Then knit the file.
-4. First Partner 1 should now push their changes to GitHub (pull, stage, commit, push)
-5. Then Partner 2 should try to push (pull, stage, commit, push). Do you get a merge conflict? Why / why not? If you got a merge conflict, Partner 2 should resolve it and push to GitHub. Please look at each other's screen (share your screen if you're on Zoom) so both of you can talk through how you want to resolve the merge conflict.
-1. After the merge conflict has been resolved and pushed to GitHub, Partner 1 should pull to make sure you're both up to date
-1. If you have time, make additional coordinated edits, so the other Partner gets the opportunity to resolve a merge conflict as well
-
-
-<br>
-
-## Jazzing up your website
-
-Now let's explore how we can expand our website by adding more tabs. We do this by adding a configuration file that specifies the names of the different tabs we want and which file we want to display on that tab. We'll start with simple example of a website that includes two pages (Cars and About) and a navigation bar to switch between them. For that, we need a configuration file `_site.yml`:
-
-```{r, eval = FALSE}
-name: "our-website"
-navbar:
-  title: "Our Collaborative Website"
-  left:
-    - text: "Cars"
-      href: index.html
-    - text: "About"
-      href: about.html
-output_dir: "."
-```
-
-Partner 2 can create this file by choosing File -> New File -> Text File in RStudio, copy in the above text and save as `_site.yml` (the leading underscore is important here).
-
-Then we need the two `.html` files that are going to be shown on the tabs. We already have `index.html` (our knitted version of the boilerplate .Rmd file we have played around with).
-
-We need to create the `about.html`. Partner 1 can create a new RMarkdown (File -> New File -> R Markdown...), change its title to "About" (this is for the title in the YAML header of the .Rmd file, delete all the boilerplate text under the setup code chunk and write a brief message about the two of you. Save this as `about.Rmd` so we can render it into the `about.html` that our configuration file refers to.
-
-Now you can both pull, stage, commit, push and your changes should merge. Make sure you both get up to date by pulling after you have both pushed.
-
-Now you're ready to build your website.
-
-From [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#a-simple-example):
-
-> Note that the minimum requirement for any R Markdown website is that it have an index.Rmd file as well as a _site.yml file. If you execute the `rmarkdown::render_site()` function from within the directory containing the website, the following will occur:
-
-> All of the *.Rmd and *.md files in the root website directory will be rendered into HTML. Note, however, that Markdown files beginning with _ are not rendered (this is a convention to designate files that are to be included by top level Rmd documents as child documents).
-
-> The generated HTML files and any supporting files (e.g., CSS and JavaScript) are copied into an output directory (_site by default). [Note that in our example we are asking to get our output in the top-level of the directory with `output_dir: "."`, so the html files will stay there]
-
->The HTML files are now ready to deploy as a standalone static website.
-
->The full source code for the simple example above can be found in the hello-website folder in the repository https://github.com/rstudio/rmarkdown-website-examples.
-
-
-Partner 1 can now build the website by running `rmarkdown::render_site()`
-
-Commit and push
-
-Both Partners: Go to inspect your rendered website! 
-
-Remember the format of the URL. For example: 
-
-- my github repo: <https://github.com/nt246/collab-website/>
-- my website url: <https://nt246.github.io/collab-website/>
-- general website url: **<https://username.github.io/repo-name**   
-
-<br>
-
-You can also always find the website by going back to "Setting", the "Pages" (in the left-hand menu) within your GitHub repo.
-
-<img src="assets/github_pages_live.png" width="450px"> 
-
-<br>
+### So cool!! You've just set up an actual website in just a few minutes!  
 
 **Note  that it may take a few minutes before your changes become active.**. So don't despair if you don't see your changes showing up right away. Just double-check that you've pushed the rendered site and check back. In the meantime, you can explore your current website content and design in RStudio's Viewer in the bottom left pane. 
 
 Make sure that the Partner who didn't render the website locally pulls the updated version from GitHub.
 
 <br>
+<br>
 
 ## Adding content and editing the website
 
-Now, we want to add a table of contents and change the appearance of our website. We can do this by changing the configuration file. Decide who of you will make the following changes, render the website again, and push.
+Now take turns to edit the contents and looks of your website, following [Samantha Csik's excellent tutorial](https://ucsb-meds.github.io/creating-quarto-websites/#change-stuff).
 
-Update your `_site.yml` file to:
-
-```{r, eval = FALSE}
-name: "our-website"
-navbar:
-  title: "Our Collaborative Website"
-  left:
-    - text: "Cars"
-      href: index.html
-    - text: "About"
-      href: about.html
-output_dir: "."
-output:
-  html_document:
-    theme: cerulean
-    highlight: textmate
-    toc: true 
-    toc_float: true 
-```
-
-Note that we have changed the output theme and added a table of contents. Re-build the website with `rmarkdown::render_site()` and push the changes to GitHub.
+Remember to push and pull frequently, and resolve any merge conflicts that arise.
 
 <br>
-
-Again, **it will probably take a few minutes for your changes to become active on your github.io page**, so just be a little patient if you don't see anything different online right away. We can inspect our changes in RStudio's Viewer in the bottom left pane in the meantime. 
-
-Make sure that the Partner who didn't change the `_site.yml` file pulls the updated version from GitHub.
-
-Now play around with making additional changes to your website. You can change the theme. 
-
-> The valid options to choose include default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, and yeti.
-
-You can preview what each of these look like under the "themes" tab [here](https://bootswatch.com/3/). Discuss with your Partner which one you want to try next and who will be pushing the next edits.
-
-You can also play around with the table of contents. For the table of contents, you can specify what levels of headers you want include as described [here](https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents). In our initial `_site.yml` file, the table of contents depth is not explicitly specified, so it defaults to 3 (meaning that all level 1, 2, and 3 headers will be included in the table of contents). Try adding some header levels to your index.Rmd or about.Rmd and see how the table of contents change when you render the site and push the change to your github.io site (the Viewer may not properly display all levels of the table of contents, but the github.io site should).
-
-You can also try adding another tab, either with a new .Rmd file you create or for example adding your most recent homework or another analysis file you have on hand. 
-
-If I want to add my first assignment, I'll copy that .Rmd file into my repo and add it as a new tab in my configuration file (make sure the -text and href field are formatted exactly the same as the other tabs)
-
-```{r, eval = FALSE}
-name: "our-website"
-navbar:
-  title: "Our Collaborative Website"
-  left:
-    - text: "Cars"
-      href: index.html
-    - text: "About"
-      href: about.html
-    - text: "Answers"
-      href: assignment_1.html
-output_dir: "."
-output:
-  html_document:
-    theme: cerulean
-    highlight: textmate
-    toc: true 
-    toc_float: true 
-```
-
-Then I re-build the website with `rmarkdown::render_site()` and push the changes to GitHub.
-
-<br>
-
-## Your turn
-
-Get creative! You can find some ideas for things to try in [this tutorial](https://jules32.github.io/rmarkdown-website-tutorial/getting_sophisticated.html), or you can just try things out. 
-
-<br>
-
-<img src="https://pbs.twimg.com/media/Cf7eHZ1W4AEeZJA.jpg" height="400px" width="300px" />
-
-<br>
-
-Remember to coordinate with your partner. Work on different things in parallel, but keep going back and forth pushing and pulling and resolving any merge conflicts that arise.
-
 <br>
 
 ## Inspiration
@@ -375,9 +287,10 @@ http://www.emilyzabor.com/
 
 And of course the [GitHub Pages site](https://pages.github.com/) itself  
 
-<br>
 
-See also a bunch of cool templates (click on the "Demo" links) in this [Curated List of Awesome Github Pages Portfolio Templates](https://github.com/guilyx/awesome-github-pages-portfolios?tab=readme-ov-file)
+
+
+
 
 <br>
 <br>
