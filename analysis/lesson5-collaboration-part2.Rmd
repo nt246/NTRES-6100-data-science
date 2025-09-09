@@ -113,9 +113,9 @@ If you get stuck with git error messages that you can't make sense of or resolve
 
 ## Now, let's get set up for today's exercise
 
-There are several different ways we can set up a website with Quarto. To keep practicing the workflow we used during last class, we'll here use a "GitHub first" approach (see details about other ways to set up Quarto website projects at the end of this lesson). 
+There are several different ways we can set up a website with Quarto. To keep practicing the workflow we used during last class, we'll here use a "GitHub first" approach. Later on, you can try on your own to set up a similar project using an RStudio project first approach, e.g. following [this tutorial](https://ucsb-meds.github.io/creating-quarto-websites/#create-website-scaffolding) [and you can read more about the differences between the two approaches in [Chapters 15-17 in Happy Git with R](https://happygitwithr.com/new-github-first)] 
 
-We also want to keep practicing collaboration, so we'll again split into teams. Because everyone will have a new partner today, we'll practice one more time how to
+Today, we also want to keep practicing collaboration, so we'll again split into teams. Because everyone will have a new partner today, we'll practice one more time how to
 
 * Create a new repo
 * Invite a collaborator
@@ -245,7 +245,8 @@ We would also have figured out our website's URL from your GitHub repo's URL —
     
 ### So cool!! You've just set up an actual website in just a few minutes!  
 
-**Note  that it may take a few minutes before your changes become active.**. So don't despair if you don't see your changes showing up right away. Just double-check that you've pushed the rendered site and check back. In the meantime, you can explore your current website content and design in RStudio's Viewer in the bottom left pane. 
+<br>
+
 
 Make sure that the Partner who didn't render the website locally pulls the updated version from GitHub.
 
@@ -256,7 +257,9 @@ Make sure that the Partner who didn't render the website locally pulls the updat
 
 Now take turns to edit the contents and looks of your website.
 
-### A few key pointers (taken from [Samantha Csik's tutorial](https://ucsb-meds.github.io/creating-quarto-websites/#change-stuff))
+<br>
+
+#### A few key pointers (taken from [Samantha Csik's tutorial](https://ucsb-meds.github.io/creating-quarto-websites/#change-stuff))
 
 **Don’t mess with stuff in the `docs/` folder**
 When you render your site, Quarto takes all your .qmd files, converts them to .html files (along with some other important stuff), and saves everything to your `docs/` folder. Your site now deploys from this folder, so you really don’t want to mess with anything in here directly.  
@@ -268,11 +271,11 @@ This is the default / expected name given to website landing / home pages. If yo
 
 ### Editing our landing page
 
-`index.html` (which is built from index.qmd) is the page people will arrive at when navigating to your website – give this landing / home page a makeover. Partner 1 can first try to
+`index.html` (which is built from index.qmd) is the page people will arrive at when navigating to your website – give this landing/home page a makeover. Partner 1 can first try to
 
 * Update the YAML title in your index.qmd file, e.g. change it to "Our collaborative website"
 
-* Delete the sample text and begin adding your own content – a great place to start is a short blurb introducing your team  
+* Delete the sample text and begin adding your own content – a great place to start is a short blurb about what this website is about (e.g. showing pictures of puppies). 
 
 Render the website again (it's important you render again before pushing to GitHub), and then stage, commit, and push.
 
@@ -297,6 +300,8 @@ You can also always find the website by going back to "Setting", the "Pages" (in
 **Note  that it may take a few minutes before your changes become active.**. So don't despair if you don't see your changes showing up right away. Just double-check that you've pushed the rendered site and check back. In the meantime, you can explore your current website content and design in RStudio's Viewer in the bottom left pane. 
 
 The old version of the website may also be stored in your browsers cache, so if it has not updated after 1-2 minutes and you confirm that you've pushed your changes to GitHub, trying viewing the url in a different browser or an incognito window.  
+
+<br>
 
 **Get up-to-date**
 Make sure that the Partner who didn't render the website locally pulls the updated version from GitHub.
@@ -327,7 +332,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-
+      - resources.qmd
+        
 format:
   html:
     theme:
@@ -363,6 +369,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - resources.qmd
 
 format:
   html:
@@ -374,7 +381,9 @@ format:
     page-layout: full
 ```
 
-A newly-added navbar page. Note: The page name, as it appears in the navbar of your website, will be the same as whatever is listed in the title field of that file’s YAML. For example, I have set title: "All my favorite resources!" in the YAML of resources.qmd – this is how it will appear in my website’s navbar. If you’d like to set the navbar name as something other than the page’s title, use the href and text options together (e.g. see how index.qmd is rendered as Home in my website’s navbar).
+<br>
+
+Render your website and see that this creates a newly-added navbar page. Note: The page name, as it appears in the navbar of your website, will be the same as whatever is listed in the title field of that file’s YAML. For example, I have set title: "All my favorite resources!" in the YAML of resources.qmd – this is how it will appear in my website’s navbar. If you’d like to set the navbar name as something other than the page’s title, use the href and text options together (e.g. see how index.qmd is rendered as Home in my website’s navbar).
 
 Commit, stage, and push your changes to GitHub and inspect the results.
 
@@ -398,7 +407,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-
+      - resources.qmd
+        
 format:
   html:
     theme: quartz
@@ -410,11 +420,14 @@ format:
 
 Stage, commit, and push your changes.
 
-<b>
+<br>
+<br>
 
 ## More edits
 
-If you have more time, try changing [arranging your landing page (index.qmd) using a pre-built template](https://ucsb-meds.github.io/creating-quarto-websites/#arrange-your-landing-page-index.qmd-using-a-pre-built-template)
+If you have more time, try changing [arranging your landing page (index.qmd) using a pre-built template](https://ucsb-meds.github.io/creating-quarto-websites/#arrange-your-landing-page-index.qmd-using-a-pre-built-template)  
+
+Or any other settings described in the [Quarto Documentation](https://quarto.org/docs/websites/).
 
 
 
@@ -443,7 +456,7 @@ https://p8105.com/index.html
 And some personal websites:
 
 https://emitanaka.org/  
-http://www.emilyzabor.com/
+https://samanthacsik.github.io/
 
 <br>
 
