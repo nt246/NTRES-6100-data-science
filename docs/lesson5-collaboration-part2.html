@@ -771,10 +771,196 @@ pulls the updated version from GitHub.</p>
 </div>
 <div id="adding-content-and-editing-the-website" class="section level2">
 <h2>Adding content and editing the website</h2>
-<p>Now take turns to edit the contents and looks of your website,
-following <a
+<p>Now take turns to edit the contents and looks of your website.</p>
+<div id="a-few-key-pointers-taken-from-samantha-csiks-tutorial"
+class="section level3">
+<h3>A few key pointers (taken from <a
 href="https://ucsb-meds.github.io/creating-quarto-websites/#change-stuff">Samantha
-Csik’s excellent tutorial</a>.</p>
+Csik’s tutorial</a>)</h3>
+<p><strong>Don’t mess with stuff in the <code>docs/</code>
+folder</strong> When you render your site, Quarto takes all your .qmd
+files, converts them to .html files (along with some other important
+stuff), and saves everything to your <code>docs/</code> folder. Your
+site now deploys from this folder, so you really don’t want to mess with
+anything in here directly.</p>
+<p><strong>Don’t change the name of your <code>index.qmd</code>
+file</strong> This is the default / expected name given to website
+landing / home pages. If you change the name of this file, you risk
+breaking your deployment.</p>
+<p><br></p>
+</div>
+<div id="editing-our-landing-page" class="section level3">
+<h3>Editing our landing page</h3>
+<p><code>index.html</code> (which is built from index.qmd) is the page
+people will arrive at when navigating to your website – give this
+landing / home page a makeover. Partner 1 can first try to</p>
+<ul>
+<li><p>Update the YAML title in your index.qmd file, e.g. change it to
+“Our collaborative website”</p></li>
+<li><p>Delete the sample text and begin adding your own content – a
+great place to start is a short blurb introducing your team</p></li>
+</ul>
+<p>Render the website again (it’s important you render again before
+pushing to GitHub), and then stage, commit, and push.</p>
+<p><br></p>
+<p>Both Partners: Go to inspect your rendered website!</p>
+<p>Remember the format of the URL. For example:</p>
+<ul>
+<li>my github repo: <a href="https://github.com/nt246/collab-website/"
+class="uri">https://github.com/nt246/collab-website/</a></li>
+<li>my website url: <a href="https://nt246.github.io/collab-website/"
+class="uri">https://nt246.github.io/collab-website/</a></li>
+<li>general website url: <strong>&lt;<a
+href="https://username.github.io/repo-name"
+class="uri">https://username.github.io/repo-name</a></strong></li>
+</ul>
+<p><br></p>
+<p>You can also always find the website by going back to “Setting”, the
+“Pages” (in the left-hand menu) within your GitHub repo.</p>
+<p><img src="assets/github_pages_live.png" width="450px"></p>
+<p><br></p>
+<p><strong>Note that it may take a few minutes before your changes
+become active.</strong>. So don’t despair if you don’t see your changes
+showing up right away. Just double-check that you’ve pushed the rendered
+site and check back. In the meantime, you can explore your current
+website content and design in RStudio’s Viewer in the bottom left
+pane.</p>
+<p>The old version of the website may also be stored in your browsers
+cache, so if it has not updated after 1-2 minutes and you confirm that
+you’ve pushed your changes to GitHub, trying viewing the url in a
+different browser or an incognito window.</p>
+<p><strong>Get up-to-date</strong> Make sure that the Partner who didn’t
+render the website locally pulls the updated version from GitHub.</p>
+</div>
+</div>
+<div id="modify-your-website-appearance-in-_quarto.yml"
+class="section level2">
+<h2>Modify your website appearance in <code>_quarto.yml</code></h2>
+<p>The <code>_quarto.yml</code> file is a configuration file – any
+document rendered within the project directory will automatically
+inherit the metadata defined within this file. Some easy updates can
+make a big difference.</p>
+<p>Decide who of you will make the following changes, render the website
+again, and push.</p>
+<ul>
+<li><p>Change your website title, which appears in your browser tab and
+in the top left corner of your website’s navbar (by default, it’s set to
+your repository name, which isn’t so pretty – change this!)</p></li>
+<li><p>Set your page-layout to full so that your page content takes up
+more of the page width by adding a <code>page-layout</code> option under
+the html format specification</p></li>
+</ul>
+<p>Note that the default toc: true here (in <code>_quarto.yml</code>)
+renders a navigation menu on all web pages by default (but you can
+override options on a page-by-page basis)</p>
+<p>Your updated <code>_quarto.yml</code> file should look like this:</p>
+<pre class="r"><code>project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: &quot;Cool website&quot;
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+    page-layout: full</code></pre>
+<p><br></p>
+</div>
+<div id="add-additional-pages-to-your-website" class="section level2">
+<h2>Add additional pages to your website</h2>
+<p>In the default Quarto website skeleton, there are two items in the
+navbar that appear as “Home” and “About.” Those navbar tabs link to two
+<code>.html</code> files (<code>index.html</code> and
+<code>about.html</code>) and are automatically rendered when when you
+Build to <code>docs/</code>. Adding a new page to your website requires
+two steps:</p>
+<p>Create a new <code>.qmd</code> file and add any necessary YAML
+options, along with any content that you want to appear on that page.
+Here, I’m creating a new page titled “All of my favorite resources!” and
+saved it to my root directory as <code>resources.qmd</code>.</p>
+<p>A quick reminder on how to add new files:</p>
+<p>From RStudio’s File pane, click Blank File &gt; Quarto Document &gt;
+give it a name (e.g. resources.qmd and save it to your project’s root
+directory</p>
+<p>Update <code>_quarto.yml</code> by adding your new
+<code>.qmd</code>to the list of navbar pages. My website’s
+<code>_quarto.yml</code> file now looks like this:</p>
+<pre class="r"><code>project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: &quot;Cool website&quot;
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+    page-layout: full</code></pre>
+<p>A newly-added navbar page. Note: The page name, as it appears in the
+navbar of your website, will be the same as whatever is listed in the
+title field of that file’s YAML. For example, I have set title: “All my
+favorite resources!” in the YAML of resources.qmd – this is how it will
+appear in my website’s navbar. If you’d like to set the navbar name as
+something other than the page’s title, use the href and text options
+together (e.g. see how index.qmd is rendered as Home in my website’s
+navbar).</p>
+<p>Commit, stage, and push your changes to GitHub and inspect the
+results.</p>
+<p><br></p>
+</div>
+<div id="change-the-theme" class="section level2">
+<h2>Change the theme</h2>
+<p>Update the appearance of your site by choosing from one of the 25
+predefined <a href="https://bootswatch.com/">Bootswatch themes</a>. By
+default, Quarto sites are built using the cosmo theme. Supply just one
+theme name to the theme option in your
+<code>_quarto.qmd file</code>:</p>
+<p>Try choosing quartz theme</p>
+<pre class="r"><code>project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: &quot;Cool website&quot;
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: quartz
+    css: styles.css
+    toc: true
+    page-layout: full</code></pre>
+<p>Stage, commit, and push your changes.</p>
+<p><b></p>
+</div>
+<div id="more-edits" class="section level2">
+<h2>More edits</h2>
+<p>If you have more time, try changing <a
+href="https://ucsb-meds.github.io/creating-quarto-websites/#arrange-your-landing-page-index.qmd-using-a-pre-built-template">arranging
+your landing page (index.qmd) using a pre-built template</a></p>
 <p>Remember to push and pull frequently, and resolve any merge conflicts
 that arise.</p>
 <p><br> <br></p>
