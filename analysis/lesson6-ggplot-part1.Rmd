@@ -67,7 +67,7 @@ Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html
 
 <br>
 
-### Create an R script or an Quarto file for working along with examples and doing exercises in this lecture
+### Create an R script or a Quarto file for working along with examples and doing exercises in this lecture
 
 As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-assignments-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or a Quarto file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
