@@ -50,7 +50,7 @@ Take a few minutes to explore the [palmerpenguins homepage](https://allisonhorst
 #### Step 2: Set up a GitHub-linked RStudio project to work in
 Please create a new GitHub repo in your personal account named `penguins`, clone the repo to your computer, and work on your data exploration in this new repo. 
 
-Open an .Rmd template file (File -> New File -> R Markdown...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:
+Open an .Rmd template file (File -> New File -> Quarto...). Delete the boilerplate text under the setup chunk (you can keep that chunk) and make four level 2 headers:
 
 - Data
 - Single trait distribution
