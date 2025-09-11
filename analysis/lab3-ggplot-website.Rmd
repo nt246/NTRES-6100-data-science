@@ -221,7 +221,7 @@ For this exercise, you will build a GitHub Pages website as described in [Lectur
 
 <br>
 
-#### Suggested activities
+#### Suggested activities for Exercise 2a
 
 - You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `index.Rmd`, `single_trait.Rmd`, `multiple_traits.Rmd`, and `sexual_dimorphism.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
 
