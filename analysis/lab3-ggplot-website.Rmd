@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 <br>
 
-### Exercise 1: Explore the `penguins` dataset with ggplot (50 mins)
+### Exercise 1: Explore the `penguins` dataset with ggplot (40 mins)
 
 <br>
 
@@ -207,7 +207,11 @@ Share your findings, challenges, and questions with the class.
 <br>
 <br>
 
-### Exercise 2: Publish your data visualizations on a website and explore different website styling options (35 minutes)
+### Exercise 2a: Publish your data visualizations on a website and explore different website styling options (45 minutes)
+
+<br>
+
+### Exercise 2b: Publish your personal academic/professional website and explore different website styling options (45 minutes)
 
 <br>
 
@@ -217,7 +221,7 @@ For this exercise, you will build a GitHub Pages website as described in [Lectur
 
 <br>
 
-#### Suggested activities
+#### Suggested activities for Exercise 2a
 
 - You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `index.Rmd`, `single_trait.Rmd`, `multiple_traits.Rmd`, and `sexual_dimorphism.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
 
