@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson6-files/")
 
 * [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)
 
-* [RStudio's ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)  
+* [RStudio's ggplot2 cheat sheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf)  
 
 <br> 
 
@@ -61,15 +61,15 @@ By the end of this class you will be able to:
 
 <br>  
 
-## Taking notes - remember to save your work in a script or an RMarkdown file 
+## Taking notes - remember to save your work in a script or an Quarto file 
 
 Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html) and let's all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.
 
 <br>
 
-### Create an R script or an RMarkdown file for working along with examples and doing exercises in this lecture
+### Create an R script or an Quarto file for working along with examples and doing exercises in this lecture
 
-As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-fa2024-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or an RMarkdown file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
+As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-assignments-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or a Quarto file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
 <br>  
 
@@ -112,9 +112,9 @@ Before making any kind of graph, we will always need get to know our data first.
 
 * Directly type the name of the data frame
     
-    This method works well if you run it from RMarkdown. If run in the R Console or if knitted on RMarkdown, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class - for now, just think of it as an upgraded type of data frame).
+    This method works well if you run it from a Quarto file. If run in the R Console or if rendering a Quarto, it can still do a good job with small data frames, or with data frames that are of the class `tibble` (we will learn more about `tibble` later in class - for now, just think of it as an upgraded type of data frame).
     
-    But, if you do it with a larger, non-`tibble` data frame, it will attempt print the entire data frame on your console or your knitted output, making the result very difficult to read. 
+    But, if you do it with a larger, non-`tibble` data frame, it will attempt print the entire data frame on your console or your rendered output, making the result very difficult to read. 
     
     ```{r}
     ## demo (compare and contrast regular data frame and tibble)
@@ -124,9 +124,9 @@ Before making any kind of graph, we will always need get to know our data first.
 
 * `View()`
 
-    `View()` opens up a spreadsheet-style data viewer. The resulting spreadsheet can be sorted by clicking the column names. It is good for exploring the dataset, but you should not run `View()` when knitting a RMarkdown file.
+    `View()` opens up a spreadsheet-style data viewer. The resulting spreadsheet can be sorted by clicking the column names. It is good for exploring the dataset, but you should not run `View()` when rendering a Quarto file.
     
-    Why do you think that is? Try typing `View(mpg)` in a code chunk in RMarkdown, knit it, and see what happens. 
+    Why do you think that is? Try typing `View(mpg)` in a code chunk in Quarto, knit it, and see what happens. 
     
     ```{r, eval = FALSE}
     ## demo knit with View() in code chunk
@@ -390,7 +390,7 @@ ggplot(data = mpg) +
 
 ### Adjust figure size using chunk options
 
-Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use RMarkdown chunk options `fig.height` and `fig.width`, e.g. starting your code chunk with `  ```{r fig.height=5, fig.width=10}`.
+Note that each facet in the figure above appears to be quite narrow. To make the figure wider, use Quarto chunk options `fig.height` and `fig.width`, e.g. starting your code chunk with `  ```{r fig.height=5, fig.width=10}`.
 
 ```{r fig.height=5, fig.width=10, message = FALSE}
 ## demo
@@ -421,7 +421,7 @@ ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) +
 
 Now, you've learned the central ideas behind `ggplot2`. In our next `ggplot2` lecture, we will go over some more advanced ggplot2 functionalities (e.g. statistical transformation, position adjustment, coordinate setting, color scaling, theme), but after that, the best way to learn more about `ggplot2` is often through practice and Google, since the possibilities that you can have with `ggplot2` are quite limitless, and people's plotting needs vary. 
 
-That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) is a great resource for looking up other functionality.
+That being said, there are some geometries, aesthetics, and facet functions that are most commonly used and these often serve as the building blocks for more advance usage. Let's now go through some of these together in class. The [RStudio ggplot cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf) is a great resource for looking up other functionality.
 
 <br>
 

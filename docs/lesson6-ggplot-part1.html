@@ -478,7 +478,7 @@ Thomas Lin Pedersen</p></li>
 href="http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2">Graphs with
 ggplot2 - Cookbook for R</a></p></li>
 <li><p><a
-href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio’s
+href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">RStudio’s
 ggplot2 cheat sheet</a></p></li>
 </ul>
 <p><br></p>
@@ -540,28 +540,28 @@ Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
 <p><br></p>
 </div>
 <div
-id="taking-notes---remember-to-save-your-work-in-a-script-or-an-rmarkdown-file"
+id="taking-notes---remember-to-save-your-work-in-a-script-or-an-quarto-file"
 class="section level2">
-<h2>Taking notes - remember to save your work in a script or an
-RMarkdown file</h2>
+<h2>Taking notes - remember to save your work in a script or an Quarto
+file</h2>
 <p>Have a look at <a
 href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in
 R4DS</a> and let’s all go ahead and change our RStudio settings to never
 save our workspace upon exit, as shown there.</p>
 <p><br></p>
 <div
-id="create-an-r-script-or-an-rmarkdown-file-for-working-along-with-examples-and-doing-exercises-in-this-lecture"
+id="create-an-r-script-or-an-quarto-file-for-working-along-with-examples-and-doing-exercises-in-this-lecture"
 class="section level3">
-<h3>Create an R script or an RMarkdown file for working along with
-examples and doing exercises in this lecture</h3>
+<h3>Create an R script or an Quarto file for working along with examples
+and doing exercises in this lecture</h3>
 <p>As we start working in RStudio, we want to continue practicing how to
 sync our work to GitHub. So before we start, please open the R Project
 that is associated with your class repository (the name should be
-<code>ntres-6100-fa2024-YOUR_USERNAME</code> (replace YOUR_USERNAME with
-your GitHub user ID). Then create a new subdirectory names
-<code>course-notes</code>, open an R-script or an RMarkdown file and
-save it in this subdirectory as <code>lecture6-ggplot1.R</code> [or
-whatever you want to call it].</p>
+<code>ntres-6100-assignments-YOUR_USERNAME</code> (replace YOUR_USERNAME
+with your GitHub user ID). Then create a new subdirectory names
+<code>course-notes</code>, open an R-script or a Quarto file and save it
+in this subdirectory as <code>lecture6-ggplot1.R</code> [or whatever you
+want to call it].</p>
 <p><br></p>
 </div>
 </div>
@@ -609,15 +609,15 @@ class <code>data.frame</code>. There are a few different ways to inspect
 these data tables.</p>
 <ul>
 <li><p>Directly type the name of the data frame</p>
-<p>This method works well if you run it from RMarkdown. If run in the R
-Console or if knitted on RMarkdown, it can still do a good job with
+<p>This method works well if you run it from a Quarto file. If run in
+the R Console or if rendering a Quarto, it can still do a good job with
 small data frames, or with data frames that are of the class
 <code>tibble</code> (we will learn more about <code>tibble</code> later
 in class - for now, just think of it as an upgraded type of data
 frame).</p>
 <p>But, if you do it with a larger, non-<code>tibble</code> data frame,
 it will attempt print the entire data frame on your console or your
-knitted output, making the result very difficult to read.</p>
+rendered output, making the result very difficult to read.</p>
 <pre class="r"><code>## demo (compare and contrast regular data frame and tibble)
 mpg</code></pre>
 <pre><code>## # A tibble: 234 × 11
@@ -690,9 +690,9 @@ mpg</code></pre>
 <p><code>View()</code> opens up a spreadsheet-style data viewer. The
 resulting spreadsheet can be sorted by clicking the column names. It is
 good for exploring the dataset, but you should not run
-<code>View()</code> when knitting a RMarkdown file.</p>
+<code>View()</code> when rendering a Quarto file.</p>
 <p>Why do you think that is? Try typing <code>View(mpg)</code> in a code
-chunk in RMarkdown, knit it, and see what happens.</p>
+chunk in Quarto, knit it, and see what happens.</p>
 <pre class="r"><code>## demo knit with View() in code chunk
 View(mpg)</code></pre></li>
 <li><p><code>head()</code> and <code>tail()</code></p>
@@ -1056,7 +1056,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 <div id="adjust-figure-size-using-chunk-options" class="section level3">
 <h3>Adjust figure size using chunk options</h3>
 <p>Note that each facet in the figure above appears to be quite narrow.
-To make the figure wider, use RMarkdown chunk options
+To make the figure wider, use Quarto chunk options
 <code>fig.height</code> and <code>fig.width</code>, e.g. starting your
 code chunk with <code>```{r fig.height=5, fig.width=10}</code>.</p>
 <pre class="r"><code>## demo
@@ -1099,7 +1099,7 @@ plotting needs vary.</p>
 functions that are most commonly used and these often serve as the
 building blocks for more advance usage. Let’s now go through some of
 these together in class. The <a
-href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">RStudio
+href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">RStudio
 ggplot cheatsheet</a> is a great resource for looking up other
 functionality.</p>
 <p><br></p>
