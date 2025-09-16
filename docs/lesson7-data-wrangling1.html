@@ -814,7 +814,18 @@ sum(x$cases)
 
 # Also, remember that the output from filter() is a dataframe, so you can use the $ operator on the called function directly:
 
-sum(filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)$cases)</code></pre>
+sum(filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)$cases)
+
+# Or here is a solution using tidyverse syntax with piping (we&#39;ll go over how that works shortly)
+
+filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;) |&gt; 
+  pull(cases) |&gt; 
+  sum()
+
+# OR
+
+filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;) |&gt;
+  summarize(total_cases = sum(cases, na.rm = TRUE))</code></pre>
 <p><br></p>
 <p><strong>Question 1b:</strong></p>
 <pre class="r"><code>#Example:
@@ -841,8 +852,9 @@ the order they are listed in the <code>select()</code> function.</p>
 <p>We can also use <code>-</code> to deselect columns</p>
 <pre class="r"><code>select(coronavirus, -lat, -long) # you can use - to deselect columns</code></pre>
 <p><br> <br></p>
-<div id="your-turn---exercise-2" class="section level3">
-<h3>Your turn - Exercise 2</h3>
+</div>
+<div id="your-turn---exercise-2" class="section level2">
+<h2>Your turn - Exercise 2</h2>
 <p>Create a new dataframe including only the country, lat, and long
 variables, listed in this order. Now make one listed in order lat, long,
 country.</p>
@@ -865,7 +877,6 @@ select(coronavirus, casetype = type, everything())
 rename(coronavirus, casetype = type)</code></pre>
 </details>
 <p><br> <br></p>
-</div>
 </div>
 <div id="use-select-and-filter-together" class="section level2">
 <h2>Use <code>select()</code> and <code>filter()</code> together</h2>

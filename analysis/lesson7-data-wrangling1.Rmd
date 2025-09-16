@@ -327,6 +327,17 @@ sum(x$cases)
 
 sum(filter(coronavirus, country == "US", type == "death")$cases)
 
+# Or here is a solution using tidyverse syntax with piping (we'll go over how that works shortly)
+
+filter(coronavirus, country == "US", type == "death") |> 
+  pull(cases) |> 
+  sum()
+
+# OR
+
+filter(coronavirus, country == "US", type == "death") |>
+  summarize(total_cases = sum(cases, na.rm = TRUE))
+
 ```
 
 <br>
@@ -372,7 +383,7 @@ select(coronavirus, -lat, -long) # you can use - to deselect columns
 <br>
 <br>
 
-### Your turn - Exercise 2
+## Your turn - Exercise 2
 
 Create a new dataframe including only the country, lat, and long variables, listed in this order. Now make one listed in order lat, long, country.
 
