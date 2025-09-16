@@ -13,7 +13,7 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -565,8 +565,8 @@ that too.</p>
 <p>Just like last class, we’ll keep practicing our GitHub/version
 control integration by pushing our notes onto our course repo. Please
 open the R Project that is associated with your class repository (the
-name should be <code>ntres-6100-fa2024-YOUR_USERNAME</code> (replace
-YOUR_USERNAME with your GitHub user ID). Open an R-script or an
+name should be <code>ntres-6100-assignments-YOUR_USERNAME</code>
+(replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an
 RMarkdown file and save it within your <code>course-notes</code>
 subdirectory as <code>data_wrangling.R</code> [or whatever you want to
 call it]. Use this R-script to type along in the examples we’ll go
@@ -674,6 +674,11 @@ It’s a common operator you’ll see in R.</p>
 head(coronavirus$cases) # can do the same tests we tried before
 str(coronavirus$cases) # it is a single numeric vector
 summary(coronavirus$cases) # same information, formatted slightly differently</code></pre>
+<p><br></p>
+<p>In tidyverse syntax, there are also other ways to pull out single
+variables (e.g. with the <code>pull()</code> and <code>select()</code>
+functions. We’ll get to those later after we have introduced basic dplyr
+workflows.</p>
 <p><br></p>
 </div>
 </div>
@@ -814,7 +819,7 @@ sum(filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)$ca
 <p><strong>Question 1b:</strong></p>
 <pre class="r"><code>#Example:
 
-filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2022-02-14&quot;)</code></pre>
+filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2021-09-16&quot;)</code></pre>
 </details>
 <p><br> <br> <br></p>
 </div>
@@ -902,7 +907,7 @@ magrittr package is included in the core tidyverse, so you can use
 4.1.0 introduced a native pipe operator <code>|&gt;</code>, which is now
 the recommended syntax (more details <a
 href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">here</a>).
-I will update the course notes to use the native R pipe
+The course notes should be fully updated to use the native R pipe
 <code>|&gt;</code>.</p>
 </blockquote>
 <p><br></p>

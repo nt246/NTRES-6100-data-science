@@ -75,7 +75,7 @@ For some things, base-R is more straightforward, and we'll show you that too.
 
 ### Taking notes
 
-Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-fa2024-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
+Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-assignments-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
 
 <br>
 
@@ -178,6 +178,11 @@ summary(coronavirus$cases) # same information, formatted slightly differently
 ```
 
 <br>
+
+In tidyverse syntax, there are also other ways to pull out single variables (e.g. with the `pull()` and `select()` functions. We'll get to those later after we have introduced basic dplyr workflows.
+
+<br>
+
 
 ## `dplyr` basics
 
@@ -330,7 +335,7 @@ sum(filter(coronavirus, country == "US", type == "death")$cases)
 ```{r, eval=FALSE}
 #Example:
 
-filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2022-02-14")
+filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2021-09-16")
 
 ```
 
@@ -417,7 +422,7 @@ Before we go any further, we should explore the pipe operator `|>`. If you have 
 
 <br>
 
-> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). I will update the course notes to use the native R pipe `|>`.
+> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). The course notes should be fully updated to use the native R pipe `|>`.
 
 <br>
 
