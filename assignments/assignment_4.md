@@ -3,19 +3,17 @@ Assignment 4: Data transformation and visualization
 
 ## Instructions: Please read through this before you begin
 
-- This assignment is due by **10pm on Thursday 09/26/2024**. Please upload
+- This assignment is due by **10pm on Thursday 09/25/2024**. Please upload
   it using your personal GitHub repository for this class.
 
-- You can start by making a copy of the R markdown template that you
-  created as `assignment_1.Rmd` and work from there (you wrote up most
+- You can start by making a copy of the Quarto template that you
+  created as `assignment_1.qmd` and work from there (you wrote up most
   of the template text needed here in assignment 1; now you’ll be
   filling in the code chunks).
 
-- Please name your R markdown file `assignment_4.Rmd` and the knitted
-  markdown file `assignment_4.md`.
+- Please name your Quarto file `assignment_4.qmd` and select `gfm` as the output format.
 
-- For this assignment, please **reproduce this markdown file** using R
-  markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using Quarto. This includes the following:
 
   - **Reproduce this markdown template**, except for this list of
     instructions which you **don’t** have to include. Pay attention to
@@ -24,13 +22,13 @@ Assignment 4: Data transformation and visualization
     lines, etc.
 
   - Write code to reproduce all the figures and tables shown. Have all
-    your code embedded within the R markdown file, and show **BOTH your
-    code and plots** in the knitted markdown file.
+    your code embedded within the Quart file, and show **BOTH your
+    code and plots** in the rendered markdown file.
 
   - When a verbal response is needed, answer by editing the part in the
-    R markdown template where it says “Write your response here”.
+    Quarto template where it says “Write your response here”.
 
-  - Use R Markdown functionalities to **hide messages and warnings when
+  - Use Quarto functionalities to **hide messages and warnings when
     needed**. (Suggestion: messages and warnings can often be
     informative and important, so please examine them carefully and only
     turn them off when you finish the exercise).
