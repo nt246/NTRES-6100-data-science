@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* To start, first open a new RMarkdown file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab4.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+* To start, first open a new Quarto file in your course repo,  set the output format to `github_document`, save it in your `lab` folder as `lab4.Rmd`, and work in this Quarto file for the rest of this lab. 
 
 <br>
 
