@@ -22,7 +22,7 @@ Assignment 4: Data transformation and visualization
     lines, etc.
 
   - Write code to reproduce all the figures and tables shown. Have all
-    your code embedded within the Quart file, and show **BOTH your
+    your code embedded within the Quarto file, and show **BOTH your
     code and plots** in the rendered markdown file.
 
   - When a verbal response is needed, answer by editing the part in the
