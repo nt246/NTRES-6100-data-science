@@ -53,7 +53,7 @@ library(tidyverse)
 library(dslabs) #install.packages("dslabs")
 
 # After you have loaded the dslabs package, you can access the data stored in `gapminder`. Let's look at the top 5 lines 
-gapminder %>% as_tibble() %>% 
+gapminder |> as_tibble() |> 
   head(5)
 ```
 
@@ -128,15 +128,15 @@ recommend that you **don't look at them unless you are really stuck**.
 
 ```{r}
 # Extract a vector with the 5 countries with the largest population size
-top5_countries <- gapminder %>%
-  filter(year == 2015) %>% 
-  arrange(-population) %>% 
-  select(country) %>% 
-  head(5) %>% 
+top5_countries <- gapminder |>
+  filter(year == 2015) |> 
+  arrange(-population) |> 
+  select(country) |> 
+  head(5) |> 
   pull()
 
-gapminder %>% 
-  filter(country %in% top5_countries) %>% 
+gapminder |> 
+  filter(country %in% top5_countries) |> 
   ggplot() +
   geom_line(mapping = aes(x = year, y = population, color = country))
 
@@ -159,10 +159,10 @@ Turkey, Poland, South Korea, Russia, Vietnam, South Africa
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2015, country %in% c("Turkey", "Poland", "South Korea", "Russia", "Vietnam", "South Africa")) %>%
-  arrange(infant_mortality) %>%
-  select(country, infant_mortality) %>% 
+gapminder |>
+  filter(year==2015, country %in% c("Turkey", "Poland", "South Korea", "Russia", "Vietnam", "South Africa")) |>
+  arrange(infant_mortality) |>
+  select(country, infant_mortality) |> 
   knitr::kable()
 ```
 
@@ -187,8 +187,8 @@ Hint: use the data from 2000
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2000) %>%
+gapminder |>
+  filter(year==2000) |>
   ggplot(aes(y=fertility, x=gdp/population)) +
   geom_point() +
   geom_smooth(se=F, method = "lm")
@@ -215,8 +215,8 @@ Hint: use the data from 2000
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2000) %>%
+gapminder |>
+  filter(year==2000) |>
   ggplot(aes(y=fertility, x=gdp/population, color=continent)) +
   geom_point() +
   geom_smooth(se=F, method = "lm") +
@@ -224,10 +224,10 @@ gapminder %>%
 ```
 
 ```{r fig.width=10}
-eu_2000 <- gapminder %>%
+eu_2000 <- gapminder |>
   filter(year==2000, continent == "Europe") 
-eu_2000 %>%
-  filter(fertility > 1.5, gdp/population > 20000) %>%
+eu_2000 |>
+  filter(fertility > 1.5, gdp/population > 20000) |>
   ggplot(aes(y=fertility, x=gdp/population, color=region)) +
   ggrepel::geom_label_repel(aes(label=country)) +
   geom_point(data=eu_2000)
@@ -252,10 +252,10 @@ Hint: use the data from 2015
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2015) %>%
-  group_by(continent) %>%
-  summarize(population_in_billion=sum(population)/10^9) %>%
+gapminder |>
+  filter(year==2015) |>
+  group_by(continent) |>
+  summarize(population_in_billion=sum(population)/10^9) |>
   ggplot(aes(x=continent, y=population_in_billion)) +
   geom_col()
 ```
@@ -281,8 +281,8 @@ Hint: use the data from 2015
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2015) %>%
+gapminder |>
+  filter(year==2015) |>
   summarize(life_expectancy=sum(life_expectancy*population)/sum(population))
 ```
 
@@ -307,15 +307,15 @@ Hint: use the data from 2015
 <summary>click to expand</summary>
 
 ```{r}
-gapminder %>%
-  filter(year==2015) %>%
-  group_by(continent) %>%
-  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) %>%
+gapminder |>
+  filter(year==2015) |>
+  group_by(continent) |>
+  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) |>
   ggplot(aes(x=continent, y=life_expectancy)) +
   geom_col()
 
-gapminder %>%
-  filter(year==2015) %>%
+gapminder |>
+  filter(year==2015) |>
   ggplot(aes(x=continent, y=life_expectancy)) +
   geom_jitter(aes(color=continent),height = 0) +
   geom_boxplot(alpha=0, outlier.alpha = 0)
@@ -380,32 +380,32 @@ Suggestions:
 ```{r}
 years <- c(1960, 1970, 1980, 1990, 2000, 2010)
 continents <- c("Europe", "Asia")
-gapminder %>% 
-  filter(year %in% years & continent %in% continents) %>%
+gapminder |> 
+  filter(year %in% years & continent %in% continents) |>
   ggplot(aes(log(gdp/population), life_expectancy, col = continent)) +
   geom_point() +
   facet_wrap(~year) 
 
-gapminder %>% 
-  filter(continent %in% continents) %>%
+gapminder |> 
+  filter(continent %in% continents) |>
   ggplot(aes(x=year, y=life_expectancy, group=country)) +
   geom_line()+
   facet_wrap(~continent) 
 
-gapminder %>% 
-  filter(year %in% c(1960, 2010)) %>%
+gapminder |> 
+  filter(year %in% c(1960, 2010)) |>
   ggplot(aes(x=life_expectancy, fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) 
 
-gapminder %>% 
-  filter(year %in% c(1960, 2010)) %>%
+gapminder |> 
+  filter(year %in% c(1960, 2010)) |>
   ggplot(aes(x=log(gdp/population), fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) 
 
-gapminder %>% 
-  filter(year %in% c(1960, 2010)) %>%
+gapminder |> 
+  filter(year %in% c(1960, 2010)) |>
   ggplot(aes(continent, log(gdp/population), fill = as.character(year))) +
   geom_boxplot()
 ```
