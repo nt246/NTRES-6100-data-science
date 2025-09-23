@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab5.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+* To start, first open a new Quarto file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab5.Rmd`, and work in this Quarto file for the rest of this lab. 
 
 <br>
 
@@ -52,7 +52,7 @@ library(knitr)
 titanic <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv")
 
 # Let's look at the top 5 lines of the dataset
-head(titanic, n = 5) %>%
+head(titanic, n = 5) |>
   kable()
 ```
 
@@ -99,14 +99,14 @@ Note: Age is fractional if less than 1. If the age is estimated, it is in the fo
 # number of passengers in the dataset
 nrow(titanic) 
 # number of passengers surviving vs. dying
-survived_count <- titanic %>%
-  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
-  count(survived) %>%
+survived_count <- titanic |>
+  mutate(survived = ifelse(Survived==0, "no", "yes")) |>
+  count(survived) |>
   mutate(percentage = round(n/nrow(titanic)*100,2))
 kable(survived_count)
 # plotting
-titanic %>%
-  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+titanic |>
+  mutate(survived = ifelse(Survived==0, "no", "yes")) |>
   ggplot(aes(x = survived)) +
   geom_bar(aes(fill = survived)) +
   geom_label(data = survived_count, aes(label=str_c(percentage, "%"), y=n/2)) +
@@ -131,11 +131,11 @@ Note: `str_c()` is used to add the percentage sign.
 ```{r}
 # male vs. female
 ## table
-sex_count <- titanic %>%
+sex_count <- titanic |>
   count(Sex)
 kable(sex_count)
 ## plot 
-sex_count %>% 
+sex_count |> 
   ggplot(aes(x = Sex, y = n)) +
   geom_col(aes(fill = Sex)) +
   geom_text(aes(label = n, y = n + 20)) +
@@ -143,12 +143,12 @@ sex_count %>%
   coord_flip()
 # male vs. female broken down by ticket class
 ## table
-sex_class_count <- titanic %>%
-  group_by(Sex, Pclass) %>%
+sex_class_count <- titanic |>
+  group_by(Sex, Pclass) |>
   count()
 kable(sex_class_count)
 ## plot
-sex_class_count %>% 
+sex_class_count |> 
   ggplot(aes(x = Sex, y = n)) +
   geom_col(aes(fill = Sex)) +
   geom_text(aes(label = n, y = n + 20)) +
@@ -171,18 +171,18 @@ sex_class_count %>%
 
 ```{r}
 # table
-sex_survival_count <- titanic %>%
-  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
-  group_by(Sex, survived) %>%
-  count() %>%
-  group_by(Sex) %>%
+sex_survival_count <- titanic |>
+  mutate(survived = ifelse(Survived==0, "no", "yes")) |>
+  group_by(Sex, survived) |>
+  count() |>
+  group_by(Sex) |>
   mutate(percentage = round(n/sum(n)*100, 2))
 kable(sex_survival_count)
 # plot
-sex_survival_count %>%
-  arrange(Sex, desc(survived)) %>%
-  group_by(Sex) %>%
-  mutate(label_y = cumsum(n) - 0.5 * n) %>%
+sex_survival_count |>
+  arrange(Sex, desc(survived)) |>
+  group_by(Sex) |>
+  mutate(label_y = cumsum(n) - 0.5 * n) |>
   ggplot(aes(x=Sex)) +
   geom_col(aes(fill = survived, y=n), color = "black") +
   geom_label(aes(label = str_c(percentage, "%"), y = label_y)) +
@@ -207,25 +207,25 @@ Note: the line `mutate(label_y = cumsum(n) - 0.5 * n)` is used to place the labe
 ```{r}
 # age info
 ## table
-age_info_count <- titanic %>%
-  mutate(age_info = ifelse(is.na(Age), "missing", "available")) %>%
+age_info_count <- titanic |>
+  mutate(age_info = ifelse(is.na(Age), "missing", "available")) |>
   count(age_info)
 kable(age_info_count)
 ## plot
-age_info_count %>%
+age_info_count |>
   ggplot(aes(x=age_info, y=n)) +
   geom_col(aes(fill=age_info)) +
   geom_label(aes(y=n+30, label=n)) +
   coord_flip()
 # age distribution
 ## summary
-titanic %>%
-  filter(!is.na(Age)) %>%
-  .$Age %>%
-  summary()
+titanic |>
+  filter(!is.na(Age)) |>
+  #.$Age |>
+  summary(Age)
 ## Plot
-titanic %>%
-  filter(!is.na(Age)) %>%
+titanic |>
+  filter(!is.na(Age)) |>
   ggplot(aes(x=Age)) +
   geom_histogram()
 ```
@@ -245,14 +245,14 @@ titanic %>%
   <summary>click to expand</summary>
 
 ```{r}
-titanic %>%
-  filter(!is.na(Age)) %>%
+titanic |>
+  filter(!is.na(Age)) |>
   ggplot(aes(x=Age, fill=Sex)) +
   geom_histogram() +
   facet_grid(Pclass~Sex)
-titanic %>%
-  mutate(ticket_class = as.character(Pclass)) %>%
-  filter(!is.na(Age)) %>%
+titanic |>
+  mutate(ticket_class = as.character(Pclass)) |>
+  filter(!is.na(Age)) |>
   ggplot(aes(x=Age, fill=Sex)) +
   geom_density(alpha=0.5) +
   facet_grid(ticket_class~.)
@@ -276,9 +276,9 @@ Hint: `geom_histogram()` and `facet_grid()` can be helpful in answering this que
   <summary>click to expand</summary>
 
 ```{r}
-titanic %>%
-  filter(!is.na(Age)) %>%
-  mutate(survived = ifelse(Survived==0, "no", "yes")) %>%
+titanic |>
+  filter(!is.na(Age)) |>
+  mutate(survived = ifelse(Survived==0, "no", "yes")) |>
   ggplot(aes(x=Age, fill=survived)) +
   geom_histogram(position="stack", color="black") +
   facet_grid(Sex~Pclass)
@@ -299,13 +299,13 @@ titanic %>%
   <summary>click to expand</summary>
 
 ```{r}
-titanic %>%
-  mutate(n_family=SibSp+Parch) %>%
+titanic |>
+  mutate(n_family=SibSp+Parch) |>
   ggplot(aes(x=n_family)) +
   geom_bar() +
   scale_x_continuous(breaks = 0:10)
-titanic %>%
-  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family>0, "yes", "no")) %>%
+titanic |>
+  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family>0, "yes", "no")) |>
   ggplot(aes(x=with_family)) +
   geom_bar() +
   coord_flip()
@@ -325,8 +325,8 @@ titanic %>%
   <summary>click to expand</summary>
 
 ```{r fig.height=6, fig.width=5}
-titanic %>%
-  mutate(n_family=SibSp+Parch) %>%
+titanic |>
+  mutate(n_family=SibSp+Parch) |>
   ggplot(aes(x=n_family)) +
   geom_bar() +
   scale_x_continuous(breaks = 0:10) +
@@ -334,8 +334,8 @@ titanic %>%
 ```
 
 ```{r}
-titanic %>%
-  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) %>%
+titanic |>
+  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) |>
   ggplot(aes(x = n_family, fill = ticket_class)) +
   geom_bar(color = "black", position = "fill") +
   scale_x_continuous(breaks = 0:10) +
@@ -358,10 +358,10 @@ titanic %>%
   <summary>click to expand</summary>
 
 ```{r}
-titanic %>%
-  group_by(Ticket) %>%
-  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) %>%
-  ungroup() %>%
+titanic |>
+  group_by(Ticket) |>
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) |>
+  ungroup() |>
   summarise(average_fare = mean(fare_per_ticket))
 ```
 
@@ -380,9 +380,9 @@ titanic %>%
   <summary>click to expand</summary>
 
 ```{r}
-titanic %>%
-  group_by(Ticket) %>%
-  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) %>%
+titanic |>
+  group_by(Ticket) |>
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) |>
   ggplot(aes(x=fare_per_ticket)) +
   geom_histogram(bins = 100) +
   facet_wrap(~ticket_class, ncol = 1, scales = "free_y")
