@@ -5,7 +5,7 @@ Assignment 5: Data transformation and visualization - Part 2
 
 ## Instructions: Please read through this before you begin
 
-- This assignment is due by **10pm on Thursday 10/03/2024**. Please upload
+- This assignment is due by **10pm on Thursday 10/02/2025**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your R markdown file `assignment_5.Rmd` and the knitted
