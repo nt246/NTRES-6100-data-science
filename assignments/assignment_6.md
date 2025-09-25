@@ -3,7 +3,7 @@ Assignment 6: Data import and tidy data
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 10/10/2024**. Please upload
+- This homework is due by **10pm on Thursday 10/09/2025**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your R markdown file `assignment_6.Rmd` and the knitted
