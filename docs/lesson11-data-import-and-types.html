@@ -773,8 +773,8 @@ character string “Missing” should be read in as <code>NA</code> that R
 will recognize as “not available”. This is something we can address
 using the na argument. By default, read_csv() only recognizes empty
 strings (““) in this dataset as NAs, and we want it to also recognize
-the character string”N/A”.</p>
-<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;), na = c(&quot;Missing&quot;, NA))</code></pre>
+the character string”Missing” as indicating a missing value.</p>
+<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;), na = c(&quot;Missing&quot;, &quot;N/A&quot;))</code></pre>
 <pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
 ## e.g.:
 ##   dat &lt;- vroom(...)

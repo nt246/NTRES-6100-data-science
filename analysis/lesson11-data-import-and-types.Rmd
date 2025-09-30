@@ -272,13 +272,13 @@ mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science
 
 <br>
 
-We may notice some issues here. First, we see the word "Missing" in the column titled size. We also see that as a result, this variable is read in as a character variable, rather than a double. In this case, the character string "Missing" should be read in as `NA` that R will recognize as “not available”. This is something we can address using the na argument. By default, read_csv() only recognizes empty strings ("") in this dataset as NAs, and we want it to also recognize the character string "N/A".
+We may notice some issues here. First, we see the word "Missing" in the column titled size. We also see that as a result, this variable is read in as a character variable, rather than a double. In this case, the character string "Missing" should be read in as `NA` that R will recognize as “not available”. This is something we can address using the na argument. By default, read_csv() only recognizes empty strings ("") in this dataset as NAs, and we want it to also recognize the character string "Missing" as indicating a missing value.
 
 ```{r, message = FALSE}
-mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv", locale = locale(decimal_mark = ","), na = c("Missing", NA))
+mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv", locale = locale(decimal_mark = ","), na = c("Missing", "N/A"))
 
 ```
-
+ 
 
 We get a warning message here, we can look at what the issue is by typing `problem()`. We need that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
 
