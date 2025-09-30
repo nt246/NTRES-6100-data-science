@@ -5,10 +5,10 @@ Assignment 5: Data transformation and visualization - Part 2
 
 ## Instructions: Please read through this before you begin
 
-- This assignment is due by **10pm on Thursday 10/03/2024**. Please upload
+- This assignment is due by **10pm on Thursday 10/02/25**. Please upload
   it using your personal GitHub repository for this class.
 
-- Please name your R markdown file `assignment_5.Rmd` and the knitted
+- Please name your Quarto file `assignment_5.qmd` and the rendered
   markdown file `assignment_5.md`.
 
 - For this assignment, please **reproduce this markdown file** using R
@@ -16,7 +16,7 @@ Assignment 5: Data transformation and visualization - Part 2
 
   - **Reproduce this markdown template**, except for this list of
     instructions which you **don’t** have to include. Pay attention to
-    all the formating in this file, including bullet points, bolded
+    all the formatting in this file, including bullet points, bolded
     characters, inserted code chunks, headings, text colors, blank
     lines, etc.
 
@@ -61,14 +61,14 @@ housing %>%
   kable() 
 ```
 
-| State | region |    Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
-|:------|:-------|--------:|-----------:|---------------:|-----------:|-----------------:|-----------------:|-----------------:|-----:|-----:|
-| AK    | West   | 2010.25 |     224952 |         160599 |      64352 |             28.6 |            1.481 |            1.552 | 2010 |    1 |
-| AK    | West   | 2010.50 |     225511 |         160252 |      65259 |             28.9 |            1.484 |            1.576 | 2010 |    2 |
-| AK    | West   | 2009.75 |     225820 |         163791 |      62029 |             27.5 |            1.486 |            1.494 | 2009 |    3 |
-| AK    | West   | 2010.00 |     224994 |         161787 |      63207 |             28.1 |            1.481 |            1.524 | 2009 |    4 |
-| AK    | West   | 2008.00 |     234590 |         155400 |      79190 |             33.8 |            1.544 |            1.885 | 2007 |    4 |
-| AK    | West   | 2008.25 |     233714 |         157458 |      76256 |             32.6 |            1.538 |            1.817 | 2008 |    1 |
+| State | region | Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| AK | West | 2010.25 | 224952 | 160599 | 64352 | 28.6 | 1.481 | 1.552 | 2010 | 1 |
+| AK | West | 2010.50 | 225511 | 160252 | 65259 | 28.9 | 1.484 | 1.576 | 2010 | 2 |
+| AK | West | 2009.75 | 225820 | 163791 | 62029 | 27.5 | 1.486 | 1.494 | 2009 | 3 |
+| AK | West | 2010.00 | 224994 | 161787 | 63207 | 28.1 | 1.481 | 1.524 | 2009 | 4 |
+| AK | West | 2008.00 | 234590 | 155400 | 79190 | 33.8 | 1.544 | 1.885 | 2007 | 4 |
+| AK | West | 2008.25 | 233714 | 157458 | 76256 | 32.6 | 1.538 | 1.817 | 2008 | 1 |
 
 <br>
 

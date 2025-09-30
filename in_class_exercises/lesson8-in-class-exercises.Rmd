@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 
 
-First load the libraries and data we will need
+First load the packages and data we will need
 ```{r}
 library(tidyverse)     ## install.packages("tidyverse")
 library(skimr)        ## install.packages("skimr")

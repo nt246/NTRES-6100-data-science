@@ -3,14 +3,14 @@ Assignment 6: Data import and tidy data
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 10/10/2024**. Please upload
+- This homework is due by **10pm on Thursday 10/09/25**. Please upload
   it using your personal GitHub repository for this class.
 
-- Please name your R markdown file `assignment_6.Rmd` and the knitted
+- Please name your Quarto file `assignment_6.qmd` and the rendered
   markdown file `assignment_6.md`.
 
-- For this assignment, please **reproduce this markdown file** using R
-  markdown. This includes the followings:
+- For this assignment, please **reproduce this markdown file** using
+  Quarto. This includes the followings:
 
   - **Reproduce this markdown template**, except for this list of
     instructions which you **don’t** have to include. Pay attention to
@@ -18,10 +18,10 @@ Assignment 6: Data import and tidy data
     characters, inserted code chunks, headings, text colors, blank
     lines, etc.
 
-  - Have all your code embedded within the R markdown file, and show
-    **BOTH your code and plots** in the knitted markdown file.
+  - Have all your code embedded within the Quarto file, and show **BOTH
+    your code and plots** in the knitted markdown file.
 
-  - Use R Markdown functionalities to **hide messages and warnings when
+  - Use Quarto functionalities to **hide messages and warnings when
     needed**. (Suggestion: messages and warnings can often be
     informative and important, so please examine them carefully and only
     turn them off when you finish the exercise).
@@ -139,23 +139,23 @@ Protection Administration, Executive Yuan, R.O.C. (Taiwan).
 
 <br>
 
-| Item       | Unit    | Description                                               |
-|:-----------|:--------|:----------------------------------------------------------|
-| AMB_TEMP   | Celsius | Ambient air temperature                                   |
-| CO         | ppm     | Carbon monoxide                                           |
-| NO         | ppb     | Nitric oxide                                              |
-| NO2        | ppb     | Nitrogen dioxide                                          |
-| NOx        | ppb     | Nitrogen oxides                                           |
-| O3         | ppb     | Ozone                                                     |
-| PM10       | μg/m3   | Particulate matter with a diameter between 2.5 and 10 μm  |
-| PM2.5      | μg/m3   | Particulate matter with a diameter of 2.5 μm or less      |
-| RAINFALL   | mm      | Rainfall                                                  |
-| RH         | %       | Relative humidity                                         |
-| SO2        | ppb     | Sulfur dioxide                                            |
-| WD_HR      | degress | Wind direction (The average of hour)                      |
+| Item | Unit | Description |
+|:---|:---|:---|
+| AMB_TEMP | Celsius | Ambient air temperature |
+| CO | ppm | Carbon monoxide |
+| NO | ppb | Nitric oxide |
+| NO2 | ppb | Nitrogen dioxide |
+| NOx | ppb | Nitrogen oxides |
+| O3 | ppb | Ozone |
+| PM10 | μg/m3 | Particulate matter with a diameter between 2.5 and 10 μm |
+| PM2.5 | μg/m3 | Particulate matter with a diameter of 2.5 μm or less |
+| RAINFALL | mm | Rainfall |
+| RH | % | Relative humidity |
+| SO2 | ppb | Sulfur dioxide |
+| WD_HR | degress | Wind direction (The average of hour) |
 | WIND_DIREC | degress | Wind direction (The average of last ten minutes per hour) |
-| WIND_SPEED | m/sec   | Wind speed (The average of last ten minutes per hour)     |
-| WS_HR      | m/sec   | Wind speed (The average of hour)                          |
+| WIND_SPEED | m/sec | Wind speed (The average of last ten minutes per hour) |
+| WS_HR | m/sec | Wind speed (The average of hour) |
 
 `#` indicates invalid value by equipment inspection  
 `*` indicates invalid value by program inspection  
@@ -270,14 +270,14 @@ from the following website:
 
 <br>
 
-| Brand | Model             | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:------|:------------------|-------------:|---------------:|---------------:|-----------------:|--------------:|--------------:|-------------------:|------------------:|-----------------:|------------------------:|-----------:|------:|
-| Agfa  | ePhoto 1280       |         1997 |           1024 |            640 |                0 |            38 |           114 |                 70 |                40 |                4 |                     420 |         95 |   179 |
-| Agfa  | ePhoto 1680       |         1998 |           1280 |            640 |                1 |            38 |           114 |                 50 |                 0 |                4 |                     420 |        158 |   179 |
-| Agfa  | ePhoto CL18       |         2000 |            640 |              0 |                0 |            45 |            45 |                  0 |                 0 |                2 |                       0 |          0 |   179 |
-| Agfa  | ePhoto CL30       |         1999 |           1152 |            640 |                0 |            35 |            35 |                  0 |                 0 |                4 |                       0 |          0 |   269 |
-| Agfa  | ePhoto CL30 Clik! |         1999 |           1152 |            640 |                0 |            43 |            43 |                 50 |                 0 |               40 |                     300 |        128 |  1299 |
-| Agfa  | ePhoto CL45       |         2001 |           1600 |            640 |                1 |            51 |            51 |                 50 |                20 |                8 |                     270 |        119 |   179 |
+| Brand | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Agfa | ePhoto 1280 | 1997 | 1024 | 640 | 0 | 38 | 114 | 70 | 40 | 4 | 420 | 95 | 179 |
+| Agfa | ePhoto 1680 | 1998 | 1280 | 640 | 1 | 38 | 114 | 50 | 0 | 4 | 420 | 158 | 179 |
+| Agfa | ePhoto CL18 | 2000 | 640 | 0 | 0 | 45 | 45 | 0 | 0 | 2 | 0 | 0 | 179 |
+| Agfa | ePhoto CL30 | 1999 | 1152 | 640 | 0 | 35 | 35 | 0 | 0 | 4 | 0 | 0 | 269 |
+| Agfa | ePhoto CL30 Clik! | 1999 | 1152 | 640 | 0 | 43 | 43 | 50 | 0 | 40 | 300 | 128 | 1299 |
+| Agfa | ePhoto CL45 | 2001 | 1600 | 640 | 1 | 51 | 51 | 50 | 20 | 8 | 270 | 119 | 179 |
 
 <br>
 
@@ -296,13 +296,13 @@ from the following website:
 
 <br>
 
-| Brand | Line      | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
-|:------|:----------|:------|-------------:|---------------:|---------------:|-----------------:|--------------:|--------------:|-------------------:|------------------:|-----------------:|------------------------:|-----------:|------:|
-| Canon | PowerShot | 350   |         1997 |            640 |              0 |                0 |            42 |            42 |                 70 |                 3 |                2 |                     320 |         93 |   149 |
-| Canon | PowerShot | 600   |         1996 |            832 |            640 |                0 |            50 |            50 |                 40 |                10 |                1 |                     460 |        160 |   139 |
-| Canon | PowerShot | A10   |         2001 |           1280 |           1024 |                1 |            35 |           105 |                 76 |                16 |                8 |                     375 |        110 |   139 |
-| Canon | PowerShot | A100  |         2002 |           1280 |           1024 |                1 |            39 |            39 |                 20 |                 5 |                8 |                     225 |        110 |   139 |
-| Canon | PowerShot | A20   |         2001 |           1600 |           1024 |                1 |            35 |           105 |                 76 |                16 |                8 |                     375 |        110 |   139 |
-| Canon | PowerShot | A200  |         2002 |           1600 |           1024 |                1 |            39 |            39 |                 20 |                 5 |                8 |                     225 |        110 |   139 |
+| Brand | Line | Model | Release date | Max resolution | Low resolution | Effective pixels | Zoom wide (W) | Zoom tele (T) | Normal focus range | Macro focus range | Storage included | Weight (inc. batteries) | Dimensions | Price |
+|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Canon | PowerShot | 350 | 1997 | 640 | 0 | 0 | 42 | 42 | 70 | 3 | 2 | 320 | 93 | 149 |
+| Canon | PowerShot | 600 | 1996 | 832 | 640 | 0 | 50 | 50 | 40 | 10 | 1 | 460 | 160 | 139 |
+| Canon | PowerShot | A10 | 2001 | 1280 | 1024 | 1 | 35 | 105 | 76 | 16 | 8 | 375 | 110 | 139 |
+| Canon | PowerShot | A100 | 2002 | 1280 | 1024 | 1 | 39 | 39 | 20 | 5 | 8 | 225 | 110 | 139 |
+| Canon | PowerShot | A20 | 2001 | 1600 | 1024 | 1 | 35 | 105 | 76 | 16 | 8 | 375 | 110 | 139 |
+| Canon | PowerShot | A200 | 2002 | 1600 | 1024 | 1 | 39 | 39 | 20 | 5 | 8 | 225 | 110 | 139 |
 
 <br> <br>

@@ -59,9 +59,7 @@ Today, we'll expand our data wrangling toolbox. By the end of today's class, you
 ## Getting set up a reloading the Coronavirus dataset
 Let's jump back in where we left off during last class. Let's first clear out our workspace so we start with a fresh session by clicking "Session" -> "Restart R". Then let's open the R-script we were using to take notes, pull from GitHub to make sure we have the most recent version. You can use this script to type along as we're working through demos today (if you want, it's also fine to just watch). 
 
-Today we'll also practice combining text and code in R Markdown files, so we'll do our in-class exercises in an R Markdown file. Do you remember how to create a new RMarkdown file? Go File -> New File -> R Markdown. Then change the output to GitHub document either as you're setting up the file or by manually editing the YAML header to say `output: github_document`. Now, delete the boilerplate text after the first setup code chunk and copy today's exercise questions into your document from [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/lesson8-in-class-exercises.md). As we work through the exercises, you will want to add a code chunk under each question to complete your answer.
-
-Finally, load the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?
+First, load the packages we need and the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?
 
 ```{r, eval = TRUE, include = TRUE, message = FALSE}
 library(tidyverse)     ## install.packages("tidyverse")
@@ -226,7 +224,7 @@ vacc |>
   
 
 
-**When you're done, sync your RMarkdown file to Github.com (pull, stage, commit, push).**
+**When you're done, sync your R script to Github (pull, stage, commit, push).**
 
 <br>
 <br>
@@ -319,9 +317,6 @@ coronavirus |>
 
 <br>
 
-**Knit your RMarkdown file, and sync it to GitHub (pull, stage, commit, push)**
-
-<br>
 <br>
 <br>
 
@@ -488,7 +483,7 @@ coronavirus |>
 <br>
 <br>
 
-#### Which country had the highest count of confirmed cases in January of this year? [Hint: to address this question the functions `month()` and `year()` from the package lubridate might be helpful]. What about in March?
+#### Which country had the highest count of confirmed cases in January of 2021? [Hint: to address this question the functions `month()` and `year()` from the package lubridate might be helpful]. What about in March?
 <br>
 
 **Answer**
