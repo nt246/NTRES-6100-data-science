@@ -13,7 +13,7 @@
 
 <title>Lesson 8: Data Wrangling Part 2</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -530,20 +530,9 @@ clear out our workspace so we start with a fresh session by clicking
 to take notes, pull from GitHub to make sure we have the most recent
 version. You can use this script to type along as we’re working through
 demos today (if you want, it’s also fine to just watch).</p>
-<p>Today we’ll also practice combining text and code in R Markdown
-files, so we’ll do our in-class exercises in an R Markdown file. Do you
-remember how to create a new RMarkdown file? Go File -&gt; New File
--&gt; R Markdown. Then change the output to GitHub document either as
-you’re setting up the file or by manually editing the YAML header to say
-<code>output: github_document</code>. Now, delete the boilerplate text
-after the first setup code chunk and copy today’s exercise questions
-into your document from <a
-href="https://github.com/nt246/NTRES-6100-data-science/blob/main/in_class_exercises/lesson8-in-class-exercises.md">here</a>.
-As we work through the exercises, you will want to add a code chunk
-under each question to complete your answer.</p>
-<p>Finally, load the Coronavirus dataset back in directly from the
-GitHub URL and see whether it has been updated - what is the latest date
-included?</p>
+<p>First, load the packages we need and the Coronavirus dataset back in
+directly from the GitHub URL and see whether it has been updated - what
+is the latest date included?</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)
 library(skimr)        ## install.packages(&quot;skimr&quot;)</code></pre>
 <pre class="r"><code># read in the coronavirus.csv file
@@ -700,8 +689,8 @@ vacc |&gt;
   filter(doses_per_vaxxed &gt; 3)</code></pre>
 </details>
 <p><br> <br></p>
-<p><strong>When you’re done, sync your RMarkdown file to Github.com
-(pull, stage, commit, push).</strong></p>
+<p><strong>When you’re done, sync your R script to Github (pull, stage,
+commit, push).</strong></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -794,9 +783,7 @@ coronavirus |&gt;
   arrange(date)</code></pre>
 </details>
 <p><br></p>
-<p><strong>Knit your RMarkdown file, and sync it to GitHub (pull, stage,
-commit, push)</strong></p>
-<p><br> <br> <br></p>
+<p><br> <br></p>
 </div>
 </div>
 </div>
@@ -944,12 +931,12 @@ click to expand
 <p><br> <br></p>
 </div>
 <div
-id="which-country-had-the-highest-count-of-confirmed-cases-in-january-of-this-year-hint-to-address-this-question-the-functions-month-and-year-from-the-package-lubridate-might-be-helpful.-what-about-in-march"
+id="which-country-had-the-highest-count-of-confirmed-cases-in-january-of-2021-hint-to-address-this-question-the-functions-month-and-year-from-the-package-lubridate-might-be-helpful.-what-about-in-march"
 class="section level4">
 <h4>Which country had the highest count of confirmed cases in January of
-this year? [Hint: to address this question the functions
-<code>month()</code> and <code>year()</code> from the package lubridate
-might be helpful]. What about in March?</h4>
+2021? [Hint: to address this question the functions <code>month()</code>
+and <code>year()</code> from the package lubridate might be helpful].
+What about in March?</h4>
 <p><br></p>
 <strong>Answer</strong>
 <details>

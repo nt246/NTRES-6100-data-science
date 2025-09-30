@@ -76,7 +76,15 @@ By the end of today’s class, you should be able to:
 
 * They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names
 
-* They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.
+* They are more reproducible. Base R functions inherit some behavior from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.
+
+
+
+## Absolute vs. relative paths
+
+
+
+
 
 
 

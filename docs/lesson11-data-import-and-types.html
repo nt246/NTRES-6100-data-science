@@ -13,7 +13,7 @@
 
 <title>Lesson 11: Data import, export, and conversion between data types</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -335,7 +335,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -396,10 +396,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -474,25 +474,18 @@ Rodrigues</li>
 </ul>
 <p><br></p>
 <ul>
-<li>Chapters <a href="https://r4ds.had.co.nz/tibbles.html">10</a>, <a
-href="https://r4ds.had.co.nz/data-import.html">11</a>, <a
-href="https://r4ds.had.co.nz/strings.html#introduction-8">14.1 +
-14.2</a>, <a href="https://r4ds.had.co.nz/factors.html">15.1 + 15.2</a>
-and <a href="https://r4ds.had.co.nz/dates-and-times.html">16</a> in R
-for Data Science by Hadley Wickham &amp; Garrett Grolemund [That sounds
-like a lot, but all the sections are pretty short and contain important
-information. Chapters 10 and 11 are the most essential if you don’t have
-time to read them all]</li>
+<li><a href="https://r4ds.hadley.nz/data-import.html">Chapter 7</a> and
+<a href="https://r4ds.hadley.nz/spreadsheets.html">Chapter 20</a> in
+R4DS (2e)</li>
 </ul>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level4">
 <h4>Other resources:</h4>
-<ul>
-<li>The rest of Chapters <a
-href="https://r4ds.had.co.nz/strings.html">14-16</a> in R for Data
-Science by Hadley Wickham &amp; Garrett Grolemund</li>
-</ul>
+<p>It would also be very useful for look at the R4DS chapters on <a
+href="https://r4ds.hadley.nz/strings.html">Strings</a> and <a
+href="https://r4ds.hadley.nz/datetimes.html">Dates and times</a>, and <a
+href="https://r4ds.hadley.nz/missing-values.html">Missing values</a></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -547,8 +540,7 @@ so once you get familiar with one, you can easily apply your knowledge
 to all the other functions in <code>readr</code>.</p>
 <p>You can examine the options by looking at the documentation, e.g
 <code>?read_csv()</code>. There is also a very useful overview in <a
-href="https://r4ds.had.co.nz/data-import.html">Chapter 11 of Grolemund
-and Wickham’s R for Data Science</a></p>
+href="https://r4ds.hadley.nz/data-import.html">Chapter 7 in R4DS</a></p>
 <p><br></p>
 <p>We can also read directly from spreadsheet formats:</p>
 <ul>
@@ -610,6 +602,10 @@ we can use <code>col_names = FALSE</code> to tell
 instead label them sequentially from <code>X1</code> to
 <code>Xn</code>.</p>
 <p><br></p>
+</div>
+<div id="reading-in-from-spreadsheets-excel-and-google-sheets"
+class="section level3">
+<h3>Reading in from spreadsheets (Excel and Google Sheets)</h3>
 <p>We can also make an Excel file with the same data and try reading in
 from that (note that you need to first install the <code>readxl</code>
 package, if you don’t already have it)</p>
@@ -629,6 +625,35 @@ href="https://search.r-project.org/CRAN/refmans/googlesheets4/html/gs4_auth.html
 
 gs4_deauth()
 lotr_gs &lt;- read_sheet(&quot;https://docs.google.com/spreadsheets/d/1X98JobRtA3JGBFacs_JSjiX-4DPQ0vZYtNl_ozqF6IE/edit#gid=754443596&quot;)</code></pre>
+<p><br> <br></p>
+</div>
+<div id="reading-part-of-a-sheet-from-r4ds" class="section level3">
+<h3>Reading part of a sheet (from <a
+href="https://r4ds.hadley.nz/spreadsheets.html#reading-part-of-a-sheet">R4DS</a>)</h3>
+<p>Since many use Excel spreadsheets for presentation as well as for
+data storage, it’s quite common to find cell entries in a spreadsheet
+that are not part of the data you want to read into R.</p>
+<p>An example of this can be seen in the <code>deaths.xlsx</code> sheet
+that comes as one of the example spreadsheets provided in the readxl
+package. We’ve copied this into <a
+href="https://docs.google.com/spreadsheets/d/1X98JobRtA3JGBFacs_JSjiX-4DPQ0vZYtNl_ozqF6IE/edit?gid=90348395#gid=90348395">the
+<code>deaths</code> tab of the google sheet we were reading in from
+before</a>.</p>
+<p>Here we see that in the middle of the sheet is what looks like a data
+frame but there is extraneous text in cells above and below the
+data.</p>
+<p>The top three rows and the bottom four rows are not part of the data
+frame. It’s possible to eliminate these extraneous rows using the skip
+and n_max arguments, but we recommend using cell ranges. In Excel, the
+top left cell is A1. As you move across columns to the right, the cell
+label moves down the alphabet, i.e. B1, C1, etc. And as you move down a
+column, the number in the cell label increases, i.e. A2, A3, etc.</p>
+<p>Here the data we want to read in starts in cell A5 and ends in cell
+F15. In spreadsheet notation, this is A5:F15, which we supply to the
+range argument. This works either with the <code>read_sheets()</code>
+function for google sheets or with reading from an Excel file stored in
+your local directory.</p>
+<pre class="r"><code>deaths &lt;- read_xlsx(&quot;data/data_lesson11.xlsx&quot;, sheet = &quot;deaths&quot;, range = &quot;A5:F15&quot;)</code></pre>
 <p><br> <br></p>
 </div>
 <div id="why-use-the-tidyversereadr-import-functions-instead-of-base-r"
@@ -725,11 +750,9 @@ parse_number(&quot;123&#39;456&#39;789&quot;, locale = locale(grouping_mark = &q
 </div>
 <div id="dates" class="section level4">
 <h4>Dates</h4>
-<p>Dates can be tricky! If you work with date data, I suggest you review
-chapters <a
-href="https://r4ds.had.co.nz/data-import.html#readr-datetimes">11.3.4</a>
-and <a href="https://r4ds.had.co.nz/dates-and-times.html">16</a> in
-R4DS.</p>
+<p>Dates can be tricky! If you work with date data, I suggest you have a
+close look at <a href="https://r4ds.hadley.nz/datetimes.html">chapter
+17</a> in R4DS.</p>
 <p><br> <br></p>
 </div>
 <div id="converting-between-data-types-with-parse_x-functions"
@@ -739,25 +762,39 @@ functions</h4>
 <p>We can use the <code>parse_xx()</code> functions in combination with
 <code>mutate()</code> to clean up values in a variable.</p>
 <p>Let’s have a look at how to clean up this dataset:</p>
-<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES6940-data-science/master/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
-<pre><code>## Rows: 3 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;\t&quot;
-## chr (2): item, price
-## dbl (1): size
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code># What happens if we run this without the locale argument?</code></pre>
-<p>Let’s clean up the <code>price</code> column</p>
+<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))
+
+# What happens if we run this without the locale argument?</code></pre>
+<p><br></p>
+<p>We may notice some issues here. First, we see the word “Missing” in
+the column titled size. We also see that as a result, this variable is
+read in as a character variable, rather than a double. In this case, the
+character string “Missing” should be read in as <code>NA</code> that R
+will recognize as “not available”. This is something we can address
+using the na argument. By default, read_csv() only recognizes empty
+strings (““) in this dataset as NAs, and we want it to also recognize
+the character string”N/A”.</p>
+<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;), na = c(&quot;Missing&quot;, NA))</code></pre>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+## e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<p>We get a warning message here, we can look at what the issue is by
+typing <code>problem()</code>. We need that despite that warning, now
+the “Missing” is being read in as NA, the size column gets read in as a
+double.</p>
+<p>Now, let’s now clean up the <code>price</code> column</p>
 <pre class="r"><code>mess |&gt; 
   mutate(price = parse_number(price))</code></pre>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 5 × 3
 ##   item  price  size
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 a        45   3.5
-## 2 b         5   2.7
-## 3 c         3   2.9</code></pre>
+## 2 b         5  NA  
+## 3 c         3   2.9
+## 4 d         2   4.2
+## 5 e         8  NA</code></pre>
+<p><br></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -931,7 +968,7 @@ class="uri">https://github.com/jennybc/ggplot2-tutorial</a></div>
   summarize(total_cases = sum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()</code></pre>
-<p><img src="lesson13-files/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="lesson13-files/unnamed-chunk-18-1.png" width="672" /></p>
 <pre class="r"><code>ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
 <p><code>ggsave()</code> has really nice defaults, so you don’t
 <em>have</em> to specify lots of different parameters. But you can! See

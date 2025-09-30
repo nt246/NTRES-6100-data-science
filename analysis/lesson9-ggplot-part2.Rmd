@@ -92,7 +92,7 @@ We'll return to exploring the Coronavirus dataset. I'll try to focus on typical 
 
 <br>
 
-First, let's load our packages and read in our Coronavirus dataset. You can choose to either work in an R-script or an RMarkdown document today.
+First, let's load our packages and read in our Coronavirus dataset. You can choose to either work in an R-script or a Quarto document today.
 
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
