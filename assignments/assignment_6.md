@@ -3,7 +3,7 @@ Assignment 6: Data import and tidy data
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 10/09/25**. Please upload
+- This homework is due by **10pm on Thursday 10/09/2025**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your Quarto file `assignment_6.qmd` and the rendered

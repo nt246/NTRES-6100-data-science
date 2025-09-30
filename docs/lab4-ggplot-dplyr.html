@@ -13,7 +13,7 @@
 
 <title>Lab 4: Data exploration with the gapminder dataset</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -482,10 +482,10 @@ href="https://www.gapminder.org/about/">Gapminder project</a>.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set
-the output format to <code>github_document</code>, save it in your
-<code>lab</code> folder as <code>lab4.Rmd</code>, and work in this
-RMarkdown file for the rest of this lab.</li>
+<li>To start, first open a new Quarto file in your course repo, set the
+output format to github <code>gfm</code>, save it in your
+<code>lab</code> folder as <code>lab4.qmd</code>, and work in this
+Quarto file for the rest of this lab.</li>
 </ul>
 <p><br></p>
 <ul>
@@ -501,7 +501,7 @@ ggplot.</li>
 library(dslabs) #install.packages(&quot;dslabs&quot;)
 
 # After you have loaded the dslabs package, you can access the data stored in `gapminder`. Let&#39;s look at the top 5 lines 
-gapminder %&gt;% as_tibble() %&gt;% 
+gapminder |&gt; as_tibble() |&gt; 
   head(5)</code></pre>
 <pre><code>## # A tibble: 5 × 9
 ##   country    year infant_mortality life_expectancy fertility population      gdp
@@ -580,21 +580,21 @@ class="section level3">
 this dataset), and how has the population sizes in those countries
 changes since 1960?</h3>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
 <pre class="r"><code># Extract a vector with the 5 countries with the largest population size
-top5_countries &lt;- gapminder %&gt;%
-  filter(year == 2015) %&gt;% 
-  arrange(-population) %&gt;% 
-  select(country) %&gt;% 
-  head(5) %&gt;% 
+top5_countries &lt;- gapminder |&gt;
+  filter(year == 2015) |&gt; 
+  arrange(-population) |&gt; 
+  select(country) |&gt; 
+  head(5) |&gt; 
   pull()
 
-gapminder %&gt;% 
-  filter(country %in% top5_countries) %&gt;% 
+gapminder |&gt; 
+  filter(country %in% top5_countries) |&gt; 
   ggplot() +
   geom_line(mapping = aes(x = year, y = population, color = country))</code></pre>
 <pre><code>## Warning: Removed 5 rows containing missing values or values outside the scale range
@@ -610,15 +610,15 @@ class="section level3">
 2015.</h3>
 <p>Turkey, Poland, South Korea, Russia, Vietnam, South Africa</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2015, country %in% c(&quot;Turkey&quot;, &quot;Poland&quot;, &quot;South Korea&quot;, &quot;Russia&quot;, &quot;Vietnam&quot;, &quot;South Africa&quot;)) %&gt;%
-  arrange(infant_mortality) %&gt;%
-  select(country, infant_mortality) %&gt;% 
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2015, country %in% c(&quot;Turkey&quot;, &quot;Poland&quot;, &quot;South Korea&quot;, &quot;Russia&quot;, &quot;Vietnam&quot;, &quot;South Africa&quot;)) |&gt;
+  arrange(infant_mortality) |&gt;
+  select(country, infant_mortality) |&gt; 
   knitr::kable()</code></pre>
 <table>
 <thead>
@@ -667,13 +667,13 @@ B. Negative relationship<br />
 C. No relationship</p>
 <p>Hint: use the data from 2000</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2000) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2000) |&gt;
   ggplot(aes(y=fertility, x=gdp/population)) +
   geom_point() +
   geom_smooth(se=F, method = &quot;lm&quot;)</code></pre>
@@ -692,22 +692,22 @@ B. Asia<br />
 C. Europe</p>
 <p>Hint: use the data from 2000</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2000) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2000) |&gt;
   ggplot(aes(y=fertility, x=gdp/population, color=continent)) +
   geom_point() +
   geom_smooth(se=F, method = &quot;lm&quot;) +
   facet_wrap(~continent, scales = &quot;free_y&quot;)</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>eu_2000 &lt;- gapminder %&gt;%
+<pre class="r"><code>eu_2000 &lt;- gapminder |&gt;
   filter(year==2000, continent == &quot;Europe&quot;) 
-eu_2000 %&gt;%
-  filter(fertility &gt; 1.5, gdp/population &gt; 20000) %&gt;%
+eu_2000 |&gt;
+  filter(fertility &gt; 1.5, gdp/population &gt; 20000) |&gt;
   ggplot(aes(y=fertility, x=gdp/population, color=region)) +
   ggrepel::geom_label_repel(aes(label=country)) +
   geom_point(data=eu_2000)</code></pre>
@@ -725,15 +725,15 @@ billion people.)</h3>
 src="https://s3.eu-west-1.amazonaws.com/static.gapminder.org/GapminderMedia/wp-uploads/20170330195501/Results-for-the-Swedish-Public-on-the-Gapminder-Test-2017%E2%80%99-1024x244.jpg" /></p>
 <p>Hint: use the data from 2015</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2015) %&gt;%
-  group_by(continent) %&gt;%
-  summarize(population_in_billion=sum(population)/10^9) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2015) |&gt;
+  group_by(continent) |&gt;
+  summarize(population_in_billion=sum(population)/10^9) |&gt;
   ggplot(aes(x=continent, y=population_in_billion)) +
   geom_col()</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
@@ -750,13 +750,13 @@ B. 60 years<br />
 C. 70 years</p>
 <p>Hint: use the data from 2015</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2015) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2015) |&gt;
   summarize(life_expectancy=sum(life_expectancy*population)/sum(population))</code></pre>
 <pre><code>##   life_expectancy
 ## 1         72.2457</code></pre>
@@ -773,20 +773,20 @@ B. 15 years<br />
 C. 25 years</p>
 <p>Hint: use the data from 2015</p>
 <p><br></p>
-<em>One possible solution</em>
+<p><em>One possible solution</em></p>
 <details>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2015) %&gt;%
-  group_by(continent) %&gt;%
-  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2015) |&gt;
+  group_by(continent) |&gt;
+  summarize(life_expectancy=sum(life_expectancy*population)/sum(population)) |&gt;
   ggplot(aes(x=continent, y=life_expectancy)) +
   geom_col()</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre class="r"><code>gapminder %&gt;%
-  filter(year==2015) %&gt;%
+<pre class="r"><code>gapminder |&gt;
+  filter(year==2015) |&gt;
   ggplot(aes(x=continent, y=life_expectancy)) +
   geom_jitter(aes(color=continent),height = 0) +
   geom_boxplot(alpha=0, outlier.alpha = 0)</code></pre>
@@ -839,43 +839,43 @@ plot, density plot, box plot, bar plot, and others can all be
 useful.</p></li>
 </ul>
 <p><br></p>
-<em>Some ideas if you are really stuck</em>
+<p><em>Some ideas if you are really stuck</em></p>
 <details>
 <summary>
 click to expand
 </summary>
 <pre class="r"><code>years &lt;- c(1960, 1970, 1980, 1990, 2000, 2010)
 continents &lt;- c(&quot;Europe&quot;, &quot;Asia&quot;)
-gapminder %&gt;% 
-  filter(year %in% years &amp; continent %in% continents) %&gt;%
+gapminder |&gt; 
+  filter(year %in% years &amp; continent %in% continents) |&gt;
   ggplot(aes(log(gdp/population), life_expectancy, col = continent)) +
   geom_point() +
   facet_wrap(~year) </code></pre>
 <pre><code>## Warning: Removed 148 rows containing missing values or values outside the scale range
 ## (`geom_point()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>gapminder %&gt;% 
-  filter(continent %in% continents) %&gt;%
+<pre class="r"><code>gapminder |&gt; 
+  filter(continent %in% continents) |&gt;
   ggplot(aes(x=year, y=life_expectancy, group=country)) +
   geom_line()+
   facet_wrap(~continent) </code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
-<pre class="r"><code>gapminder %&gt;% 
-  filter(year %in% c(1960, 2010)) %&gt;%
+<pre class="r"><code>gapminder |&gt; 
+  filter(year %in% c(1960, 2010)) |&gt;
   ggplot(aes(x=life_expectancy, fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) </code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
-<pre class="r"><code>gapminder %&gt;% 
-  filter(year %in% c(1960, 2010)) %&gt;%
+<pre class="r"><code>gapminder |&gt; 
+  filter(year %in% c(1960, 2010)) |&gt;
   ggplot(aes(x=log(gdp/population), fill=continent)) +
   geom_density(alpha=0.5)+
   facet_wrap(~year, nrow=2) </code></pre>
 <pre><code>## Warning: Removed 99 rows containing non-finite outside the scale range
 ## (`stat_density()`).</code></pre>
 <p><img src="lab4-ggplot-dplyr_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
-<pre class="r"><code>gapminder %&gt;% 
-  filter(year %in% c(1960, 2010)) %&gt;%
+<pre class="r"><code>gapminder |&gt; 
+  filter(year %in% c(1960, 2010)) |&gt;
   ggplot(aes(continent, log(gdp/population), fill = as.character(year))) +
   geom_boxplot()</code></pre>
 <pre><code>## Warning: Removed 99 rows containing non-finite outside the scale range

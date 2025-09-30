@@ -13,7 +13,7 @@
 
 <title>Lab 5: Data exploration with the Titanic dataset</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -487,10 +487,10 @@ src="https://upload.wikimedia.org/wikipedia/commons/5/51/Titanic_voyage_map.png"
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set
-the output format to <code>github_document</code>, save it in your
-<code>lab</code> folder as <code>lab5.Rmd</code>, and work in this
-RMarkdown file for the rest of this lab.</li>
+<li>To start, first open a new Quarto file in your course repo, set the
+output format to <code>github_document</code>, save it in your
+<code>lab</code> folder as <code>lab5.qmd</code>, and work in this
+Quarto file for the rest of this lab.</li>
 </ul>
 <p><br></p>
 <ul>
@@ -506,7 +506,7 @@ library(knitr)
 titanic &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/Titanic.csv&quot;)
 
 # Let&#39;s look at the top 5 lines of the dataset
-head(titanic, n = 5) %&gt;%
+head(titanic, n = 5) |&gt;
   kable()</code></pre>
 <table style="width:100%;">
 <colgroup>
@@ -738,9 +738,9 @@ click to expand
 nrow(titanic) </code></pre>
 <pre><code>## [1] 891</code></pre>
 <pre class="r"><code># number of passengers surviving vs. dying
-survived_count &lt;- titanic %&gt;%
-  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
-  count(survived) %&gt;%
+survived_count &lt;- titanic |&gt;
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) |&gt;
+  count(survived) |&gt;
   mutate(percentage = round(n/nrow(titanic)*100,2))
 kable(survived_count)</code></pre>
 <table>
@@ -765,8 +765,8 @@ kable(survived_count)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code># plotting
-titanic %&gt;%
-  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+titanic |&gt;
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) |&gt;
   ggplot(aes(x = survived)) +
   geom_bar(aes(fill = survived)) +
   geom_label(data = survived_count, aes(label=str_c(percentage, &quot;%&quot;), y=n/2)) +
@@ -790,7 +790,7 @@ click to expand
 </summary>
 <pre class="r"><code># male vs. female
 ## table
-sex_count &lt;- titanic %&gt;%
+sex_count &lt;- titanic |&gt;
   count(Sex)
 kable(sex_count)</code></pre>
 <table>
@@ -812,7 +812,7 @@ kable(sex_count)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>## plot 
-sex_count %&gt;% 
+sex_count |&gt; 
   ggplot(aes(x = Sex, y = n)) +
   geom_col(aes(fill = Sex)) +
   geom_text(aes(label = n, y = n + 20)) +
@@ -821,8 +821,8 @@ sex_count %&gt;%
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code># male vs. female broken down by ticket class
 ## table
-sex_class_count &lt;- titanic %&gt;%
-  group_by(Sex, Pclass) %&gt;%
+sex_class_count &lt;- titanic |&gt;
+  group_by(Sex, Pclass) |&gt;
   count()
 kable(sex_class_count)</code></pre>
 <table>
@@ -867,7 +867,7 @@ kable(sex_class_count)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>## plot
-sex_class_count %&gt;% 
+sex_class_count |&gt; 
   ggplot(aes(x = Sex, y = n)) +
   geom_col(aes(fill = Sex)) +
   geom_text(aes(label = n, y = n + 20)) +
@@ -889,11 +889,11 @@ them did not? What is the survival rate for passengers of each sex?</h4>
 click to expand
 </summary>
 <pre class="r"><code># table
-sex_survival_count &lt;- titanic %&gt;%
-  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
-  group_by(Sex, survived) %&gt;%
-  count() %&gt;%
-  group_by(Sex) %&gt;%
+sex_survival_count &lt;- titanic |&gt;
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) |&gt;
+  group_by(Sex, survived) |&gt;
+  count() |&gt;
+  group_by(Sex) |&gt;
   mutate(percentage = round(n/sum(n)*100, 2))
 kable(sex_survival_count)</code></pre>
 <table>
@@ -933,10 +933,10 @@ kable(sex_survival_count)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code># plot
-sex_survival_count %&gt;%
-  arrange(Sex, desc(survived)) %&gt;%
-  group_by(Sex) %&gt;%
-  mutate(label_y = cumsum(n) - 0.5 * n) %&gt;%
+sex_survival_count |&gt;
+  arrange(Sex, desc(survived)) |&gt;
+  group_by(Sex) |&gt;
+  mutate(label_y = cumsum(n) - 0.5 * n) |&gt;
   ggplot(aes(x=Sex)) +
   geom_col(aes(fill = survived, y=n), color = &quot;black&quot;) +
   geom_label(aes(label = str_c(percentage, &quot;%&quot;), y = label_y)) +
@@ -962,8 +962,8 @@ click to expand
 </summary>
 <pre class="r"><code># age info
 ## table
-age_info_count &lt;- titanic %&gt;%
-  mutate(age_info = ifelse(is.na(Age), &quot;missing&quot;, &quot;available&quot;)) %&gt;%
+age_info_count &lt;- titanic |&gt;
+  mutate(age_info = ifelse(is.na(Age), &quot;missing&quot;, &quot;available&quot;)) |&gt;
   count(age_info)
 kable(age_info_count)</code></pre>
 <table>
@@ -985,7 +985,7 @@ kable(age_info_count)</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>## plot
-age_info_count %&gt;%
+age_info_count |&gt;
   ggplot(aes(x=age_info, y=n)) +
   geom_col(aes(fill=age_info)) +
   geom_label(aes(y=n+30, label=n)) +
@@ -993,15 +993,34 @@ age_info_count %&gt;%
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code># age distribution
 ## summary
-titanic %&gt;%
-  filter(!is.na(Age)) %&gt;%
-  .$Age %&gt;%
-  summary()</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.42   20.12   28.00   29.70   38.00   80.00</code></pre>
+titanic |&gt;
+  filter(!is.na(Age)) |&gt;
+  #.$Age |&gt;
+  summary(Age)</code></pre>
+<pre><code>##   PassengerId       Survived          Pclass          Name          
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000   Length:714        
+##  1st Qu.:222.2   1st Qu.:0.0000   1st Qu.:1.000   Class :character  
+##  Median :445.0   Median :0.0000   Median :2.000   Mode  :character  
+##  Mean   :448.6   Mean   :0.4062   Mean   :2.237                     
+##  3rd Qu.:677.8   3rd Qu.:1.0000   3rd Qu.:3.000                     
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000                     
+##      Sex                 Age            SibSp            Parch       
+##  Length:714         Min.   : 0.42   Min.   :0.0000   Min.   :0.0000  
+##  Class :character   1st Qu.:20.12   1st Qu.:0.0000   1st Qu.:0.0000  
+##  Mode  :character   Median :28.00   Median :0.0000   Median :0.0000  
+##                     Mean   :29.70   Mean   :0.5126   Mean   :0.4314  
+##                     3rd Qu.:38.00   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##                     Max.   :80.00   Max.   :5.0000   Max.   :6.0000  
+##     Ticket               Fare           Cabin             Embarked        
+##  Length:714         Min.   :  0.00   Length:714         Length:714        
+##  Class :character   1st Qu.:  8.05   Class :character   Class :character  
+##  Mode  :character   Median : 15.74   Mode  :character   Mode  :character  
+##                     Mean   : 34.69                                        
+##                     3rd Qu.: 33.38                                        
+##                     Max.   :512.33</code></pre>
 <pre class="r"><code>## Plot
-titanic %&gt;%
-  filter(!is.na(Age)) %&gt;%
+titanic |&gt;
+  filter(!is.na(Age)) |&gt;
   ggplot(aes(x=Age)) +
   geom_histogram()</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
@@ -1019,15 +1038,15 @@ What do you find?</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  filter(!is.na(Age)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  filter(!is.na(Age)) |&gt;
   ggplot(aes(x=Age, fill=Sex)) +
   geom_histogram() +
   facet_grid(Pclass~Sex)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<pre class="r"><code>titanic %&gt;%
-  mutate(ticket_class = as.character(Pclass)) %&gt;%
-  filter(!is.na(Age)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  mutate(ticket_class = as.character(Pclass)) |&gt;
+  filter(!is.na(Age)) |&gt;
   ggplot(aes(x=Age, fill=Sex)) +
   geom_density(alpha=0.5) +
   facet_grid(ticket_class~.)</code></pre>
@@ -1050,9 +1069,9 @@ be helpful in answering this question.</p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  filter(!is.na(Age)) %&gt;%
-  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  filter(!is.na(Age)) |&gt;
+  mutate(survived = ifelse(Survived==0, &quot;no&quot;, &quot;yes&quot;)) |&gt;
   ggplot(aes(x=Age, fill=survived)) +
   geom_histogram(position=&quot;stack&quot;, color=&quot;black&quot;) +
   facet_grid(Sex~Pclass)</code></pre>
@@ -1073,14 +1092,14 @@ family?</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  mutate(n_family=SibSp+Parch) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  mutate(n_family=SibSp+Parch) |&gt;
   ggplot(aes(x=n_family)) +
   geom_bar() +
   scale_x_continuous(breaks = 0:10)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre class="r"><code>titanic %&gt;%
-  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family&gt;0, &quot;yes&quot;, &quot;no&quot;)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  mutate(n_family=SibSp+Parch, with_family=ifelse(n_family&gt;0, &quot;yes&quot;, &quot;no&quot;)) |&gt;
   ggplot(aes(x=with_family)) +
   geom_bar() +
   coord_flip()</code></pre>
@@ -1100,15 +1119,15 @@ who travelled solo out of all the female passengers in that class?</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  mutate(n_family=SibSp+Parch) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  mutate(n_family=SibSp+Parch) |&gt;
   ggplot(aes(x=n_family)) +
   geom_bar() +
   scale_x_continuous(breaks = 0:10) +
   facet_wrap(~Pclass, ncol = 1)</code></pre>
 <p><img src="lab5-titanic_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
-<pre class="r"><code>titanic %&gt;%
-  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) |&gt;
   ggplot(aes(x = n_family, fill = ticket_class)) +
   geom_bar(color = &quot;black&quot;, position = &quot;fill&quot;) +
   scale_x_continuous(breaks = 0:10) +
@@ -1134,10 +1153,10 @@ the code for the calculation.</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  group_by(Ticket) %&gt;%
-  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) %&gt;%
-  ungroup() %&gt;%
+<pre class="r"><code>titanic |&gt;
+  group_by(Ticket) |&gt;
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket) |&gt;
+  ungroup() |&gt;
   summarise(average_fare = mean(fare_per_ticket))</code></pre>
 <pre><code>## # A tibble: 1 × 1
 ##   average_fare
@@ -1157,9 +1176,9 @@ each ticket class?</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>titanic %&gt;%
-  group_by(Ticket) %&gt;%
-  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) %&gt;%
+<pre class="r"><code>titanic |&gt;
+  group_by(Ticket) |&gt;
+  mutate(n_ticket=n(), fare_per_ticket = Fare/n_ticket, ticket_class=as.character(Pclass)) |&gt;
   ggplot(aes(x=fare_per_ticket)) +
   geom_histogram(bins = 100) +
   facet_wrap(~ticket_class, ncol = 1, scales = &quot;free_y&quot;)</code></pre>
