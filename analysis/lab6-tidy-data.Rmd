@@ -404,6 +404,6 @@ Share your findings, challenges, and questions with the class.
 <br>
 <br>
 
-**END LAB 4**
+**END LAB 6**
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
