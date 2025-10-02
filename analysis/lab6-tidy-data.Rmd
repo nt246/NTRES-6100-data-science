@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 <br>
 
-* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab6.Rmd`, and work in this RMarkdown file for the rest of this lab. 
+* To start, first open a new Quarto file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab6.qmd`, and work in this Quarto file for the rest of this lab. 
 
 <br>
 <br>
@@ -67,7 +67,7 @@ library(knitr)
 
 # Read in the data
 whales <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/whales.csv")
-whales %>% head() %>% kable()
+whales |> head() |> kable()
 ```
 
 <br>
@@ -98,9 +98,9 @@ whales %>% head() %>% kable()
   <summary>click to expand</summary>
 
 ```{r}
-whales_long <- whales %>%
+whales_long <- whales |>
   pivot_longer(-1, names_to = "species", values_to = "info")
-whales_long %>% head() %>% kable()
+whales_long |> head() |> kable()
 ```
 
 </details>
@@ -121,9 +121,9 @@ whales_long %>% head() %>% kable()
   <summary>click to expand</summary>
 
 ```{r}
-whales_clean <- whales_long %>%
+whales_clean <- whales_long |>
   filter(!is.na(info))
-whales_clean %>% head() %>% kable()
+whales_clean |> head() |> kable()
 ```
 
 </details>
@@ -145,9 +145,9 @@ Your new data frame should have six variables: observer, species, date, outcome,
   <summary>click to expand</summary>
 
 ```{r}
-whales_split <- whales_clean %>%
+whales_split <- whales_clean |>
   separate(info, c("date", "outcome", "size", "ocean"), ",")
-whales_split %>% head() %>% kable()
+whales_split |> head() |> kable()
 ```
 
 </details>
@@ -174,14 +174,14 @@ The columns should parsed to the following types
   <summary>click to expand</summary>
 
 ```{r}
-whales_parsed <- whales_split %>%
+whales_parsed <- whales_split |>
   type_convert(
     col_types = cols(
       date = col_date(format = "%m/%d/%y"),
       size = col_integer()
     )
   )
-whales_parsed %>% head()
+whales_parsed |> head()
 ```
 
 </details>
@@ -198,9 +198,9 @@ whales_parsed %>% head()
   <summary>click to expand</summary>
 
 ```{r}
-whales_parsed %>% 
-  group_by(species) %>% 
-  summarise(number_of_ship_strikes = n(), average_size = mean(size, na.rm = T))  %>%
+whales_parsed |> 
+  group_by(species) |> 
+  summarise(number_of_ship_strikes = n(), average_size = mean(size, na.rm = T))  |>
   kable()
 ```
 
@@ -222,8 +222,8 @@ What are some challenges in this?
   <summary>click to expand</summary>
 
 ```{r}
-whales_parsed %>%
-  mutate(ocean = ifelse(ocean == "artic", "arctic", ocean)) %>%
+whales_parsed |>
+  mutate(ocean = ifelse(ocean == "artic", "arctic", ocean)) |>
   ggplot(aes(x=date, y = size, color=outcome)) +
   geom_point() +
   facet_grid(ocean~species)
@@ -278,7 +278,7 @@ top boy names              | top girl names
 # Load required packages
 library(babynames) # install.packages("babynames")
 
-babynames %>% head() %>% kable()
+babynames |> head() |> kable()
 ```
 
 <br>
@@ -314,22 +314,22 @@ babynames %>% head() %>% kable()
 
 ```{r}
 # number of passengers in the dataset
-top_6_boy_names <- babynames %>%
-  filter(sex == "M") %>%
-  group_by(name) %>%
-  summarise(total_count=sum(n)) %>%
+top_6_boy_names <- babynames |>
+  filter(sex == "M") |>
+  group_by(name) |>
+  summarise(total_count=sum(n)) |>
   slice_max(order_by = total_count, n = 6)
 
-top_6_girl_names <- babynames %>%
-  filter(sex == "F") %>%
-  group_by(name) %>%
-  summarise(total_count=sum(n)) %>%
+top_6_girl_names <- babynames |>
+  filter(sex == "F") |>
+  group_by(name) |>
+  summarise(total_count=sum(n)) |>
   slice_max(order_by = total_count, n = 6) 
 
-babynames %>%
+babynames |>
   filter(
     (name %in% top_6_boy_names$name & sex == "M") | (name %in% top_6_girl_names$name & sex == "F")
-    ) %>%
+    ) |>
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)
@@ -362,12 +362,12 @@ Note:
 
 ```{r}
 set.seed(42)
-babynames %>%
-  mutate(decade = floor(year/10)*10) %>%
-  group_by(sex, decade, name) %>%
-  summarise(total_count = sum(n)) %>%
-  group_by(sex, decade) %>%
-  slice_max(order_by = total_count, n=1) %>%
+babynames |>
+  mutate(decade = floor(year/10)*10) |>
+  group_by(sex, decade, name) |>
+  summarise(total_count = sum(n)) |>
+  group_by(sex, decade) |>
+  slice_max(order_by = total_count, n=1) |>
   ggplot(aes(x=decade, y=total_count, color=sex)) +
   geom_line(size = 1.5) +
   geom_point(size = 3)+

@@ -13,7 +13,7 @@
 
 <title>Lab 6: Data cleaning and tidy data</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -486,10 +486,10 @@ and the <code>babynames</code> dataset.</li>
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set
-the output format to <code>github_document</code>, save it in your
-<code>lab</code> folder as <code>lab6.Rmd</code>, and work in this
-RMarkdown file for the rest of this lab.</li>
+<li>To start, first open a new Quarto file in your course repo, set the
+output format to <code>github_document</code>, save it in your
+<code>lab</code> folder as <code>lab6.qmd</code>, and work in this
+Quarto file for the rest of this lab.</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -512,7 +512,7 @@ library(knitr)
 
 # Read in the data
 whales &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/whales.csv&quot;)
-whales %&gt;% head() %&gt;% kable()</code></pre>
+whales |&gt; head() |&gt; kable()</code></pre>
 <table>
 <colgroup>
 <col width="4%" />
@@ -649,9 +649,9 @@ Name this data frame <code>whales_long</code>.</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_long &lt;- whales %&gt;%
+<pre class="r"><code>whales_long &lt;- whales |&gt;
   pivot_longer(-1, names_to = &quot;species&quot;, values_to = &quot;info&quot;)
-whales_long %&gt;% head() %&gt;% kable()</code></pre>
+whales_long |&gt; head() |&gt; kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -710,9 +710,9 @@ Name this data frame <code>whales_clean</code>.</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_clean &lt;- whales_long %&gt;%
+<pre class="r"><code>whales_clean &lt;- whales_long |&gt;
   filter(!is.na(info))
-whales_clean %&gt;% head() %&gt;% kable()</code></pre>
+whales_clean |&gt; head() |&gt; kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -773,9 +773,9 @@ date, outcome, size, ocean.</p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_split &lt;- whales_clean %&gt;%
+<pre class="r"><code>whales_split &lt;- whales_clean |&gt;
   separate(info, c(&quot;date&quot;, &quot;outcome&quot;, &quot;size&quot;, &quot;ocean&quot;), &quot;,&quot;)
-whales_split %&gt;% head() %&gt;% kable()</code></pre>
+whales_split |&gt; head() |&gt; kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -861,14 +861,14 @@ this data frame <code>whales_parsed</code>.</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_parsed &lt;- whales_split %&gt;%
+<pre class="r"><code>whales_parsed &lt;- whales_split |&gt;
   type_convert(
     col_types = cols(
       date = col_date(format = &quot;%m/%d/%y&quot;),
       size = col_integer()
     )
   )
-whales_parsed %&gt;% head()</code></pre>
+whales_parsed |&gt; head()</code></pre>
 <pre><code>## # A tibble: 6 × 6
 ##   observer species        date       outcome  size ocean   
 ##      &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;     &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;   
@@ -893,9 +893,9 @@ species, omitting NA values in the calculation.</h4>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_parsed %&gt;% 
-  group_by(species) %&gt;% 
-  summarise(number_of_ship_strikes = n(), average_size = mean(size, na.rm = T))  %&gt;%
+<pre class="r"><code>whales_parsed |&gt; 
+  group_by(species) |&gt; 
+  summarise(number_of_ship_strikes = n(), average_size = mean(size, na.rm = T))  |&gt;
   kable()</code></pre>
 <table>
 <thead>
@@ -964,8 +964,8 @@ class="section level4">
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>whales_parsed %&gt;%
-  mutate(ocean = ifelse(ocean == &quot;artic&quot;, &quot;arctic&quot;, ocean)) %&gt;%
+<pre class="r"><code>whales_parsed |&gt;
+  mutate(ocean = ifelse(ocean == &quot;artic&quot;, &quot;arctic&quot;, ocean)) |&gt;
   ggplot(aes(x=date, y = size, color=outcome)) +
   geom_point() +
   facet_grid(ocean~species)</code></pre>
@@ -1025,7 +1025,7 @@ code:</li>
 <pre class="r"><code># Load required packages
 library(babynames) # install.packages(&quot;babynames&quot;)
 
-babynames %&gt;% head() %&gt;% kable()</code></pre>
+babynames |&gt; head() |&gt; kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -1122,22 +1122,22 @@ sex separately.</em></p>
 click to expand
 </summary>
 <pre class="r"><code># number of passengers in the dataset
-top_6_boy_names &lt;- babynames %&gt;%
-  filter(sex == &quot;M&quot;) %&gt;%
-  group_by(name) %&gt;%
-  summarise(total_count=sum(n)) %&gt;%
+top_6_boy_names &lt;- babynames |&gt;
+  filter(sex == &quot;M&quot;) |&gt;
+  group_by(name) |&gt;
+  summarise(total_count=sum(n)) |&gt;
   slice_max(order_by = total_count, n = 6)
 
-top_6_girl_names &lt;- babynames %&gt;%
-  filter(sex == &quot;F&quot;) %&gt;%
-  group_by(name) %&gt;%
-  summarise(total_count=sum(n)) %&gt;%
+top_6_girl_names &lt;- babynames |&gt;
+  filter(sex == &quot;F&quot;) |&gt;
+  group_by(name) |&gt;
+  summarise(total_count=sum(n)) |&gt;
   slice_max(order_by = total_count, n = 6) 
 
-babynames %&gt;%
+babynames |&gt;
   filter(
     (name %in% top_6_boy_names$name &amp; sex == &quot;M&quot;) | (name %in% top_6_girl_names$name &amp; sex == &quot;F&quot;)
-    ) %&gt;%
+    ) |&gt;
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
@@ -1171,12 +1171,12 @@ combination with <code>slice_max()</code> can be very efficient.
 click to expand
 </summary>
 <pre class="r"><code>set.seed(42)
-babynames %&gt;%
-  mutate(decade = floor(year/10)*10) %&gt;%
-  group_by(sex, decade, name) %&gt;%
-  summarise(total_count = sum(n)) %&gt;%
-  group_by(sex, decade) %&gt;%
-  slice_max(order_by = total_count, n=1) %&gt;%
+babynames |&gt;
+  mutate(decade = floor(year/10)*10) |&gt;
+  group_by(sex, decade, name) |&gt;
+  summarise(total_count = sum(n)) |&gt;
+  group_by(sex, decade) |&gt;
+  slice_max(order_by = total_count, n=1) |&gt;
   ggplot(aes(x=decade, y=total_count, color=sex)) +
   geom_line(size = 1.5) +
   geom_point(size = 3)+
