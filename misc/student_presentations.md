@@ -25,7 +25,7 @@ haven’t covered in class, but you think could be of interest to others,
 feel free to focus on those.
 
 **When:** Thursday October 30, 2025 during class  
-**How long:** 1.5 minutes per student  
+**How long:** 2-3 minutes per student  
 **What to show:** You can share your screen to either a) do a live demo
 showing a GitHub repo, something you’ve been working on in RStudio, a
 website, or whatever way you either have applied or that you’re thinking
