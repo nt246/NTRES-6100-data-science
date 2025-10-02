@@ -10,64 +10,94 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 ```
 
-
 ## End-of-class presentations
 
-You will all have the opportunity to give a short presentation during our last class (required if you're taking the course for credit)
+You will all have the opportunity to give a short presentation during our second to last class on 10/30 (required if you're taking the course for credit)
 
 <br>
 
 We would like each of you to give a very brief (1.5 mins) presentation showing the rest of the class either:
 
-* One or several ways in which you have already implemented something from the class in your own work, or
+-   One or several ways in which you have already implemented something from the class in your own work, or
 
-* An overview of changes you plan to make in your workflow moving forward.
-
-
+-   An overview of changes you plan to make in your workflow moving forward.
 
 ## Assignments
 
-* Assignment 6 due this Thursday
+-   Assignment 6 due this Thursday
 
-* Make sure to fix submission errors for prior assignments
-
-
+-   Make sure to fix submission errors for prior assignments
 
 ## When submitting assignments
 
-* Make sure your RMarkdown "output type" is set to "github_document" (this will create an .md file when you knit rather than .html)
-* Do not put `echo=FALSE` , `include=FALSE`, or `eval=FALSE` in your exercise code chunks. These will tell R to either not show your code, not show your plots, or not run the code at all. We need to see your code AND output for grading
-* Knit your RMarkdown document - this will create the .md file
-* Commit/push the RMarkdown (.Rmd), the knitted file (.md), AND the assignment "files" folder (this consists of the plot images - your plots will not appear in your knitted document if you do not push this folder)
+-   Please see Azwad's notes on Slack
 
-
-## Learning objectives 
+## Learning objectives
 
 By the end of today's class, you should be able to:
 
-* Combine information from multiple tables into one
-* Describe the difference between the four `join` and two `filter` functions in `dplyr`
-* Select and apply the appropriate `join` function in common use scenarios
-
+-   Combine information from multiple tables into one
+-   Describe the difference between the four `join` and two `filter` functions in `dplyr`
+-   Select and apply the appropriate `join` function in common use scenarios
 
 ## Row binding
 
 Usually works when it should (especially with `dplyr::bind_rows()`) and usually doesn’t when it shouldn’t
 
-
 ## Column binding
 
 Column binding is much more dangerous because it often “works” when it should not. It’s your job to the rows are aligned and it’s all too easy to screw this up.
 
+## Join functions
+
+-   Mutating joins, which add new variables to one data frame from matching observations in another.
+-   Filtering joins, which filter observations from one data frame based on whether or not they match an observation in another.
+
+## Keys
+
+Every join involves a pair of keys:
+
+-   A **primary key** is a variable or set of variables that uniquely identifies each observation. When more than one variable is needed, the key is called a **compound key**
+
+-   A **foreign key** is a variable (or set of variables) that corresponds to a primary key in another table
+
+## Mutating joins
+
+A **mutating join** allows you to combine variables from two data frames: it first matches observations by their keys, then copies across variables from one data frame to the other.
+
+Like mutate(), the join functions add variables to the right
+
+## `left_join()`
+
+The join function you will use most often
+
+The output will always have the same rows as the data frame you’re joining to
+
+The primary use of `left_join()` is to add in additional metadata
+
 
 ## Exercise
 
-Add the location of the origin and destination (i.e. the lat and lon) to flights
+We just added the full airline names to our `flights2` dataset. Now try to instead add information about each plane from the dataset named `planes`
+
+
+## Exercise
+
+Add the location of *both* the origin and destination (i.e. the lat and lon) to flights. You may want to use the suffix parameter to disambiguate variable names in your output
 
 
 
 ## Exercise
+
+Filter flights to only show flights with planes that have flown at least 100 flights (hint: you will need to first use summarize())
+
+
+## Exercise
+
+Is there a relationship between the age of a plane and its delays?
+
+
+
+## Exercise
+
 You might expect that there’s an implicit relationship between plane and airline, because each plane is flown by a single airline. Confirm or reject this hypothesis using the tools you’ve learned above.
-
-
-

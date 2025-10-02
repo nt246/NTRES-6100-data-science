@@ -53,8 +53,9 @@ Today we'll talk about relational data. By the end of today's class, you should 
 ## Setup
 
 Load the tidyverse
-```{r, eval = FALSE}
+```{r, eval = TRUE, include = FALSE}
 library(tidyverse)
+library(nycflights13)
 
 ```
 
@@ -150,7 +151,65 @@ The most commonly used join is the left join: you use this whenever you look up 
 
 <br>
 
-1.  Compute the average delay by destination, then join on the `airports`
+
+1.  Filter flights to only show flights with planes that have flown at least 100 flights (hint: you will need to first use summarize())
+
+
+<details>
+  <summary>click to expand</summary>
+
+<br>
+
+First, I find all planes that have flown at least 100 flights.
+I need to filter flights that are missing a tail number otherwise all flights missing a tail number will be treated as a single plane.
+
+```{r, eval = FALSE, include = TRUE}
+planes_gte100 <- flights %>%
+  filter(!is.na(tailnum)) %>%
+  group_by(tailnum) %>%
+  count() %>%
+  filter(n >= 100)
+```
+
+Now, I will semi join the data frame of planes that have flown at least 100 flights to the data frame of flights to select the flights by those planes.
+```{r, eval = FALSE}
+flights %>%
+  semi_join(planes_gte100, by = "tailnum")
+```
+
+
+</details>
+
+<br>
+<br>
+
+
+2.  Is there a relationship between the age of a plane and its delays?
+
+<details>
+  <summary>click to expand</summary>
+
+```{r, eval = FALSE, include = TRUE}
+
+flights %>%
+  mutate(tot_delay = arr_delay + dep_delay) %>%
+  group_by(tailnum) %>%
+  summarize(avg_delay = mean(tot_delay, na.rm = TRUE)) %>%
+  left_join(select(planes, tailnum, year), by = "tailnum") %>%
+  mutate(year = 2013 - year) %>%
+  ggplot(aes(avg_delay, year)) +
+  geom_point() +
+  geom_smooth()
+
+```
+</details>
+
+
+<br>
+<br>
+
+
+3.  Compute the average delay by destination, then join on the `airports`
     data frame so you can show the spatial distribution of delays. Here's an
     easy way to draw a map of the United States:
 
@@ -158,6 +217,11 @@ The most commonly used join is the left join: you use this whenever you look up 
 library(tidyverse)
 library(nycflights13) #install.packages("nycflights13")
 ```
+
+<details>
+  <summary>click to expand</summary>
+
+ <br>
 
 ```{r, eval = FALSE}
     library(maps) #install.packages("maps")
@@ -176,14 +240,12 @@ library(nycflights13) #install.packages("nycflights13")
     You might want to use the `size` or `colour` of the points to display
     the average delay for each airport.
 
-<br>
-
-2.  Add the location of the origin _and_ destination (i.e. the `lat` and `lon`)
-    to `flights`.
+</details>
 
 <br>
 
-3.  Is there a relationship between the age of a plane and its delays?
+
+
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
 

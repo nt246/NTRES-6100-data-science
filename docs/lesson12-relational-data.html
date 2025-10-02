@@ -13,7 +13,7 @@
 
 <title>Lesson 12: Relational data</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -504,7 +504,6 @@ common use scenarios</li>
 <div id="setup" class="section level2">
 <h2>Setup</h2>
 <p>Load the tidyverse</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
 <p><br></p>
 <p>We will be practicing joins on data on flights departing NYC in 2013.
 These data are compiled in a package that we will install and load</p>
@@ -594,11 +593,59 @@ class="section level3">
 <h3>Optional exercises (from the R for Data Science chapter)</h3>
 <p><br></p>
 <ol style="list-style-type: decimal">
+<li>Filter flights to only show flights with planes that have flown at
+least 100 flights (hint: you will need to first use summarize())</li>
+</ol>
+<details>
+<summary>
+click to expand
+</summary>
+<p><br></p>
+<p>First, I find all planes that have flown at least 100 flights. I need
+to filter flights that are missing a tail number otherwise all flights
+missing a tail number will be treated as a single plane.</p>
+<pre class="r"><code>planes_gte100 &lt;- flights %&gt;%
+  filter(!is.na(tailnum)) %&gt;%
+  group_by(tailnum) %&gt;%
+  count() %&gt;%
+  filter(n &gt;= 100)</code></pre>
+<p>Now, I will semi join the data frame of planes that have flown at
+least 100 flights to the data frame of flights to select the flights by
+those planes.</p>
+<pre class="r"><code>flights %&gt;%
+  semi_join(planes_gte100, by = &quot;tailnum&quot;)</code></pre>
+</details>
+<p><br> <br></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Is there a relationship between the age of a plane and its
+delays?</li>
+</ol>
+<details>
+<summary>
+click to expand
+</summary>
+<pre class="r"><code>flights %&gt;%
+  mutate(tot_delay = arr_delay + dep_delay) %&gt;%
+  group_by(tailnum) %&gt;%
+  summarize(avg_delay = mean(tot_delay, na.rm = TRUE)) %&gt;%
+  left_join(select(planes, tailnum, year), by = &quot;tailnum&quot;) %&gt;%
+  mutate(year = 2013 - year) %&gt;%
+  ggplot(aes(avg_delay, year)) +
+  geom_point() +
+  geom_smooth()</code></pre>
+</details>
+<p><br> <br></p>
+<ol start="3" style="list-style-type: decimal">
 <li>Compute the average delay by destination, then join on the
 <code>airports</code> data frame so you can show the spatial
 distribution of delays. Here’s an easy way to draw a map of the United
 States:</li>
 </ol>
+<details>
+<summary>
+click to expand
+</summary>
+<p><br></p>
 <pre class="r"><code>    library(maps) #install.packages(&quot;maps&quot;)
 
     airports |&gt;
@@ -607,21 +654,12 @@ States:</li>
         borders(&quot;state&quot;) +
         geom_point() +
         coord_quickmap()</code></pre>
-<pre><code>(Don&#39;t worry if you don&#39;t understand what `semi_join()` does --- you&#39;ll
-learn about it next.)
-
-You might want to use the `size` or `colour` of the points to display
-the average delay for each airport.</code></pre>
+<p>(Don’t worry if you don’t understand what <code>semi_join()</code>
+does — you’ll learn about it next.)</p>
+<p>You might want to use the <code>size</code> or <code>colour</code> of
+the points to display the average delay for each airport.</p>
+</details>
 <p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Add the location of the origin <em>and</em> destination (i.e. the
-<code>lat</code> and <code>lon</code>) to <code>flights</code>.</li>
-</ol>
-<p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Is there a relationship between the age of a plane and its
-delays?</li>
-</ol>
 <div class="tocify-extend-page" data-unique="tocify-extend-page"
 style="height: 0;">
 

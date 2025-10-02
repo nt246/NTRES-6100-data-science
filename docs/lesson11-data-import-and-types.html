@@ -755,10 +755,11 @@ close look at <a href="https://r4ds.hadley.nz/datetimes.html">chapter
 17</a> in R4DS.</p>
 <p><br> <br></p>
 </div>
+</div>
 <div id="converting-between-data-types-with-parse_x-functions"
-class="section level4">
-<h4>Converting between data types with <code>parse_x()</code>
-functions</h4>
+class="section level3">
+<h3>Converting between data types with <code>parse_x()</code>
+functions</h3>
 <p>We can use the <code>parse_xx()</code> functions in combination with
 <code>mutate()</code> to clean up values in a variable.</p>
 <p>Let’s have a look at how to clean up this dataset:</p>
@@ -780,7 +781,7 @@ the character string”Missing” as indicating a missing value.</p>
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <p>We get a warning message here, we can look at what the issue is by
-typing <code>problem()</code>. We need that despite that warning, now
+typing <code>problem()</code>. We note that despite that warning, now
 the “Missing” is being read in as NA, the size column gets read in as a
 double.</p>
 <p>Now, let’s now clean up the <code>price</code> column</p>
@@ -796,7 +797,6 @@ double.</p>
 ## 5 e         8  NA</code></pre>
 <p><br></p>
 <p><br> <br></p>
-</div>
 </div>
 </div>
 <div id="cleaning-up-column-names" class="section level2">

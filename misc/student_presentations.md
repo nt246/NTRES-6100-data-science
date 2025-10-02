@@ -3,9 +3,9 @@ End-of-class student presentations
 
 <br>
 
-During our last class, we want to give you all the opportunity to share
-ideas about how the skills we’ve learned in this course can be applied
-in practice.
+During our second to last class, we want to give you all the opportunity
+to share ideas about how the skills we’ve learned in this course can be
+applied in practice.
 
 We would like each of you to give a *very brief* presentation showing
 the rest of the class either
@@ -24,17 +24,15 @@ Alternatively, if you’re using open science tools or strategies that we
 haven’t covered in class, but you think could be of interest to others,
 feel free to focus on those.
 
-**When:** Thursday October 31, 2024 during class  
+**When:** Thursday October 30, 2025 during class  
 **How long:** 1.5 minutes per student  
-**What to show:** You can share your screen through the Zoom call to
-either a) do a live demo showing a GitHub repo, something you’ve been
-working on in RStudio, a website, or whatever way you either have
-applied or that you’re thinking about applying something from the
-course, or b) show a slide that summarizes what you think are the most
-useful thing(s) you have learned in the course and how this will help
-you in the future.  
+**What to show:** You can share your screen to either a) do a live demo
+showing a GitHub repo, something you’ve been working on in RStudio, a
+website, or whatever way you either have applied or that you’re thinking
+about applying something from the course, or b) show a slide that
+summarizes what you think are the most useful thing(s) you have learned
+in the course and how this will help you in the future.  
 **Who should do it:** A presentation is required from all students
-taking the course for credit. If you can’t make it to the live Zoom
-call, you can submit a video instead (due before class on October 31).
-Auditors are also welcome to contribute if they would like to share with
-the class.
+taking the course for credit. If you can’t make it to class, you can
+submit a video instead (due before class on October 30). Auditors are
+also welcome to contribute if they would like to share with the class.

@@ -258,7 +258,7 @@ Dates can be tricky! If you work with date data, I suggest you have a close look
 <br>
 <br>
 
-#### Converting between data types with `parse_x()` functions
+### Converting between data types with `parse_x()` functions
 
 We can use the `parse_xx()` functions in combination with `mutate()` to clean up values in a variable. 
 
@@ -280,7 +280,7 @@ mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science
 ```
  
 
-We get a warning message here, we can look at what the issue is by typing `problem()`. We need that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
+We get a warning message here, we can look at what the issue is by typing `problem()`. We note that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
 
 Now, let's now clean up the `price` column
 
