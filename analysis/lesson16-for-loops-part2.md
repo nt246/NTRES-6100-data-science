@@ -1,0 +1,105 @@
+---
+title: "Lesson 16: Iteration with `for` loops and conditional execution with `if` statements - Part 2"
+output: 
+  html_document:
+    keep_md: yes 
+    toc: true
+---
+  
+
+
+<br>
+
+## Readings
+
+#### Required:
+
+If you didn't have a chance to read it yet, have a look at the short [Section 27.5 on for loops in R for Data Science (2e)](https://r4ds.hadley.nz/base-r#for-loops)
+
+OPTIONAL (for a more detailed overview of other types of iteration than those we will cover in class): [Chapter 26 on iteration in R for Data Science (2e)](https://r4ds.hadley.nz/iteration)
+
+
+
+
+<br>
+
+#### Other resources:
+We will be working through [this tutorial](http://ohi-science.org/data-science-training/programming.html) developed by the Ocean Health Index Data Science Team
+
+<br>
+<br>
+
+
+## Today's learning objectives
+
+By the end of today's class, you should be able to:
+
+* Write a `for` loop to repeat operations on different input
+* Implement `if` and `if else` statements for conditional execution of code
+
+<br>
+
+**Acknowledgements**: Today's tutorial is adapted (with permission) from the excellent [Ocean Health Index Data Science Training](http://ohi-science.org/data-science-training/programming.html).
+
+<br>
+<br>
+
+We'll first finish where we left off last time and work through the rest of that lesson. Then we'll look at some other ways to write for loops by working through [these Data Carpentry's notes](https://datacarpentry.org/semester-biology/materials/for-loops-R/).
+
+We can also apply this to the `gapminder` data. 
+
+<br>
+<br>
+
+## Looping with an index and storing results
+In the `gapminder` example we've been using to build a for loop together, we've been iterating over a list of countries (in turn assigning each of these to our `cntry` object). You may often see for loops iterating over a numerical index, often using `i` as the object that in turn gets assigned each number from a sequence. Here is an example:
+
+
+``` r
+for (i in 1:10) {
+  print(str_c("Part_", i, sep = ""))
+}
+```
+<br>
+
+As another example, last class, we needed to calculate the product of gdp-per-cap and population size for each year and each country. We did this efficiently in a single step for all years and countries with a `mutate()`, prior to defining our loop or function. 
+
+
+``` r
+gap_europe <- gapminder_est |>  # Here we use the gapminder_est that includes information on whether data were estimated
+  filter(continent == "Europe") |>
+  mutate(gdp_tot = gdp_per_cap * pop)
+```
+
+<br>
+
+A (not very computationally efficient) alternative would be to do this calculation for a specific country with a `for` loop and using square bracket indexing to select the i'th element of a vector.
+
+
+``` r
+gapminder$gdp_tot <-  vector(length = nrow(gapminder))
+
+for (i in 1:nrow(gapminder)) {
+  gapminder$gdp_tot[i] <- gapminder$gdp_per_cap[i] * gapminder$pop[i]
+} 
+```
+
+<br>
+
+To understand how this loop is working exactly the same way as our previous loop, have a look of the list of elements `1:nrow(gapminder)` that we loop over.
+
+
+``` r
+1:nrow(gapminder)
+```
+
+You see that this just gives a vector of integers from 1 to the number of rows in the gapminder data. Each of these numbers in turn get assigned to i as we run through the loop.
+
+<br>
+<br>
+
+
+### Functional programming and map functions
+For loops are a great place to start implementing iteration in our code because they make iteration very explicit, so it’s obvious what’s happening. However, for loops are quite verbose, and require quite a bit of bookkeeping code that is duplicated for every for loop. Functional programming (FP) offers tools to extract out this duplicated code, so each common for loop pattern gets its own function. If you are going to implement a lot of iteration in your code (which many of us will), I strongly recommend that you learn about the map functions in the purr package. [R4DS (2e)](https://r4ds.hadley.nz/iteration) provides a great introduction.
+
+

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 17: Functions</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
+    </li>
+    <li>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
+    </li>
+    <li>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
+    </li>
+    <li>
+      <a href="lesson17-functions.html">Lesson 17: Functions</a>
+    </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
+    </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 17: Functions</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<p><br></p>
+<div id="required" class="section level4">
+<h4>Required:</h4>
+<ul>
+<li><a href="https://r4ds.had.co.nz/functions.html">Chapter 19</a> in R
+for Data Science by Hadley Wickham &amp; Garrett Grolemund</li>
+</ul>
+<p><br></p>
+</div>
+<div id="other-resources" class="section level4">
+<h4>Other resources:</h4>
+<ul>
+<li><a href="https://stat545.com/functions-part1.html">Chapters
+18-21</a> in Jenny Bryan’s STAT545 notes</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="announcements" class="section level2">
+<h2>Announcements</h2>
+<p>If you haven’t already, please indicate in the signup sheet linked in
+the <code>General</code> channel on Slack whether you will be giving a
+final class presentation next Thursday</p>
+<ul>
+<li>Show us how you either already have or could think of applying any
+part of the course material to your own work</li>
+<li>Be as specific as possible</li>
+<li>Very short ~ 1.5 mins</li>
+<li>Required of students taking the course for credit</li>
+<li>Auditors are highly encouraged to share as well!</li>
+</ul>
+<p><br></p>
+<p>Next Tuesday (10/29): Guest lecture by data librarian Sarah Wright on
+archiving data and code</p>
+<p><br> <br></p>
+</div>
+<div id="todays-learning-objectives" class="section level2">
+<h2>Today’s learning objectives</h2>
+<p>Today, we will cover a brief introduction to how to write your own
+functions in R.</p>
+<p>By the end of today’s class, you should be able to:</p>
+<ul>
+<li>Write a simple function to automate a task</li>
+<li>Set default values for function arguments</li>
+<li>Explain why we should divide code into small, single-purpose
+functions</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="getting-started-with-functions" class="section level2">
+<h2>Getting started with functions</h2>
+<p>As always, we’ll need the tidyverse, so let’s start by loading that
+in</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p><br> <br></p>
+<p>We will first introduce functions with <a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf">these
+slides</a></p>
+<p>Then we’ll illustrate how to write a basic function with an example
+slightly modified from the <a
+href="https://datacarpentry.org/semester-biology/materials/functions-R/">Data
+Carpentry’s semester program lecture notes</a>.</p>
+<p><br> <br></p>
+<div id="the-basic-syntax" class="section level3">
+<h3>The basic syntax</h3>
+<pre class="r"><code>function_name &lt;- function(inputs) {
+  output_value &lt;- do_something(inputs)
+  return(output_value)
+}</code></pre>
+<p><br></p>
+<p>Here is an example of a function that will calculate the volume of a
+shrub.</p>
+<pre class="r"><code>calc_shrub_vol &lt;- function(length, width, height) {
+  area &lt;- length * width
+  volume &lt;- area * height
+  return(volume)
+}</code></pre>
+<p><br></p>
+<p>When we run this code, nothing seems to happen (we don’t get any
+output). Creating a function doesn’t run it. But it stores it, so that
+we can run it later with some arguments (or without arguments if the
+function has specified defaults - more about this later). Let’s assume
+that we’ve measured a shrub. Its length is 0.8, its width is 1.6, and
+its height is 2.0. We can now call our function with these numbers
+(entering each number at the relevant position, according to how
+arguments were listed when we defined the function (in this case length,
+width, height)).</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br></p>
+<p>This code will just print the results to our console. We can also
+store the output for later use.</p>
+<pre class="r"><code>shrub_vol &lt;- calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<p><br> <br></p>
+</div>
+<div id="your-turn-exercise" class="section level3">
+<h3>Your turn: Exercise</h3>
+<p>Copy the following function into your R script and replace the
+________ with variables names for the input and output.</p>
+<pre class="r"><code>convert_pounds_to_grams &lt;- function(________) {
+    grams &lt;- 453.6 * pounds
+    return(________)
+}</code></pre>
+<p>Use the function to calculate how many grams there are in 3.75
+pounds.</p>
+<p><br> <br></p>
+</div>
+<div id="objects-defined-within-functions" class="section level3">
+<h3>Objects defined within functions</h3>
+<p>It is important to note that even after we’ve defined and run a
+function, we can’t access variables created inside the function. For
+example</p>
+<pre class="r"><code>volume
+&gt; object &#39;volume&#39; not found
+
+width
+&gt; object &#39;width&#39; not found</code></pre>
+<p><br> <br></p>
+</div>
+<div id="default-arguments" class="section level3">
+<h3>Default arguments</h3>
+<p>Defaults can be set for common inputs. For example, many of our
+shrubs are the same height so for those shrubs we only measure the
+length and width. So we want a default value for the height for cases
+where we don’t measure it. We can over-write the default if we specify
+something different for <code>height</code>, but if we don’t specify a
+value for this argument, the default will be used.</p>
+<pre class="r"><code>calc_shrub_vol &lt;- function(length, width, height = 1) {
+  area &lt;- length * width
+  volume &lt;- area * height
+  return(volume)
+}
+
+calc_shrub_vol(0.8, 1.6)</code></pre>
+<pre><code>## [1] 1.28</code></pre>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<pre class="r"><code>calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br> <br></p>
+</div>
+<div id="named-vs-unnamed-arguments" class="section level3">
+<h3>Named vs unnamed arguments</h3>
+<p>When to use or not use argument names. For example, we can call our
+function either by explicitly naming each of our arguments or just list
+them by position</p>
+<pre class="r"><code>calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)</code></pre>
+<p>OR</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, 2.0)</code></pre>
+<p><br></p>
+<p>You can always name your arguments (i.e. <code>length = 0.8</code>
+instead of just <code>0.8</code>). The value will get assigned to the
+argument of that name. When you’re naming each argument, the order in
+which you list them does not matter.</p>
+<p>If you’re not naming your arguments (i.e. just <code>0.8</code>
+instead of <code>length = 0.8</code>), then order determines what
+argument each value gets assigned to. Here, the first listed value will
+be assigned to length, the second to width, and the third to height. If
+the order is hard to remember, name your arguments.</p>
+<p>In many cases there are a lot of optional arguments (arguments that
+have defaults defined so that they don’t need to be specified for the
+function to run). Convention to always name optional arguments. So, in
+our case, the most common approach would be</p>
+<pre class="r"><code>calc_shrub_vol(0.8, 1.6, height = 2.0)</code></pre>
+<pre><code>## [1] 2.56</code></pre>
+<p><br> <br></p>
+</div>
+<div id="combining-functions" class="section level3">
+<h3>Combining functions</h3>
+<p>Each function should be single conceptual chunk of code. Functions
+can be combined to do larger tasks in two ways.</p>
+<p>The first is to call multiple functions in a row</p>
+<pre class="r"><code>est_shrub_mass &lt;- function(volume){
+  mass &lt;- 2.65 * volume^0.9
+  return(mass)
+}
+
+shrub_volume &lt;- calc_shrub_vol(0.8, 1.6, 2.0)
+shrub_mass &lt;- est_shrub_mass(shrub_volume)</code></pre>
+<p><br></p>
+<p>We can also use pipes with our own functions. The output from the
+first function becomes the first argument for the second function</p>
+<pre class="r"><code>library(dplyr)
+
+shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) |&gt;
+  est_shrub_mass()</code></pre>
+<p><br></p>
+<p>We can also nest functions, like this:</p>
+<pre class="r"><code>shrub_mass &lt;- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))</code></pre>
+<p><br></p>
+<p>We can also call functions from inside other functions. This allows
+organizing function calls into logical groups, like this:</p>
+<pre class="r"><code>est_shrub_mass_from_raw &lt;- function(length, width, height){
+  volume = calc_shrub_vol(length, width, height)
+  mass &lt;- est_shrub_mass(volume)
+  return(mass)
+}
+
+est_shrub_mass_from_raw(0.8, 1.6, 2.0)</code></pre>
+<p><br> <br></p>
+</div>
+</div>
+<div id="an-example-application" class="section level2">
+<h2>An example application</h2>
+<p>Last week, we developed a <code>for loop</code> to create a plot for
+every country in a list of countries. We can re-write the plotting
+operation as a function that we can call for specific countries.</p>
+<p>To try that, we’ll first need to load the gapminder dataset back
+in:</p>
+<pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
+
+gapminder</code></pre>
+<p><br></p>
+<p>To simplify the code, let’s go back to what our loop looked like
+before we added the conditional statements:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## create a list of countries. Calculations go here, not in the for loop
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
+  mutate(gdpTot = gdpPercap * pop)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) { # (cntry = country_list[1])
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe |&gt;
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p><br> <br></p>
+<p>Now, we can change this into a function in the following way:</p>
+<p><img src="assets/for_loop_to_function.png" /></p>
+<p><br></p>
+<p>Here is our function:</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
+  mutate(gdpTot = gdpPercap * pop)
+
+#define our function
+save_plot &lt;- function(cntry) {
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe |&gt;
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} </code></pre>
+<p><br></p>
+<p>We can now run this function on specific countries</p>
+<pre class="r"><code>save_plot(&quot;Germany&quot;)
+save_plot(&quot;France&quot;)
+
+# We can even write a for loop to run the function on each country in a list of countries (doing exactly the same as our for loop did before, but now we have pulled the code specifying the operation out of the for loop itself)
+
+country_list &lt;- unique(gap_europe$country) # ?unique() returns the unique values
+
+for (cntry in country_list) {
+  
+  save_plot(cntry)
+  
+}</code></pre>
+<p><br></p>
+<p>Now we can add some more flexibility to our function. Currently, it
+is written to always plot the total GDP vs. year for a country. We can
+change the function so that it can plot other variables on the y-axis,
+as specified with an additional argument we provide when we call (and
+define) the function.</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
+  mutate(gdpTot = gdpPercap * pop)
+
+#define our function
+save_plot &lt;- function(cntry, stat) {   # Here I&#39;m adding an additional argument to the function, which we&#39;ll use to specify what statistic we want plotted
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe |&gt;
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = get(stat))) +    # We need to use get() here to access the value we store as stat when we call the function
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, stat, sep = &quot; &quot;), y = stat)
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_&quot;, stat, &quot;.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} 
+
+
+# Let&#39;s try calling the function with different statistics and check the outputs
+
+save_plot(&quot;Germany&quot;, &quot;gdpPercap&quot;)
+save_plot(&quot;Germany&quot;, &quot;pop&quot;)
+save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
+<p><br></p>
+<p>This seems to work well. But what happens if we forget to specify the
+statistic we want plotted?</p>
+<pre class="r"><code>save_plot(&quot;Germany&quot;)</code></pre>
+<p>We get an error message saying “argument”stat” is missing, with no
+default”. We can build in a default the following way:</p>
+<pre class="r"><code>#define our function
+save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {  </code></pre>
+<p><br></p>
+<p>Now, if we don’t specify the statistic we want plotted, the function
+will execute with this specified default option. The default gets
+“overwritten” if we do specify a stat when we call the function.</p>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
+  mutate(gdpTot = gdpPercap * pop)
+
+#define our function
+save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;) {   # Here I&#39;m adding an additional argument to the function, which we&#39;ll use to specify what statistic we want plotted
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe |&gt;
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = get(stat))) +    # We need to use get() here to access the value we store as stat when we call the function
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, stat, sep = &quot; &quot;), y = stat)
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_&quot;, stat, &quot;.png&quot;, sep = &quot;&quot;), plot = my_plot)
+} 
+
+
+# Let&#39;s try calling the function with and without specifying a statistic to plot and check the outputs
+
+save_plot(&quot;Germany&quot;)
+save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;)</code></pre>
+<p><br> <br></p>
+<div id="your-turn" class="section level3">
+<h3>Your turn</h3>
+<p>We’ve talked about how we can change the file type that
+<code>ggsave()</code> will output just by changing the extension of the
+specified name we want to give the file. It works like this:</p>
+<pre class="r"><code># To save a .png file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.png&quot;, plot = my_plot)
+
+# To save a .jpg file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.jpg&quot;, plot = my_plot)
+
+# To save a .pdf file
+ggsave(filename = &quot;figures/Europe/Germany_gdpPercap.pdf&quot;, plot = my_plot)</code></pre>
+<p><br></p>
+<p><strong>Your task:</strong> Add an argument to our function that
+specifies the file type you want for the plot and edit the function so
+that it will output the requested file type. You can also specify a
+default file type that the function will use if you don’t specify a file
+type when you call it.</p>
+<p>If you have more time, you can also add an additional argument that
+specifies the plot type (x-y scatter, line plot etc) and adjust the
+function to accommodate this.</p>
+<p><br></p>
+<div id="answer" class="section level4">
+<h4>Answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
+<pre class="r"><code>dir.create(&quot;figures&quot;) 
+dir.create(&quot;figures/Europe&quot;) 
+
+## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
+gap_europe &lt;- gapminder |&gt;
+  filter(continent == &quot;Europe&quot;) |&gt;
+  mutate(gdpTot = gdpPercap * pop)
+
+#define our function
+save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;pdf&quot;) {   # Here I&#39;m adding additional arguments to the function, which we&#39;ll use to specify what statistic we want plotted and what filetype we want
+  
+  ## filter the country to plot
+  gap_to_plot &lt;- gap_europe |&gt;
+    filter(country == cntry)
+  
+  ## add a print message to see what&#39;s plotting
+  print(paste(&quot;Plotting&quot;, cntry))
+  
+  ## plot
+  my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = get(stat))) +    # We need to use get() here to access the value we store as stat when we call the function
+    geom_point() +
+    ## add title and save
+    labs(title = paste(cntry, stat, sep = &quot; &quot;), y = stat)
+  
+  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_&quot;, stat, &quot;.&quot;, filetype, sep = &quot;&quot;), plot = my_plot)
+} 
+
+
+# Testing our function
+save_plot(&quot;Germany&quot;)
+save_plot(&quot;Germany&quot;, &quot;lifeExp&quot;, &quot;jpg&quot;)</code></pre>
+</details>
+<p><br> <br></p>
+</div>
+</div>
+</div>
+<div id="testing-your-functions" class="section level2">
+<h2>Testing your functions</h2>
+<p>If there is time, we’ll walk through part of the example in <a
+href="https://stat545.com/functions-part1.html">Chapters 18-21</a> in
+Jenny Bryan’s STAT545 notes</p>
+<p><br> <br></p>
+</div>
+<div id="example-code-and-good-advice-on-functions"
+class="section level2">
+<h2>Example code and good advice on functions</h2>
+<p>Check out <a
+href="https://towardsdatascience.com/writing-better-r-functions-best-practices-and-tips-d48ef0691c24">this
+post</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

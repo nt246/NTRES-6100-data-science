@@ -1,0 +1,76 @@
+---
+title: "Lesson 13: Factors in R"
+output: 
+  html_document:
+    toc: true
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+## Readings
+
+<br>
+
+#### Required: 
+
+* [Chapter 10: Be the boss of your factors](https://stat545.com/factors-boss.html) in Jenny Bryan's STAT545 notes
+
+* Skim the [The tidyverse style guide](https://style.tidyverse.org/) for inspiration - **you don't have to read the whole guide carefully**
+
+
+<br>
+
+#### Other resources:
+
+* [Chapter 15](https://r4ds.had.co.nz/factors.html) in R for Data Science by Hadley Wickham & Garrett Grolemund
+
+<br>
+<br>
+
+## Announcements
+* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) this Thursday (March 30). If you can't make it to class (and are taking the course for credit), please submit a video of your presentation before the class
+* Instead of a regular lab session next week, Azwad will offer optional 30-min consultations to discuss your project or analysis need. If you're interested, please sign up [here](https://docs.google.com/spreadsheets/d/1vI3Kb5_Kj1fy2kmRc9VL5w5YU46pBZyVAV1MCS-WhAI/edit#gid=0). We will give preference to those enrolled in the lab sessions, but if there is availability, other's are welcome.
+
+<br>
+<br>
+
+
+## Today's learning objectives
+By the end of today's class, you should be able to:
+
+* Describe key features of factor variables in R
+* Manipulate factor levels to improve plots of categorical data
+
+<br>
+<br>
+
+## Getting set up
+We will continue working with the gapminder dataset, so let's first load that back in, along with the tidyverse.
+
+```{r, eval = FALSE}
+
+library(tidyverse)
+library(gapminder)  #install.packages("gapminder")
+
+# For being able to compare plots side by side, I'm also going to use the gridExtra package today
+library(gridExtra)  #install.packages("gridExtra")
+
+```
+
+<br>
+<br>
+
+
+## Better plots with factor level manipulation 
+
+R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. As such, this data type looks like character data type from the outset, but it can contain additional information to manage the levels and the order (or sequence) of the categorical values. Factors are important for modeling, but are also helpful for reordering character vectors to improve display in graphics. 
+
+We'll go over [Jenny Bryan's illustration](https://stat545.com/factors-boss.html) of how a few powerful functions from the `forcats` package can significantly improve our handling of factor variables and visualization of data with categorical variables. The code used in-class can be found [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/factors_in_lecture_code.R)
+
+<br>
+<br>

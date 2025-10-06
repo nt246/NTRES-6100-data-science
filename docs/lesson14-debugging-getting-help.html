@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 14: Good coding practices, debugging strategies, and getting help</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
+    </li>
+    <li>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
+    </li>
+    <li>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
+    </li>
+    <li>
+      <a href="lesson17-functions.html">Lesson 17: Functions</a>
+    </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
+    </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 14: Good coding practices, debugging
+strategies, and getting help</h1>
+
+</div>
+
+
+<p><br> <br></p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<ul>
+<li>Look over the <a href="https://style.tidyverse.org/">The tidyverse
+style guide</a> for inspiration - <strong>you don’t have to read the
+whole guide carefully</strong></li>
+</ul>
+<p><br> Today, Erika Mudrak from the Cornell Statistical Consultation
+Unit will give a guest lecture. Her slides will be available on the
+Canvas site.</p>
+<p><br></p>
+<div id="optional-resources" class="section level4">
+<h4>Optional resources:</h4>
+<p><br></p>
+<p>From <a
+href="https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#getting-help">R
+for Excel users</a>:</p>
+<blockquote>
+<p>Getting help, or really helping you help yourself, means moving
+beyond “it’s not working” and towards solution-oriented approaches. Part
+of this is the mindset where you <strong>expect that someone has
+encountered this problem before</strong> and that <strong>most likely
+the problem is your typo or misuse</strong>, and not that R is broken or
+hates you.</p>
+</blockquote>
+<p>There is excellent advice for trouble-shooting R-code and how to get
+help in <a
+href="https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g619be0f969_0_27">Lecture
+2 from ESM 206: Statistics and Data Analysis in Environmental Science
+and Management</a> by Allison Horst.</p>
+<p>Also check out the <a
+href="https://resources.rstudio.com/rstudio-conf-2020/object-of-type-closure-is-not-subsettable-jenny-bryan">slide
+deck</a> or <a
+href="https://speakerdeck.com/jennybc/object-of-type-closure-is-not-subsettable?slide=12">recorded
+talk</a> for Jenny Bryan’s talk “Object of type ‘closure’ is not
+subsettable” at the 2020 RStudio conference. You can also check out her
+<a
+href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">Reprex
+webinar</a>.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="announcements" class="section level2">
+<h2>Announcements</h2>
+<ul>
+<li>Homework 7 is due tonight</li>
+<li>Reminder that we will have short students presentations during our
+final class on March 31 (details <a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">here</a>)
+- start thinking about what you want to show the class</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="a-consistent-coding-style-maximizes-readability"
+class="section level2">
+<h2>A consistent coding style maximizes readability</h2>
+<p>Developing a consistent style in your coding, makes it a lot easier
+to read. Here is some inspiration:</p>
+<ul>
+<li>The <a href="https://style.tidyverse.org/">tidyverse style
+guide</a></li>
+<li>A more <a href="http://adv-r.had.co.nz/Style.html">concise overview
+of the style Hadley Wickham uses</a> in his books “R for Data Science”
+and “Advanced R”</li>
+<li>There are also great tips for styling, organizing and optimizing
+your code in the blogpost <a
+href="https://blog.quantinsti.com/r-best-practices-r-you-writing-the-r-way/?utm_campaign=News&amp;utm_medium=Community&amp;utm_source=DataCamp.com">R
+Best Practices: R you writing the R way!</a> by Milind Paradkar</li>
+<li>Many of the same principles are also summarized by JEFworks <a
+href="https://jef.works/R-style-guide/">here</a></li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

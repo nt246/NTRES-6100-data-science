@@ -32,16 +32,16 @@ navbar:
       href: lesson11-data-import-and-types.html
     - text: "Lesson 12: Relational data"
       href: lesson12-relational-data.html
-    - text: "Lesson 13: Iteration - part 1"
-      href: lesson13-for-loops.html
-    - text: "Lesson 14: Iteration - part 2"
-      href: lesson14-for-loops-part2.html
-    - text: "Lesson 15: Good coding practices, debugging strategies, and getting help"
-      href: lesson15-debugging-getting-help.html
-    - text: "Lesson 16: Functions"
-      href: lesson16-functions.html
-    - text: "Lesson 17: Factors"
-      href: lesson17-factors.html
+    - text: "Lesson 13: Factors"
+      href: lesson13-factors.html    
+    - text: "Lesson 14: Good coding practices, debugging strategies, and getting help"
+      href: lesson14-debugging-getting-help.html
+    - text: "Lesson 15: Iteration - part 1"      
+      href: lesson15-for-loops.html
+    - text: "Lesson 16: Iteration - part 2"
+      href: lesson16-for-loops-part2.html
+    - text: "Lesson 17: Functions"
+      href: lesson17-functions.html
     - text: "Lesson 18: Wrapping up and learning more"
       href: lesson18-wrapup.html
   - text: Labs
