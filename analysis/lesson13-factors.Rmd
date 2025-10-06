@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Other resources:
 
-* [Chapter 15](https://r4ds.had.co.nz/factors.html) in R for Data Science by Hadley Wickham & Garrett Grolemund
+* [Chapter 16](https://r4ds.hadley.nz/factors.html) in R for Data Science (2e)
 
 <br>
 <br>
