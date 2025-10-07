@@ -484,17 +484,17 @@ for Data Science (2e)</li>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Reminder about the <a
+<li><p>Reminder about the <a
 href="https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md">end-of-class
-student presentations</a> this Thursday (March 30). If you can’t make it
-to class (and are taking the course for credit), please submit a video
-of your presentation before the class</li>
-<li>Instead of a regular lab session next week, Azwad will offer
-optional 30-min consultations to discuss your project or analysis need.
-If you’re interested, please sign up <a
-href="https://docs.google.com/spreadsheets/d/1vI3Kb5_Kj1fy2kmRc9VL5w5YU46pBZyVAV1MCS-WhAI/edit#gid=0">here</a>.
-We will give preference to those enrolled in the lab sessions, but if
-there is availability, other’s are welcome.</li>
+student presentations</a>* You will all have the opportunity to give a
+short presentation during our last class (required if you’re taking the
+course for credit)</p></li>
+<li><p>From next week onwards (from Thursday 10/16 and through the rest
+of the course), we will unfortunately have to shift classrooms (due to a
+scheduling error in the course roster)</p></li>
+<li><p>Lectures will be in Morrison Hall 348</p></li>
+<li><p>Thursday labs will be in Warren Hall B73</p></li>
+<li><p>Friday labs will stay in the same room (Warren 101)</p></li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -509,8 +509,29 @@ there is availability, other’s are welcome.</li>
 </div>
 <div id="getting-set-up" class="section level2">
 <h2>Getting set up</h2>
-<p>We will continue working with the gapminder dataset, so let’s first
-load that back in, along with the tidyverse.</p>
+<p>Today, we will be working with the <code>gapminder</code> dataset
+that many of you have started exploring in the lab session a few weeks
+ago.</p>
+<p>The data in the <code>gapminder</code> package is a subset of the <a
+href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder
+dataset</a>, which contains data on the health and wealth of nations
+over the past decades. It was pioneered by <a
+href="https://www.ted.com/speakers/hans_rosling">Hans Rosling</a>, who
+is famous for describing the prosperity of nations over time through
+famines, wars and other historic events with this beautiful data
+visualization in his <a
+href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">2006
+TED Talk: The best stats you’ve ever seen</a>:</p>
+<p><a href="http://www.gapminder.org/world">Gapminder Motion
+Chart</a><br />
+<a href="http://www.gapminder.org/world"><img
+src="https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png"
+alt="Gapminder Motion Chart" /></a></p>
+<p><br></p>
+<p>We will primarily use a subset of the gapminder data included in the
+R package <code>gapminder</code>. So first we need to install that
+package and load it, along with the tidyverse. Then have a look at the
+data in <code>gapminder</code></p>
 <pre class="r"><code>library(tidyverse)
 library(gapminder)  #install.packages(&quot;gapminder&quot;)
 
