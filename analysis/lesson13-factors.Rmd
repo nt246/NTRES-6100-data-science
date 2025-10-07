@@ -20,7 +20,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Chapter 10: Be the boss of your factors](https://stat545.com/factors-boss.html) in Jenny Bryan's STAT545 notes
 
-* Skim the [The tidyverse style guide](https://style.tidyverse.org/) for inspiration - **you don't have to read the whole guide carefully**
 
 
 <br>
@@ -33,9 +32,8 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)* You will all have the opportunity to give a short presentation during our last class (required if you're taking the course for credit)
 
-* From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)
+From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)
 * Lectures will be in Morrison Hall 348
 * Thursday labs will be in Warren Hall B73
 * Friday labs will stay in the same room (Warren 101)
@@ -53,7 +51,14 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
-## Getting set up
+## Introduction to factors
+
+First we'll review how factors work by going over the beginning of [Chapter 16 in R4DS](https://r4ds.hadley.nz/factors.html)
+
+<br>
+<br>
+
+## Getting set up for exploring the `forcats` package
 Today, we will be working with the `gapminder` dataset that many of you have started exploring in the lab session a few weeks ago. 
 
 The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 

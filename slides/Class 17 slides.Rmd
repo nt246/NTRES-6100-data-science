@@ -60,6 +60,12 @@ By the end of today's class, you should be able to:
 * Have human readable names, but under the hood, R is really storing integer codes 1, 2, 3, etc.
 
 
+## The most common operations when working with factors
+
+* Changing the order of the levels
+* Changing the values of the levels
+
+
 ## Exercise
 
 Exercise: Filter the gapminder data down to rows where population is less than a quarter of a million, i.e. 250,000. Get rid of the unused factor levels for country and continent in different ways, such as:

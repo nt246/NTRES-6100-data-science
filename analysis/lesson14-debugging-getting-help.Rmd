@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Readings
 
-* Look over the [The tidyverse style guide](https://style.tidyverse.org/) for inspiration - **you don't have to read the whole guide carefully**
+* Look over the [The tidyverse style guide](https://style.tidyverse.org/) for inspiration again - **you don't have to read the whole guide carefully**
 
 <br>
 Today, Erika Mudrak from the Cornell Statistical Consultation Unit will give a guest lecture. Her slides will be available on the Canvas site.
@@ -42,8 +42,8 @@ Also check out the [slide deck](https://resources.rstudio.com/rstudio-conf-2020/
 
 ## Announcements
 
-* Homework 7 is due tonight
-* Reminder that we will have short students presentations during our final class on March 31 (details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md)) - start thinking about what you want to show the class
+* Homework 6 is due tonight
+* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md). You will all have the opportunity to give a short presentation during our last class (required if you're taking the course for credit) - start thinking about what you want to show the class
 
 <br>
 <br>

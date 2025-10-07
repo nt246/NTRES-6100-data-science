@@ -1,0 +1,70 @@
+---
+title: "Wrap-up on relational data, then on to Factors"
+format: revealjs
+editor: visual
+---
+
+## Announcements
+
+<br>
+
+::: incremental
+-   On Thursday, Erika Mudrak from the Cornell Statistical Service Unit will visit us to share tips on troubleshooting and getting help
+:::
+
+<br>
+
+::: incremental
+-   From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)
+
+    -   Lectures will be in Morrison Hall 348
+
+    -   Thursday labs will be in Warren Hall B73
+
+    -   Friday labs will stay in the same room (Warren 101)
+:::
+
+## Today's learning objectives
+
+First: Wrap-up on join and filter functions (relational data)
+
+Then on to Factors By the end of today's class, you should be able to:
+
+-   Describe key features of factor variables in R
+-   Manipulate factor levels to improve plots of categorical data
+
+## Factors
+
+-   Categorical variables
+-   Have a fixed and known set of possible values
+-   Levels are ordered
+-   Have human readable names, but under the hood, R is really storing integer codes 1, 2, 3, etc.
+-   Useful for modeling, but also when you want to display character vectors in a non-alphabetical order
+
+## Exercise
+
+Exercise: Filter the gapminder data down to rows where population is less than a quarter of a million, i.e. 250,000. Get rid of the unused factor levels for country and continent in different ways, such as:
+
+-   `droplevels()`
+-   `fct_drop()` inside `mutate()`
+
+## Exercise
+
+Isolate the data for "Australia", "Korea, Dem. Rep.", and "Korea, Rep." in the 2000x. Revalue the country factor levels to "Oz", "North Korea", and "South Korea"
+
+## Exercise
+
+Make a plot of gdpPercap for each Asian country in 2007
+
+Make sure the countries appear in order in increasing gdpPercap
+
+OPTIONAL: Move Thailand to be the first country displayed
+
+## fct\_\*() functions covered today
+
+-   fct_infreq()
+-   fct_rev()
+-   fct_reorder()
+-   fct_reorder2()
+-   fct_relevel()
+-   fct_recode()
