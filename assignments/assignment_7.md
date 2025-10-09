@@ -4,7 +4,7 @@ visualization
 
 ## Instructions: Please read through this before you begin
 
-- This homework is due by **10pm on Thursday 10/17/2024**. Please upload
+- This homework is due by **10pm on Thursday 03/16/20**. Please upload
   it using your personal GitHub repository for this class.
 
 - Please name your R markdown file `assignment_7.Rmd` and the knitted
@@ -69,14 +69,14 @@ contains information on population size, and the
 number of electoral votes. Name this new dataset `q_1a`, and show its
 first 6 rows.
 
-| state      | abb | region | population | total | electoral_votes | clinton | trump | others |
-|:-----------|:----|:-------|-----------:|------:|----------------:|--------:|------:|-------:|
-| Alabama    | AL  | South  |    4779736 |   135 |               9 |    34.4 |  62.1 |    3.6 |
-| Alaska     | AK  | West   |     710231 |    19 |               3 |    36.6 |  51.3 |   12.2 |
-| Arizona    | AZ  | West   |    6392017 |   232 |              11 |    45.1 |  48.7 |    6.2 |
-| Arkansas   | AR  | South  |    2915918 |    93 |               6 |    33.7 |  60.6 |    5.8 |
-| California | CA  | West   |   37253956 |  1257 |              55 |    61.7 |  31.6 |    6.7 |
-| Colorado   | CO  | West   |    5029196 |    65 |               9 |    48.2 |  43.3 |    8.6 |
+| state | abb | region | population | total | electoral_votes | clinton | trump | johnson | stein | mcmullin | others |
+|:---|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Alabama | AL | South | 4779736 | 135 | 9 | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.0225246 |
+| Alaska | AK | West | 710231 | 19 | 3 | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.4904710 |
+| Arizona | AZ | West | 6392017 | 232 | 11 | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.2657329 |
+| Arkansas | AR | South | 2915918 | 93 | 6 | 33.65190 | 60.57191 | 2.648769 | 0.8378174 | 1.1653206 | 1.1242832 |
+| California | CA | West | 37253956 | 1257 | 55 | 61.72640 | 31.61711 | 3.374092 | 1.9649200 | 0.2792070 | 1.0382753 |
+| Colorado | CO | West | 5029196 | 65 | 9 | 48.15651 | 43.25098 | 5.183748 | 1.3825031 | 1.0400874 | 0.9861714 |
 
 <br> <br>
 
@@ -84,14 +84,14 @@ first 6 rows.
 candidate won in each state, and remove the columns `abb`, `region`, and
 `total`. Name this new dataset `q_1b`, and show its first 6 rows.
 
-| state      | population | electoral_votes | clinton | trump | others | winner  |
-|:-----------|-----------:|----------------:|--------:|------:|-------:|:--------|
-| Alabama    |    4779736 |               9 |    34.4 |  62.1 |    3.6 | trump   |
-| Alaska     |     710231 |               3 |    36.6 |  51.3 |   12.2 | trump   |
-| Arizona    |    6392017 |              11 |    45.1 |  48.7 |    6.2 | trump   |
-| Arkansas   |    2915918 |               6 |    33.7 |  60.6 |    5.8 | trump   |
-| California |   37253956 |              55 |    61.7 |  31.6 |    6.7 | clinton |
-| Colorado   |    5029196 |               9 |    48.2 |  43.3 |    8.6 | clinton |
+| state | population | electoral_votes | clinton | trump | johnson | stein | mcmullin | others | winner |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+| Alabama | 4779736 | 9 | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.0225246 | trump |
+| Alaska | 710231 | 3 | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.4904710 | trump |
+| Arizona | 6392017 | 11 | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.2657329 | trump |
+| Arkansas | 2915918 | 6 | 33.65190 | 60.57191 | 2.648769 | 0.8378174 | 1.1653206 | 1.1242832 | trump |
+| California | 37253956 | 55 | 61.72640 | 31.61711 | 3.374092 | 1.9649200 | 0.2792070 | 1.0382753 | clinton |
+| Colorado | 5029196 | 9 | 48.15651 | 43.25098 | 5.183748 | 1.3825031 | 1.0400874 | 0.9861714 | clinton |
 
 <br> <br>
 
@@ -110,14 +110,14 @@ size to 0.1, and turn off its confidence interval.
 `population` and `electoral_votes` columns are turned into rows as shown
 below. Name this new dataset `q_2a`, and show its first 6 rows.
 
-| state   | clinton | trump | others | winner | metric          |   value |
-|:--------|--------:|------:|-------:|:-------|:----------------|--------:|
-| Alabama |    34.4 |  62.1 |    3.6 | trump  | population      | 4779736 |
-| Alabama |    34.4 |  62.1 |    3.6 | trump  | electoral_votes |       9 |
-| Alaska  |    36.6 |  51.3 |   12.2 | trump  | population      |  710231 |
-| Alaska  |    36.6 |  51.3 |   12.2 | trump  | electoral_votes |       3 |
-| Arizona |    45.1 |  48.7 |    6.2 | trump  | population      | 6392017 |
-| Arizona |    45.1 |  48.7 |    6.2 | trump  | electoral_votes |      11 |
+| state | clinton | trump | johnson | stein | mcmullin | others | winner | metric | value |
+|:---|---:|---:|---:|---:|---:|---:|:---|:---|---:|
+| Alabama | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.022525 | trump | population | 4779736 |
+| Alabama | 34.35795 | 62.08309 | 2.094169 | 0.4422682 | 0.0000000 | 1.022525 | trump | electoral_votes | 9 |
+| Alaska | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.490471 | trump | population | 710231 |
+| Alaska | 36.55087 | 51.28151 | 5.877128 | 1.8000176 | 0.0000000 | 4.490471 | trump | electoral_votes | 3 |
+| Arizona | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.265733 | trump | population | 6392017 |
+| Arizona | 44.58042 | 48.08314 | 4.082188 | 1.3185997 | 0.6699155 | 1.265733 | trump | electoral_votes | 11 |
 
 <br> <br>
 
@@ -127,8 +127,8 @@ print it as shown below.
 
 | metric          | winner  |     value |
 |:----------------|:--------|----------:|
-| electoral_votes | clinton |       233 |
-| electoral_votes | trump   |       305 |
+| electoral_votes | clinton |       231 |
+| electoral_votes | trump   |       302 |
 | population      | clinton | 134982448 |
 | population      | trump   | 174881780 |
 
@@ -174,8 +174,8 @@ new dataset `q_3b`, and print it as shown below.
 
 | metric          | winner  |     value |
 |:----------------|:--------|----------:|
-| electoral_votes | clinton |       233 |
-| electoral_votes | trump   |       305 |
+| electoral_votes | clinton |       231 |
+| electoral_votes | trump   |       302 |
 | population      | clinton | 134982448 |
 | population      | trump   | 174881780 |
 | popular_votes   | clinton |  65125640 |
@@ -245,12 +245,12 @@ rows.
 
 | state       | polling_error | result             | electoral_votes |
 |:------------|--------------:|:-------------------|----------------:|
-| Alabama     |      11.54305 | correct prediction |               9 |
-| Arizona     |      -1.22005 | correct prediction |              11 |
-| Arkansas    |      10.76955 | correct prediction |               6 |
-| California  |      -2.76667 | correct prediction |              55 |
-| Colorado    |       0.37193 | correct prediction |               9 |
-| Connecticut |      -3.75259 | correct prediction |               7 |
+| Alabama     |    11.5681966 | correct prediction |               9 |
+| Arizona     |    -1.3173239 | correct prediction |              11 |
+| Arkansas    |    10.7895518 | correct prediction |               6 |
+| California  |    -2.7759631 | correct prediction |              55 |
+| Colorado    |     0.3663946 | correct prediction |               9 |
+| Connecticut |    -3.6919767 | correct prediction |               7 |
 
 <br> <br>
 

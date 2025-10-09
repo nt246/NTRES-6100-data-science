@@ -1,10 +1,16 @@
 ---
-title: "Wrap-up on relational data, then on to Factors"
+title: "Lesson 13: Wrap-up on relational data, then on to Factors"
 format: revealjs
 editor: visual
 ---
 
 ## Announcements
+
+<br>
+
+::: incremental
+-   Updated order of lectures (please check the syllabus)
+:::
 
 <br>
 
