@@ -13,7 +13,7 @@
 
 <title>Lab 7: Relational data and tidy data</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,19 +366,19 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 17: Functions</a>
     </li>
     <li>
       <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -487,9 +487,9 @@ the <code>nycflights13</code> datasets we explored in class and the
 </ul>
 <p><br></p>
 <ul>
-<li>To start, first open a new RMarkdown file in your course repo, set
-the output format to <code>github_document</code>, save it in your
-<code>lab</code> folder as <code>lab7.Rmd</code>, and work in this
+<li>To start, first open a new Quarto file in your course repo, set the
+output format to <code>github_document</code>, save it in your
+<code>lab</code> folder as <code>lab7.qmd</code>, and work in this
 RMarkdown file for the rest of this lab.</li>
 </ul>
 <p><br> <br></p>
@@ -507,7 +507,7 @@ library(tidyverse)
 library(knitr)
 library(nycflights13) # install.packages(&quot;nycflights13&quot;)
 
-flights %&gt;% head() %&gt;% kable()</code></pre>
+flights |&gt; head() |&gt; kable()</code></pre>
 <table>
 <colgroup>
 <col width="2%" />
@@ -692,8 +692,8 @@ distribution of delays. Here’s an easy way to draw a map of the United
 States:</h4>
 <pre class="r"><code>library(maps) #install.packages(&quot;maps&quot;)
 
-airports %&gt;%
-  semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) %&gt;%
+airports |&gt;
+  semi_join(flights, c(&quot;faa&quot; = &quot;dest&quot;)) |&gt;
   ggplot(aes(lon, lat)) +
     borders(&quot;state&quot;) +
     geom_point() +
@@ -710,13 +710,13 @@ the points to display the average delay for each airport.</p>
 click to expand
 </summary>
 <pre class="r"><code>avg_dest_delays &lt;-
-  flights %&gt;%
-  group_by(dest) %&gt;%
+  flights |&gt;
+  group_by(dest) |&gt;
   # arrival delay NA&#39;s are cancelled flights
-  summarise(delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
+  summarise(delay = mean(arr_delay, na.rm = TRUE)) |&gt;
   inner_join(airports, by = c(dest = &quot;faa&quot;))
 
-avg_dest_delays %&gt;%
+avg_dest_delays |&gt;
   ggplot(aes(lon, lat, colour = delay)) +
   borders(&quot;state&quot;) +
   geom_point() +
@@ -742,11 +742,11 @@ click to expand
   select(planes, tailnum, year),
   by = &quot;tailnum&quot;,
   suffix = c(&quot;_flight&quot;, &quot;_plane&quot;)
-) %&gt;%
-  mutate(age = year_flight - year_plane) %&gt;%
-  filter(!is.na(age)) %&gt;%
-  mutate(age = if_else(age &gt; 25, 25L, age)) %&gt;%
-  group_by(age) %&gt;%
+) |&gt;
+  mutate(age = year_flight - year_plane) |&gt;
+  filter(!is.na(age)) |&gt;
+  mutate(age = if_else(age &gt; 25, 25L, age)) |&gt;
+  group_by(age) |&gt;
   summarise(
     dep_delay_mean = mean(dep_delay, na.rm = TRUE),
     arr_delay_mean = mean(arr_delay, na.rm = TRUE)
@@ -780,21 +780,21 @@ how we need to connect them.</p>
 click to expand
 </summary>
 <pre class="r"><code>flight_weather &lt;-
-  flights %&gt;%
+  flights |&gt;
   inner_join(weather, by = c(&quot;origin&quot;, &quot;year&quot;, &quot;month&quot;, &quot;day&quot;, &quot;hour&quot;))
 ## Precipitation
-flight_weather %&gt;%
-  group_by(precip) %&gt;%
-  summarise(delay = mean(dep_delay, na.rm = TRUE)) %&gt;%
+flight_weather |&gt;
+  group_by(precip) |&gt;
+  summarise(delay = mean(dep_delay, na.rm = TRUE)) |&gt;
   ggplot(aes(x = precip, y = delay)) +
   geom_line() + geom_point()</code></pre>
 <p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code># Visibility
-flight_weather %&gt;%
-  ungroup() %&gt;%
-  mutate(visib_cat = cut_interval(visib, n = 10)) %&gt;%
-  group_by(visib_cat) %&gt;%
-  summarise(dep_delay = mean(dep_delay, na.rm = TRUE)) %&gt;%
+flight_weather |&gt;
+  ungroup() |&gt;
+  mutate(visib_cat = cut_interval(visib, n = 10)) |&gt;
+  group_by(visib_cat) |&gt;
+  summarise(dep_delay = mean(dep_delay, na.rm = TRUE)) |&gt;
   ggplot(aes(x = visib_cat, y = dep_delay)) +
   geom_point()</code></pre>
 <p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
@@ -848,7 +848,7 @@ code:</li>
 <pre class="r"><code># Load required packages
 library(babynames) # install.packages(&quot;babynames&quot;)
 
-babynames %&gt;% head() %&gt;% kable()</code></pre>
+babynames |&gt; head() |&gt; kable()</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -949,15 +949,15 @@ subset the original dataset.</em></p>
 click to expand
 </summary>
 <pre class="r"><code># number of passengers in the dataset
-top_6_names &lt;- babynames %&gt;%
-  group_by(sex, name) %&gt;%
-  summarise(total_count=sum(n)) %&gt;%
-  ungroup() %&gt;%
-  group_by(sex) %&gt;%
+top_6_names &lt;- babynames |&gt;
+  group_by(sex, name) |&gt;
+  summarise(total_count=sum(n)) |&gt;
+  ungroup() |&gt;
+  group_by(sex) |&gt;
   slice_max(order_by = total_count, n = 6)
 
-babynames %&gt;%
-  semi_join(top_6_names, by = c(&quot;sex&quot;, &quot;name&quot;)) %&gt;%
+babynames |&gt;
+  semi_join(top_6_names, by = c(&quot;sex&quot;, &quot;name&quot;)) |&gt;
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
@@ -990,15 +990,15 @@ may become handy.</em></p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>new_names &lt;- babynames %&gt;%
-  mutate(threshold = ifelse(year &gt;= 2010, &quot;after&quot;, &quot;before&quot;)) %&gt;%
-  group_by(name, threshold) %&gt;%
-  summarise(total_count = sum(n)) %&gt;%
-  pivot_wider(names_from = threshold, values_from = total_count, names_prefix = &quot;count_&quot;) %&gt;%
-  mutate_all(~replace(., is.na(.), 0)) %&gt;%
+<pre class="r"><code>new_names &lt;- babynames |&gt;
+  mutate(threshold = ifelse(year &gt;= 2010, &quot;after&quot;, &quot;before&quot;)) |&gt;
+  group_by(name, threshold) |&gt;
+  summarise(total_count = sum(n)) |&gt;
+  pivot_wider(names_from = threshold, values_from = total_count, names_prefix = &quot;count_&quot;) |&gt;
+  mutate_all(~replace(., is.na(.), 0)) |&gt;
   filter(count_before == 0, count_after &gt;=1000) 
 
-new_names %&gt;% 
+new_names |&gt; 
   kable()</code></pre>
 <table>
 <thead>
@@ -1046,8 +1046,8 @@ new_names %&gt;%
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>babynames %&gt;%
-  filter(name %in% new_names$name) %&gt;%
+<pre class="r"><code>babynames |&gt;
+  filter(name %in% new_names$name) |&gt;
   ggplot(aes(x=year, y=n, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
@@ -1079,17 +1079,17 @@ may become handy.</em></p>
 <summary>
 click to expand
 </summary>
-<pre class="r"><code>unisex_names &lt;- babynames %&gt;%
-  group_by(name, sex) %&gt;%
-  summarise(total_count = sum(n)) %&gt;%
-  pivot_wider(names_from = sex, values_from = total_count, names_prefix = &quot;count_&quot;) %&gt;%
-  filter(!is.na(count_M), !is.na(count_F)) %&gt;%
-  mutate(total_count=count_M+count_F, f_proportion = count_F / total_count) %&gt;%
-  filter(f_proportion&lt;0.9, f_proportion&gt;0.1) %&gt;%
+<pre class="r"><code>unisex_names &lt;- babynames |&gt;
+  group_by(name, sex) |&gt;
+  summarise(total_count = sum(n)) |&gt;
+  pivot_wider(names_from = sex, values_from = total_count, names_prefix = &quot;count_&quot;) |&gt;
+  filter(!is.na(count_M), !is.na(count_F)) |&gt;
+  mutate(total_count=count_M+count_F, f_proportion = count_F / total_count) |&gt;
+  filter(f_proportion&lt;0.9, f_proportion&gt;0.1) |&gt;
   arrange(-total_count)
 
-unisex_names %&gt;%
-  head(12) %&gt;%
+unisex_names |&gt;
+  head(12) |&gt;
   kable()</code></pre>
 <table>
 <thead>
@@ -1188,17 +1188,17 @@ unisex_names %&gt;%
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>unisex_names %&gt;%
-  head(12) %&gt;%
+<pre class="r"><code>unisex_names |&gt;
+  head(12) |&gt;
   ggplot(aes(x=count_M, y=count_F)) +
   ggrepel::geom_label_repel(aes(label=name)) +
   geom_point(data=unisex_names)</code></pre>
 <p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
-<pre class="r"><code>babynames %&gt;%
-  filter(name %in% unisex_names$name[1:12]) %&gt;%
-  pivot_wider(names_from = sex, values_from = c(n, prop)) %&gt;%
-  mutate_all(~replace(., is.na(.), 0)) %&gt;%
-  mutate(total_count=n_F+n_M, f_proportion = n_F / total_count, average_popularity = (prop_F + prop_M)/2) %&gt;%
+<pre class="r"><code>babynames |&gt;
+  filter(name %in% unisex_names$name[1:12]) |&gt;
+  pivot_wider(names_from = sex, values_from = c(n, prop)) |&gt;
+  mutate_all(~replace(., is.na(.), 0)) |&gt;
+  mutate(total_count=n_F+n_M, f_proportion = n_F / total_count, average_popularity = (prop_F + prop_M)/2) |&gt;
   ggplot(aes(year, f_proportion, group=name)) +
   geom_line() +
   geom_point(aes(size = average_popularity)) +
