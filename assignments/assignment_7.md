@@ -156,8 +156,9 @@ GitHub](https://raw.githubusercontent.com/kshaffer/election2016/master/2016Elect
 calculate the number of popular votes each candidate received as shown
 below. Name this new dataset `q_3a`, and print it. <br>
 
-*Note: all candidates other than Clinton and Trump are included in
-`others` as shown below.*
+*Note: Vote counts are listed for several other candidates. Please
+combine the votes for all candidates other than Clinton and Trump into a
+single `others` category (as shown in the table below)*
 
 *Hint: `pivot_longer()` may be useful in here.*
 
