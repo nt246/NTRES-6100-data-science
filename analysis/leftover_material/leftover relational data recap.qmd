@@ -1,0 +1,221 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Recap on relational data
+
+Let's load the `tidyverse` and `knitr`
+
+```{r, message = FALSE}
+library(tidyverse)
+library(knitr)
+
+```
+
+<br> <br>
+
+#### The `gapminder` data
+
+Last class, we used the `nycflights13` datasets to explore the mutating joins. Let's recap by applying these to a different dataset. Today we'll return to the `gapminder` dataset that many of you have started exploring in the lab session a few weeks ago.
+
+The data in the `gapminder` package is a subset of the [Gapminder dataset](https://www.gapminder.org/tools/?from=world#$chart-type=bubbles), which contains data on the health and wealth of nations over the past decades. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen):
+
+[Gapminder Motion Chart](http://www.gapminder.org/world)\
+[![Gapminder Motion Chart](https://github.com/remi-daigle/2016-04-15-UCSB/raw/gh-pages/viz/img/gapminder-world_motion-chart.png)](http://www.gapminder.org/world)
+
+<br>
+
+We will primarily use a subset of the gapminder data included in the R package `gapminder`. So first we need to install that package and load it, along with the tidyverse. Then have a look at the data in `gapminder`
+
+```{r, message=FALSE, warning=FALSE}
+
+library(gapminder) #install.packages("gapminder")
+
+head(gapminder) |>
+  kable()
+
+```
+
+<br> <br>
+
+We can see that this dataset used camelCase (first word lowercase and capitalize all following words) for its column names. I always use snake_case (replace spaces with underscores), and it's going to look messy to have this inconsistent way of writing variable names. So I'm going to go ahead and clean these names up before I start working with the data. I can do this manually with the `rename()` or `colnames()` functions, e.g.
+
+```{r}
+gapminder <- gapminder |> 
+  rename("life_exp" = lifeExp, "gdp_per_cap" = gdpPercap)
+
+
+# Alternative
+colnames(gapminder) <- c("country", "continent", "year", "life_exp", "pop", "gdp_per_cap")
+
+```
+
+<br>
+
+Alternatively, I can use the `clean_names()` function from the `janitor` package
+
+```{r, eval = FALSE}
+library(janitor)
+
+clean_names(gapminder)
+
+```
+
+<br> <br>
+
+In the lab section, we have been working with a different subset of the gapminder dataset that comes with the `dslabs` package. Let's import a chunk of those data that we've saved in our class GitHub repo:
+
+```{r eval=FALSE, include=FALSE}
+
+# Write a dataframe to join to gapminder::gapminder
+
+library(dslabs)
+
+dslabs::gapminder |> 
+  as_tibble() |> 
+  select(country, year, infant_mortality, fertility)  |> 
+  filter(year %in% years) |> 
+  write_csv(file = "datasets/gapminder_dslabs_subset_original_names.csv")
+
+dslabs::gapminder |> 
+  as_tibble() |> 
+  select(country, year, infant_mortality, fertility)  |> 
+  filter(year %in% years) |>
+  rename("Country" = country, "Year" = year) |> 
+  write_csv(file = "datasets/gapminder_dslabs_subset_caps_names.csv")
+
+
+```
+
+```{r, message = FALSE}
+
+gap_dslabs <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv")
+
+```
+
+<br>
+
+#### Exercise
+
+**Add the infant mortality and fertility data to our original `gapminder` data. Do we have those statistics for all observations?**
+
+In this case, we were lucky that the variables that we wanted to join the tables by had identical names in the two datasets. Now, let's imagine the variables in the `dslab` version had been named differently. Run this code to change the variable names:
+
+```{r}
+gap_dslabs_caps <- gap_dslabs |> 
+  rename("Country" = country, "Year" = year)
+
+```
+
+<br>
+
+**Now add the infant mortality and fertility from the `gap_dslabs_caps` to our original \`gapminder data.**
+
+<br> <br>
+
+<details>
+
+<summary>Click here for a solution</summary>
+
+```{r}
+
+## When variable names are identical
+
+# Natural join
+gapminder |> 
+  left_join(gap_dslabs)
+
+# Specifying the variables to join by (useful if some variables mean different things in the two tables you're joining)
+gapminder |> 
+  left_join(gap_dslabs, join_by(country, year))
+
+# When variable names are not identical
+gapminder |> 
+  left_join(gap_dslabs_caps, join_by(country == Country, year == Year))
+
+## Note, gap_dslabs doesn't have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.
+
+
+```
+
+</details>
+
+<br> <br>
+
+#### Filtering joins
+
+We'll review filtering joins and general strategies for combining information from multiple tables. There are some good examples with the `flights` data in [R4DS](https://r4ds.hadley.nz/joins#filtering-joins). Here, we will illustrate with the `gapminder` data.
+
+<br>
+
+Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. There are two types:
+
+-   `semi_join(x, y)` keeps all observations in x that have a match in y.
+-   `anti_join(x, y)` drops all observations in x that have a match in y.
+
+Semi-joins are useful for matching filtered summary tables back to the original rows.
+
+<br>
+
+These functions can be useful when we want to filter based on more than one variable. If we wanted to grab all the records from Malawi, for example, we can use `filter()`
+
+```{r}
+gapminder |> 
+  filter(country == "Malawi")
+```
+
+<br>
+
+However, say we wanted to extract the records from the countries and years that had the highest fertility rates recorded. It would be harder to do this with the `filter()` function in a single step. This is a case where `semi_join()` can be useful.
+
+```{r}
+top_fertility <- gap_dslabs |> 
+  arrange(-fertility) |> 
+  head(10)
+
+gapminder |> 
+  semi_join(top_fertility)
+```
+
+We notice here that our resulting tibble only include 6 rows, not the 10 we had expected. Upon inspection, we notice that the records from Yemen are missing. We can confirm that this is because the `gapminder` tibble doesn't include "Yemen" (written this way) as a country by examining the unique values included in the country variable.
+
+```{r}
+gapminder |> 
+  distinct(country) |> 
+  print(n = Inf)
+
+# Could also use `unique(gapminder$country)`
+```
+
+<br>
+
+So we would need to make sure country names are consistent in our two dataframes before proceeding (`str_replace()` is a good function for that).
+
+In general, the opposite of `semi_join()`, the `anti_join()` function is good for diagnosing mismatches.
+
+```{r}
+# What records in gapminder are not matched in gap_dslabs
+gapminder |> 
+  anti_join(gap_dslabs, join_by(country))  |> 
+  distinct(country)
+
+# What records in gap_dslabs are not matched in gapminder
+gap_dslabs |> 
+  anti_join(gapminder,  join_by(country))  |> 
+  distinct(country)
+
+```
+
+<br>
+
+### Join problems – how to troubleshoot
+
+-   Start by identifying the variables that form the primary key in each table based on your understanding of the data
+-   Check that none of the variables in the primary key are missing. If a value is missing then it can’t identify an observation!
+-   Check that your foreign keys match primary keys in another table. The best way to do this is with an anti_join()
+
+<br> <br>
+
+Now let's shift gears...

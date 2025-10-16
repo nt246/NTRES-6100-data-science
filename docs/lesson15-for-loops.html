@@ -11,7 +11,7 @@
 
 
 
-<title>Lesson 15: Wrap-up of relational data, then on to iteration with for loops and conditional execution with if statements</title>
+<title>Lesson 15: Iteration with for loops and conditional execution with if statements</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -452,9 +452,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lesson 15: Wrap-up of relational data, then
-on to iteration with <code>for</code> loops and conditional execution
-with <code>if</code> statements</h1>
+<h1 class="title toc-ignore">Lesson 15: Iteration with <code>for</code>
+loops and conditional execution with <code>if</code> statements</h1>
 
 </div>
 
@@ -464,12 +463,6 @@ with <code>if</code> statements</h1>
 <h2>Readings</h2>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p><strong>Relational data</strong>:</p>
-<p>If you didn’t get a chance to read it last week, have a look at <a
-href="https://r4ds.hadley.nz/joins">Chapter 19 in in R for Data Science
-(2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp; Garrett
-Grolemund</p>
-<p><br></p>
 <p><strong>Iteration</strong>:</p>
 <p>The short <a href="https://r4ds.hadley.nz/base-r#for-loops">Section
 27.5 on for loops in R for Data Science (2e)</a></p>
@@ -489,11 +482,8 @@ tutorial</a> developed by the Ocean Health Index Data Science Team</p>
 </div>
 <div id="todays-learning-objectives" class="section level2">
 <h2>Today’s learning objectives</h2>
-<p>We’ll start by working through a few exercises on combining data from
-multiple tibbles (using <code>join()</code> functions) and recap on
-strategies for successfully integrating relational data. Then we’ll
-shift gears to begin exploring the key programming concepts of iteration
-and conditional execution.</p>
+<p>Today, we’ll begin exploring the key programming concepts of
+iteration and conditional execution.</p>
 <p>By the end of today and next class, you should be able to:</p>
 <ul>
 <li>Write a <code>for</code> loop to repeat operations on different
@@ -508,20 +498,84 @@ href="http://ohi-science.org/data-science-training/programming.html">Ocean
 Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
 </div>
-<div id="recap-on-relational-data" class="section level2">
-<h2>Recap on relational data</h2>
-<p>Let’s load the <code>tidyverse</code> and <code>knitr</code></p>
-<pre class="r"><code>library(tidyverse)
-library(knitr)</code></pre>
+<div id="clone-repo-to-get-todays-exercise-sheet"
+class="section level2">
+<h2>Clone repo to get today’s exercise sheet</h2>
+<p>First, to refresh our memory on RStudio-GitHub integration, let’s
+start by cloning a repo with today’s exercise sheet. The repo is located
+here: <a href="https://github.com/nt246/for-loop-exercise"
+class="uri">https://github.com/nt246/for-loop-exercise</a></p>
+<p>Clone it to your local machine. Try first to see if you remember how.
+If you need a reminder of how we do this, revisit <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson
+3</a>.</p>
+<p>Once you have an RStudio project linked to the
+<code>for-loop-exercises</code> repo, find the file
+<code>for-loop-exercises-name.qmd</code>. Copy it to your your RStudio
+project for your own class repo, and change the file name by replacing
+<code>name</code> with your name.</p>
+<p>Add a picture as instructed.</p>
+<p>Push your changes to GitHub. If you need a reminder of how we do
+this, revisit <a
+href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson
+3</a></p>
+<p>Check your class repo on GitHub (<a
+href="https://github.com/therkildsen-class/ntres-6100-assignments-USERNAME"
+class="uri">https://github.com/therkildsen-class/ntres-6100-assignments-USERNAME</a>
+[replace USERNAME with your GitHub user name]) to make sure your file
+shows up.</p>
+<p><br> <br> <br></p>
+</div>
+<div id="introduction-to-for-loops" class="section level2">
+<h2>Introduction to <code>for loops</code></h2>
+<blockquote>
+<p>This section is modified from <a
+href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R
+for Data Science</a></p>
+</blockquote>
+<p>Whenever possible, we want to avoid duplication in our code (e.g. by
+copying-and-pasting sections of our script that we want to repeat with
+different input). Reducing code duplication has three main benefits:</p>
+<ul>
+<li><p>It’s easier to see the intent of your code, because your eyes are
+drawn to what’s different, not what stays the same.</p></li>
+<li><p>It’s easier to respond to changes in requirements. As your needs
+change, you only need to make changes in one place, rather than
+remembering to change every place that you copied-and-pasted the code.
+You eliminate the chance of making incidental mistakes when you copy and
+paste (i.e. updating a variable name in one place, but not in
+another).</p></li>
+<li><p>You’re likely to have fewer bugs because each line of code is
+used in more places.</p></li>
+</ul>
+<p>One tool for reducing duplication is functions, which reduce
+duplication by identifying repeated patterns of code and extract them
+out into independent pieces that can be easily reused and updated. We’ll
+go through a brief introduction to how to write functions in R later in
+the course.</p>
+<p>Another tool for reducing duplication is iteration, which helps you
+when you need to do the same thing to multiple inputs, e.g. repeating
+the same operation on different columns, or on different datasets. There
+are several ways to iterate in R. Today we will only cover
+<code>for</code> loops, which are a great place to start because they
+make iteration very explicit, so it’s obvious what’s happening. However,
+<code>for</code> loops are quite verbose, and require quite a bit of
+bookkeeping code that is duplicated for every <code>for</code> loop.
+Once you master <code>for</code> loops, you can solve many common
+iteration problems with less code, more ease, and fewer errors using
+functional programming, which I encourage you to explore on your own,
+for example in the <a href="https://r4ds.hadley.nz/iteration">R for Data
+Science (2e)</a> book.</p>
+<p>Today, we will illustrate the use of <code>for</code> loops with an
+example. We will also use conditional execution of code with
+<code>if</code> statements.</p>
 <p><br> <br></p>
-<div id="the-gapminder-data" class="section level4">
-<h4>The <code>gapminder</code> data</h4>
-<p>Last class, we used the <code>nycflights13</code> datasets to explore
-the mutating joins. Let’s recap by applying these to a different
-dataset. Today we’ll return to the <code>gapminder</code> dataset that
-many of you have started exploring in the lab session a few weeks
-ago.</p>
-<p>The data in the <code>gapminder</code> package is a subset of the <a
+</div>
+<div id="load-in-the-data" class="section level2">
+<h2>Load in the data</h2>
+<p>Today we’ll return to the gapminder dataset that we have used
+previously. The data in the <code>gapminder</code> package is a subset
+of the <a
 href="https://www.gapminder.org/tools/?from=world#$chart-type=bubbles">Gapminder
 dataset</a>, which contains data on the health and wealth of nations
 over the past decades. It was pioneered by <a
@@ -541,7 +595,9 @@ alt="Gapminder Motion Chart" /></a></p>
 R package <code>gapminder</code>. So first we need to install that
 package and load it, along with the tidyverse. Then have a look at the
 data in <code>gapminder</code></p>
-<pre class="r"><code>library(gapminder) #install.packages(&quot;gapminder&quot;)
+<pre class="r"><code>library(tidyverse)
+library(gapminder) #install.packages(&quot;gapminder&quot;)
+library(knitr)
 
 head(gapminder) |&gt;
   kable()</code></pre>
@@ -628,437 +684,6 @@ the <code>janitor</code> package</p>
 
 clean_names(gapminder)</code></pre>
 <p><br> <br></p>
-<p>In the lab section, we have been working with a different subset of
-the gapminder dataset that comes with the <code>dslabs</code> package.
-Let’s import a chunk of those data that we’ve saved in our class GitHub
-repo:</p>
-<pre class="r"><code>gap_dslabs &lt;- read_csv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/main/datasets/gapminder_dslabs_subset_original_names.csv&quot;)</code></pre>
-<p><br></p>
-</div>
-<div id="exercise" class="section level4">
-<h4>Exercise</h4>
-<p><strong>Add the infant mortality and fertility data to our original
-<code>gapminder</code> data. Do we have those statistics for all
-observations?</strong></p>
-<p>In this case, we were lucky that the variables that we wanted to join
-the tables by had identical names in the two datasets. Now, let’s
-imagine the variables in the <code>dslab</code> version had been named
-differently. Run this code to change the variable names:</p>
-<pre class="r"><code>gap_dslabs_caps &lt;- gap_dslabs |&gt; 
-  rename(&quot;Country&quot; = country, &quot;Year&quot; = year)</code></pre>
-<p><br></p>
-<p><strong>Now add the infant mortality and fertility from the
-<code>gap_dslabs_caps</code> to our original `gapminder
-data.</strong></p>
-<p><br> <br></p>
-<details>
-<summary>
-Click here for a solution
-</summary>
-<pre class="r"><code>## When variable names are identical
-
-# Natural join
-gapminder |&gt; 
-  left_join(gap_dslabs)</code></pre>
-<pre><code>## Joining with `by = join_by(country, year)`</code></pre>
-<pre><code>## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # ℹ 1,694 more rows
-## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
-<pre class="r"><code># Specifying the variables to join by (useful if some variables mean different things in the two tables you&#39;re joining)
-gapminder |&gt; 
-  left_join(gap_dslabs, join_by(country, year))</code></pre>
-<pre><code>## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # ℹ 1,694 more rows
-## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
-<pre class="r"><code># When variable names are not identical
-gapminder |&gt; 
-  left_join(gap_dslabs_caps, join_by(country == Country, year == Year))</code></pre>
-<pre><code>## # A tibble: 1,704 × 8
-##    country     continent  year life_exp      pop gdp_per_cap infant_mortality
-##    &lt;chr&gt;       &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;            &lt;dbl&gt;
-##  1 Afghanistan Asia       1952     28.8  8425333        779.               NA
-##  2 Afghanistan Asia       1957     30.3  9240934        821.               NA
-##  3 Afghanistan Asia       1962     32.0 10267083        853.               NA
-##  4 Afghanistan Asia       1967     34.0 11537966        836.               NA
-##  5 Afghanistan Asia       1972     36.1 13079460        740.               NA
-##  6 Afghanistan Asia       1977     38.4 14880372        786.               NA
-##  7 Afghanistan Asia       1982     39.9 12881816        978.               NA
-##  8 Afghanistan Asia       1987     40.8 13867957        852.               NA
-##  9 Afghanistan Asia       1992     41.7 16317921        649.               NA
-## 10 Afghanistan Asia       1997     41.8 22227415        635.               NA
-## # ℹ 1,694 more rows
-## # ℹ 1 more variable: fertility &lt;dbl&gt;</code></pre>
-<pre class="r"><code>## Note, gap_dslabs doesn&#39;t have data for Afghanistan, so the join may not look successful if you just examine the first few lines. Look further down in the tibble.</code></pre>
-</details>
-<p><br> <br></p>
-</div>
-<div id="filtering-joins" class="section level4">
-<h4>Filtering joins</h4>
-<p>We’ll review filtering joins and general strategies for combining
-information from multiple tables. There are some good examples with the
-<code>flights</code> data in <a
-href="https://r4ds.hadley.nz/joins#filtering-joins">R4DS</a>. Here, we
-will illustrate with the <code>gapminder</code> data.</p>
-<p><br></p>
-<p>Filtering joins match observations in the same way as mutating joins,
-but affect the observations, not the variables. There are two types:</p>
-<ul>
-<li><code>semi_join(x, y)</code> keeps all observations in x that have a
-match in y.</li>
-<li><code>anti_join(x, y)</code> drops all observations in x that have a
-match in y.</li>
-</ul>
-<p>Semi-joins are useful for matching filtered summary tables back to
-the original rows.</p>
-<p><br></p>
-<p>These functions can be useful when we want to filter based on more
-than one variable. If we wanted to grab all the records from Malawi, for
-example, we can use <code>filter()</code></p>
-<pre class="r"><code>gapminder |&gt; 
-  filter(country == &quot;Malawi&quot;)</code></pre>
-<pre><code>## # A tibble: 12 × 6
-##    country continent  year life_exp      pop gdp_per_cap
-##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;       &lt;dbl&gt;
-##  1 Malawi  Africa     1952     36.3  2917802        369.
-##  2 Malawi  Africa     1957     37.2  3221238        416.
-##  3 Malawi  Africa     1962     38.4  3628608        428.
-##  4 Malawi  Africa     1967     39.5  4147252        496.
-##  5 Malawi  Africa     1972     41.8  4730997        585.
-##  6 Malawi  Africa     1977     43.8  5637246        663.
-##  7 Malawi  Africa     1982     45.6  6502825        633.
-##  8 Malawi  Africa     1987     47.5  7824747        636.
-##  9 Malawi  Africa     1992     49.4 10014249        563.
-## 10 Malawi  Africa     1997     47.5 10419991        692.
-## 11 Malawi  Africa     2002     45.0 11824495        665.
-## 12 Malawi  Africa     2007     48.3 13327079        759.</code></pre>
-<p><br></p>
-<p>However, say we wanted to extract the records from the countries and
-years that had the highest fertility rates recorded. It would be harder
-to do this with the <code>filter()</code> function in a single step.
-This is a case where <code>semi_join()</code> can be useful.</p>
-<pre class="r"><code>top_fertility &lt;- gap_dslabs |&gt; 
-  arrange(-fertility) |&gt; 
-  head(10)
-
-gapminder |&gt; 
-  semi_join(top_fertility)</code></pre>
-<pre><code>## Joining with `by = join_by(country, year)`</code></pre>
-<pre><code>## # A tibble: 6 × 6
-##   country continent  year life_exp     pop gdp_per_cap
-##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;    &lt;dbl&gt;   &lt;int&gt;       &lt;dbl&gt;
-## 1 Oman    Asia       1982     62.7 1301048      12955.
-## 2 Rwanda  Africa     1962     43   3051242        597.
-## 3 Rwanda  Africa     1967     44.1 3451079        511.
-## 4 Rwanda  Africa     1972     44.6 3992121        591.
-## 5 Rwanda  Africa     1977     45   4657072        670.
-## 6 Rwanda  Africa     1982     46.2 5507565        882.</code></pre>
-<p>We notice here that our resulting tibble only include 6 rows, not the
-10 we had expected. Upon inspection, we notice that the records from
-Yemen are missing. We can confirm that this is because the
-<code>gapminder</code> tibble doesn’t include “Yemen” (written this way)
-as a country by examining the unique values included in the country
-variable.</p>
-<pre class="r"><code>gapminder |&gt; 
-  distinct(country) |&gt; 
-  print(n = Inf)</code></pre>
-<pre><code>## # A tibble: 142 × 1
-##     country                 
-##     &lt;fct&gt;                   
-##   1 Afghanistan             
-##   2 Albania                 
-##   3 Algeria                 
-##   4 Angola                  
-##   5 Argentina               
-##   6 Australia               
-##   7 Austria                 
-##   8 Bahrain                 
-##   9 Bangladesh              
-##  10 Belgium                 
-##  11 Benin                   
-##  12 Bolivia                 
-##  13 Bosnia and Herzegovina  
-##  14 Botswana                
-##  15 Brazil                  
-##  16 Bulgaria                
-##  17 Burkina Faso            
-##  18 Burundi                 
-##  19 Cambodia                
-##  20 Cameroon                
-##  21 Canada                  
-##  22 Central African Republic
-##  23 Chad                    
-##  24 Chile                   
-##  25 China                   
-##  26 Colombia                
-##  27 Comoros                 
-##  28 Congo, Dem. Rep.        
-##  29 Congo, Rep.             
-##  30 Costa Rica              
-##  31 Cote d&#39;Ivoire           
-##  32 Croatia                 
-##  33 Cuba                    
-##  34 Czech Republic          
-##  35 Denmark                 
-##  36 Djibouti                
-##  37 Dominican Republic      
-##  38 Ecuador                 
-##  39 Egypt                   
-##  40 El Salvador             
-##  41 Equatorial Guinea       
-##  42 Eritrea                 
-##  43 Ethiopia                
-##  44 Finland                 
-##  45 France                  
-##  46 Gabon                   
-##  47 Gambia                  
-##  48 Germany                 
-##  49 Ghana                   
-##  50 Greece                  
-##  51 Guatemala               
-##  52 Guinea                  
-##  53 Guinea-Bissau           
-##  54 Haiti                   
-##  55 Honduras                
-##  56 Hong Kong, China        
-##  57 Hungary                 
-##  58 Iceland                 
-##  59 India                   
-##  60 Indonesia               
-##  61 Iran                    
-##  62 Iraq                    
-##  63 Ireland                 
-##  64 Israel                  
-##  65 Italy                   
-##  66 Jamaica                 
-##  67 Japan                   
-##  68 Jordan                  
-##  69 Kenya                   
-##  70 Korea, Dem. Rep.        
-##  71 Korea, Rep.             
-##  72 Kuwait                  
-##  73 Lebanon                 
-##  74 Lesotho                 
-##  75 Liberia                 
-##  76 Libya                   
-##  77 Madagascar              
-##  78 Malawi                  
-##  79 Malaysia                
-##  80 Mali                    
-##  81 Mauritania              
-##  82 Mauritius               
-##  83 Mexico                  
-##  84 Mongolia                
-##  85 Montenegro              
-##  86 Morocco                 
-##  87 Mozambique              
-##  88 Myanmar                 
-##  89 Namibia                 
-##  90 Nepal                   
-##  91 Netherlands             
-##  92 New Zealand             
-##  93 Nicaragua               
-##  94 Niger                   
-##  95 Nigeria                 
-##  96 Norway                  
-##  97 Oman                    
-##  98 Pakistan                
-##  99 Panama                  
-## 100 Paraguay                
-## 101 Peru                    
-## 102 Philippines             
-## 103 Poland                  
-## 104 Portugal                
-## 105 Puerto Rico             
-## 106 Reunion                 
-## 107 Romania                 
-## 108 Rwanda                  
-## 109 Sao Tome and Principe   
-## 110 Saudi Arabia            
-## 111 Senegal                 
-## 112 Serbia                  
-## 113 Sierra Leone            
-## 114 Singapore               
-## 115 Slovak Republic         
-## 116 Slovenia                
-## 117 Somalia                 
-## 118 South Africa            
-## 119 Spain                   
-## 120 Sri Lanka               
-## 121 Sudan                   
-## 122 Swaziland               
-## 123 Sweden                  
-## 124 Switzerland             
-## 125 Syria                   
-## 126 Taiwan                  
-## 127 Tanzania                
-## 128 Thailand                
-## 129 Togo                    
-## 130 Trinidad and Tobago     
-## 131 Tunisia                 
-## 132 Turkey                  
-## 133 Uganda                  
-## 134 United Kingdom          
-## 135 United States           
-## 136 Uruguay                 
-## 137 Venezuela               
-## 138 Vietnam                 
-## 139 West Bank and Gaza      
-## 140 Yemen, Rep.             
-## 141 Zambia                  
-## 142 Zimbabwe</code></pre>
-<pre class="r"><code># Could also use `unique(gapminder$country)`</code></pre>
-<p><br></p>
-<p>So we would need to make sure country names are consistent in our two
-dataframes before proceeding (<code>str_replace()</code> is a good
-function for that).</p>
-<p>In general, the opposite of <code>semi_join()</code>, the
-<code>anti_join()</code> function is good for diagnosing mismatches.</p>
-<pre class="r"><code># What records in gapminder are not matched in gap_dslabs
-gapminder |&gt; 
-  anti_join(gap_dslabs, join_by(country))  |&gt; 
-  distinct(country)</code></pre>
-<pre><code>## # A tibble: 9 × 1
-##   country              
-##   &lt;fct&gt;                
-## 1 Afghanistan          
-## 2 Korea, Dem. Rep.     
-## 3 Korea, Rep.          
-## 4 Myanmar              
-## 5 Reunion              
-## 6 Sao Tome and Principe
-## 7 Somalia              
-## 8 Taiwan               
-## 9 Yemen, Rep.</code></pre>
-<pre class="r"><code># What records in gap_dslabs are not matched in gapminder
-gap_dslabs |&gt; 
-  anti_join(gapminder,  join_by(country))  |&gt; 
-  distinct(country)</code></pre>
-<pre><code>## # A tibble: 52 × 1
-##    country            
-##    &lt;chr&gt;              
-##  1 Antigua and Barbuda
-##  2 Armenia            
-##  3 Aruba              
-##  4 Azerbaijan         
-##  5 Bahamas            
-##  6 Barbados           
-##  7 Belarus            
-##  8 Belize             
-##  9 Bhutan             
-## 10 Brunei             
-## # ℹ 42 more rows</code></pre>
-<p><br></p>
-</div>
-<div id="join-problems-how-to-troubleshoot" class="section level3">
-<h3>Join problems – how to troubleshoot</h3>
-<ul>
-<li>Start by identifying the variables that form the primary key in each
-table based on your understanding of the data</li>
-<li>Check that none of the variables in the primary key are missing. If
-a value is missing then it can’t identify an observation!</li>
-<li>Check that your foreign keys match primary keys in another table.
-The best way to do this is with an anti_join()</li>
-</ul>
-<p><br> <br></p>
-<p>Now let’s shift gears…</p>
-</div>
-</div>
-<div id="clone-repo-to-get-todays-exercise-sheet"
-class="section level2">
-<h2>Clone repo to get today’s exercise sheet</h2>
-<p>First, to refresh our memory on RStudio-GitHub integration, let’s
-start by cloning a repo with today’s exercise sheet. The repo is located
-here: <a href="https://github.com/nt246/for-loop-exercise"
-class="uri">https://github.com/nt246/for-loop-exercise</a></p>
-<p>Clone it to your local machine. Try first to see if you remember how.
-If you need a reminder of how we do this, revisit <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson
-3</a>.</p>
-<p>Once you have an RStudio project linked to the
-<code>for-loop-exercises</code> repo, find the file
-<code>for-loop-exercises-name.Rmd</code>. Copy it to your your RStudio
-project for your own class repo, and change the file name by replacing
-<code>name</code> with your name.</p>
-<p>Add a picture as instructed.</p>
-<p>Push your changes to GitHub. If you need a reminder of how we do
-this, revisit <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson
-3</a></p>
-<p>Check your class repo on GitHub (<a
-href="https://github.com/therkildsen-class/ntres-6100-fa2024-USERNAME"
-class="uri">https://github.com/therkildsen-class/ntres-6100-fa2024-USERNAME</a>
-[replace USERNAME with your GitHub user name]) to make sure your file
-shows up.</p>
-<p><br> <br> <br></p>
-</div>
-<div id="introduction-to-for-loops" class="section level2">
-<h2>Introduction to <code>for loops</code></h2>
-<blockquote>
-<p>This section is modified from <a
-href="https://r4ds.had.co.nz/iteration.html">the iteration chapter in R
-for Data Science</a></p>
-</blockquote>
-<p>Whenever possible, we want to avoid duplication in our code (e.g. by
-copying-and-pasting sections of our script that we want to repeat with
-different input). Reducing code duplication has three main benefits:</p>
-<ul>
-<li><p>It’s easier to see the intent of your code, because your eyes are
-drawn to what’s different, not what stays the same.</p></li>
-<li><p>It’s easier to respond to changes in requirements. As your needs
-change, you only need to make changes in one place, rather than
-remembering to change every place that you copied-and-pasted the code.
-You eliminate the chance of making incidental mistakes when you copy and
-paste (i.e. updating a variable name in one place, but not in
-another).</p></li>
-<li><p>You’re likely to have fewer bugs because each line of code is
-used in more places.</p></li>
-</ul>
-<p>One tool for reducing duplication is functions, which reduce
-duplication by identifying repeated patterns of code and extract them
-out into independent pieces that can be easily reused and updated. We’ll
-go through a brief introduction to how to write functions in R next
-week.</p>
-<p>Another tool for reducing duplication is iteration, which helps you
-when you need to do the same thing to multiple inputs, e.g. repeating
-the same operation on different columns, or on different datasets. There
-are several ways to iterate in R. Today we will only cover
-<code>for</code> loops, which are a great place to start because they
-make iteration very explicit, so it’s obvious what’s happening. However,
-<code>for</code> loops are quite verbose, and require quite a bit of
-bookkeeping code that is duplicated for every <code>for</code> loop.
-Once you master <code>for</code> loops, you can solve many common
-iteration problems with less code, more ease, and fewer errors using
-functional programming, which I encourage you to explore on your own,
-for example in the <a href="https://r4ds.hadley.nz/iteration">R for Data
-Science (2e)</a> book.</p>
-<p>Today, we will illustrate the use of <code>for</code> loops with an
-example. We will also use conditional execution of code with
-<code>if</code> statements.</p>
-<p><br> <br></p>
 </div>
 <div id="analysis-plan" class="section level2">
 <h2>Analysis plan</h2>
@@ -1067,7 +692,6 @@ gdp_per_cap for each country in the <code>gapminder</code> data frame
 has changed over time. So that’s 142 separate plots! We will automate
 this, labeling each plot with its name and saving it in a folder called
 figures. We will learn a bunch of things as we go.</p>
-<p><br></p>
 </div>
 <div id="automation-with-for-loops" class="section level2">
 <h2>Automation with <code>for</code> loops</h2>
