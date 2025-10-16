@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
 * Today, we will first compare two different ways to write for loops. We will then combine iteration with conditional execution to build a random text generator.
 
-* To start, first open a new RMarkdown file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab8.Rmd`, and work in this RMarkdown file for the rest of this lab. Load the following package.
+* To start, first open a new Quarto file in your course repo, set the output format to `github_document`, save it in your `lab` folder as `lab8.qmd`, and work in this Quarto file for the rest of this lab. Load the following package.
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -115,8 +115,8 @@ for (i in 1:length(n_iterations)){
   )[3]
 }
 
-tibble(n_iterations, approach_1, approach_2) %>%
-  pivot_longer(2:3, names_to = "approach", values_to = "runtime") %>%
+tibble(n_iterations, approach_1, approach_2) |>
+  pivot_longer(2:3, names_to = "approach", values_to = "runtime") |>
   ggplot(aes(x=n_iterations, y=runtime, color=approach)) +
   geom_line()
 ```
