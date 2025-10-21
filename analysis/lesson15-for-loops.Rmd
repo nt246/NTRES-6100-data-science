@@ -686,20 +686,6 @@ for (cntry in country_list) { # (cntry = country_list[1])
 <br>
 <br>
 
-## Exercises (if time allows)
-
-Exercises from [R for Data Science](https://r4ds.had.co.nz/iteration.html#exercises-58)
-
-Work with the specified datasets that are built into R or in the listed packages. You can access them just by typing the name (for `flights` you will have to first load the `nycflights13` package).
-
-Write `for` loops to:
-
-* Compute the mean of every column in `mtcars`
-* Determine the type of each column in `nycflights13::flights`
-* Compute the number of unique values in each column of `iris`
-
-
-<br>
 
 ## Concluding remarks
 

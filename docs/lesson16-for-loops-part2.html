@@ -464,20 +464,13 @@ loops and conditional execution with <code>if</code> statements - Part
 <h2>Readings</h2>
 <div id="required" class="section level4">
 <h4>Required:</h4>
-<p>If you didn’t have a chance to read it yet, have a look at the short
-<a href="https://r4ds.hadley.nz/base-r#for-loops">Section 27.5 on for
-loops in R for Data Science (2e)</a></p>
+<p>If you didn’t have a chance to read it yet, have a look at <a
+href="https://r4ds.had.co.nz/iteration.html">Chapter 21 on for loops in
+R for Data Science, first edition</a></p>
 <p>OPTIONAL (for a more detailed overview of other types of iteration
 than those we will cover in class): <a
 href="https://r4ds.hadley.nz/iteration">Chapter 26 on iteration in R for
 Data Science (2e)</a></p>
-<p><br></p>
-</div>
-<div id="other-resources" class="section level4">
-<h4>Other resources:</h4>
-<p>We will be working through <a
-href="http://ohi-science.org/data-science-training/programming.html">this
-tutorial</a> developed by the Ocean Health Index Data Science Team</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -490,11 +483,6 @@ input</li>
 <li>Implement <code>if</code> and <code>if else</code> statements for
 conditional execution of code</li>
 </ul>
-<p><br></p>
-<p><strong>Acknowledgements</strong>: Today’s tutorial is adapted (with
-permission) from the excellent <a
-href="http://ohi-science.org/data-science-training/programming.html">Ocean
-Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
 <p>We’ll first finish where we left off last time and work through the
 rest of that lesson. Then we’ll look at some other ways to write for
@@ -542,6 +530,78 @@ previous loop, have a look of the list of elements
 <p>You see that this just gives a vector of integers from 1 to the
 number of rows in the gapminder data. Each of these numbers in turn get
 assigned to i as we run through the loop.</p>
+<p><br> <br></p>
+</div>
+<div id="exercises-if-time-allows" class="section level2">
+<h2>Exercises (if time allows)</h2>
+<p>Exercises from <a
+href="https://r4ds.had.co.nz/iteration.html#exercises-58">R for Data
+Science</a></p>
+<p>Work with the specified datasets that are built into R or in the
+listed packages. You can access them just by typing the name (for
+<code>flights</code> you will have to first load the
+<code>nycflights13</code> package).</p>
+<p>Write <code>for</code> loops to:</p>
+<ul>
+<li>Compute the mean of every column in <code>mtcars</code></li>
+<li>Determine the type of each column in the <code>gapminder</code>
+dataset</li>
+<li>Compute the number of unique values in each column of
+<code>iris</code></li>
+</ul>
+<p><br> <br></p>
+<p><strong>Answers</strong></p>
+<details>
+<summary>
+click to see our approach
+</summary>
+<p><a
+href="https://jrnold.github.io/r4ds-exercise-solutions/iteration.html#for-loops">from
+here</a></p>
+<p>Compute the mean of every column in <code>mtcars</code></p>
+<pre class="r"><code>output &lt;- vector(&quot;double&quot;, ncol(mtcars))
+names(output) &lt;- names(mtcars)
+for (i in names(mtcars)) {
+  output[i] &lt;- mean(mtcars[[i]])
+
+output
+}</code></pre>
+<p><br></p>
+<p>Determine the type of each column in the <code>gapminder</code>
+dataset</p>
+<pre class="r"><code>library(gapminder)
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.1.0     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>output &lt;- vector(&quot;character&quot;, ncol(gapminder))
+names(output) &lt;- names(gapminder)
+for (i in names(gapminder)) {
+  output[i] &lt;- class(gapminder[[i]])
+}
+
+output</code></pre>
+<pre><code>##   country continent      year   lifeExp       pop gdpPercap 
+##  &quot;factor&quot;  &quot;factor&quot; &quot;integer&quot; &quot;numeric&quot; &quot;integer&quot; &quot;numeric&quot;</code></pre>
+<p><br></p>
+<p>Compute the number of unique values in each column of
+<code>iris</code></p>
+<pre class="r"><code>iris_uniq &lt;- vector(&quot;double&quot;, ncol(iris))
+names(iris_uniq) &lt;- names(iris)
+for (i in names(iris)) {
+  iris_uniq[i] &lt;- n_distinct(iris[[i]])
+}
+iris_uniq</code></pre>
+<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
+##           35           23           43           22            3</code></pre>
+</details>
 <p><br> <br></p>
 <div id="functional-programming-and-map-functions"
 class="section level3">
