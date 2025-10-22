@@ -40,9 +40,9 @@ navbar:
       href: lesson15-for-loops.html
     - text: "Lesson 16: Iteration - part 2"
       href: lesson16-for-loops-part2.html
-    - text: "Lesson 17: Functions"
+    - text: "Lesson 18: Functions"
       href: lesson17-functions.html
-    - text: "Lesson 18: Wrapping up and learning more"
+    - text: "Lesson 19: Wrapping up and learning more"
       href: lesson18-wrapup.html
   - text: Labs
     menu:

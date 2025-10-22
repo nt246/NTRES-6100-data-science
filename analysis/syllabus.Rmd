@@ -132,10 +132,10 @@ This semester, the course is offered fully in-person and we expect you to show u
 |  | Tue | 10/14 | FALL BREAK (no class) |  |
 | 15 | Thu | 10/16 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-for-loops.html) | [Assignment 7](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md) |
 | 16 | Tue | 10/21 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops-part2.html) |  |
-| 17 | Thu | 10/23 | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html) | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md) |
-| 18 | Tue | 10/28 | Leveraging AI for coding responsibly |  |
-| 19 | Thu | 10/30 | Student presentations | [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) |
-| 20 | Tue | 11/4 | [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) |  |
+| 17 | Thu | 10/23 | Leveraging AI for coding responsibly | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md) |
+| 18 | Tue | 10/28 | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html) |  |
+| 19 | Thu | 10/30 | Student presentations and [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) | [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md) |
+| 20 | Tue | 11/4 | Best practices for data archiving and sharing |  |
 
 | Lab# | Date (Thu) | Date (Fri) | Topic |
 |:-------------|:-------------|:-------------|:----------------------------|
@@ -147,8 +147,9 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 6 | 10/2 | 10/3 | [Data cleaning and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab6-tidy-data.html) |
 | 7 | 10/9 | 10/10 | [Relational data and tidy data](https://nt246.github.io/NTRES-6100-data-science/lab7-relational-data.html) |
 | 8 | 10/16 | 10/17 | [Iteration and conditional execution](https://nt246.github.io/NTRES-6100-data-science/lab8-iteration.html) |
-| 9 | 10/23 | 10/24 | [Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html) |
-| 10 | 10/30 | 10/31 | OPTIONAL: Bring your own project |
+| 9 | 10/23 | 10/24 | OPTIONAL: Bring your own project |
+| 10 | 10/30 | 10/31 | [Functions and iterations](https://nt246.github.io/NTRES-6100-data-science/lab9-function.html)
+ |
 
 ::: {.tocify-extend-page data-unique="tocify-extend-page" style="height: 0;"}
 :::
