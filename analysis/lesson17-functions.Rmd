@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Required: 
 
-* [Chapter 19](https://r4ds.had.co.nz/functions.html) in R for Data Science by Hadley Wickham & Garrett Grolemund
+* [Chapter 25](https://r4ds.hadley.nz/functions.html) in R for Data Science (2e)
 
 <br>
 
@@ -33,13 +33,13 @@ If you haven't already, please indicate in the signup sheet linked in the `Gener
 
 * Show us how you either already have or could think of applying any part of the course material to your own work
 * Be as specific as possible
-* Very short ~ 1.5 mins
+* Very short ~2 mins
 * Required of students taking the course for credit
 * Auditors are highly encouraged to share as well!
 
 <br>
 
-Next Tuesday (10/29): Guest lecture by data librarian Sarah Wright on archiving data and code
+Next Tuesday (11/4 - final class): Guest lecture by data librarian Sarah Wright on archiving data and code
 
 <br>
 <br>
@@ -170,7 +170,7 @@ calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
 <br>
 
 ### Named vs unnamed arguments
-When to use or not use argument names. For example, we can call our function either by explicitly naming each of our arguments or just list them by position
+When to use or not use argument names? For example, we can call our function either by explicitly naming each of our arguments or just list them by position 
 
 ```{r, eval = FALSE}
 calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
