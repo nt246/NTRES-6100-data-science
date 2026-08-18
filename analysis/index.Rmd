@@ -9,7 +9,7 @@ site: workflowr::wflow_site
 
 ### NTRES 6100 
 
-#### Cornell University, Fall 2025
+#### Cornell University, Fall 2026
 
 
 This website complements the class [Canvas](https://canvas.cornell.edu/courses/76776) site.  
@@ -23,8 +23,8 @@ This website complements the class [Canvas](https://canvas.cornell.edu/courses/7
 ***
 #### Meeting times and locations
 
-**Lectures**:  
-Tuesdays and Thursdays 10.10am - 11:25am (August 26 - November 4, 2025), Warren Hall 101
+**Lectures**:
+Tuesdays and Thursdays 10.10am - 11:25am (August 25 - November 12, 2026), Warren Hall 101
 
 **Optional lab sessions**:  
 *Hands-on practice sessions in groups and with TA support*  
