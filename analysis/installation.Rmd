@@ -15,7 +15,7 @@ output:
 
 Follow the instructions [prerequisites in the R for Data Science (2e) book](https://r4ds.hadley.nz/intro.html#r). Make sure to get the free open source license RStudio Desktop version.
 
-**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.5.1 and RStudio 2025.05.1+513). The easiest way to update is to just download the programs again, following the instructions linked above, but make sure you have closed any pre-existing versions of R and RStudio on your computer before you run the installers for the updated versions. There have been recent changes to many packages and some of the functions that we will use are not available or have different names in outdated versions, so it is essential that you update to be able to follow along in the course. 
+**Note**: If you already have R and RStudio installed, make sure you update to the most recent recent versions (R v4.6.1 and RStudio 2026.08.1-195, at the start of the course in Fall 2026). The easiest way to update is to just download the programs again, following the instructions linked above, but make sure you have closed any pre-existing versions of R and RStudio on your computer before you run the installers for the updated versions. There have been recent changes to many packages and some of the functions that we will use are not available or have different names or syntax in outdated versions, so it is essential that you update to be able to follow along in the course. 
 
 
 
@@ -27,9 +27,7 @@ Please install the key R packages that we are going to use in this class. Instal
 
 ``` r
 install.packages("tidyverse")
-install.packages("rmarkdown")
 install.packages("knitr")
-install.packages("cowplot")
 ```  
 
 ***
@@ -37,7 +35,7 @@ install.packages("cowplot")
 
 ### Install Slack and join workspace  
 
-Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres-6100-fa25/shared_invite/zt-3c75o8mdt-6vvg7EZrJs64GLydEJUjOg). 
+Please install [Slack](https://slack.com/download) on your laptop, and then [join the work space for our class](https://join.slack.com/t/ntres-6100-fa26/shared_invite/zt-47thw4thu-GgBchbp_5OnqMZ6T_RGmlA). 
 
 We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 

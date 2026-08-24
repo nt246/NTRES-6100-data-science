@@ -12,19 +12,19 @@ site: workflowr::wflow_site
 #### Cornell University, Fall 2026
 
 
-This website complements the class [Canvas](https://canvas.cornell.edu/courses/76776) site.  
+This website complements the class [Canvas](https://canvas.cornell.edu/courses/88419) site.  
 
 ***
 
 **Instructor**: Associate Professor [Nina Overgaard Therkildsen](https://cals.cornell.edu/nina-overgaard-therkildsen)
 &nbsp;
-**TA**: Ph.D. Student Azwad Iqbal
+**TA**: Ph.D. Candidate Azwad Iqbal
 
 ***
 #### Meeting times and locations
 
 **Lectures**:
-Tuesdays and Thursdays 10.10am - 11:25am (August 25 - November 12, 2026), Stocking Hall 202
+Tuesdays and Thursdays 10.10am - 11:25am (August 25 - November 3, 2026), Stocking Hall 202
 
 **Optional lab sessions**:  
 *Hands-on practice sessions in groups and with TA support*  
@@ -34,17 +34,17 @@ Thursdays (Comstock Hall-Academic II 2123) **or** Fridays (Mann Library B30B), 1
 
 #### Course description    
 
-As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and will be structured around hands-on (the keyboard) learning.  
+As datasets grow larger and more complex across all areas of science, computational skills are increasingly in high demand. This course introduces a series of practical tools that enable researchers to spend less time wrestling with software or repeating error-prone manual data processing and more time getting research done in efficient and transparent ways that facilitate collaboration and reproducibility. We will work in R/RStudio, primarily with the tidyverse packages and with Git and GitHub integration. The course emphasizes practical skill development and is structured around hands-on coding and problem solving.  
 
 **By the end of this course, students will be able to:**  
 
-* Describe strategies for ensuring that their data analysis is reproducible  
-* Demonstrate best practices for coding and project-oriented workflows in RStudio  
-* Import and clean messy data files using a variety of packages and functions in R  
-* Subset, reorganize, and merge diverse datasets in R  
-* Effectively explore and visualize patterns in complex datasets with ggplot in R  
-* Write simple functions/programs and data analysis pipelines in R  
-* Automate repeated analysis tasks in R  
-* Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub  
-* Use R Markdown to combine text, equations, code, tables, and figures into reports, websites, and presentations  
+- Describe strategies for ensuring that their data analysis is reproducible
+- Demonstrate best practices for coding and project-oriented workflows in RStudio
+- Import and clean messy data files using a variety of packages and functions in R
+- Subset, reorganize, and merge diverse datasets in R
+- Effectively explore and visualize patterns in complex datasets with ggplot in R
+- Write simple functions/programs and data analysis pipelines in R
+- Automate repeated analysis tasks in R
+- Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub
+- Use Quarto to combine text, equations, code, tables, and figures into reports, websites, and presentations
 

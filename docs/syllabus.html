@@ -13,7 +13,7 @@
 
 <title>Syllabus</title>
 
-<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -465,7 +465,7 @@ Cornell University, Fall 2026</p>
 <div id="course-info" class="section level4">
 <h4>Course Info</h4>
 <p><strong>Lectures</strong>: Tuesdays and Thursdays 10:10am - 11:25am
-(August 25 - November 12, 2026), Stocking Hall 202</p>
+(August 25 - November 3, 2026), Stocking Hall 202</p>
 <p><strong>Optional lab sessions</strong> (<em>Hands-on practice
 sessions in groups and with TA support</em>):<br />
 Thursdays (Comstock Hall-Academic II 2123) <strong>or</strong> Fridays
@@ -495,10 +495,10 @@ formatting, 2) rearrangement, filtering, exploration, and visualization
 of complex datasets, 3) basic programming for building and automating
 custom tools, 4) tracking the history of file changes (version control)
 with Git and GitHub, 5) strategies for effective collaboration on data
-processing pipelines, and 6) using R Markdown to combine text,
-equations, code, tables, and figures into reports, websites, and
-presentations. The course emphasizes practical skill development and
-will be structured around hands-on (the keyboard) learning.</p>
+processing pipelines, and 6) using Quarto to combine text, equations,
+code, tables, and figures into reports, websites, and presentations. The
+course emphasizes practical skill development and is structured around
+hands-on coding and problem solving.</p>
 <hr />
 </div>
 <div id="learning-outcomes" class="section level4">
@@ -519,7 +519,7 @@ R</li>
 <li>Automate repeated analysis tasks in R</li>
 <li>Track the history of file changes (version control) and collaborate
 effectively on scripts with others with Git and GitHub</li>
-<li>Use R Markdown to combine text, equations, code, tables, and figures
+<li>Use Quarto to combine text, equations, code, tables, and figures
 into reports, websites, and presentations</li>
 </ul>
 <hr />
@@ -527,17 +527,18 @@ into reports, websites, and presentations</li>
 <div id="prerequisites" class="section level4">
 <h4>Prerequisites</h4>
 <p>A basic working knowledge of R will be helpful, but no prior
-experience with the tidyverse packages or with Git, GitHub, or R
-Markdown is assumed. If you have never worked in R before, we recommend
-working through one or more of the following tutorials before the
-course:</p>
+experience with the tidyverse packages or with Git, GitHub, or Quarto is
+assumed. If you have never worked in R before, we recommend working
+through one or more of the following tutorials before the course:</p>
 <ul>
-<li><a href="https://stat545.com/r-basics.html">Jenny Bryan’s STAT545
-Chapter 2 R basics and workflows</a></li>
-<li><a href="https://swirlstats.com/">R Swirl interactive
-lessons</a></li>
-<li><a href="https://datacarpentry.org/R-ecology-lesson/">Data
+<li><a
+href="https://datacarpentry.github.io/R-ecology-lesson/introduction-r-rstudio.html">Data
 Carpentry’s Introduction to R for Ecologists</a></li>
+<li><a
+href="https://bioinformatics.ccr.cancer.gov/docs/r-for-novices-2026/">NIH
+Bioinformatics Training and Education Program: Introductory R for
+Novices</a><br />
+</li>
 </ul>
 <hr />
 </div>
@@ -549,10 +550,10 @@ effectively, you must have completed the assigned readings prior to
 class. Each Thursday, we will assign a problem set that applies the
 concepts covered in class in a new context to reinforce your learning.
 The problem sets are due the following <strong>Thursday at
-10pm</strong>. We offer two optional lab sessions on Thursdays and
-Fridays for more opportunities to practice in groups and with TA
-support; the Thursday and Friday sessions are identical and you can
-attend either one of them.</p>
+10pm</strong>. We offer two lab sessions on Thursdays and Fridays for
+more opportunities to practice in groups and with TA support; the
+Thursday and Friday sessions are identical and you can attend either one
+of them.</p>
 <hr />
 </div>
 <div id="evaluation" class="section level4">
@@ -560,16 +561,16 @@ attend either one of them.</p>
 <p>It takes practice to acquire and internalize data science skills, and
 what you get out of this course will be proportional to the effort you
 put in. Practice as much as you can. To pass, students are expected to
-attend all lectures (and lab sessions if enrolled), participate actively
-during class, submit at least <strong>7</strong> of the 9 problem sets
-with <strong>demonstrated effort to complete all questions</strong>, and
-give a brief (~2 minute) presentation at the end of the course about how
-you might adopt some of the course material in your own work. If you are
-unable to make a lecture or can not meet a problem set deadline, please
-let the instructor and TA know on Slack beforehand. If you are
-registered in one of the lab sessions (one extra credit), you are also
-expected to participate in lab activities in at least 7 of the 9 lab
-sessions.</p>
+attend 18 out of 20 lectures (and 9 of the 10 lab sessions if enrolled),
+participate actively during class, submit at least <strong>7</strong> of
+the 9 problem sets with <strong>demonstrated effort to complete all
+questions</strong>, and give a brief (~3 minute) presentation at the end
+of the course about how you might adopt some of the course material in
+your own work. If you are unable to make a lecture or cannot meet a
+problem set deadline, please let the instructor and TA know on Slack
+beforehand. If you are registered in one of the lab sessions (one extra
+credit), you are also expected to participate in lab activities in at
+least 7 of the 9 lab sessions.</p>
 <hr />
 </div>
 <div id="course-materials" class="section level4">
@@ -609,11 +610,20 @@ skills in the process</li>
 </ul>
 <hr />
 </div>
+<div id="ai-policy" class="section level4">
+<h4>AI policy</h4>
+<p>You are welcome to use AI as a coding assistant in this course. The
+goal is to learn how to use it in ways that increase your capabilities
+without outsourcing your understanding. You remain responsible for
+understanding, testing, debugging, and documenting any code you
+submit.</p>
+<hr />
+</div>
 <div id="student-accommodations" class="section level4">
 <h4>Student accommodations</h4>
 <p>In compliance with the Cornell University policy and equal access
 laws, we are available to discuss appropriate academic accommodations
-that may be required for student with disabilities. Requests for
+that may be required for students with disabilities. Requests for
 academic accommodations are to be made during the first two weeks of the
 course, except for unusual circumstances, so arrangements can be made.
 Students are encouraged to register with Student Disability Services to
@@ -627,12 +637,14 @@ you to show up for class. However, in an effort to accommodate special
 needs and keep everyone safe and healthy, we will also provide a Zoom
 link for joining lectures online <strong>when you are not able to
 participate in-person</strong>. You can use the Zoom link posted on the
-the course <a href="https://canvas.cornell.edu/courses/65313">Canvas</a>
-site instead of showing up in person if you are sick, or have another
-reasonable justification. However, we are not able to accommodate fully
-hybrid participation, and we strongly encourage you to participate
-in-person whenever possible. Online participation will not be possible
-for the lab sessions.</p>
+course <a href="https://canvas.cornell.edu/courses/88419">Canv</a><a
+href="https://canvas.cornell.edu/courses/65313">as</a> site instead of
+showing up in person if you are sick, or have another reasonable
+justification. However, unless arranged with the instructor (e.g. for
+students based away from the Ithaca campus), we are not able to
+accommodate fully hybrid participation, and we strongly encourage you to
+participate in-person whenever possible. Online participation will not
+be possible for the lab sessions.</p>
 <hr />
 </div>
 <div id="tentative-schedule" class="section level4">
@@ -640,11 +652,11 @@ for the lab sessions.</p>
 <p><em>Subject to adjustment</em></p>
 <table>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="29%" />
-<col width="17%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -670,7 +682,7 @@ to the course and R/RStudio</a></td>
 <td align="left">Thu</td>
 <td align="left">8/27</td>
 <td align="left"><a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">Markdown
+href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">Quarto
 and GitHub</a></td>
 <td align="left"></td>
 </tr>
@@ -856,35 +868,14 @@ href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/ass
 <td align="left">Best practices for data archiving and sharing</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
-<td align="left">21</td>
-<td align="left">Thu</td>
-<td align="left">11/5</td>
-<td align="left">TBD</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">22</td>
-<td align="left">Tue</td>
-<td align="left">11/10</td>
-<td align="left">TBD</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">23</td>
-<td align="left">Thu</td>
-<td align="left">11/12</td>
-<td align="left">TBD</td>
-<td align="left"></td>
-</tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="19%" />
-<col width="19%" />
-<col width="19%" />
-<col width="40%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="29%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -900,14 +891,14 @@ href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/ass
 <td align="left">8/27</td>
 <td align="left">8/28</td>
 <td align="left"><a
-href="https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html">RMarkdown</a></td>
+href="https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html">Quarto</a></td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
 <td align="left">9/3</td>
 <td align="left">9/4</td>
 <td align="left"><a
-href="https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html">RMarkdown
+href="https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html">Quarto
 and GitHub</a></td>
 </tr>
 <tr class="odd">
@@ -971,18 +962,6 @@ and conditional execution</a></td>
 <td align="left"><a
 href="https://nt246.github.io/NTRES-6100-data-science/lab9-function.html">Functions
 and iterations</a></td>
-</tr>
-<tr class="odd">
-<td align="left">11</td>
-<td align="left">11/5</td>
-<td align="left">11/6</td>
-<td align="left">TBD</td>
-</tr>
-<tr class="even">
-<td align="left">12</td>
-<td align="left">11/12</td>
-<td align="left">11/13</td>
-<td align="left">TBD</td>
 </tr>
 </tbody>
 </table>

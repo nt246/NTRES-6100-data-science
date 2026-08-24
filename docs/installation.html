@@ -13,7 +13,7 @@
 
 <title>Pre-course installation guide</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -470,15 +470,16 @@ href="https://r4ds.hadley.nz/intro.html#r">prerequisites in the R for
 Data Science (2e) book</a>. Make sure to get the free open source
 license RStudio Desktop version.</p>
 <p><strong>Note</strong>: If you already have R and RStudio installed,
-make sure you update to the most recent recent versions (R v4.5.1 and
-RStudio 2025.05.1+513). The easiest way to update is to just download
-the programs again, following the instructions linked above, but make
-sure you have closed any pre-existing versions of R and RStudio on your
-computer before you run the installers for the updated versions. There
-have been recent changes to many packages and some of the functions that
-we will use are not available or have different names in outdated
-versions, so it is essential that you update to be able to follow along
-in the course.</p>
+make sure you update to the most recent recent versions (R v4.6.1 and
+RStudio 2026.08.1-195, at the start of the course in Fall 2026). The
+easiest way to update is to just download the programs again, following
+the instructions linked above, but make sure you have closed any
+pre-existing versions of R and RStudio on your computer before you run
+the installers for the updated versions. There have been recent changes
+to many packages and some of the functions that we will use are not
+available or have different names or syntax in outdated versions, so it
+is essential that you update to be able to follow along in the
+course.</p>
 <hr />
 </div>
 <div id="install-r-packages" class="section level3">
@@ -487,16 +488,14 @@ in the course.</p>
 class. Install by copying the following code to RStudio console one line
 at a time and hit “Enter” to run.</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
-install.packages(&quot;rmarkdown&quot;)
-install.packages(&quot;knitr&quot;)
-install.packages(&quot;cowplot&quot;)</code></pre>
+install.packages(&quot;knitr&quot;)</code></pre>
 <hr />
 </div>
 <div id="install-slack-and-join-workspace" class="section level3">
 <h3>Install Slack and join workspace</h3>
 <p>Please install <a href="https://slack.com/download">Slack</a> on your
 laptop, and then <a
-href="https://join.slack.com/t/ntres-6100-fa25/shared_invite/zt-3c75o8mdt-6vvg7EZrJs64GLydEJUjOg">join
+href="https://join.slack.com/t/ntres-6100-fa26/shared_invite/zt-47thw4thu-GgBchbp_5OnqMZ6T_RGmlA">join
 the work space for our class</a>.</p>
 <p>We are going to use Slack as our primary communication channel for
 this course. Please consider adding a photo to your profile to make our
