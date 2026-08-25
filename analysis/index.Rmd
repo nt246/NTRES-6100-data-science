@@ -26,7 +26,7 @@ This website complements the class [Canvas](https://canvas.cornell.edu/courses/8
 **Lectures**:
 Tuesdays and Thursdays 10.10am - 11:25am (August 25 - November 3, 2026), Stocking Hall 202
 
-**Optional lab sessions**:  
+**Lab sessions**:  
 *Hands-on practice sessions in groups and with TA support*  
 Thursdays (Comstock Hall-Academic II 2123) **or** Fridays (Mann Library B30B), 12:20pm - 2:15pm 
 
@@ -47,4 +47,5 @@ As datasets grow larger and more complex across all areas of science, computatio
 - Automate repeated analysis tasks in R
 - Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub
 - Use Quarto to combine text, equations, code, tables, and figures into reports, websites, and presentations
+- Use generative AI effectively as a coding assistant while critically evaluating, debugging, and verifying AI-generated code and analyses
 

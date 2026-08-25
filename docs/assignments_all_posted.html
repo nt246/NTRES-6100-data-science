@@ -10,9 +10,8 @@
 
 
 
-<meta name="date" content="2026-08-24" />
 
-<title>Collaborative and Reproducible Data Science in R</title>
+<title>Assignments</title>
 
 <script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -30,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -220,6 +222,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -227,6 +292,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -377,76 +452,137 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Collaborative and Reproducible Data Science
-in R</h1>
-<h4 class="date">2026-08-24</h4>
+<h1 class="title toc-ignore">Assignments</h1>
 
 </div>
 
 
-<p><img src="assets/logo.png" style="width:50.0%" /></p>
-<div id="ntres-6100" class="section level3">
-<h3>NTRES 6100</h3>
-<div id="cornell-university-fall-2026" class="section level4">
-<h4>Cornell University, Fall 2026</h4>
-<p>This website complements the class <a
-href="https://canvas.cornell.edu/courses/88419">Canvas</a> site.</p>
+<p>Each week, we will assign a problem set that applies the concepts
+covered in class in a new context to reinforce your learning. The
+problem sets are due the following week at 10pm EDT.</p>
 <hr />
-<p><strong>Instructor</strong>: Associate Professor <a
-href="https://cals.cornell.edu/nina-overgaard-therkildsen">Nina
-Overgaard Therkildsen</a>   <strong>TA</strong>: Ph.D. Candidate Azwad
-Iqbal</p>
-<hr />
-</div>
-<div id="meeting-times-and-locations" class="section level4">
-<h4>Meeting times and locations</h4>
-<p><strong>Lectures</strong>: Tuesdays and Thursdays 10.10am - 11:25am
-(August 25 - November 3, 2026), Stocking Hall 202</p>
-<p><strong>Lab sessions</strong>:<br />
-<em>Hands-on practice sessions in groups and with TA support</em><br />
-Thursdays (Comstock Hall-Academic II 2123) <strong>or</strong> Fridays
-(Mann Library B30B), 12:20pm - 2:15pm</p>
+<div id="assignment-1" class="section level3">
+<h3>Assignment 1</h3>
+<div id="quarto-template" class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md">Quarto
+template</a></h4>
+<blockquote>
+<p>Due Thu 09/03-2026 by 10pm EDT</p>
+</blockquote>
 <hr />
 </div>
-<div id="course-description" class="section level4">
-<h4>Course description</h4>
-<p>As datasets grow larger and more complex across all areas of science,
-computational skills are increasingly in high demand. This course
-introduces a series of practical tools that enable researchers to spend
-less time wrestling with software or repeating error-prone manual data
-processing and more time getting research done in efficient and
-transparent ways that facilitate collaboration and reproducibility. We
-will work in R/RStudio, primarily with the tidyverse packages and with
-Git and GitHub integration. The course emphasizes practical skill
-development and is structured around hands-on coding and problem
-solving.</p>
-<p><strong>By the end of this course, students will be able
-to:</strong></p>
-<ul>
-<li>Describe strategies for ensuring that their data analysis is
-reproducible</li>
-<li>Demonstrate best practices for coding and project-oriented workflows
-in RStudio</li>
-<li>Import and clean messy data files using a variety of packages and
-functions in R</li>
-<li>Subset, reorganize, and merge diverse datasets in R</li>
-<li>Effectively explore and visualize patterns in complex datasets with
-ggplot in R</li>
-<li>Write simple functions/programs and data analysis pipelines in
-R</li>
-<li>Automate repeated analysis tasks in R</li>
-<li>Track the history of file changes (version control) and collaborate
-effectively on scripts with others with Git and GitHub</li>
-<li>Use Quarto to combine text, equations, code, tables, and figures
-into reports, websites, and presentations</li>
-<li>Use generative AI effectively as a coding assistant while critically
-evaluating, debugging, and verifying AI-generated code and analyses</li>
-</ul>
+</div>
+<div id="assignment-2" class="section level3">
+<h3>Assignment 2</h3>
+<div id="put-one-of-your-pre-existing-projects-on-github"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md">Put
+one of your pre-existing projects on GitHub</a></h4>
+<blockquote>
+<p>Due Thu 09/10-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
 </div>
 </div>
+<div id="assignment-3" class="section level3">
+<h3>Assignment 3</h3>
+<div id="create-a-collaborative-website-with-github-pages"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md">Create
+a collaborative website with GitHub Pages</a></h4>
+<blockquote>
+<p>Due Thu 09/17-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-4" class="section level3">
+<h3>Assignment 4</h3>
+<div id="data-transformation-and-visualization" class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md">Data
+transformation and visualization</a></h4>
+<blockquote>
+<p>Due Thu 09/24-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-5" class="section level3">
+<h3>Assignment 5</h3>
+<div id="data-transformation-and-visualization---part-2"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md">Data
+transformation and visualization - Part 2</a></h4>
+<blockquote>
+<p>Due Thu 10/01-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-6" class="section level3">
+<h3>Assignment 6</h3>
+<div id="data-import-and-tidy-data" class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md">Data
+import and tidy data</a></h4>
+<blockquote>
+<p>Due Thu 10/08-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-7" class="section level3">
+<h3>Assignment 7</h3>
+<div
+id="relational-data-plus-revisiting-data-wrangling-and-visualization"
+class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md">Relational
+data plus revisiting data wrangling and visualization</a></h4>
+<blockquote>
+<p>Due Thu 10/15-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-8" class="section level3">
+<h3>Assignment 8</h3>
+<div id="iteration-and-conditional-execution" class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md">Iteration
+and conditional execution</a></h4>
+<blockquote>
+<p>Due Thu 10/22-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="assignment-9" class="section level3">
+<h3>Assignment 9</h3>
+<div id="functions-and-factors" class="section level4">
+<h4><a
+href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md">Functions
+and factors</a></h4>
+<blockquote>
+<p>Due Thu 10/29-2026 by 10pm EDT</p>
+</blockquote>
+<hr />
+<div class="tocify-extend-page" data-unique="tocify-extend-page"
+style="height: 0;">
+
+</div>
+</div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -479,6 +615,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

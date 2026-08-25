@@ -7,7 +7,9 @@ output:
     toc_float: true
 ---
 
->Please follow this guide to install the following free software on your laptop **before our first lecture**. It should only take about 20 minutes or less.  
+>Please follow this guide to install the following free software on your laptop **before our second lecture**. It should only take about 20 minutes or less.  
+
+Also, during the first week of the course, please complete the [Beginning-of-course survey](https://forms.gle/AuxsUvetcJEkiksv7).
 
 ***
 
@@ -39,11 +41,10 @@ Please install [Slack](https://slack.com/download) on your laptop, and then [joi
 
 We are going to use Slack as our primary communication channel for this course. Please consider adding a photo to your profile to make our workspace more personal.
 
-When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. If you don't plan on using Slack regularly, please go to "Preferences" and check the box that says "Send me email notifications for mentions and direct messages". 
+When you first enter our workspace, you may see a notice about a free trial version expiring soon. Just ignore that, we'll be able to continue using Slack for free. 
 
-![](https://slackhq.com/wp-content/uploads/2023/05/2019-05_Haughey_CustomizeNotifications_mobile-notifications.png?w=460)
+If you don't plan on using Slack regularly, please go to "Preferences" and under "Notifications", check the box that says "Send me email notifications for mentions and direct messages". By clicking this option, you will able to receive all of our announcements via email without needing to log in on Slack every time.  
 
-By clicking this option, you will able to receive all of our announcements via email without needing to log in on Slack every time.  
 
 ***
 

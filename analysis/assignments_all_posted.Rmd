@@ -1,0 +1,69 @@
+---
+title: "Assignments"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT.  
+
+***
+
+### Assignment 1  
+#### [Quarto template](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md)  
+>Due Thu 09/03-2026 by 10pm EDT
+
+***
+
+### Assignment 2  
+#### [Put one of your pre-existing projects on GitHub](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)  
+>Due Thu 09/10-2026 by 10pm EDT
+
+***
+
+### Assignment 3  
+#### [Create a collaborative website with GitHub Pages](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)  
+>Due Thu 09/17-2026 by 10pm EDT
+
+***
+
+### Assignment 4  
+#### [Data transformation and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4.md)  
+>Due Thu 09/24-2026 by 10pm EDT
+
+***
+
+### Assignment 5
+#### [Data transformation and visualization - Part 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5.md)  
+>Due Thu 10/01-2026 by 10pm EDT
+
+***
+
+### Assignment 6
+#### [Data import and tidy data](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6.md)  
+>Due Thu 10/08-2026 by 10pm EDT
+
+***
+
+### Assignment 7
+#### [Relational data plus revisiting data wrangling and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7.md)  
+>Due Thu 10/15-2026 by 10pm EDT
+
+***
+
+### Assignment 8
+#### [Iteration and conditional execution](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8.md)  
+>Due Thu 10/22-2026 by 10pm EDT
+
+***
+
+### Assignment 9
+#### [Functions and factors](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9.md)  
+>Due Thu 10/29-2026 by 10pm EDT
+
+***
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
+

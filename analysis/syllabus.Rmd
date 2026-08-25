@@ -18,7 +18,7 @@ output:
 
 **Lectures**: Tuesdays and Thursdays 10:10am - 11:25am (August 25 - November 3, 2026), Stocking Hall 202
 
-**Optional lab sessions** (*Hands-on practice sessions in groups and with TA support*):\
+**Lab sessions** (*Hands-on practice sessions in groups and with TA support*):\
 Thursdays (Comstock Hall-Academic II 2123) **or** Fridays (Mann Library B30B), 12:20pm - 2:15pm
 
 **Instructor**: Associate Professor [Nina Overgaard Therkildsen](https://cals.cornell.edu/nina-overgaard-therkildsen) ([nt246\@cornell.edu](mailto:nt246@cornell.edu){.email})
@@ -50,6 +50,7 @@ By the end of this course, students will be able to:
 - Automate repeated analysis tasks in R
 - Track the history of file changes (version control) and collaborate effectively on scripts with others with Git and GitHub
 - Use Quarto to combine text, equations, code, tables, and figures into reports, websites, and presentations
+- Use generative AI effectively as a coding assistant while critically evaluating, debugging, and verifying AI-generated code and analyses.
 
 ------------------------------------------------------------------------
 
@@ -58,19 +59,29 @@ By the end of this course, students will be able to:
 A basic working knowledge of R will be helpful, but no prior experience with the tidyverse packages or with Git, GitHub, or Quarto is assumed. If you have never worked in R before, we recommend working through one or more of the following tutorials before the course:
 
 - [Data Carpentry's Introduction to R for Ecologists](https://datacarpentry.github.io/R-ecology-lesson/introduction-r-rstudio.html)
-- [NIH Bioinformatics Training and Education Program: Introductory R for Novices](https://bioinformatics.ccr.cancer.gov/docs/r-for-novices-2026/)\
+- [NIH Bioinformatics Training and Education Program: Introductory R for Novices](https://bioinformatics.ccr.cancer.gov/docs/r-for-novices-2026/)
+
+------------------------------------------------------------------------
+
+#### Use of AI
+
+Generative AI is rapidly changing how we write code and conduct data analysis. In this course, we will learn how to use AI effectively as a tool for scientific programming while developing the foundational skills needed to understand and critically evaluate computational analyses. Labs will provide structured opportunities to work with AI as a coding partner—to generate and modify code, troubleshoot problems, and explore alternative approaches. A central emphasis will be on learning to critically evaluate AI-generated code, identify errors and inappropriate assumptions, and verify that analyses do what we intend them to do.
+
+The goal is not to learn how to have AI do your work for you, but to learn how to use AI effectively while remaining responsible for the scientific and computational decisions in your analysis. Assignments will provide specific guidance about when and how AI may be used.
 
 ------------------------------------------------------------------------
 
 #### Course format
 
-The two weekly lectures will introduce new concepts and provide opportunities to practice through hands-on exercises. To participate effectively, you must have completed the assigned readings prior to class. Each Thursday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following **Thursday at 10pm**. We offer two lab sessions on Thursdays and Fridays for more opportunities to practice in groups and with TA support; the Thursday and Friday sessions are identical and you can attend either one of them.
+Class meetings combine lectures and hands-on labs. Lectures introduce the conceptual and computational foundations of R, data science, and reproducible research, with an emphasis on developing your own understanding of the tools and approaches, and create the conceptual foundation needed to understand what code is doing, recognize when something is wrong, and make informed analytical decisions. To participate effectively, you must have completed the assigned readings prior to class. Labs provide opportunities to apply your skills to more extended problems and will serve as our primary setting for experimenting with AI-assisted programming. Through the labs, we will develop strategies for working productively with AI while critically evaluating and verifying its output. The Thursday and Friday sessions are identical so you can attend either one of them.
+
+Each Thursday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following **Thursday at 10pm**. 
 
 ------------------------------------------------------------------------
 
 #### Evaluation
 
-It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend 18 out of 20 lectures (and 9 of the 10 lab sessions if enrolled), participate actively during class, submit at least **7** of the 9 problem sets with **demonstrated effort to complete all questions**, and give a brief (\~3 minute) presentation at the end of the course about how you might adopt some of the course material in your own work. If you are unable to make a lecture or cannot meet a problem set deadline, please let the instructor and TA know on Slack beforehand. If you are registered in one of the lab sessions (one extra credit), you are also expected to participate in lab activities in at least 7 of the 9 lab sessions.
+It takes practice to acquire and internalize data science skills, and what you get out of this course will be proportional to the effort you put in. Practice as much as you can. To pass, students are expected to attend 18 out of 20 lectures (and 9 of the 10 lab sessions), participate actively during class, submit at least **7** of the 9 problem sets with **demonstrated effort to complete all questions**, and give a brief (\~3 minute) presentation at the end of the course about how you might adopt some of the course material in your own work. If you are unable to make a lecture or lab, or cannot meet a problem set deadline, please let the instructor and TA know on Slack beforehand.
 
 ------------------------------------------------------------------------
 
@@ -96,21 +107,17 @@ We are dedicated to providing a welcoming and supportive environment for everyon
 
 ------------------------------------------------------------------------
 
-#### AI policy
-
-You are welcome to use AI as a coding assistant in this course. The goal is to learn how to use it in ways that increase your capabilities without outsourcing your understanding. You remain responsible for understanding, testing, debugging, and documenting any code you submit.
-
-------------------------------------------------------------------------
-
 #### Student accommodations
 
-In compliance with the Cornell University policy and equal access laws, we are available to discuss appropriate academic accommodations that may be required for students with disabilities. Requests for academic accommodations are to be made during the first two weeks of the course, except for unusual circumstances, so arrangements can be made. Students are encouraged to register with Student Disability Services to verify their eligibility for appropriate accommodations.
+Your access to this course is important. If you have a disability and need academic accommodations, please work with Cornell Student Disability Services (SDS) and have your accommodation letter sent to me. I encourage you to do this as early as possible so that we have adequate time to make the necessary arrangements.
+
+I also recognize that students may encounter circumstances that affect their ability to participate fully in the course, whether or not they have formal accommodations through SDS. Please feel free to reach out to me if you are experiencing difficulties or if there are adjustments we can make to better support your participation and learning in the course.
 
 ------------------------------------------------------------------------
 
 #### Online participation
 
-This semester, the course is offered fully in-person and we expect you to show up for class. However, in an effort to accommodate special needs and keep everyone safe and healthy, we will also provide a Zoom link for joining lectures online **when you are not able to participate in-person**. You can use the Zoom link posted on the course [Canv](https://canvas.cornell.edu/courses/88419)[as](https://canvas.cornell.edu/courses/65313) site instead of showing up in person if you are sick, or have another reasonable justification. However, unless arranged with the instructor (e.g. for students based away from the Ithaca campus), we are not able to accommodate fully hybrid participation, and we strongly encourage you to participate in-person whenever possible. Online participation will not be possible for the lab sessions.
+This semester, the course is offered fully in-person and we expect you to show up for class. However, in an effort to accommodate special needs and keep everyone safe and healthy, we will also provide a Zoom link for joining lectures online **when you are not able to participate in-person**. You can use the Zoom link posted on the course [Canvas](https://canvas.cornell.edu/courses/88419) site instead of showing up in person if you are sick, or have another reasonable justification. However, unless arranged with the instructor (e.g. for students based away from the Ithaca campus), we are not able to accommodate fully hybrid participation, and we strongly encourage you to participate in-person whenever possible. 
 
 ------------------------------------------------------------------------
 
@@ -143,7 +150,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 20 | Tue | 11/3 | Best practices for data archiving and sharing |  |
 
 | Lab# | Date (Thu) | Date (Fri) | Topic |
-|:----------------|:----------------|:----------------|:--------------------|
+|:----------------|:----------------|:----------------|:-------------------|
 | 1 | 8/27 | 8/28 | [Quarto](https://nt246.github.io/NTRES-6100-data-science/lab1-rmarkdown.html) |
 | 2 | 9/3 | 9/4 | [Quarto and GitHub](https://nt246.github.io/NTRES-6100-data-science/lab2-rmarkdown-github.html) |
 | 3 | 9/10 | 9/11 | [Displaying data visualization on a website](https://nt246.github.io/NTRES-6100-data-science/lab3-ggplot-website.html) |
