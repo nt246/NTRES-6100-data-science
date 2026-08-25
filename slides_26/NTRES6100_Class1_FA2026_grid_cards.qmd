@@ -1,0 +1,517 @@
+---
+title: "NTRES 6100"
+subtitle: "Collaborative and Reproducible Data Science in R"
+author: "Nina Overgaard Therkildsen"
+date: "Fall 2026"
+format:
+  revealjs:
+    theme: simple
+    css: NTRES6100_Class1_FA2026_grid_cards.css
+    transition: fade
+    slide-number: c/t
+    incremental: false
+    center: false
+    width: 1600
+    height: 900
+    margin: 0.07
+    controls: true
+    progress: true
+    hash: true
+    footer: "NTRES 6100 · Fall 2026"
+execute:
+  echo: true
+  eval: false
+---
+
+## Today
+
+:::: {.card-row}
+
+::: {.panel}
+**Why are we here?**
+
+Why reproducible data science matters
+:::
+
+
+::: {.panel}
+**Who are we?**
+
+Meet the teaching team and each other
+:::
+
+::: {.panel}
+**What are we going to do?**
+
+Course goals, structure, and expectations
+:::
+
+
+::::
+
+::: {.accent-box}
+Then we will get situated with **R and RStudio**.
+:::
+
+## Why are we here?
+
+::: {.statement}
+Modern science is increasingly **computational science**.
+:::
+
+## Reproducibility is hard
+
+::: {.prompt}
+Why can researchers fail to reproduce results when re-analyzing existing data?
+:::
+
+::: {.prompt}
+What can we do to make our analyses easier to reproduce?
+:::
+
+::: {.aside}
+Discuss in small groups for 3–4 minutes.
+:::
+
+## A common problem
+
+::: {.quote-box}
+Point-and-click analysis leaves very little record of **what was done, in what order, and with which settings**.
+:::
+
+Repeated manual steps are often:
+
+- tedious
+- difficult to audit
+- difficult to share
+- easy to do slightly differently the next time
+
+## Reproducible workflows create a paper trail
+
+:::: {.card-row}
+
+::: {.panel}
+**Code**
+
+Records the analytical steps
+:::
+
+::: {.panel}
+**Version control**
+
+Records how files change over time
+:::
+
+::: {.panel}
+**Reproducible documents**
+
+Connect code, results, figures, and narrative
+:::
+
+::::
+
+## The payoff
+
+::: {.hero}
+Better science  
+**in less time**  
+and with less pain
+:::
+
+## Who benefits?
+
+:::: {.card-row}
+
+::: {.panel}
+**Future you**
+
+Less re-learning, fewer mysteries, faster progress
+:::
+
+::: {.panel}
+**Collaborators**
+
+Clearer workflows and easier handoffs
+:::
+
+::: {.panel}
+**Science**
+
+More transparency and more opportunities to catch errors
+:::
+
+::::
+
+## Who are we?
+
+:::: {.card-row .two}
+
+::: {.panel}
+**Nina Overgaard Therkildsen**
+
+Instructor
+:::
+
+::: {.panel}
+**Teaching assistant**
+
+Add current TA name and contact information
+:::
+
+::::
+
+## Who are you?
+
+::: {.prompt}
+Quick round of introductions
+:::
+
+- Your name
+- Your program
+- **2–3 words** describing the kinds of data you work with—or expect to work with
+
+## What do we mean by “data science”?
+
+::: {.statement}
+Turning raw data into **understanding, insight, and knowledge**
+:::
+
+## A major theme of this course
+
+::: {.quote-box}
+Do not build your analysis around whatever strange format your data happened to arrive in.
+:::
+
+Instead, deliberately create structures that make analysis:
+
+- easier to reason about
+- easier to reuse
+- easier to communicate
+- easier to reproduce
+
+## By the end of the course, you should be able to…
+
+- build reproducible, project-oriented workflows in RStudio
+- import, clean, reorganize, and combine messy data
+- explore and visualize data effectively with **ggplot2**
+- write simple functions and automate repeated tasks
+- use **Git and GitHub** for version control and collaboration
+- use **Quarto** to combine narrative, code, figures, and results
+- use **AI as a coding partner while critically evaluating its output**
+
+## What this course is *not*
+
+:::: {.card-row .two}
+
+::: {.panel}
+**We will not focus on**
+
+- statistical inference
+- modeling and simulation
+- very large-scale computing
+- domain-specific analysis pipelines
+:::
+
+
+
+
+::::
+
+## Why R?
+
+- Free and open source
+- Available across platforms
+- Huge ecosystem for data manipulation, statistics, visualization, and communication
+- Strong research community
+- Excellent support for reproducible reports and workflows
+
+::: {.accent-box}
+We will focus mainly on the **tidyverse** approach to working with data.
+:::
+
+## The tidyverse
+
+::: {.statement}
+A coherent collection of R packages designed for data science
+:::
+
+`ggplot2` · `dplyr` · `tidyr` · `readr` · `purrr` · `tibble` · `stringr` · `forcats`
+
+## The course toolkit
+
+:::: {.card-row}
+
+::: {.panel}
+**Analyze**
+
+R + RStudio + tidyverse
+:::
+
+::: {.panel}
+**Collaborate**
+
+Git + GitHub
+:::
+
+::: {.panel}
+**Communicate**
+
+Quarto
+:::
+
+::::
+
+::: {.accent-box}
+And increasingly: **AI-assisted programming**
+:::
+
+## How lectures and labs differ
+
+:::: {.card-row .two}
+
+::: {.panel}
+**Lectures**
+
+Build the conceptual and computational foundations.
+
+You will mostly work through problems yourself so you understand **what the code is doing and why**.
+:::
+
+::: {.panel}
+**Labs**
+
+Apply those foundations to more extended problems.
+
+Labs will be our primary setting for learning to work **productively and critically with AI**.
+:::
+
+::::
+
+## AI in NTRES 6100
+
+Generative AI is changing how people write code and conduct data analysis.
+
+::: {.accent-box}
+Our goal is **not** to learn how to have AI do the work for us.
+:::
+
+We will learn how to use AI while remaining responsible for:
+
+- the scientific question
+- analytical choices
+- correctness of the code
+- interpretation of the result
+- reproducibility of the workflow
+
+## A useful standard
+
+::: {.hero}
+“The code ran”  
+**is not the same as**  
+“the analysis is correct.”
+:::
+
+## Course format
+
+:::: {.card-row .two}
+
+::: {.panel}
+**Lectures**  
+Tuesdays and Thursdays, **10:10–11:25 am**
+
+- live coding
+- short exercises
+- discussion
+- assigned readings before class
+:::
+
+::: {.panel}
+**Labs**  
+Thursdays **or** Fridays, **12:20–2:15 pm**
+
+- hands-on practice
+- open-ended problem solving
+- AI-assisted programming
+
+::: {.aside}
+Thursday and Friday lab sessions are identical.
+:::
+:::
+
+::::
+
+## Practice matters
+
+::: {.hero}
+Practice.  
+Practice.  
+**Practice.**
+:::
+
+::: {.aside}
+Programming is learned by doing—not by watching someone else code.
+:::
+
+## Problem sets
+
+- One problem set each week
+- Applies class concepts in a new context
+- Due the following **Thursday at 10 pm**
+- Submitted through GitHub
+- Each assignment will specify whether AI use is **restricted, permitted, or encouraged**
+
+## To pass the course
+
+You must:
+
+- participate actively in class
+- attend lectures unless other arrangements have been made
+- submit at least **7 of 9** problem sets with demonstrated effort
+- give a short end-of-course presentation showing how you are applying something from the course in your own work
+
+## Communication
+
+:::: {.card-row .two}
+
+::: {.panel}
+**Slack**
+
+- announcements
+- questions
+- discussion
+- tips and resources
+:::
+
+::: {.panel}
+**GitHub**
+
+- assignments
+- repositories
+- collaborative coding
+- version history
+:::
+
+::::
+
+::: {.accent-box}
+If others may benefit from the answer, ask in a **channel** rather than by direct message.
+:::
+
+## Asking questions is part of the course
+
+::: {.statement}
+No one arrives with the same background.
+:::
+
+- Ask questions during live coding
+- Post questions in Slack
+- Help answer each other’s questions
+- Share useful discoveries
+
+::: {.accent-box}
+You learn a lot by helping someone else solve a problem.
+:::
+
+## Access and accommodations
+
+Your access to this course is important.
+
+- Students with disability-related accommodations should work with Cornell Student Disability Services and send accommodation letters as early as possible.
+- If circumstances affect your ability to participate fully—whether or not you have formal accommodations—please reach out so we can discuss reasonable ways to support your participation and learning.
+
+
+## Zoom participation
+
+This course is designed for **in-person** participation.
+
+- If you are sick or need to be away, we will allow Zoom participation
+- But **only if you have made prior arrangements with us**
+
+
+## You are all welcome here
+
+We are committed to a learning environment that is welcoming and supportive regardless of:
+
+- background
+- identity
+- discipline
+- prior programming experience
+
+::: {.accent-box}
+Everyone will begin this course from a different place. That is expected.
+:::
+
+## Pre-course survey
+
+::: {.hero}
+5 minutes
+:::
+
+Please complete the beginning-of-course survey.
+
+::: {.aside}
+Add QR code or short link here.
+:::
+
+## Where to find things
+
+**Course website**  
+`https://nt246.github.io/NTRES-6100-data-science/`
+
+**Canvas**  
+Add current Canvas link
+
+**Slack**  
+Add current Slack invite or workspace link
+
+## Before we start coding…
+
+Have you:
+
+- installed a current version of **R**?
+- installed a current version of **RStudio**?
+- installed **Git**?
+- created a **GitHub** account?
+- joined the class **Slack** workspace?
+
+::: {.accent-box}
+If not, that’s okay—we’ll make sure you know what needs to be fixed before the next class.
+:::
+
+## Now: R + RStudio
+
+Today we will get oriented to:
+
+- the RStudio IDE
+- Console vs. Source
+- objects and the Environment
+- functions
+- packages
+- scripts
+- projects
+- help and autocomplete
+
+## One important habit from Day 1
+
+::: {.hero}
+Work in an  
+**RStudio Project**
+:::
+
+::: {.aside}
+Avoid building workflows around `setwd()` and absolute file paths.
+:::
+
+## Another important habit
+
+::: {.statement}
+Do not save and restore `.RData` workspaces.
+:::
+
+A reproducible analysis should be recreated from **data + code + documented dependencies**—not from whatever happens to be sitting in your Environment.
+
+## Let’s open RStudio
+
+::: {.hero}
+**Live coding starts here.**
+:::
