@@ -31,9 +31,8 @@ Most of today's lesson has been borrowed (with permission) from the [Ocean Healt
 
 Other useful resources to check out include the following: 
 
-   - [Jenny Bryan's STAT545 Chapter 2 R basics and workflows](https://stat545.com/r-basics.html) 
-   - [R Swirl interactive lessons](https://swirlstats.com/) 
-   - [Data Carpentry's Introduction to R for Ecologists](https://datacarpentry.org/R-ecology-lesson/) 
+- [Data Carpentry's Introduction to R for Ecologists](https://datacarpentry.github.io/R-ecology-lesson/introduction-r-rstudio.html)
+- [NIH Bioinformatics Training and Education Program: Introductory R for Novices](https://bioinformatics.ccr.cancer.gov/docs/r-for-novices-2026/)
 
 <br>
 
@@ -93,7 +92,7 @@ I'll write it in the console with a hashtag `#`, which is the way R comments so 
 ## This is also how you write notes in your code to explain what you are doing.
 ```
 
-Object names cannot start with a digit and cannot contain certain other characters such as a comma or a space. You will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
+Object names cannot start with a digit and cannot contain certain other characters such as a comma or a space. You will be wise to adopt a [convention for demarcating words](https://www.freecodecamp.org/news/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case-whats-the-difference/) in names.
 
 ```{r}
 # i_use_snake_case
@@ -123,7 +122,7 @@ Another way to inspect this variable is to begin typing `this_`...and RStudio wi
 > Shortcuts 
 You will make lots of assignments and the operator `<-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize **RStudio's keyboard shortcut: Alt + - (the minus sign)**.
 Notice that RStudio automagically surrounds `<-` with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
-RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts). Also, Alt+Shift+K brings up a keyboard shortcut reference card.
+RStudio offers many handy [keyboard shortcuts](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE). Also, Alt+Shift+K brings up a keyboard shortcut reference card.
 > My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
 
 <br>
