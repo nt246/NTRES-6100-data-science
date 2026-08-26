@@ -1,5 +1,5 @@
 ---
-title: "Lesson 2: RMarkdown and GitHub"
+title: "Lesson 2: Quarto and GitHub"
 output: 
   html_document:
     toc: true
@@ -25,9 +25,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 **Additional resources**:  
-- [RStudio's R markdown cheatsheet](https://github.com/nt246/NTRES-6100-data-science/blob/main/docs/assets/rmarkdown.pdf)  
-- The [Rmd website](https://rmarkdown.rstudio.com/) has a fantastic walk-through [tutorial](https://rmarkdown.rstudio.com/lesson-1.html) that gives a great overview of R Markdown  
-- Yihui's [Rmd book](https://bookdown.org/yihui/rmarkdown/) for lots more on R Markdown.  
+- [Quarto Tutorial: Hello, Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)  
+- The [Quarto Tutorial: Computations](https://quarto.org/docs/get-started/computations/) 
+- [Comprehensive guide to using Quarto](https://quarto.org/docs/guide/) [great look-up resource]
 
 
 <br>  
@@ -50,10 +50,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc. 
 * We will use the `lecture-chat` channel in Slack. Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture 
-* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/76776)
+* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/88419/external_tools/1346)
 * Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
 * [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/4 (we will go through how to submit through GitHub next week)  
-* Jaime will hold regular office hours Mondays in Fernow 311
+* Azwad will hold regular office hours Mondays 3-4pm in Fernow 311
 
 <br>
 

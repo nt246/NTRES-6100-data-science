@@ -11,9 +11,9 @@
 
 
 
-<title>Lesson 2: RMarkdown and GitHub</title>
+<title>Lesson 2: Quarto and GitHub</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -452,7 +452,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lesson 2: RMarkdown and GitHub</h1>
+<h1 class="title toc-ignore">Lesson 2: Quarto and GitHub</h1>
 
 </div>
 
@@ -470,14 +470,12 @@ for Data Science (2e)</a><br />
 website</a></p>
 <p><strong>Additional resources</strong>:<br />
 - <a
-href="https://github.com/nt246/NTRES-6100-data-science/blob/main/docs/assets/rmarkdown.pdf">RStudio’s
-R markdown cheatsheet</a><br />
-- The <a href="https://rmarkdown.rstudio.com/">Rmd website</a> has a
-fantastic walk-through <a
-href="https://rmarkdown.rstudio.com/lesson-1.html">tutorial</a> that
-gives a great overview of R Markdown<br />
-- Yihui’s <a href="https://bookdown.org/yihui/rmarkdown/">Rmd book</a>
-for lots more on R Markdown.</p>
+href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto
+Tutorial: Hello, Quarto</a><br />
+- The <a href="https://quarto.org/docs/get-started/computations/">Quarto
+Tutorial: Computations</a> - <a
+href="https://quarto.org/docs/guide/">Comprehensive guide to using
+Quarto</a> [great look-up resource]</p>
 <p><br></p>
 </div>
 <div id="github" class="section level3">
@@ -504,8 +502,8 @@ about scheduling changes etc.</li>
 free to post questions or let us know if you’re having software issues
 or can’t get demos to work on your computer during the lecture</li>
 <li>Zoom recordings are available at the <a
-href="https://canvas.cornell.edu/courses/76776">course Canvas
-site</a></li>
+href="https://canvas.cornell.edu/courses/88419/external_tools/1346">course
+Canvas site</a></li>
 <li>Course website and readings - see the Lectures tab of the <a
 href="https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html">course
 website</a>. You do NOT have to do the exercises in the assigned chapter
@@ -515,7 +513,8 @@ href="https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/ass
 1</a> is due 9/4 (we will go through how to submit through GitHub next
 week)<br />
 </li>
-<li>Jaime will hold regular office hours Mondays in Fernow 311</li>
+<li>Azwad will hold regular office hours Mondays 3-4pm in Fernow
+311</li>
 </ul>
 <p><br></p>
 </div>
@@ -549,8 +548,8 @@ where you are writing text. So no more doing analysis, saving a plot,
 pasting that plot into Word, redoing the analysis, re-saving,
 re-pasting, etc.</p>
 <p><br></p>
-<p><img src="assets/rmarkdown_wizards.png" width="100%" /> Artwork by
-Allison Horst</p>
+<p><img src="assets/rmarkdown_wizards.png" alt="" width="100%" />
+Artwork by Allison Horst</p>
 <p><br></p>
 <p>This 1-minute video provides a great introduction to RMarkdown: <a
 href="https://vimeo.com/178485416">What is RMarkdown?</a></p>
@@ -566,7 +565,7 @@ the green plus in the top left -&gt; RMarkdown).</p>
 <p>Let’s title it “Testing” and write our name as author, then click OK
 with the recommended Default Output Format, which is HTML.</p>
 <p><br></p>
-<p><img src="assets/rstudio_new-rmd-doc-html.png" width="80%" /></p>
+<p><img src="assets/rstudio_new-rmd-doc-html.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>OK, first off: by opening a file, we are seeing the 4th pane of the
 RStudio console, which here is a text editor. This lets us dock and
@@ -590,7 +589,7 @@ that make up an RMarkdown file.
 now).</li>
 </ul>
 <p><br></p>
-<p><img src="assets/rmarkdown.png" width="80%" /></p>
+<p><img src="assets/rmarkdown.png" alt="" width="80%" /></p>
 <p><br></p>
 </div>
 <div id="knit-your-rmarkdown-file" class="section level3">
@@ -609,7 +608,7 @@ both the Markdown text (white) and the R code (grey), and the it also
 executed — we also say ran — the R code.</p>
 <p>Let’s have a look at them side-by-side:</p>
 <p><br></p>
-<p><img src="assets/rmarkdown_side_by_side.png" width="80%" /></p>
+<p><img src="assets/rmarkdown_side_by_side.png" alt="" width="80%" /></p>
 <p>Let’s take a deeper look at these two files. So much of learning to
 code is looking for patterns.</p>
 <p><br></p>
@@ -1270,25 +1269,25 @@ ensure that Git/GitHub are communicating with RStudio.</p>
 you could also go to File &gt; New Project…, or click the little green +
 with the R box in the top left. also in the File menu).</p>
 <p><br></p>
-<p><img src="assets/new_project_1.png" width="80%" /></p>
+<p><img src="assets/new_project_1.png" alt="" width="80%" /></p>
 <p><br> <br></p>
 </div>
 <div id="select-version-control" class="section level4">
 <h4>Select Version Control</h4>
 <p><br></p>
-<p><img src="assets/new_project_2.png" width="80%" /></p>
+<p><img src="assets/new_project_2.png" alt="" width="80%" /></p>
 <p><br> <br></p>
 </div>
 <div id="select-git" class="section level4">
 <h4>Select Git</h4>
 <p>Since we are using git.</p>
 <p><br></p>
-<p><img src="assets/new_project_3.png" width="80%" /></p>
+<p><img src="assets/new_project_3.png" alt="" width="80%" /></p>
 <p><br></p>
 </div>
 <div id="do-you-see-what-i-see" class="section level4">
 <h4>Do you see what I see?</h4>
-<p><img src="assets/new_project_4.png" width="80%" /></p>
+<p><img src="assets/new_project_4.png" alt="" width="80%" /></p>
 <p><br></p>
 <p><strong>If yes, hooray! Time to wrap up for today!</strong> You’re
 now ready for exploring integrated GitHub/RStudio workflows next
