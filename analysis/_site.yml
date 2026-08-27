@@ -48,7 +48,7 @@ navbar:
     menu:
     - text: Lab handouts
     - text: "Lab 1: Quarto"
-      href: lab1-rmarkdown.html
+      href: lab1-quarto.html
     - text: "Lab 2: Quarto and GitHub"
       href: lab2-rmarkdown-github.html
     - text: "Lab 3: Displaying data visualization on a website"
