@@ -1,0 +1,500 @@
+---
+title: "Lab 1: Quarto"
+output: 
+  html_document:
+    toc: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+<br>
+
+# Lab 1: Quarto
+
+<br>
+
+## Goal for today
+
+Explore more Quarto functionality and practice implementing it.
+
+<br>
+
+Today we will focus on:
+
+- Markdown formatting
+- executable R code cells
+- Quarto cell options
+- figures, captions, and cross-references
+- inline R code
+- document-level options in YAML
+- different output formats
+- using AI to help explore unfamiliar Quarto features while verifying
+  what it suggests
+
+------------------------------------------------------------------------
+
+<br>
+
+## Exercise 1: Basic formatting and code cell options
+
+Let's start by playing around with the basic RStudio Quarto template a
+little more.
+
+Open a fresh Quarto document by clicking:
+
+**File → New File → Quarto Document...**
+
+Enter `Lab exercise` in the Title field, keep **HTML** as the default
+output format, and click **Create**.
+
+Save the document as `lab1.qmd`.
+
+As you're making changes, **render often** and see how your edits look
+in the finished document.
+
+<br>
+
+### Basic formatting
+
+Let's play around with the formatting of our document.
+
+Remember that Markdown is a simple formatting language for plain text.
+You can find a useful overview in the [Quarto Markdown Basics
+guide](https://quarto.org/docs/authoring/markdown-basics.html), and a
+broader collection of Quarto documentation in the [Quarto
+Guide](https://quarto.org/docs/guide/).
+
+Some ideas of what you can try:
+
+<br>
+
+#### Add different heading levels
+
+Compare the output with different numbers of `#` in headings.
+
+For example:
+
+```{=html}
+<pre><code># First-level heading
+## Second-level heading
+### Third-level heading</code></pre>
+```
+
+<br>
+
+#### Add emphasis and lists
+
+Try adding:
+
+- **bold** text
+- *italic* text
+- inline code such as `mean(x)`
+- a bulleted list
+- a numbered list
+- a link to a website
+
+<br>
+
+#### Add a horizontal rule
+
+A line containing three dashes:
+
+```{=html}
+<pre><code>---</code></pre>
+```
+
+creates a horizontal rule.
+
+<br>
+
+#### Add an image
+
+You can add an image using Markdown syntax:
+
+```{=html}
+<pre><code>![A useful caption](path/to/image.png)</code></pre>
+```
+
+If you are using an image stored on your computer, it is good practice
+to keep it inside your project rather than linking to a file somewhere
+else on your computer.
+
+For example, if you have an `images` folder inside your project:
+
+```{=html}
+<pre><code>![A useful caption](images/my-image.png)</code></pre>
+```
+
+Render the document and make sure the image appears.
+
+<br>
+
+### Inline R code
+
+Another really useful feature is **inline code**. Instead of putting R
+code in a separate code cell, we can insert the result of an R
+expression directly into a sentence.
+
+For example:
+
+```{=html}
+<pre><code>There are &#96;{r} nrow(cars)&#96; observations in the cars dataset,
+and &#96;{r} ncol(cars)&#96; variables.</code></pre>
+```
+
+Render the document and see what happens.
+
+The code itself disappears from the rendered sentence and is replaced
+with the result.
+
+This is particularly useful when writing reports because values in the
+text can update automatically when the data or analysis changes.
+
+<br>
+
+### Equations
+
+Quarto also supports LaTeX-style equations.
+
+For example, inline math can be written as:
+
+```{=html}
+<pre><code>$y = mx + b$</code></pre>
+```
+
+and a displayed equation as:
+
+```{=html}
+<pre><code>$$
+y = mx + b
+$$</code></pre>
+```
+
+We won't spend much time on equations today, but you can find more
+details in the [Quarto documentation on
+equations](https://quarto.org/docs/authoring/markdown-basics.html#equations).
+
+<br>
+
+### Code cell options
+
+Add a few R code cells to your document.
+
+For example:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r}
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+```
+
+Render the document and look at what appears.
+
+In Quarto, cell options are typically added on lines beginning with `#|`
+at the top of the code cell.
+
+Try:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r}
+#| echo: false
+
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+```
+
+What changes?
+
+Now experiment with:
+
+- `#| echo: false`
+- `#| eval: false`
+- `#| warning: false`
+- `#| message: false`
+- `#| include: false`
+
+Try to explain in your own words what each option controls.
+
+You can find more options in the [Quarto documentation on using
+R](https://quarto.org/docs/computations/r.html).
+
+<br>
+
+### Add labels to code cells
+
+Code cells can also be given labels:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r}
+#| label: cars-summary
+
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+```
+
+Labels help organize larger documents and allow us to refer to figures
+and tables.
+
+Labels should be unique within a document.
+
+<br>
+
+### Figures, captions, and cross-references
+
+Now create a figure:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r}
+#| label: fig-cars
+#| fig-cap: "Speed and stopping distance in the cars dataset."
+
+plot(cars)
+&#96;&#96;&#96;</code></pre>
+```
+
+Because the label begins with `fig-`, Quarto recognizes this as a figure
+that can be cross-referenced.
+
+Elsewhere in your document, add:
+
+```{=html}
+<pre><code>See @fig-cars.</code></pre>
+```
+
+Render the document.
+
+Notice that Quarto automatically numbers the figure, adds the caption,
+creates a cross-reference, and updates the reference if the figure
+number changes.
+
+------------------------------------------------------------------------
+
+<br>
+
+## Exercise 2: Document options and output formats
+
+### Add a table of contents
+
+Document-level options belong in the YAML header at the top of the
+`.qmd` file.
+
+Change your YAML to something like:
+
+```{=html}
+<pre><code>---
+title: "Lab exercise"
+author: "Your name"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+---</code></pre>
+```
+
+Render the document.
+
+What changed?
+
+Try changing `toc-depth` to `2` or `4`.
+
+More details are available in the [Quarto HTML
+documentation](https://quarto.org/docs/output-formats/html-basics.html).
+
+<br>
+
+### Try another output format
+
+So far we have been rendering our `.qmd` file to HTML.
+
+Quarto can create many other formats from the same source document.
+
+Try changing:
+
+```{=html}
+<pre><code>format: html</code></pre>
+```
+
+to:
+
+```{=html}
+<pre><code>format: docx</code></pre>
+```
+
+Render again and compare the Word version with the HTML version.
+
+Now change back to HTML before continuing.
+
+<br>
+
+### GitHub Flavored Markdown
+
+For much of this course, we will use **GitHub Flavored Markdown (GFM)**
+because it displays well directly on GitHub and integrates naturally
+with our Git/GitHub workflow.
+
+In Quarto, GFM is specified as:
+
+```{=html}
+<pre><code>format: gfm</code></pre>
+```
+
+Try changing your output format to `gfm` and render the document.
+
+Look at the files Quarto creates. We will work much more with this
+format once we begin using Git and GitHub.
+
+<br>
+
+### Optional: Render to PDF
+
+Quarto can also create PDF documents. To render a Quarto document to
+PDF, you need a TeX installation. We recommend **TinyTeX**, a relatively
+small version of TeX that works well with Quarto.
+
+If you don't already have a TeX installation, you can install TinyTeX
+directly through Quarto.
+
+In RStudio, open the **Terminal** tab (next to the Console) and enter:
+
+``` bash
+quarto install tinytex
+```
+
+Follow the prompts to complete the installation. You only need to
+install TinyTeX once on your computer.
+
+Once it is installed, change the output format in your Quarto document
+to:
+
+``` yaml
+format: pdf
+```
+
+and click **Render**.
+
+If you want to check whether TinyTeX is installed, you can enter this in
+the Terminal:
+
+``` bash
+quarto list tools
+```
+
+You should see TinyTeX listed as installed.
+
+<br>
+
+## Exercise 3: Make a brief CV
+
+Now practice what you've learned by creating a brief CV in Quarto.
+
+Start a **new Quarto document** for this exercise.
+
+The title should be your name, and you should include headings for at
+least:
+
+- Education
+- Employment or research experience
+- Skills or interests
+
+Each section should include a bulleted list of relevant degrees,
+positions, experiences, or skills.
+
+Also:
+
+- highlight years in **bold**
+- use *italics* somewhere appropriate
+- add a link to your department, lab, institution, or personal website
+- add a footnote with some additional information
+- add a horizontal rule (`---`) to visually separate two parts of your
+  CV
+- optionally add a photo or other image
+
+Render your CV to HTML.
+
+If you're comfortable, share the rendered result or a screenshot with
+the class in the `lecture-chat` channel in Slack.
+
+------------------------------------------------------------------------
+
+<br>
+
+## Exercise 4: Work with AI as a Quarto assistant
+
+Choose **one thing you would like to change or add to your Quarto
+document that we have not explicitly shown you how to do**.
+
+For example, you might want to:
+
+- change the appearance of your table of contents
+- add a callout box
+- make an image smaller or change its alignment
+- add a citation
+- add a table
+- change the document theme
+- hide or fold code
+- do something else you are curious about
+
+Ask an AI tool for help.
+
+As you work, give the AI enough context to know that you are working in
+a Quarto `.qmd` file and what output format you are using.
+
+Then:
+
+1.  Try the suggested solution.
+2.  Determine whether it actually works.
+3.  Find the relevant Quarto documentation and check whether the syntax
+    or approach the AI suggested is supported.
+4.  If the first suggestion does not work, continue the conversation and
+    troubleshoot.
+
+Be prepared to briefly discuss:
+
+- What did you ask AI to help you do?
+- Did its first suggestion work?
+- How did you verify the solution?
+- Did you learn anything about Quarto that you didn't know before?
+
+The goal is not simply to get AI to produce the right syntax. The goal
+is to practice using AI to help you learn **while still verifying and
+understanding what it suggests**.
+
+------------------------------------------------------------------------
+
+<br>
+
+## Exercise 5: Explore other Quarto applications
+
+If time permits, work in small groups to explore what else Quarto can
+do.
+
+Browse the [Quarto Gallery](https://quarto.org/docs/gallery/).
+
+Look at examples of:
+
+- presentations
+- websites
+- books
+- manuscripts
+- dashboards
+- interactive documents
+
+Discuss with your group:
+
+**Which application do you think is the coolest or potentially most
+useful for your own work?**
+
+Be ready to report back to the class.
+
+------------------------------------------------------------------------
+
+<br>
+
+END LAB 1
