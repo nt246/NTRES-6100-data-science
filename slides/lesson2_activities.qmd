@@ -1,0 +1,74 @@
+---
+title: "Lesson 2: Quarto and GitHub"
+subtitle: "NTRES 6100 · Fall 2026"
+format: revealjs
+editor: visual
+---
+
+## Class announcements
+
+- Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace so you don't miss announcements about scheduling changes etc.
+- We will use the `lecture-chat` channel in Slack. Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture.
+- Course website and readings: see the Lectures tab of the course website. You do **NOT** have to do all of the exercises in the assigned chapters before class.
+- Assignment 1 is due 9/4 (we will go through how to submit through GitHub next week)
+- Azwad will hold regular office hours Mondays 3-4pm in Fernow 311
+
+## Learning objectives for today's class
+
+By the end of today's class, students should be able to:
+
+- Create a Quarto document and render it to HTML with RStudio.
+
+- Understand the basic structure of a Quarto document: YAML, Markdown text, and executable code.
+
+- Combine text, code, tables, and plots in a reproducible document.
+
+- Use Quarto cell options to control how code and output appear in the rendered document.
+
+- Explain how Quarto documents support reproducible research.
+
+- Configure Git to integrate with RStudio.
+
+## Activity
+
+Pair up with the person next to you and discuss what you notice when you compare the source document and the rendered document.
+
+Some things to look for:
+
+- What appears in both?
+- What looks different?
+- What parts of the source control formatting?
+- What happened to the R code and its output?
+
+## Activity
+
+Make the following changes to your Quarto document:
+
+- Add some \*italic text\*.
+- Make a numbered list.
+- Add a second-level heading with \`##\`.
+- Add a link to a website.
+- Add an image
+
+## Code cell options
+
+Here are four options you will use frequently:
+
+- `#| echo: false` --- run the code but don't display the code.
+- `#| eval: false` --- display the code but don't run it.
+- `#| warning: false` --- don't display warnings.
+- `#| message: false` --- don't display messages.
+
+<br>
+
+Another useful option is:
+
+- `#| include: false` --- run the code but don't display either the code or its output.
+
+## Activity
+
+Try each of these in your document:
+
+1.  Add `#| echo: false` to a cell and render.
+2.  Change it to `#| eval: false` and render again.
+3.  What is the difference?

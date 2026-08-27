@@ -33,11 +33,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Announcements
 
-* The classroom is a little wide so it might be hard to see the screen from the edges of the room. Please talk to us or write in the `feedback` channel if you have suggestions for how we can make things work better in the room.
 * **Homework 1** is due this Thursday at 10pm (submit through GitHub! – we’ll demo later).
-* Auditors are welcome to submit homework assignments for useful practice and feedback.
-* Jaime will host office hours Wednesday 10-11am in 311 Fernow Hall.
-* Nina will host office hours 11.30-12am (right after class) this Thursday on the benches outside the classroom.
+* Azwad will host office hours Wednesday 3-4pm in 311 Fernow Hall
+* Nina will host office hours 11.30-12am (right after class) this Thursday downstairs at the tables outside the Dairy Bar
 
 
 <br>  

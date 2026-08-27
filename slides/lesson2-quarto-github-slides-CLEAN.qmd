@@ -1,0 +1,327 @@
+---
+title: "Lesson 2: Quarto and GitHub"
+subtitle: "NTRES 6100 · Fall 2026"
+format:
+  revealjs:
+    slide-number: c/t
+    footer: "NTRES 6100 · Fall 2026"
+    transition: fade
+    incremental: false
+    center: false
+    width: 1600
+    height: 900
+    margin: 0.08
+    css: lesson2-clean.css
+    pdf-separate-fragments: false
+editor: source
+---
+
+## Today
+
+<div class="cards three">
+  <div class="card"><h3>Quarto</h3><p>Write code and text together in a reproducible document.</p></div>
+  <div class="card"><h3>Reproducibility</h3><p>Connect narrative, computation, figures, tables, and results.</p></div>
+  <div class="card"><h3>Git + GitHub</h3><p>Configure the tools we will use for version control.</p></div>
+</div>
+
+## Learning goals
+
+<ul>
+  <li>Create and render a Quarto document</li>
+  <li>Recognize <strong>YAML</strong>, <strong>Markdown</strong>, and executable code cells</li>
+  <li>Combine text, code, tables, and plots</li>
+  <li>Control code and output with cell options</li>
+  <li>Explain how rendering supports reproducibility</li>
+  <li>Configure Git to integrate with RStudio</li>
+</ul>
+
+## What is Quarto?
+
+<blockquote>A plain-text document that lets us write <strong>code and text together</strong>.</blockquote>
+<p>When we <strong>render</strong> the document:</p>
+<ul>
+  <li>Markdown is formatted</li>
+  <li>code is executed</li>
+  <li>results are inserted</li>
+  <li>a human-readable document is created</li>
+</ul>
+<div class="takeaway">One source file can contain the analysis <strong>and</strong> the report.</div>
+
+## Why do this?
+
+<div class="quoteish">analysis → save plot → paste into Word → change analysis → re-save plot → re-paste plot → realize a number in paragraph 3 is now wrong...</div>
+<div class="big-center">With Quarto:<br><strong>Change the analysis → render again → document updates</strong></div>
+
+## What happens behind the scenes?
+
+<div class="flow">
+  <span>.qmd source</span><b>→</b><span>execute code</span><b>→</b><span>render</span><b>→</b><span>HTML / PDF / Word / GFM</span>
+</div>
+<p class="spaced">For R, Quarto uses <strong>knitr</strong> to execute code and <strong>Pandoc</strong> to create the final document.</p>
+
+## Quarto and R Markdown
+
+<div class="cards two">
+  <div class="card"><h3>What carries over?</h3><p>Markdown, R code, knitr, figures, narrative text, reproducible documents.</p></div>
+  <div class="card"><h3>Why Quarto?</h3><p>A newer, more consistent publishing system with strong support for multiple languages, cross-references, websites, presentations, and more.</p></div>
+</div>
+<div class="takeaway">If you know R Markdown, you do <strong>not</strong> need to relearn everything.</div>
+
+## Activity: Create a Quarto file
+
+<p>In RStudio:</p>
+<p class="path">File → New File → Quarto Document...</p>
+<ol>
+  <li>title it <strong>Testing</strong></li>
+  <li>enter your name as author</li>
+  <li>choose <strong>HTML</strong></li>
+  <li>save as <code>testing.qmd</code></li>
+</ol>
+<div class="activity">Do this with me now.</div>
+
+## A Quarto document has 3 main pieces
+
+<div class="cards three">
+  <div class="card"><h3>1. YAML</h3><p>Document-level information and options.</p></div>
+  <div class="card"><h3>2. Markdown</h3><p>The narrative text humans read.</p></div>
+  <div class="card"><h3>3. Code cells</h3><p>Executable code that generates results.</p></div>
+</div>
+
+## YAML, Visual, and Source
+
+<div class="codebox"><pre><code>&#45;&#45;&#45;
+title: "Testing"
+author: "Your name"
+format: html
+editor: visual
+&#45;&#45;&#45;</code></pre></div>
+<div class="cards two short">
+  <div class="card"><h3>Visual</h3><p>Word-processor-like editing.</p></div>
+  <div class="card"><h3>Source</h3><p>Shows the underlying Markdown syntax.</p></div>
+</div>
+<div class="takeaway"><strong>YAML controls the document; Markdown contains the narrative; code performs the computation.</strong></div>
+
+## Activity: Source vs. rendered document
+
+<p>Pair up and compare your <code>.qmd</code> source with the rendered HTML.</p>
+<p>Discuss:</p>
+<ul>
+  <li>What appears in both?</li>
+  <li>What looks different?</li>
+  <li>What parts of the source control formatting?</li>
+  <li>What happened to the R code and its output?</li>
+</ul>
+<div class="activity">5 minutes · then brief share-out</div>
+
+## Markdown = a few rules for plain text
+
+<div class="markdown-grid">
+  <div><strong>Heading</strong><code>## Heading</code></div>
+  <div><strong>Bold</strong><code>**Bold text**</code></div>
+  <div><strong>Italic</strong><code>*Italic text*</code></div>
+  <div><strong>Inline code</strong><code>`mean(x)`</code></div>
+  <div><strong>Bulleted list</strong><code>- Item</code></div>
+  <div><strong>Numbered list</strong><code>1. Item</code></div>
+  <div><strong>Link</strong><code>[text](url)</code></div>
+  <div><strong>Image</strong><code>![caption](image.png)</code></div>
+</div>
+<div class="takeaway">You do not need to memorize everything. Learn the basics and look up the rest.</div>
+
+## Markdown tables
+
+<p>Source:</p>
+<div class="codebox small"><pre><code>| Species | n  | Mean length |
+|:--------|---:|------------:|
+| Cod     | 12 |        43.2 |
+| Haddock | 18 |        38.7 |</code></pre></div>
+<p>Rendered:</p>
+<table>
+  <thead><tr><th>Species</th><th>n</th><th>Mean length</th></tr></thead>
+  <tbody><tr><td>Cod</td><td>12</td><td>43.2</td></tr><tr><td>Haddock</td><td>18</td><td>38.7</td></tr></tbody>
+</table>
+
+## Activity: Practice Markdown
+
+<p>Make the following changes to your Quarto document:</p>
+<ul>
+  <li>add some <em>italic text</em></li>
+  <li>make a numbered list</li>
+  <li>add a second-level heading with <code>##</code></li>
+  <li>add a link to a website</li>
+  <li>add an image</li>
+</ul>
+<div class="activity">Render again and check the result.</div>
+
+## Executable code cells
+
+<p>A basic R code cell:</p>
+<div class="codebox"><pre><code>&#96;&#96;&#96;{r}
+summary(cars)
+&#96;&#96;&#96;</code></pre></div>
+<ul>
+  <li>the backticks mark the cell boundaries</li>
+  <li><code>{r}</code> tells Quarto the code is R</li>
+</ul>
+<div class="takeaway">Code + output + explanation can stay together.</div>
+
+## Cell options
+
+<p>Put options on <code>#|</code> lines at the top of a code cell:</p>
+<div class="codebox"><pre><code>&#96;&#96;&#96;{r}
+#| echo: false
+
+plot(pressure)
+&#96;&#96;&#96;</code></pre></div>
+<p>The code <strong>runs</strong>, but the code itself is not shown.</p>
+
+## Activity: Compare echo and eval
+
+<p>Try this in your document:</p>
+<ol>
+  <li>add <code>#| echo: false</code> to a code cell and render</li>
+  <li>change it to <code>#| eval: false</code></li>
+  <li>render again</li>
+</ol>
+<p><strong>What is the difference?</strong></p>
+<div class="activity">Focus on what gets executed and what the reader sees.</div>
+
+## Figures, labels, captions, references
+
+<div class="codebox"><pre><code>&#96;&#96;&#96;{r}
+#| label: fig-pressure
+#| fig-cap: "Relationship between temperature and pressure."
+
+plot(pressure)
+&#96;&#96;&#96;</code></pre></div>
+<p>Then refer to it with:</p>
+<div class="codebox tiny"><pre><code>See @fig-pressure.</code></pre></div>
+<div class="takeaway">Quarto handles numbering and cross-references automatically.</div>
+
+## Inline R code
+
+<p>Instead of manually typing a value:</p>
+<div class="codebox"><pre><code>The cars dataset contains &#96;{r} nrow(cars)&#96; observations.</code></pre></div>
+<p>Quarto calculates it when the document renders.</p>
+<div class="takeaway"><strong>If a value can be generated from the data, let the computer generate it.</strong></div>
+
+## Rendering is a reproducibility check
+
+<p>Interactive code may work because your current R session contains things the document does not.</p>
+<p>Rendering can expose:</p>
+<ul>
+  <li>objects created earlier but missing from the document</li>
+  <li>packages you forgot to load</li>
+  <li>fragile file paths</li>
+  <li>code run in the wrong order</li>
+</ul>
+<div class="takeaway"><strong>A successful render is one useful test of whether your analysis is reproducible.</strong></div>
+
+## Activity: Create a brief CV
+
+<p>Create a new Quarto document with:</p>
+<ul>
+  <li>your name as the title</li>
+  <li><strong>Education</strong></li>
+  <li><strong>Employment or research experience</strong></li>
+  <li>bulleted lists of degrees, jobs, or experiences</li>
+</ul>
+<p>Also include <strong>bold</strong>, <em>italics</em>, a link, a footnote, and a horizontal rule.</p>
+<div class="activity">Render to HTML. If comfortable, share the result or a screenshot in <code>lecture-chat</code>.</div>
+
+## Output formats
+
+<div class="cards three">
+  <div class="card"><h3>Today</h3><p><code>format: html</code><br>easy to view while learning</p></div>
+  <div class="card"><h3>Later</h3><p><code>format: gfm</code><br>works well on GitHub</p></div>
+  <div class="card"><h3>Other options</h3><p>PDF, Word, presentations, websites, books, dashboards</p></div>
+</div>
+<div class="takeaway">The source document contains the content and computation; the output format controls how it is presented.</div>
+
+## Git and GitHub are not the same thing
+
+<div class="cards two">
+  <div class="card"><h3>Git</h3><p>Version-control software on your computer. Tracks changes to files over time.</p></div>
+  <div class="card"><h3>GitHub</h3><p>An online service that stores Git repositories and supports collaboration.</p></div>
+</div>
+
+## Why version control?
+
+<p>Git lets us:</p>
+<ul>
+  <li>see <strong>what</strong> changed</li>
+  <li>see <strong>when</strong> it changed</li>
+  <li>see <strong>who</strong> changed it</li>
+  <li>return to an earlier version</li>
+  <li>collaborate without files named <code>analysis_final_FINAL_v2.R</code></li>
+</ul>
+<div class="takeaway">Today: configuration only. Next class: the actual Git workflow.</div>
+
+## Two things to configure
+
+<div class="cards two">
+  <div class="card"><h3>Git identity</h3><p>Who are you? Git records your name and email with commits.</p><p><strong>Usually once per computer.</strong></p></div>
+  <div class="card"><h3>GitHub authentication</h3><p>Store a personal access token (PAT) so RStudio can authenticate with GitHub.</p><p><strong>PATs expire and must be renewed.</strong></p></div>
+</div>
+
+## Install and load usethis
+
+<p>Install once:</p>
+<div class="codebox tiny"><pre><code>install.packages("usethis")</code></pre></div>
+<p>Load in the current R session:</p>
+<div class="codebox tiny"><pre><code>library(usethis)</code></pre></div>
+<div class="takeaway">No Console feedback after <code>library(usethis)</code>? Unless you got an error, it worked.</div>
+
+## Activity: Configure your Git identity
+
+<div class="codebox"><pre><code>use_git_config(
+  user.name = "Your Name",
+  user.email = "you@example.com"
+)</code></pre></div>
+<p>Use the email associated with your GitHub account.</p>
+<div class="activity">Do this now.</div>
+
+## GitHub authentication
+
+<p>GitHub does <strong>not</strong> accept your normal GitHub account password for Git operations over HTTPS.</p>
+<p>Instead, we use a <strong>personal access token (PAT)</strong>.</p>
+<div class="codebox tiny"><pre><code>usethis::create_github_token()</code></pre></div>
+<ul>
+  <li>give it a descriptive name</li>
+  <li>choose an expiration</li>
+  <li>leave the pre-selected scopes</li>
+  <li>copy it immediately</li>
+</ul>
+<div class="warning">GitHub will only show you the complete token once.</div>
+
+## Activity: Store your PAT
+
+<p>Install <code>gitcreds</code> if needed:</p>
+<div class="codebox tiny"><pre><code>install.packages("gitcreds")</code></pre></div>
+<p>Then run:</p>
+<div class="codebox tiny"><pre><code>gitcreds::gitcreds_set()</code></pre></div>
+<p>Paste the PAT when prompted.</p>
+<div class="activity">Nothing may appear when you paste — that is normal.</div>
+
+## Activity: Check your Git setup
+
+<p>In RStudio:</p>
+<p class="path">File → New Project... → Version Control → Git</p>
+<p>You should reach the screen asking for a <strong>Repository URL</strong>.</p>
+<div class="activity">Do not create a project yet. If Git is missing, ask for help before you leave.</div>
+
+## If Git does not appear
+
+<p>If <strong>Git</strong> is missing under Version Control, your RStudio/Git setup still needs troubleshooting.</p>
+<p>Useful diagnostic:</p>
+<div class="codebox tiny"><pre><code>usethis::git_sitrep()</code></pre></div>
+<p>For path issues, compare Terminal:</p>
+<div class="codebox tiny"><pre><code>which git</code></pre></div>
+<p>with RStudio: <strong>Tools → Global Options → Git/SVN</strong>.</p>
+
+## Wrap-up
+
+<div class="cards two">
+  <div class="card"><h3>Quarto</h3><p>Keeps code, results, figures, tables, and narrative together in a reproducible document.</p></div>
+  <div class="card"><h3>Git + GitHub</h3><p>Keeps a deliberate history of changes and supports collaboration.</p></div>
+</div>
+<div class="takeaway">Neither is something you need to master today. We will use both repeatedly until the workflow becomes normal.</div>

@@ -13,7 +13,7 @@ knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<br> \<br)
+<br>
 
 ## Readings
 
