@@ -656,7 +656,7 @@ ggsave(filename = "Afghanistan_gdp_per_cap.png", plot = my_plot)
 
 OK. So we can check our repo in the file pane (bottom right of RStudio) and see the generated figure:
 
-<img src="assets/Afghanistan_gdp_per_cap.png" width="50%" />
+<img src="assets/Afghanistan_gdp_per_cap.png" alt="" width="50%" />
 
 <br>
 <br>
