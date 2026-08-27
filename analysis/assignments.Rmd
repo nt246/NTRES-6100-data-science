@@ -10,6 +10,14 @@ output:
 Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT. Assignments will be posted below.  
 
 
+***
+
+### Assignment 1  
+#### [Quarto template](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment1_quarto_template.pdf)  
+>Due Thu 09/03-2026 by 10pm EDT
+
+
+
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
 
