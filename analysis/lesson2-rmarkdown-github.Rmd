@@ -3,57 +3,71 @@ title: "Lesson 2: Quarto and GitHub"
 output: 
   html_document:
     toc: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
-  
+
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(base.dir = "../docs/", root.dir = "../docs/")
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 <br>
 
-## Readings  
+## Readings
 
 <br>
 
 ### Quarto
 
-**Required**:  
-- [Chapters 28 and 29 in R for Data Science (2e)](https://r4ds.hadley.nz/quarto.html)   
-- Have a look at the [Quarto website](https://quarto.org/)  
+**Required**:\
+- [Chapters 28 and 29 in R for Data Science
+(2e)](https://r4ds.hadley.nz/quarto.html)\
+- Have a look at the [Quarto website](https://quarto.org/)
 
+**Additional resources**:\
+- [Quarto Tutorial: Hello,
+Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)\
+- [Quarto Tutorial:
+Computations](https://quarto.org/docs/get-started/computations/)\
+- [Comprehensive guide to using Quarto](https://quarto.org/docs/guide/)
+[great look-up resource]
 
-
-
-**Additional resources**:  
-- [Quarto Tutorial: Hello, Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)  
-- The [Quarto Tutorial: Computations](https://quarto.org/docs/get-started/computations/) 
-- [Comprehensive guide to using Quarto](https://quarto.org/docs/guide/) [great look-up resource]
-
-
-<br>  
+<br>
 
 ### GitHub
 
-**Required**:  
-- [Chapter 1 in Jenny Bryan's Happy Git with R](https://happygitwithr.com/big-picture.html)
+**Required**:\
+- [Chapter 1 in Jenny Bryan's Happy Git with
+R](https://happygitwithr.com/big-picture.html)
 
+**Additional resources**:\
+- [Excuse me, do you have a moment to talk about version
+control?](https://peerj.com/preprints/3159/) by Jenny Bryan\
+- [GitHub for Project
+Management](https://openscapes.github.io/series/github-issues.html) by
+Openscapes
 
-**Additional resources**:  
-- [Excuse me, do you have a moment to talk about version control?](https://peerj.com/preprints/3159/) by Jenny Bryan  
-- [GitHub for Project Management](https://openscapes.github.io/series/github-issues.html) by Openscapes
+<br>
 
+## Class announcements
 
-
-<br>  
-
-## Class announcements 
-
-* Reminder: Course communication will primarily be through Slack. Please make sure you have joined our workspace to not miss announcements about scheduling changes etc. 
-* We will use the `lecture-chat` channel in Slack. Feel free to post questions or let us know if you're having software issues or can't get demos to work on your computer during the lecture 
-* Zoom recordings are available at the [course Canvas site](https://canvas.cornell.edu/courses/88419/external_tools/1346)
-* Course website and readings - see the Lectures tab of the [course website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html). You do NOT have to do the exercises in the assigned chapter before class
-* [Assignment 1](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_1.md) is due 9/4 (we will go through how to submit through GitHub next week)  
-* Azwad will hold regular office hours Mondays 3-4pm in Fernow 311
+- Reminder: Course communication will primarily be through Slack. Please
+  make sure you have joined our workspace to not miss announcements
+  about scheduling changes etc.
+- We will use the `lecture-chat` channel in Slack. Feel free to post
+  questions or let us know if you're having software issues or can't get
+  demos to work on your computer during the lecture
+- Zoom recordings are available at the [course Canvas
+  site](https://canvas.cornell.edu/courses/88419/external_tools/1346)
+- Course website and readings - see the Lectures tab of the [course
+  website](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html).
+  You do NOT have to do the exercises in the assigned chapter before
+  class
+- Assignment 1 is due 9/4 (we will go through how to submit through
+  GitHub next week)
+- Azwad will hold regular office hours Mondays 3-4pm in Fernow 311
 
 <br>
 
@@ -61,46 +75,60 @@ knitr::opts_chunk$set(echo = TRUE)
 
 By the end of today’s class, students are expected to be able to:
 
-* Generate documents with Quarto, and render these documents to html with RStudio.
-* Understand the basic formatting used to combine text, code, tables and plots in RMarkdown documents
-* Demonstrate at least two Rmd code chunk options
-* Configure git to integrate with RStudio
+- Generate documents with Quarto, and render these documents to html
+  with RStudio.
+- Understand the basic formatting used to combine text, code, tables and
+  plots in RMarkdown documents
+- Demonstrate at least two Rmd code chunk options
+- Configure git to integrate with RStudio
 
 <br>
 
-**Acknowledgements**: Today's lecture is adapted (with permission) from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst.
+**Acknowledgements**: Today's lecture is adapted (with permission) from
+the excellent R for Excel users course by Julia Stewart Lowndes and
+Allison Horst.
 
 <br>
 
 ## Introduction to RMarkdown
 
-An RMarkdown file is a plain text file that allow us to write code and text together, and when it is "knit", the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
+An RMarkdown file is a plain text file that allow us to write code and
+text together, and when it is "knit", the code will be evaluated and the
+text formatted so that it creates a reproducible report or document that
+is nice to read as a human.
 
-This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
+This is really critical to reproducibility, and it also saves time. This
+document will recreate your figures for you in the same document where
+you are writing text. So no more doing analysis, saving a plot, pasting
+that plot into Word, redoing the analysis, re-saving, re-pasting, etc.
 
 <br>
 
 ```{r, echo=FALSE, out.width="100%"}
 knitr::include_graphics("assets/rmarkdown_wizards.png")  
 ```
+
 Artwork by Allison Horst
 
 <br>
 
-This 1-minute video provides a great introduction to RMarkdown: [What is RMarkdown?](https://vimeo.com/178485416)
+This 1-minute video provides a great introduction to RMarkdown: [What is
+RMarkdown?](https://vimeo.com/178485416)
 
-Now let's explore the RMarkdown format a bit ourselves to get started. 
+Now let's explore the RMarkdown format a bit ourselves to get started.
 
-<br>
-<br>
+<br> <br>
 
 ### Create an RMarkdown file
 
-It's super easy to get started with RMarkdown within RStudio. Let's do this together:
+It's super easy to get started with RMarkdown within RStudio. Let's do
+this together:
 
-File -> New File -> RMarkdown... (or alternatively you can click the green plus in the top left -> RMarkdown). 
+File -\> New File -\> RMarkdown... (or alternatively you can click the
+green plus in the top left -\> RMarkdown).
 
-Let's title it "Testing" and write our name as author, then click OK with the recommended Default Output Format, which is HTML.
+Let's title it "Testing" and write our name as author, then click OK
+with the recommended Default Output Format, which is HTML.
 
 <br>
 
@@ -110,16 +138,24 @@ knitr::include_graphics("assets/rstudio_new-rmd-doc-html.png")
 
 <br>
 
-OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which here is a text editor. This lets us dock and organize our files within RStudio instead of having a bunch of different windows open (but there are options to pop them out if that is what you prefer).
+OK, first off: by opening a file, we are seeing the 4th pane of the
+RStudio console, which here is a text editor. This lets us dock and
+organize our files within RStudio instead of having a bunch of different
+windows open (but there are options to pop them out if that is what you
+prefer).
 
-Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Let's have a high-level look through of it: 
+Let's have a look at this file — it's not blank; there is some initial
+text is already provided for you. Let's have a high-level look through
+of it:
 
-- The top part has the Title and Author we provided, as well as today's date and the output type as an HTML document like we selected above.
-- There are white and grey sections. These are the 2 main languages that make up an RMarkdown file. 
+- The top part has the Title and Author we provided, as well as today's
+  date and the output type as an HTML document like we selected above.
+- There are white and grey sections. These are the 2 main languages that
+  make up an RMarkdown file.
   - **Grey sections are R code**
   - **White sections are Markdown text**
-- There is black and blue text (we'll ignore the green text for now).  
-  
+- There is black and blue text (we'll ignore the green text for now).
+
 <br>
 
 ```{r, echo=FALSE, out.width="80%"}
@@ -130,12 +166,20 @@ knitr::include_graphics("assets/rmarkdown.png")
 
 ### Knit your RMarkdown file
 
-Let's go ahead and "Knit" by clicking the blue yarn at the top of the RMarkdown file. 
-It's going to ask us to save first, I'll name mine "testing.Rmd". Note that this is by default going to save this file in your home directory `/~`. Since this is a testing document this is fine to save here; we will get more organized about where we save files very soon. Once you click Save, the knit process will be able to continue.
+Let's go ahead and "Knit" by clicking the blue yarn at the top of the
+RMarkdown file. It's going to ask us to save first, I'll name mine
+"testing.Rmd". Note that this is by default going to save this file in
+your home directory `/~`. Since this is a testing document this is fine
+to save here; we will get more organized about where we save files very
+soon. Once you click Save, the knit process will be able to continue.
 
-OK so how cool is this, we've just made an html file! This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered — we also say formatted — both the Markdown text (white) and the R code (grey), and the it also executed — we also say ran — the R code.  
+OK so how cool is this, we've just made an html file! This is a single
+webpage that we are viewing locally on our own computers. Knitting this
+RMarkdown document has rendered — we also say formatted — both the
+Markdown text (white) and the R code (grey), and the it also executed —
+we also say ran — the R code.
 
-Let's have a look at them side-by-side: 
+Let's have a look at them side-by-side:
 
 <br>
 
@@ -143,19 +187,23 @@ Let's have a look at them side-by-side:
 knitr::include_graphics("assets/rmarkdown_side_by_side.png")  
 ```
 
-Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
+Let's take a deeper look at these two files. So much of learning to code
+is looking for patterns.
 
 <br>
 
 #### Activity
 
-Pair up with the person next to you and discuss what you notice with these two files. Then we will have a brief share-out with the group (5 mins)
+Pair up with the person next to you and discuss what you notice with
+these two files. Then we will have a brief share-out with the group (5
+mins)
 
 <br>
 
 ### Markdown text
 
-Let's look more deeply at the Markdown text. Markdown is a formatting language for plain text, and there are only a handful of rules to know. 
+Let's look more deeply at the Markdown text. Markdown is a formatting
+language for plain text, and there are only a handful of rules to know.
 
 <br>
 
@@ -167,26 +215,36 @@ Notice the syntax for:
 - **bold** with `**text**`
 - *italic* with `*text*`
 - `verbatim code` with `` `text` ``
-- <span style="color: red;">change text color with</span>`<span style="color: red;">text</span>`
-- [link a url to your text with](https://i.pinimg.com/originals/e8/a5/cd/e8a5cd9c5dbccfabcdeea5c4a16e5e10.png) `[text](url)`
+- [change text color
+  with]{style="color: red;"}`<span style="color: red;">text</span>`
+- [link a url to your text
+  with](https://i.pinimg.com/originals/e8/a5/cd/e8a5cd9c5dbccfabcdeea5c4a16e5e10.png)
+  `[text](url)`
 - insert a blank line with `<br>`
 
-To see more of the rules, let's look at RStudio's built-in reference. Let's do this: Help > Markdown Quick Reference
+To see more of the rules, let's look at RStudio's built-in reference.
+Let's do this: Help \> Markdown Quick Reference
 
-Another good resource is the cheatsheet from RStudio, let's download it from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to find it)
+Another good resource is the cheatsheet from RStudio, let's download it
+from [here](https://rstudio.com/resources/cheatsheets/) (scroll down to
+find it)
 
-There are also other good markdown [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) available online.
+There are also other good markdown
+[cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
+available online.
 
 <br>
 
 #### Activity
+
 Make the following changes to your RMarkdown document:
 
-* Add some italic text
-* Make a numbered list
-* Add some subheaders
+- Add some italic text
+- Make a numbered list
+- Add some subheaders
 
-You can find hints in the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
+You can find hints in the Markdown Quick Reference (in the menu bar:
+Help \> Markdown Quick Reference).
 
 Re-knit your html file to see how your formatting works out.
 
@@ -196,14 +254,15 @@ If you have more time, try adding a URL and a table (see below)
 
 #### Figures and tables
 
-To show a figure from a url use `![caption](url_to_image)`
-To show a figure from a local file `![caption](local_path_to_image)`
+To show a figure from a url use `![caption](url_to_image)` To show a
+figure from a local file `![caption](local_path_to_image)`
 
 <br>
 
-To manually create a table, use the following syntax. Notice the text alignment in each column. 
+To manually create a table, use the following syntax. Notice the text
+alignment in each column.
 
-```
+```         
 | Right | Left | Default | Center |
 |------:|:-----|---------|:------:|
 | 12 | 12 | 12 | 12 |
@@ -211,12 +270,11 @@ To manually create a table, use the following syntax. Notice the text alignment 
 | 1 | 1 | 1 | 1 | 
 ```
 
-<br>
-<br>
+<br> <br>
 
 ### R code
 
-Let's look at the R code that we see executed in our knitted document. 
+Let's look at the R code that we see executed in our knitted document.
 
 We see that:
 
@@ -225,199 +283,282 @@ We see that:
 
 <br>
 
-There are a couple of things going on here. 
+There are a couple of things going on here.
 
-`summary()` and `plot()` are called **functions**; they are operations and these ones come installed with R. We call functions installed with R **base R functions**. This is similar to Excel's functions and formulas. 
+`summary()` and `plot()` are called **functions**; they are operations
+and these ones come installed with R. We call functions installed with R
+**base R functions**. This is similar to Excel's functions and formulas.
 
-`cars` and `pressure` are small datasets that come installed with R. 
+`cars` and `pressure` are small datasets that come installed with R.
 
 <br>
 
 ### Code chunks
 
-R code is written in code chunks, which are grey. There are two things to look at: R code chunks and code chunk options.
+R code is written in code chunks, which are grey. There are two things
+to look at: R code chunks and code chunk options.
 
-Each of them start with 3 backticks and `{r label}` that signify there will be R code following. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
+Each of them start with 3 backticks and `{r label}` that signify there
+will be R code following. Anything inside the brackets (`{ }`) is
+instructions for RMarkdown about that code to run. For example:
 
-- the first chunk labeled "setup" says `include=FALSE`, and we don't see it included in the HTML document. 
-- the second chunk labeled "cars" has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
-- the third chunk labeled "pressure" says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
+- the first chunk labeled "setup" says `include=FALSE`, and we don't see
+  it included in the HTML document.
+- the second chunk labeled "cars" has no additional instructions, and in
+  the HTML document we see the code and the evaluation of that code (a
+  summary table)
+- the third chunk labeled "pressure" says `echo=FALSE`, and in the HTML
+  document we do not see the code echoed, we only see the plot when the
+  code is executed.
 
-Chunk output can be customised with __options__, arguments supplied in the chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
+Chunk output can be customised with **options**, arguments supplied in
+the chunk header. Knitr provides almost 60 options that you can use to
+customize your code chunks. Here we'll cover the most important chunk
+options that you'll use frequently. You can see the full list at
+<http://yihui.name/knitr/options/>.
 
-The most important set of options controls if your code block is executed and what results are inserted in the finished report:
-  
-*   `eval = FALSE` prevents code from being evaluated (and obviously if the
-    code is not run, no results will be generated). This is useful for 
-    displaying example code, or for disabling a large block of code without 
-    commenting each line.
+The most important set of options controls if your code block is
+executed and what results are inserted in the finished report:
 
-*   `include = FALSE` runs the code, but doesn't show the code or results 
-    in the final document. Use this for setup code that you don't want
-    cluttering your report.
+- `eval = FALSE` prevents code from being evaluated (and obviously if
+  the code is not run, no results will be generated). This is useful for
+  displaying example code, or for disabling a large block of code
+  without commenting each line.
 
-*   `echo = FALSE` prevents code, but not the results from appearing in the 
-    finished file. Use this when writing reports aimed at people who don't
-    want to see the underlying R code.
-    
-*   `message = FALSE` or `warning = FALSE` prevents messages or warnings 
-    from appearing in the finished file.
+- `include = FALSE` runs the code, but doesn't show the code or results
+  in the final document. Use this for setup code that you don't want
+  cluttering your report.
 
-*   `results = 'hide'` hides printed output; `fig.show = 'hide'` hides
-    plots.
+- `echo = FALSE` prevents code, but not the results from appearing in
+  the finished file. Use this when writing reports aimed at people who
+  don't want to see the underlying R code.
 
-*   `error = TRUE` causes the render to continue even if code returns an error.
-    This is rarely something you'll want to include in the final version
-    of your report, but can be very useful if you need to debug exactly
-    what is going on inside your `.Rmd`. It's also useful if you're teaching R
-    and want to deliberately include an error. The default, `error = FALSE` causes 
-    knitting to fail if there is a single error in the document.
-    
+- `message = FALSE` or `warning = FALSE` prevents messages or warnings
+  from appearing in the finished file.
+
+- `results = 'hide'` hides printed output; `fig.show = 'hide'` hides
+  plots.
+
+- `error = TRUE` causes the render to continue even if code returns an
+  error. This is rarely something you'll want to include in the final
+  version of your report, but can be very useful if you need to debug
+  exactly what is going on inside your `.Rmd`. It's also useful if
+  you're teaching R and want to deliberately include an error. The
+  default, `error = FALSE` causes knitting to fail if there is a single
+  error in the document.
+
 <br>
 
-The following table summarises which types of output each option supressess:
+The following table summarises which types of output each option
+supressess:
 
-Option             | Run code | Show code | Output | Plots | Messages | Warnings 
--------------------|----------|-----------|--------|-------|----------|---------
-`eval = FALSE`     | -        |           | -      | -     | -        | -
-`include = FALSE`  |          | -         | -      | -     | -        | -
-`echo = FALSE`     |          | -         |        |       |          |
-`results = "hide"` |          |           | -      |       |          | 
-`fig.show = "hide"`|          |           |        | -     |          |
-`message = FALSE`  |          |           |        |       | -        |
-`warning = FALSE`  |          |           |        |       |          | -
+| Option              | Run code | Show code | Output | Plots | Messages | Warnings |
+|---------------------|----------|-----------|--------|-------|----------|----------|
+| `eval = FALSE`      | \-       |           | \-     | \-    | \-       | \-       |
+| `include = FALSE`   |          | \-        | \-     | \-    | \-       | \-       |
+| `echo = FALSE`      |          | \-        |        |       |          |          |
+| `results = "hide"`  |          |           | \-     |       |          |          |
+| `fig.show = "hide"` |          |           |        | \-    |          |          |
+| `message = FALSE`   |          |           |        |       | \-       |          |
+| `warning = FALSE`   |          |           |        |       |          | \-       |
 
 <br>
 
-> **Aside: Code chunk labels** It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`).   
-> Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you'll have to remember to relabel it something unique. We will explore this more in a moment.
-Notice how the word `FALSE` is all capitals. Capitalization matters in R; `TRUE/FALSE` is something that R can interpret as a binary yes/no or 1/0. 
+> **Aside: Code chunk labels** It is possible to label your code chunks.
+> This is to help us navigate between them and keep them organized. In
+> our example Rmd, our three chunks say `r` as the language, and have a
+> label (`setup`, `cars`, `pressure`).\
+> Labels are optional, but will become powerful as you become a powerful
+> R user. But if you label your code chunks, you must have unique
+> labels. So while a third option for creating a new code chunk is to
+> copy-paste-edit an existing one, you'll have to remember to relabel it
+> something unique. We will explore this more in a moment. Notice how
+> the word `FALSE` is all capitals. Capitalization matters in R;
+> `TRUE/FALSE` is something that R can interpret as a binary yes/no or
+> 1/0.
 
-There are many more options available that we will discuss as we get more familiar with RMarkdown.
+There are many more options available that we will discuss as we get
+more familiar with RMarkdown.
 
 <br>
 
 #### New code chunks
 
-We can create a new chunk in your RMarkdown first in one of these ways: 
+We can create a new chunk in your RMarkdown first in one of these ways:
 
 - The keyboard shortcut Cmd/Ctrl + Alt + I
-- Click on the green box with a green plus at the top of your editor pane, and select "R 
-- Click "Code" > "Insert chunk" from the top menu  
-- Type it by hand: 
-   \```{r}
-   \```
+- Click on the green box with a green plus at the top of your editor
+  pane, and select "R
+- Click "Code" \> "Insert chunk" from the top menu\
+- Type it by hand: \`\`\`{r} \`\`\`
 
 <br>
 
-> **Aside**: doesn't have to be only R, other languages supported. 
+> **Aside**: doesn't have to be only R, other languages supported.
 
 <br>
 
 Let's create a new code chunk at the end of our document.
 
-Now, let's write some code in R. Let's say we want to see the summary of the `pressure` data. I'm going to press enter to to add some extra carriage returns because sometimes I find it more pleasant to look at my code, and it helps in troubleshooting, which is often about identifying typos. R lets you use as much whitespace as you would like.
+Now, let's write some code in R. Let's say we want to see the summary of
+the `pressure` data. I'm going to press enter to to add some extra
+carriage returns because sometimes I find it more pleasant to look at my
+code, and it helps in troubleshooting, which is often about identifying
+typos. R lets you use as much whitespace as you would like.
 
 ```{r, eval=FALSE}
 summary(pressure)
 ```
 
-We can knit this and see the summary of `pressure`. This is the same data that we see with the plot just above. 
+We can knit this and see the summary of `pressure`. This is the same
+data that we see with the plot just above.
 
 <br>
 
-> Troubleshooting: Did trying to knit your document produce an error? Start by looking at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences (```) correct?
+> Troubleshooting: Did trying to knit your document produce an error?
+> Start by looking at your code again. Do you have both open `(` and
+> close `)` parentheses? Are your code chunk fences (\`\`\`) correct?
 
 <br>
 
 ## R code in the Console
-So far we have been telling R to execute our code only when we knit the document, but we can also write code in the Console to interact with the live R process.
-The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly. 
-Let's type this in the Console: `summary(pressure)` and hit enter. We see the pressure summary table returned; it is the same information that we saw in our knitted html document. By default, R will display (we also say "print") the executed result in the Console 
+
+So far we have been telling R to execute our code only when we knit the
+document, but we can also write code in the Console to interact with the
+live R process. The Console (bottom left pane of the RStudio IDE) is
+where you can interact with the R engine and run code directly. Let's
+type this in the Console: `summary(pressure)` and hit enter. We see the
+pressure summary table returned; it is the same information that we saw
+in our knitted html document. By default, R will display (we also say
+"print") the executed result in the Console
+
 ```{r, eval=FALSE}
 summary(pressure)
 ```
-We can also do math as we can in Excel: type the following and press enter.
+
+We can also do math as we can in Excel: type the following and press
+enter.
+
 ```{r, eval=FALSE}
 8*22.3
 ```
 
-<br>
-<br>
+<br> <br>
 
 ### Error messages
 
-When you code in R or any language, you will encounter errors. We will discuss troubleshooting tips more deeply later on in the course; here we will just get a little comfortable with them. 
+When you code in R or any language, you will encounter errors. We will
+discuss troubleshooting tips more deeply later on in the course; here we
+will just get a little comfortable with them.
 
 <br>
 
 #### R error messages
 
-**Error messages are your friends**. 
+**Error messages are your friends**.
 
-What do they look like? I'll demo typing in the Console `summary(pressur)`
+What do they look like? I'll demo typing in the Console
+`summary(pressur)`
 
 ``` r
 summary(pressur)
 #> Error in summary(pressur): object 'pressur' not found
 ```
 
-Error messages are R's way of saying that it didn't understand what you said. This is like in English when we say "What?" or "Pardon?" And like in spoken language, some error messages are more helpful than others. Like if someone says "Sorry, could you repeat that last word" rather than only "What?"
+Error messages are R's way of saying that it didn't understand what you
+said. This is like in English when we say "What?" or "Pardon?" And like
+in spoken language, some error messages are more helpful than others.
+Like if someone says "Sorry, could you repeat that last word" rather
+than only "What?"
 
-In this case, R is saying "I didn't understand `pressur`". R tracks the datasets it has available as objects, as well as any additional objects that you make. `pressur` is not among them, so it says that it is not found. 
+In this case, R is saying "I didn't understand `pressur`". R tracks the
+datasets it has available as objects, as well as any additional objects
+that you make. `pressur` is not among them, so it says that it is not
+found.
 
-The first step of becoming a proficient R user is to move past the exasperation of "it's not working!" and **read the error message**. Errors will be less frustrating with the mindset that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. Read the error message to learn what is wrong. 
+The first step of becoming a proficient R user is to move past the
+exasperation of "it's not working!" and **read the error message**.
+Errors will be less frustrating with the mindset that **most likely the
+problem is your typo or misuse**, and not that R is broken or hates you.
+Read the error message to learn what is wrong.
 
 <br>
 
 #### RMarkdown error messages
 
-Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let's see what happens if not. If I (re)name our `summary(pressure)` chunk to "pressure", I will see an error when you try to knit: 
+Errors can also occur in RMarkdown. I said a moment ago that you label
+your code chunks, they need to be unique. Let's see what happens if not.
+If I (re)name our `summary(pressure)` chunk to "pressure", I will see an
+error when you try to knit:
 
-```
+```         
 processing file: testing.Rmd
 Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
 Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
 Execution halted
 ```
 
-There are two things to focus on here. 
+There are two things to focus on here.
 
-First: This error message starts out in a pretty cryptic way: I don't expect you to know what `parse_block(g[-1]...` means. But, expecting that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: `duplicate label 'cars'`. 
+First: This error message starts out in a pretty cryptic way: I don't
+expect you to know what `parse_block(g[-1]...` means. But, expecting
+that the error message is really trying to help me, I continue scanning
+the message which allows me to identify the problem:
+`duplicate label 'cars'`.
 
-Second: This error is in the "R Markdown" tab on the bottom left of the RStudio IDE; it is not in the Console. That is because when RMarkdown is knitted, it actually spins up an R workspace separately from what is passed to the Console; this is one of the ways that R Markdown enables reproducibility because it is a self-contained instance of R. 
+Second: This error is in the "R Markdown" tab on the bottom left of the
+RStudio IDE; it is not in the Console. That is because when RMarkdown is
+knitted, it actually spins up an R workspace separately from what is
+passed to the Console; this is one of the ways that R Markdown enables
+reproducibility because it is a self-contained instance of R.
 
-You can click back and forth between the Console and the R Markdown tab; this is something to look out for as we continue. We will work in the Console and R Markdown and will discuss strategies for where and how to work as we go. Let's click back to Console now. 
-
-<br>
-
-### Running RMarkdown code chunks 
-
-So far, we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document). 
-
-How do we do it? There are several ways. Let's do each of these with `summary(pressure)`.
-
-<br>
-
-**First approach: send R code to the Console.**
-This approach involves selecting (highlighting) the R code only (`summary(pressure)`), not any of the backticks/fences from the code chunk. (If you see `Error: attempt to use zero-length variable name` it is because you have accidentally highlighted the backticks along with the R code. Try again (and don't forget that you can add spaces within the code chunk or make your RStudio session bigger (View > Zoom In)). 
-
-Do this by selecting code and then: 
-
-1. copy-pasting into the Console and press enter/return.
-1. clicking 'Run' from RStudio IDE. This is available from: 
-    a. the bar above the file (green arrow)
-    b. the menu bar: Code > Run Selected Line(s)
-    c. keyboard shortcut: command-return
+You can click back and forth between the Console and the R Markdown tab;
+this is something to look out for as we continue. We will work in the
+Console and R Markdown and will discuss strategies for where and how to
+work as we go. Let's click back to Console now.
 
 <br>
 
-**Second approach: run full code chunk.**
-Since we are already grouping relevant code together in chunks, it's reasonable that we might want to run it all together at once. 
+### Running RMarkdown code chunks
 
-Do this by placing your curser within a code chunk and then: 
+So far, we have written code in our RMarkdown file that is executed when
+we knit the file. We have also written code directly in the Console that
+is executed when we press enter/return. Additionally, we can write code
+in an RMarkdown code chunk and execute it by sending it into the Console
+(i.e. we can execute code without knitting the document).
 
-1. clicking the little black down arrow next to the Run green arrow and selecting Run Current Chunk. Notice there are also options to run all chunks, run all chunks above or below...
+How do we do it? There are several ways. Let's do each of these with
+`summary(pressure)`.
+
+<br>
+
+**First approach: send R code to the Console.** This approach involves
+selecting (highlighting) the R code only (`summary(pressure)`), not any
+of the backticks/fences from the code chunk. (If you see
+`Error: attempt to use zero-length variable name` it is because you have
+accidentally highlighted the backticks along with the R code. Try again
+(and don't forget that you can add spaces within the code chunk or make
+your RStudio session bigger (View \> Zoom In)).
+
+Do this by selecting code and then:
+
+1.  copy-pasting into the Console and press enter/return.
+2.  clicking 'Run' from RStudio IDE. This is available from:
+    a.  the bar above the file (green arrow)
+    b.  the menu bar: Code \> Run Selected Line(s)
+    c.  keyboard shortcut: command-return
+
+<br>
+
+**Second approach: run full code chunk.** Since we are already grouping
+relevant code together in chunks, it's reasonable that we might want to
+run it all together at once.
+
+Do this by placing your curser within a code chunk and then:
+
+1.  clicking the little black down arrow next to the Run green arrow and
+    selecting Run Current Chunk. Notice there are also options to run
+    all chunks, run all chunks above or below...
 
 <br>
 
@@ -425,32 +566,48 @@ Do this by placing your curser within a code chunk and then:
 
 <!---TODO more --->
 
-When should you write code in a file (.Rmd or .R script) and when should you write it in the Console? 
+When should you write code in a file (.Rmd or .R script) and when should
+you write it in the Console?
 
-We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this. A file is also a great way for you to take notes to yourself. 
+We write things in the file that are necessary for our analysis and that
+we want to preserve for reproducibility; we will be doing this
+throughout the workshop to give you a good sense of this. A file is also
+a great way for you to take notes to yourself.
 
-The Console is good for doing quick calculations like `8*22.3`, testing functions, for calling help pages, for installing packages. 
+The Console is good for doing quick calculations like `8*22.3`, testing
+functions, for calling help pages, for installing packages.
 
 <br>
 
 #### Activity
-Practice what you’ve learned by creating a brief CV. The title should be your name, and you should include headings for (at least) education or employment. Each of the sections should include a bulleted list of jobs/degrees. Highlight the year in bold and add a footnote.
 
-Render to html format, and if you're comfortable, share with the class by posting it to the `lecture-chat` channel in Slack.
+Practice what you’ve learned by creating a brief CV. The title should be
+your name, and you should include headings for (at least) education or
+employment. Each of the sections should include a bulleted list of
+jobs/degrees. Highlight the year in bold and add a footnote.
+
+Render to html format, and if you're comfortable, share with the class
+by posting it to the `lecture-chat` channel in Slack.
 
 <br>
 
 ### Other output formats
 
-You can knit an RMarkdown file to other output formats, including pdf, word document, GitHub flavored markdown, and many others. We will mostly use GitHub flavored markdown throughout the rest of this class because GitHub can render it nicely on its website. To knit an RMarkdown file to this format, you can do one of the followings. 
+You can knit an RMarkdown file to other output formats, including pdf,
+word document, GitHub flavored markdown, and many others. We will mostly
+use GitHub flavored markdown throughout the rest of this class because
+GitHub can render it nicely on its website. To knit an RMarkdown file to
+this format, you can do one of the followings.
 
-* When creating your RMarkdown file, click "From template", and then select "GitHub Document (Markdown)"
+- When creating your RMarkdown file, click "From template", and then
+  select "GitHub Document (Markdown)"
 
 ![](https://camo.githubusercontent.com/a10832533c888e1af7f9a110dfb635e507951151/687474703a2f2f6161726f6e626167676574742e636f6d2f696d616765732f66726f6d5f74656d706c6174652e706e67)
 
-* At the top of an RMarkdown file, change the output of the GitHub document using the following syntax
+- At the top of an RMarkdown file, change the output of the GitHub
+  document using the following syntax
 
-```
+```         
 ---
 title: "Title"
 output: 
@@ -459,122 +616,202 @@ output:
 ---
 ```
 
-Note: `toc: true` is optional, but it can automatically set up a table of content for you. 
+Note: `toc: true` is optional, but it can automatically set up a table
+of content for you.
 
-
-
-
-<br>
-<br> 
+<br> <br>
 
 #### Activity
-Practice styling RMarkdown documents with [this interactive tutorial](https://commonmark.org/help/tutorial/)
 
-<br>
-<br>
+Practice styling RMarkdown documents with [this interactive
+tutorial](https://commonmark.org/help/tutorial/)
 
+<br> <br>
 
-***
+------------------------------------------------------------------------
 
 <br>
 
 ## Git/GitHub: Brief intro & configuration
 
-Before we wrap up for today, we are going to set up Git and GitHub which we will be using along with R and RStudio for the rest of the course. 
+Before we wrap up for today, we are going to set up Git and GitHub which
+we will be using along with R and RStudio for the rest of the course.
 
-Before we do the setup configuration, let us take a moment to talk about what Git and GitHub are. 
+Before we do the setup configuration, let us take a moment to talk about
+what Git and GitHub are.
 
-It can help to think of GitHub like Dropbox: you identify folders for GitHub to 'track' and it syncs them to the cloud. This is good first-and-foremost because it makes a back-up copy of your files: if your computer dies not all of your work is gone. But with GitHub, you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
+It can help to think of GitHub like Dropbox: you identify folders for
+GitHub to 'track' and it syncs them to the cloud. This is good
+first-and-foremost because it makes a back-up copy of your files: if
+your computer dies not all of your work is gone. But with GitHub, you
+have to be more deliberate about when syncs are made. This is because
+GitHub saves these as different versions, with information about who
+contributed when, line-by-line. This makes collaboration easier, and it
+allows you to roll-back to different versions or contribute to others'
+work.
 
-Git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
+Git will track and version your files, GitHub stores this online and
+enables you to collaborate with others (and yourself). Although git and
+GitHub are two different things, distinct from each other, we can think
+of them as a bundle since we will always use them together.
 
 <br>
 
-
-
 ### Configure GitHub
 
-Now we want to connect the Git program installed on your computer with your GitHub account. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together.   
+Now we want to connect the Git program installed on your computer with
+your GitHub account. This set up is a one-time thing! You will only have
+to do this once per computer. We'll walk through this together.
 
-**You will need to remember your GitHub username, the email address you created your GitHub account with, and your GitHub password.** 
+**You will need to remember your GitHub username, the email address you
+created your GitHub account with, and your GitHub password.**
 
 <br>
 
 #### Installing packages
 
-There are several ways to configure Git, including through the command line. We will use the convenient `use_git_config()` function from the `usethis` R package (i.e. we'll run the setup from R). We first need to install the `usethis` package. Type the following in a new script:
+There are several ways to configure Git, including through the command
+line. We will use the convenient `use_git_config()` function from the
+`usethis` R package (i.e. we'll run the setup from R). We first need to
+install the `usethis` package. Type the following in a new script:
 
 ```{r install-usethis, eval=FALSE}
 ## setup packages
 install.packages("usethis")
 ```
 
-Once you have run it, "comment it out" by adding a hash tag (#) at the beginning of the line. It is generally considered good practice to not include active `install.packages()` prompts in a script so that someone else running your script on their system won't automatically install packages unknowingly. 
+Once you have run it, "comment it out" by adding a hash tag (\#) at the
+beginning of the line. It is generally considered good practice to not
+include active `install.packages()` prompts in a script so that someone
+else running your script on their system won't automatically install
+packages unknowingly.
 
-Now we've installed the package, but we need to tell R that we are going to use the functions within the `usethis` package. We do this by using the function `library()`.
+Now we've installed the package, but we need to tell R that we are going
+to use the functions within the `usethis` package. We do this by using
+the function `library()`.
 
-In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is `install.packages`. But then you need to turn on the lights each time you need them (R Session).
+In my mind, this is analogous to needing to wire your house for
+electricity: this is something you do once; this is `install.packages`.
+But then you need to turn on the lights each time you need them (R
+Session).
 
-It's a nice convention to do this on the same line as your commented-out `install.packages()` line; this makes it easier for someone (including you in a future time or computer) to install the package easily. 
+It's a nice convention to do this on the same line as your commented-out
+`install.packages()` line; this makes it easier for someone (including
+you in a future time or computer) to install the package easily.
 
 ```{r install-usethis3, eval=FALSE}
 ## setup packages
 library(usethis) # install.packages("usethis")
 ```
 
-When `usethis` is successfully attached, you won't get any feedback in the Console. So unless you get an error, this worked for you.
+When `usethis` is successfully attached, you won't get any feedback in
+the Console. So unless you get an error, this worked for you.
 
 <br>
 
 #### Setting up Git on your system
 
-Now, type the following into your Console: 
+Now, type the following into your Console:
 
 ```{r usethis, eval=FALSE}
 ## use_git_config function with my username and email as arguments
 use_git_config(user.name = "jules32", user.email = "jules32@example.org")
 ```
 
-If you see `Error in use_git_config() : could not find function "use_git_config"` please run `library("usethis")`
+If you see
+`Error in use_git_config() : could not find function "use_git_config"`
+please run `library("usethis")`
 
 <br>
 
 ### Entering a GitHub Personal Access Token (PAT)
 
-The next sections present highlights and borrows sections from:  
+The next sections present highlights and borrows sections from:
 
-* [Chapter 9: Personal access token for HTTPS in Jenny Bryan's Happy Git with R](https://happygitwithr.com/https-pat.html)
-* [The Managing Git(Hub) Credentials Vignette from the usethis package](https://usethis.r-lib.org/articles/articles/git-credentials.html)
+- [Chapter 9: Personal access token for HTTPS in Jenny Bryan's Happy Git
+  with R](https://happygitwithr.com/https-pat.html)
+- [The Managing Git(Hub) Credentials Vignette from the usethis
+  package](https://usethis.r-lib.org/articles/articles/git-credentials.html)
 
 If you want more detail, consult these sources.
 
 <br>
 
-When we interact with a remote Git server, such as GitHub, we have to include credentials in the request (to provide access to your account). This proves we are a specific GitHub user, who’s allowed to do whatever we’re asking to do. However, the password that you use to login to GitHub’s website is NOT an acceptable credential when talking to GitHub as a Git server (as we will be doing through RStudio). This was possible in the past (and may still be true for other Git servers), but those days are over at GitHub. You can learn more in their blog post [Token authentication requirements for Git operations](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
+When we interact with a remote Git server, such as GitHub, we have to
+include credentials in the request (to provide access to your account).
+This proves we are a specific GitHub user, who’s allowed to do whatever
+we’re asking to do. However, the password that you use to login to
+GitHub’s website is NOT an acceptable credential when talking to GitHub
+as a Git server (as we will be doing through RStudio). This was possible
+in the past (and may still be true for other Git servers), but those
+days are over at GitHub. You can learn more in their blog post [Token
+authentication requirements for Git
+operations](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
 
-Git can communicate with a remote server using one of two protocols, HTTPS or SSH, and the different protocols use different credentials. We will set up using HTTPS and a Personal Access Token (PAT) rather than SSH. If you want to know why, check out recommendations in [Happy Git with R](https://happygitwithr.com/https-pat.html#https-vs-ssh) or in [this usethis vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html), but you can also just take our word for it.
+Git can communicate with a remote server using one of two protocols,
+HTTPS or SSH, and the different protocols use different credentials. We
+will set up using HTTPS and a Personal Access Token (PAT) rather than
+SSH. If you want to know why, check out recommendations in [Happy Git
+with R](https://happygitwithr.com/https-pat.html#https-vs-ssh) or in
+[this usethis
+vignette](https://usethis.r-lib.org/articles/articles/git-credentials.html),
+but you can also just take our word for it.
 
 <br>
 
 #### Generating a PAT
 
-Personal access tokens (PATs) are an alternative to using your username and password for authentication to GitHub. 
+Personal access tokens (PATs) are an alternative to using your username
+and password for authentication to GitHub.
 
-Make sure you're signed into your [GitHub account](https://github.com/) in a web browser and that you have [verified the email address associated with your account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address). 
+Make sure you're signed into your [GitHub account](https://github.com/)
+in a web browser and that you have [verified the email address
+associated with your
+account](https://docs.github.com/en/github/getting-started-with-github/verifying-your-email-address).
 
-Now run `create_github_token()` (a function from the `usethis` package) in your RStudio console. This will take you to a pre-filled form to create a new PAT. Alternatively, you can get to the same page from ["Settings" in your GitHub account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) in the browser. The advantage of running `create_github_token()` is that the developers of the `usethis` package have pre-selected some recommended scopes, which you can look over and adjust.
+Now run `create_github_token()` (a function from the `usethis` package)
+in your RStudio console. This will take you to a pre-filled form to
+create a new PAT. Alternatively, you can get to the same page from
+["Settings" in your GitHub
+account](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+in the browser. The advantage of running `create_github_token()` is that
+the developers of the `usethis` package have pre-selected some
+recommended scopes, which you can look over and adjust.
 
-Let's go ahead and just stick with their selected defaults. It is a very good idea to give the token a descriptive name (in the `NOTE` field), because one day you might have multiple PATs, e.g., one that’s configured on your main work computer and another that you use from a secondary computer. Eventually, you’ll need to “spring clean” your PATs and this is much less nerve-wracking if you know which PAT is being used where and for what.
+Let's go ahead and just stick with their selected defaults. It is a very
+good idea to give the token a descriptive name (in the `NOTE` field),
+because one day you might have multiple PATs, e.g., one that’s
+configured on your main work computer and another that you use from a
+secondary computer. Eventually, you’ll need to “spring clean” your PATs
+and this is much less nerve-wracking if you know which PAT is being used
+where and for what.
 
-Once you've added a name in the `NOTE` field, click “Generate token”. As the page says, you must store this token somewhere, because you’ll never be able to see it again, once you leave that page or close the window. You can for example save it in a text file on your computer. But that is not a very safe option (i.e. not recommended). You should think of it as a password, so a better solution is a secure password management app, such as 1Password or LastPass. You can consider adopting those later if you're not using one already - don't worry about it right at this moment; for now we'll just assume you have your PAT available in the browser or the clipboard.
+Once you've added a name in the `NOTE` field, click “Generate token”. As
+the page says, you must store this token somewhere, because you’ll never
+be able to see it again, once you leave that page or close the window.
+You can for example save it in a text file on your computer. But that is
+not a very safe option (i.e. not recommended). You should think of it as
+a password, so a better solution is a secure password management app,
+such as 1Password or LastPass. You can consider adopting those later if
+you're not using one already - don't worry about it right at this
+moment; for now we'll just assume you have your PAT available in the
+browser or the clipboard.
 
-Next, we will add your PAT to the Git credential store as a semi-persistent convenience, sort of like “remember me” on a website. But, just like logging into websites, it is entirely possible that your PAT will somehow be forgotten from the credential store and you will need to re-enter it. Don't worry: If you goof this up and lose your PAT, just generate a new PAT but to not confuse yourself, delete the lost token.
+Next, we will add your PAT to the Git credential store as a
+semi-persistent convenience, sort of like “remember me” on a website.
+But, just like logging into websites, it is entirely possible that your
+PAT will somehow be forgotten from the credential store and you will
+need to re-enter it. Don't worry: If you goof this up and lose your PAT,
+just generate a new PAT but to not confuse yourself, delete the lost
+token.
 
 <br>
 
 #### Put your PAT into the Git credential store
 
-There are many ways to get your credential into the Git store. Here, we will use the `gitcreds` package, which is a dependency of the `usethis` package, so we installed it earlier.
+There are many ways to get your credential into the Git store. Here, we
+will use the `gitcreds` package, which is a dependency of the `usethis`
+package, so we installed it earlier.
 
 ```{r gitcreds, eval=FALSE}
 library(gitcreds) # install.packages("gitcreds")
@@ -584,33 +821,43 @@ gitcreds_set()
 
 <br>
 
-`gitcreds::gitcreds_set()` is a very handy function, since it reports any current credential, allows you to see it, allows you to keep or replace an existing credential, and can also store a credential for the first time. To do this, select option 2 ("Replace these credentials") and enter your PAT as the password.
+`gitcreds::gitcreds_set()` is a very handy function, since it reports
+any current credential, allows you to see it, allows you to keep or
+replace an existing credential, and can also store a credential for the
+first time. To do this, select option 2 ("Replace these credentials")
+and enter your PAT as the password.
 
-You can check that you’ve stored a credential with `gitcreds_get()`. If you can confirm that your PAT is now stored, you should be all set. This setup is something you do once. Or, rather, once per machine, per PAT. From this point on, `usethis` and its dependencies should be able to automatically retrieve and use this PAT.
+You can check that you’ve stored a credential with `gitcreds_get()`. If
+you can confirm that your PAT is now stored, you should be all set. This
+setup is something you do once. Or, rather, once per machine, per PAT.
+From this point on, `usethis` and its dependencies should be able to
+automatically retrieve and use this PAT.
 
 <br>
 
-If you're on a Mac and get the following error message 
+If you're on a Mac and get the following error message
+
 ```{r dev tools error , eval=FALSE}
 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
 ```
-you'll need to install the XCode Command Line Tools as described [here](https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a)
 
-<br>
-<br>
+you'll need to install the XCode Command Line Tools as described
+[here](https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a)
 
+<br> <br>
 
 ### Ensure that Git/GitHub/RStudio are communicating
 
-As a final step for today, we are going to go through a few steps to ensure that Git/GitHub are communicating with RStudio.
+As a final step for today, we are going to go through a few steps to
+ensure that Git/GitHub are communicating with RStudio.
 
 <br>
 
+#### RStudio - New Project
 
-#### RStudio - New Project  
-
-Click on `New Project`. There are a few different ways; you could also go to File > New Project..., or click the little green + with the R box in the top left.
-also in the File menu).
+Click on `New Project`. There are a few different ways; you could also
+go to File \> New Project..., or click the little green + with the R box
+in the top left. also in the File menu).
 
 <br>
 
@@ -618,9 +865,7 @@ also in the File menu).
 knitr::include_graphics("assets/new_project_1.png")  
 ```
 
-
-<br>
-<br>
+<br> <br>
 
 #### Select Version Control
 
@@ -630,12 +875,11 @@ knitr::include_graphics("assets/new_project_1.png")
 knitr::include_graphics("assets/new_project_2.png")  
 ```
 
-<br>
-<br>
+<br> <br>
 
 #### Select Git
 
-Since we are using git. 
+Since we are using git.
 
 <br>
 
@@ -643,11 +887,9 @@ Since we are using git.
 knitr::include_graphics("assets/new_project_3.png")  
 ```
 
-
 <br>
 
-#### Do you see what I see? 
-
+#### Do you see what I see?
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/new_project_4.png")  
@@ -655,94 +897,107 @@ knitr::include_graphics("assets/new_project_4.png")
 
 <br>
 
-**If yes, hooray! Time to wrap up for today!** You're now ready for exploring integrated GitHub/RStudio workflows next week.
+**If yes, hooray! Time to wrap up for today!** You're now ready for
+exploring integrated GitHub/RStudio workflows next week.
 
 <br>
- 
+
 **If no, we will help you troubleshoot.**
 
-<br>
-<br>
+<br> <br>
 
 ### Troubleshooting
 
-First, confirm that you are using the correct GitHub login credentials (are you sure you typed in the correct user name and password?)
+First, confirm that you are using the correct GitHub login credentials
+(are you sure you typed in the correct user name and password?)
 
-Next, look through [Happy Git With R's RStudio, Git, GitHub Hell](http://happygitwithr.com/troubleshooting.html) troubleshooting chapter. 
+Next, look through [Happy Git With R's RStudio, Git, GitHub
+Hell](http://happygitwithr.com/troubleshooting.html) troubleshooting
+chapter.
 
 <br>
 
-
 #### Configure Git from Terminal
 
-If `usethis` fails, the following is the classic approach to configuring **git**.  Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
+If `usethis` fails, the following is the classic approach to configuring
+**git**. Open the Git Bash program (Windows) or the Terminal (Mac) and
+type the following:
 
-        # display your version of git
-        git --version
-        
-        # replace USER with your Github user account
-        git config --global user.name USER
-        
-        # replace NAME@EMAIL.EDU with the email you used to register with Github
-        git config --global user.email NAME@EMAIL.EDU
-        
-        # list your config to confirm user.* variables set
-        git config --list
+```         
+    # display your version of git
+    git --version
+    
+    # replace USER with your Github user account
+    git config --global user.name USER
+    
+    # replace NAME@EMAIL.EDU with the email you used to register with Github
+    git config --global user.email NAME@EMAIL.EDU
+    
+    # list your config to confirm user.* variables set
+    git config --list
+```
 
-This will configure git with global (`--global`) commands, which means it will apply 'globally' to all your future github repositories, rather than only to this one now. **Note for PCs**: We've seen PC failures correct themselves by doing the above but omitting `--global`. (Then you will need to configure GitHub for every repo you clone but that is fine for now).
+This will configure git with global (`--global`) commands, which means
+it will apply 'globally' to all your future github repositories, rather
+than only to this one now. **Note for PCs**: We've seen PC failures
+correct themselves by doing the above but omitting `--global`. (Then you
+will need to configure GitHub for every repo you clone but that is fine
+for now).
 
 <br>
 
 #### Failure to locate Git
-Sometimes you may this error: 
 
-```
+Sometimes you may this error:
+
+```         
 error key does not contain a section --global terminal
 ```
+
 and
-```
+
+```         
 fatal: not in a git directory
 ```
 
 <br>
 
-To solve this, go to the Terminal and type:
-    ```
-which git
-```
+To solve this, go to the Terminal and type: `which git`
 
-<img src="assets/git_whichgit.png" width="250px">
-
-<br>
-  
-Look at the filepath that is returned. Does it say anything to do with Apple?
-
--> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.  
-
--> If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
+<img src="assets/git_whichgit.png" width="250px"/>
 
 <br>
 
-In RStudio, navigate to: Tools > Global Options > Git/SVN. 
+Look at the filepath that is returned. Does it say anything to do with
+Apple?
 
-<img src="assets/git_options.png" width="250px">
+-\> If yes, then the [Git you downloaded](https://git-scm.com/downloads)
+isn't installed, please redownload if necessary, and follow instructions
+to install.
 
+-\> If no, (in the example image, the filepath does not say anything
+with Apple) then proceed below:
+
+<br>
+
+In RStudio, navigate to: Tools \> Global Options \> Git/SVN.
+
+<img src="assets/git_options.png" width="250px"/>
 
 <br>
 
-Does the **“Git executable”** filepath match what the url in Terminal says? 
+Does the **“Git executable”** filepath match what the url in Terminal
+says?
 
-<img src="assets/git_options_filepath.png" width="500px">
-
-<br>
-
-If not, click the browse button and navigate there.   
-
-
+<img src="assets/git_options_filepath.png" width="500px"/>
 
 <br>
-<br>
+
+If not, click the browse button and navigate there.
+
+<br> <br>
 
 ### END **RMarkdown/GitHub** session!
 
-<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
+::: {.tocify-extend-page data-unique="tocify-extend-page" style="height: 0;"}
+:::

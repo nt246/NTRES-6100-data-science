@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lesson 2: Quarto and GitHub</title>
+
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Collaborative and Reproducible Data Science in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="syllabus.html">Syllabus</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lecture notes</li>
+    <li>
+      <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
+    </li>
+    <li>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
+    </li>
+    <li>
+      <a href="lesson4-collaboration.html">Lesson 4: Collaborating with GitHub - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson5-collaboration-part2.html">Lesson 5: Collaborating with GitHub - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson6-ggplot-part1.html">Lesson 6: Plotting with ggplot - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson7-data-wrangling1.html">Lesson 7: Data wrangling - Part 1</a>
+    </li>
+    <li>
+      <a href="lesson8-data-wrangling2.html">Lesson 8: Data wrangling - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson9-ggplot-part2.html">Lesson 9: Plotting with ggplot - Part 2</a>
+    </li>
+    <li>
+      <a href="lesson10-tidy-data.html">Lesson 10: Tidy Data</a>
+    </li>
+    <li>
+      <a href="lesson11-data-import-and-types.html">Lesson 11: Data import, export, and conversion between data types</a>
+    </li>
+    <li>
+      <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
+    </li>
+    <li>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
+    </li>
+    <li>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
+    </li>
+    <li>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
+    </li>
+    <li>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
+    </li>
+    <li>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
+    </li>
+    <li>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Lab handouts</li>
+    <li>
+      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+    </li>
+    <li>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
+    </li>
+    <li>
+      <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
+    </li>
+    <li>
+      <a href="lab4-ggplot-dplyr.html">Lab 4: Data exploration with the gapminder dataset</a>
+    </li>
+    <li>
+      <a href="lab5-titanic.html">Lab 5: Data exploration with the Titanic dataset</a>
+    </li>
+    <li>
+      <a href="lab6-tidy-data.html">Lab 6: Data cleaning and tidy data</a>
+    </li>
+    <li>
+      <a href="lab7-relational-data.html">Lab 7: Relational data and tidy data</a>
+    </li>
+    <li>
+      <a href="lab8-iteration.html">Lab 8: Iteration and conditional execution</a>
+    </li>
+    <li>
+      <a href="lab9-function.html">Lab 9: Functions and iteration</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Installation guide</a>
+    </li>
+    <li>
+      <a href="trouble-shooting.html">Trouble-shooting guide</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lesson 2: Quarto and GitHub</h1>
+
+</div>
+
+
+<p><br> &lt;br)</p>
+<div id="readings" class="section level2">
+<h2>Readings</h2>
+<p><br></p>
+<div id="quarto" class="section level3">
+<h3>Quarto</h3>
+<p><strong>Required</strong>:<br />
+- <a href="https://r4ds.hadley.nz/quarto.html">Chapters 28 and 29 in R
+for Data Science (2e)</a><br />
+- Have a look at the <a href="https://quarto.org/">Quarto
+website</a></p>
+<p><strong>Additional resources</strong>:<br />
+- <a
+href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto
+Tutorial: Hello, Quarto</a><br />
+- <a href="https://quarto.org/docs/get-started/computations/">Quarto
+Tutorial: Computations</a><br />
+- <a href="https://quarto.org/docs/guide/">Comprehensive guide to using
+Quarto</a> [great look-up resource]</p>
+<p><br></p>
+</div>
+<div id="github" class="section level3">
+<h3>GitHub</h3>
+<p><strong>Required</strong>:<br />
+- <a href="https://happygitwithr.com/big-picture.html">Chapter 1 in
+Jenny Bryan’s Happy Git with R</a></p>
+<p><strong>Additional resources</strong>:<br />
+- <a href="https://peerj.com/preprints/3159/">Excuse me, do you have a
+moment to talk about version control?</a> by Jenny Bryan<br />
+- <a
+href="https://openscapes.github.io/series/github-issues.html">GitHub for
+Project Management</a> by Openscapes</p>
+<p><br></p>
+</div>
+</div>
+<div id="class-announcements" class="section level2">
+<h2>Class announcements</h2>
+<ul>
+<li>Reminder: Course communication will primarily be through Slack.
+Please make sure you have joined our workspace so you don’t miss
+announcements about scheduling changes etc.</li>
+<li>We will use the <code>lecture-chat</code> channel in Slack. Feel
+free to post questions or let us know if you’re having software issues
+or can’t get demos to work on your computer during the lecture.</li>
+<li>Course website and readings: see the Lectures tab of the course
+website. You do <strong>NOT</strong> have to do all of the exercises in
+the assigned chapters before class.</li>
+<li>Assignment 1 is due 9/4 (we will go through how to submit through
+GitHub next week)</li>
+<li>Azwad will hold regular office hours Mondays 3-4pm in Fernow
+311</li>
+</ul>
+<p><br></p>
+</div>
+<div id="learning-objectives-for-todays-class" class="section level2">
+<h2>Learning objectives for today’s class</h2>
+<p>By the end of today’s class, students should be able to:</p>
+<ul>
+<li>Create a Quarto document and render it to HTML with RStudio.</li>
+<li>Understand the basic structure of a Quarto document: YAML, Markdown
+text, and executable code.</li>
+<li>Combine text, code, tables, and plots in a reproducible
+document.</li>
+<li>Use Quarto cell options to control how code and output appear in the
+rendered document.</li>
+<li>Explain how Quarto documents support reproducible research.</li>
+<li>Configure Git to integrate with RStudio.</li>
+</ul>
+<p><br></p>
+<p>Acknowledgements: This lecture retains material adapted (with
+permission) from the excellent <a
+href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel
+users</a> course by Julia Stewart Lowndes and Allison Horst, updated
+here for Quarto.</p>
+<hr />
+<p><br></p>
+</div>
+<div id="introduction-to-quarto" class="section level2">
+<h2>Introduction to Quarto</h2>
+<p>A Quarto file is a plain-text file that allows us to write
+<strong>code and text together</strong>. When we <strong>render</strong>
+the document, the text is formatted and the code is executed so that we
+create a reproducible report or document that is nice to read as a
+human.</p>
+<p>This is really critical to reproducibility, and it also saves time.
+Your figures, tables, numerical results, and text can all live together
+in the same document. So no more:</p>
+<blockquote>
+<p>do analysis → save plot → paste plot into Word → change analysis →
+re-save plot → re-paste plot → realize the number in paragraph 3 is now
+wrong…</p>
+</blockquote>
+<p>Instead, the document can recreate the results directly from the
+code.</p>
+<p>For R users, Quarto uses <strong>knitr</strong> to execute the R code
+and <strong>Pandoc</strong> to turn the resulting document into the
+final output format. You don’t need to worry much about those pieces
+right now, but it is useful to know what is happening behind the
+scenes.</p>
+<p>At a high level:</p>
+<p><strong>Quarto source (<code>.qmd</code>) → execute code → render →
+HTML / PDF / Word / other formats</strong></p>
+<p><br></p>
+<p><br></p>
+<blockquote>
+<h3 id="how-does-quarto-relate-to-r-markdown">How does Quarto relate to
+R Markdown?</h3>
+<h4
+id="if-you-have-used-r-markdown-before-quarto-will-look-very-familiar.-r-markdown-.rmd-and-quarto-.qmd-both-allow-us-to-combine-narrative-text-markdown-formatting-executable-r-code-figures-and-other-output-in-a-single-reproducible-document.">If
+you have used <strong>R Markdown</strong> before, Quarto will look very
+familiar. R Markdown (<code>.Rmd</code>) and Quarto (<code>.qmd</code>)
+both allow us to combine narrative text, Markdown formatting, executable
+R code, figures, and other output in a single reproducible
+document.</h4>
+<p>Quarto is a newer publishing system developed by Posit that builds on
+many of the ideas and tools underlying R Markdown. For R code, both
+systems use <strong>knitr</strong> to execute code, and both use
+<strong>Pandoc</strong> to create finished documents.</p>
+<p>So why are we using Quarto? Quarto provides a more modern and
+consistent framework for creating reproducible documents. It supports R
+as well as other languages such as Python and Julia, has improved
+support for things like figures, tables, citations, cross-references,
+websites, and presentations, and uses a more consistent syntax for
+document and code-cell options.</p>
+<p>If you already know R Markdown, <strong>you do not need to re-learn
+everything</strong>. Most of what you know about Markdown, R code
+chunks, knitr, and reproducible documents carries directly over to
+Quarto. And if you encounter an <code>.Rmd</code> file in an existing
+project, there is no reason to panic—or necessarily to convert it. R
+Markdown is still widely used and supported.</p>
+<p>For this course, however, <strong>we will use Quarto for new
+documents</strong>.</p>
+</blockquote>
+<p><br></p>
+<p>Now let’s explore the Quarto format ourselves.</p>
+<p><br></p>
+<div id="create-a-quarto-file" class="section level3">
+<h3>Create a Quarto file</h3>
+<p>It’s very easy to get started with Quarto within RStudio. Let’s do
+this together:</p>
+<p><strong>File → New File → Quarto Document…</strong></p>
+<p>Let’s title it “Testing”, write our name as author, and select
+<strong>HTML</strong> as the output format.</p>
+<p><img src="assets/rstudio_new_quarto_doc.png" alt="" width="80%" /></p>
+<p><br></p>
+<p>Save the file as:</p>
+<p><code>testing.qmd</code></p>
+<p>The <code>.qmd</code> extension tells us that this is a Quarto
+document.</p>
+<p>OK, first off: by opening a file, we are using the Source pane of
+RStudio, which is a text editor. This lets us write and organize files
+within RStudio rather than doing everything directly in the Console.</p>
+<p>Let’s have a high-level look through the new document. There are
+three important pieces:</p>
+<ol style="list-style-type: decimal">
+<li><strong>YAML</strong> at the top: document-level information and
+options.</li>
+<li><strong>Markdown</strong>: the text we want humans to read.</li>
+<li><strong>Executable code cells</strong>: code that Quarto can run
+when the document is rendered.</li>
+</ol>
+<p><br></p>
+<p><img src="assets/quarto_template_raw.png" alt="" width="80%" /></p>
+<p><br></p>
+</div>
+<div id="yaml" class="section level3">
+<h3>YAML</h3>
+<p>At the very top of the document you should see something like:</p>
+<pre class="yaml"><code>---
+title: &quot;Testing&quot;
+author: &quot;Your name&quot;
+format: html
+editor: visual
+---</code></pre>
+<p>This is the <strong>YAML header</strong>. YAML is used to specify
+information and options that apply to the whole document.</p>
+<p>Here we are telling Quarto:</p>
+<ul>
+<li><code>title</code> — the title of the document</li>
+<li><code>author</code> — the author of the document</li>
+<li><code>format: html</code> — the format we want Quarto to create when
+we render the document</li>
+<li><code>editor: visual</code> — tells RStudio to open the document
+using its <strong>Visual Editor</strong> by default</li>
+</ul>
+<p>Quarto documents can be edited in RStudio in either
+<strong>Visual</strong> or <strong>Source</strong> mode. Visual mode
+provides a word-processor-like interface where formatting, links, lists,
+tables, etc. appear much as they will in the finished document. Source
+mode shows the underlying Markdown syntax.</p>
+<p>You can switch between <strong>Visual</strong> and
+<strong>Source</strong> at any time using the buttons at the top of the
+editor. They are simply two different ways of editing the <strong>same
+<code>.qmd</code> file</strong>—switching between them does not change
+the type of document.</p>
+<p>Even if you prefer working in Visual mode, it is useful to understand
+what the underlying Markdown looks like. We will therefore spend some
+time today working in <strong>Source mode</strong> so you become
+familiar with the basic syntax.</p>
+<p>We can add many more options later. For now, the important thing is
+the distinction:</p>
+<blockquote>
+<p><strong>YAML controls the document; Markdown contains the narrative;
+code performs the computation.</strong></p>
+</blockquote>
+<p><br></p>
+</div>
+<div id="render-your-quarto-file" class="section level3">
+<h3>Render your Quarto file</h3>
+<p>Let’s go ahead and click <strong>Render</strong> at the top of the
+Quarto document.</p>
+<p>Quarto will ask us to save first if we haven’t already.</p>
+<p>And now we’ve made an HTML file! This is a webpage that we are
+viewing locally on our own computer.</p>
+<p>Rendering the Quarto document did two things:</p>
+<ol style="list-style-type: decimal">
+<li>It <strong>formatted</strong> the Markdown text.</li>
+<li>It <strong>executed</strong> the R code and inserted the results
+into the document.</li>
+</ol>
+<p>Let’s look at the <code>.qmd</code> source and the rendered HTML
+side-by-side.</p>
+<p><br></p>
+<p><img src="assets/quarto_raw_and_rendered.png" alt="" width="100%" /></p>
+<p><br></p>
+</div>
+<div id="activity" class="section level3">
+<h3>Activity</h3>
+<p>Pair up with the person next to you and discuss what you notice when
+you compare the source document and the rendered document.</p>
+<p>Some things to look for:</p>
+<ul>
+<li>What appears in both?</li>
+<li>What looks different?</li>
+<li>What parts of the source control formatting?</li>
+<li>What happened to the R code and its output?</li>
+</ul>
+<p>Then we’ll have a brief share-out with the group. (5 mins)</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="markdown-text" class="section level2">
+<h2>Markdown text</h2>
+<p>Now let’s look more closely at the text in our Quarto document.</p>
+<p><strong>Markdown is a formatting language for plain text, and there
+are only a handful of rules you need to know to get started.</strong>
+Instead of using buttons to format text, as you might in Word, we use
+simple characters to indicate things like headings, bold text, lists,
+and links.</p>
+<p>Here is an overview of some of the Markdown formatting we will use
+most often:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">What you want</th>
+<th align="left">Markdown syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Heading</td>
+<td align="left"><code>## Heading</code></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Bold text</strong></td>
+<td align="left"><code>**Bold text**</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Italic text</em></td>
+<td align="left"><code>*Italic text*</code></td>
+</tr>
+<tr class="even">
+<td align="left">Inline code</td>
+<td align="left"><code>`mean(x)`</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Bulleted list</td>
+<td align="left"><code>- Item</code></td>
+</tr>
+<tr class="even">
+<td align="left">Numbered list</td>
+<td align="left"><code>1. Item</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Link</td>
+<td
+align="left"><code>[Cornell University](https://www.cornell.edu)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Image</td>
+<td align="left"><code>![Caption](image.png)</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>You can find a more complete overview in the <a
+href="https://quarto.org/docs/authoring/markdown-basics.html">Quarto
+Markdown Basics guide</a>.</p>
+<p>One nice thing about Markdown is that the source file remains quite
+readable even before we render it.</p>
+<p><br></p>
+<div id="headers" class="section level3">
+<h3>Headers</h3>
+<p>Headers are created using <code>#</code>. The number of
+<code>#</code> symbols indicates the level of the heading:</p>
+<pre class="markdown"><code># First-level heading
+
+## Second-level heading
+
+### Third-level heading</code></pre>
+<p><br></p>
+</div>
+<div id="text-formatting" class="section level3">
+<h3>Text formatting</h3>
+<p>We can use a few simple symbols to format text:</p>
+<pre class="markdown"><code>This text is **bold**.
+
+This text is *italic*.
+
+This is `R code` within a sentence.</code></pre>
+<p><br></p>
+</div>
+<div id="links" class="section level3">
+<h3>Links</h3>
+<p>Links use the following syntax:</p>
+<pre class="markdown"><code>[Cornell University](https://www.cornell.edu)</code></pre>
+<p>The text in square brackets is what the reader sees, and the URL goes
+in parentheses.</p>
+<p><br></p>
+</div>
+<div id="lists" class="section level3">
+<h3>Lists</h3>
+<p>For a bulleted list:</p>
+<pre class="markdown"><code>- first item
+- second item
+- third item</code></pre>
+<p>For a numbered list:</p>
+<pre class="markdown"><code>1. first item
+2. second item
+3. third item</code></pre>
+<p><br></p>
+</div>
+<div id="images-and-tables" class="section level3">
+<h3>Images and tables</h3>
+<p>We can also add images directly to a Quarto document:</p>
+<pre class="markdown"><code>![A useful caption](images/my-image.png)</code></pre>
+<p><br></p>
+<p>Markdown can also be used to create simple tables. For example, this
+Markdown:</p>
+<pre class="markdown"><code>| Species | n | Mean length |
+|:--------|--:|------------:|
+| Cod     | 12 | 43.2 |
+| Haddock | 18 | 38.7 |</code></pre>
+<p>will render as:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="right">n</th>
+<th align="right">Mean length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cod</td>
+<td align="right">12</td>
+<td align="right">43.2</td>
+</tr>
+<tr class="even">
+<td align="left">Haddock</td>
+<td align="right">18</td>
+<td align="right">38.7</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that the alignment of the <code>:</code> in the separator row
+controls the alignment of each column:</p>
+<ul>
+<li><code>:---</code> = left aligned</li>
+<li><code>---:</code> = right aligned</li>
+<li><code>:---:</code> = centered</li>
+</ul>
+<p>You don’t need to memorize this syntax. In practice, we will often
+create figures and tables directly from R, which has the advantage that
+they are automatically updated when our data or analysis changes.</p>
+<p><br></p>
+</div>
+<div id="activity-1" class="section level3">
+<h3>Activity</h3>
+<p>Make the following changes to your Quarto document:</p>
+<ul>
+<li>Add some *italic text*.</li>
+<li>Make a numbered list.</li>
+<li>Add a second-level heading with `##`.</li>
+<li>Add a link to a website.</li>
+<li>Add an image</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="r-code-in-quarto" class="section level2">
+<h2>R code in Quarto</h2>
+<p>Now let’s look at the executable R code.</p>
+<p>R code is written in <strong>code cells</strong> (also commonly
+called code chunks). A basic R cell looks like this:</p>
+<pre><code>&#96;&#96;&#96;{r}
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+<p>The three backticks mark the beginning and end of the cell, and
+<code>{r}</code> tells Quarto that the code inside is R.</p>
+<p><br></p>
+<p>Let’s add this code cell to our document and then render it.</p>
+<p><br></p>
+<p><strong>What happened?</strong></p>
+<p>Quarto:</p>
+<ol style="list-style-type: decimal">
+<li>ran <code>summary(pressure)</code>;</li>
+<li>inserted the R code into the document; and</li>
+<li>inserted the output produced by that code.</li>
+</ol>
+<p><br></p>
+<pre class="markdown"><code>
+``` r
+summary(cars)
+```
+
+```
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+```</code></pre>
+<p><br></p>
+<div id="code-cell-options" class="section level3">
+<h3>Code cell options</h3>
+<p>Often we want more control over what happens when a cell is
+rendered.</p>
+<p>In Quarto, the recommended syntax for cell options is to put them on
+lines beginning with <code>#|</code> at the top of the code cell.</p>
+<p>For example:</p>
+<pre><code>&#96;&#96;&#96;{r}
+#| echo: false
+
+plot(pressure)
+&#96;&#96;&#96;</code></pre>
+<p>The code runs, but the code itself is not displayed in the finished
+document.</p>
+<p><br></p>
+<p>Here are four options you will use frequently:</p>
+<ul>
+<li><code>#| echo: false</code> — run the code but don’t display the
+code.</li>
+<li><code>#| eval: false</code> — display the code but don’t run
+it.</li>
+<li><code>#| warning: false</code> — don’t display warnings.</li>
+<li><code>#| message: false</code> — don’t display messages.</li>
+</ul>
+<p><br></p>
+<p>Another useful option is:</p>
+<ul>
+<li><code>#| include: false</code> — run the code but don’t display
+either the code or its output.</li>
+</ul>
+<p>For example, we might use <code>include: false</code> for setup code
+that needs to run but would clutter the report.</p>
+<p><br></p>
+</div>
+<div id="activity-2" class="section level3">
+<h3>Activity</h3>
+<p>Try each of these in your document:</p>
+<ol style="list-style-type: decimal">
+<li>Add <code>#| echo: false</code> to a cell and render.</li>
+<li>Change it to <code>#| eval: false</code> and render again.</li>
+<li>What is the difference?</li>
+</ol>
+<p><br></p>
+<p>The point is not to memorize every Quarto option. It is to understand
+that <strong>we can control what gets executed and what the reader
+sees</strong>. When you need an option later, look it up.</p>
+<p><br></p>
+</div>
+<div id="cell-labels" class="section level3">
+<h3>Cell labels</h3>
+<p>We can also give a cell a label:</p>
+<pre><code>&#96;&#96;&#96;{r}
+#| label: pressure-summary
+
+summary(pressure)
+&#96;&#96;&#96;</code></pre>
+<p>Labels help us organize larger documents and become especially useful
+when we want to refer to figures and tables.</p>
+<p>Labels should be unique within a document.</p>
+<p>Labels help us organize larger documents and become especially useful
+when we want to refer to figures and tables. Labels should be unique
+within a document.</p>
+<p><br></p>
+</div>
+<div id="figures-and-captions" class="section level3">
+<h3>Figures and captions</h3>
+<p>Quarto makes it easy to treat figures as actual document elements
+rather than images that we manually paste into a report.</p>
+<p>For example:</p>
+<pre><code>&#96;&#96;&#96;{r}
+#| label: fig-pressure
+#| fig-cap: "Relationship between temperature and pressure."
+
+plot(pressure)
+&#96;&#96;&#96;</code></pre>
+<p>Because the label starts with <code>fig-</code>, Quarto knows that
+this is a figure.</p>
+<p>We can refer to it elsewhere in the document using:</p>
+<pre><code>See @fig-pressure.</code></pre>
+<p>Quarto will automatically number the figure and create the
+cross-reference.</p>
+<p><br></p>
+<p>You don’t need to memorize this today. The important idea is that the
+<strong>figure, its caption, the code that created it, and the text
+referring to it can all be connected in the same reproducible
+document.</strong></p>
+<p><br></p>
+</div>
+<div id="inline-r-code" class="section level3">
+<h3>Inline R code</h3>
+<p>Sometimes we want a result from R to appear directly inside a
+sentence. For example, suppose we want our document to say how many rows
+are in the <code>cars</code> dataset.</p>
+<p>We could type the number ourselves. But what happens if the data
+change?</p>
+<p>Instead, we can use inline R code:</p>
+<pre><code>The cars dataset contains `{r} nrow(cars)` observations.</code></pre>
+<p>When we render the document, R calculates the value and Quarto
+inserts it into the sentence:<br />
+<strong>The cars dataset contains 50 observations.</strong></p>
+<p>This is a small example of a very powerful principle:</p>
+<blockquote>
+<p><strong>If a value can be generated from the data, let the computer
+generate it rather than copying and pasting it manually.</strong></p>
+</blockquote>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="running-code-while-you-work" class="section level2">
+<h2>Running code while you work</h2>
+<p>Rendering the document runs the code needed to create the finished
+document, but we usually don’t want to render the entire document every
+time we are experimenting with a line of code.</p>
+<p>We can run code interactively from a Quarto code cell and send it to
+the R Console.</p>
+<p><br></p>
+<div id="run-a-line-of-code" class="section level3">
+<h3>Run a line of code</h3>
+<p>Put your cursor on a line of R code and:</p>
+<ul>
+<li>click <strong>Run</strong>, or</li>
+<li>use <strong>Command + Return</strong> on a Mac / <strong>Ctrl +
+Enter</strong> on Windows.</li>
+</ul>
+<p>For example:</p>
+<pre class="r"><code>summary(pressure)</code></pre>
+<p>The result appears in your interactive R session.</p>
+<p><br></p>
+</div>
+<div id="run-a-whole-code-cell" class="section level3">
+<h3>Run a whole code cell</h3>
+<p>Place your cursor anywhere inside the cell and use the Run menu to
+select <strong>Run Current Chunk</strong>, or use the small run controls
+associated with the cell.</p>
+<p>You’ll also see options for running cells above or below the current
+one.</p>
+<p><br></p>
+</div>
+<div id="the-console-versus-your-quarto-file" class="section level3">
+<h3>The Console versus your Quarto file</h3>
+<p>When should you write code in a file, and when should you type it
+directly in the Console?</p>
+<p>We write things in the <strong>Quarto file</strong> that are
+necessary for our analysis and that we want to preserve for
+reproducibility.</p>
+<p>The <strong>Console</strong> is useful for quick calculations,
+testing functions, looking at help pages, or experimenting.</p>
+<p><br></p>
+<p>A good general rule:</p>
+<blockquote>
+<p>If you might need it again, put it in a file.</p>
+</blockquote>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="rendering-is-a-reproducibility-check" class="section level2">
+<h2>Rendering is a reproducibility check</h2>
+<p>There is an important difference between code that works
+interactively in your current R session and a document that renders
+successfully.</p>
+<p>When you render a Quarto document with R, the document should contain
+the information needed to recreate its results.</p>
+<p>This helps reveal problems such as:</p>
+<ul>
+<li>relying on an object you created earlier but never created in the
+document;</li>
+<li>forgetting to load a package;</li>
+<li>using a file path that only works because of where your current
+working directory happens to be;</li>
+<li>running code in a different order than it appears in the
+document.</li>
+</ul>
+<p><br></p>
+<p>So rendering is not just a way to make something pretty.</p>
+<blockquote>
+<p><strong>A successful render is one useful test of whether your
+analysis is reproducible.</strong></p>
+</blockquote>
+<p><br></p>
+<div id="troubleshooting-render-errors" class="section level3">
+<h3>Troubleshooting render errors</h3>
+<p>You will encounter errors. This is normal.</p>
+<p>If your document doesn’t render:</p>
+<ol style="list-style-type: decimal">
+<li>Read the error message.</li>
+<li>Look for the first part of the message that you understand.</li>
+<li>Identify which code cell or line caused the problem.</li>
+<li>Try running that code interactively.</li>
+<li>Check simple things first: spelling, parentheses, quotes, object
+names, file paths, and package loading.</li>
+</ol>
+<p>AI can also be useful for explaining an unfamiliar error message, but
+the goal is still to understand <strong>what went wrong and why the
+proposed fix works</strong>.</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="activity-create-a-brief-cv" class="section level2">
+<h2>Activity: Create a brief CV</h2>
+<p>Practice what you’ve learned by creating a brief CV in Quarto.</p>
+<p>The title should be your name, and you should include headings for at
+least:</p>
+<ul>
+<li>Education</li>
+<li>Employment or research experience</li>
+</ul>
+<p>Each section should include a bulleted list of jobs, degrees, or
+experiences.</p>
+<p>Also:</p>
+<p>- highlight years in **bold**; - use *italics* somewhere appropriate
+(for example, for a degree, position, or publication title); - add a
+link to your department, lab, institution, or personal website; - add a
+footnote with some additional information; - add a horizontal rule (`—`)
+to visually separate two parts of your CV.</p>
+<p>Render the document to HTML.</p>
+<p>If you’re comfortable, share the rendered result or a screenshot with
+the class in the <code>lecture-chat</code> channel in Slack.</p>
+<hr />
+<p><br></p>
+</div>
+<div id="other-output-formats" class="section level2">
+<h2>Other output formats</h2>
+<p>So far we have rendered our Quarto document to HTML, but Quarto can
+produce many different formats from the same source document.</p>
+<p>For example:</p>
+<pre class="yaml"><code>format: html</code></pre>
+<p>can become:</p>
+<pre class="yaml"><code>format: pdf</code></pre>
+<p>or:</p>
+<pre class="yaml"><code>format: docx</code></pre>
+<p><br></p>
+<p>Quarto can also create presentations, websites, books, manuscripts,
+dashboards, and other outputs.</p>
+<p>We are <strong>not</strong> going to learn all of those today.</p>
+<p>The important idea is:</p>
+<blockquote>
+<p><strong>The source document contains the content and computation; the
+output format controls how that content is presented.</strong></p>
+</blockquote>
+<p>For today’s exercises, we will render to HTML because it is easy to
+view and lets us see how Quarto turns our source document into a
+polished report.</p>
+<p>For much of this course, however, we will use <strong>GitHub Flavored
+Markdown (GFM)</strong> as our output format. In Quarto, this output
+format is specified as <code>format: gfm</code>. GFM is a version of
+Markdown designed to display well on GitHub, which will allow us to
+integrate our Quarto documents directly into our Git/GitHub workflow. We
+will set that up later—you don’t need to worry about the details
+yet.</p>
+<hr />
+<p><br></p>
+</div>
+<div id="gitgithub-brief-intro-configuration" class="section level2">
+<h2>Git/GitHub: Brief intro &amp; configuration</h2>
+<p>Before we wrap up for today, we are going to set up Git and GitHub,
+which we will be using along with R and RStudio for the rest of the
+course.</p>
+<p>Before doing the configuration, let’s take a moment to talk about
+what Git and GitHub actually are.</p>
+<p><br></p>
+<div id="git-and-github-are-not-the-same-thing" class="section level3">
+<h3>Git and GitHub are not the same thing</h3>
+<p><strong>Git</strong> is version-control software that runs on your
+computer. It tracks changes to files over time.</p>
+<p><strong>GitHub</strong> is an online service that stores Git
+repositories and provides tools for collaboration.</p>
+<p>It can be tempting to think of GitHub as being like Dropbox, because
+both can put copies of your files in the cloud. But Git is much more
+deliberate about recording <strong>versions</strong>.</p>
+<p>Rather than simply keeping the latest copy of a file, Git lets us
+create a history of meaningful changes.</p>
+<p>This allows us to:</p>
+<ul>
+<li>see what changed;</li>
+<li>see when it changed;</li>
+<li>see who changed it;</li>
+<li>return to an earlier version;</li>
+<li>collaborate without emailing files called
+<code>analysis_final_FINAL_v2.R</code>.</li>
+</ul>
+<p>We will learn the actual Git workflow in much more detail next class.
+Today our goal is simply to make sure Git, GitHub, and RStudio can
+communicate.</p>
+<p><br></p>
+</div>
+<div id="configure-git-and-github" class="section level3">
+<h3>Configure Git and GitHub</h3>
+<p>Before we can use Git and GitHub from RStudio, we need to do some
+initial setup. <strong>Git needs to know who you are so that your
+commits can be attributed to you.</strong> This step should only need to
+be completed once on each computer you use.</p>
+<p>We also need to store login credentials for our GitHub account in the
+form of a <strong>GitHub personal access token (PAT)</strong>. The token
+we create below will have an expiration date. When it expires, you will
+need to create a new token and store the new token on your computer. So
+if GitHub authentication suddenly stops working several months from now,
+<strong>an expired PAT is one of the first things to check</strong>.</p>
+<p>We’ll use the <code>usethis</code> package to help us with both parts
+of the setup.</p>
+<p><br></p>
+<div id="install-and-load-usethis" class="section level4">
+<h4>Install and load <code>usethis</code></h4>
+<p>If you do not already have <code>usethis</code> installed, install it
+with:</p>
+<pre class="r"><code>install.packages(&quot;usethis&quot;)</code></pre>
+<p>Remember that <strong>installing</strong> and
+<strong>loading</strong> a package are two different things:</p>
+<ul>
+<li><code>install.packages()</code> downloads and installs a package on
+your computer. You generally only need to do this once.</li>
+<li><code>library()</code> loads, or <strong>attaches</strong>, an
+installed package so that you can use its functions in your current R
+session. You need to do this again each time you start a new R session
+and want to use the package.</li>
+</ul>
+<p>Now load <code>usethis</code>:</p>
+<pre class="r"><code>library(usethis)</code></pre>
+<p>When <code>usethis</code> is successfully attached, you won’t
+necessarily get any feedback in the Console. So unless you get an error,
+this worked for you.</p>
+<p><br></p>
+</div>
+<div id="configure-your-git-identity" class="section level4">
+<h4>Configure your Git identity</h4>
+<p>Git needs to know who you are so that the changes you make can be
+attributed to you.</p>
+<p>Run:</p>
+<pre class="r"><code>use_git_config(
+  user.name = &quot;Your Name&quot;,
+  user.email = &quot;you@example.com&quot;
+)</code></pre>
+<p>Replace <code>"Your Name"</code> with your name and
+<code>"you@example.com"</code> with the email address associated with
+your GitHub account.</p>
+<p>This is generally a one-time setup on each computer.</p>
+<p><br></p>
+</div>
+<div id="create-a-github-personal-access-token" class="section level4">
+<h4>Create a GitHub personal access token</h4>
+<p>Next, we need to allow Git on your computer to authenticate with your
+GitHub account.</p>
+<p>GitHub does <strong>not</strong> accept your normal GitHub account
+password for Git operations over HTTPS. Instead, we will use a
+<strong>personal access token (PAT)</strong>.</p>
+<p>A PAT is essentially a special password that Git and RStudio can use
+to authenticate with GitHub. You will create the token once and store it
+securely on your computer. Git can then retrieve it when needed, so you
+should not need to enter it every time you interact with GitHub.</p>
+<p>First, run:</p>
+<pre class="r"><code>usethis::create_github_token()</code></pre>
+<p>Notice the <code>::</code> notation here. This means “use the
+<code>create_github_token()</code> function from the
+<code>usethis</code> package.” Because we specify the package
+explicitly, this would work even if we had not first run
+<code>library(usethis)</code>.</p>
+<p>Running this command will open GitHub in your web browser. You may be
+asked to sign in to GitHub.</p>
+<p>You should see a page for creating a new personal access token with
+several settings already filled in for you.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Note:</strong> Give the token a descriptive name that
+will remind you where you are using it, for example
+<code>NTRES 6100 - laptop</code>.</p></li>
+<li><p><strong>Expiration:</strong> Choose an expiration period. GitHub
+recommends that tokens expire, so you may need to create a new token in
+the future.</p></li>
+<li><p><strong>Scopes:</strong> <code>usethis</code> will pre-select the
+permissions it recommends. For this course, you can leave these
+selections as they are.</p></li>
+<li><p>Scroll to the bottom of the page and click <strong>Generate
+token</strong>.</p></li>
+</ol>
+<p>GitHub will now display your new token. It will be a long string of
+letters and numbers.</p>
+<p><strong>Copy the token immediately. GitHub will only show you the
+complete token once.</strong></p>
+<p><br></p>
+</div>
+<div id="store-your-token-securely" class="section level4">
+<h4>Store your token securely</h4>
+<p>We will use another R package called `gitcreds` to store the token
+securely on your computer. This allows Git and RStudio to retrieve your
+token automatically when they need to communicate with GitHub, so you
+won’t have to enter it every time.</p>
+<p><br></p>
+<p>First install <code>gitcreds</code>:</p>
+<pre class="r"><code>install.packages(&quot;gitcreds&quot;)</code></pre>
+<p>Now run:</p>
+<pre class="r"><code>gitcreds::gitcreds_set()</code></pre>
+<p>Here we are using <code>::</code> to call a function directly from
+the <code>gitcreds</code> package, so we do not need to run
+<code>library(gitcreds)</code> first.</p>
+<p>You should see a prompt in the Console that looks something like:</p>
+<pre class="text"><code>? Enter password or token:</code></pre>
+<p>Paste your GitHub token at this prompt and press Enter.</p>
+<p><strong>Nothing may appear as you paste the token. This is
+normal.</strong> Password and token prompts hide what you type for
+security.</p>
+<p><code>gitcreds</code> will store the token using your computer’s
+credential manager. Once it is stored, Git and RStudio can retrieve it
+when they need to communicate with GitHub.</p>
+<blockquote>
+<p><strong>Important:</strong> Treat your personal access token like a
+password. Do <strong>not</strong> put it in an R script, Quarto
+document, Slack message, email, or GitHub repository. If you
+accidentally share a token, revoke it on GitHub and create a new
+one.</p>
+</blockquote>
+<p><br></p>
+</div>
+<div id="section" class="section level4">
+<h4></h4>
+</div>
+</div>
+<div id="check-your-setup" class="section level3">
+<h3>Check your setup</h3>
+<p>Finally, let’s make sure that RStudio can communicate with Git and
+GitHub.</p>
+<p>In RStudio, go to:</p>
+<p><strong>File → New Project… → Version Control → Git</strong></p>
+<p><br></p>
+<p><img src="assets/new_project_1.png" alt="" width="80%" /></p>
+<p><br> <br></p>
+<div id="select-version-control" class="section level4">
+<h4>Select Version Control</h4>
+<p><br></p>
+<p><img src="assets/new_project_2.png" alt="" width="80%" /></p>
+<p><br> <br></p>
+</div>
+<div id="select-git" class="section level4">
+<h4>Select Git</h4>
+<p>Since we are using git.</p>
+<p><br></p>
+<p><img src="assets/new_project_3.png" alt="" width="80%" /></p>
+<p><br></p>
+</div>
+<div id="do-you-see-what-i-see" class="section level4">
+<h4>Do you see what I see?</h4>
+<p><img src="assets/new_project_4.png" alt="" width="80%" /></p>
+<p><br></p>
+<p><strong>If yes, hooray! Time to wrap up for today!</strong> You’re
+now ready for exploring integrated GitHub/RStudio workflows next
+week.</p>
+<p><br></p>
+<p>If you don’t see <strong>Git</strong> as an option under Version
+Control, or you encounter an error, you do not yet have Git properly
+linked to your RStudio setup. Let us know and we will troubleshoot your
+setup.</p>
+<p><br></p>
+<p>One useful troubleshooting command is:</p>
+<pre class="r"><code>usethis::git_sitrep()</code></pre>
+<p>This prints a summary of your Git and GitHub configuration and can
+help us identify what isn’t working.</p>
+<p><br></p>
+</div>
+</div>
+<div id="troubleshooting" class="section level3">
+<h3>Troubleshooting</h3>
+<p>First, confirm that you are using the correct GitHub login
+credentials (are you sure you typed in the correct user name and
+password?)</p>
+<p>Next, look through <a
+href="http://happygitwithr.com/troubleshooting.html">Happy Git With R’s
+RStudio, Git, GitHub Hell</a> troubleshooting chapter.</p>
+<p><br></p>
+<div id="configure-git-from-terminal" class="section level4">
+<h4>Configure Git from Terminal</h4>
+<p>If <code>usethis</code> fails, the following is the classic approach
+to configuring <strong>git</strong>. Open the Git Bash program (Windows)
+or the Terminal (Mac) and type the following:</p>
+<pre><code>    # display your version of git
+    git --version
+    
+    # replace USER with your Github user account
+    git config --global user.name USER
+    
+    # replace NAME@EMAIL.EDU with the email you used to register with Github
+    git config --global user.email NAME@EMAIL.EDU
+    
+    # list your config to confirm user.* variables set
+    git config --list</code></pre>
+<p>This will configure git with global (<code>--global</code>) commands,
+which means it will apply ‘globally’ to all your future github
+repositories, rather than only to this one now. <strong>Note for
+PCs</strong>: We’ve seen PC failures correct themselves by doing the
+above but omitting <code>--global</code>. (Then you will need to
+configure GitHub for every repo you clone but that is fine for now).</p>
+<p><br></p>
+</div>
+<div id="failure-to-locate-git" class="section level4">
+<h4>Failure to locate Git</h4>
+<p>Sometimes you may this error:</p>
+<pre><code>error key does not contain a section --global terminal</code></pre>
+<p>and</p>
+<pre><code>fatal: not in a git directory</code></pre>
+<p><br></p>
+<p>To solve this, go to the Terminal and type:
+<code>which git</code></p>
+<p><img src="assets/git_whichgit.png" width="250" /></p>
+<p><br></p>
+<p>Look at the filepath that is returned. Does it say anything to do
+with Apple?</p>
+<p>-&gt; If yes, then the <a href="https://git-scm.com/downloads">Git
+you downloaded</a> isn’t installed, please redownload if necessary, and
+follow instructions to install.</p>
+<p>-&gt; If no, (in the example image, the filepath does not say
+anything with Apple) then proceed below:</p>
+<p><br></p>
+<p>In RStudio, navigate to: Tools &gt; Global Options &gt; Git/SVN.</p>
+<p><img src="assets/git_options.png" width="250" /></p>
+<p><br></p>
+<p>Does the <strong>“Git executable”</strong> filepath match what the
+url in Terminal says?</p>
+<p><img src="assets/git_options_filepath.png" width="500" /></p>
+<p><br></p>
+<p>If not, click the browse button and navigate there.</p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="wrapping-up" class="section level2">
+<h2>Wrapping up</h2>
+<p>Today we introduced two tools that will become part of our normal
+workflow:</p>
+<p><strong>Quarto</strong> helps us keep code, results, figures, and
+narrative together in a reproducible document.</p>
+<p><strong>Git/GitHub</strong> helps us keep a deliberate history of
+changes and collaborate on those files.</p>
+<p>Neither is something you need to master today.</p>
+<p>Over the next several weeks, we will use them repeatedly until the
+workflow starts to feel normal.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
