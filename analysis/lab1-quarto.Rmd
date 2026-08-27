@@ -15,10 +15,6 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 <br>
 
-# Lab 1: Quarto
-
-<br>
-
 ## Goal for today
 
 Explore more Quarto functionality and practice implementing it.
