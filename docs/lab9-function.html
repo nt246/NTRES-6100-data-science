@@ -13,7 +13,7 @@
 
 <title>Lab 9: Functions and iterations</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -541,19 +541,22 @@ Thymine (<code>"t"</code>).</p></li>
 click to expand
 </summary>
 <pre class="r"><code>dna_or_rna</code></pre>
-<pre><code>## function(sequence){
-##   bases &lt;- str_split(sequence, pattern = &quot;&quot;) %&gt;%
-##     unlist() %&gt;%
-##     unique()
-##   if (all(bases %in% c(&quot;a&quot;, &quot;t&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;t&quot; %in% bases){
-##     return(&quot;DNA&quot;)
-##   } else if (all(bases %in% c(&quot;a&quot;, &quot;u&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;u&quot; %in% bases){
-##     return(&quot;RNA&quot;)
-##   } else {
-##     return(&quot;unknown&quot;)
-##   }
+<pre><code>## function (sequence) 
+## {
+##     bases &lt;- str_split(sequence, pattern = &quot;&quot;) %&gt;% unlist() %&gt;% 
+##         unique()
+##     if (all(bases %in% c(&quot;a&quot;, &quot;t&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;t&quot; %in% bases) {
+##         return(&quot;DNA&quot;)
+##     }
+##     else if (all(bases %in% c(&quot;a&quot;, &quot;u&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;u&quot; %in% 
+##         bases) {
+##         return(&quot;RNA&quot;)
+##     }
+##     else {
+##         return(&quot;unknown&quot;)
+##     }
 ## }
-## &lt;bytecode: 0x1359d40a0&gt;</code></pre>
+## &lt;bytecode: 0xc3514f850&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -625,20 +628,22 @@ following three lines of code:</h4>
 click to expand
 </summary>
 <pre class="r"><code>dna_or_rna</code></pre>
-<pre><code>## function(sequence){
-##   bases &lt;- str_split(sequence, pattern = &quot;&quot;) %&gt;%
-##     unlist() %&gt;%
-##     tolower() %&gt;%
-##     unique()
-##   if (all(bases %in% c(&quot;a&quot;, &quot;t&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;t&quot; %in% bases){
-##     return(&quot;DNA&quot;)
-##   } else if (all(bases %in% c(&quot;a&quot;, &quot;u&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;u&quot; %in% bases){
-##     return(&quot;RNA&quot;)
-##   } else {
-##     return(&quot;unknown&quot;)
-##   }
+<pre><code>## function (sequence) 
+## {
+##     bases &lt;- str_split(sequence, pattern = &quot;&quot;) %&gt;% unlist() %&gt;% 
+##         tolower() %&gt;% unique()
+##     if (all(bases %in% c(&quot;a&quot;, &quot;t&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;t&quot; %in% bases) {
+##         return(&quot;DNA&quot;)
+##     }
+##     else if (all(bases %in% c(&quot;a&quot;, &quot;u&quot;, &quot;g&quot;, &quot;c&quot;)) &amp; &quot;u&quot; %in% 
+##         bases) {
+##         return(&quot;RNA&quot;)
+##     }
+##     else {
+##         return(&quot;unknown&quot;)
+##     }
 ## }
-## &lt;bytecode: 0x135f67088&gt;</code></pre>
+## &lt;bytecode: 0xc37d85070&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -727,20 +732,22 @@ round_away(0.55, digits=0)</code></pre>
 click to expand
 </summary>
 <pre class="r"><code>round_away</code></pre>
-<pre><code>## function(x, digits=0){
-##   x_new&lt;-abs(x*10^digits)
-##   x_sign &lt;- sign(x)
-##   integer &lt;- x_new%/%1
-##   decimal &lt;- x_new-integer
-##   if(decimal&lt;0.5){
-##     x_new &lt;- integer
-##   } else {
-##     x_new &lt;- integer +1
-##   }
-##   x_rounded &lt;- x_new/10^digits*x_sign
-##   return(x_rounded)
+<pre><code>## function (x, digits = 0) 
+## {
+##     x_new &lt;- abs(x * 10^digits)
+##     x_sign &lt;- sign(x)
+##     integer &lt;- x_new%/%1
+##     decimal &lt;- x_new - integer
+##     if (decimal &lt; 0.5) {
+##         x_new &lt;- integer
+##     }
+##     else {
+##         x_new &lt;- integer + 1
+##     }
+##     x_rounded &lt;- x_new/10^digits * x_sign
+##     return(x_rounded)
 ## }
-## &lt;bytecode: 0x115abe8d0&gt;</code></pre>
+## &lt;bytecode: 0xc38ed89e0&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -778,26 +785,30 @@ round_even(0.55, digits=0)</code></pre>
 click to expand
 </summary>
 <pre class="r"><code>round_even</code></pre>
-<pre><code>## function(x, digits=0){
-##   x_new&lt;-abs(x*10^digits)
-##   x_sign &lt;- sign(x)
-##   integer &lt;- x_new%/%1
-##   decimal &lt;- x_new-integer
-##   if(decimal&lt;0.5){
-##     x_new &lt;- integer
-##   } else if (decimal ==0.5){
-##     if(integer%%2==0){
-##       x_new &lt;- integer 
-##     } else {
-##       x_new &lt;- integer +1
+<pre><code>## function (x, digits = 0) 
+## {
+##     x_new &lt;- abs(x * 10^digits)
+##     x_sign &lt;- sign(x)
+##     integer &lt;- x_new%/%1
+##     decimal &lt;- x_new - integer
+##     if (decimal &lt; 0.5) {
+##         x_new &lt;- integer
 ##     }
-##   } else {
-##       x_new &lt;- integer +1
-##   }
-##   x_rounded &lt;- x_new/10^digits*x_sign
-##   return(x_rounded)
+##     else if (decimal == 0.5) {
+##         if (integer%%2 == 0) {
+##             x_new &lt;- integer
+##         }
+##         else {
+##             x_new &lt;- integer + 1
+##         }
+##     }
+##     else {
+##         x_new &lt;- integer + 1
+##     }
+##     x_rounded &lt;- x_new/10^digits * x_sign
+##     return(x_rounded)
 ## }
-## &lt;bytecode: 0x115061a38&gt;</code></pre>
+## &lt;bytecode: 0xc39edc938&gt;</code></pre>
 </details>
 <p><br> <br></p>
 </div>

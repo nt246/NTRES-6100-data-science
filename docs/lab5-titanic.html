@@ -13,7 +13,7 @@
 
 <title>Lab 5: Data exploration with the Titanic dataset</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,7 +394,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
@@ -771,7 +771,7 @@ titanic |&gt;
   geom_bar(aes(fill = survived)) +
   geom_label(data = survived_count, aes(label=str_c(percentage, &quot;%&quot;), y=n/2)) +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 <p>Note: <code>str_c()</code> is used to add the percentage sign.</p>
 </details>
 <p><br> <br></p>
@@ -818,7 +818,7 @@ sex_count |&gt;
   geom_text(aes(label = n, y = n + 20)) +
   ylab(&quot;count&quot;) +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /></p>
 <pre class="r"><code># male vs. female broken down by ticket class
 ## table
 sex_class_count &lt;- titanic |&gt;
@@ -873,7 +873,7 @@ sex_class_count |&gt;
   geom_text(aes(label = n, y = n + 20)) +
   facet_wrap(~Pclass) +
   ylab(&quot;count&quot;)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-4-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -941,7 +941,7 @@ sex_survival_count |&gt;
   geom_col(aes(fill = survived, y=n), color = &quot;black&quot;) +
   geom_label(aes(label = str_c(percentage, &quot;%&quot;), y = label_y)) +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
 <p>Note: the line <code>mutate(label_y = cumsum(n) - 0.5 * n)</code> is
 used to place the labels in the middle of each colored bar.</p>
 </details>
@@ -990,40 +990,40 @@ age_info_count |&gt;
   geom_col(aes(fill=age_info)) +
   geom_label(aes(y=n+30, label=n)) +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
 <pre class="r"><code># age distribution
 ## summary
 titanic |&gt;
   filter(!is.na(Age)) |&gt;
   #.$Age |&gt;
   summary(Age)</code></pre>
-<pre><code>##   PassengerId       Survived          Pclass          Name          
-##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000   Length:714        
-##  1st Qu.:222.2   1st Qu.:0.0000   1st Qu.:1.000   Class :character  
-##  Median :445.0   Median :0.0000   Median :2.000   Mode  :character  
-##  Mean   :448.6   Mean   :0.4062   Mean   :2.237                     
-##  3rd Qu.:677.8   3rd Qu.:1.0000   3rd Qu.:3.000                     
-##  Max.   :891.0   Max.   :1.0000   Max.   :3.000                     
-##      Sex                 Age            SibSp            Parch       
-##  Length:714         Min.   : 0.42   Min.   :0.0000   Min.   :0.0000  
-##  Class :character   1st Qu.:20.12   1st Qu.:0.0000   1st Qu.:0.0000  
-##  Mode  :character   Median :28.00   Median :0.0000   Median :0.0000  
-##                     Mean   :29.70   Mean   :0.5126   Mean   :0.4314  
-##                     3rd Qu.:38.00   3rd Qu.:1.0000   3rd Qu.:1.0000  
-##                     Max.   :80.00   Max.   :5.0000   Max.   :6.0000  
-##     Ticket               Fare           Cabin             Embarked        
-##  Length:714         Min.   :  0.00   Length:714         Length:714        
-##  Class :character   1st Qu.:  8.05   Class :character   Class :character  
-##  Mode  :character   Median : 15.74   Mode  :character   Mode  :character  
-##                     Mean   : 34.69                                        
-##                     3rd Qu.: 33.38                                        
-##                     Max.   :512.33</code></pre>
+<pre><code>##   PassengerId       Survived          Pclass             Name    
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000   Length   :714  
+##  1st Qu.:222.2   1st Qu.:0.0000   1st Qu.:1.000   N.unique :714  
+##  Median :445.0   Median :0.0000   Median :2.000   N.blank  :  0  
+##  Mean   :448.6   Mean   :0.4062   Mean   :2.237   Min.nchar: 13  
+##  3rd Qu.:677.8   3rd Qu.:1.0000   3rd Qu.:3.000   Max.nchar: 82  
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000                  
+##         Sex           Age            SibSp            Parch       
+##  Length   :714   Min.   : 0.42   Min.   :0.0000   Min.   :0.0000  
+##  N.unique :  2   1st Qu.:20.12   1st Qu.:0.0000   1st Qu.:0.0000  
+##  N.blank  :  0   Median :28.00   Median :0.0000   Median :0.0000  
+##  Min.nchar:  4   Mean   :29.70   Mean   :0.5126   Mean   :0.4314  
+##  Max.nchar:  6   3rd Qu.:38.00   3rd Qu.:1.0000   3rd Qu.:1.0000  
+##                  Max.   :80.00   Max.   :5.0000   Max.   :6.0000  
+##        Ticket         Fare              Cabin          Embarked  
+##  Length   :714   Min.   :  0.00   Length   :714   Length   :714  
+##  N.unique :542   1st Qu.:  8.05   N.unique :134   N.unique :  3  
+##  N.blank  :  0   Median : 15.74   N.blank  :  0   N.blank  :  0  
+##  Min.nchar:  3   Mean   : 34.69   Min.nchar:  1   Min.nchar:  1  
+##  Max.nchar: 18   3rd Qu.: 33.38   Max.nchar: 15   Max.nchar:  1  
+##                  Max.   :512.33   NAs      :529   NAs      :  2</code></pre>
 <pre class="r"><code>## Plot
 titanic |&gt;
   filter(!is.na(Age)) |&gt;
   ggplot(aes(x=Age)) +
   geom_histogram()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-6-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1043,14 +1043,14 @@ click to expand
   ggplot(aes(x=Age, fill=Sex)) +
   geom_histogram() +
   facet_grid(Pclass~Sex)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
 <pre class="r"><code>titanic |&gt;
   mutate(ticket_class = as.character(Pclass)) |&gt;
   filter(!is.na(Age)) |&gt;
   ggplot(aes(x=Age, fill=Sex)) +
   geom_density(alpha=0.5) +
   facet_grid(ticket_class~.)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-7-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1075,7 +1075,7 @@ click to expand
   ggplot(aes(x=Age, fill=survived)) +
   geom_histogram(position=&quot;stack&quot;, color=&quot;black&quot;) +
   facet_grid(Sex~Pclass)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1097,13 +1097,13 @@ click to expand
   ggplot(aes(x=n_family)) +
   geom_bar() +
   scale_x_continuous(breaks = 0:10)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <pre class="r"><code>titanic |&gt;
   mutate(n_family=SibSp+Parch, with_family=ifelse(n_family&gt;0, &quot;yes&quot;, &quot;no&quot;)) |&gt;
   ggplot(aes(x=with_family)) +
   geom_bar() +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-9-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1125,7 +1125,7 @@ click to expand
   geom_bar() +
   scale_x_continuous(breaks = 0:10) +
   facet_wrap(~Pclass, ncol = 1)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-10-1.png" alt="" width="480" /></p>
 <pre class="r"><code>titanic |&gt;
   mutate(n_family = SibSp+Parch, ticket_class = as.character(Pclass)) |&gt;
   ggplot(aes(x = n_family, fill = ticket_class)) +
@@ -1133,7 +1133,7 @@ click to expand
   scale_x_continuous(breaks = 0:10) +
   ylab(&quot;proportion&quot;) +
   coord_flip()</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -1182,7 +1182,7 @@ click to expand
   ggplot(aes(x=fare_per_ticket)) +
   geom_histogram(bins = 100) +
   facet_wrap(~ticket_class, ncol = 1, scales = &quot;free_y&quot;)</code></pre>
-<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="lab5-titanic_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>

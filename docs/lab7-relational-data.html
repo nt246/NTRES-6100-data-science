@@ -13,7 +13,7 @@
 
 <title>Lab 7: Relational data and tidy data</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -378,10 +378,10 @@ div.tocify {
       <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-functions.html">Lesson 17: Functions</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,7 +394,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
@@ -721,7 +721,12 @@ avg_dest_delays |&gt;
   borders(&quot;state&quot;) +
   geom_point() +
   coord_quickmap()</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## Warning: `borders()` was deprecated in ggplot2 4.0.0.
+## ℹ Please use `annotation_borders()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -756,13 +761,13 @@ ggplot(plane_cohorts, aes(x = age, y = dep_delay_mean)) +
   geom_point() +
   scale_x_continuous(&quot;Age of plane (years)&quot;, breaks = seq(0, 30, by = 10)) +
   scale_y_continuous(&quot;Mean Departure Delay (minutes)&quot;)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /></p>
 <pre class="r"><code>## Arrival delays
 ggplot(plane_cohorts, aes(x = age, y = arr_delay_mean)) +
   geom_point() +
   scale_x_continuous(&quot;Age of Plane (years)&quot;, breaks = seq(0, 30, by = 10)) +
   scale_y_continuous(&quot;Mean Arrival Delay (minutes)&quot;)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-4-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -788,7 +793,7 @@ flight_weather |&gt;
   summarise(delay = mean(dep_delay, na.rm = TRUE)) |&gt;
   ggplot(aes(x = precip, y = delay)) +
   geom_line() + geom_point()</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
 <pre class="r"><code># Visibility
 flight_weather |&gt;
   ungroup() |&gt;
@@ -797,7 +802,7 @@ flight_weather |&gt;
   summarise(dep_delay = mean(dep_delay, na.rm = TRUE)) |&gt;
   ggplot(aes(x = visib_cat, y = dep_delay)) +
   geom_point()</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-5-2.png" alt="" width="672" /></p>
 </details>
 <p><br> <br></p>
 </div>
@@ -961,7 +966,7 @@ babynames |&gt;
   ggplot(aes(x=year, y=prop, group=name, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
 <p>Note:</p>
 <ul>
 <li><code>slice_max(order_by = total_count, n = 6)</code> selects 6 rows
@@ -1051,7 +1056,7 @@ new_names |&gt;
   ggplot(aes(x=year, y=n, color=sex)) +
   geom_line() +
   facet_wrap(~name)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
 <p>Note: <code>mutate_all(dataset, ~replace(., is.na(.), 0))</code> is
 an efficient way to replace all NAs in a dataset with 0s.</p>
 </details>
@@ -1193,7 +1198,7 @@ unisex_names |&gt;
   ggplot(aes(x=count_M, y=count_F)) +
   ggrepel::geom_label_repel(aes(label=name)) +
   geom_point(data=unisex_names)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-1.png" width="960" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-1.png" alt="" width="960" /></p>
 <pre class="r"><code>babynames |&gt;
   filter(name %in% unisex_names$name[1:12]) |&gt;
   pivot_wider(names_from = sex, values_from = c(n, prop)) |&gt;
@@ -1204,7 +1209,7 @@ unisex_names |&gt;
   geom_point(aes(size = average_popularity)) +
   facet_wrap(~name) +
   ylab(&quot;proportion of girls&quot;)</code></pre>
-<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-2.png" width="960" /></p>
+<p><img src="lab7-relational-data_files/figure-html/unnamed-chunk-9-2.png" alt="" width="960" /></p>
 </details>
 <p><br> <br></p>
 </div>

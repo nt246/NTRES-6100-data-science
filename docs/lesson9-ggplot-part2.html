@@ -13,7 +13,7 @@
 
 <title>Lesson 9: ggplot part 2</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,7 +394,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
@@ -643,7 +643,7 @@ coronavirus |&gt;
   summarize(total_cases = sum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>If we want to play around with different geoms, we can store
 <code>dplyr</code> data processing steps and initiation of the
@@ -658,18 +658,18 @@ to retype it each time</p>
 specify the geom</p>
 <pre class="r"><code>gg_base +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-5-1.png" alt="" width="672" /></p>
 <p><br> <br></p>
 <p>Try these</p>
 <pre class="r"><code>gg_base +
   geom_point()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-6-1.png" alt="" width="672" /></p>
 <pre class="r"><code>gg_base +
   geom_col(color = &quot;red&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-6-2.png" alt="" width="672" /></p>
 <pre class="r"><code>gg_base +
   geom_area()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-6-3.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-6-3.png" alt="" width="672" /></p>
 <p><br> <br></p>
 </div>
 <div id="customizing-plots" class="section level2">
@@ -705,7 +705,7 @@ href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">here</a>.</p>
     color = &quot;purple&quot;,
     linetype = &quot;dashed&quot;
   )</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-7-1.png" alt="" width="672" /></p>
 <p>How do we know which color names ggplot will recognize? If you google
 “R colors ggplot2” you’ll find a lot of good resources. Here’s one: <a
 href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">SAPE
@@ -719,7 +719,7 @@ for the different point styles, which can be further customized).</p>
              shape = 17,
              size = 4,
              alpha = 0.5)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-8-1.png" alt="" width="672" /></p>
 <p><br> <br></p>
 </div>
 <div id="mapping-variables-onto-aesthetics" class="section level2">
@@ -755,7 +755,7 @@ mapping in data visualization.</p>
         color = total_cases),
     alpha = 0.5
   )</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>In the example above, notice that the two arguments that
 <strong>do</strong> depend on variables are within <code>aes()</code>,
 but since <code>alpha = 0.5</code> doesn’t depend on a variable then it
@@ -796,7 +796,7 @@ Pick one that you like and update your previous plot.</p>
     alpha = 0.5
   ) +
   theme_minimal()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-10-1.png" width="672" />
+<p><img src="lesson9-files/unnamed-chunk-10-1.png" alt="" width="672" />
 <br></p>
 <p>You can play around with other themes - see an overview and
 instructions for how to customize themes <a
@@ -815,7 +815,7 @@ href="https://r4ds.hadley.nz/communication">here</a>.</p>
     colour = &quot;grey50&quot;, 
     linewidth = 1
   ))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Or we can remove the legend</p>
 <pre class="r"><code>gg_base + 
@@ -825,7 +825,7 @@ href="https://r4ds.hadley.nz/communication">here</a>.</p>
     alpha = 0.5) +
   theme_minimal() +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>In addition to the themes built into ggplot, there are lots packages
 that implement additional fun themes, see some examples <a
@@ -844,7 +844,7 @@ subtitle to your ggplot graph.</p>
     y = &quot;Total confirmed cases&quot;,
     title = str_c(&quot;Daily counts of new Coronavirus cases recorded per &quot;, max(coronavirus$date)),
     subtitle = &quot;Global sums&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p><strong>Note</strong>: If you want to update the formatting of axis
 values (for example, to convert to comma format instead of scientific
@@ -893,7 +893,7 @@ aesthetic</p>
   summarize(total_cases = sum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>It looks like this is doing what we want, but it does not display
 well. There are too many countries! We could play around with the layout
@@ -916,7 +916,7 @@ countries</p>
   summarize(total_cases = sum(cases)) |&gt;  # Need this summarize because some countries have data broken down by Province.State
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-18-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Much better! But it looks messy because there are large large
 negative values reported for certain days. Why could that be? In a real
@@ -928,7 +928,7 @@ purposes, let’s just remove those rows from our dataset for now.</p>
   summarize(total_cases = sum(cases)) |&gt;  # Need this summarize because some countries have data broken down by Province.State
   ggplot(mapping = aes(x = date, y = total_cases, color = country)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-19-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>We can also make a separate panel for each country</p>
 <pre class="r"><code>coronavirus |&gt;  
@@ -938,7 +938,7 @@ purposes, let’s just remove those rows from our dataset for now.</p>
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line() +
   facet_wrap(~country)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-20-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Now let’s plot the cumulative sum of cases for each of those
 countries instead</p>
@@ -949,7 +949,7 @@ countries instead</p>
   mutate(cum_count = cumsum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = cum_count, color = country)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-21-1.png" alt="" width="672" /></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -971,7 +971,7 @@ of the top 5 countries with the highest total counts</p>
   summarize(cases = sum(cases)) |&gt;
   ggplot() +
   geom_col(aes(x = country, y = cases), color = &quot;black&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-22-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Next, let’s make a stacked barplot that also shows the total number
 of deaths in each country. First we’ll need to compute the total counts
@@ -983,7 +983,7 @@ to create the stacked bars</p>
   summarize(cases = sum(cases)) |&gt;
   ggplot() +
   geom_col(aes(x = country, y = cases, fill = type))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-23-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>We may want to flip this around</p>
 <pre class="r"><code>coronavirus |&gt; 
@@ -993,7 +993,7 @@ to create the stacked bars</p>
   ggplot() +
   geom_col(aes(x = country, y = cases, fill = type)) +
   coord_flip()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p>This is useful because it puts the proportions in relation to the
 total daily counts. But it can be hard to compare proportions. We can
 make all bars the same height with ‘position adjustment’</p>
@@ -1004,7 +1004,7 @@ make all bars the same height with ‘position adjustment’</p>
   ggplot() +
   geom_col(aes(x = country, y = cases, fill = type), position = &quot;fill&quot;) +
   coord_flip()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-25-1.png" alt="" width="672" /></p>
 <p>While looking at the proportions of case types is helpful for
 comparing patterns, it doesn’t allow for comparison of the magnitude of
 case counts. We can do this better by scaling the bars by the raw case
@@ -1019,7 +1019,7 @@ stacked next to each other with another position adjustment option</p>
   summarize(cases = sum(cases)) |&gt;
   ggplot() +
   geom_col(aes(x = country, y = cases, fill = type), position = &quot;dodge&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-26-1.png" width="1440" /></p>
+<p><img src="lesson9-files/unnamed-chunk-26-1.png" alt="" width="1440" /></p>
 <p><br> <br></p>
 <p>Now, let’s explore a different question. Let’s compare for how many
 days each of the top five countries have had &gt; 100,000 new confirmed
@@ -1032,7 +1032,7 @@ we’ll use the <code>geom_bar()</code></p>
   filter(cases &gt;100000) |&gt; 
   ggplot() +
   geom_bar(aes(country))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-27-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Alternatively, we could also pre-compute these counts and plot them
 with <code>geom_col()</code> like above, but sometimes it’s convenient
@@ -1048,7 +1048,7 @@ to have ggplot compute the counts of observations directly with
   summarize(count = n()) |&gt; 
   ggplot() +
   geom_col(aes(country, y = count))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-28-1.png" alt="" width="672" /></p>
 <p><br> <br></p>
 </div>
 <div id="plotting-with-labels" class="section level2">
@@ -1094,7 +1094,7 @@ countries</p>
 <pre class="r"><code>vacc_ttd |&gt; 
   ggplot() +
   geom_point(mapping = aes(population, people_at_least_one_dose))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-31-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>That’s nice, but it would be useful to know which country is
 represented by each dot. <code>geom_label()</code> is our tool for
@@ -1102,7 +1102,7 @@ that.</p>
 <pre class="r"><code>vacc_ttd |&gt; 
   ggplot() +
   geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-32-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Let’s do a few things to make this easier to read</p>
 <p>We can remove countries with a small population sizes, and log
@@ -1111,7 +1111,7 @@ transform the population sizes</p>
   filter(population &gt; 50000000) |&gt; 
   ggplot() +
   geom_label(mapping = aes(log(population), people_at_least_one_dose, label = country_region))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-33-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Or, we can zoom in on the part of the plot where almost all countries
 other than China and India are clustered together. We can do this in a
@@ -1121,7 +1121,7 @@ size (e.g. countries with population sizes over 500 million).</p>
   filter(population &lt; 5*10^8) |&gt; 
   ggplot() +
   geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-34-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>Or we can just zoom in by adjusting what parts of the axes to
 display</p>
@@ -1129,7 +1129,7 @@ display</p>
   ggplot() +
   geom_label(mapping = aes(population, people_at_least_one_dose, label = country_region)) +
   coord_cartesian(xlim = c(0,4*10^8), ylim = c(0, 3*10^8))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>There are lots of other ways we can adjust label plotting. See
 e.g. <a
@@ -1189,7 +1189,7 @@ group_by(coronavirus, date, type) |&gt;
   mutate(cases=cumsum(cases)) |&gt;
   ggplot() +
   geom_line(aes(x=date, y=cases, color=type))</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-37-1.png" alt="" width="672" /></p>
 <pre class="r"><code>## log scale
 group_by(coronavirus, date, type) |&gt;
   summarise(cases = sum(cases)) |&gt; 
@@ -1198,7 +1198,7 @@ group_by(coronavirus, date, type) |&gt;
   ggplot() +
   geom_line(aes(x=date, y=log(cases), color=type))</code></pre>
 <pre><code>## Warning in log(cases): NaNs produced</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-37-2.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-37-2.png" alt="" width="672" /></p>
 <p><br></p>
 </div>
 <div
@@ -1215,7 +1215,7 @@ filter(coronavirus, country %in% top5_countries) |&gt;
   geom_line(aes(x=date, y=cases/1000, color=type)) +
   ylab(&quot;cumulative count (in thousand)&quot;) +
   facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-38-1.png" width="1440" /></p>
+<p><img src="lesson9-files/unnamed-chunk-38-1.png" alt="" width="1440" /></p>
 <p><br></p>
 </div>
 <div id="trend-in-cumulative-death-rate" class="section level4">
@@ -1228,7 +1228,7 @@ filter(coronavirus, country %in% top5_countries) |&gt;
   mutate(death_rate = death/confirmed) |&gt;
   ggplot(aes(x=date, y=death_rate)) +
   geom_line()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-39-1.png" alt="" width="672" /></p>
 <p><br></p>
 </div>
 <div id="trend-in-cumulative-death-rate-in-5-most-infected-countries"
@@ -1244,9 +1244,9 @@ class="section level4">
   ggplot(aes(x=date, y=death_rate)) +
   geom_line() +
   facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
-<pre><code>## Warning: Removed 35 rows containing missing values or values outside the scale range
+<pre><code>## Warning: Removed 50 rows containing missing values or values outside the scale range
 ## (`geom_line()`).</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="lesson9-files/unnamed-chunk-40-1.png" alt="" width="672" /></p>
 <p><br></p>
 </div>
 <div
@@ -1266,7 +1266,7 @@ January</h4>
   ggplot(aes(x=date, y=rank)) +
   geom_label(aes(label=country)) +
   theme_minimal()</code></pre>
-<p><img src="lesson9-files/unnamed-chunk-41-1.png" width="960" /></p>
+<p><img src="lesson9-files/unnamed-chunk-41-1.png" alt="" width="960" /></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page"
 style="height: 0;">
 

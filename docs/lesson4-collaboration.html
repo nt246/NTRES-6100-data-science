@@ -13,7 +13,7 @@
 
 <title>Lesson 4: Collaborating with GitHub - Part 1</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,7 +394,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
@@ -512,7 +512,7 @@ partner and get to practice.</p>
 <p>Decide who will be Partner 1 and who will be Partner 2. Partner 1
 will create a new repository in their personal Github account.</p>
 <p>Let’s name it <code>r-collab</code>.</p>
-<p><img src="assets/create_repo.png" width="80%" /></p>
+<p><img src="assets/create_repo.png" alt="" width="80%" /></p>
 <p><br></p>
 </div>
 <div id="clone-to-a-new-r-project" class="section level3">
@@ -582,12 +582,12 @@ class="section level3">
 </blockquote>
 <p>Now back on GitHub.com, Partner 1, go into Settings &gt;
 Collaborators &gt; enter Partner 2’s (your collaborator’s) username.</p>
-<p><img src="assets/add_collaborator.png" width="90%" /></p>
+<p><img src="assets/add_collaborator.png" alt="" width="90%" /></p>
 <p><br></p>
 <p>Partner 2 then needs to check their email and accept as a
 collaborator. Notice that your collaborator has Push access to the
 repository:</p>
-<p><img src="assets/invite_email.png" width="80%" /></p>
+<p><img src="assets/invite_email.png" alt="" width="80%" /></p>
 <p><br> <br></p>
 </div>
 <div id="edit-the-readme-file-again-and-push-changes"
@@ -698,7 +698,7 @@ with whatever is different about the version from GitHub.com.</p>
 keep and it’s better that we have that kind of control and decision
 making.</p>
 <p><br></p>
-<p><img src="assets/github_mergeconflict.png" width="80%" /></p>
+<p><img src="assets/github_mergeconflict.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>GitHub provides some guidance: either commit this work first, or
 “stash it”, which you can interpret that as moving the README
@@ -708,7 +708,7 @@ steps.</p>
 <p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s
 try pulling again.</p>
 <p>When you first try this, you will likely see this error:</p>
-<p><img src="assets/github_reconcile_branches.png" width="80%" /></p>
+<p><img src="assets/github_reconcile_branches.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>This warning was added in Git 2.27 (i.e. you might not see something
 similar just as a warning, not an error message in earlier versions).
@@ -737,7 +737,7 @@ line-by-line in the version on GitHub.com. And it knows there is a
 conflict between them. So it’s asking me to now compare these changes,
 choose a preference, and commit.</p>
 <p><br></p>
-<p><img src="assets/gh_mergeconflict2.png" width="80%" /></p>
+<p><img src="assets/gh_mergeconflict2.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>We will again follow GitHub’s advice to fix the conflicts. Let’s
 close this window and inspect. Did you notice two other things that
@@ -771,14 +771,14 @@ Allison’s line that I don’t want to keep.</p>
 <p>I’ll do this, and then commit again. In this example, we’ve kept
 Allison’s line:</p>
 <p><br></p>
-<p><img src="assets/gh_mergeconflict3.png" width="80%" /></p>
+<p><img src="assets/gh_mergeconflict3.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>Then I’ll stage, and write a commit message. I often write “resolving
 merge conflict” or something similar. When I stage the file, notice how
 now my edits look like a simple line replacement (compare with the image
 above before it was re-staged):</p>
 <p><br></p>
-<p><img src="assets/github_mergeconflict4.png" width="80%" /></p>
+<p><img src="assets/github_mergeconflict4.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>And we’re done! We can inspect on GitHub.com that I am the most
 recent contributor to this repository. And if we look in the commit

@@ -13,7 +13,7 @@
 
 <title>Lesson 10: Tidy Data</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: RMarkdown and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,10 +394,10 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: RMarkdown</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
-      <a href="lab2-rmarkdown-github.html">Lab 2: RMarkdown and GitHub</a>
+      <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lab3-ggplot-website.html">Lab 3: Displaying data visualization on a website</a>
@@ -905,7 +905,7 @@ August 2021, the dataset stopped tracking recoveries)</p>
   summarize(cases = sum(cases)) |&gt;
   ggplot() +
   geom_col(aes(x = date, y = cases, fill = type))</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-8-1.png" width="672" />
+<p><img src="lesson10-files/unnamed-chunk-8-1.png" alt="" width="672" />
 <br></p>
 <p>Let’s see how we would do that if the data had been in a wider
 format.</p>
@@ -934,7 +934,7 @@ a country?</p>
   filter(cases &gt; 0, country == &quot;US&quot;) |&gt; 
   ggplot() +
   geom_line(aes(x = date, y = cases, color = type))</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="lesson10-files/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <p><br></p>
 <p>How would we do this with the <code>coronavirus_wide</code> format?
 That would be much more difficult.</p>
@@ -955,7 +955,7 @@ those different levels separate variables by widening the data.</p>
 # Now we can plot this easily
 ggplot(coronavirus_ttd) +
   geom_label(mapping = aes(x = confirmed, y = death, label = country))</code></pre>
-<p><img src="lesson10-files/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lesson10-files/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 <p>This case highlights how the definition of what a variable and an
 observation is context-dependent so different formats of the same data
 can be considered tidy based on how we are thinking about the data and

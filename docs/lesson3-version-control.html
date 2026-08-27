@@ -13,7 +13,7 @@
 
 <title>Lesson 3: Version control and the Git/GitHub workflow</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -333,7 +333,7 @@ div.tocify {
       <a href="lesson1-rstudio.html">Lesson 1: R Studio</a>
     </li>
     <li>
-      <a href="lesson2-rmarkdown-github.html">Lesson 2: Quarto and GitHub</a>
+      <a href="lesson2-quarto-github.html">Lesson 2: Quarto and GitHub</a>
     </li>
     <li>
       <a href="lesson3-version-control.html">Lesson 3: Version control and the Git/GitHub workflow</a>
@@ -366,22 +366,22 @@ div.tocify {
       <a href="lesson12-relational-data.html">Lesson 12: Relational data</a>
     </li>
     <li>
-      <a href="lesson13-for-loops.html">Lesson 13: Iteration - part 1</a>
+      <a href="lesson13-factors.html">Lesson 13: Factors</a>
     </li>
     <li>
-      <a href="lesson14-for-loops-part2.html">Lesson 14: Iteration - part 2</a>
+      <a href="lesson14-debugging-getting-help.html">Lesson 14: Good coding practices, debugging strategies, and getting help</a>
     </li>
     <li>
-      <a href="lesson15-debugging-getting-help.html">Lesson 15: Good coding practices, debugging strategies, and getting help</a>
+      <a href="lesson15-for-loops.html">Lesson 15: Iteration - part 1</a>
     </li>
     <li>
-      <a href="lesson16-functions.html">Lesson 16: Functions</a>
+      <a href="lesson16-for-loops-part2.html">Lesson 16: Iteration - part 2</a>
     </li>
     <li>
-      <a href="lesson17-factors.html">Lesson 17: Factors</a>
+      <a href="lesson17-functions.html">Lesson 18: Functions</a>
     </li>
     <li>
-      <a href="lesson18-wrapup.html">Lesson 18: Wrapping up and learning more</a>
+      <a href="lesson18-wrapup.html">Lesson 19: Wrapping up and learning more</a>
     </li>
   </ul>
 </li>
@@ -394,7 +394,7 @@ div.tocify {
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Lab handouts</li>
     <li>
-      <a href="lab1-rmarkdown.html">Lab 1: Quarto</a>
+      <a href="lab1-quarto.html">Lab 1: Quarto</a>
     </li>
     <li>
       <a href="lab2-rmarkdown-github.html">Lab 2: Quarto and GitHub</a>
@@ -541,7 +541,7 @@ them.</p>
 ends) the horror of keeping track of versions.</p>
 <p>Basically, we get away from this:</p>
 <p><br></p>
-<p><img src="assets/MessySaves.png" width="80%" /> <br></p>
+<p><img src="assets/MessySaves.png" alt="" width="80%" /> <br></p>
 <p>This is a nightmare not only because I have NO idea which is truly
 the version we used in that analysis we need to update, but because it
 is going to take a lot of detective work to see what actually changed
@@ -649,7 +649,7 @@ course organizational account <code>therkildsen-class</code>, not your
 personal account (see the path in the top left corner). To make this
 repo also show up on your personal account page, click the “Star” button
 on the top right of the page.</p>
-<p><img src="assets/star_repo_24FA.png" width="80%" /></p>
+<p><img src="assets/star_repo_24FA.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>Now if you click on the profile information in the very top right
 corner, and select the “Your stars” option, you’ll be taken to a list of
@@ -657,7 +657,7 @@ all the repos you have starred and your course repo should show up here
 (it should be named something like
 <code>therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME</code>).
 Click on the repo name to return to your course repo.</p>
-<p><img src="assets/finding_starred_repos.png" width="80%" /></p>
+<p><img src="assets/finding_starred_repos.png" alt="" width="80%" /></p>
 <p><br> <br> <br></p>
 </div>
 </div>
@@ -776,7 +776,7 @@ recommended by GitHub</a>. You could alternatively set up with SSH, but
 we will not get into that here.</p>
 </blockquote>
 <p><br></p>
-<p><img src="assets/github-clone-sept20.png" width="100%" /></p>
+<p><img src="assets/github-clone-sept20.png" alt="" width="100%" /></p>
 <p><br> <br></p>
 </div>
 <div id="rstudio-new-project" class="section level3">
@@ -784,18 +784,18 @@ we will not get into that here.</p>
 <p>Now go to RStudio, and click on New Project. There are a few
 different ways; you could also go to File &gt; New Project…, or click
 the little green + with the R box in the top left.</p>
-<p><img src="assets/new_project1.png" width="80%" /></p>
+<p><img src="assets/new_project1.png" alt="" width="80%" /></p>
 <p><br></p>
 </div>
 <div id="select-version-control" class="section level3">
 <h3>Select Version Control</h3>
-<p><img src="assets/new_project2.png" width="80%" /></p>
+<p><img src="assets/new_project2.png" alt="" width="80%" /></p>
 <p><br></p>
 </div>
 <div id="select-git" class="section level3">
 <h3>Select Git</h3>
 <p>Since we are using Git.</p>
-<p><img src="assets/new_project3.png" width="80%" /></p>
+<p><img src="assets/new_project3.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>We got to this step during last class when we were confirming that
 our set-up has Git configured and connected to RStudio and GitHub
@@ -829,20 +829,20 @@ because problems can arise when trying to sync folders with multiple
 systems.</p>
 <p>Finally, click Create Project.</p>
 <p><br></p>
-<p><img src="assets/new_project4.png" width="80%" /></p>
+<p><img src="assets/new_project4.png" alt="" width="80%" /></p>
 <p><br> <br></p>
 </div>
 <div id="admire-and-inspect-your-local-repo" class="section level3">
 <h3>Admire and inspect your local repo</h3>
 <p>If everything went well, the repository will show up in RStudio!</p>
 <p><br></p>
-<p><img src="assets/new_project5.png" width="100%" /></p>
+<p><img src="assets/new_project5.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>The repository is also saved to the location you specified, and you
 can navigate to it as you normally would in Finder or Windows
 Explorer:</p>
 <p><br></p>
-<p><img src="assets/new_project6.png" width="80%" /></p>
+<p><img src="assets/new_project6.png" alt="" width="80%" /></p>
 <p><br></p>
 <p><strong>Hooray!</strong></p>
 <p><br></p>
@@ -854,7 +854,7 @@ right hand corner.</p>
 <p>Second, we have a Git tab in the top right pane! Let’s click on
 it.</p>
 <p><br></p>
-<p><img src="assets/new_project5_annotated.png" width="80%" /></p>
+<p><img src="assets/new_project5_annotated.png" alt="" width="80%" /></p>
 <p><br></p>
 <p>Our Git tab has 2 items:</p>
 <ul>
@@ -910,7 +910,7 @@ class="section level2">
 <li>Push</li>
 </ol>
 <p><br></p>
-<p><img src="assets/commit_steps.png" width="100%" /></p>
+<p><img src="assets/commit_steps.png" alt="" width="100%" /></p>
 <p><br> <br></p>
 <div id="pull" class="section level3">
 <h3>Pull</h3>
@@ -925,7 +925,7 @@ to pull often: it costs nothing (other than an internet connection).</p>
 <p>Pull by clicking the teal Down Arrow. (Notice also how when you
 highlight a filename, a preview of the differences displays below).</p>
 <p><br></p>
-<p><img src="assets/commit_pull.png" width="100%" /></p>
+<p><img src="assets/commit_pull.png" alt="" width="100%" /></p>
 <p><br></p>
 </div>
 <div id="stage" class="section level3">
@@ -943,14 +943,14 @@ because these are new files that have been added to your repo
 the RStudio <a
 href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">cheatsheet</a>):</p>
 <p><br></p>
-<p><img src="assets/commit_codes_added_modified.png" width="30%" /></p>
+<p><img src="assets/commit_codes_added_modified.png" alt="" width="30%" /></p>
 <p><br></p>
 </div>
 <div id="commit" class="section level3">
 <h3>Commit</h3>
 <p>Next, we click on the Commit section.</p>
 <p><br></p>
-<p><img src="assets/commit_circled.png" width="100%" /></p>
+<p><img src="assets/commit_circled.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>Committing is different from saving our files (which we still have to
 do! RStudio will indicate a file is unsaved with red text and an
@@ -966,7 +966,7 @@ breadcrumbs to my Future Self: how can I use this space to be useful for
 me if I’m trying to retrace my steps (and perhaps in a panic?).</p>
 <p>Second, you press Commit.</p>
 <p><br></p>
-<p><img src="assets/commit_message_arrow.png" width="100%" /></p>
+<p><img src="assets/commit_message_arrow.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>When we have committed successfully, we get a rather
 unsuccessful-looking pop-up message. You can read this message as
@@ -980,12 +980,12 @@ interpret this message as a joyous one.</p>
 message.”? GitHub is really serious about writing human-readable commit
 messages. <br></p>
 </blockquote>
-<p><img src="assets/commit_success.png" width="100%" /></p>
+<p><img src="assets/commit_success.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>When we close this window there is going to be (in my opinion) a very
 subtle indication that we are not done with the syncing process.</p>
 <p><br></p>
-<p><img src="assets/commit_branch_ahead_of_origin_master.png" width="100%" /></p>
+<p><img src="assets/commit_branch_ahead_of_origin_master.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>We have successfully committed our work as a
 breadcrumb-message-approved snapshot in time, but it still only exists
@@ -998,7 +998,7 @@ the remote repo at GitHub.com. So as the last step, we push.</p>
 <h3>Push</h3>
 <p>The last step in the syncing process is to Push!</p>
 <p><br></p>
-<p><img src="assets/commit_push.png" width="100%" /></p>
+<p><img src="assets/commit_push.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>Awesome! We’re done here in RStudio for the moment, let’s check out
 the remote on github.com.</p>
@@ -1013,7 +1013,7 @@ at the bottom. Since it is good practice to have a README file that
 identifies what code does (i.e. why it exists), GitHub will display a
 Markdown file called README nicely formatted.</p>
 <p><br></p>
-<p><img src="assets/gh_repo_view.png" width="100%" /></p>
+<p><img src="assets/gh_repo_view.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>Let’s also explore the commit history. The 2 commits we’ve made (the
 first was when we originally initiated the repo from github.com) are
@@ -1060,7 +1060,7 @@ default be saved here so all our files can be nicely organized.</p>
 repository that you just made and saves it in
 <code>Maria/my/projects/way/over/here</code>, she will still be able to
 interact with your files as you are here.</p>
-<p><img src="assets/RStudio_IDE_projdir.png" width="100%" /></p>
+<p><img src="assets/RStudio_IDE_projdir.png" alt="" width="100%" /></p>
 <p><br></p>
 </div>
 </div>
