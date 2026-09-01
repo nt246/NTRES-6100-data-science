@@ -34,8 +34,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Announcements
 
 * **Homework 1** is due this Thursday at 10pm (submit through GitHub! – we’ll demo later).
-* Azwad will host office hours Wednesday 3-4pm in 311 Fernow Hall
-* Nina will host office hours 11.30-12am (right after class) this Thursday downstairs at the tables outside the Dairy Bar
+* Feel free to reach out with questions in the `assignments` channel on Slack 
+* Nina will host office hours Wednesday 2.30-3pm on Zoom (link will be shared on Slack) 
+* Nina will host office hours 11.25-40am (right after class) this Thursday downstairs at the tables outside the Dairy Bar
+
 
 
 <br>  
@@ -54,7 +56,7 @@ By the end of this class you will be able to:
 
 <br>
 
-**Acknowledgements**: Today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [STAT457 course at UBC](https://stat545.stat.ubc.ca/notes/notes-a02/).
+**Acknowledgements**: Today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [STAT545 course at UBC](https://stat545.com/).
 
 <br>
 
@@ -122,17 +124,24 @@ Examples:
 <br>
 
 ### Say hello to your course repo on GitHub
-In this course, you will not be working in repos in your own personal account because then we will not have edit access to your files. Instead, you will work within your personal course repo that we have created with a GitHub Classroom organization for the class. To access your personal course repo through which you will be submitting your assignments and communicating with us, click [here](https://classroom.github.com/a/StaRJQLV). Select your name from the list (or just click continue if you don't see your name there).
+In this course, you will not be working in repositories in your own personal GitHub account, because the instructors need to have access to your files. Instead, you will work within a **personal course repository** hosted in our course GitHub organization, `therkildsen-class`. You will use this same repository throughout the semester to submit all of your assignments and share your work with us.
 
-Once you land on your repo page, notice that it is hosted within our course organizational account `therkildsen-class`, not your personal account (see the path in the top left corner). To make this repo also show up on your personal account page, click the "Star" button on the top right of the page. 
+We will use **Classroom 50** to create your personal course repository. You should have received an invitation to join the course GitHub organization at your **Cornell email address**. Follow the link in that email to accept the invitation. Then follow the Classroom 50 instructions to accept the NTRES 6100 assignment. This will create a private repository for you within `therkildsen-class`. Only you and the course instructors will have access to this repository.
+
+Once you land on your repository page, notice that it is hosted within our course organization, `therkildsen-class`, rather than your personal GitHub account (you can see this in the repository path at the top left). To make your course repository easy to find from your personal GitHub account, click the **Star** button near the top right of the repository page.
+
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("assets/star_repo_24FA.png")  
+knitr::include_graphics("assets/star_repo_26FA.png")  
 ```
 
 <br>
 
-Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
+**You only need to set up your course repo and accept the assignment on Classroom 50 once.** You will use this same repository for all assignments throughout the semester. You are also welcome to use it to keep your class notes, exercises, and other course-related files.
+
+<br>
+
+Now if you click on the profile information in the very top right corner, and select the "Your stars" option, you'll be taken to a list of all the repos you have starred and your course repo should show up here (it should be named something like `therkildsen-class/ntres-6100-course-repo-YOUR_USER_NAME`). Click on the repo name to return to your course repo.
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("assets/finding_starred_repos.png")  
@@ -151,7 +160,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 <br>
 
 #### Together:
-* Make sure you're in your class repo (`therkildsen-class/ntres-6100-assignments-YOUR_USER_NAME`)
+* Make sure you're in your class repo (`therkildsen-class/ntres-6100-course-repo-YOUR_USER_NAME`)
 * Click on the “Add File” button on your repository’s home page, and select the "Create new file" option
 * Call the file `navigating_github.md`
 * Leave it blank, and commit (“save”) the file by clicking on green “commit new file” button at the bottom of the page.
@@ -171,7 +180,7 @@ knitr::include_graphics("assets/finding_starred_repos.png")
 
 <br>
 
-* Now create a new subdirectory for course notes (remember to not use spaces in names, so you can call it something like course-notes)
+* Now create a new subdirectory for course notes (remember to not use spaces in names, so you can call it something like course_notes)
 
 
 If you can't figure out how to add a subdirectory, you're not the first to wonder. Let's [ask the internet](https://github.com/KirstieJane/STEMMRoleModels/wiki/Creating-new-folders-in-GitHub-repository-via-the-browser)
@@ -212,7 +221,7 @@ Demonstration:
 
 ## Interfacing with GitHub from our local computers using RStudio
 
-We should all have set up Git on our local computers by now and have it connected to RStudio. If you don't, follow the instructions [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#GitGitHub:_Brief_intro__configuration), and let us know if you run into problems.
+We should all have set up Git on our local computers by now and have it connected to RStudio. If you don't, follow the instructions [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-quarto-github.html#GitGitHub:_Brief_intro__configuration), and let us know if you run into problems.
 
 <br>
 
@@ -283,7 +292,7 @@ At this point you can save this repo anywhere. Press "Browse..." to navigate to 
 There are different schools of thought but we think it is useful to create a high-level folder where you will keep your GitHub repos to keep them organized. We call ours `github` (all lowercase) and keep it in our root folder (`~/github`), and so that is what we will demonstrate here. We encourage you to do the same. Why? First of all, you'll always know where all your code is located, and it will mirror the structure of what you see on GitHub. Second, it makes working across users and machines easier if all your file paths start with `~/github/repo-name`.
 
 
-**IMPORTANT**: Make sure to not place it in folder tracked by a cloud storage service (e.g. DropBox, Google Drive or Box) because problems can arise when trying to sync folders with multiple systems.
+**IMPORTANT: Make sure to not place it in folder tracked by a cloud storage service (e.g. DropBox, Google Drive or Box) because problems can arise when trying to sync folders with multiple systems.**
 
 Finally, click Create Project. 
 
@@ -325,7 +334,7 @@ knitr::include_graphics("assets/new_project6.png")
 
 Let's notice a few things: 
 
-First, our working directory is set to `~/github/ntres-6100-assignments-USERNAME`, and `ntres-6100-assignments-USERNAME` is also named in the top right hand corner.
+First, our working directory is set to `~/github/ntres-6100-course-repo-YOUR_USER_NAME`, and `ntres-6100-course-repo-YOUR_USER_NAME` is also named in the top right hand corner.
 
 Second, we have a Git tab in the top right pane! Let's click on it. 
 
@@ -352,18 +361,18 @@ We will handle this in a moment; first let's look at the README.md file.
 
 ### Edit your README file
 
-Let's also open up the `README.md`. This is a Markdown file, which is the same language we just learned with Quarto / R Markdown. It's like a Quarto file without the abilities to run code (but we can see much of the formatting in the visual editor. 
+Let's also open up the `README.md`. This is a Markdown file, which is the same language we just learned with Quarto. It's like a Quarto file without the abilities to run code (but we can see much of the formatting in the visual editor). 
 
 We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added). 
 
 README files are common in programming; they are the first place that someone will look to see **why code exists and how to run it**. 
 
-In my README, I'll edit the line that says: 
+In my README, right under the line that says: 
 
 ```
-Please indicate if you are **taking this class for credit** or **auditing**:  
+Throughout the semester, you will add, commit, and push your work to this repository using Git and GitHub.
 ```
-and delete the option that does not apply to me.
+I will write "My name is ... [add your name]."
 
 When I save this, notice how it shows up in my Git tab. It has a blue "M": GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it's Modified with an M. 
 
@@ -516,7 +525,7 @@ Let's also explore the commit history. The 2 commits we've made (the first was w
 
 Let's go back to RStudio and see how we set up well-organized projects and workflows for our data analyses. 
 
-This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-assignments-USERNAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
+This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `ntres-6100-course-repo-YOUR_USER_NAME.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
 
 A [project-oriented workflow](https://rstats.wtf/projects) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
 
@@ -537,6 +546,7 @@ knitr::include_graphics("assets/RStudio_IDE_projdir.png")
 ```
 
 <br>
+<br>
 
 ## Project-oriented workflows in action (aka our analytical setup)
 
@@ -544,7 +554,7 @@ Let's get a bit organized. First, let's create a new Quarto file for notes that 
 
 <br>
 
-### Create a new Rmd file
+### Create a new Quarto file
 
 So let's do this (again): 
 
@@ -597,11 +607,11 @@ Now let's go to our Finder or Windows Explorer: our new folders are there as wel
 
 <br>
 
-### Output formats for RMarkdown
+### Output formats for Quarto
 
-After pushing, the rendered html of `course-notes.Rmd` file should show up in our GitHub repo after we push it. But how does it look? GitHub just displays the raw html text file, not the nice-looking rendered version we'll see in a browser. 
+After pushing, the rendered html of `course-notes.qmd` file should show up in our GitHub repo after we push it. But how does it look? GitHub just displays the raw html text file, not the nice-looking rendered version we'll see in a browser. 
 
-The nicely formatted files you see on GitHub (e.g. typical README pages) are markdown files (.md in contrast to .Rmd). Fortunately, Quarto can output to this format, along with several others including pdf and word documents. We can change the output format in the YAML header at the top of our Quarto document. For the rendered output to display nicely on GitHub, we want to select `output: gfm` (GitHub Flavored Markdown). 
+The nicely formatted files you see on GitHub (e.g. typical README pages) are markdown files (.md in contrast to .qmd). Fortunately, Quarto can output to this format, along with several others including pdf and word documents. We can change the output format in the YAML header at the top of our Quarto document. For the rendered output to display nicely on GitHub, we want to select `output: gfm` (GitHub Flavored Markdown). 
 ```
 ---
 title: "Notes for NTRES 6100 lectures"
@@ -632,12 +642,10 @@ Let's sync the data file (we will be able to sync the figures folder after we've
 
 Edit your README either directly on GitHub or in RStudio and practice syncing (pull, stage, commit, push). For example, 
 
-* Indicate whether you're taking the course for credit
-* Add a fun fact about yourself
-* Add another line of text
-* Add a picture of yourself (see instructions from last class [here](https://nt246.github.io/NTRES-6100-data-science/lesson2-rmarkdown-github.html#Activity))
+* Add a fun fact about yourself or a photo
+* Add another line of text with some styling (bolds, italics, headers, bullets etc.)
+* Explore your Commit History
 
-Explore your Commit History
 
 <br>
 

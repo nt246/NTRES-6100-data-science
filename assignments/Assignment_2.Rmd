@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 In this assignment, you will bring one of your pre-existing projects into the Git/GitHub and RStudio universe so you can start adopting version control and dynamic report generation (Quarto) in your own work right away. Below, we'll guide you through the setup step by step. There are other, perhaps more elegant, ways to add version control to a pre-existing project, but we will use the approach described below because it works well and lets us work through RStudio so we won't need to use command line to interact with Git. If you don't have a project that you feel is suitable for GitHub version control, you can set up a hypothetical research project repo instead and create a few hypothetical script and data files.
 
 
-#### This assignment is due by **10pm on Thursday 09/11/2024**.  
+#### This assignment is due by **10pm on Thursday 09/10/2026**.  
 
 To submit, paste the URL to the new project GitHub repo you will create here to the README file in your course repo. Below the table used to record grades, please type
 
@@ -55,23 +55,23 @@ Decide what you want to call the GitHub repository that will host your project. 
 
 ***
 
-## Task 3: Invite Nicolas as a collaborator to allow grading
+## Task 3: Invite Azwad as a collaborator to allow grading
 
 Your repo is now ready. Since you made it private, only you can see it, so don't worry about putting data and results up there. It will only be visible to people you explicitly invite as collaborators. 
 
-To show us that you have completed the assignment, you will therefore need to add Nicolas as a collaborator temporarily. Once he has had a chance to review your setup, you can revoke his collaborator privileges so he won't have continued access.
+To show us that you have completed the assignment, you will therefore need to add Azwad as a collaborator temporarily. Once he has had a chance to review your setup, you can revoke his collaborator privileges so he won't have continued access.
 
-To give Nicolas access:
+To give Azwad access:
 
 * Click on the "Settings" tab
 
-* Click on "Manage access" from the menu on the left
+* Click on "Collaborators" from the menu on the left
 
-* Click on the green button labeled **Invite a collaborator** (note that you may be prompted to enter your **GitHub** password)
+* Click on the green button labeled **Add people** (note that you may be prompted to enter your **GitHub** password)
 
-* In the search box that appears, type `nicolas931010` and select Nicolas' name/username
+* In the search box that appears, type `azwadriqbal` and select Azwad's name/username
 
-* Click on the green button that says **Add nicolas931010 to this repository**
+* Click on the green button that says **Add azwadriqbal to this repository**
 
 <br>
 
