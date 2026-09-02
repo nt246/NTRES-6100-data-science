@@ -125,6 +125,9 @@ Aligned left (HTML): [Aligned right and italic (HTML)]{style="float:right"}
 
 While custom formatting in Quarto can be powerful, the Quarto community has dedicated templates designed specifically to generate professional-looking CV's. 
 
+<br>
+
+
 Some options include `typstcv` and `schochastics/quarto-cv`. You can install either in the terminal using:
 
 ```
@@ -139,6 +142,8 @@ quarto use template schochastics/classic-cv
 
 For this next section of the lab, install one of the above templates, migrate some of your information from your existing CV to the template, and use an AI agent for help with formatting and troubleshooting. 
 
+<br>
+
 Begin by familiarizing yourself with the following *before* requesting any AI help:
 - An example `qmd` file to understand the formatting and syntax expected
 - Check online documentation for the respective templates for more information on how to configure the template for your needs
@@ -146,6 +151,8 @@ Begin by familiarizing yourself with the following *before* requesting any AI he
 Use what you find on your own to guide your prompts to your chosen LLM. Specific prompts provided with context for your needs and the templates/packages you are using are crucial to ensuring your outputs are accurate and useful.
 
 If you generate something you like, please share your results to `#lab-chat` on Slack!
+
+<br>
 
 ## Short break (10 minutes)
 
