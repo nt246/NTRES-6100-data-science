@@ -22,7 +22,6 @@ There are no required readings for today's lesson, but if you're keen to learn m
 ## Announcements
 
 * **Homework 1** is due at 10pm tonight (push it to your course GitHub repo)
-* Thanks for helping each other answer questions on Slack - keep it coming
 * We will send out a short evaluation form after today's class to briefly check in on how the course is going for you and whether we should make any adjustments
 
 <br>
@@ -31,7 +30,7 @@ There are no required readings for today's lesson, but if you're keen to learn m
 
 By the end of this class you will be able to:  
 
-* Create a new repository in your personal Github account
+* Create a new repository in your personal GitHub account
 * Give repo privileges to a collaborator
 * Collaborate on a repo with your partner
 * Describe how to avoid merge conflicts  
@@ -54,7 +53,7 @@ We're going to collaborate with a partner to set up a new repository. First sit 
 
 > Partner 1
 
-Decide who will be Partner 1 and who will be Partner 2. Partner 1 will create a new repository in their personal Github account.
+Decide who will be Partner 1 and who will be Partner 2. Partner 1 will create a new repository in their personal GitHub account.
 
 Let's name it `r-collab`. 
 
@@ -108,13 +107,13 @@ Now it's Partner 2's turn! Partner 2, clone this repository following the same s
 
 So Partner 2 can clone someone else's repo. But can they push changes? 
 
-Let's have Partner 2 make some edits to the README file. We will edit this file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added).
+Let's have Partner 2 make some edits to the README file. We will edit this file and illustrate how Git tracks files that have been modified (to complement seeing how it tracks files that have been added).
 
 In the README, you can write something like: 
 
 `This repo is for our collaborative project` 
 
-When I save this, notice how it shows up in my Git tab. It has a blue “M”: GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it’s Modified with an M.
+When I save this, notice how it shows up in my Git tab. It has a blue “M”: Git is already tracking this file, and tracking it line-by-line, so it knows that something is different: it’s Modified with an M.
 
 And now let's sync back to GitHub: Pull, Stage, Commit, Push
 
@@ -182,9 +181,9 @@ I recommend pulling every time you come back to a collaborative repository. Whet
 
 What kind of heartache are we talking about? Merge conflicts. 
 
-Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other -- that's its job! 
+Within a file, Git tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and Git will be able to weave those changes into each other -- that's its job! 
 
-It's when you have collaborators working on *the same lines within the same file* that you can have **merge conflicts**. This is when there is a conflict within the same line so that GitHub can't merge automatically. They need a human to help decide what information to keep (which is good because you don't want GitHub to decide for you). Merge conflicts can be frustrating, but like R's error messages, they are actually trying to help you. 
+It's when you have collaborators working on *the same lines within the same file* that you can have **merge conflicts**. This is when there is a conflict within the same line so that Git can't merge automatically. They need a human to help decide what information to keep (which is good because you don't want Git to decide for you). Merge conflicts can be frustrating, but like R's error messages, they are actually trying to help you. 
 
 So let's experience this together: we will create and solve a merge conflict. **Stop and watch me demo how to create and solve a merge conflict with my Partner 2, and then you will do the same with your partner.** Here's what I am going to do:
 
@@ -222,9 +221,9 @@ OK. Now, let's have Partner 2 sync: pull, stage, commit, push. Just like normal.
 
 Now, let's have Partner 1 (me) try. 
 
-When I try to Pull, I get the first error we will see today: "Your local changes to README.md would be overwritten by merge". GitHub is telling me that it knows I've modified my README, but since I haven't staged and committed them, it can't do its job and merge my conflicts with whatever is different about the version from GitHub.com. 
+When I try to Pull, I get the first error we will see today: "Your local changes to README.md would be overwritten by merge". Git is telling me that it knows I've modified my README, but since I haven't staged and committed them, it can't do its job and merge my conflicts with whatever is different about the version from GitHub.com. 
 
-This is good: the alternative would be GitHub deciding which one to keep and it's better that we have that kind of control and decision making.
+This is good: the alternative would be Git deciding which one to keep and it's better that we have that kind of control and decision making.
 
 <br>
 
@@ -235,7 +234,7 @@ knitr::include_graphics("assets/github_mergeconflict.png")
 
 <br>
 
-GitHub provides some guidance: either commit this work first, or "stash it", which you can  interpret that as moving the README temporarily to another folder somewhere outside of this GitHub repository so that you can successfully pull and then decide your next steps. 
+Git provides some guidance: either commit this work first, or "stash it", which temporarily sets aside your uncommitted changes, allowing you to update your repository and then reapply those changes afterward.
 
 Let's follow their advice and have Partner 1 commit. Great. Now let's try pulling again. 
 
@@ -265,7 +264,7 @@ Now, we're ready pull again. Try that.
 
 New error: "Merge conflict in README...fix conflicts and then commit the result". 
 
-So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it's asking me to now compare these changes, choose a preference, and commit. 
+So this error is different from the previous: Git knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it's asking me to now compare these changes, choose a preference, and commit. 
 
 <br>
 
@@ -275,7 +274,7 @@ knitr::include_graphics("assets/gh_mergeconflict2.png")
 
 <br>
 
-We will again follow GitHub's advice to fix the conflicts. Let's close this window and inspect. 
+We will again follow Git's advice to fix the conflicts. Let's close this window and inspect. 
 Did you notice two other things that happened along with this message? 
 
 First, in the Git tab, next to the README listing there are orange `U`s; this means that there is an unresolved conflict. It means my file is not staged with a check anymore because modifications have occurred to the file since it has been staged. 
@@ -296,7 +295,7 @@ Julie is collaborating on this README.
 
 In this example, Partner 1 is Julie and Partner 2 is Allison. GitHub is displaying the line that Julie wrote and the line Allison. wrote separated by `=======`. These are the two choices that I (Partner 1) has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by `<<<<<<<HEAD` and `>>>>>>>long commit identifier`. 
 
-So, to resolve this merge conflict, Partner 1 has to chose which one to keep. And I tell GitHub my choice by deleting everything in this bundle of tex except the line they want. So, Partner 1 will delete the `<<<<<<HEAD`, `=====`, `>>>>long commit identifier` and either Julie or Allison's line that I don't want to keep. 
+So, to resolve this merge conflict, Partner 1 has to choose which one to keep. And I tell Git my choice by deleting everything in this bundle of text except the line they want. So, Partner 1 will delete the `<<<<<<HEAD`, `=====`, `>>>>long commit identifier` and either Julie or Allison's line that I don't want to keep. 
 
 I'll do this, and then commit again. In this example, we've kept Allison's line: 
 
@@ -333,7 +332,7 @@ Create a merge conflict with your partner, following the steps that we just did 
 
 Merge conflicts can occur when you collaborate with others — I find most often it is collaborating with ME from a different computer. They will happen, but you can minimize them by getting into good habits. 
 
-To minimize merge conflicts, pull often so that you are aware of anything that is different, and deal with it early. Similarly, commit and push often so that your contributions do not become too unweildly for yourself or others later on.
+To minimize merge conflicts, pull often so that you are aware of anything that is different, and deal with it early. Similarly, commit and push often so that your contributions do not become too unwieldly for yourself or others later on.
 
 Also, talk with your collaborators. Are they working on the exact same file right now that you need to be? If so, coordinate with them (in person, GChat, Slack, email). For example: "I'm working on X part and will push my changes before my meeting — then you can work on it and I'll pull when I'm back". Also, if you find yourself always working on the exact same file, you could consider breaking it into different files to minimize problems.
 
@@ -345,7 +344,7 @@ Protect yourself by pulling and syncing often!
 
 ## Merging changes
 
-Merge conflicts only happen when changes have been made to the **same line in the same file**. To clearly illustrate this, we will now demo a series of different outcomes we can experience when two people are working on the same repo and end up making changes in parallel without pushing in sequence (i.e. partners end up with different versions on their local computers that need to be reconciled in the remote repo).  
+**Merge conflicts most commonly occur when two people have changed the same lines—or overlapping parts—of the same file.** To clearly illustrate this, we will now demo a series of different outcomes we can experience when two people are working on the same repo and end up making changes in parallel without pushing in sequence (i.e. partners end up with different versions on their local computers that need to be reconciled in the remote repo).  
 
 Watch first, then you'll get a chance to work through the steps for yourselves.
 
@@ -357,9 +356,9 @@ Watch first, then you'll get a chance to work through the steps for yourselves.
 Let's have Partner 2 create a new Quarto file and name it `analysis.qmd`. Here's what you will do: 
 
 1. Pull! (in case Partner 1 has pushed something in the meantime)
-2. Create a new Quarto file and name it `analysis.qmd`. Choose html as the output format if you're using the "Create Quarto document wizard, but change it to `output: gfm` in the file (GitHub Flavored Markdown, to display nicely on GitHub. 
+2. Create a new Quarto file and name it `analysis.qmd`. Choose html as the output format if you're using the "Create Quarto document wizard, but change it to `format: gfm` in the file (GitHub Flavored Markdown, to display nicely on GitHub. 
 3. Change the title inside the .qmd file, call it "Our Collaborative Analysis"
-4. Knit
+4. Render the document
 5. Save and sync your .Rmd and your .md files 
     - (pull, stage, commit, push)
     
@@ -439,7 +438,7 @@ There is a lesson to be learned here!
 
 If you had pushed D first, you’d be relaxing and they’d be figuring out how to integrate C into their history in order to push. So push your work often. Don’t go dark and work “offline” for long stretches of time.
 
-Obviously, you should push work to master because it’s “ready” to share (or at least “ready enough”), not to avoid Git merges.
+Obviously, you should push work to the shared branch because it’s “ready” to share (or at least “ready enough”), not to avoid Git merges.
 
 There is a truly legitimate point here: It is better for the overall health of a project to be committing, pushing, and integrating more often, not less. This does not eliminate the need to integrate different lines of work, but it makes each integration smaller, less burdensome, and less prone to error.
 
@@ -468,7 +467,7 @@ Branches afford explicit workflows for integrating different lines of work on yo
 
 ### Commit History
 
-Go back to Github.com and have a look at the commit history of your collaborative repo. You’ll see that the number of commits for the repo has increased, let’s have a look. You can see the history of what both Partner 1 and 2 have done.
+Go back to github.com and have a look at the commit history of your collaborative repo. You’ll see that the number of commits for the repo has increased, let’s have a look. You can see the history of what both Partner 1 and 2 have done.
 
 <br>
 

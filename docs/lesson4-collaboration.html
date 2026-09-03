@@ -472,8 +472,6 @@ href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.ht
 <ul>
 <li><strong>Homework 1</strong> is due at 10pm tonight (push it to your
 course GitHub repo)</li>
-<li>Thanks for helping each other answer questions on Slack - keep it
-coming</li>
 <li>We will send out a short evaluation form after today’s class to
 briefly check in on how the course is going for you and whether we
 should make any adjustments</li>
@@ -484,7 +482,7 @@ should make any adjustments</li>
 <h2>Learning objectives</h2>
 <p>By the end of this class you will be able to:</p>
 <ul>
-<li>Create a new repository in your personal Github account</li>
+<li>Create a new repository in your personal GitHub account</li>
 <li>Give repo privileges to a collaborator</li>
 <li>Collaborate on a repo with your partner</li>
 <li>Describe how to avoid merge conflicts<br />
@@ -510,7 +508,7 @@ partner and get to practice.</p>
 <p>Partner 1</p>
 </blockquote>
 <p>Decide who will be Partner 1 and who will be Partner 2. Partner 1
-will create a new repository in their personal Github account.</p>
+will create a new repository in their personal GitHub account.</p>
 <p>Let’s name it <code>r-collab</code>.</p>
 <p><img src="assets/create_repo.png" alt="" width="80%" /></p>
 <p><br></p>
@@ -561,13 +559,13 @@ already exist in the repo.</p>
 <p>So Partner 2 can clone someone else’s repo. But can they push
 changes?</p>
 <p>Let’s have Partner 2 make some edits to the README file. We will edit
-this file and illustrate how GitHub tracks files that have been modified
+this file and illustrate how Git tracks files that have been modified
 (to complement seeing how it tracks files that have been added).</p>
 <p>In the README, you can write something like:</p>
 <p><code>This repo is for our collaborative project</code></p>
 <p>When I save this, notice how it shows up in my Git tab. It has a blue
-“M”: GitHub is already tracking this file, and tracking it line-by-line,
-so it knows that something is different: it’s Modified with an M.</p>
+“M”: Git is already tracking this file, and tracking it line-by-line, so
+it knows that something is different: it’s Modified with an M.</p>
 <p>And now let’s sync back to GitHub: Pull, Stage, Commit, Push</p>
 <p>ERROR! We can’t push changes to a repo we’re not a collaborator on.
 That makes good sense - we don’t want random people to be able to make
@@ -637,17 +635,17 @@ save a lot of heartache later.</p>
 <div id="merge-conflicts" class="section level2">
 <h2>Merge conflicts</h2>
 <p>What kind of heartache are we talking about? Merge conflicts.</p>
-<p>Within a file, GitHub tracks changes line-by-line. So you can also
-have collaborators working on different lines within the same file and
-GitHub will be able to weave those changes into each other – that’s its
+<p>Within a file, Git tracks changes line-by-line. So you can also have
+collaborators working on different lines within the same file and Git
+will be able to weave those changes into each other – that’s its
 job!</p>
 <p>It’s when you have collaborators working on <em>the same lines within
 the same file</em> that you can have <strong>merge conflicts</strong>.
-This is when there is a conflict within the same line so that GitHub
-can’t merge automatically. They need a human to help decide what
-information to keep (which is good because you don’t want GitHub to
-decide for you). Merge conflicts can be frustrating, but like R’s error
-messages, they are actually trying to help you.</p>
+This is when there is a conflict within the same line so that Git can’t
+merge automatically. They need a human to help decide what information
+to keep (which is good because you don’t want Git to decide for you).
+Merge conflicts can be frustrating, but like R’s error messages, they
+are actually trying to help you.</p>
 <p>So let’s experience this together: we will create and solve a merge
 conflict. <strong>Stop and watch me demo how to create and solve a merge
 conflict with my Partner 2, and then you will do the same with your
@@ -690,21 +688,19 @@ like normal.</p>
 </blockquote>
 <p>Now, let’s have Partner 1 (me) try.</p>
 <p>When I try to Pull, I get the first error we will see today: “Your
-local changes to README.md would be overwritten by merge”. GitHub is
+local changes to README.md would be overwritten by merge”. Git is
 telling me that it knows I’ve modified my README, but since I haven’t
 staged and committed them, it can’t do its job and merge my conflicts
 with whatever is different about the version from GitHub.com.</p>
-<p>This is good: the alternative would be GitHub deciding which one to
-keep and it’s better that we have that kind of control and decision
+<p>This is good: the alternative would be Git deciding which one to keep
+and it’s better that we have that kind of control and decision
 making.</p>
 <p><br></p>
 <p><img src="assets/github_mergeconflict.png" alt="" width="80%" /></p>
 <p><br></p>
-<p>GitHub provides some guidance: either commit this work first, or
-“stash it”, which you can interpret that as moving the README
-temporarily to another folder somewhere outside of this GitHub
-repository so that you can successfully pull and then decide your next
-steps.</p>
+<p>Git provides some guidance: either commit this work first, or “stash
+it”, which temporarily sets aside your uncommitted changes, allowing you
+to update your repository and then reapply those changes afterward.</p>
 <p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s
 try pulling again.</p>
 <p>When you first try this, you will likely see this error:</p>
@@ -731,7 +727,7 @@ we open a new repository.</p>
 <p><br></p>
 <p>New error: “Merge conflict in README…fix conflicts and then commit
 the result”.</p>
-<p>So this error is different from the previous: GitHub knows what has
+<p>So this error is different from the previous: Git knows what has
 changed line-by-line in my file here, and it knows what has changed
 line-by-line in the version on GitHub.com. And it knows there is a
 conflict between them. So it’s asking me to now compare these changes,
@@ -739,9 +735,9 @@ choose a preference, and commit.</p>
 <p><br></p>
 <p><img src="assets/gh_mergeconflict2.png" alt="" width="80%" /></p>
 <p><br></p>
-<p>We will again follow GitHub’s advice to fix the conflicts. Let’s
-close this window and inspect. Did you notice two other things that
-happened along with this message?</p>
+<p>We will again follow Git’s advice to fix the conflicts. Let’s close
+this window and inspect. Did you notice two other things that happened
+along with this message?</p>
 <p>First, in the Git tab, next to the README listing there are orange
 <code>U</code>s; this means that there is an unresolved conflict. It
 means my file is not staged with a check anymore because modifications
@@ -762,9 +758,9 @@ separated by <code>=======</code>. These are the two choices that I
 where does this decision start and end? The lines are bounded by
 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code> and
 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;long commit identifier</code>.</p>
-<p>So, to resolve this merge conflict, Partner 1 has to chose which one
-to keep. And I tell GitHub my choice by deleting everything in this
-bundle of tex except the line they want. So, Partner 1 will delete the
+<p>So, to resolve this merge conflict, Partner 1 has to choose which one
+to keep. And I tell Git my choice by deleting everything in this bundle
+of text except the line they want. So, Partner 1 will delete the
 <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>,
 <code>&gt;&gt;&gt;&gt;long commit identifier</code> and either Julie or
 Allison’s line that I don’t want to keep.</p>
@@ -800,7 +796,7 @@ most often it is collaborating with ME from a different computer. They
 will happen, but you can minimize them by getting into good habits.</p>
 <p>To minimize merge conflicts, pull often so that you are aware of
 anything that is different, and deal with it early. Similarly, commit
-and push often so that your contributions do not become too unweildly
+and push often so that your contributions do not become too unwieldly
 for yourself or others later on.</p>
 <p>Also, talk with your collaborators. Are they working on the exact
 same file right now that you need to be? If so, coordinate with them (in
@@ -823,13 +819,13 @@ re-clone.</p>
 </div>
 <div id="merging-changes" class="section level2">
 <h2>Merging changes</h2>
-<p>Merge conflicts only happen when changes have been made to the
-<strong>same line in the same file</strong>. To clearly illustrate this,
-we will now demo a series of different outcomes we can experience when
-two people are working on the same repo and end up making changes in
-parallel without pushing in sequence (i.e. partners end up with
-different versions on their local computers that need to be reconciled
-in the remote repo).</p>
+<p><strong>Merge conflicts most commonly occur when two people have
+changed the same lines—or overlapping parts—of the same file.</strong>
+To clearly illustrate this, we will now demo a series of different
+outcomes we can experience when two people are working on the same repo
+and end up making changes in parallel without pushing in sequence
+(i.e. partners end up with different versions on their local computers
+that need to be reconciled in the remote repo).</p>
 <p>Watch first, then you’ll get a chance to work through the steps for
 yourselves.</p>
 <p><br></p>
@@ -842,11 +838,11 @@ class="section level3">
 <li>Pull! (in case Partner 1 has pushed something in the meantime)</li>
 <li>Create a new Quarto file and name it <code>analysis.qmd</code>.
 Choose html as the output format if you’re using the “Create Quarto
-document wizard, but change it to <code>output: gfm</code> in the file
+document wizard, but change it to <code>format: gfm</code> in the file
 (GitHub Flavored Markdown, to display nicely on GitHub.</li>
 <li>Change the title inside the .qmd file, call it “Our Collaborative
 Analysis”</li>
-<li>Knit</li>
+<li>Render the document</li>
 <li>Save and sync your .Rmd and your .md files
 <ul>
 <li>(pull, stage, commit, push)</li>
@@ -925,8 +921,9 @@ collaborator.</p>
 out how to integrate C into their history in order to push. So push your
 work often. Don’t go dark and work “offline” for long stretches of
 time.</p>
-<p>Obviously, you should push work to master because it’s “ready” to
-share (or at least “ready enough”), not to avoid Git merges.</p>
+<p>Obviously, you should push work to the shared branch because it’s
+“ready” to share (or at least “ready enough”), not to avoid Git
+merges.</p>
 <p>There is a truly legitimate point here: It is better for the overall
 health of a project to be committing, pushing, and integrating more
 often, not less. This does not eliminate the need to integrate different
@@ -967,7 +964,7 @@ basic GitHub usage and you can learn about branches later on.</p>
 <h2>Examining the history of a repo</h2>
 <div id="commit-history" class="section level3">
 <h3>Commit History</h3>
-<p>Go back to Github.com and have a look at the commit history of your
+<p>Go back to github.com and have a look at the commit history of your
 collaborative repo. You’ll see that the number of commits for the repo
 has increased, let’s have a look. You can see the history of what both
 Partner 1 and 2 have done.</p>
