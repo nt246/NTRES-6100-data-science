@@ -455,7 +455,7 @@ Today, we'll just explore the basics, but GitHub pages is a tremendously powerfu
 Another few examples of class websites built with GitHub pages:
 
 https://nbisweden.github.io/workshop-data-visualization-r/2605/
-https://lse-dsi.github.io/ME204/2025/index.html?utm_source=chatgpt.com
+https://lse-dsi.github.io/ME204/2025/index.html
 
 <br>
 
