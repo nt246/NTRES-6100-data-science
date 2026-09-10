@@ -13,7 +13,7 @@
 
 <title>Lesson 6: Plotting with ggplot, part 1</title>
 
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -535,18 +535,18 @@ href="https://guides.github.com/features/issues/">GitHub Guide</a>.</p>
 is adapted from the excellent <a
 href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel
 users</a> course by Julia Stewart Lowndes and Allison Horst and the <a
-href="https://r4ds.had.co.nz/data-visualisation.html">R for Data
-Science</a> book by Garrett Grolemund and Hadley Wickham.</p>
+href="https://r4ds.hadley.nz/">R for Data Science 2e</a> book by Garrett
+Grolemund and Hadley Wickham.</p>
 <p><br></p>
 </div>
 <div
-id="taking-notes---remember-to-save-your-work-in-a-script-or-an-quarto-file"
+id="taking-notes---remember-to-save-your-work-in-a-script-or-a-quarto-file"
 class="section level2">
-<h2>Taking notes - remember to save your work in a script or an Quarto
+<h2>Taking notes - remember to save your work in a script or a Quarto
 file</h2>
 <p>Have a look at <a
-href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 8 in
-R4DS</a> and let’s all go ahead and change our RStudio settings to never
+href="https://r4ds.had.co.nz/workflow-projects.html">Chapter 6 in R4DS
+2e</a> and let’s all go ahead and change our RStudio settings to never
 save our workspace upon exit, as shown there.</p>
 <p><br></p>
 <div
@@ -557,11 +557,12 @@ and doing exercises in this lecture</h3>
 <p>As we start working in RStudio, we want to continue practicing how to
 sync our work to GitHub. So before we start, please open the R Project
 that is associated with your class repository (the name should be
-<code>ntres-6100-assignments-YOUR_USERNAME</code> (replace YOUR_USERNAME
+<code>ntres-6100-course-repo-YOUR_USERNAME</code> (replace YOUR_USERNAME
 with your GitHub user ID). Then create a new subdirectory names
-<code>course-notes</code>, open an R-script or a Quarto file and save it
-in this subdirectory as <code>lecture6-ggplot1.R</code> [or whatever you
-want to call it].</p>
+<code>course-notes</code> (if you don’t have a folder like this
+already), open an R-script or a Quarto file and save it in this
+subdirectory as <code>lecture6-ggplot1.R</code> [or whatever you want to
+call it].</p>
 <p><br></p>
 </div>
 </div>
@@ -692,8 +693,8 @@ resulting spreadsheet can be sorted by clicking the column names. It is
 good for exploring the dataset, but you should not run
 <code>View()</code> when rendering a Quarto file.</p>
 <p>Why do you think that is? Try typing <code>View(mpg)</code> in a code
-chunk in Quarto, knit it, and see what happens.</p>
-<pre class="r"><code>## demo knit with View() in code chunk
+chunk in Quarto, render it, and see what happens.</p>
+<pre class="r"><code>## demo render with View() in code chunk
 View(mpg)</code></pre></li>
 <li><p><code>head()</code> and <code>tail()</code></p>
 <p><code>head()</code> and <code>tail()</code> can be used to check the
@@ -1022,7 +1023,7 @@ repeat by defining how these aesthetics map to variables for all
 subsequent layers within <code>ggplot()</code>, as the following.</p>
 <pre class="r"><code>## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(color =class, size = cyl), shape = 1) +
+  geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
   geom_smooth()</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p><br></p>
@@ -1075,8 +1076,8 @@ to make some major headway before making smaller tweaks manually. Let’s
 try one of them here. You can look at other built-in themes <a
 href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a>.</p>
 <pre class="r"><code>## demo (use theme_bw)
-ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) + 
-  geom_point(mapping = aes(color=class, size=cyl), shape=1) +
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class, size = cyl), shape=1) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1) +
   theme_bw()</code></pre>
@@ -1124,6 +1125,10 @@ ggplot(mpg) +
   geom_bar(mapping = aes(x = class))</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-18-1.png" alt="" width="672" /></p></li>
 </ul>
+<p>NOTE: <code>geom_bar()</code> is doing something for us here: it
+counts how many observations occur in each class. If we already had a
+column containing the bar heights we wanted to plot, we’d use
+<code>geom_col()</code> instead.</p>
 <p><br></p>
 <ul>
 <li><p><code>geom_histogram()</code></p>
@@ -1146,13 +1151,13 @@ ggplot(mpg) +
 <li><p><code>geom_smooth()</code></p>
 <p>Different <code>geom_*()</code> functions have different arguments
 that can be very helpful. You can learn more about them by reading their
-help pages. For example, <code>method="lm"</code> and
-<code>se=FALSE</code> are two arguments that are often used in the
+help pages. For example, <code>method = "lm"</code> and
+<code>se = FALSE</code> are two arguments that are often used in the
 <code>geom_smooth()</code> function.</p>
 <pre class="r"><code>## exercise, then demo (fit linear model to hwy vs. displ without confidence interval)
 ggplot(mpg, aes(x = displ, y = hwy))+
   geom_point() +
-  geom_smooth(method = &quot;lm&quot;, se = F)</code></pre>
+  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="lesson6-files/unnamed-chunk-21-1.png" alt="" width="672" /></p></li>
 </ul>
@@ -1251,7 +1256,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 </div>
 <div id="exporting-a-ggplot-graph-with-ggsave" class="section level2">
 <h2>Exporting a ggplot graph with <code>ggsave()</code></h2>
-<p>If we want our graph to appear in a knitted html, then we don’t need
+<p>If we want our graph to appear in a rendered html, then we don’t need
 to do anything else. But often we’ll need a saved image file, of
 specific size and resolution, to share or for publication.</p>
 <p><img src="assets/ggplot2-tutorial-slides.050.png" /><!-- --> Graphic
