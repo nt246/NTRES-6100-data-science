@@ -307,6 +307,8 @@ The old version of the website may also be stored in your browser's cache, so if
 **Get up-to-date**
 Make sure that the Partner who didn't render the website locally pulls the updated version from GitHub.
 
+<br>
+<br>
 
 ## Modify your website appearance in `_quarto.yml`
 The `_quarto.yml` file is a configuration file – any document rendered within the project directory will automatically inherit the metadata defined within this file. Some easy updates can make a big difference.
@@ -452,8 +454,8 @@ Today, we'll just explore the basics, but GitHub pages is a tremendously powerfu
 
 Another few examples of class websites built with GitHub pages:
 
-https://pjbartlein.github.io/REarthSysSci/index.html  
-https://p8105.com/index.html  
+https://nbisweden.github.io/workshop-data-visualization-r/2605/
+https://lse-dsi.github.io/ME204/2025/index.html?utm_source=chatgpt.com
 
 <br>
 
