@@ -218,7 +218,8 @@ There are five `dplyr` functions that you will use to do the vast majority of da
 
 - **`summarize()`**: collapse many values down to a single summary 
 
-![](assets/rstudio-cheatsheet-summarise.png)
+  `r htmltools::img(src='assets/rstudio-cheatsheet-summarise.png', width=300)`
+
   
 <br>
   
@@ -536,6 +537,7 @@ coronavirus[coronavirus$country == "US", colnames(coronavirus) %in% c("lat", "lo
 ```
 
 <br>
+
 
 ##### Never index by blind numbers!
 ```{r, eval=FALSE}
