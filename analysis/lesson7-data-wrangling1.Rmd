@@ -49,7 +49,7 @@ Now that we have explored some of the powerful ways `ggplot` lets us visualize d
 
 <br>
 
-By the end of today's class, you should be able to:
+### By the end of today's class, you should be able to:
 
 * Subset and rearrange data with key `dplyr` functions
   + Pick observations by their values `filter()`
@@ -75,13 +75,13 @@ For some things, base-R is more straightforward, and we'll show you that too.
 
 ### Taking notes
 
-Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-assignments-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an RMarkdown file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
+Just like last class, we'll keep practicing our GitHub/version control integration by pushing our notes onto our course repo. Please open the R Project that is associated with your class repository (the name should be `ntres-6100-course-repo-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Open an R-script or a Quarto file and save it within your `course-notes` subdirectory as `data_wrangling.R` [or whatever you want to call it]. Use this R-script to type along in the examples we'll go through together today (if that works for you), and for your exercises. 
 
 <br>
 
 ### Load `tidyverse` (which has `dplyr` inside)
 
-In your R Markdown file, let's make sure we've got our packages loaded. Write the following: 
+In your Quarto file or R script, let's make sure we've got our packages loaded. Write the following: 
 
 ```{r, eval=FALSE}
 library(tidyverse)     ## install.packages("tidyverse")
@@ -93,7 +93,10 @@ This is standard practice for how to load a package in a file, and if you get an
 <br>
 
 ## Coronavirus data set
-As the COVID-19 crisis was recently at the forefront of everyone's minds, let's use a dataset tallying daily developments in recorded Coronavirus cases across the world, so that we can develop our data wrangling skills by exploring global patterns in the pandemic. We acknowledge the stress and grief associated with the reality underpinning these data, but we think they represent a strong example of how we can use data science tools to explore patterns that will improve our understanding of global challenges. 
+For this lesson, we will work with a dataset of reported COVID-19 cases and deaths from countries around the world from 2020–2023. This dataset provides a useful real-world example for learning data wrangling because it contains observations across countries, dates, and types of records, giving us plenty of opportunities to practice selecting variables, filtering observations, and combining multiple data-wrangling operations.
+
+The basic structure and context of the data are also relatively intuitive, allowing us to focus on learning the tools for manipulating data rather than spending a lot of time understanding an unfamiliar dataset. It will illustrate how data science tools can help us explore patterns in complex datasets and improve our understanding of global challenges.
+
 
 <br>
 
@@ -101,18 +104,17 @@ As the COVID-19 crisis was recently at the forefront of everyone's minds, let's 
 
 <br>
 
-We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. The dataset includes daily new and death cases between January 2020 and March 2023 and recovery cases until August 2022, and during that period was updated daily, pulling raw data from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus repository.
+We will use a dataset compiled in the [`coronavirus` R package](https://github.com/RamiKrispin/coronavirus) developed by Rami Krispin. The dataset is based on data collected by the Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE) and includes daily reported COVID-19 cases and deaths from January 2020 through March 2023, as well as recovery data through August 2022.
 
-The compiled package is available to install like any other package from CRAN with `install.packages`. However, in case it was getting updated, let's make sure that we're always working with the most current version and import the dataset directly from GitHub. 
+The coronavirus dataset is available through the R package, but for this exercise we will read the data directly from a CSV file hosted on GitHub. This gives us an opportunity to practice importing a dataset directly from the web rather than first downloading it to our computer.
 
-Let's first check when the `coronavirus.csv` file on the [coronavirus package GitHub page](https://github.com/RamiKrispin/coronavirus/tree/master/csv) was last updated.
+Navigate to the [csv folder in the coronavirus GitHub repository](https://github.com/RamiKrispin/coronavirus/tree/master/csv) and click on coronavirus.csv. Because the file is large, GitHub may not display the entire dataset in its usual preview. Click Raw to view the raw CSV file.
 
-If we click on the `coronavirus.csv` file, we'll see that it's too large to display on GitHub in data-view mode. We can read this data into R directly from GitHub, without downloading it. But we can't read this data in view-mode. We have to click on the **View raw** link in the view window. This displays it as the raw csv file, without formatting. 
+Copy the URL from the raw data page. It should look like this:
 
-Copy the url for raw data: 
-https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv
+https://github.com/RamiKrispin/coronavirus/blob/master/csv/coronavirus.csv
 
-Now, let's go back to RStudio. In our R script, let's read this csv file and name the variable "coronavirus". We will use the `read_csv()` function from the `readr` package (part of the tidyverse, so it's already installed!). 
+Now, let's go back to RStudio. In our R script, let's read this csv file and name the resulting dataset "coronavirus". We will use the `read_csv()` function from the `readr` package (part of the tidyverse, so it's already installed!). 
 
 ```{r, eval=FALSE}
 # read in corona .csv
@@ -271,7 +273,7 @@ coronavirus_us <- filter(coronavirus, country == "US")
 
 <br>
 
-How about if we want two country names? We can't use a single instance of the `==` operator here, because it can only operate on one thing at a time. We can use [Boolean operators](https://r4ds.had.co.nz/transform.html#logical-operators) for this: `&` is “and”, `|` is “or”, and `!` is “not”. So if we want records from both the US and Canada, we can type
+How about if we want two country names? We can’t use a single instance of the == operator here, because we want to match either of two different values. Instead, we can combine two comparisons using [Boolean operators](https://r4ds.hadley.nz/logicals.html#boolean-algebra) : & means “and”, | means “or”, and ! means “not”. So if we want records from either the US or Canada, we can type:
 
 ```{r, eval=FALSE}
 filter(coronavirus, country == "US" | country == "Canada")
@@ -301,13 +303,16 @@ filter(coronavirus, country == "US" & type == "death")
 
 ## Your turn - Exercise 1
 
-> **1a:** What is the total number of deaths in the US reported in this dataset (up to March 2023)?   
+> **1a:** Subset the data to only show the death counts in three European countries on today's date in 2021.
+> 
+> **1b:** Create a dataset containing only reported deaths from the US and Canada. How many observations does the resulting dataset contain?
+>
+**OPTIONAL: 1c:** What is the total number of deaths in the US reported in this dataset (up to March 2023)?   
 > Hint: You can do this in 2 steps by assigning a variable and then using the `sum()` function.
->
->
-> **1b:** Subset the data to only show the death counts in three European countries on today's date in 2021.
 
-> Then, sync to Github.com (pull, stage, commit, push).
+
+
+> Then, sync to GitHub (pull, stage, commit, push).
 
 <br>
 
@@ -319,6 +324,28 @@ filter(coronavirus, country == "US" & type == "death")
 This is one way to do it based on what we have learned so far:
 
 **Question 1a:**
+```{r, eval=FALSE}
+#Example:
+
+filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2026-09-15")
+
+```
+
+<br>
+
+**Question 1b:**
+```{r, eval=FALSE}
+#Example:
+
+filter(coronavirus,
+       country %in% c("US", "Canada"),
+       type == "death")
+
+```
+
+
+
+**Question 1c:**
 ```{r, eval=FALSE}
 x <- filter(coronavirus, country == "US", type == "death")  
 sum(x$cases)
@@ -342,13 +369,6 @@ filter(coronavirus, country == "US", type == "death") |>
 
 <br>
 
-**Question 1b:**
-```{r, eval=FALSE}
-#Example:
-
-filter(coronavirus, country %in% c("Denmark", "Italy", "Spain"), type == "death", date == "2021-09-16")
-
-```
 
 </details>
 
@@ -371,6 +391,8 @@ We can select multiple columns with a comma, after we specify the data frame (co
 ```{r, eval=FALSE}
 select(coronavirus, date, country, type, cases) 
 ```
+
+<br>
 
 Note how the order of the columns also have been rearranged to match the order they are listed in the `select()` function.
 
@@ -429,11 +451,11 @@ Good thing there is an awesome alternative.
 
 ## Meet the pipe `|>` operator
 
-Before we go any further, we should explore the pipe operator `|>`. If you have have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
+Before we go any further, we should explore the pipe operator `|>`. If you have not used this before, **this is going to change your life** (at least your coding life...). You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the US example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
 
 <br>
 
-> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, that is probably what you have been used to seeing and implementing yourself. The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). The course notes should be fully updated to use the native R pipe `|>`.
+> The tidyverse originally used the `%>%` pipe provided by the [`magrittr package`](https://github.com/smbache/magrittr) package, so if you've been using tidyverse for a while, you may have been used to seeing and implementing this yourself. The magrittr package is included in the core tidyverse, so you can use `%>%` whenever you load the tidyverse. However, R version 4.1.0 introduced a native pipe operator `|>`, which is now the recommended syntax (more details [here](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe)). The course notes should be fully updated to use the native R pipe `|>`.
 
 <br>
 
@@ -446,6 +468,7 @@ We can either type the pipe symbol `|>`, or in RStudio, we can use the keyboard 
 <br>
 <br>
 
+### How does it work?
 
 Let's demo then I'll explain:
 ```{r, eval=FALSE}
@@ -526,7 +549,7 @@ coronavirus[coronavirus$country == "US", c(2, 5:7)]
 
 Why is this a terrible idea?
 
-* It is not self-documenting. What are the columns were retaining here?
+* It is not self-documenting. What are the columns we're retaining here?
 * It is fragile. This line of code will produce different results if someone changes the organization of the dataset, e.g. adds new variables. This is especially risky if we index rows by numbers as a sorting action earlier in the script would then give unexpected results. 
 
 
@@ -580,19 +603,21 @@ coronavirus |>
 <br>
 <br>
 
-**Save your R script (knit if you've been working in an RMarkdown file), and sync it to GitHub (pull, stage, commit, push)**
+**Save your R script (render if you've been working in a Quarto file), and sync it to GitHub (pull, stage, commit, push)**
 
 <br>
 <br>
 
 ## More ways to select columns
 
-If we have time, we'll explore some [additional options for `select()`](https://r4ds.hadley.nz/data-transform#sec-select)
+If we have time, we'll explore some [additional options for `select()`](https://r4ds.hadley.nz/data-transform.html#sec-select)
 
 <br>
 <br>
 
 **We will continue in the next class with learning more useful `dplyr` functions.**
+
+
 
 
 
