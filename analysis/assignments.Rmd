@@ -28,6 +28,13 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 #### [Create a collaborative website with GitHub Pages](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)  
 >Due Fri 09/18-2026 by 8pm EDT
 
+***
+
+### Assignment 4  
+#### [Data transformation and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4_AI.qmd)  
+>Due Fri 09/25-2026 by 8pm EDT
+
+
 
 
 

@@ -13,7 +13,7 @@
 
 <title>Lesson 8: Data Wrangling Part 2</title>
 
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -521,18 +521,22 @@ href="https://r4ds.had.co.nz/transform.html">R for Data Science</a>.</p>
 <p><br></p>
 <p><br></p>
 </div>
-<div id="getting-set-up-a-reloading-the-coronavirus-dataset"
+<div id="getting-set-up-and-reloading-the-coronavirus-dataset"
 class="section level2">
-<h2>Getting set up a reloading the Coronavirus dataset</h2>
+<h2>Getting set up and reloading the Coronavirus dataset</h2>
 <p>Let’s jump back in where we left off during last class. Let’s first
 clear out our workspace so we start with a fresh session by clicking
 “Session” -&gt; “Restart R”. Then let’s open the R-script we were using
 to take notes, pull from GitHub to make sure we have the most recent
 version. You can use this script to type along as we’re working through
 demos today (if you want, it’s also fine to just watch).</p>
-<p>First, load the packages we need and the Coronavirus dataset back in
-directly from the GitHub URL and see whether it has been updated - what
-is the latest date included?</p>
+<p>We’ll continue working with the coronavirus dataset from the previous
+lesson. The dataset contains historical COVID-19 records through early
+2023. Although it is no longer being updated, its structure makes it
+useful for practicing data transformation and grouped summaries. First,
+load the packages we need and the Coronavirus dataset back in directly
+from the GitHub URL (by loading it from GitHub instead of a file stored
+on our computer, we’re sure to get the most current version).</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)
 library(skimr)        ## install.packages(&quot;skimr&quot;)</code></pre>
 <pre class="r"><code># read in the coronavirus.csv file
@@ -596,7 +600,7 @@ href="https://github.com/RamiKrispin/coronavirus">here</a>, and the raw
 .csv dataset is available here <a
 href="https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv"
 class="uri">https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv</a><br />
-(you can also navigate to it from the <code>cvs</code> subdirectory and
+(you can also navigate to it from the <code>csv</code> subdirectory and
 click <code>View raw</code> to get the URL)</p>
 <p><br></p>
 <p>Let’s first load in the data the same way we did for the case counts
@@ -613,7 +617,7 @@ dataset</p>
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code># Let&#39;s have a look at this 
-View(vacc) # remember to run this only from the console or an R script. Don&#39;t put this command in an .Rmd file that you&#39;re going to knit</code></pre>
+View(vacc) # remember to only run View() interactively from the Console or an R script rather than putting it in a code chunk in a Quarto document that you plan to render.</code></pre>
 <p><br></p>
 <p>This dataset has statistics on the <em>cumulative</em> number of
 vaccine doses administered and number of people vaccinated on each day
@@ -624,7 +628,7 @@ can divide the <code>people_at_least_one_dose</code> column with the
 <code>population</code> column to create a new column named
 <code>vaxxrate</code>. We do this with <code>mutate()</code> that is a
 function that defines and inserts new variables into a tibble. You can
-refer to existing variables diretly by name (i.e. without the
+refer to existing variables directly by name (i.e. without the
 <code>$</code> operator). To make it easier to see what happens, we’ll
 also select just a subset of the variables to retain from our
 dataset.</p>
@@ -642,11 +646,11 @@ vacc |&gt;
 <div id="your-turn---exercise-2" class="section level3">
 <h3>Your turn - Exercise 2</h3>
 <blockquote>
-<p>Add a new variable that shows how many doses of vaccine on average
-have been distributed per person considered fully vaccinated for each
-country. First look the patterns across all countries, then only show
-data for countries that have distributed more than 200 million doses.
-How many countries is that?</p>
+<p>Add a new variable that shows the number of doses administered per
+person who has received at least one dose for each country. First look
+the patterns across all countries, then only show data for countries
+that have distributed more than 200 million doses. How many countries is
+that?</p>
 </blockquote>
 <blockquote>
 
@@ -713,7 +717,7 @@ vacc |&gt;
   filter(date == max(vacc$date)) |&gt; 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |&gt; 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |&gt; 
-  arrange(-doses_per_vaxxed)</code></pre>
+  arrange(desc(doses_per_vaxxed))</code></pre>
 <p>I advise that your analyses NEVER rely on rows or variables being in
 a specific order. But it’s still true that human beings write the code
 and the interactive development process can be much nicer if you reorder
@@ -739,7 +743,7 @@ click to expand
   filter(date == max(vacc$date)) |&gt; 
   select(country_region, continent_name, people_at_least_one_dose, population) |&gt; 
   mutate(vaxxrate = round(people_at_least_one_dose / population, 2)) |&gt; 
-  arrange(-vaxxrate) |&gt; 
+  arrange(desc(vaxxrate)) |&gt; 
   filter(vaxxrate &gt; 0.9)</code></pre>
 </details>
 <p><br> <br></p>
@@ -751,7 +755,7 @@ click to expand
 <ol style="list-style-type: decimal">
 <li>Go back to our original dataset <code>coronavirus</code> and
 identify where and when the highest death count in a single day was
-observed. Hint: you can either use or <code>base::max</code> or
+observed. Hint: you can either use <code>base::max</code> or
 <code>dplyr::arrange()</code>.<br />
 </li>
 <li>The first case was confirmed in the US on <a
@@ -770,7 +774,7 @@ click to expand
 <pre class="r"><code># Identifying the record with the highest death count
 coronavirus |&gt; 
   filter(type == &quot;death&quot;) |&gt; 
-  arrange(-cases)
+  arrange(desc(cases))
 
 # We can also just identify the top hit 
 coronavirus |&gt; 
@@ -792,7 +796,9 @@ class="section level2">
 <h2>Grouped summaries with <code>summarize()</code> and
 <code>group_by</code></h2>
 <p>The last key <code>dplyr</code> verb is <code>summarize()</code>. It
-collapses a data frame to a single row. Visually, we are doing this
+reduces multiple observations to summary values. Without grouping, it
+typically produces one row; when used with <code>group_by()</code>, it
+produces one summary row for each group. Visually, we are doing this
 (image from an earlier version of RStudio’s dplyr cheatsheet):</p>
 <p><img src="assets/rstudio-cheatsheet-summarise.png" /></p>
 <p>We can use it to calculate the total number of confirmed cases
@@ -850,7 +856,7 @@ click to expand
   filter(type == &quot;death&quot;) |&gt; 
   group_by(date) |&gt; 
   summarize(total_deaths = sum(cases)) |&gt; 
-  arrange(-total_deaths)
+  arrange(desc(total_deaths))
 
 # Or
 
@@ -866,7 +872,7 @@ coronavirus |&gt;
   filter(type == &quot;death&quot;) |&gt; 
   group_by(date) |&gt; 
   summarize(total_deaths = sum(cases)) |&gt; 
-  arrange(-total_deaths) |&gt; 
+  arrange(desc(total_deaths)) |&gt; 
   ggplot() +
     geom_line(aes(x = date, y = total_deaths))
 
@@ -876,7 +882,7 @@ coronavirus |&gt;
   filter(type == &quot;death&quot;, date != &quot;2023-01-04&quot;) |&gt; 
   group_by(date) |&gt; 
   summarize(total_deaths = sum(cases)) |&gt; 
-  arrange(-total_deaths) |&gt; 
+  arrange(desc(total_deaths)) |&gt; 
   ggplot() +
   geom_line(aes(x = date, y = total_deaths))</code></pre>
 </details>
@@ -926,7 +932,7 @@ click to expand
 <pre class="r"><code>coronavirus |&gt; 
   select(-lat, -long) |&gt; 
   filter(date == &quot;2020-10-04&quot;, type == &quot;death&quot;) |&gt; 
-  arrange(-cases)</code></pre>
+  arrange(desc(cases))</code></pre>
 </details>
 <p><br> <br></p>
 </div>
@@ -950,7 +956,7 @@ coronavirus |&gt;
   filter(type == &quot;confirmed&quot;, month == 1, year == 2021) |&gt; 
   group_by(country) |&gt; 
   summarize(total_death = sum(cases)) |&gt; 
-  arrange(-total_death)</code></pre>
+  arrange(desc(total_death))</code></pre>
 </details>
 <p><br> If you’re used to working in base R, answer the same question
 with base R tools. Which coding approach do you like better or what are
