@@ -7,7 +7,7 @@ output:
     toc_float: true
 ---
 
-Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following week at 10pm EDT. Assignments will be posted below.  
+Each week, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following Friday at 8pm EDT. Assignments will be posted below.  
 
 
 ***
@@ -20,7 +20,19 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ### Assignment 2  
 #### [Put one of your pre-existing projects on GitHub](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/Assignment_2.md)  
->Due Thu 09/10-2026 by 10pm EDT
+>Due Fri 09/11-2026 by 8pm EDT
+
+***
+
+### Assignment 3  
+#### [Create a collaborative website with GitHub Pages](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_3.md)  
+>Due Fri 09/18-2026 by 8pm EDT
+
+***
+
+### Assignment 4  
+#### [Data transformation and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4_AI.qmd)  
+>Due Fri 09/25-2026 by 8pm EDT
 
 
 

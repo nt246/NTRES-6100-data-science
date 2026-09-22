@@ -7,7 +7,7 @@ Assignment 3
 
 ### Instructions: Please read through before you begin
 
-#### This assignment is due by **10pm on Thursday 09/18/2025**.
+#### This assignment is due by **8pm on Friday 09/18/2026**.
 
 Pair up with the classmate you worked with during lecture 5 and exchange
 usernames of your personal Github accounts. If you missed lecture 5 or

@@ -1,0 +1,530 @@
+---
+title: "Assignment 4: Data transformation, visualization, and working with AI"
+format: gfm
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Instructions: Please read through this before you begin
+
+- This assignment is due by **8pm on Friday 09/25/2026**. Please submit it using your personal GitHub repository for this class.
+
+- **Download this Quarto (`.qmd`) file** and place it in the `assignments` folder of your personal GitHub repository for the class. This file contains the assignment questions, code chunks, and spaces for your responses. **Work directly in this file** to complete the assignment.
+
+- Please name the file `assignment_4.qmd`. It is already set up to use `gfm` (GitHub Flavored Markdown) as the output format.
+
+- As you work through the assignment:
+
+  - Write your code in the code chunks provided. Show **BOTH your code and its output** in the rendered Quarto file, unless instructed otherwise.
+
+  - When a written response is needed, replace the text that says *“Write your response here”* with your response.
+
+  - Use Quarto options to **hide messages and warnings when needed**. Messages and warnings can be informative and important, so examine them carefully before deciding to hide them.
+
+- When you are finished, render `assignment_4.qmd` to produce `assignment_4.md`. Make sure that **both `assignment_4.qmd` and `assignment_4.md` are committed and pushed to your GitHub repository**.
+
+- Exercise 3 is **optional**; only Exercises 1 and 2 are required.
+
+<br>
+
+### Use of AI
+
+This assignment has two goals:
+
+1.  Practice and reinforce the core R skills we have been developing in class.
+2.  Practice using generative AI as a **coding partner without outsourcing your understanding**.
+
+Some questions are marked **Code yourself**. For these questions, write the code yourself without using generative AI. It is fine to use course notes, R help (`?function_name`), or package documentation.
+
+Other questions are marked **Use AI intentionally**. For these questions, you will be asked to use an AI tool and document part of the interaction. The goal is not simply to get working code. You should practice writing useful prompts, evaluating the response, testing the code, and deciding whether the suggested solution is appropriate.
+
+Some questions are marked **Evaluate AI**. These questions ask you to examine AI-generated code or compare your own approach with an AI-generated approach. Your job is to use your growing knowledge of R to evaluate the output rather than assuming that it is correct or optimal.
+
+For every AI question, **you remain responsible for the final code you submit**. You should be able to explain what every line of your submitted code does.
+
+<br>
+
+------------------------------------------------------------------------
+
+<br>
+
+# Load packages
+
+Load the required packages. We will need `knitr` for this assignment, so install that package if you don't have it already.
+
+```{r}
+library(tidyverse)
+library(knitr)
+```
+
+<br>
+
+# Exercise 1. Corruption and human development
+
+This exercise explores a dataset containing the human development index (`HDI`) and corruption perception index (`CPI`) of 173 countries across six regions: Americas, Asia Pacific, Eastern Europe and Central Asia (`East EU Cemt`), Western Europe (`EU W. Europe`), Middle East and North Africa (`MENA`), and Sub-Saharan Africa (`SSA`). The larger `CPI` is, the less corrupt the country is perceived to be.
+
+First, load the data.
+
+```{r}
+economist_data <- read_csv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv"
+)
+```
+
+<br>
+
+## 1.1 Inspect the data — **Code yourself**
+
+Show the first six rows of `economist_data`:
+
+```{r}
+# Write your code here
+```
+
+Now try displaying the same output by replacing YOUR_CODE in the parentheses of `kable()` with your code above. You will need to have the package `knitr` installed, so install it if you don't have it already.
+
+```{r}
+kable(YOUR_CODE)
+```
+
+`kable()` is a function from the `knitr` package that formats a data frame as a simple table in the rendered document.
+
+Render your document and compare the two outputs. Does `kable()` change the underlying data, or just how it is displayed?
+
+*Write your response here*
+
+<br>
+
+## 1.2 Make a basic scatter plot — **Code yourself**
+
+Explore the relationship between human development index (`HDI`) and corruption perception index (`CPI`) with a scatter plot.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 1.3 Set an aesthetic — **Code yourself**
+
+Modify your plot from 1.2 so that **all** points are red.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 1.4 Map an aesthetic to a variable — **Code yourself**
+
+Now color the points according to `Region` and set the size of all points to 2.
+
+```{r}
+# Write your code here
+```
+
+**Briefly explain:** Why does `color = "red"` belong in a different place in the code than `color = Region`?
+
+*Write your response here.*
+
+<br>
+
+## 1.5 Map point size to a variable — **Code yourself**
+
+Starting from your previous plot, map point size to `HDI.Rank` while continuing to color points by `Region`.
+
+```{r}
+# Write your code here
+```
+
+Does mapping point size to `HDI.Rank` make the plot more informative? Why or why not?
+
+*Write your response here.*
+
+<br>
+
+## 1.6 Add a smoothing line — **Use AI intentionally**
+
+You want to add **one smoothing line fitted to all observations** to the plot from 1.4.
+
+Before asking AI, write the prompt you would use. Your prompt should provide enough information for the AI to know what you already have and exactly what you want changed.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Now ask an AI tool your prompt. Examine the suggested code before running it.
+
+**Before running the code**, answer:
+
+- What new function or argument did the AI suggest?
+- Based on the function/argument names and what you know about `ggplot2`, what do you expect it to do?
+
+*Write your response here.*
+
+<br>
+
+Now test the AI-generated solution. Write your **final version** below. You may use the AI code as-is, modify it, or replace it with your own solution.
+
+```{r}
+# Write your final code here
+```
+
+Did the AI-generated code produce the plot you intended? If you changed it, briefly explain what you changed and why. If you did not change it, explain how you verified that it was appropriate.
+
+*Write your response here.*
+
+<br>
+
+## 1.7 Separate straight lines by region — **Evaluate AI**
+
+Suppose you asked an AI assistant:
+
+> "Starting with my scatter plot of CPI vs. HDI, color the observations by Region and add a separate straight regression line for each Region. Do not show confidence intervals."
+
+It returned:
+
+``` r
+ggplot(economist_data, aes(x = CPI, y = HDI)) +
+  geom_point(aes(color = Region), size = 2) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+**Do not ask AI yet.** Look carefully at the code and predict whether it will actually fit a separate line for each region. Explain your reasoning.
+
+*Write your response here.*
+
+<br>
+
+Run the code to test your prediction.
+
+```{r}
+# Paste and run the AI-generated code here
+```
+
+<br>
+
+If the code requires correction, rewrite it so that it produces a separate straight line for each region.
+
+```{r}
+# Write your corrected code here
+```
+
+After you have solved it, you may ask AI to explain why the original code behaved as it did. Compare that explanation with your own.
+
+*What did you learn from the comparison? Write your response here.*
+
+<br>
+
+## 1.8 Facet the plot — **Code yourself**
+
+Building on your corrected plot from 1.7, show each `Region` in a different facet.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 1.9 Compare ways to show a distribution — **Code yourself**
+
+Create **two** different plots showing the distribution of `HDI` among regions:
+
+1.  A density plot, with density curves filled by `Region` and transparency set to 0.5.
+2.  Histograms faceted by `Region`.
+
+```{r}
+# Density plot
+```
+
+```{r}
+# Faceted histograms
+```
+
+Which plot makes it easier to compare the shapes of the distributions among regions? Which makes it easier to see each region separately? There is not necessarily one correct choice.
+
+*Write your response here.*
+
+<br>
+
+## 1.10 Boxplots plus individual observations — **Use AI as a tutor**
+
+Create a plot showing the distribution of `HDI` in each region using boxplots. Set the transparency of the boxes to 0.5 and hide the boxplot's outlier points. Instead, show **all individual countries** as slightly jittered points on top of the boxplots.
+
+Try to write as much of the code as you can yourself first.
+
+```{r}
+set.seed(1)
+
+# Start your code here
+```
+
+If you get stuck, **do not initially ask AI to write the entire plot for you**. Instead, ask it a targeted question about the specific part you do not know how to do.
+
+> **The targeted question I asked AI (if any):**\
+> *Write your prompt here, or write "I did not need AI for this question."*
+
+If you used AI, what information in its response helped you move forward? Did it give you anything you did not need or did not understand?
+
+*Write your response here.*
+
+<br>
+
+## 1.11 Bar plot — **Code yourself**
+
+Show the number of countries in each region using a bar plot.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 1.12 Interpret the visualizations — **Your judgment**
+
+You have now created several different plots of the same dataset. Which plot or plots do you find most informative? Briefly describe the major patterns you see in the data.
+
+Do **not** use AI to write this response. We are interested in what *you* see in the figures.
+
+*Write your response here.*
+
+<br> <br>
+
+# Exercise 2. Theophylline experiment
+
+This exercise uses the `Theoph` data frame, which comes with R. It has 132 rows and 5 columns of data from an experiment on the pharmacokinetics of the anti-asthmatic drug theophylline. Twelve subjects were given oral doses of theophylline, and serum concentrations were measured at 11 time points over the next 25 hours. You can learn more about this dataset by running `?Theoph`.
+
+Have a look at the data:
+
+```{r}
+kable(head(Theoph))
+```
+
+For the following exercises, transform the data as instructed. **Try to use `tidyverse` functions even if you are more comfortable with base R**. Unless instructed otherwise, show the **first six rows** of the transformed data as a table using `kable()`.
+
+<br>
+
+## 2.1 Select columns using a helper — **Code yourself**
+
+Select columns whose names contain a lower-case `"t"`. Do not manually list the columns to include, and make sure your search is case-sensitive.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.2 Rename variables — **Code yourself**
+
+Rename `Wt` to `Weight` and `conc` to `Concentration`.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.3 Filter rows — **Code yourself**
+
+Keep observations where `Dose` is greater than 4.5 **and** `Time` is greater than the mean `Time`.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.4 Arrange rows — **Use AI, but write the prompt first**
+
+Sort `Theoph` by `Wt` from smallest to largest and, within each weight, by `Time` from largest to smallest.
+
+Before writing or running code, imagine that you are going to ask AI for help.
+
+> **What would you type into AI?**\
+> Write a concise prompt that asks for help but specifies that the solution should use `dplyr`/`tidyverse` syntax and should explain the code rather than simply returning an answer.
+>
+> *Write your prompt here.*
+
+Now ask AI your prompt. Before copying its code, identify the part of the response that controls **descending** order.
+
+*Write your response here.*
+
+<br>
+
+Write and run your final solution.
+
+```{r}
+# Write your final code here
+```
+
+<br>
+
+## 2.5 Create and replace a variable — **Evaluate two approaches**
+
+Create a variable called `Quantity` equal to `Wt * Dose`. This gives the absolute quantity of drug administered to the subject (mg). Your final data frame should contain `Subject`, `Wt`, `Quantity`, `Time`, and `conc` — but not `Dose`.
+
+First, solve this yourself.
+
+```{r}
+# Your solution
+```
+
+Now ask AI for **a different tidyverse way** to accomplish the same task.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Briefly compare the two approaches. Do they return the same columns and values? Which functions does each approach use? Which version is easier for you to read?
+
+*Write your response here.*
+
+You may keep your own solution or the AI-assisted solution as your final answer, but you should understand every function in it.
+
+<br>
+
+## 2.6 Group and summarize — **Code yourself first, then use AI to review**
+
+For each subject, calculate:
+
+- mean `conc`
+- sum of `Dose`
+
+Then sort the results so the subjects with the smallest total dose come first and show only the first six subjects.
+
+For this exercise, **do not create intermediate objects**. Use pipes to connect the operations.
+
+Write your solution **without AI first**.
+
+```{r}
+# Write your code here
+```
+
+After your code works, ask AI to review it using a prompt such as: "Does this code correctly answer the question? Do not rewrite it unless there is an error. Explain how you checked it."
+
+> **Paste the prompt you actually used:**\
+> *Write your prompt here.*
+
+Did AI identify a real problem, suggest an unnecessary change, or confirm your approach? Evaluate its feedback in 2–3 sentences.
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+# Exercise 3. Unemployment in the US, 1967–2015 (**OPTIONAL**)
+
+This exercise uses the `economics` dataset from `ggplot2`. It contains U.S. economic time-series data, including the number of unemployed persons (`unemploy`, in thousands) and total population (`pop`, in thousands), for each month from 1967 to 2015.
+
+```{r}
+head(economics) |> kable()
+```
+
+<br>
+
+## 3.1 Plot unemployment through time — **Code yourself**
+
+Plot the number of unemployed persons (`unemploy`) through time. **For this question only, hide your code in the rendered output and show only the plot.**
+
+```{r}
+
+# Write your code here
+```
+
+<br>
+
+## 3.2 Improve the plot — **Use AI for discovery, not the whole solution**
+
+Starting with your plot from 3.1:
+
+- add an informative title and axis labels;
+- make the y-axis start at 0;
+- use a minimal theme.
+
+If you do not remember how to do one of these things, ask AI **only about that specific task** rather than asking it to make the complete plot.
+
+> **If you used AI, what did you ask?**\
+> *Write your prompt here, or write "I did not use AI."*
+
+```{r}
+# Write your final code here
+```
+
+<br>
+
+## 3.3 Is population growth enough to explain the trend? — **Use AI to help plan, then code**
+
+The number of unemployed people generally rises over this time period. Could some of that pattern simply reflect population growth?
+
+Before writing code, decide what quantity would allow a more meaningful comparison through time.
+
+*What quantity should you calculate, and why? Write your response here.*
+
+Now ask AI to critique your **analysis plan**, not to write the R code.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Did the AI suggest any important change to your plan? Evaluate the suggestion.
+
+*Write your response here.*
+
+Now write the R code yourself to calculate the quantity and make a figure that helps answer the question.
+
+```{r}
+# Write your code here
+```
+
+Based on your figure, what do you conclude?
+
+*Write your response here.*
+
+<br>
+
+## 3.4 Highest average unemployment rate — **Challenge**
+
+Which five years in this dataset have the highest average unemployment rate?
+
+You will likely need to:
+
+- calculate an unemployment rate;
+- extract the year from `date`;
+- group observations by year;
+- calculate an annual average;
+- sort the results.
+
+The `year()` function from the `lubridate` package may be useful.
+
+Try this yourself first. If you use AI after getting stuck, paste **both your code before asking AI and the prompt you used**, so we can see how you used AI to move forward.
+
+```{r}
+# Your final code
+```
+
+> **If you used AI, paste your prompt here:**\
+> *Write your prompt here, or write "I did not use AI."*
+
+<br>
+
+<br>
+
+# Final reflection on AI and coding
+
+Answer these questions briefly after completing the assignment.
+
+1.  Give one example in this assignment where AI was genuinely useful to you.
+
+    *Write your answer here*
+
+2.  Give one example where your own knowledge of R was necessary to evaluate, correct, or make sense of an AI response.
+
+    *Write your answer here*
+
+3.  What is one thing you would do differently in the way you prompt AI for coding help next time?
+
+    *Write your answer here*
+
+4.  Identify one piece of code in this assignment that you feel you could now write again **without AI or notes**.
+
+    *Write your answer here*

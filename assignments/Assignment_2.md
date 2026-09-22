@@ -17,7 +17,7 @@ that you feel is suitable for GitHub version control, you can set up a
 hypothetical research project repo instead and create a few hypothetical
 script and data files.
 
-#### This assignment is due by **10pm on Thursday 09/10/2026**.
+#### This assignment is due by **8pm on Friday 09/11/2026**.
 
 To submit, paste the URL to the new project GitHub repo you will create
 here to the README file in your course repo. Below the table used to

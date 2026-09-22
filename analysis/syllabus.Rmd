@@ -75,7 +75,7 @@ The goal is not to learn how to have AI do your work for you, but to learn how t
 
 Class meetings combine lectures and hands-on labs. Lectures introduce the conceptual and computational foundations of R, data science, and reproducible research, with an emphasis on developing your own understanding of the tools and approaches, and create the conceptual foundation needed to understand what code is doing, recognize when something is wrong, and make informed analytical decisions. To participate effectively, you must have completed the assigned readings prior to class. Labs provide opportunities to apply your skills to more extended problems and will serve as our primary setting for experimenting with AI-assisted programming. Through the labs, we will develop strategies for working productively with AI while critically evaluating and verifying its output. The Thursday and Friday sessions are identical so you can attend either one of them.
 
-Each Thursday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following **Thursday at 10pm**. 
+Each Thursday, we will assign a problem set that applies the concepts covered in class in a new context to reinforce your learning. The problem sets are due the following **Friday at 8pm**. 
 
 ------------------------------------------------------------------------
 

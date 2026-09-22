@@ -13,7 +13,7 @@
 
 <title>Lesson 7: Data Wrangling Part 1</title>
 
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -517,7 +517,9 @@ href="http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdl
 (2014)</a></p>
 </blockquote>
 <p><br></p>
-<p>By the end of today’s class, you should be able to:</p>
+<div id="by-the-end-of-todays-class-you-should-be-able-to"
+class="section level3">
+<h3>By the end of today’s class, you should be able to:</h3>
 <ul>
 <li>Subset and rearrange data with key <code>dplyr</code> functions
 <ul>
@@ -536,6 +538,7 @@ STAT545 at UBC: <a
 href="http://stat545.com/block009_dplyr-intro.html">Introduction to
 dplyr</a>.</p>
 <p><br></p>
+</div>
 </div>
 <div id="what-is-data-wrangling" class="section level2">
 <h2>What is data wrangling?</h2>
@@ -565,9 +568,9 @@ that too.</p>
 <p>Just like last class, we’ll keep practicing our GitHub/version
 control integration by pushing our notes onto our course repo. Please
 open the R Project that is associated with your class repository (the
-name should be <code>ntres-6100-assignments-YOUR_USERNAME</code>
-(replace YOUR_USERNAME with your GitHub user ID). Open an R-script or an
-RMarkdown file and save it within your <code>course-notes</code>
+name should be <code>ntres-6100-course-repo-YOUR_USERNAME</code>
+(replace YOUR_USERNAME with your GitHub user ID). Open an R-script or a
+Quarto file and save it within your <code>course-notes</code>
 subdirectory as <code>data_wrangling.R</code> [or whatever you want to
 call it]. Use this R-script to type along in the examples we’ll go
 through together today (if that works for you), and for your
@@ -577,8 +580,8 @@ exercises.</p>
 <div id="load-tidyverse-which-has-dplyr-inside" class="section level3">
 <h3>Load <code>tidyverse</code> (which has <code>dplyr</code>
 inside)</h3>
-<p>In your R Markdown file, let’s make sure we’ve got our packages
-loaded. Write the following:</p>
+<p>In your Quarto file or R script, let’s make sure we’ve got our
+packages loaded. Write the following:</p>
 <pre class="r"><code>library(tidyverse)     ## install.packages(&quot;tidyverse&quot;)</code></pre>
 <p>This is standard practice for how to load a package in a file, and if
 you get an error that the package doesn’t exist, you can install the
@@ -589,43 +592,46 @@ package easily by running the code within the comment (highlight
 </div>
 <div id="coronavirus-data-set" class="section level2">
 <h2>Coronavirus data set</h2>
-<p>As the COVID-19 crisis was recently at the forefront of everyone’s
-minds, let’s use a dataset tallying daily developments in recorded
-Coronavirus cases across the world, so that we can develop our data
-wrangling skills by exploring global patterns in the pandemic. We
-acknowledge the stress and grief associated with the reality
-underpinning these data, but we think they represent a strong example of
-how we can use data science tools to explore patterns that will improve
-our understanding of global challenges.</p>
+<p>For this lesson, we will work with a dataset of reported COVID-19
+cases and deaths from countries around the world from 2020–2023. This
+dataset provides a useful real-world example for learning data wrangling
+because it contains observations across countries, dates, and types of
+records, giving us plenty of opportunities to practice selecting
+variables, filtering observations, and combining multiple data-wrangling
+operations.</p>
+<p>The basic structure and context of the data are also relatively
+intuitive, allowing us to focus on learning the tools for manipulating
+data rather than spending a lot of time understanding an unfamiliar
+dataset. It will illustrate how data science tools can help us explore
+patterns in complex datasets and improve our understanding of global
+challenges.</p>
 <p><br></p>
 <p><img src="assets/2019-nCoV-CDC-23312_without_background.png" width="200px"></p>
 <p><br></p>
 <p>We will use a dataset compiled in the <a
 href="https://github.com/RamiKrispin/coronavirus"><code>coronavirus</code>
-R package</a> developed by Rami Krispin. The dataset includes daily new
-and death cases between January 2020 and March 2023 and recovery cases
-until August 2022, and during that period was updated daily, pulling raw
-data from the Johns Hopkins University Center for Systems Science and
-Engineering (JHU CCSE) Coronavirus repository.</p>
-<p>The compiled package is available to install like any other package
-from CRAN with <code>install.packages</code>. However, in case it was
-getting updated, let’s make sure that we’re always working with the most
-current version and import the dataset directly from GitHub.</p>
-<p>Let’s first check when the <code>coronavirus.csv</code> file on the
-<a
-href="https://github.com/RamiKrispin/coronavirus/tree/master/csv">coronavirus
-package GitHub page</a> was last updated.</p>
-<p>If we click on the <code>coronavirus.csv</code> file, we’ll see that
-it’s too large to display on GitHub in data-view mode. We can read this
-data into R directly from GitHub, without downloading it. But we can’t
-read this data in view-mode. We have to click on the <strong>View
-raw</strong> link in the view window. This displays it as the raw csv
-file, without formatting.</p>
-<p>Copy the url for raw data: <a
-href="https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv"
-class="uri">https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv</a></p>
+R package</a> developed by Rami Krispin. The dataset is based on data
+collected by the Johns Hopkins University Center for Systems Science and
+Engineering (JHU CSSE) and includes daily reported COVID-19 cases and
+deaths from January 2020 through March 2023, as well as recovery data
+through August 2022.</p>
+<p>The coronavirus dataset is available through the R package, but for
+this exercise we will read the data directly from a CSV file hosted on
+GitHub. This gives us an opportunity to practice importing a dataset
+directly from the web rather than first downloading it to our
+computer.</p>
+<p>Navigate to the <a
+href="https://github.com/RamiKrispin/coronavirus/tree/master/csv">csv
+folder in the coronavirus GitHub repository</a> and click on
+coronavirus.csv. Because the file is large, GitHub may not display the
+entire dataset in its usual preview. Click Raw to view the raw CSV
+file.</p>
+<p>Copy the URL from the raw data page. It should look like this:</p>
+<p><a
+href="https://github.com/RamiKrispin/coronavirus/blob/master/csv/coronavirus.csv"
+class="uri">https://github.com/RamiKrispin/coronavirus/blob/master/csv/coronavirus.csv</a></p>
 <p>Now, let’s go back to RStudio. In our R script, let’s read this csv
-file and name the variable “coronavirus”. We will use the
+file and name the resulting dataset “coronavirus”. We will use the
 <code>read_csv()</code> function from the <code>readr</code> package
 (part of the tidyverse, so it’s already installed!).</p>
 <pre class="r"><code># read in corona .csv
@@ -711,10 +717,10 @@ functions of existing variables</p>
 </ul>
 <p><br></p>
 <ul>
-<li><strong><code>summarize()</code></strong>: collapse many values down
-to a single summary</li>
+<li><p><strong><code>summarize()</code></strong>: collapse many values
+down to a single summary</p>
+<p><img src="assets/rstudio-cheatsheet-summarise.png" width="300"/></p></li>
 </ul>
-<p><img src="assets/rstudio-cheatsheet-summarise.png" /></p>
 <p><br></p>
 <p>These can all be used in conjunction with <code>group_by()</code>
 which changes the scope of each function from operating on the entire
@@ -767,12 +773,11 @@ you’ll need to use the assignment operator, <code>&lt;-</code>:</p>
 <pre class="r"><code>coronavirus_us &lt;- filter(coronavirus, country == &quot;US&quot;)</code></pre>
 <p><br></p>
 <p>How about if we want two country names? We can’t use a single
-instance of the <code>==</code> operator here, because it can only
-operate on one thing at a time. We can use <a
-href="https://r4ds.had.co.nz/transform.html#logical-operators">Boolean
-operators</a> for this: <code>&amp;</code> is “and”, <code>|</code> is
-“or”, and <code>!</code> is “not”. So if we want records from both the
-US and Canada, we can type</p>
+instance of the == operator here, because we want to match either of two
+different values. Instead, we can combine two comparisons using <a
+href="https://r4ds.hadley.nz/logicals.html#boolean-algebra">Boolean
+operators</a> : &amp; means “and”, | means “or”, and ! means “not”. So
+if we want records from either the US or Canada, we can type:</p>
 <pre class="r"><code>filter(coronavirus, country == &quot;US&quot; | country == &quot;Canada&quot;)</code></pre>
 <p><br></p>
 <p>A useful short-hand for this problem is <code>x %in% y</code>. This
@@ -790,15 +795,18 @@ filter(coronavirus, country == &quot;US&quot; &amp; type == &quot;death&quot;)</
 <div id="your-turn---exercise-1" class="section level2">
 <h2>Your turn - Exercise 1</h2>
 <blockquote>
-<p><strong>1a:</strong> What is the total number of deaths in the US
-reported in this dataset (up to March 2023)?<br />
+<p><strong>1a:</strong> Subset the data to only show the death counts in
+three European countries on today’s date in 2021.</p>
+<p><strong>1b:</strong> Create a dataset containing only reported deaths
+from the US and Canada. How many observations does the resulting dataset
+contain?</p>
+<p><strong>OPTIONAL: 1c:</strong> What is the total number of deaths in
+the US reported in this dataset (up to March 2023)?<br />
 Hint: You can do this in 2 steps by assigning a variable and then using
 the <code>sum()</code> function.</p>
-<p><strong>1b:</strong> Subset the data to only show the death counts in
-three European countries on today’s date in 2021.</p>
 </blockquote>
 <blockquote>
-<p>Then, sync to Github.com (pull, stage, commit, push).</p>
+<p>Then, sync to GitHub (pull, stage, commit, push).</p>
 </blockquote>
 <p><br></p>
 <div id="answer-no-peeking" class="section level4">
@@ -809,6 +817,17 @@ click to see one approach
 </summary>
 <p>This is one way to do it based on what we have learned so far:</p>
 <p><strong>Question 1a:</strong></p>
+<pre class="r"><code>#Example:
+
+filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2026-09-15&quot;)</code></pre>
+<p><br></p>
+<p><strong>Question 1b:</strong></p>
+<pre class="r"><code>#Example:
+
+filter(coronavirus,
+       country %in% c(&quot;US&quot;, &quot;Canada&quot;),
+       type == &quot;death&quot;)</code></pre>
+<p><strong>Question 1c:</strong></p>
 <pre class="r"><code>x &lt;- filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;)  
 sum(x$cases)
 
@@ -827,10 +846,6 @@ filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;) |&gt;
 filter(coronavirus, country == &quot;US&quot;, type == &quot;death&quot;) |&gt;
   summarize(total_cases = sum(cases, na.rm = TRUE))</code></pre>
 <p><br></p>
-<p><strong>Question 1b:</strong></p>
-<pre class="r"><code>#Example:
-
-filter(coronavirus, country %in% c(&quot;Denmark&quot;, &quot;Italy&quot;, &quot;Spain&quot;), type == &quot;death&quot;, date == &quot;2021-09-16&quot;)</code></pre>
 </details>
 <p><br> <br> <br></p>
 </div>
@@ -847,6 +862,7 @@ href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatshee
 <p>We can select multiple columns with a comma, after we specify the
 data frame (coronavirus).</p>
 <pre class="r"><code>select(coronavirus, date, country, type, cases) </code></pre>
+<p><br></p>
 <p>Note how the order of the columns also have been rearranged to match
 the order they are listed in the <code>select()</code> function.</p>
 <p>We can also use <code>-</code> to deselect columns</p>
@@ -900,9 +916,9 @@ what’s going on and opportunities for confusion or error.</p>
 <div id="meet-the-pipe-operator" class="section level2">
 <h2>Meet the pipe <code>|&gt;</code> operator</h2>
 <p>Before we go any further, we should explore the pipe operator
-<code>|&gt;</code>. If you have have not used this before, <strong>this
-is going to change your life</strong> (at least your coding life…). You
-no longer need to enact multi-operation commands by nesting them inside
+<code>|&gt;</code>. If you have not used this before, <strong>this is
+going to change your life</strong> (at least your coding life…). You no
+longer need to enact multi-operation commands by nesting them inside
 each other. And we won’t need to make temporary variables like we did in
 the US example above. This new syntax leads to code that is much easier
 to write and to read: it actually tells the story of your analysis.</p>
@@ -911,12 +927,12 @@ to write and to read: it actually tells the story of your analysis.</p>
 <p>The tidyverse originally used the <code>%&gt;%</code> pipe provided
 by the <a
 href="https://github.com/smbache/magrittr"><code>magrittr package</code></a>
-package, so if you’ve been using tidyverse for a while, that is probably
-what you have been used to seeing and implementing yourself. The
-magrittr package is included in the core tidyverse, so you can use
-<code>%&gt;%</code> whenever you load the tidyverse. However, R version
-4.1.0 introduced a native pipe operator <code>|&gt;</code>, which is now
-the recommended syntax (more details <a
+package, so if you’ve been using tidyverse for a while, you may have
+been used to seeing and implementing this yourself. The magrittr package
+is included in the core tidyverse, so you can use <code>%&gt;%</code>
+whenever you load the tidyverse. However, R version 4.1.0 introduced a
+native pipe operator <code>|&gt;</code>, which is now the recommended
+syntax (more details <a
 href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">here</a>).
 The course notes should be fully updated to use the native R pipe
 <code>|&gt;</code>.</p>
@@ -929,6 +945,8 @@ Settings (under “Tools”) to use <code>|&gt;</code> instead of
 <code>%&gt;%</code> as shown here:</p>
 <p><img src="assets/rstudio-pipe-options.png" /></p>
 <p><br> <br></p>
+<div id="how-does-it-work" class="section level3">
+<h3>How does it work?</h3>
 <p>Let’s demo then I’ll explain:</p>
 <pre class="r"><code>coronavirus |&gt; head()</code></pre>
 <p>This is equivalent to <code>head(coronavirus)</code>. This pipe
@@ -960,6 +978,7 @@ to see what data we are starting with and what we are doing to it.</p>
 <p>…But, we still have those temporary variables so we’re not truly that
 better off. But get ready to be majorly impressed:</p>
 <p><br></p>
+</div>
 <div id="revel-in-the-convenience" class="section level3">
 <h3>Revel in the convenience</h3>
 <p>We can use the pipe to chain those two operations together:</p>
@@ -1006,7 +1025,7 @@ coronavirus[coronavirus$country == &quot;US&quot;, c(2, 5:7)] </code></pre>
 <p><br></p>
 <p>Why is this a terrible idea?</p>
 <ul>
-<li>It is not self-documenting. What are the columns were retaining
+<li>It is not self-documenting. What are the columns we’re retaining
 here?</li>
 <li>It is fragile. This line of code will produce different results if
 someone changes the organization of the dataset, e.g. adds new
@@ -1053,15 +1072,14 @@ click to see one approach
 <p><br></p>
 </details>
 <p><br> <br></p>
-<p><strong>Save your R script (knit if you’ve been working in an
-RMarkdown file), and sync it to GitHub (pull, stage, commit,
-push)</strong></p>
+<p><strong>Save your R script (render if you’ve been working in a Quarto
+file), and sync it to GitHub (pull, stage, commit, push)</strong></p>
 <p><br> <br></p>
 </div>
 <div id="more-ways-to-select-columns" class="section level2">
 <h2>More ways to select columns</h2>
 <p>If we have time, we’ll explore some <a
-href="https://r4ds.hadley.nz/data-transform#sec-select">additional
+href="https://r4ds.hadley.nz/data-transform.html#sec-select">additional
 options for <code>select()</code></a></p>
 <p><br> <br></p>
 <p><strong>We will continue in the next class with learning more useful

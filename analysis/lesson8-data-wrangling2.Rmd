@@ -56,10 +56,10 @@ Today, we'll expand our data wrangling toolbox. By the end of today's class, you
 
 <br>
 
-## Getting set up a reloading the Coronavirus dataset
+## Getting set up and reloading the Coronavirus dataset
 Let's jump back in where we left off during last class. Let's first clear out our workspace so we start with a fresh session by clicking "Session" -> "Restart R". Then let's open the R-script we were using to take notes, pull from GitHub to make sure we have the most recent version. You can use this script to type along as we're working through demos today (if you want, it's also fine to just watch). 
 
-First, load the packages we need and the Coronavirus dataset back in directly from the GitHub URL and see whether it has been updated - what is the latest date included?
+We'll continue working with the coronavirus dataset from the previous lesson. The dataset contains historical COVID-19 records through early 2023. Although it is no longer being updated, its structure makes it useful for practicing data transformation and grouped summaries. First, load the packages we need and the Coronavirus dataset back in directly from the GitHub URL (by loading it from GitHub instead of a file stored on our computer, we're sure to get the most current version).
 
 ```{r, eval = TRUE, include = TRUE, message = FALSE}
 library(tidyverse)     ## install.packages("tidyverse")
@@ -132,7 +132,7 @@ Visually, we are doing this (image from an earlier version of RStudio's dplyr ch
 The current variables in the coronavirus dataset don't lend themselves well to cross-computation, so to illustrate the power of the `mutate()` function, let's look at the companion dataset from the [coronavirus package](https://github.com/RamiKrispin/coronavirus) on global vaccination statistics.
 
 Details about the dataset can be found on the README file [here](https://github.com/RamiKrispin/coronavirus), and the raw .csv dataset is available here https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/covid19_vaccine.csv   
-(you can also navigate to it from the `cvs` subdirectory and click `View raw` to get the URL)
+(you can also navigate to it from the `csv` subdirectory and click `View raw` to get the URL)
 
 <br>
 
@@ -145,7 +145,7 @@ vacc <- read_csv("https://raw.githubusercontent.com/RamiKrispin/coronavirus/main
 
 ```{r, eval=FALSE}
 # Let's have a look at this 
-View(vacc) # remember to run this only from the console or an R script. Don't put this command in an .Rmd file that you're going to knit
+View(vacc) # remember to only run View() interactively from the Console or an R script rather than putting it in a code chunk in a Quarto document that you plan to render.
 
 ```
 
@@ -153,7 +153,7 @@ View(vacc) # remember to run this only from the console or an R script. Don't pu
 
 This dataset has statistics on the *cumulative* number of vaccine doses administered and number of people vaccinated on each day in different countries. For now, let's just look at the most recent day included in the dataset `r max(vacc$date)`. 
 
-Imagine we want to compare the vaccination rate across countries. We can divide the `people_at_least_one_dose` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables diretly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
+Imagine we want to compare the vaccination rate across countries. We can divide the `people_at_least_one_dose` column with the `population` column to create a new column named `vaxxrate`. We do this with `mutate()` that is a function that defines and inserts new variables into a tibble. You can refer to existing variables directly by name (i.e. without the `$` operator). To make it easier to see what happens, we'll also select just a subset of the variables to retain from our dataset.
 
 ```{r, eval=FALSE}
 vacc |> 
@@ -173,7 +173,7 @@ vacc |>
 
 ### Your turn - Exercise 2
 
-> Add a new variable that shows how many doses of vaccine on average have been distributed per person considered fully vaccinated for each country. First look the patterns across all countries, then only show data for countries that have distributed more than 200 million doses. How many countries is that?
+> Add a new variable that shows the number of doses administered per person who has received at least one dose for each country. First look the patterns across all countries, then only show data for countries that have distributed more than 200 million doses. How many countries is that?
 
 >
 
@@ -248,7 +248,7 @@ vacc |>
   filter(date == max(vacc$date)) |> 
   select(country_region, continent_name, doses_admin, people_at_least_one_dose, population) |> 
   mutate(doses_per_vaxxed = doses_admin / people_at_least_one_dose)  |> 
-  arrange(-doses_per_vaxxed)
+  arrange(desc(doses_per_vaxxed))
 
 ```
 
@@ -271,7 +271,7 @@ vacc |>
   filter(date == max(vacc$date)) |> 
   select(country_region, continent_name, people_at_least_one_dose, population) |> 
   mutate(vaxxrate = round(people_at_least_one_dose / population, 2)) |> 
-  arrange(-vaxxrate) |> 
+  arrange(desc(vaxxrate)) |> 
   filter(vaxxrate > 0.9)
 
   
@@ -285,7 +285,7 @@ vacc |>
 ### Your turn again - Exercise 4
 
 >
-> 1. Go back to our original dataset `coronavirus` and identify where and when the highest death count in a single day was observed. Hint: you can either use or `base::max` or `dplyr::arrange()`.  
+> 1. Go back to our original dataset `coronavirus` and identify where and when the highest death count in a single day was observed. Hint: you can either use `base::max` or `dplyr::arrange()`.  
 > 1. The first case was confirmed in the US on [January 20 2020](https://www.nejm.org/doi/full/10.1056/NEJMoa2001191), two days before the earliest day included in this dataset. When was the first confirmed case recorded in Canada?
 > 
 
@@ -300,7 +300,7 @@ vacc |>
 # Identifying the record with the highest death count
 coronavirus |> 
   filter(type == "death") |> 
-  arrange(-cases)
+  arrange(desc(cases))
 
 # We can also just identify the top hit 
 coronavirus |> 
@@ -322,7 +322,7 @@ coronavirus |>
 
 ## Grouped summaries with `summarize()` and `group_by`
 
-The last key `dplyr` verb is `summarize()`. It collapses a data frame to a single row. Visually, we are doing this (image from an earlier version of RStudio's dplyr cheatsheet): 
+The last key `dplyr` verb is `summarize()`. It reduces multiple observations to summary values. Without grouping, it typically produces one row; when used with `group_by()`, it produces one summary row for each group. Visually, we are doing this (image from an earlier version of RStudio's dplyr cheatsheet): 
  
 ![](assets/rstudio-cheatsheet-summarise.png)
 
@@ -399,7 +399,7 @@ coronavirus |>
   filter(type == "death") |> 
   group_by(date) |> 
   summarize(total_deaths = sum(cases)) |> 
-  arrange(-total_deaths)
+  arrange(desc(total_deaths))
 
 # Or
 
@@ -415,7 +415,7 @@ coronavirus |>
   filter(type == "death") |> 
   group_by(date) |> 
   summarize(total_deaths = sum(cases)) |> 
-  arrange(-total_deaths) |> 
+  arrange(desc(total_deaths)) |> 
   ggplot() +
     geom_line(aes(x = date, y = total_deaths))
 
@@ -425,7 +425,7 @@ coronavirus |>
   filter(type == "death", date != "2023-01-04") |> 
   group_by(date) |> 
   summarize(total_deaths = sum(cases)) |> 
-  arrange(-total_deaths) |> 
+  arrange(desc(total_deaths)) |> 
   ggplot() +
   geom_line(aes(x = date, y = total_deaths))
 
@@ -476,7 +476,7 @@ coronavirus |>
 coronavirus |> 
   select(-lat, -long) |> 
   filter(date == "2020-10-04", type == "death") |> 
-  arrange(-cases)
+  arrange(desc(cases))
 
 ```
 </details>
@@ -498,7 +498,7 @@ coronavirus |>
   filter(type == "confirmed", month == 1, year == 2021) |> 
   group_by(country) |> 
   summarize(total_death = sum(cases)) |> 
-  arrange(-total_death)
+  arrange(desc(total_death))
 ```
 </details>
 <br>

@@ -11,9 +11,9 @@
 
 
 
-<title>Lesson 5: Collaborating with GitHub and making websites with GitHub Pages - Part 2</title>
+<title>Lesson 5: Collaborating with GitHub - Part 2: Making websites with GitHub Pages</title>
 
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -452,8 +452,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lesson 5: Collaborating with GitHub and
-making websites with GitHub Pages - Part 2</h1>
+<h1 class="title toc-ignore">Lesson 5: Collaborating with GitHub - Part
+2: Making websites with GitHub Pages</h1>
 
 </div>
 
@@ -465,7 +465,7 @@ making websites with GitHub Pages - Part 2</h1>
 lecture last Thursday, please read through the <a
 href="https://nt246.github.io/NTRES-6100-data-science/lesson4-collaboration.html">lecture
 notes</a> and watch the recording posted on <a
-href="https://canvas.cornell.edu/courses/65313">Canvas</a></p>
+href="https://canvas.cornell.edu/courses/88419">Canvas</a></p>
 <p><br></p>
 </div>
 <div id="other-resources" class="section level2">
@@ -496,19 +496,16 @@ your personal website using Quarto</a> by Sam Shanny-Csik</p>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li>Thanks for the feedback! Feel free to add additional suggestions in
-the <code>feedback</code> channel on Slack</li>
+<li>Thanks for the feedback! Feel free to share additional
+suggestions</li>
 <li>Assignment 2 is due this Thursday - let us know if you have any
 questions</li>
-<li>Please check your grading basis on Student Center to make sure
-you’re happy with your enrollment status (lab section and grading
-basis)</li>
-<li>If you’re still not formally enrolled or not enrolled in the section
-you wish to be in, please Direct Message Nina on Slack so we can get the
-remaining enrollments sorted out.</li>
-<li>You will do assignment 3 (due Thursday Sept 18) in collaboration
+<li>You will do assignment 3 (due Thursday Sept 17) in collaboration
 with the partner you get assigned today, so make sure to exchange
 contact info before you leave class</li>
+<li>Let’s add out name and photo to our Slack accounts to make the
+workspace more personal (we’ll likely start using it more in the coming
+weeks)</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -635,16 +632,22 @@ conflicts here.</strong></p>
 <h2>Setting up your collaborative website</h2>
 <p>Now it’s going to get fun. Let’s start by making a super simple
 website. Quarto has built-in functionality to create all the basic files
-we need for a simple website. Unfortunately, there is no way to access
-that functionality through point-and-click in the RStudio GUI or a
-single command in the R Console (since Quarto is fundamentally a
-command-line tool). So instead we will have to run the command in the
-Terminal tab (in the bottom left left) [i.e. NOT in the Console tab]</p>
-<p>In the Terminal tab, have Partner 2 type and run the following
-command:</p>
+we need for a simple website. Because we have already created and cloned
+our GitHub repository, we’ll create the Quarto website inside our
+existing project using a command in the <strong>Terminal</strong>.
+Quarto is fundamentally a command-line tool, meaning that we can give
+Quarto instructions directly by typing commands in the Terminal. In
+RStudio, the <strong>Console</strong> and <strong>Terminal</strong> look
+similar, but they communicate with different programs: the Console runs
+<strong>R commands</strong>, whereas the Terminal runs <strong>commands
+for your computer’s operating system and other command-line programs,
+such as Quarto and Git</strong>.</p>
+<p>Open the <strong>Terminal</strong> tab in the bottom-left pane of
+RStudio (<strong>not the Console</strong>) and have Partner 2 type and
+run the following command:</p>
 <p><code>quarto create-project --type website</code></p>
 <p>[only Partner 2 should do this]</p>
-<p>This adds the the default files (<code>_quarto.yml</code>,
+<p>This adds the default files (<code>_quarto.yml</code>,
 <code>index.qmd</code>, <code>about.qmd</code>, and
 <code>styles.css</code>) that we need for getting started on our
 website.</p>
@@ -665,7 +668,7 @@ in a browser by clicking the “show in new window” icon.</p>
 <p><img src="assets/rstudio-website-preview.png" width="450px"></p>
 <p><br></p>
 <p>After you have previewed your website, have Partner 2 push the
-changes to Github.</p>
+changes to GitHub.</p>
 <p><br> <br></p>
 </div>
 <div id="build-prepare-to-publish-your-site-with-github-pages"
@@ -678,12 +681,15 @@ you to publish a website from any GitHub repository (for free!). To do
 so, there are a few configuration steps that we will have Partner 1 set
 up.</p>
 <p><strong>Step 1</strong></p>
-<p>Create a file named <code>.nojekyll</code> in your repository’s root
-directory (e.g. <code>collab-website/</code>), which is required to
-disable some processing of HTML files that GitHub does by default. From
-RStudio’s Files pane, click New File &gt; Text File, then type .nojekyll
-&gt; click OK (you can use the Text File option to create any file
-type).</p>
+<p>Create an empty file named <code>.nojekyll</code> in your
+repository’s root directory (e.g. <code>collab-website/</code>), which
+is required to disable some processing of HTML files that GitHub does by
+default. The presence of a <code>.nojekyll</code> file tells GitHub
+Pages to serve the files in the current folder directly rather than
+processing them with Jekyll.</p>
+<p>From RStudio’s Files pane, click New File &gt; Text File, then type
+.nojekyll &gt; click OK (you can use the Text File option to create any
+file type).</p>
 <p><br> <strong>Step 2</strong></p>
 <p>Open the <code>_quarto.yml</code> file and edit the header to set the
 output directory to a subdirectory named <code>docs</code> [it’s
@@ -717,18 +723,19 @@ Website” under the Build tab in the top right pane. You will see a
 “Build” your website – that is, when you convert all your .qmd files to
 the .html files that your web browser can interpret / display.</p>
 <blockquote>
-<p>Note: your website is currently being hosted by your local machine,
-not at a searchable URL. We’ll get there soon though!</p>
+<p>Note: Your website currently exists only on your local computer. You
+can preview it in RStudio or your browser, but it isn’t published on the
+web with a searchable URL yet. We’ll get there soon though!</p>
 </blockquote>
-<p>But first, Partner 1 must stage, commit, and push their changes to
-GitHub.</p>
+<p>But first, Partner 1 must save, stage, commit, and push their changes
+to GitHub.</p>
 <p><br> <br></p>
 </div>
 <div id="configure-your-github-pages-setup-to-launch-your-website"
 class="section level2">
 <h2>Configure your GitHub Pages setup to launch your website</h2>
 <ol style="list-style-type: decimal">
-<li>Go to your new collaborative repo on Github</li>
+<li>Go to your new collaborative repo on GitHub</li>
 <li>Navigate to the repo settings, then select the Pages tab from the
 left-hand menu bar</li>
 <li>Make sure that Branch is set to <code>main</code> and that the
@@ -746,7 +753,7 @@ try refreshing a few times).</p>
 <p>We would also have figured out our website’s URL from your GitHub
 repo’s URL — pay attention to URLs.</p>
 <ul>
-<li>note that the url starts with my
+<li>note that the URL starts with my
 <strong>username.github.io</strong><br />
 </li>
 <li>my github repo: <a href="https://github.com/nt246/collab-website/"
@@ -811,14 +818,14 @@ pushing to GitHub), and then stage, commit, and push.</p>
 <ul>
 <li>my github repo: <a href="https://github.com/nt246/collab-website/"
 class="uri">https://github.com/nt246/collab-website/</a></li>
-<li>my website url: <a href="https://nt246.github.io/collab-website/"
+<li>my website URL: <a href="https://nt246.github.io/collab-website/"
 class="uri">https://nt246.github.io/collab-website/</a></li>
-<li>general website url: <strong>&lt;<a
+<li>general website URL: <strong>&lt;<a
 href="https://username.github.io/repo-name"
 class="uri">https://username.github.io/repo-name</a></strong></li>
 </ul>
 <p><br></p>
-<p>You can also always find the website by going back to “Setting”, the
+<p>You can also always find the website by going back to “Settings”, the
 “Pages” (in the left-hand menu) within your GitHub repo.</p>
 <p><img src="assets/github_pages_live.png" width="450px"></p>
 <p><br></p>
@@ -828,13 +835,14 @@ showing up right away. Just double-check that you’ve pushed the rendered
 site and check back. In the meantime, you can explore your current
 website content and design in RStudio’s Viewer in the bottom left
 pane.</p>
-<p>The old version of the website may also be stored in your browsers
+<p>The old version of the website may also be stored in your browser’s
 cache, so if it has not updated after 1-2 minutes and you confirm that
-you’ve pushed your changes to GitHub, trying viewing the url in a
+you’ve pushed your changes to GitHub, trying viewing the URL in a
 different browser or an incognito window.</p>
 <p><br></p>
 <p><strong>Get up-to-date</strong> Make sure that the Partner who didn’t
 render the website locally pulls the updated version from GitHub.</p>
+<p><br> <br></p>
 </div>
 </div>
 <div id="modify-your-website-appearance-in-_quarto.yml"
@@ -886,15 +894,15 @@ format:
 <p>In the default Quarto website skeleton, there are two items in the
 navbar that appear as “Home” and “About.” Those navbar tabs link to two
 <code>.html</code> files (<code>index.html</code> and
-<code>about.html</code>) and are automatically rendered when when you
-Build to <code>docs/</code>. Adding a new page to your website requires
-two steps:</p>
+<code>about.html</code>) and are automatically rendered when you Build
+to <code>docs/</code>. Adding a new page to your website requires two
+steps:</p>
 <p>Create a new <code>.qmd</code> file and add any necessary YAML
 options, along with any content that you want to appear on that page.
 Here, I’m creating a new page titled “All of my favorite resources!” and
 saved it to my root directory as <code>resources.qmd</code>.</p>
 <p>A quick reminder on how to add new files:</p>
-<p>From RStudio’s File pane, click Blank File &gt; Quarto Document &gt;
+<p>From RStudio’s Files pane, click Blank File &gt; Quarto Document &gt;
 give it a name (e.g. resources.qmd and save it to your project’s root
 directory</p>
 <p>Update <code>_quarto.yml</code> by adding your new
@@ -930,7 +938,7 @@ YAML of resources.qmd – this is how it will appear in my website’s
 navbar. If you’d like to set the navbar name as something other than the
 page’s title, use the href and text options together (e.g. see how
 index.qmd is rendered as Home in my website’s navbar).</p>
-<p>Commit, stage, and push your changes to GitHub and inspect the
+<p>Save, commit, stage, and push your changes to GitHub and inspect the
 results.</p>
 <p><br></p>
 </div>
@@ -940,7 +948,7 @@ results.</p>
 predefined <a href="https://bootswatch.com/">Bootswatch themes</a>. By
 default, Quarto sites are built using the cosmo theme. Supply just one
 theme name to the theme option in your
-<code>_quarto.qmd file</code>:</p>
+<code>_quarto.yml file</code>:</p>
 <p>Try choosing quartz theme</p>
 <pre class="r"><code>project:
   type: website
@@ -973,7 +981,10 @@ your landing page (index.qmd) using a pre-built template</a></p>
 href="https://quarto.org/docs/websites/">Quarto Documentation</a>.</p>
 <p>Remember to push and pull frequently, and resolve any merge conflicts
 that arise.</p>
-<p><br> <br></p>
+<p><br></p>
+<p><strong>You now have one project that combines Quarto + RStudio + Git
++ GitHub + GitHub Pages.</strong></p>
+<p><br></p>
 </div>
 <div id="inspiration" class="section level2">
 <h2>Inspiration</h2>
@@ -987,10 +998,11 @@ href="https://nt246.github.io/NTRES-6100-data-science/index.html">Our
 class website</a></p>
 <p><br></p>
 <p>Another few examples of class websites built with GitHub pages:</p>
-<p><a href="https://pjbartlein.github.io/REarthSysSci/index.html"
-class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a><br />
-<a href="https://p8105.com/index.html"
-class="uri">https://p8105.com/index.html</a></p>
+<p><a
+href="https://nbisweden.github.io/workshop-data-visualization-r/2605/"
+class="uri">https://nbisweden.github.io/workshop-data-visualization-r/2605/</a></p>
+<p><a href="https://lse-dsi.github.io/ME204/2025/index.html"
+class="uri">https://lse-dsi.github.io/ME204/2025/index.html</a></p>
 <p><br></p>
 <p>And some personal websites:</p>
 <p><a href="https://emitanaka.org/"
@@ -1026,9 +1038,9 @@ GitHub for project management</a>)</li>
 </ul>
 <p>One important thing to note is that we have exclusively interacted
 with Git through RStudio because that provides a really nice interface
-and integrates well with RMarkdown and other work in R. However, there
-are some limits to the functionality, so for more advanced usage you
-will probably have to either use the <a
+and integrates well with Quarto and other work in R. However, there are
+some limits to the functionality, so for more advanced usage you will
+probably have to either use the <a
 href="https://desktop.github.com/">GitHub Desktop program</a> or
 interact with Git and GitHub through the command line.</p>
 <p>A few good resources for learning about interacting with Git through

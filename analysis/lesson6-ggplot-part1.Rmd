@@ -57,19 +57,19 @@ By the end of this class you will be able to:
 * Split up data into faceted graphs  
 * Change the theme of graphs  
 
-**Acknowledgements**: Some content from today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html) book by Garrett Grolemund and Hadley Wickham.
+**Acknowledgements**: Some content from today's lecture is adapted from the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and the [R for Data Science 2e](https://r4ds.hadley.nz/) book by Garrett Grolemund and Hadley Wickham.
 
 <br>  
 
-## Taking notes - remember to save your work in a script or an Quarto file 
+## Taking notes - remember to save your work in a script or a Quarto file 
 
-Have a look at [Chapter 8 in R4DS](https://r4ds.had.co.nz/workflow-projects.html) and let's all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.
+Have a look at [Chapter 6 in R4DS 2e](https://r4ds.had.co.nz/workflow-projects.html) and let's all go ahead and change our RStudio settings to never save our workspace upon exit, as shown there.
 
 <br>
 
 ### Create an R script or a Quarto file for working along with examples and doing exercises in this lecture
 
-As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-assignments-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes`, open an R-script or a Quarto file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
+As we start working in RStudio, we want to continue practicing how to sync our work to GitHub. So before we start, please open the R Project that is associated with your class repository (the name should be `ntres-6100-course-repo-YOUR_USERNAME` (replace YOUR_USERNAME with your GitHub user ID). Then create a new subdirectory names `course-notes` (if you don't have a folder like this already), open an R-script or a Quarto file and save it in this subdirectory as `lecture6-ggplot1.R` [or whatever you want to call it].  
  
 <br>  
 
@@ -126,10 +126,10 @@ Before making any kind of graph, we will always need get to know our data first.
 
     `View()` opens up a spreadsheet-style data viewer. The resulting spreadsheet can be sorted by clicking the column names. It is good for exploring the dataset, but you should not run `View()` when rendering a Quarto file.
     
-    Why do you think that is? Try typing `View(mpg)` in a code chunk in Quarto, knit it, and see what happens. 
+    Why do you think that is? Try typing `View(mpg)` in a code chunk in Quarto, render it, and see what happens. 
     
     ```{r, eval = FALSE}
-    ## demo knit with View() in code chunk
+    ## demo render with View() in code chunk
     View(mpg)
     ```
   
@@ -354,7 +354,7 @@ Did you notice that for both geometric objects, `x` maps to `displ` and `y` maps
 ```{r, message = FALSE}
 ## demo
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point(mapping = aes(color =class, size = cyl), shape = 1) +
+  geom_point(mapping = aes(color = class, size = cyl), shape = 1) +
   geom_smooth()
 ```
 
@@ -408,8 +408,8 @@ While every element of a `ggplot2` graph is customizable, there are also built-i
 
 ```{r fig.height=5, fig.width=10, message = FALSE}
 ## demo (use theme_bw)
-ggplot(data = mpg, mapping = aes(x=displ, y=hwy)) + 
-  geom_point(mapping = aes(color=class, size=cyl), shape=1) +
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class, size = cyl), shape=1) +
   geom_smooth() +
   facet_wrap(~ year, nrow=1) +
   theme_bw()
@@ -449,6 +449,8 @@ That being said, there are some geometries, aesthetics, and facet functions that
       geom_bar(mapping = aes(x = class))
     ```
 
+NOTE: `geom_bar()` is doing something for us here: it counts how many observations occur in each class. If we already had a column containing the bar heights we wanted to plot, we'd use `geom_col()` instead.
+
 <br>
 
 * `geom_histogram()`
@@ -473,13 +475,13 @@ That being said, there are some geometries, aesthetics, and facet functions that
 
 * `geom_smooth()`
     
-    Different `geom_*()` functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, `method="lm"` and `se=FALSE` are two arguments that are often used in the `geom_smooth()` function.
+    Different `geom_*()` functions have different arguments that can be very helpful. You can learn more about them by reading their help pages. For example, `method = "lm"` and `se = FALSE` are two arguments that are often used in the `geom_smooth()` function.
     
     ```{r}
     ## exercise, then demo (fit linear model to hwy vs. displ without confidence interval)
     ggplot(mpg, aes(x = displ, y = hwy))+
       geom_point() +
-      geom_smooth(method = "lm", se = F)
+      geom_smooth(method = "lm", se = FALSE)
     ```
  
 <br>
@@ -584,7 +586,7 @@ That being said, there are some geometries, aesthetics, and facet functions that
 
 ## Exporting a ggplot graph with `ggsave()`
 
-If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication. 
+If we want our graph to appear in a rendered html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics("assets/ggplot2-tutorial-slides.050.png")  

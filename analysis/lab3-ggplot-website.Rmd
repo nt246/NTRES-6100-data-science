@@ -207,11 +207,11 @@ Share your findings, challenges, and questions with the class.
 <br>
 <br>
 
-### Exercise 2a: Publish your data visualizations on a website and explore different website styling options (45 minutes)
+### Exercise 2a: Publish your data visualizations on a website and explore different website styling options (30 minutes)
 
 <br>
 
-### Exercise 2b: Publish your personal academic/professional website and explore different website styling options (45 minutes)
+### Exercise 2b: Publish your personal academic/professional website and explore different website styling options (30 minutes)
 
 <br>
 
@@ -223,20 +223,38 @@ For this exercise, you will build a GitHub Pages website as described in [Lectur
 
 #### Suggested activities for Exercise 2a
 
-- You can split your RMarkdown file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `index.Rmd`, `single_trait.Rmd`, `multiple_traits.Rmd`, and `sexual_dimorphism.Rmd`, and the add those as tabs in a `_site.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
+- You can split your Quarto file into separate files, so each section (i.e. data, life expectancy, fertility, infant mortality) becomes a separate page and can get it own tab. You can e.g. split your content into files named `index.qmd`, `single_trait.qmd`, `multiple_traits.qmd`, and `sexual_dimorphism.qmd`, and the add those as tabs in a `_quarto.yml` file, as described in the [lecture notes](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Jazzing_up_your_website)
 
 - You can then consider adding a table of contents and changing the styling (theme) of your website, as described [here](https://nt246.github.io/NTRES-6100-data-science/lesson5-collaboration-part2.html#Adding_content_and_editing_the_website)
 
 <br>
 
-Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running `rmarkdown::render_site()`) in your Viewer pane in RStudio.
+Remember that it may take a little while for your website to update after you have pushed your changes to GitHub, but you can always check the current build (after running `Render Website` in the `Build` pane) in your Viewer pane in RStudio.
 
 <br>
 <br>
 
-### Recap (10 minutes)
+### Exercise 3: Use AI to enhance your sites and visuals
 
-Share your findings, challenges, and questions with the class. 
+Now that you have your website up and running, let's leverage AI tools to enhance either the website itself or the plots that are hosted on each website.
+
+<br>
+
+#### Enhance plots using `ggplot` themes, color palettes, and the `theme()` function
+
+`ggplot` contains several built-in themes that alter the appearance of rendered plots. Explore some of them with the help of an AI assistant of your choice. After you've selected your base theme, enhance your plots by adding additional customization using the `theme()` function to change the font(s) used, the presence of axis lines, or a different plot element of your choosing. 
+
+Finally, employ a different color palette than the `ggplot` default to visualize your data. R palettes are plentiful, but ask for help from an AI assistant that is both **colorblind friendly** and aesthetically pleasing. 
+
+<br>
+
+#### Enhance your website layout/appearance
+
+Use an AI assistant to enhance your website's appearance/layout beyond what we went over in class. Some examples might be:
+
+- Add a logo to your site's header
+- Create a drop down menu to access webpages
+- Apply a non-Bootswatch website theme 
 
 <br>
 <br>
