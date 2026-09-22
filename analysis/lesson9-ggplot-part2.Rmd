@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, fig.path="lesson9-files/")
 <br>
 
 ## Announcements
-* Assignment 4 due this Thursday
+* Assignment 4 due this Friday
 
 
 <br>
@@ -70,7 +70,7 @@ You can think of the grammar of graphics as a systematic approach for describing
 * **Data**
     + Exactly as it sounds: the data that you’re feeding into a plot.
 * **Aesthetic mappings**
-    + This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called “aesthetics”, and can be (for example) horizontal positioning, vertical positioning, size, colour, shape, etc.
+    + This is a specification of how you will connect variables (columns) from your data to a visual dimension. These visual dimensions are called “aesthetics”, and can be (for example) horizontal positioning, vertical positioning, size, color, shape, etc.
 * **Geometric objects**
     + This is a specification of what object will actually be drawn on the plot. This could be a point, a line, a bar, etc.
 * Scales
@@ -100,8 +100,6 @@ suppressPackageStartupMessages(library(knitr))
 
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
-# Has it been updated? Check the latest date?
-max(coronavirus$date)
 ```
 
 <br>
@@ -109,7 +107,7 @@ max(coronavirus$date)
 
 ## Combining `dplyr` and `ggplot`
 
-Let's start with summarizing the total number of cases by type as of the most recent day in the dataset: `r max(coronavirus$date)`. Take a minute to try this for yourself, then you can look at our approach.
+Let's start by calculating the total number of reported cases of each type across the entire dataset. Take a minute to try this for yourself, then you can look at our approach.
 
 <br>
 
@@ -189,13 +187,13 @@ Some common arguments we'll use first are:
 - `color = `: update point or line colors
 - `fill = `: update fill color for objects with areas
 - `linetype = `: update the line type (dashed, long dash, etc.)
+- `linewidth = `: update the the width of lines
 - `shape = `: update the point style 
-- `size = `: update the element size (e.g. of points or line thickness)
+- `size = `: update the size of points
 - `alpha = `: update element opacity (1 = opaque, 0 = transparent)
 
-<br>
 
-There are many overviews of the different arguments to `linetype`, `shape` etc on the internet, e.g. [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
+There are many overviews of the different arguments to `linetype`, `shape` etc on the internet, e.g. [here](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html).
 
 <br>
 
@@ -246,10 +244,135 @@ gg_base +
 
 In the example above, notice that the two arguments that **do** depend on variables are within `aes()`, but since `alpha = 0.5` doesn't depend on a variable then it is *outside the `aes()` but still within the `geom_point()` layer*. 
 
-When we map variables to aesthetics, `ggplot2` will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as scaling. `ggplot2` will also add a legend that explains which levels correspond to which values.
+When we map a variable to an aesthetic, `ggplot2` uses a scale to translate values of that variable into visual properties such as colors, sizes, or shapes. It also automatically creates a legend that shows how values are represented.
 
 <br>
 <br>
+
+
+### Changing the color scale
+
+When we map a variable to color inside `aes()`, **ggplot2** automatically chooses a color scale for us. We can change the colors that are used by adding a `scale_color_*()` function from the **`scales`** package to our plot.
+
+For this section, we will use functions from the **`scales`** and **`RColorBrewer`** packages. Before continuing, install these packages if you don't already have them installed:
+
+```{r eval=FALSE}
+install.packages("scales")
+install.packages("RColorBrewer")
+```
+
+You only need to install a package once on your computer.
+
+The important distinction is:
+
+- `aes(color = class)` determines **what the colors represent**
+- `scale_color_*()` determines **what those colors look like**
+
+The type of color scale we use depends on whether the variable mapped to color is **categorical** or **continuous**.
+
+<br>
+
+#### Color palettes for categorical variables
+
+For a categorical variable, we can choose from a number of predefined palettes. One option is to use the ColorBrewer palettes:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  scale_color_brewer(palette = "Set2")
+```
+
+You can display all of the available ColorBrewer palettes by running:
+
+```{r}
+RColorBrewer::display.brewer.all()
+```
+
+Here we use `RColorBrewer::` to tell R explicitly that the `display.brewer.all()` function comes from the `RColorBrewer` package.
+
+<br>
+
+#### Choosing colors manually
+
+We can also specify exactly which colors we want using `scale_color_manual()`:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  scale_color_manual(values = c("steelblue", "tomato", "darkgreen",
+                                "goldenrod", "purple", "skyblue", "pink"))
+```
+
+R recognizes many named colors, such as `"steelblue"`, `"tomato"`, and `"goldenrod"`. The function `colors()` gives you a list of all the named colors available in R.
+
+The **`scales`** package that we installed above provides a useful function for viewing these colors:
+
+```{r}
+scales::show_col(colors())
+
+# You can adjust the size of font with cex_label
+scales::show_col(colors(), cex_label = 0.3)
+```
+
+This displays the colors visually, which makes it much easier to choose colors than looking through the names returned by `colors()`.
+
+<br>
+
+#### Color palettes for continuous variables
+
+If the variable mapped to color is continuous rather than categorical, we need a **continuous color scale**.
+
+One option is to use one of the built-in viridis color scales:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = cty)) +
+  geom_point() +
+  scale_color_viridis_c()
+```
+
+The `_c` at the end of `scale_color_viridis_c()` indicates that this is a **continuous** color scale.
+
+We can also create our own continuous color gradient by specifying the colors at the low and high ends of the scale:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = cty)) +
+  geom_point() +
+  scale_color_gradient(low = "lightblue", high = "darkblue")
+```
+
+Here, observations with lower values of `cty` are shown in light blue, observations with higher values are shown in dark blue, and ggplot2 creates the intermediate colors between them.
+
+We can use any R color names or hexadecimal color codes for `low` and `high`. For example:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = cty)) +
+  geom_point() +
+  scale_color_gradient(low = "#FDE725", high = "#440154")
+```
+
+If there is a meaningful midpoint in the data, we can instead create a three-color gradient using `scale_color_gradient2()`:
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = cty)) +
+  geom_point() +
+  scale_color_gradient2(
+    low = "blue",
+    mid = "white",
+    high = "red",
+    midpoint = 20
+  )
+```
+
+This type of **diverging color scale** is particularly useful when values above and below a meaningful reference point should be visually distinguished, such as positive versus negative change.
+
+When choosing a color scale, remember that colors are not simply decorative. The palette should help communicate the structure of the variable being represented.
+
+The same principles apply when you map a variable to `fill` instead of `color`. In that case, use the corresponding `scale_fill_*()` functions, such as `scale_fill_brewer()`, `scale_fill_manual()`, or `scale_fill_viridis_c()`.
+
+<br>
+<br>
+
+
 
 ## ggplot2 complete themes
 
@@ -293,7 +416,7 @@ gg_base +
   theme_minimal() +
   theme(legend.background = element_rect(
     fill = "lemonchiffon", 
-    colour = "grey50", 
+    color = "grey50", 
     linewidth = 1
   ))
 ```
@@ -339,7 +462,7 @@ gg_base +
 
 <br>
 
-**Note**: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the `scales` package options and add `+ scale_y_continuous(labels = scales::comma)` (see more from the [R Cookbook](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/)). 
+**Note**: If you want to change the formatting of axis values (for example, to display large numbers with commas rather than scientific notation), you can use formatting functions from the `scales` package and add `+ scale_y_continuous(labels = scales::label_comma())` (see more examples in the [ggplot2 documentation on axes and label formatting](https://ggplot2.tidyverse.org/articles/faq-axes.html)).
 
 <br>
 <br>
@@ -377,7 +500,7 @@ coronavirus |>
   summarize(total_cases = sum(cases)) |> 
   ggplot(mapping = aes(x = date, y = total_cases)) +
   geom_line()
-# Even though we have grouped the dataframe by country, that dplyr grouping does not get carried into ggplot
+# Even though we have grouped the dataframe by country, that dplyr grouping does not get carried into ggplot because we're not mapping country to an aesthetic
 ```
 <br>
 
@@ -401,7 +524,7 @@ top5_countries <- coronavirus |>
   filter(type == "confirmed") |>
   group_by(country) |>
   summarize(total_cases = sum(cases)) |>
-  arrange(-total_cases) |> 
+  arrange(desc(total_cases)) |> 
   head(5) |> 
   pull(country)
 ```
@@ -680,19 +803,88 @@ filter(coronavirus, date == max(coronavirus$date), type == "confirmed", cases > 
 <br>
 <br>
 
-## Exercise
 
-Come up with an interesting question you want to explore in the Coronavirus dataset with a plot. Try to figure out how to plot it (remember: Google is your friend).
+## Exercises
 
-<br>
- 
-Examples of questions you could explore:
+Let's put together the data wrangling and visualization skills we have practiced in this lesson. For each exercise, try to write the code yourself before looking back at the examples above.
 
-* We saw earlier that India has had a lower death count per number of confirmed cases than other countries, while Mexico had a higher death count per number of confirmed cases. Has this been a consistent pattern throughout the pandemic?
+### 1. Compare trends among countries
 
-* For how long has the US been the country with the greatest number of confirmed cases?
+Choose **three countries** you are interested in and make a line plot showing the number of new confirmed cases reported through time in each country.
 
-* Have the global daily death counts peaked and declined or are they still rising? What about within individual countries?
+Your plot should:
+
+- show each country as a different color
+- include informative x- and y-axis labels
+- include a title
+- use a `theme_*()` of your choice
+
+Think about which steps need to happen with `dplyr` before you pass the data to `ggplot()`.
+
+### 2. Change the color scale
+
+Take the plot you created above and change the colors used to distinguish the three countries.
+
+Try **one** of the following:
+
+- use a ColorBrewer palette with `scale_color_brewer()`
+- specify your own three colors with `scale_color_manual()`
+
+What part of your code determines **what the colors represent**, and what part determines **which colors are displayed**?
+
+### 3. One plot or multiple panels?
+
+Take your plot from Exercise 1 and make a second version in which each country is displayed in its own panel using `facet_wrap()`.
+
+Compare the two versions.
+
+Which plot makes it easier to compare the countries at the same point in time? Which makes it easier to see the pattern within each country?
+
+### 4. Cases and deaths
+
+Choose **five countries** and calculate the total number of reported confirmed cases and deaths for each country across the dataset.
+
+Make a bar plot showing these values.
+
+Experiment with at least two of these options:
+
+- stacked bars
+- side-by-side bars using `position = "dodge"`
+- proportional bars using `position = "fill"`
+- horizontal bars using `coord_flip()`
+
+What different information is emphasized by the different versions of the plot?
+
+### 5. Make the plot communicate better
+
+Choose one of the plots you created above and improve its presentation.
+
+Make at least **four** changes. For example, you could:
+
+- change the colors
+- change the theme
+- change the axis labels
+- add a title or subtitle
+- change the axis number formatting
+- change the legend position
+- change line width, point size, or transparency
+- facet the plot
+
+There is no single correct answer. Your goal is to make deliberate choices that make the pattern you want to communicate easier to see.
+
+### 6. Your turn
+
+Now come up with **one question of your own** that can be explored using the Coronavirus dataset.
+
+Before writing any code, write down:
+
+1. What question are you trying to answer?
+2. Which variables do you need?
+3. What data wrangling will you need to do before plotting?
+4. What type of plot would communicate the answer effectively?
+
+Then create your plot.
+
 
 <br>
 <br>
@@ -706,14 +898,14 @@ Examples of questions you could explore:
 ```{R, eval = TRUE}
 ## linear scale
 group_by(coronavirus, date, type) |>
-  summarise(cases = sum(cases)) |> 
+  summarize(cases = sum(cases)) |> 
   group_by(type) |>
   mutate(cases=cumsum(cases)) |>
   ggplot() +
   geom_line(aes(x=date, y=cases, color=type))
 ## log scale
 group_by(coronavirus, date, type) |>
-  summarise(cases = sum(cases)) |> 
+  summarize(cases = sum(cases)) |> 
   group_by(type) |>
   mutate(cases=cumsum(cases)) |>
   ggplot() +

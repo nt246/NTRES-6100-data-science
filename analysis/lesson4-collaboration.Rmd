@@ -454,7 +454,7 @@ In general, it pays off to be proactively aware of what others are doing (e.g. t
 <br> 
 
 #### 3. When you get more experienced, you may want to use branches
-Your early experiences collaborating with others and yourself in master will give you a visceral understanding of why most Git users eventually start to use branches.
+Your early experiences collaborating with others and yourself in the main branch will give you a visceral understanding of why most Git users eventually start to use branches.
 
 Branches afford explicit workflows for integrating different lines of work on your own terms. This is much nicer than trying to do a tricky merge or rebase in a frustrated panic, because you need to push your work to GitHub at the end of the day. But for now, we will focus on more basic GitHub usage and you can learn about branches later on.
 
