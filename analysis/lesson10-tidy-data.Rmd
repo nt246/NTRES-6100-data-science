@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 * [Chapter 5 in in R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy) by Hadley Wickham, Mine Çetinkaya-Rundel & Garrett Grolemund
 
-* [This cool Twitter thread](https://twitter.com/juliesquid/status/1315710359404113920?s=21) by Julia Lowndes and Allison Horst. If you can't access the thread or want more detail, the same material is expanded upon on Julie's [Openscapes website](https://www.openscapes.org/blog/2020/10/12/tidy-data/). [Openscapes](https://www.openscapes.org/) is an awesome organization that champions open practices in environmental science - check it out!
+* [This cool blog post](https://openscapes.org/blog/2020-10-12-tidy-data/) by Julia Lowndes and Allison Horst. The blog is available on Julie's [Openscapes website](https://www.openscapes.org/blog/2020/10/12/tidy-data/). [Openscapes](https://www.openscapes.org/) is an awesome organization that champions open practices in environmental science - check it out!
 
 <br>
 
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path="lesson10-files/")
 
 ## Announcements
 
-* Assignment 4 due tonight - submit by pushing to your class GitHub repo
+* Assignment 4 due tomorrow evening - submit by pushing to your class GitHub repo
 
 * We're half way through the course! We will send out a link to a mid-term evaluation form (we'll use our own form because the official CALS version won't be ready in time to work with our schedule). We would appreciate your candid feedback so we can make the most of our remaining time together. All responses are completely anonymous.
 
@@ -58,12 +58,12 @@ By the end of today's class, you should be able to:
 - Describe the concept of tidy data
 - Determine whether a dataset is in tidy format
 - Use `tidyr::pivot_wider()` and `tidyr::pivot_longer()` to reshape data frames
-- Use `tidyr::unite()` and `tidyr::separate()` to merge or separate information from different columns
+- Use `tidyr::unite()` and `tidyr::separate_wider_*()` to merge or separate information from different columns
 
 <br>
 
 ### Acknowledgements
-Todays lesson integrates material from multiple sources, including the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and several other sources specified below.
+Today's lesson integrates material from multiple sources, including the excellent [R for Excel users](https://rstudio-conf-2020.github.io/r-for-excel/) course by Julia Stewart Lowndes and Allison Horst and several other sources specified below.
 
 <br>
 <br>
@@ -77,7 +77,7 @@ Todays lesson integrates material from multiple sources, including the excellent
 * Open the R Project associated with your personal class GitHub repository. 
 * PULL to make sure your project is up to date
 
-* Create a new R script file and save it as `my_tidying.Rmd`
+* Create a new R script file and save it as `my_tidying.R`
 * Load the `tidyverse` package
 
 <br>
@@ -101,7 +101,7 @@ A data set is tidy if:
 * Each row is an observation;
 * Each cell is a value.
 
-See: [Ch. 12 in R for Data Science by Grolemund & Wickham](https://r4ds.had.co.nz/tidy-data.html).
+See: [Ch. 5 in R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html).
 
 
 ![](assets/tidy_data.png)
@@ -113,7 +113,10 @@ An implication of this definition is that each value belongs to exactly one vari
 
 A key idea here is that instead of building your analyses around whatever (likely weird) format your data are in, take deliberate steps to make your data tidy. When your data are tidy, you can use a growing assortment of powerful analytical and visualization tools instead of inventing home-grown ways to accommodate your data. This will save you time since you aren’t reinventing the wheel, and will make your work more clear and understandable to your collaborators (most importantly, Future You).
 
-Note that to effectively use `ggplot()` your data must be in tidy format. It also makes it easier to take advantage of R's vectorized nature (most built-in R functions work with vectors of values)
+Note that to effectively use `ggplot()` your data must be in tidy format.
+
+`ggplot2` is designed to work particularly well with tidy data, where variables can be mapped directly to aesthetics. This format also makes it easier to take advantage of R's vectorized nature (most built-in R functions work with vectors of values). However, the most useful data structure depends on the question you are asking, and we will see examples where reshaping between long and wide formats makes particular analyses easier.
+
 
 Review of the beautiful [slides by Julia Lowndes and Allison Horst](https://docs.google.com/presentation/d/1N7hKepabvl9OrHjvGJWPjUsfzVdB5xzV5AsFndgSwms/edit#slide=id.p) for a clear overview of the motivation for working with tidy data. 
 
@@ -124,15 +127,15 @@ Let's go through some examples to get a better understanding of what tidy data l
 
 <br>
 
-Let's first compare the four different representations of the same dataset shown in [Chapter 12.2 in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#tidy-data-1) including the same values of four variables country, year, population, and cases.
+Let's first compare the four different representations of the same dataset shown in [Chapter 5.2 in Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund's "R for Data Science (2e)"](https://r4ds.hadley.nz/data-tidy.html#sec-tidy-data).  Each dataset shows the same values of four variables: country, year, population, and number of documented cases of TB (tuberculosis), but each dataset organizes the values in a different way.
 
-Which of these representations are in tidy format?
+Work through the initial overview in that chapter and consider which of these representations are in tidy format?
 
 <br>
 
 ### Exercise
 
-The datasets discussed in Chapter 12 of for Data Science come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. 
+The datasets discussed in Chapter 5 of R for Data Science come with the `tidyverse` package, so you can access them by just typing their names, e.g. `table1`, `table2` etc. We computed the **infection rate per year 10,000 people for each year and each country** from `table1` together using our now familiar `dplyr` wrangling tools. 
 
 **Your task:**
 Now calculate this same statistic from `table2` and `table4a` + `table4b`. You will need to perform four operations:
@@ -170,9 +173,9 @@ This means for most real analyses, you’ll need to do some tidying. The first s
 
 Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: `pivot_longer()` and `pivot_wider()`.
 
-We'll walk through an illustration of how to use these by following [Chapter 12.3 Pivoting in Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#pivoting).
+We'll walk through an illustration of how to use these by following [Chapter 12.3 in the original edition of Grolemund and Wickham's "R for Data Science"](https://r4ds.had.co.nz/tidy-data.html#tidy-data-1).
 
-That overview uses a simple example with a small number of variables, so we can easily list them individually when we use `pivot_longer()`. For datasets with more variables, we can use more automated ways to index columns, the same helper functions we used for the `select()` function (you can refresh your memory [here](https://r4ds.had.co.nz/transform.html#select)). See examples of this in the useful [`tidyr` vignette on pivoting](https://tidyr.tidyverse.org/articles/pivot.html).
+That overview uses a simple example with a small number of variables, so we can easily list them individually when we use `pivot_longer()`. For datasets with more variables, we can use more automated ways to index columns, the same helper functions we used for the `select()` function (you can refresh your memory [here](https://r4ds.hadley.nz/data-transform.html#sec-select)). See examples of this in the useful [`tidyr` vignette on pivoting](https://tidyr.tidyverse.org/articles/pivot.html).
 
 
 <br>
@@ -184,7 +187,7 @@ After reviewing the `pivot` functions, let's continue on to also take a look at 
 
 ## Application to a different dataset: LOTR
 
-To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengtening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md` - we'll work through those steps here).
+To explore tidy data in a different context, let's work through a tutorial developed by Jenny Bryan using data on the Lord of the Rings movies. This nicely illustrates the concepts of lengthening and widening datasets. It uses outdated functions for pivoting the dataframes, however, so we'll work through updated code here (i.e. only look at the `01-intro.md` file, not the `02-gather.md` and `03-spread.md` - we'll work through those steps here).
 
 First let's read the intro (`01-intro.md`) [here](https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md)
 
@@ -246,7 +249,7 @@ write_csv(lotr_tidy, file = "datasets/lotr_tidy.csv")
 ### Your turn
 1. After tidying the data and completing your analysis, you may want to output a table that has each race in its own column. Let's use the `pivot_wider()` function to make such a table and save it as "lotr_wide"
 
-2. OPTIONAL: Use the `pivot_longer()` function to transform you lotr_wide back to tidy format.
+2. OPTIONAL: Use the `pivot_longer()` function to transform your `lotr_wide` back to tidy format.
 
 <br>
 
@@ -301,7 +304,7 @@ Write R code to compute the total number of words spoken in each film. Do this b
 
 ## Application to our coronavirus dataset
 
-Let's now return to our Coronavirus dataset. Let's remind ourselves of it's structure
+Let's now return to our Coronavirus dataset. Let's remind ourselves of its structure
 
 ```{r, message = FALSE}
 

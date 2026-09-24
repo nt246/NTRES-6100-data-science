@@ -466,11 +466,9 @@ div.tocify {
 <li><p><a href="https://r4ds.hadley.nz/data-tidy">Chapter 5 in in R for
 Data Science (2e)</a> by Hadley Wickham, Mine Çetinkaya-Rundel &amp;
 Garrett Grolemund</p></li>
-<li><p><a
-href="https://twitter.com/juliesquid/status/1315710359404113920?s=21">This
-cool Twitter thread</a> by Julia Lowndes and Allison Horst. If you can’t
-access the thread or want more detail, the same material is expanded
-upon on Julie’s <a
+<li><p><a href="https://openscapes.org/blog/2020-10-12-tidy-data/">This
+cool blog post</a> by Julia Lowndes and Allison Horst. The blog is
+available on Julie’s <a
 href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Openscapes
 website</a>. <a href="https://www.openscapes.org/">Openscapes</a> is an
 awesome organization that champions open practices in environmental
@@ -499,8 +497,8 @@ on tidy data</a> provides a thorough investigation</li>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <ul>
-<li><p>Assignment 4 due tonight - submit by pushing to your class GitHub
-repo</p></li>
+<li><p>Assignment 4 due tomorrow evening - submit by pushing to your
+class GitHub repo</p></li>
 <li><p>We’re half way through the course! We will send out a link to a
 mid-term evaluation form (we’ll use our own form because the official
 CALS version won’t be ready in time to work with our schedule). We would
@@ -524,13 +522,14 @@ learn some tools to help get data into that format - make it
 <li>Determine whether a dataset is in tidy format</li>
 <li>Use <code>tidyr::pivot_wider()</code> and
 <code>tidyr::pivot_longer()</code> to reshape data frames</li>
-<li>Use <code>tidyr::unite()</code> and <code>tidyr::separate()</code>
-to merge or separate information from different columns</li>
+<li>Use <code>tidyr::unite()</code> and
+<code>tidyr::separate_wider_*()</code> to merge or separate information
+from different columns</li>
 </ul>
 <p><br></p>
 <div id="acknowledgements" class="section level3">
 <h3>Acknowledgements</h3>
-<p>Todays lesson integrates material from multiple sources, including
+<p>Today’s lesson integrates material from multiple sources, including
 the excellent <a
 href="https://rstudio-conf-2020.github.io/r-for-excel/">R for Excel
 users</a> course by Julia Stewart Lowndes and Allison Horst and several
@@ -548,7 +547,7 @@ class="section level3">
 repository.</p></li>
 <li><p>PULL to make sure your project is up to date</p></li>
 <li><p>Create a new R script file and save it as
-<code>my_tidying.Rmd</code></p></li>
+<code>my_tidying.R</code></p></li>
 <li><p>Load the <code>tidyverse</code> package</p></li>
 </ul>
 <p><br></p>
@@ -567,8 +566,8 @@ data, but it actually refers to a specific data structure.</p>
 <li>Each row is an observation;</li>
 <li>Each cell is a value.</li>
 </ul>
-<p>See: <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 in R for
-Data Science by Grolemund &amp; Wickham</a>.</p>
+<p>See: <a href="https://r4ds.hadley.nz/data-tidy.html">Ch. 5 in R for
+Data Science (2e)</a>.</p>
 <p><img src="assets/tidy_data.png" /></p>
 <p><br> <br></p>
 <p>An implication of this definition is that each value belongs to
@@ -584,9 +583,14 @@ time since you aren’t reinventing the wheel, and will make your work
 more clear and understandable to your collaborators (most importantly,
 Future You).</p>
 <p>Note that to effectively use <code>ggplot()</code> your data must be
-in tidy format. It also makes it easier to take advantage of R’s
-vectorized nature (most built-in R functions work with vectors of
-values)</p>
+in tidy format.</p>
+<p><code>ggplot2</code> is designed to work particularly well with tidy
+data, where variables can be mapped directly to aesthetics. This format
+also makes it easier to take advantage of R’s vectorized nature (most
+built-in R functions work with vectors of values). However, the most
+useful data structure depends on the question you are asking, and we
+will see examples where reshaping between long and wide formats makes
+particular analyses easier.</p>
 <p>Review of the beautiful <a
 href="https://docs.google.com/presentation/d/1N7hKepabvl9OrHjvGJWPjUsfzVdB5xzV5AsFndgSwms/edit#slide=id.p">slides
 by Julia Lowndes and Allison Horst</a> for a clear overview of the
@@ -597,14 +601,18 @@ tidy data look like.</p>
 <p><br></p>
 <p>Let’s first compare the four different representations of the same
 dataset shown in <a
-href="https://r4ds.had.co.nz/tidy-data.html#tidy-data-1">Chapter 12.2 in
-Grolemund and Wickham’s “R for Data Science”</a> including the same
-values of four variables country, year, population, and cases.</p>
-<p>Which of these representations are in tidy format?</p>
+href="https://r4ds.hadley.nz/data-tidy.html#sec-tidy-data">Chapter 5.2
+in Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund’s “R for
+Data Science (2e)”</a>. Each dataset shows the same values of four
+variables: country, year, population, and number of documented cases of
+TB (tuberculosis), but each dataset organizes the values in a different
+way.</p>
+<p>Work through the initial overview in that chapter and consider which
+of these representations are in tidy format?</p>
 <p><br></p>
 <div id="exercise" class="section level3">
 <h3>Exercise</h3>
-<p>The datasets discussed in Chapter 12 of for Data Science come with
+<p>The datasets discussed in Chapter 5 of R for Data Science come with
 the <code>tidyverse</code> package, so you can access them by just
 typing their names, e.g. <code>table1</code>, <code>table2</code> etc.
 We computed the <strong>infection rate per year 10,000 people for each
@@ -657,15 +665,17 @@ it’ll only suffer from both if you’re really unlucky! To fix these
 problems, you’ll need the two most important functions in tidyr:
 <code>pivot_longer()</code> and <code>pivot_wider()</code>.</p>
 <p>We’ll walk through an illustration of how to use these by following
-<a href="https://r4ds.had.co.nz/tidy-data.html#pivoting">Chapter 12.3
-Pivoting in Grolemund and Wickham’s “R for Data Science”</a>.</p>
+<a href="https://r4ds.had.co.nz/tidy-data.html#tidy-data-1">Chapter 12.3
+in the original edition of Grolemund and Wickham’s “R for Data
+Science”</a>.</p>
 <p>That overview uses a simple example with a small number of variables,
 so we can easily list them individually when we use
 <code>pivot_longer()</code>. For datasets with more variables, we can
 use more automated ways to index columns, the same helper functions we
 used for the <code>select()</code> function (you can refresh your memory
-<a href="https://r4ds.had.co.nz/transform.html#select">here</a>). See
-examples of this in the useful <a
+<a
+href="https://r4ds.hadley.nz/data-transform.html#sec-select">here</a>).
+See examples of this in the useful <a
 href="https://tidyr.tidyverse.org/articles/pivot.html"><code>tidyr</code>
 vignette on pivoting</a>.</p>
 <p><br></p>
@@ -683,7 +693,7 @@ class="section level2">
 <h2>Application to a different dataset: LOTR</h2>
 <p>To explore tidy data in a different context, let’s work through a
 tutorial developed by Jenny Bryan using data on the Lord of the Rings
-movies. This nicely illustrates the concepts of lengtening and widening
+movies. This nicely illustrates the concepts of lengthening and widening
 datasets. It uses outdated functions for pivoting the dataframes,
 however, so we’ll work through updated code here (i.e. only look at the
 <code>01-intro.md</code> file, not the <code>02-gather.md</code> and
@@ -790,7 +800,7 @@ to output a table that has each race in its own column. Let’s use the
 <code>pivot_wider()</code> function to make such a table and save it as
 “lotr_wide”</p></li>
 <li><p>OPTIONAL: Use the <code>pivot_longer()</code> function to
-transform you lotr_wide back to tidy format.</p></li>
+transform your <code>lotr_wide</code> back to tidy format.</p></li>
 </ol>
 <p><br></p>
 <details>
@@ -873,7 +883,7 @@ based on multiple, untidy data frames or the tidy data?</p>
 <div id="application-to-our-coronavirus-dataset" class="section level2">
 <h2>Application to our coronavirus dataset</h2>
 <p>Let’s now return to our Coronavirus dataset. Let’s remind ourselves
-of it’s structure</p>
+of its structure</p>
 <pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
 
 coronavirus</code></pre>
