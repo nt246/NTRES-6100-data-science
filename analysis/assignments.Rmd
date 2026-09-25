@@ -34,6 +34,8 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 #### [Data transformation and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_4_AI.qmd)  
 >Due Fri 09/25-2026 by 8pm EDT
 
+***
+
 ### Assignment 5
 #### [Data transformation and visualization - Part 2](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_5_AI.qmd)  
 >Due Fri 10/02-2026 by 8pm EDT
