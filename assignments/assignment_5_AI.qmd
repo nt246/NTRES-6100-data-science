@@ -1,0 +1,364 @@
+---
+title: "Assignment 5: Data transformation and visualization - Part 2"
+format: gfm
+execute:
+  echo: true
+---
+
+## Instructions: Please read through this before you begin
+
+- This assignment is due by **8pm on Friday 10/02/2026**. Please submit it using your personal GitHub repository for this class.
+- **Download this Quarto (`.qmd`) file**, place it in your personal GitHub repository for the class, and **work directly in this file**.
+- Please name the file `assignment_5.qmd`. It is already set up to use `gfm` (GitHub Flavored Markdown).
+- Write your code in the chunks provided and show **BOTH your code and its output**, unless instructed otherwise.
+- Replace *“Write your response here”* with your response when a written answer is requested.
+- Examine messages and warnings before using Quarto options to hide them.
+- When finished, render `assignment_5.qmd` to produce `assignment_5.md`, and commit and push **both files**.
+- Questions 2.8–2.11 are **optional**.
+
+### Use of AI
+
+This assignment has two goals:
+
+1.  Practice and reinforce the data transformation and visualization skills we have been developing in class.
+2.  Practice using generative AI as a **coding partner without outsourcing your understanding**.
+
+Some questions are marked **Code yourself**. Write these without generative AI; course notes, readings, R help (`?function_name`), and package documentation are fine.
+
+Questions marked **Use AI intentionally** ask you to document part of your AI interaction. The goal is not simply to get working code: practice writing useful prompts, evaluating responses, testing code, and deciding whether a suggestion is appropriate.
+
+Questions marked **Evaluate AI** ask you to inspect AI-generated code or compare it with your own approach. Use your knowledge of R to evaluate the output rather than assuming it is correct or optimal.
+
+For every AI question, **you remain responsible for the final code you submit** and should be able to explain every line.
+
+------------------------------------------------------------------------
+
+<br>
+
+# Load packages
+
+First, let's load the packages we need. You will need to install the `gapminder` package if you don't have it already.
+
+```{r}
+#| message: false
+
+library(tidyverse)
+library(gapminder) #install.packages("gapminder")
+```
+
+<br>
+
+# Exercise 1. Trends in land value
+
+This exercise uses a dataset describing trends in land value (`Land.Value`) in different U.S. states from 1975–2013. States are grouped into four regions under `region`.
+
+```{r}
+housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
+head(housing)
+```
+
+<br>
+
+## 1.1 Update, select, and filter — **Code yourself**
+
+Washington, DC was not assigned to a region. According to the U.S. Census Bureau, DC is part of the South region.
+
+Using a pipeline:
+
+1.  Change the `region` for DC to `"South"` (`mutate()` and `ifelse()` may be helpful)
+2.  Keep only `region`, `State`, `Date`, and `Land.Value`.
+3.  Save the result as a new object with an informative name.
+4.  Pull out the DC records and show the first six rows.
+
+```{r}
+# Write your code here
+```
+
+How many records are there for DC?
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+## 1.2 Summarize by region and time — **Code yourself**
+
+Using the updated dataset from 1.1, calculate the **mean land value for each region at each time point**. Save the result and show its first six rows.
+
+```{r}
+# Write your code here
+```
+
+Why do you need to group by **both** `region` and `Date`?
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+## 1.3 Plot trends through time — **Use AI as a reviewer**
+
+Using the summarized data from 1.2, make a line plot showing mean land value through time for each region, with regions shown in different colors.
+
+**Write the plot yourself first, without AI.**
+
+```{r}
+# Write your code here
+```
+
+After it works, ask AI to review your code. Ask whether it accomplishes the task and to explain its reasoning **without rewriting the code unless there is an error**.
+
+> **Paste the prompt you used:**\
+> *Write your prompt here.*
+
+Did AI identify a real problem, suggest an unnecessary change, or confirm your approach?
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+# Exercise 2. Life expectancy and GDP per capita, 1952–2007
+
+This exercise uses the `gapminder` dataset from the `gapminder` package. It contains life expectancy (`lifeExp`), GDP per capita (`gdpPercap`), and population (`pop`) for 142 countries from 1952 to 2007.
+
+```{r}
+head(gapminder)
+```
+
+<br>
+
+## 2.1 GDP and life expectancy in 2007 — **Code yourself**
+
+Use a scatter plot to explore the relationship between `gdpPercap` and `lifeExp` in 2007. Use both data transformation and visualization in the same pipeline.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.2 Add a smoothing line — **Code yourself**
+
+Add a smoothing line to the previous plot.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.3 Compare continents — **Use AI intentionally**
+
+Modify the plot so that it:
+
+- excludes Oceania;
+- shows each continent in a different color;
+- fits a **separate smoothing line for each continent**; and
+- does not show confidence intervals.
+
+Before asking AI, write the prompt you would use. Give enough information about the data and your existing plot to get a useful answer.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Before running the suggested code, inspect it and answer:
+
+1.  How does the code cause `ggplot2` to fit separate smoothing lines by continent?
+2.  What removes the confidence intervals?
+3.  Is there anything in the suggested code that you do not understand?
+
+*Write your response here.*
+
+Now test it and write your final code. You may use, modify, or replace the AI solution.
+
+```{r}
+# Write your final code here
+```
+
+Did the plot accomplish all four requirements? If you changed the AI solution, explain why.
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+## 2.4 Solve the same problem with facets — **Code yourself**
+
+Show the relationship separately for each continent except Oceania using facets. Include confidence intervals.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+<br>
+
+## 2.5 Life expectancy through time — **Evaluate AI**
+
+Suppose AI returned this code for: *“Show how life expectancy has changed through time in each continent, with each continent shown in a different color.”*
+
+``` r
+gapminder |>
+  ggplot(aes(x = year, y = lifeExp, color = continent)) +
+  geom_line()
+```
+
+**Before running it**, consider that each continent contains many countries. What do you predict? Does `geom_line()` have enough information to know which observations belong together?
+
+*Write your response here.*
+
+Run the AI code:
+
+```{r}
+# Paste and run the AI-generated code here
+```
+
+Now produce a more meaningful plot that still shows individual countries and colors them by continent.
+
+```{r}
+# Write your corrected code here
+```
+
+What did you change, and why does it fix the problem?
+
+*Write your response here.*
+
+After solving it, you may ask AI to explain the issue. Compare its explanation with yours.
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+## 2.6 Investigate Asia — **Code yourself**
+
+Create and save a dataset containing only Asian countries. Show its first six rows.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+<br>
+
+## 2.7 Identify unusual trends — **AI for interpretation, not observation**
+
+Using the Asian dataset, make a plot that lets you identify countries with unusually sharp declines in life expectancy. **Facet by country.**
+
+```{r}
+# Write your code here
+```
+
+First inspect the plot yourself. Which countries show especially sharp declines, and approximately when?
+
+**Do not use AI for this step.**
+
+*Write your response here.*
+
+Now choose **one** pattern and ask AI to help develop a hypothesis about a historical event that might explain it.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+What explanation did AI provide? **Do not assume it is correct.** What would you need to verify before using that explanation in a scientific analysis or publication?
+
+*Write your response here.*
+
+<br>
+
+<br>
+
+------------------------------------------------------------------------
+
+# THE NEXT FOUR QUESTIONS ARE OPTIONAL
+
+### If you don't want to do them, jump straight to the final recap question below (Question 3)
+
+<br>
+
+## 2.8 GDP per capita through time — **Code yourself** *(OPTIONAL)*
+
+Explore the trend in per capita GDP through time on each continent.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.9 Find an unusual GDP pattern — **Use AI to generate hypotheses** *(OPTIONAL)*
+
+Using the Asian dataset, make a plot that identifies the country with a particularly sharp decline in GDP per capita.
+
+```{r}
+# Write your plotting code here
+```
+
+Identify the country **before using AI**.
+
+*Write your response here.*
+
+Ask AI for possible historical explanations.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Which factual claims in the AI response would you want to verify with reliable sources?
+
+*Write your response here.*
+
+<br>
+
+## 2.10 Compare 1952 and 2007 — **Code yourself** *(OPTIONAL)*
+
+Starting from `gapminder`, compare `gdpPercap` and `lifeExp` in **1952 and 2007**:
+
+- facet by year;
+- color by continent;
+- make point size proportional to population.
+
+```{r}
+# Write your code here
+```
+
+<br>
+
+## 2.11 Improve a visualization — **Use AI for ideas, not code** *(OPTIONAL)*
+
+Ask AI for **three suggestions for improving the visualization without asking it to write R code**.
+
+> **Your AI prompt:**\
+> *Write your prompt here.*
+
+Which suggestions would improve this particular plot, and which would you reject?
+
+*Write your response here.*
+
+Implement the changes **yourself**.
+
+```{r}
+# Write your final plot here
+```
+
+Explain the changes you chose and why.
+
+*Write your response here.*
+
+<br>
+
+# 3. Final reflection on AI and coding
+
+1.  In which question was AI most useful, and **what kind of help** did it provide?
+2.  Give one example where your own knowledge of R or visualization was necessary to evaluate an AI response.
+3.  Did AI suggest anything technically correct but unnecessary or inappropriate for the task?
+4.  Which part of this assignment could you now do again without AI or notes?
+
+*Write your response here.*
