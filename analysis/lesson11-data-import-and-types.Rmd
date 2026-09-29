@@ -42,11 +42,12 @@ So far, we've mostly worked with datasets provided in R packages. Today we'll lo
 
 By the end of today's class, you should be able to:
 
-- Read data files into R with a variety of `readr` functions
-- Parse different types of data and make sure R is interpreting your variable types correctly
-- Use `janitor::clean_names()` to make column headers more manageable
-- Write text output to your disk
-- Save plots
+- Import data from common text and spreadsheet formats
+- Inspect and control how variable types are interpreted during data import
+- Parse and convert values between common data types
+- Identify and troubleshoot parsing problems
+- Use `janitor::clean_names()` to standardize column names
+- Export processed data and plots
 
 <br>
 <br>
@@ -99,17 +100,17 @@ We can import directly from Jenny's GitHub page:
 
 ```{r}
 
-lotr <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
+lotr_tidy <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
 
 ```
 
 <br>
 
-We can also use the same function to read directly from my disk. To get a local copy, let me first save it with readr's `write_csv()` function (we'll get back to how that function works a little later). I'll first make sure I have a good place to save it. If you don't already have a subdirectory named `datasets` or similar, create one within your home directory by clicking "New Folder" in your file pane.
+We can also use the same function to read directly from my disk. We may have the copy we saved locally to our disk during our last class with `write_csv()`. I'll first make sure I have a good place to save it. If you don't already have a subdirectory named `datasets` or similar, create one within your home directory by clicking "New Folder" in your file pane. Then we can save a local copy of the dataset we just read in from the URL with
 
-```{r, message = FALSE}
+```{r, eval = FALSE}
 
-write_csv(lotr, file = "../datasets/lotr_tidy.csv")
+write_csv(lotr_tidy, file = "datasets/lotr_tidy.csv")
 
 ```
 
@@ -117,9 +118,9 @@ write_csv(lotr, file = "../datasets/lotr_tidy.csv")
 
 Inspect the file to make sure it got created, then load it into R with the `read_csv()` function (make sure you specify the path to where you actually saved it).
 
-```{r}
+```{r, eval = FALSE}
 
-lotr_tidy <- read_csv("../datasets/lotr_tidy.csv")
+lotr_tidy <- read_csv("datasets/lotr_tidy.csv")
 
 ```
 
@@ -175,26 +176,15 @@ Here the data we want to read in starts in cell A5 and ends in cell F15. In spre
 ```{r, , eval = FALSE}
 deaths <- read_xlsx("data/data_lesson11.xlsx", sheet = "deaths", range = "A5:F15")
 
+# OR
+
+deaths <- read_sheet("https://docs.google.com/spreadsheets/d/1X98JobRtA3JGBFacs_JSjiX-4DPQ0vZYtNl_ozqF6IE/edit#gid=754443596", sheet = "deaths", , range = "A5:F15")
+
 ```
 
 <br>
 <br>
 
-
-### Why use the tidyverse/readr import functions instead of base-R?
-
-> From [R4DS](https://r4ds.had.co.nz/data-import.html#compared-to-base-r)
-
-If you’ve used R before, you might wonder why we’re not using read.csv(). There are a few good reasons to favor readr functions over the base equivalents:
-
-* They are typically much faster (~10x) than their base-R equivalents (e.g. `read.cvs()`). Long running jobs have a progress bar, so you can see what’s happening. If you’re looking for raw speed, try data.table::fread(). It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
-
-* They produce tibbles, they don’t convert character vectors to factors, use row names, or munge the column names. These are common sources of frustration with the base R functions.
-
-* They are more reproducible. Base R functions inherit some behaviour from your operating system and environment variables, so import code that works on your computer might not work on someone else’s.
-
-<br>
-<br>
 
 
 ### Cleaning up variables
@@ -267,7 +257,6 @@ Let's have a look at how to clean up this dataset:
 ```{r, message = FALSE}
 mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv", locale = locale(decimal_mark = ","))
 
-# What happens if we run this without the locale argument?
 ```
 
 <br>
@@ -280,7 +269,7 @@ mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science
 ```
  
 
-We get a warning message here, we can look at what the issue is by typing `problem()`. We note that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
+We get a warning message here, we can look at what the issue is by typing `problems()`. We note that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
 
 Now, let's now clean up the `price` column
 
@@ -289,7 +278,6 @@ mess |>
   mutate(price = parse_number(price))
 ```
 
-<br>
 
 <br>
 <br>
@@ -370,19 +358,13 @@ As we saw above, when we run `read_csv()`, it prints out a column specification 
 
 <br>
 
-> The following section is borrowed from [R4DS Chapter 11.4](https://r4ds.had.co.nz/data-import.html) 
+> The following section is borrowed from [R4DS Chapter 7.3.1](https://r4ds.hadley.nz/data-import.html#guessing-types) 
 
-`readr` uses a heuristic to figure out the column types. For each column, it pulls the values of 1000^2 rows spaced evenly from the first row to the last, ignoring missing values and uses some (moderately conservative) heuristics to figure out the type of each column.
+`readr` uses a heuristic to figure out the column types. For each column, it pulls the values of 1,000 rows spaced evenly from the first row to the last, ignoring missing values. It then works through the following questions:
 
-The heuristic tries each of the following types, stopping when it finds a match:
-
-* logical: contains only “F”, “T”, “FALSE”, or “TRUE”.
-* integer: contains only numeric characters (and -).
-* double: contains only valid doubles (including numbers like 4.5e-5).
-* number: contains valid doubles with the grouping mark inside.
-* time: matches the default time_format.
-* date: matches the default date_format.
-* date-time: any ISO8601 date.
+- Does it contain only F, T, FALSE, or TRUE (ignoring case)? If so, it’s a logical.
+- Does it contain only numbers (e.g., 1, -4.5, 5e6, Inf)? If so, it’s a number.
+- Does it match the ISO8601 standard? If so, it’s a date or date-time. (We’ll return to date-times in more detail in Section 17.2).
 
 If none of these rules apply, then the column will stay as a vector of strings.
 
@@ -399,14 +381,14 @@ We'll work through some examples on this, using the `students.csv` examples from
 
 Let's look at an example. Say we wanted to save a summary we had generated a few week ago of the coronavirus data:
 
-```{r}
+```{r, eval = FALSE}
 coronavirus <- read_csv('https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv')
 
 coronavirus |>  
   filter(type == "confirmed") |> 
   group_by(date) |> 
   summarize(total_cases = sum(cases)) |> 
-  write_csv(file = "../datasets/daily_casecount.csv")
+  write_csv(file = "datasets/daily_casecount.csv")
 ```
 
 <br>
@@ -420,7 +402,7 @@ We also briefly talked about how to save plots a few classes ago. To recap here:
 
 Use `ggsave()`
 
-```{r, message = FALSE}
+```{r, message = FALSE, eval = FALSE}
 coronavirus |>  
   filter(type == "confirmed") |> 
   group_by(date) |> 
@@ -439,7 +421,7 @@ ggsave(filename = "assets/daily_casecounts_plot.png")
 
 ## Creating small tibbles on the fly
 
-Sometimes it can be useful to create small toy tibbles or tables for displaying in an RMarkdown without having to read in a file.
+Sometimes it can be useful to create small toy tibbles or tables for displaying in Quarto file without having to read in a file.
 
 To see how to do this, we'll review [R4DS Chapter 10.2](https://r4ds.had.co.nz/tibbles.html#creating-tibbles) and [11.2](https://r4ds.had.co.nz/data-import.html#getting-started)
 

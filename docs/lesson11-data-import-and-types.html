@@ -496,14 +496,14 @@ Today we’ll look at how we get our own data imported and how we export
 processed data files, summary tables, and plots.</p>
 <p>By the end of today’s class, you should be able to:</p>
 <ul>
-<li>Read data files into R with a variety of <code>readr</code>
-functions</li>
-<li>Parse different types of data and make sure R is interpreting your
-variable types correctly</li>
-<li>Use <code>janitor::clean_names()</code> to make column headers more
-manageable</li>
-<li>Write text output to your disk</li>
-<li>Save plots</li>
+<li>Import data from common text and spreadsheet formats</li>
+<li>Inspect and control how variable types are interpreted during data
+import</li>
+<li>Parse and convert values between common data types</li>
+<li>Identify and troubleshoot parsing problems</li>
+<li>Use <code>janitor::clean_names()</code> to standardize column
+names</li>
+<li>Export processed data and plots</li>
 </ul>
 <p><br> <br></p>
 </div>
@@ -558,7 +558,7 @@ directly from a URL.</p>
 href="https://github.com/jennybc/lotr-tidy/blob/master/01-intro.md">Jenny
 Bryan’s Lord of the Rings Data</a> that we worked with last class.</p>
 <p>We can import directly from Jenny’s GitHub page:</p>
-<pre class="r"><code>lotr &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
+<pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv&quot;)</code></pre>
 <pre><code>## Rows: 18 Columns: 4
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -568,27 +568,19 @@ Bryan’s Lord of the Rings Data</a> that we worked with last class.</p>
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p><br></p>
-<p>We can also use the same function to read directly from my disk. To
-get a local copy, let me first save it with readr’s
-<code>write_csv()</code> function (we’ll get back to how that function
-works a little later). I’ll first make sure I have a good place to save
-it. If you don’t already have a subdirectory named <code>datasets</code>
-or similar, create one within your home directory by clicking “New
-Folder” in your file pane.</p>
-<pre class="r"><code>write_csv(lotr, file = &quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
+<p>We can also use the same function to read directly from my disk. We
+may have the copy we saved locally to our disk during our last class
+with <code>write_csv()</code>. I’ll first make sure I have a good place
+to save it. If you don’t already have a subdirectory named
+<code>datasets</code> or similar, create one within your home directory
+by clicking “New Folder” in your file pane. Then we can save a local
+copy of the dataset we just read in from the URL with</p>
+<pre class="r"><code>write_csv(lotr_tidy, file = &quot;datasets/lotr_tidy.csv&quot;)</code></pre>
 <p><br></p>
 <p>Inspect the file to make sure it got created, then load it into R
 with the <code>read_csv()</code> function (make sure you specify the
 path to where you actually saved it).</p>
-<pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;../datasets/lotr_tidy.csv&quot;)</code></pre>
-<pre><code>## Rows: 18 Columns: 4
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (3): Film, Race, Gender
-## dbl (1): Words
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>lotr_tidy &lt;- read_csv(&quot;datasets/lotr_tidy.csv&quot;)</code></pre>
 <p><br></p>
 <p><code>read_csv()</code> uses the first line of the data for the
 column names, which is a very common convention. We can play around with
@@ -653,33 +645,11 @@ F15. In spreadsheet notation, this is A5:F15, which we supply to the
 range argument. This works either with the <code>read_sheets()</code>
 function for google sheets or with reading from an Excel file stored in
 your local directory.</p>
-<pre class="r"><code>deaths &lt;- read_xlsx(&quot;data/data_lesson11.xlsx&quot;, sheet = &quot;deaths&quot;, range = &quot;A5:F15&quot;)</code></pre>
-<p><br> <br></p>
-</div>
-<div id="why-use-the-tidyversereadr-import-functions-instead-of-base-r"
-class="section level3">
-<h3>Why use the tidyverse/readr import functions instead of base-R?</h3>
-<blockquote>
-<p>From <a
-href="https://r4ds.had.co.nz/data-import.html#compared-to-base-r">R4DS</a></p>
-</blockquote>
-<p>If you’ve used R before, you might wonder why we’re not using
-read.csv(). There are a few good reasons to favor readr functions over
-the base equivalents:</p>
-<ul>
-<li><p>They are typically much faster (~10x) than their base-R
-equivalents (e.g. <code>read.cvs()</code>). Long running jobs have a
-progress bar, so you can see what’s happening. If you’re looking for raw
-speed, try data.table::fread(). It doesn’t fit quite so well into the
-tidyverse, but it can be quite a bit faster.</p></li>
-<li><p>They produce tibbles, they don’t convert character vectors to
-factors, use row names, or munge the column names. These are common
-sources of frustration with the base R functions.</p></li>
-<li><p>They are more reproducible. Base R functions inherit some
-behaviour from your operating system and environment variables, so
-import code that works on your computer might not work on someone
-else’s.</p></li>
-</ul>
+<pre class="r"><code>deaths &lt;- read_xlsx(&quot;data/data_lesson11.xlsx&quot;, sheet = &quot;deaths&quot;, range = &quot;A5:F15&quot;)
+
+# OR
+
+deaths &lt;- read_sheet(&quot;https://docs.google.com/spreadsheets/d/1X98JobRtA3JGBFacs_JSjiX-4DPQ0vZYtNl_ozqF6IE/edit#gid=754443596&quot;, sheet = &quot;deaths&quot;, , range = &quot;A5:F15&quot;)</code></pre>
 <p><br> <br></p>
 </div>
 <div id="cleaning-up-variables" class="section level3">
@@ -763,9 +733,7 @@ functions</h3>
 <p>We can use the <code>parse_xx()</code> functions in combination with
 <code>mutate()</code> to clean up values in a variable.</p>
 <p>Let’s have a look at how to clean up this dataset:</p>
-<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))
-
-# What happens if we run this without the locale argument?</code></pre>
+<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
 <p><br></p>
 <p>We may notice some issues here. First, we see the word “Missing” in
 the column titled size. We also see that as a result, this variable is
@@ -781,7 +749,7 @@ the character string”Missing” as indicating a missing value.</p>
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
 <p>We get a warning message here, we can look at what the issue is by
-typing <code>problem()</code>. We note that despite that warning, now
+typing <code>problems()</code>. We note that despite that warning, now
 the “Missing” is being read in as NA, the size column gets read in as a
 double.</p>
 <p>Now, let’s now clean up the <code>price</code> column</p>
@@ -795,7 +763,6 @@ double.</p>
 ## 3 c         3   2.9
 ## 4 d         2   4.2
 ## 5 e         8  NA</code></pre>
-<p><br></p>
 <p><br> <br></p>
 </div>
 </div>
@@ -896,24 +863,20 @@ column specification that gives the name and type of each column.</p>
 <p><br></p>
 <blockquote>
 <p>The following section is borrowed from <a
-href="https://r4ds.had.co.nz/data-import.html">R4DS Chapter 11.4</a></p>
+href="https://r4ds.hadley.nz/data-import.html#guessing-types">R4DS
+Chapter 7.3.1</a></p>
 </blockquote>
 <p><code>readr</code> uses a heuristic to figure out the column types.
-For each column, it pulls the values of 1000^2 rows spaced evenly from
-the first row to the last, ignoring missing values and uses some
-(moderately conservative) heuristics to figure out the type of each
-column.</p>
-<p>The heuristic tries each of the following types, stopping when it
-finds a match:</p>
+For each column, it pulls the values of 1,000 rows spaced evenly from
+the first row to the last, ignoring missing values. It then works
+through the following questions:</p>
 <ul>
-<li>logical: contains only “F”, “T”, “FALSE”, or “TRUE”.</li>
-<li>integer: contains only numeric characters (and -).</li>
-<li>double: contains only valid doubles (including numbers like
-4.5e-5).</li>
-<li>number: contains valid doubles with the grouping mark inside.</li>
-<li>time: matches the default time_format.</li>
-<li>date: matches the default date_format.</li>
-<li>date-time: any ISO8601 date.</li>
+<li>Does it contain only F, T, FALSE, or TRUE (ignoring case)? If so,
+it’s a logical.</li>
+<li>Does it contain only numbers (e.g., 1, -4.5, 5e6, Inf)? If so, it’s
+a number.</li>
+<li>Does it match the ISO8601 standard? If so, it’s a date or date-time.
+(We’ll return to date-times in more detail in Section 17.2).</li>
 </ul>
 <p>If none of these rules apply, then the column will stay as a vector
 of strings.</p>
@@ -934,21 +897,13 @@ rownames or quotes with the base-R function
 <code>write.table()</code></p>
 <p>Let’s look at an example. Say we wanted to save a summary we had
 generated a few week ago of the coronavirus data:</p>
-<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)</code></pre>
-<pre><code>## Rows: 919308 Columns: 15
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (8): province, country, type, iso2, iso3, combined_key, continent_name,...
-## dbl  (6): lat, long, cases, uid, code3, population
-## date (1): date
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>coronavirus |&gt;  
+<pre class="r"><code>coronavirus &lt;- read_csv(&#39;https://raw.githubusercontent.com/RamiKrispin/coronavirus/master/csv/coronavirus.csv&#39;)
+
+coronavirus |&gt;  
   filter(type == &quot;confirmed&quot;) |&gt; 
   group_by(date) |&gt; 
   summarize(total_cases = sum(cases)) |&gt; 
-  write_csv(file = &quot;../datasets/daily_casecount.csv&quot;)</code></pre>
+  write_csv(file = &quot;datasets/daily_casecount.csv&quot;)</code></pre>
 <p><br></p>
 <p>We also briefly talked about how to save plots a few classes ago. To
 recap here:</p>
@@ -967,9 +922,9 @@ class="uri">https://github.com/jennybc/ggplot2-tutorial</a></div>
   group_by(date) |&gt; 
   summarize(total_cases = sum(cases)) |&gt; 
   ggplot(mapping = aes(x = date, y = total_cases)) +
-  geom_line()</code></pre>
-<p><img src="lesson13-files/unnamed-chunk-18-1.png" alt="" width="672" /></p>
-<pre class="r"><code>ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
+  geom_line()
+  
+ggsave(filename = &quot;assets/daily_casecounts_plot.png&quot;)</code></pre>
 <p><code>ggsave()</code> has really nice defaults, so you don’t
 <em>have</em> to specify lots of different parameters. But you can! See
 common examples <a
@@ -979,7 +934,7 @@ href="https://github.com/jennybc/ggplot2-tutorial/blob/master/ggplot2-tutorial-s
 <div id="creating-small-tibbles-on-the-fly" class="section level2">
 <h2>Creating small tibbles on the fly</h2>
 <p>Sometimes it can be useful to create small toy tibbles or tables for
-displaying in an RMarkdown without having to read in a file.</p>
+displaying in Quarto file without having to read in a file.</p>
 <p>To see how to do this, we’ll review <a
 href="https://r4ds.had.co.nz/tibbles.html#creating-tibbles">R4DS Chapter
 10.2</a> and <a
