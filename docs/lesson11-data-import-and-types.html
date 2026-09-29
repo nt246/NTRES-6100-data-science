@@ -507,6 +507,51 @@ names</li>
 </ul>
 <p><br> <br></p>
 </div>
+<div id="git-and-github-refresher" class="section level2">
+<h2>Git and GitHub refresher</h2>
+<p>We’ve spent the last several classes focusing on R and haven’t talked
+much about Git and GitHub. Before we move on, let’s make sure we haven’t
+forgotten our basic workflow!</p>
+<p><br></p>
+<div id="remember-the-basic-workflow" class="section level3">
+<h3>Remember the basic workflow</h3>
+<p>When working in a GitHub-connected RStudio project:</p>
+<p><strong>Pull → Work → Stage → Commit → Pull → Push</strong></p>
+<ul>
+<li><strong>Pull</strong> before you start working to make sure you have
+the most recent version.</li>
+<li><strong>Work</strong> on your files and save your changes.</li>
+<li><strong>Stage</strong> the files you want to include in the next
+commit.</li>
+<li><strong>Commit</strong> the changes with a short, informative
+message describing what you changed.</li>
+<li><strong>Pull</strong> again before pushing, in case the remote
+repository has changed while you were working.</li>
+<li><strong>Push</strong> your commits to GitHub.</li>
+</ul>
+</div>
+<div id="your-turn" class="section level3">
+<h3>Your turn</h3>
+<p>Open your course repository in RStudio.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Pull</strong> from GitHub.</li>
+<li>Open one of your recent <code>.qmd</code> files and make a tiny
+change — for example, add a comment to yourself.</li>
+<li>Save the file and look at the <strong>Git</strong> pane. What
+changed?</li>
+<li><strong>Stage</strong> the changed file.</li>
+<li><strong>Commit</strong> it with an informative commit message.</li>
+<li><strong>Pull</strong>, then <strong>push</strong> your commit.</li>
+<li>Go to your repository on GitHub and confirm that you can see your
+new commit.</li>
+</ol>
+<p><strong>Remember:</strong> Saving a file, committing it, and pushing
+it are three different things.</p>
+<p><br></p>
+<p>Now, let’s move on to today’s material.</p>
+<p><br></p>
+</div>
+</div>
 <div id="loading-packages" class="section level2">
 <h2>Loading packages</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
@@ -733,36 +778,65 @@ functions</h3>
 <p>We can use the <code>parse_xx()</code> functions in combination with
 <code>mutate()</code> to clean up values in a variable.</p>
 <p>Let’s have a look at how to clean up this dataset:</p>
-<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;))</code></pre>
-<p><br></p>
-<p>We may notice some issues here. First, we see the word “Missing” in
-the column titled size. We also see that as a result, this variable is
-read in as a character variable, rather than a double. In this case, the
-character string “Missing” should be read in as <code>NA</code> that R
-will recognize as “not available”. This is something we can address
-using the na argument. By default, read_csv() only recognizes empty
-strings (““) in this dataset as NAs, and we want it to also recognize
-the character string”Missing” as indicating a missing value.</p>
-<pre class="r"><code>mess = read_tsv(&quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;, locale = locale(decimal_mark = &quot;,&quot;), na = c(&quot;Missing&quot;, &quot;N/A&quot;))</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+<pre class="r"><code>mess &lt;- read_tsv(
+  &quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;,
+  locale = locale(decimal_mark = &quot;,&quot;)
+)</code></pre>
+<p>We may notice some issues here. First, we see the word
+<code>"Missing"</code> in the column titled <code>size</code>. Because
+<code>"Missing"</code> cannot be interpreted as a number,
+<code>read_tsv()</code> initially reads the entire <code>size</code>
+column as a character variable rather than a double.</p>
+<p>In this dataset, <code>"Missing"</code> actually represents a missing
+value, so we would like R to read it as <code>NA</code> (“not
+available”). We can tell <code>read_tsv()</code> which values should be
+interpreted as missing using the <code>na</code> argument:</p>
+<pre class="r"><code>mess &lt;- read_tsv(
+  &quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;,
+  locale = locale(decimal_mark = &quot;,&quot;),
+  na = c(&quot;Missing&quot;, &quot;N/A&quot;)
+)</code></pre>
+<pre class="text"><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
 ## e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
-<p>We get a warning message here, we can look at what the issue is by
-typing <code>problems()</code>. We note that despite that warning, now
-the “Missing” is being read in as NA, the size column gets read in as a
-double.</p>
-<p>Now, let’s now clean up the <code>price</code> column</p>
+<p>Now <code>"Missing"</code> is correctly interpreted as
+<code>NA</code>, and <code>size</code> is read in as a double. However,
+we also get a warning that there was a <strong>parsing problem</strong>.
+We can investigate it using:</p>
+<pre class="r"><code>problems(mess)</code></pre>
+<p>The problem occurs because there is also an <strong>empty
+cell</strong> in the <code>size</code> column. Normally,
+<code>readr</code> recognizes empty strings (<code>""</code>) as missing
+values. However, when we supply our own values with the <code>na</code>
+argument, we replace that default. We told <code>read_tsv()</code> to
+recognize <code>"Missing"</code> and <code>"N/A"</code> as missing
+values, but not <code>""</code>.</p>
+<p>Because <code>size</code> is being read as a double,
+<code>read_tsv()</code> expects a number in that empty cell. It cannot
+parse <code>""</code> as a number, so it records a parsing problem and
+substitutes <code>NA</code>.</p>
+<p>Importantly, <strong>a parsing problem does not necessarily prevent
+the data from being imported</strong>. <code>readr</code> will often
+replace a value it cannot parse with <code>NA</code> and record the
+problem so that we can investigate it with <code>problems()</code>. This
+is useful because an <code>NA</code> in our imported data might
+represent either a value that we explicitly defined as missing or a
+value that could not be parsed correctly.</p>
+<p>To tell <code>read_tsv()</code> that the empty cell also represents
+missing data, we can include <code>""</code> in the <code>na</code>
+argument:</p>
+<pre class="r"><code>mess &lt;- read_tsv(
+  &quot;https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv&quot;,
+  locale = locale(decimal_mark = &quot;,&quot;),
+  na = c(&quot;&quot;, &quot;Missing&quot;, &quot;N/A&quot;)
+)</code></pre>
+<p>Now both the empty cell and <code>"Missing"</code> are intentionally
+interpreted as <code>NA</code>, and we no longer have a parsing
+problem.</p>
+<p>Next, let’s clean up the <code>price</code> column:</p>
 <pre class="r"><code>mess |&gt; 
   mutate(price = parse_number(price))</code></pre>
-<pre><code>## # A tibble: 5 × 3
-##   item  price  size
-##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 a        45   3.5
-## 2 b         5  NA  
-## 3 c         3   2.9
-## 4 d         2   4.2
-## 5 e         8  NA</code></pre>
 <p><br> <br></p>
 </div>
 </div>

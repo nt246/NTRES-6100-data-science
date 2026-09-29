@@ -52,6 +52,46 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
+
+## Git and GitHub refresher
+
+We've spent the last several classes focusing on R and haven't talked much about Git and GitHub. Before we move on, let's make sure we haven't forgotten our basic workflow!
+
+<br>
+
+### Remember the basic workflow
+
+When working in a GitHub-connected RStudio project:
+
+**Pull → Work → Stage → Commit → Pull → Push**
+
+- **Pull** before you start working to make sure you have the most recent version.
+- **Work** on your files and save your changes.
+- **Stage** the files you want to include in the next commit.
+- **Commit** the changes with a short, informative message describing what you changed.
+- **Pull** again before pushing, in case the remote repository has changed while you were working.
+- **Push** your commits to GitHub.
+
+### Your turn
+
+Open your course repository in RStudio.
+
+1. **Pull** from GitHub.
+2. Open one of your recent `.qmd` files and make a tiny change — for example, add a comment to yourself.
+3. Save the file and look at the **Git** pane. What changed?
+4. **Stage** the changed file.
+5. **Commit** it with an informative commit message.
+6. **Pull**, then **push** your commit.
+7. Go to your repository on GitHub and confirm that you can see your new commit.
+
+**Remember:** Saving a file, committing it, and pushing it are three different things.
+
+<br>
+
+Now, let's move on to today's material.
+
+<br>
+
 ## Loading packages
 
 ```{r message=FALSE, warning=FALSE}
@@ -252,32 +292,64 @@ Dates can be tricky! If you work with date data, I suggest you have a close look
 
 We can use the `parse_xx()` functions in combination with `mutate()` to clean up values in a variable. 
 
-Let's have a look at how to clean up this dataset:
+Let’s have a look at how to clean up this dataset:
 
-```{r, message = FALSE}
-mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv", locale = locale(decimal_mark = ","))
-
+```r
+mess <- read_tsv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv",
+  locale = locale(decimal_mark = ",")
+)
 ```
 
-<br>
+We may notice some issues here. First, we see the word `"Missing"` in the column titled `size`. Because `"Missing"` cannot be interpreted as a number, `read_tsv()` initially reads the entire `size` column as a character variable rather than a double.
 
-We may notice some issues here. First, we see the word "Missing" in the column titled size. We also see that as a result, this variable is read in as a character variable, rather than a double. In this case, the character string "Missing" should be read in as `NA` that R will recognize as “not available”. This is something we can address using the na argument. By default, read_csv() only recognizes empty strings ("") in this dataset as NAs, and we want it to also recognize the character string "Missing" as indicating a missing value.
+In this dataset, `"Missing"` actually represents a missing value, so we would like R to read it as `NA` ("not available"). We can tell `read_tsv()` which values should be interpreted as missing using the `na` argument:
 
-```{r, message = FALSE}
-mess = read_tsv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv", locale = locale(decimal_mark = ","), na = c("Missing", "N/A"))
-
+```r
+mess <- read_tsv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv",
+  locale = locale(decimal_mark = ","),
+  na = c("Missing", "N/A")
+)
 ```
- 
 
-We get a warning message here, we can look at what the issue is by typing `problems()`. We note that despite that warning, now the "Missing" is being read in as NA, the size column gets read in as a double.
+```text
+## Warning: One or more parsing issues, call `problems()` on your data frame for details,
+## e.g.:
+##   dat <- vroom(...)
+##   problems(dat)
+```
 
-Now, let's now clean up the `price` column
+Now `"Missing"` is correctly interpreted as `NA`, and `size` is read in as a double. However, we also get a warning that there was a **parsing problem**. We can investigate it using:
 
-```{r}
+```r
+problems(mess)
+```
+
+The problem occurs because there is also an **empty cell** in the `size` column. Normally, `readr` recognizes empty strings (`""`) as missing values. However, when we supply our own values with the `na` argument, we replace that default. We told `read_tsv()` to recognize `"Missing"` and `"N/A"` as missing values, but not `""`.
+
+Because `size` is being read as a double, `read_tsv()` expects a number in that empty cell. It cannot parse `""` as a number, so it records a parsing problem and substitutes `NA`.
+
+Importantly, **a parsing problem does not necessarily prevent the data from being imported**. `readr` will often replace a value it cannot parse with `NA` and record the problem so that we can investigate it with `problems()`. This is useful because an `NA` in our imported data might represent either a value that we explicitly defined as missing or a value that could not be parsed correctly.
+
+To tell `read_tsv()` that the empty cell also represents missing data, we can include `""` in the `na` argument:
+
+```r
+mess <- read_tsv(
+  "https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/refs/heads/main/datasets/messy_data.tsv",
+  locale = locale(decimal_mark = ","),
+  na = c("", "Missing", "N/A")
+)
+```
+
+Now both the empty cell and `"Missing"` are intentionally interpreted as `NA`, and we no longer have a parsing problem.
+
+Next, let’s clean up the `price` column:
+
+```r
 mess |> 
   mutate(price = parse_number(price))
 ```
-
 
 <br>
 <br>
