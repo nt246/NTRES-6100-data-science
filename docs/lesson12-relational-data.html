@@ -578,6 +578,32 @@ href="https://r4ds.hadley.nz/joins">join functions</a> summarized in
 these <a
 href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Slides_lesson13_relational_data.pdf">slides</a></p>
 <p><br></p>
+<div id="exercise" class="section level4">
+<h4>Exercise</h4>
+<p>Add the location of the origin and destination (i.e. the lat and lon)
+to flights. You may want to use the suffix parameter to disambiguate
+variable names in your output</p>
+<details>
+<summary>
+click to expand
+</summary>
+<p><br></p>
+<pre class="r"><code>airport_locations &lt;- airports %&gt;%
+  select(faa, lat, lon)
+
+flights2 |&gt; 
+  left_join(
+    airport_locations,
+    join_by(&quot;origin&quot; == &quot;faa&quot;)
+  ) |&gt; 
+  left_join(
+    airport_locations,
+    join_by(&quot;dest&quot; == &quot;faa&quot;), 
+    suffix = c(&quot;_origin&quot;, &quot;_destination&quot;)
+  )  </code></pre>
+</details>
+<p><br> <br></p>
+</div>
 <div id="key-point" class="section level4">
 <h4>Key point</h4>
 <p>The most commonly used join is the left join: you use this whenever
@@ -656,8 +682,27 @@ click to expand
         coord_quickmap()</code></pre>
 <p>(Don’t worry if you don’t understand what <code>semi_join()</code>
 does — you’ll learn about it next.)</p>
-<p>You might want to use the <code>size</code> or <code>colour</code> of
+<p>You might want to use the <code>size</code> or <code>color</code> of
 the points to display the average delay for each airport.</p>
+<p><br></p>
+<p>Another solution:</p>
+<pre class="r"><code>avg_dest_delays &lt;-
+  flights %&gt;%
+  group_by(dest) %&gt;%
+  # arrival delay NA&#39;s are cancelled flights
+  summarise(delay = mean(arr_delay, na.rm = TRUE)) %&gt;%
+  inner_join(airports, by = c(dest = &quot;faa&quot;))</code></pre>
+<pre class="r"><code>avg_dest_delays %&gt;%
+  ggplot(aes(lon, lat, colour = delay)) +
+  borders(&quot;state&quot;) +
+  geom_point() +
+  coord_quickmap()</code></pre>
+<pre><code>## Warning: `borders()` was deprecated in ggplot2 4.0.0.
+## ℹ Please use `annotation_borders()` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="lesson12-relational-data_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 </details>
 <p><br></p>
 <div class="tocify-extend-page" data-unique="tocify-extend-page"
