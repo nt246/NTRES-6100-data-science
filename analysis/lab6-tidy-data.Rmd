@@ -138,6 +138,10 @@ whales_clean |> head() |> kable()
 
 Your new data frame should have six variables: observer, species, date, outcome, size, ocean.
 
+
+*Hint: `separate()` might be helpful.*
+
+
 <br> 
 
 *One possible solution*
