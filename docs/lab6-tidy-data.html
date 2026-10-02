@@ -13,7 +13,7 @@
 
 <title>Lab 6: Data cleaning and tidy data</title>
 
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -862,22 +862,20 @@ this data frame <code>whales_parsed</code>.</h4>
 click to expand
 </summary>
 <pre class="r"><code>whales_parsed &lt;- whales_split |&gt;
-  type_convert(
-    col_types = cols(
-      date = col_date(format = &quot;%m/%d/%y&quot;),
-      size = col_integer()
+  mutate(
+      date = parse_date(date, format = &quot;%m/%d/%y&quot;),
+      size = parse_integer(size)
     )
-  )
 whales_parsed |&gt; head()</code></pre>
 <pre><code>## # A tibble: 6 × 6
-##   observer species        date       outcome  size ocean   
-##      &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;     &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;   
-## 1        1 blue           2015-01-20 death      NA Indian  
-## 2        1 sei            2011-08-09 injury     NA indian  
-## 3        2 humpback       2015-08-12 death      50 atlantic
-## 4        2 fin            2013-08-02 death      76 arctic  
-## 5        2 bowhead        2013-06-24 injury     30 artic   
-## 6        3 southern_right 2013-07-14 injury     47 pacific</code></pre>
+##   observer species        date       outcome    size ocean      
+##      &lt;dbl&gt; &lt;chr&gt;          &lt;date&gt;     &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;      
+## 1        1 blue           2015-01-20 &quot; death&quot;     NA &quot; Indian&quot;  
+## 2        1 sei            2011-08-09 &quot; injury&quot;    NA &quot; indian&quot;  
+## 3        2 humpback       2015-08-12 &quot; death&quot;     50 &quot; atlantic&quot;
+## 4        2 fin            2013-08-02 &quot; death&quot;     76 &quot; arctic&quot;  
+## 5        2 bowhead        2013-06-24 &quot; injury&quot;    30 &quot; artic&quot;   
+## 6        3 southern_right 2013-07-14 &quot; injury&quot;    47 &quot; pacific&quot;</code></pre>
 </details>
 <p><br> <br></p>
 </div>
