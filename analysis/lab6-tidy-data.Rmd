@@ -138,6 +138,10 @@ whales_clean |> head() |> kable()
 
 Your new data frame should have six variables: observer, species, date, outcome, size, ocean.
 
+
+*Hint: `separate()` might be helpful.*
+
+
 <br> 
 
 *One possible solution*
@@ -175,12 +179,10 @@ The columns should parsed to the following types
 
 ```{r}
 whales_parsed <- whales_split |>
-  type_convert(
-    col_types = cols(
-      date = col_date(format = "%m/%d/%y"),
-      size = col_integer()
+  mutate(
+      date = parse_date(date, format = "%m/%d/%y"),
+      size = parse_integer(size)
     )
-  )
 whales_parsed |> head()
 ```
 
