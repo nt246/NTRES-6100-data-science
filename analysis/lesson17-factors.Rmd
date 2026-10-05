@@ -1,5 +1,5 @@
 ---
-title: "Lesson 17: Factors in R"
+title: "Lesson 13: Factors in R"
 output: 
   html_document:
     toc: true
@@ -27,14 +27,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Other resources:
 
-* [Chapter 15](https://r4ds.had.co.nz/factors.html) in R for Data Science by Hadley Wickham & Garrett Grolemund
+* [Chapter 16](https://r4ds.hadley.nz/factors.html) in R for Data Science (2e)
 
 <br>
 <br>
 
 ## Announcements
-* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) this Thursday (March 30). If you can't make it to class (and are taking the course for credit), please submit a video of your presentation before the class
-* Instead of a regular lab session next week, Azwad will offer optional 30-min consultations to discuss your project or analysis need. If you're interested, please sign up [here](https://docs.google.com/spreadsheets/d/1vI3Kb5_Kj1fy2kmRc9VL5w5YU46pBZyVAV1MCS-WhAI/edit#gid=0). We will give preference to those enrolled in the lab sessions, but if there is availability, other's are welcome.
+* Reminder about the [end-of-class student presentations](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) on Tuesday Nov 3. If you can't make it to class (and are taking the course for credit), please submit a video of your presentation before the class
+
 
 <br>
 <br>
