@@ -31,16 +31,6 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 <br>
 
-## Announcements
-
-From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)
-* Lectures will be in Morrison Hall 348
-* Thursday labs will be in Warren Hall B73
-* Friday labs will stay in the same room (Warren 101)
-
-<br>
-<br>
-
 
 ## Today's learning objectives
 By the end of today's class, you should be able to:
