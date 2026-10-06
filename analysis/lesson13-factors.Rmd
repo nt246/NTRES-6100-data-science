@@ -41,6 +41,14 @@ By the end of today's class, you should be able to:
 <br>
 <br>
 
+
+## Recap on relational data
+
+We'll start by going over [these slides](https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/Class13_factors.qmd)
+
+<br>
+<br>
+
 ## Introduction to factors
 
 First we'll review how factors work by going over the beginning of [Chapter 16 in R4DS](https://r4ds.hadley.nz/factors.html)

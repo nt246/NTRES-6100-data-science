@@ -1,7 +1,12 @@
 ---
 title: "Lesson 13: Wrap-up on relational data, then on to Factors"
-format: revealjs
+format:
+  revealjs:
+    code-line-numbers: false
 editor: visual
+execute:
+  eval: false
+  echo: true
 ---
 
 ## Announcements
@@ -9,56 +14,273 @@ editor: visual
 <br>
 
 ::: incremental
--   Updated order of lectures (please check the syllabus)
-:::
-
-<br>
-
-::: incremental
--   On Thursday, Erika Mudrak from the Cornell Statistical Service Unit will visit us to share tips on troubleshooting and getting help
-:::
-
-<br>
-
-::: incremental
--   From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)
-
-    -   Lectures will be in Morrison Hall 348
-
-    -   Thursday labs will be in Warren Hall B73
-
-    -   Friday labs will stay in the same room (Warren 101)
+- **Upcoming classes:**
+  - Thursday 10/6: Azwad will provide an overview of using AI in coding (responsibly)
+  - Tuesday 10/13: No class (Feb break)
+  - Thursday 10/5: Erika Mudrak from the Cornell Statistical Service Unit will visit us to share tips on troubleshooting and getting help
 :::
 
 ## Today's learning objectives
 
-First: Wrap-up on join and filter functions (relational data)
+<br>
 
-Then on to Factors By the end of today's class, you should be able to:
+Wrap-up on join and filter functions (**relational data**)
 
--   Describe key features of factor variables in R
--   Manipulate factor levels to improve plots of categorical data
+<br>
+
+Then on to **Factors**.
+
+- By the end of today's class, you should be able to:
+
+  - Describe key features of factor variables in R
+
+  - Manipulate factor levels to improve plots of categorical data
+
+## Recap: relational data
+
+<br>
+
+Relational data stores information across **multiple tables** that are connected by **keys**.
+
+Before joining two tables, ask:
+
+1.  What does **one row** represent in each table?
+2.  What **key** connects them?
+3.  Is the key **unique** in either table?
+4.  Which observations do I want to keep?
+
+## Primary and foreign keys
+
+<br>
+
+```{r}
+planes |> select(tailnum, manufacturer, model)
+
+flights |> select(tailnum, flight, origin, dest)
+```
+
+<br>
+
+**Primary key:** uniquely identifies an observation in its own table.
+
+**Foreign key:** refers to the primary key of another table.
+
+Here:
+
+- `planes$tailnum` = **primary key**
+- `flights$tailnum` = **foreign key**
+
+::: callout-note
+Primary and foreign describe the **role of a key within a table** — not which table is on the left or right of a join.
+:::
+
+## Think before you join
+
+<br>
+
+```{r}
+flights |>
+  left_join(planes, by = "tailnum")
+```
+
+<br>
+
+How would you describe what this does in words?
+
+<br>
+
+. . .
+
+> **Keep every flight and look up information about the plane used for that flight.**
+
+What do you expect to happen to the number of rows?
+
+## Many-to-one relationships
+
+<br>
+
+Suppose we want to add information about the plane to each flight.
+
+:::::: columns
+::: {.column width="42%"}
+**`flights`**
+
+| flight | tailnum |
+|-------:|:--------|
+|   1545 | N123    |
+|   1714 | N123    |
+|   1141 | N456    |
+:::
+
+::: {.column width="16%"}
+<br><br>
+
+**→**
+:::
+
+::: {.column width="42%"}
+**`planes`**
+
+| tailnum | seats |
+|:--------|------:|
+| N123    |   149 |
+| N456    |   186 |
+:::
+::::::
+
+<br>
+
+- One plane can appear in **many flights**
+- Each `tailnum` appears **once in `planes`**
+- This is a **many-to-one** relationship
+
+```{r}
+flights |>
+  left_join(planes, by = "tailnum")
+```
+
+**What should happen to the number of rows?**
+
+## The many-to-many problem
+
+Now imagine `tailnum` is **not unique in either table**.
+
+:::::: columns
+::: {.column width="45%"}
+**`flights`**
+
+| flight | tailnum |
+|-------:|:--------|
+|   1545 | N123    |
+|   1714 | N123    |
+|   1141 | N456    |
+:::
+
+::: {.column width="10%"}
+<br><br>
+
+**×**
+:::
+
+::: {.column width="45%"}
+**`plane_info`**
+
+| tailnum | status |
+|:--------|:-------|
+| N123    | A      |
+| N123    | B      |
+| N456    | A      |
+:::
+::::::
+
+**What happens when we join by `tailnum`?**
+
+## The many-to-many problem
+
+For `N123`, there are **2 matches in each table**:
+
+| flight | tailnum | status |
+|-------:|:--------|:-------|
+|   1545 | N123    | A      |
+|   1545 | N123    | B      |
+|   1714 | N123    | A      |
+|   1714 | N123    | B      |
+
+So:
+
+$$2 \times 2 = 4 \text{ rows}$$
+
+::: callout-warning
+If a join unexpectedly **increases the number of rows**, check whether your key is unique in the table where you expected one match.
+:::
+
+## Quick check: which join?
+
+<br>
+
+Starting with `flights`, what would you use if you wanted to...
+
+<br>
+
+| Goal                                                 | Join |
+|------------------------------------------------------|------|
+| Add information about the plane                      |      |
+| Keep only flights with plane information available   |      |
+| Find flights with **no** plane information available |      |
+
+<br>
+
+## Quick check: which join?
+
+<br>
+
+Starting with `flights`, what would you use if you wanted to...
+
+<br>
+
+| Goal                                                 | Join          |
+|------------------------------------------------------|---------------|
+| Add information about the plane                      | `left_join()` |
+| Keep only flights with plane information available   | `semi_join()` |
+| Find flights with **no** plane information available | `anti_join()` |
+
+<br>
+
+## Your turn
+
+<br>
+
+We want to add the **manufacturer** and **number of seats** of the aircraft to every flight.
+
+<br>
+
+Before writing any code:
+
+1.  What tables do we need?
+2.  What is the key?
+3.  Where is it a primary key?
+4.  Where is it a foreign key?
+5.  What join should we use?
+6.  What should happen to the number of rows?
+
+. . .
+
+```{r}
+flights |>
+  left_join(
+    planes |> select(tailnum, manufacturer, seats),
+    by = "tailnum"
+  )
+```
 
 ## Factors
 
--   Categorical variables
--   Have a fixed and known set of possible values
--   Levels are ordered
--   Have human readable names, but under the hood, R is really storing integer codes 1, 2, 3, etc.
--   Useful for modeling, but also when you want to display character vectors in a non-alphabetical order
+<br>
+
+- Categorical variables
+- Have a fixed and known set of possible values
+- Levels are ordered
+- Have human readable names, but under the hood, R is really storing integer codes 1, 2, 3, etc.
+- Useful for modeling, but also when you want to display character vectors in a non-alphabetical order
 
 ## Exercise
+
+<br>
 
 Exercise: Filter the gapminder data down to rows where population is less than a quarter of a million, i.e. 250,000. Get rid of the unused factor levels for country and continent in different ways, such as:
 
--   `droplevels()`
--   `fct_drop()` inside `mutate()`
+- `droplevels()`
+- `fct_drop()` inside `mutate()`
 
 ## Exercise
+
+<br>
 
 Isolate the data for "Australia", "Korea, Dem. Rep.", and "Korea, Rep." in the 2000x. Revalue the country factor levels to "Oz", "North Korea", and "South Korea"
 
 ## Exercise
+
+<br>
 
 Make a plot of gdpPercap for each Asian country in 2007
 
@@ -68,9 +290,11 @@ OPTIONAL: Move Thailand to be the first country displayed
 
 ## fct\_\*() functions covered today
 
--   fct_infreq()
--   fct_rev()
--   fct_reorder()
--   fct_reorder2()
--   fct_relevel()
--   fct_recode()
+<br>
+
+- fct_infreq()
+- fct_rev()
+- fct_reorder()
+- fct_reorder2()
+- fct_relevel()
+- fct_recode()

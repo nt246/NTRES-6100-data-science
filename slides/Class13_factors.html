@@ -6,8 +6,8 @@
 <script src="Class13_factors_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="Class13_factors_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="Class13_factors_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Class13_factors_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="Class13_factors_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>Lesson 13: Wrap-up on relational data, then on to Factors</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="Class13_factors_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="Class13_factors_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -27,8 +33,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Class13_factors_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link rel="stylesheet" href="Class13_factors_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="Class13_factors_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Class13_factors_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Class13_factors_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -135,40 +207,352 @@
 <section id="announcements" class="slide level2">
 <h2>Announcements</h2>
 <p><br></p>
-<div>
 <ul>
-<li class="fragment">Updated order of lectures (please check the syllabus)</li>
-</ul>
-</div>
-<p><br></p>
-<div>
+<li class="fragment"><strong>Upcoming classes:</strong>
 <ul>
-<li class="fragment">On Thursday, Erika Mudrak from the Cornell Statistical Service Unit will visit us to share tips on troubleshooting and getting help</li>
-</ul>
-</div>
-<p><br></p>
-<div>
-<ul>
-<li class="fragment"><p>From next week onwards (from Thursday 10/16 and through the rest of the course), we will unfortunately have to shift classrooms (due to a scheduling error in the course roster)</p>
-<ul>
-<li class="fragment"><p>Lectures will be in Morrison Hall 348</p></li>
-<li class="fragment"><p>Thursday labs will be in Warren Hall B73</p></li>
-<li class="fragment"><p>Friday labs will stay in the same room (Warren 101)</p></li>
+<li class="fragment">Thursday 10/6: Azwad will provide an overview of using AI in coding (responsibly)</li>
+<li class="fragment">Tuesday 10/13: No class (Feb break)</li>
+<li class="fragment">Thursday 10/5: Erika Mudrak from the Cornell Statistical Service Unit will visit us to share tips on troubleshooting and getting help</li>
 </ul></li>
 </ul>
-</div>
 </section>
 <section id="todays-learning-objectives" class="slide level2">
 <h2>Today’s learning objectives</h2>
-<p>First: Wrap-up on join and filter functions (relational data)</p>
-<p>Then on to Factors By the end of today’s class, you should be able to:</p>
+<p><br></p>
+<p>Wrap-up on join and filter functions (<strong>relational data</strong>)</p>
+<p><br></p>
+<p>Then on to <strong>Factors</strong>.</p>
 <ul>
-<li>Describe key features of factor variables in R</li>
-<li>Manipulate factor levels to improve plots of categorical data</li>
+<li><p>By the end of today’s class, you should be able to:</p>
+<ul>
+<li><p>Describe key features of factor variables in R</p></li>
+<li><p>Manipulate factor levels to improve plots of categorical data</p></li>
+</ul></li>
 </ul>
+</section>
+<section id="recap-relational-data" class="slide level2">
+<h2>Recap: relational data</h2>
+<p><br></p>
+<p>Relational data stores information across <strong>multiple tables</strong> that are connected by <strong>keys</strong>.</p>
+<p>Before joining two tables, ask:</p>
+<ol type="1">
+<li>What does <strong>one row</strong> represent in each table?</li>
+<li>What <strong>key</strong> connects them?</li>
+<li>Is the key <strong>unique</strong> in either table?</li>
+<li>Which observations do I want to keep?</li>
+</ol>
+</section>
+<section id="primary-and-foreign-keys" class="slide level2">
+<h2>Primary and foreign keys</h2>
+<p><br></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, model)</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, flight, origin, dest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+<p><strong>Primary key:</strong> uniquely identifies an observation in its own table.</p>
+<p><strong>Foreign key:</strong> refers to the primary key of another table.</p>
+<p>Here:</p>
+<ul>
+<li><code>planes$tailnum</code> = <strong>primary key</strong></li>
+<li><code>flights$tailnum</code> = <strong>foreign key</strong></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Primary and foreign describe the <strong>role of a key within a table</strong> — not which table is on the left or right of a join.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="think-before-you-join" class="slide level2">
+<h2>Think before you join</h2>
+<p><br></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+<p>How would you describe what this does in words?</p>
+<p><br></p>
+<div class="fragment">
+<blockquote>
+<p><strong>Keep every flight and look up information about the plane used for that flight.</strong></p>
+</blockquote>
+<p>What do you expect to happen to the number of rows?</p>
+</div>
+</section>
+<section id="many-to-one-relationships" class="slide level2">
+<h2>Many-to-one relationships</h2>
+<p><br></p>
+<p>Suppose we want to add information about the plane to each flight.</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p><strong><code>flights</code></strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">flight</th>
+<th style="text-align: left;">tailnum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1545</td>
+<td style="text-align: left;">N123</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1714</td>
+<td style="text-align: left;">N123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1141</td>
+<td style="text-align: left;">N456</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:16%;">
+<p><br><br></p>
+<p><strong>→</strong></p>
+</div><div class="column" style="width:42%;">
+<p><strong><code>planes</code></strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">tailnum</th>
+<th style="text-align: right;">seats</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">N123</td>
+<td style="text-align: right;">149</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">N456</td>
+<td style="text-align: right;">186</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<p><br></p>
+<ul>
+<li>One plane can appear in <strong>many flights</strong></li>
+<li>Each <code>tailnum</code> appears <strong>once in <code>planes</code></strong></li>
+<li>This is a <strong>many-to-one</strong> relationship</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>What should happen to the number of rows?</strong></p>
+</section>
+<section id="the-many-to-many-problem" class="slide level2">
+<h2>The many-to-many problem</h2>
+<p>Now imagine <code>tailnum</code> is <strong>not unique in either table</strong>.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong><code>flights</code></strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">flight</th>
+<th style="text-align: left;">tailnum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1545</td>
+<td style="text-align: left;">N123</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1714</td>
+<td style="text-align: left;">N123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1141</td>
+<td style="text-align: left;">N456</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:10%;">
+<p><br><br></p>
+<p><strong>×</strong></p>
+</div><div class="column" style="width:45%;">
+<p><strong><code>plane_info</code></strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">tailnum</th>
+<th style="text-align: left;">status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">N456</td>
+<td style="text-align: left;">A</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<p><strong>What happens when we join by <code>tailnum</code>?</strong></p>
+</section>
+<section id="the-many-to-many-problem-1" class="slide level2">
+<h2>The many-to-many problem</h2>
+<p>For <code>N123</code>, there are <strong>2 matches in each table</strong>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">flight</th>
+<th style="text-align: left;">tailnum</th>
+<th style="text-align: left;">status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1545</td>
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1545</td>
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">B</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1714</td>
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1714</td>
+<td style="text-align: left;">N123</td>
+<td style="text-align: left;">B</td>
+</tr>
+</tbody>
+</table>
+<p>So:</p>
+<p><span class="math display">\[2 \times 2 = 4 \text{ rows}\]</span></p>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>If a join unexpectedly <strong>increases the number of rows</strong>, check whether your key is unique in the table where you expected one match.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="quick-check-which-join" class="slide level2">
+<h2>Quick check: which join?</h2>
+<p><br></p>
+<p>Starting with <code>flights</code>, what would you use if you wanted to…</p>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Join</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add information about the plane</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Keep only flights with plane information available</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Find flights with <strong>no</strong> plane information available</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="quick-check-which-join-1" class="slide level2">
+<h2>Quick check: which join?</h2>
+<p><br></p>
+<p>Starting with <code>flights</code>, what would you use if you wanted to…</p>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Join</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add information about the plane</td>
+<td><code>left_join()</code></td>
+</tr>
+<tr class="even">
+<td>Keep only flights with plane information available</td>
+<td><code>semi_join()</code></td>
+</tr>
+<tr class="odd">
+<td>Find flights with <strong>no</strong> plane information available</td>
+<td><code>anti_join()</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>What does one row in the result tell us?</p>
+</div>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<p><br></p>
+<p>We want to add the <strong>manufacturer</strong> and <strong>number of seats</strong> of the aircraft to every flight.</p>
+<p>Before writing any code:</p>
+<ol type="1">
+<li>What tables do we need?</li>
+<li>What is the key?</li>
+<li>Where is it a primary key?</li>
+<li>Where is it a foreign key?</li>
+<li>What join should we use?</li>
+<li>What should happen to the number of rows?</li>
+</ol>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, seats),</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"tailnum"</span></span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </section>
 <section id="factors" class="slide level2">
 <h2>Factors</h2>
+<p><br></p>
 <ul>
 <li>Categorical variables</li>
 <li>Have a fixed and known set of possible values</li>
@@ -179,6 +563,7 @@
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
+<p><br></p>
 <p>Exercise: Filter the gapminder data down to rows where population is less than a quarter of a million, i.e.&nbsp;250,000. Get rid of the unused factor levels for country and continent in different ways, such as:</p>
 <ul>
 <li><code>droplevels()</code></li>
@@ -187,16 +572,19 @@
 </section>
 <section id="exercise-1" class="slide level2">
 <h2>Exercise</h2>
+<p><br></p>
 <p>Isolate the data for “Australia”, “Korea, Dem. Rep.”, and “Korea, Rep.” in the 2000x. Revalue the country factor levels to “Oz”, “North Korea”, and “South Korea”</p>
 </section>
 <section id="exercise-2" class="slide level2">
 <h2>Exercise</h2>
+<p><br></p>
 <p>Make a plot of gdpPercap for each Asian country in 2007</p>
 <p>Make sure the countries appear in order in increasing gdpPercap</p>
 <p>OPTIONAL: Move Thailand to be the first country displayed</p>
 </section>
 <section id="fct_-functions-covered-today" class="slide level2">
 <h2>fct_*() functions covered today</h2>
+<p><br></p>
 <ul>
 <li>fct_infreq()</li>
 <li>fct_rev()</li>
@@ -396,7 +784,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -422,191 +810,212 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
