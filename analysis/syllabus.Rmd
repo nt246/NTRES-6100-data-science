@@ -142,12 +142,12 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 13 | Tue | 10/6 | [Factors in R](https://nt246.github.io/NTRES-6100-data-science/lesson13-factors.html)  |  |
 | 14 | Thu | 10/8 | Leveraging AI for coding responsibly | [Assignment 6](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_6_AI.qmd) |
 |  | Tue | 10/13 | FALL BREAK (no class) |  |
-| 15 | Thu | 10/15 | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson15-debugging-getting-help.html) | [Assignment 7] |
-| 16 | Tue | 10/20 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-for-loops.html) |  |
-| 17 | Thu | 10/22 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops-part2.html) | [Assignment 8] |
-| 18 | Tue | 10/27 | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html) |  |
-| 19 | Thu | 10/29 | Best practices for data archiving and sharing | [Assignment 9] |
-| 20 | Tue | 11/3 | Student presentations and [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) |  |
+| 15 | Thu | 10/15 | [Good coding practices, debugging strategies, and getting help](https://nt246.github.io/NTRES-6100-data-science/lesson15-debugging-getting-help.html) |  |
+| 16 | Tue | 10/20 | [Iteration (for loops) and conditional execution part 1](https://nt246.github.io/NTRES-6100-data-science/lesson13-for-loops.html) | [Assignment 7] |
+| 17 | Thu | 10/22 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson14-for-loops-part2.html) |  |
+| 18 | Tue | 10/27 | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson16-functions.html) | [Assignment 8] |
+| 19 | Thu | 10/29 | Best practices for data archiving and sharing | |
+| 20 | Tue | 11/3 | Student presentations and [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) | [Assignment 9]  |
 
 | Lab# | Date (Thu) | Date (Fri) | Topic |
 |:----------------|:----------------|:----------------|:-------------------|
