@@ -14,6 +14,8 @@ execute:
 - Examine warnings and messages before hiding them.
 - Generate tables and plots from code; do not type their outputs manually.
 
+<br>
+
 ### Use of AI
 
 The goals are to practice relational data, data wrangling, and visualization, and to use AI as a **coding partner without outsourcing your understanding**.
@@ -27,6 +29,8 @@ The goals are to practice relational data, data wrangling, and visualization, an
 **Evaluate AI:** Make your own interpretation before critically examining AI feedback.
 
 You are responsible for all submitted code and should be able to explain each line and verify the results.
+
+<br>
 
 ```{r}
 library(tidyverse)
@@ -55,16 +59,12 @@ We will also use [this
 dataset](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv)
 to get the exact numbers of votes for question 3.
 
+<br>
 
 ## Question 1. What is the relationship between the population size and the number of electoral votes each state has?
 
 
-
-### 1a. — **Code yourself** Use a `join` function to combine the `murders` dataset, which
-contains information on population size, and the
-`results_us_election_2016` dataset, which contains information on the
-number of electoral votes. Name this new dataset `q_1a`, and show its
-first 6 rows.
+### 1a. — **Code yourself** Use a `join` function to combine the `murders` dataset, which contains information on population size, and the `results_us_election_2016` dataset, which contains information on the number of electoral votes. Name this new dataset `q_1a`, and show its first 6 rows.
 
 **Explain:** What is the join key? Is it unique in both datasets, and how would you check for dropped or duplicated states?
 
@@ -75,21 +75,21 @@ first 6 rows.
 ```
 
 
-### 1b. — **Code yourself** Add a new variable in the `q_1a` dataset to indicate which
-candidate won in each state, and remove the columns `abb`, `region`, and
-`total`. Name this new dataset `q_1b`, and show its first 6 rows.
+### 1b. — **Code yourself** Add a new variable in the `q_1a` dataset to indicate which candidate won in each state, and remove the columns `abb`, `region`, and `total`. Name this new dataset `q_1b`, and show its first 6 rows.
 
 ```{r}
 # Write your code here
 ```
 
 
-### 1c. — **Code yourself** Using the `q_1b` dataset, plot the relationship between
-population size and number of electoral votes. Use color to indicate who
-won the state. Fit a straight line to the data, set its color to black,
-linewidth to 0.1, and turn off its confidence interval.
+### 1c. — **Code yourself** Using the `q_1b` dataset, plot the relationship between population size and number of electoral votes. Use color to indicate who won the state. Fit a straight line to the data, set its color to black, linewidth to 0.1, and turn off its confidence interval.
 
+```{r}
+# Write your code here
+```
 
+<br>
+<br>
 
 ## Question 2. Would the election result be any different if the number of electoral votes is exactly proportional to a state’s population size?
 
@@ -98,18 +98,14 @@ linewidth to 0.1, and turn off its confidence interval.
 ```
 
 
-### 2a. — **Code yourself** First, convert the `q_1b` dataset to longer format such that the
-`population` and `electoral_votes` columns are turned into rows as shown
-below. Name this new dataset `q_2a`, and show its first 6 rows.
+### 2a. — **Code yourself** First, convert the `q_1b` dataset to longer format such that the `population` and `electoral_votes` columns are turned into rows as shown below. Name this new dataset `q_2a`, and show its first 6 rows.
 
 ```{r}
 # Write your code here
 ```
 
 
-### 2b. — **Use AI as a reviewer** Then, sum up the number of electoral votes and population size
-across all states for each candidate. Name this new dataset `q_2b`, and
-print it as shown below.
+### 2b. — **Use AI as a reviewer** Then, sum up the number of electoral votes and population size across all states for each candidate. Name this new dataset `q_2b`, and print it as shown below.
 
 Write your solution yourself first. Then ask AI to review it **without rewriting it unless there is an error**.
 
@@ -124,18 +120,15 @@ Did AI identify a real problem, an unnecessary change, or confirm your approach?
 # Write your code here
 ```
 
+<br>
 
-### 2c. — **Code yourself** Use the `q_2b` dataset to contruct a bar plot to show the final
-electoral vote share under the scenarios of **1)** each state has the
-number of electoral votes that it currently has, and **2)** each state
-has the number of electoral votes that is exactly proportional to its
-population size. Here, assume that for each state, the winner will take
-all its electoral votes.
+### 2c. — **Code yourself** Use the `q_2b` dataset to contruct a bar plot to show the final electoral vote share under the scenarios of **1)** each state has the number of electoral votes that it currently has, and **2)** each state has the number of electoral votes that is exactly proportional to its population size. Here, assume that for each state, the winner will take all its electoral votes.
 
 
 *Hint: `geom_col(position = "fill")` might be helpful.*
 
-
+<br>
+<br>
 
 ## Question 3. What if the election was determined by popular votes?
 
@@ -144,10 +137,7 @@ all its electoral votes.
 ```
 
 
-### 3a. — **Use AI intentionally** First, from [this dataset on
-GitHub](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv),
-calculate the number of popular votes each candidate received as shown
-below. Name this new dataset `q_3a`, and print it. <br>
+### 3a. — **Use AI intentionally** First, from [this dataset on GitHub](https://raw.githubusercontent.com/kshaffer/election2016/master/2016ElectionResultsByState.csv), calculate the number of popular votes each candidate received as shown below. Name this new dataset `q_3a`, and print it. <br>
 
 *Note: Vote counts are listed for several other candidates. Please
 combine the votes for all candidates other than Clinton and Trump into a
@@ -173,22 +163,17 @@ How did you verify the totals?
 ```
 
 
-### 3b. — **Code yourself** Combine the `q_2b` dataset with the `q_3a` dataset. Call this
-new dataset `q_3b`, and print it as shown below.
+### 3b. — **Code yourself** Combine the `q_2b` dataset with the `q_3a` dataset. Call this new dataset `q_3b`, and print it as shown below.
 
 ```{r}
 # Write your code here
 ```
 
 
-### 3c. — **Code yourself** Lastly, use the `q_3b` dataset to contruct a bar plot to show
-the final vote share under the scenarios of **1)** each state has the
-number of electoral votes that it currently has, **2)** each state has
-the number of electoral votes that is exactly proportional to its
-population size, and **3)** the election result is determined by the
-popular vote.
+### 3c. — **Code yourself** Lastly, use the `q_3b` dataset to contruct a bar plot to show the final vote share under the scenarios of **1)** each state has the number of electoral votes that it currently has, **2)** each state has the number of electoral votes that is exactly proportional to its population size, and **3)** the election result is determined by the popular vote.
 
-
+<br>
+<br>
 
 ## Question 4. The election result in 2016 came as a huge surprise to many people, especially given that most polls predicted Clinton would win before the election. Where did the polls get wrong?
 
@@ -197,15 +182,7 @@ popular vote.
 ```
 
 
-### 4a. — **Use AI intentionally** The polling data is stored in the data frame
-`polls_us_election_2016`. For the sake of simplicity, we will only look
-at the data from a single poll for each state. Subset the polling data
-to include only the results from the pollster `Ipsos`. Exclude national
-polls, and for each state, select the polling result with the `enddate`
-closest to the election day (i.e. those with the lastest end date). Keep
-only the columns `state`, `adjpoll_clinton`, and `adjpoll_trump`. Save
-this new dataset as `q_4a`, and show its first 6 rows.
-
+### 4a. — **Use AI intentionally** The polling data is stored in the data frame `polls_us_election_2016`. For the sake of simplicity, we will only look at the data from a single poll for each state. Subset the polling data to include only the results from the pollster `Ipsos`. Exclude national polls, and for each state, select the polling result with the `enddate` closest to the election day (i.e. those with the lastest end date). Keep only the columns `state`, `adjpoll_clinton`, and `adjpoll_trump`. Save this new dataset as `q_4a`, and show its first 6 rows.
 
 *Note: You should have 47 rows in `q_4a` because only 47 states were
 polled at least once by Ipsos. You don’t need to worry about the 3
@@ -228,9 +205,7 @@ How did you verify one record per state and the latest available date?
 ```
 
 
-### 4b. — **Code yourself** Combine the `q_4a` dataset with the `q_1b` dataset with a `join`
-function. The resulting dataset should only have 47 rows. Create the
-following new variables in this joined dataset.
+### 4b. — **Code yourself** Combine the `q_4a` dataset with the `q_1b` dataset with a `join` function. The resulting dataset should only have 47 rows. Create the following new variables in this joined dataset.
 
 - `polling_margin`: difference between `adjpoll_clinton` and
   `adjpoll_trump`
@@ -254,9 +229,7 @@ rows.
 ```
 
 
-### 4c. — **Evaluate AI** Generate the following plot with the `q_4b` dataset. Use chunk
-options to adjust the dimensions of the plot to make it longer than the
-default dimension. Based on this plot, where were the polls most misleading in the 2016 election? Plot polling error by state, distinguish correct and unexpected results, and use readable figure dimensions.
+### 4c. — **Evaluate AI** Generate the following plot with the `q_4b` dataset. Use chunk options to adjust the dimensions of the plot to make it longer than the default dimension. Based on this plot, where were the polls most misleading in the 2016 election? Plot polling error by state, distinguish correct and unexpected results, and use readable figure dimensions.
 
 **Before asking AI**, explain what positive and negative polling errors mean and identify the most misleading polls from your own plot.
 
@@ -273,6 +246,8 @@ Now ask AI to critique your interpretation. Did it raise a useful limitation or 
 # Write your code here
 ```
 
+<br>
+<br>
 
 ## Final reflection on AI and coding
 
