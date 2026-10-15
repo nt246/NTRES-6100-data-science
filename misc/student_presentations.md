@@ -3,7 +3,7 @@ End-of-class student presentations
 
 <br>
 
-During our second to last class, we want to give you all the opportunity
+During our last class, we want to give you all the opportunity
 to share ideas about how the skills we’ve learned in this course can be
 applied in practice.
 

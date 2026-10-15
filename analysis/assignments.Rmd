@@ -48,6 +48,12 @@ Each week, we will assign a problem set that applies the concepts covered in cla
 
 ***
 
+### Assignment 7
+#### [Relational data plus revisiting data wrangling and visualization](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_7_AI.qmd)  
+>Due Tue 10/20-2026 by 10pm EDT
+
+***
+
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 0;"></div>
 
