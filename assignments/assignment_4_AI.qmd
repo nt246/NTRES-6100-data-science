@@ -3,6 +3,7 @@ title: "Assignment 4: Data transformation, visualization, and working with AI"
 format: gfm
 execute:
   echo: true
+  eval: false
   warning: false
   message: false
 ---
