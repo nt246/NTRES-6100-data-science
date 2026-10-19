@@ -34,15 +34,15 @@ navbar:
       href: lesson12-relational-data.html
     - text: "Lesson 13: Factors"
       href: lesson13-factors.html    
-    - text: "Lesson 14: Good coding practices, debugging strategies, and getting help"
-      href: lesson14-debugging-getting-help.html
-    - text: "Lesson 15: Iteration - part 1"      
-      href: lesson15-for-loops.html
-    - text: "Lesson 16: Iteration - part 2"
-      href: lesson16-for-loops-part2.html
+    - text: "Lesson 15: Good coding practices, debugging strategies, and getting help"
+      href: lesson15-debugging-getting-help.html
+    - text: "Lesson 16: Iteration - part 1"      
+      href: lesson16-for-loops-pqrt1.html
+    - text: "Lesson 17: Iteration - part 2"
+      href: lesson17-for-loops-part2.html
     - text: "Lesson 18: Functions"
-      href: lesson17-functions.html
-    - text: "Lesson 19: Wrapping up and learning more"
+      href: lesson18-functions.html
+    - text: "Lesson 20: Wrapping up and learning more"
       href: lesson18-wrapup.html
   - text: Labs
     menu:
