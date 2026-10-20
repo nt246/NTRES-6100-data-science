@@ -52,22 +52,7 @@ By the end of today and next class, you should be able to:
 <br>
 
 
-## Clone repo to get today's exercise sheet
-First, to refresh our memory on RStudio-GitHub integration, let's start by cloning a repo with today's exercise sheet. The repo is located here: https://github.com/nt246/for-loop-exercise
 
-Clone it to your local machine. Try first to see if you remember how. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio).
-
-Once you have an RStudio project linked to the `for-loop-exercises` repo, find the file `for-loop-exercises-name.qmd`. Copy it to your your RStudio project for your own class repo, and change the file name by replacing `name` with your name.
-
-Add a picture as instructed.
-
-Push your changes to GitHub. If you need a reminder of how we do this, revisit [lesson 3](https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote))
-
-Check your class repo on GitHub (https://github.com/therkildsen-class/ntres-6100-assignments-USERNAME [replace USERNAME with your GitHub user name]) to make sure your file shows up.
-
-<br>
-<br>
-<br>
 
 
 ## Introduction to `for loops`
@@ -125,7 +110,7 @@ head(gapminder) |>
 |Afghanistan |Asia      | 1972|  36.088| 13079460|  739.9811|
 |Afghanistan |Asia      | 1977|  38.438| 14880372|  786.1134|
 
-<br> <br>
+<br>
 
 We can see that this dataset used camelCase (first word lowercase and capitalize all following words) for its column names. I always use snake_case (replace spaces with underscores), and it's going to look messy to have this inconsistent way of writing variable names. So I'm going to go ahead and clean these names up before I start working with the data. I can do this manually with the `rename()` or `colnames()` functions, e.g.
 
@@ -157,9 +142,10 @@ clean_names(gapminder)
 
 Here is the plan for our analysis: We want to plot how the gdp_per_cap for each country in the `gapminder` data frame has changed over time. So that's 142 separate plots! We will automate this, labeling each plot with its name and saving it in a folder called figures. We will learn a bunch of things as we go. 
 
+<br>
+<br>
 
-
-## Automation with `for` loops
+### Writing the code out for one country
 
 Our plan is to plot gdp_per_cap vs. year for each country. This means that we want to do the same operation (plotting gdp_per_cap) on a bunch of different things (countries). We've worked with dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So here, we will use a `for` loop.
 
@@ -283,7 +269,39 @@ for (each_item in set_of_items) {
 ```
 Note the `( )` and the `{ }`. We talk about iterating through each item in the `for` loop, which makes each item an iterator.
 
-So looking back at our Afghanistan code: all of this is pretty much the "do a thing" part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set. 
+<br>
+<br>
+
+As an example, let's try this
+
+
+``` r
+countries <- c("Canada", "Spain", "Kenya")
+
+for (cntry in countries) {
+  print(cntry)
+}
+```
+
+<br>
+
+We can also perform an operation on each item that we're iterating over
+
+
+``` r
+countries <- c("Canada", "Spain", "Kenya")
+
+for (cntry in countries) {
+  print(cntry)
+}
+```
+
+<br>
+<br>
+
+### Connecting this back to our analysis task
+
+Looking back at our Afghanistan code: all of this is pretty much the "do a thing" part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set. 
 
 ![](assets/for_loop_logic.png)
 <br>
@@ -382,8 +400,6 @@ OK we now have 142 figures that we just created. They exist locally on our compu
 
 ### Your turn
 
-Use the worksheet we copied from the cloned GitHub repo to
-
 1. Modify our `for` loop so that it: 
     - loops through countries in Europe only
     - plots the product of gdp_per_cap and population size per year (should approximate the total GDP) instead of the gdp_per_cap
@@ -464,6 +480,34 @@ if (condition is true) {
 
 <br>
 
+Let's look at an example of how this works
+
+
+``` r
+temperature <- 18
+
+if (temperature > 20) {
+  print("Warm")
+} else {
+  print("Cool")
+}
+```
+
+
+R first checks whether `temperature > 20` is `TRUE`. Since the temperature is 18, the condition is `FALSE`, so R skips the first block of code and instead executes the code following `else`.
+
+Try changing the temperature to 25 and running the code again. What happens?
+
+Importantly, an `if` statement evaluates a **single condition** that must return either `TRUE` or `FALSE`. This is different from functions like `if_else()` or `case_when()`, which we have previously used to evaluate conditions across multiple values in a data frame.
+
+Next, we'll see how we can combine `if` statements with `for` loops to control what happens during each iteration.
+
+<br>
+<br>
+
+
+### Bringing it into our analysis
+
 Let's bring this concept into our `for` loop for Europe that we've just created. What if we want to add the label "Estimated" to countries for which the values were estimated rather than based on official reported statistics? Here's what we'd do.
 
 First, import a csv file with information on whether data was estimated or reported, and join to gapminder dataset:
@@ -520,7 +564,16 @@ for (cntry in country_list) { # (cntry = country_list[1])
 } 
 ```
 
-This worked, but we got a warning message with the `if` statement. This is because if we look at `gap_to_plot$estimated`, it is many "yes"s or "no"s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you *didn't* know that. So let's be explicit:
+When we run this code, we get this error:
+
+
+``` r
+Error in if (gap_to_plot$estimated == "yes") { : 
+  the condition has length > 1
+```
+
+
+This is because if we look at `gap_to_plot$estimated`, it is many "yes"s or "no"s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you *didn't* know that. So let's be explicit:
 
 <br>
 
@@ -694,8 +747,187 @@ for (cntry in country_list) { # (cntry = country_list[1])
 <br>
 <br>
 
+## Extra challenge exercise 1: Customize plots using conditional statements
+
+So far, we've used a `for` loop to generate the same type of plot for every country. But what if we want to generate different plots depending on the data for each country?
+
+Modify your plotting loop to use an `if`/`else` statement to:
+
+1. Generate a plot with a **red line** for countries where life expectancy was below 50 years in 2007.
+2. Generate a plot with a **blue line** for all other countries.
+
+Place the plotting code inside the `if` and `else` blocks so that R executes different plotting commands depending on the condition. Save each plot as before.
+
+**Hint:** Use `filter()` to extract the observation for 2007 for each country, and `pull()` to extract the life expectancy value.
+
+**Bonus:** Can you think of a way to avoid repeating most of the plotting code in the `if` and `else` blocks?
+
+<br>
+<br>
+
+#### Possible answer
+
+<details>
+  <summary>click to see our approach</summary>
+  
+
+``` r
+for (cntry in countries) {
+
+  country_data <- gapminder |>
+    filter(country == cntry)
+
+  life_exp_2007 <- country_data |>
+    filter(year == 2007) |>
+    pull(lifeExp)
+
+  if (life_exp_2007 < 50) {
+
+    my_plot <- country_data |>
+      ggplot(aes(x = year, y = gdpPercap)) +
+      geom_line(color = "red") +
+      labs(title = cntry)
+
+  } else {
+
+    my_plot <- country_data |>
+      ggplot(aes(x = year, y = gdpPercap)) +
+      geom_line(color = "blue") +
+      labs(title = cntry)
+
+  }
+
+  ggsave(
+    filename = str_c(cntry, "_gdp_per_cap.png"),
+    plot = my_plot
+  )
+}
+```
+
+
+**Bonus solution**: Avoid repeating the plotting code by using if/else to determine the line color first.
+
+
+``` r
+for (cntry in countries) {
+
+  country_data <- gapminder |>
+    filter(country == cntry)
+
+  life_exp_2007 <- country_data |>
+    filter(year == 2007) |>
+    pull(lifeExp)
+
+  if (life_exp_2007 < 50) {
+    line_color <- "red"
+  } else {
+    line_color <- "blue"
+  }
+
+  my_plot <- country_data |>
+    ggplot(aes(x = year, y = gdpPercap)) +
+    geom_line(color = line_color) +
+    labs(title = cntry)
+
+  ggsave(
+    filename = str_c(cntry, "_gdp_per_cap.png"),
+    plot = my_plot
+  )
+}
+```
+
+The second version is preferable for maintainability because the plotting code only appears once, but the first is useful for demonstrating how if/else controls which block of code is executed.
+
+</details>
+
+
+<br>
+<br>
+
+
+## Extra challenge exercise 2: Debugging a loop
+
+The following code is supposed to print the mean life expectancy for each country in the Gapminder dataset, but something isn't working as intended.
+
+
+``` r
+countries <- unique(gapminder$country)
+
+for (cntry in countries) {
+  country_data <- gapminder |>
+    filter(country == country)
+
+  mean_life_exp <- mean(country_data$lifeExp)
+
+  print(str_c(cntry, ": ", round(mean_life_exp, 1)))
+}
+```
+
+1. Run the code. What happens? Does R produce an error?
+2. Look carefully at the `filter()` statement. Can you explain why the results are incorrect?
+3. Modify the code so that it correctly calculates the mean life expectancy for each country.
+
+**Bonus:** Can you accomplish the same task using `group_by()` and `summarize()`, without a loop?
+
+<br>
+<br>
+
+#### Possible answer
+
+<details>
+  <summary>click to see our approach</summary>
+  
+**1. What happens?**
+
+The code runs without an error, but it prints the same mean life expectancy for every country.
+
+**2. Why doesn't the code work?**
+
+The problem is this line:
+
+
+``` r
+filter(country == country)
+```
+
+Both instances of `country` refer to the column in the Gapminder data frame. Since each country name is equal to itself, the condition is always `TRUE`, so no rows are removed.
+
+Instead, we need to compare the `country` column with the loop variable `cntry`.
+
+**3. Corrected code**
+
+
+``` r
+countries <- unique(gapminder$country)
+
+for (cntry in countries) {
+  country_data <- gapminder |>
+    filter(country == cntry)
+
+  mean_life_exp <- mean(country_data$lifeExp)
+
+  print(str_c(cntry, ": ", round(mean_life_exp, 1)))
+}
+```
+
+**Bonus: Using `dplyr` instead**
+
+
+``` r
+gapminder |>
+  group_by(country) |>
+  summarize(mean_life_exp = mean(lifeExp))
+```
+
+This is a much simpler way to calculate a summary statistic for each group. It illustrates why `dplyr` is generally preferable for grouped calculations, even though loops can accomplish the same task.
+
+</details>
+
+<br>
+<br>
+
 
 ## Concluding remarks
 
-`for` loops are typically slow compared to vector based methods and frequently not the best available solution for implementing iterations. We therefore recommend that you learn about other approaches, especially the map functions and functional programming. However, `for` loops are easy to implement and easy to understand so in many cases they can be a good solution for simple iterations.
+`for` loops are typically slow compared to vector based methods and frequently not the best available solution for implementing iterations. We therefore recommend that you learn about other approaches (such as those described in [this chapter](https://r4ds.hadley.nz/iteration.html)), especially the map functions and functional programming. However, `for` loops are easy to implement and easy to understand so in many cases they can be a good solution for simple iterations.
 

@@ -510,34 +510,6 @@ href="http://ohi-science.org/data-science-training/programming.html">Ocean
 Health Index Data Science Training</a>.</p>
 <p><br> <br></p>
 </div>
-<div id="clone-repo-to-get-todays-exercise-sheet"
-class="section level2">
-<h2>Clone repo to get today’s exercise sheet</h2>
-<p>First, to refresh our memory on RStudio-GitHub integration, let’s
-start by cloning a repo with today’s exercise sheet. The repo is located
-here: <a href="https://github.com/nt246/for-loop-exercise"
-class="uri">https://github.com/nt246/for-loop-exercise</a></p>
-<p>Clone it to your local machine. Try first to see if you remember how.
-If you need a reminder of how we do this, revisit <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Clone_your_repository_using_RStudio">lesson
-3</a>.</p>
-<p>Once you have an RStudio project linked to the
-<code>for-loop-exercises</code> repo, find the file
-<code>for-loop-exercises-name.qmd</code>. Copy it to your your RStudio
-project for your own class repo, and change the file name by replacing
-<code>name</code> with your name.</p>
-<p>Add a picture as instructed.</p>
-<p>Push your changes to GitHub. If you need a reminder of how we do
-this, revisit <a
-href="https://nt246.github.io/NTRES-6100-data-science/lesson3-version-control.html#Sync_from_RStudio_(local)_to_GitHub_(remote)">lesson
-3</a></p>
-<p>Check your class repo on GitHub (<a
-href="https://github.com/therkildsen-class/ntres-6100-assignments-USERNAME"
-class="uri">https://github.com/therkildsen-class/ntres-6100-assignments-USERNAME</a>
-[replace USERNAME with your GitHub user name]) to make sure your file
-shows up.</p>
-<p><br> <br> <br></p>
-</div>
 <div id="introduction-to-for-loops" class="section level2">
 <h2>Introduction to <code>for loops</code></h2>
 <blockquote>
@@ -675,7 +647,7 @@ head(gapminder) |&gt;
 </tr>
 </tbody>
 </table>
-<p><br> <br></p>
+<p><br></p>
 <p>We can see that this dataset used camelCase (first word lowercase and
 capitalize all following words) for its column names. I always use
 snake_case (replace spaces with underscores), and it’s going to look
@@ -704,9 +676,9 @@ gdp_per_cap for each country in the <code>gapminder</code> data frame
 has changed over time. So that’s 142 separate plots! We will automate
 this, labeling each plot with its name and saving it in a folder called
 figures. We will learn a bunch of things as we go.</p>
-</div>
-<div id="automation-with-for-loops" class="section level2">
-<h2>Automation with <code>for</code> loops</h2>
+<p><br> <br></p>
+<div id="writing-the-code-out-for-one-country" class="section level3">
+<h3>Writing the code out for one country</h3>
 <p>Our plan is to plot gdp_per_cap vs. year for each country. This means
 that we want to do the same operation (plotting gdp_per_cap) on a bunch
 of different things (countries). We’ve worked with dplyr’s
@@ -759,6 +731,7 @@ ggsave(filename = &quot;Afghanistan_gdp_per_cap.png&quot;, plot = my_plot)</code
 RStudio) and see the generated figure:</p>
 <p><img src="assets/Afghanistan_gdp_per_cap.png" alt="" width="50%" /></p>
 <p><br> <br></p>
+</div>
 <div id="thinking-ahead-cleaning-up-our-code" class="section level3">
 <h3>Thinking ahead: cleaning up our code</h3>
 <p>Now, in our code above, we’ve had to write out “Afghanistan” several
@@ -822,10 +795,30 @@ your computers as well.</p>
 <p>Note the <code>( )</code> and the <code>{ }</code>. We talk about
 iterating through each item in the <code>for</code> loop, which makes
 each item an iterator.</p>
-<p>So looking back at our Afghanistan code: all of this is pretty much
-the “do a thing” part. And we can see that there are only a few places
-that are specific to Afghanistan. If we could make those places not
-specific to Afghanistan, we would be set.</p>
+<p><br> <br></p>
+<p>As an example, let’s try this</p>
+<pre class="r"><code>countries &lt;- c(&quot;Canada&quot;, &quot;Spain&quot;, &quot;Kenya&quot;)
+
+for (cntry in countries) {
+  print(cntry)
+}</code></pre>
+<p><br></p>
+<p>We can also perform an operation on each item that we’re iterating
+over</p>
+<pre class="r"><code>countries &lt;- c(&quot;Canada&quot;, &quot;Spain&quot;, &quot;Kenya&quot;)
+
+for (cntry in countries) {
+  print(cntry)
+}</code></pre>
+<p><br> <br></p>
+</div>
+<div id="connecting-this-back-to-our-analysis-task"
+class="section level3">
+<h3>Connecting this back to our analysis task</h3>
+<p>Looking back at our Afghanistan code: all of this is pretty much the
+“do a thing” part. And we can see that there are only a few places that
+are specific to Afghanistan. If we could make those places not specific
+to Afghanistan, we would be set.</p>
 <p><img src="assets/for_loop_logic.png" /> <br></p>
 <p>Let’s paste from what we had before, and modify it. I’m also going to
 use RStudio’s indentation help to indent the lines within the
@@ -925,7 +918,6 @@ and play around with it.</p>
 </div>
 <div id="your-turn" class="section level3">
 <h3>Your turn</h3>
-<p>Use the worksheet we copied from the cloned GitHub repo to</p>
 <ol style="list-style-type: decimal">
 <li>Modify our <code>for</code> loop so that it:
 <ul>
@@ -1004,6 +996,33 @@ if (condition is true) {
   do something different
 }</code></pre>
 <p><br></p>
+<p>Let’s look at an example of how this works</p>
+<pre class="r"><code>temperature &lt;- 18
+
+if (temperature &gt; 20) {
+  print(&quot;Warm&quot;)
+} else {
+  print(&quot;Cool&quot;)
+}</code></pre>
+<p>R first checks whether <code>temperature &gt; 20</code> is
+<code>TRUE</code>. Since the temperature is 18, the condition is
+<code>FALSE</code>, so R skips the first block of code and instead
+executes the code following <code>else</code>.</p>
+<p>Try changing the temperature to 25 and running the code again. What
+happens?</p>
+<p>Importantly, an <code>if</code> statement evaluates a <strong>single
+condition</strong> that must return either <code>TRUE</code> or
+<code>FALSE</code>. This is different from functions like
+<code>if_else()</code> or <code>case_when()</code>, which we have
+previously used to evaluate conditions across multiple values in a data
+frame.</p>
+<p>Next, we’ll see how we can combine <code>if</code> statements with
+<code>for</code> loops to control what happens during each
+iteration.</p>
+<p><br> <br></p>
+</div>
+<div id="bringing-it-into-our-analysis" class="section level3">
+<h3>Bringing it into our analysis</h3>
 <p>Let’s bring this concept into our <code>for</code> loop for Europe
 that we’ve just created. What if we want to add the label “Estimated” to
 countries for which the values were estimated rather than based on
@@ -1054,12 +1073,14 @@ for (cntry in country_list) { # (cntry = country_list[1])
          plot = my_plot)
   
 } </code></pre>
-<p>This worked, but we got a warning message with the <code>if</code>
-statement. This is because if we look at
-<code>gap_to_plot$estimated</code>, it is many “yes”s or “no”s, and the
-if statement works just on the first one. We know that if any are yes,
-all are yes, but you can imagine that this could lead to problems down
-the line if you <em>didn’t</em> know that. So let’s be explicit:</p>
+<p>When we run this code, we get this error:</p>
+<pre class="r"><code>Error in if (gap_to_plot$estimated == &quot;yes&quot;) { : 
+  the condition has length &gt; 1</code></pre>
+<p>This is because if we look at <code>gap_to_plot$estimated</code>, it
+is many “yes”s or “no”s, and the if statement works just on the first
+one. We know that if any are yes, all are yes, but you can imagine that
+this could lead to problems down the line if you <em>didn’t</em> know
+that. So let’s be explicit:</p>
 <p><br></p>
 </div>
 <div id="executable-if-statement" class="section level3">
@@ -1222,15 +1243,179 @@ for (cntry in country_list) { # (cntry = country_list[1])
 <p><br> <br></p>
 </div>
 </div>
+<div
+id="extra-challenge-exercise-1-customize-plots-using-conditional-statements"
+class="section level2">
+<h2>Extra challenge exercise 1: Customize plots using conditional
+statements</h2>
+<p>So far, we’ve used a <code>for</code> loop to generate the same type
+of plot for every country. But what if we want to generate different
+plots depending on the data for each country?</p>
+<p>Modify your plotting loop to use an <code>if</code>/<code>else</code>
+statement to:</p>
+<ol style="list-style-type: decimal">
+<li>Generate a plot with a <strong>red line</strong> for countries where
+life expectancy was below 50 years in 2007.</li>
+<li>Generate a plot with a <strong>blue line</strong> for all other
+countries.</li>
+</ol>
+<p>Place the plotting code inside the <code>if</code> and
+<code>else</code> blocks so that R executes different plotting commands
+depending on the condition. Save each plot as before.</p>
+<p><strong>Hint:</strong> Use <code>filter()</code> to extract the
+observation for 2007 for each country, and <code>pull()</code> to
+extract the life expectancy value.</p>
+<p><strong>Bonus:</strong> Can you think of a way to avoid repeating
+most of the plotting code in the <code>if</code> and <code>else</code>
+blocks?</p>
+<p><br> <br></p>
+<div id="possible-answer" class="section level4">
+<h4>Possible answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
+<pre class="r"><code>for (cntry in countries) {
+
+  country_data &lt;- gapminder |&gt;
+    filter(country == cntry)
+
+  life_exp_2007 &lt;- country_data |&gt;
+    filter(year == 2007) |&gt;
+    pull(lifeExp)
+
+  if (life_exp_2007 &lt; 50) {
+
+    my_plot &lt;- country_data |&gt;
+      ggplot(aes(x = year, y = gdpPercap)) +
+      geom_line(color = &quot;red&quot;) +
+      labs(title = cntry)
+
+  } else {
+
+    my_plot &lt;- country_data |&gt;
+      ggplot(aes(x = year, y = gdpPercap)) +
+      geom_line(color = &quot;blue&quot;) +
+      labs(title = cntry)
+
+  }
+
+  ggsave(
+    filename = str_c(cntry, &quot;_gdp_per_cap.png&quot;),
+    plot = my_plot
+  )
+}</code></pre>
+<p><strong>Bonus solution</strong>: Avoid repeating the plotting code by
+using if/else to determine the line color first.</p>
+<pre class="r"><code>for (cntry in countries) {
+
+  country_data &lt;- gapminder |&gt;
+    filter(country == cntry)
+
+  life_exp_2007 &lt;- country_data |&gt;
+    filter(year == 2007) |&gt;
+    pull(lifeExp)
+
+  if (life_exp_2007 &lt; 50) {
+    line_color &lt;- &quot;red&quot;
+  } else {
+    line_color &lt;- &quot;blue&quot;
+  }
+
+  my_plot &lt;- country_data |&gt;
+    ggplot(aes(x = year, y = gdpPercap)) +
+    geom_line(color = line_color) +
+    labs(title = cntry)
+
+  ggsave(
+    filename = str_c(cntry, &quot;_gdp_per_cap.png&quot;),
+    plot = my_plot
+  )
+}</code></pre>
+<p>The second version is preferable for maintainability because the
+plotting code only appears once, but the first is useful for
+demonstrating how if/else controls which block of code is executed.</p>
+</details>
+<p><br> <br></p>
+</div>
+</div>
+<div id="extra-challenge-exercise-2-debugging-a-loop"
+class="section level2">
+<h2>Extra challenge exercise 2: Debugging a loop</h2>
+<p>The following code is supposed to print the mean life expectancy for
+each country in the Gapminder dataset, but something isn’t working as
+intended.</p>
+<pre class="r"><code>countries &lt;- unique(gapminder$country)
+
+for (cntry in countries) {
+  country_data &lt;- gapminder |&gt;
+    filter(country == country)
+
+  mean_life_exp &lt;- mean(country_data$lifeExp)
+
+  print(str_c(cntry, &quot;: &quot;, round(mean_life_exp, 1)))
+}</code></pre>
+<ol style="list-style-type: decimal">
+<li>Run the code. What happens? Does R produce an error?</li>
+<li>Look carefully at the <code>filter()</code> statement. Can you
+explain why the results are incorrect?</li>
+<li>Modify the code so that it correctly calculates the mean life
+expectancy for each country.</li>
+</ol>
+<p><strong>Bonus:</strong> Can you accomplish the same task using
+<code>group_by()</code> and <code>summarize()</code>, without a
+loop?</p>
+<p><br> <br></p>
+<div id="possible-answer-1" class="section level4">
+<h4>Possible answer</h4>
+<details>
+<summary>
+click to see our approach
+</summary>
+<p><strong>1. What happens?</strong></p>
+<p>The code runs without an error, but it prints the same mean life
+expectancy for every country.</p>
+<p><strong>2. Why doesn’t the code work?</strong></p>
+<p>The problem is this line:</p>
+<pre class="r"><code>filter(country == country)</code></pre>
+<p>Both instances of <code>country</code> refer to the column in the
+Gapminder data frame. Since each country name is equal to itself, the
+condition is always <code>TRUE</code>, so no rows are removed.</p>
+<p>Instead, we need to compare the <code>country</code> column with the
+loop variable <code>cntry</code>.</p>
+<p><strong>3. Corrected code</strong></p>
+<pre class="r"><code>countries &lt;- unique(gapminder$country)
+
+for (cntry in countries) {
+  country_data &lt;- gapminder |&gt;
+    filter(country == cntry)
+
+  mean_life_exp &lt;- mean(country_data$lifeExp)
+
+  print(str_c(cntry, &quot;: &quot;, round(mean_life_exp, 1)))
+}</code></pre>
+<p><strong>Bonus: Using <code>dplyr</code> instead</strong></p>
+<pre class="r"><code>gapminder |&gt;
+  group_by(country) |&gt;
+  summarize(mean_life_exp = mean(lifeExp))</code></pre>
+<p>This is a much simpler way to calculate a summary statistic for each
+group. It illustrates why <code>dplyr</code> is generally preferable for
+grouped calculations, even though loops can accomplish the same
+task.</p>
+</details>
+<p><br> <br></p>
+</div>
+</div>
 <div id="concluding-remarks" class="section level2">
 <h2>Concluding remarks</h2>
 <p><code>for</code> loops are typically slow compared to vector based
 methods and frequently not the best available solution for implementing
-iterations. We therefore recommend that you learn about other
-approaches, especially the map functions and functional programming.
-However, <code>for</code> loops are easy to implement and easy to
-understand so in many cases they can be a good solution for simple
-iterations.</p>
+iterations. We therefore recommend that you learn about other approaches
+(such as those described in <a
+href="https://r4ds.hadley.nz/iteration.html">this chapter</a>),
+especially the map functions and functional programming. However,
+<code>for</code> loops are easy to implement and easy to understand so
+in many cases they can be a good solution for simple iterations.</p>
 </div>
 
 

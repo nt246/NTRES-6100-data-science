@@ -1,0 +1,126 @@
+---
+title: "Lesson 16: Iteration Part 1"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+```
+
+
+## End of course presentations
+
+Tuesday Nov 3 during class
+
+Give a **very brief** presentation showing the rest of the class either
+
+* One or several ways in which you have already implemented something from the class in your own work, or
+
+* An overview of changes you plan to make in your workflow moving forward
+
+<br>
+
+Please indicate if you will be giving a presentation in the google doc
+
+
+## Assignment 8 posted today
+
+Due next Tuesday Oct 27 at 10pm
+
+
+
+
+
+## Learning objectives 
+
+Today, we'll begin exploring the key programming concepts of iteration and conditional execution. By the end of today's and next Tuesday's class, you should be able to:
+
+* Write a `for` loop to repeat operations on different input
+* Implement `if` and `if else` statements for conditional execution of code
+
+
+
+## Code duplication
+
+Avoiding duplication has three main benefits:
+
+* It’s easier to see the intent of your code, because your eyes are drawn to what’s different, not what stays the same
+
+* It’s easier to respond to changes in requirements
+
+* You’re likely to have fewer bugs because each line of code is used in more places
+
+
+## The basic structure of a `for` loop is:
+
+```{r, eval=FALSE, include = TRUE}
+for (each_item in set_of_items) {
+  do a thing
+}
+```
+
+
+## Exercise
+
+
+1. Modify our `for` loop so that it: 
+    - loops through countries in Europe only
+    - plots the product of gdp_per_cap and population size per year (should approximate the total GDP) instead of the gdp_per_cap
+    - saves the plots to a new subfolder inside the (recreated) figures folder called "Europe".
+1. Sync to GitHub
+
+
+
+
+## if statement basic structure
+
+```{r, eval=FALSE}
+# if
+if (condition is true) {
+  do something
+}
+
+# if, else
+if (condition is true) {
+  do something
+} else {  # that is, if the condition is false,
+  do something different
+}
+```
+
+
+## Extra challenge exercise 1: Customize plots using conditional statements
+Modify your plotting loop to use an `if`/`else` statement to:
+
+1. Generate a plot with a **red line** for countries where life expectancy was below 50 years in 2007.
+2. Generate a plot with a **blue line** for all other countries.
+
+Place the plotting code inside the `if` and `else` blocks so that R executes different plotting commands depending on the condition. Save each plot as before.
+
+**Hint:** Use `filter()` to extract the observation for 2007 for each country, and `pull()` to extract the life expectancy value.
+
+**Bonus:** Can you think of a way to avoid repeating most of the plotting code in the `if` and `else` blocks?
+
+
+## Extra challenge exercise 2: Debugging a loop
+The following code is supposed to print the mean life expectancy for each country in the Gapminder dataset, but something isn't working as intended.
+```{r, eval=FALSE}
+countries <- unique(gapminder$country)
+
+for (cntry in countries) {
+  country_data <- gapminder |>
+    filter(country == country)
+
+  mean_life_exp <- mean(country_data$lifeExp)
+  print(str_c(cntry, ": ", round(mean_life_exp, 1)))
+}
+```
+
+1. Run the code. What happens? Does R produce an error?
+2. Look carefully at the `filter()` statement. Can you explain why the results are incorrect?
+3. Modify the code so that it correctly calculates the mean life expectancy for each country.
+
+**Bonus:** Can you accomplish the same task using `group_by()` and `summarize()`, without a loop?
