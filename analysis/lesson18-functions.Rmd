@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ## Announcements
-If you haven't already, please indicate in the signup sheet linked in the `General` channel on Slack whether you will be giving a final class presentation next Thursday 
+If you haven't already, please indicate in the signup sheet linked in the `General` channel on Slack whether you will be giving a final class presentation
 
 * Show us how you either already have or could think of applying any part of the course material to your own work
 * Be as specific as possible
@@ -37,9 +37,6 @@ If you haven't already, please indicate in the signup sheet linked in the `Gener
 * Required of students taking the course for credit
 * Auditors are highly encouraged to share as well!
 
-<br>
-
-Next Tuesday (11/3): Guest lecture by data librarian Sarah Wright on archiving data and code
 
 <br>
 <br>

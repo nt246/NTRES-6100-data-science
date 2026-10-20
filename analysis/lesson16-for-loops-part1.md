@@ -14,9 +14,9 @@ output:
 
 #### Required:
 
-The short [Section 27.5 on for loops in R for Data Science (2e)](https://r4ds.hadley.nz/base-r#for-loops)
+The short [Section 27.5 on for loops in R for Data Science (2e)](https://r4ds.hadley.nz/base-R.html#for-loops)
 
-OPTIONAL (for a more detailed overview of other types of iteration than those we will cover in class): [Chapter 26 on iteration in R for Data Science (2e)](https://r4ds.hadley.nz/iteration)
+OPTIONAL (for a more detailed overview of other types of iteration than those we will cover in class): [Chapter 26 on iteration in R for Data Science (2e)](https://r4ds.hadley.nz/iteration.html)
 
 
 <br>
@@ -29,9 +29,7 @@ We will be working through [this tutorial](http://ohi-science.org/data-science-t
 
 ## Announcements
 
-* Remember that we'll meet in our new classroom Morrison 348 today and for the remaining lectures of the course
-
-* Reminder that we will end-of-course short student presentations on Thursday Oct 30. See details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) and please indicate in the google sheet shared in class and on Slack whether you'll be giving a presentation (required for students taking the course for credit, encouraged for auditors)
+* Reminder that we will end-of-course short student presentations on Tuesday Nov 3. See details [here](https://github.com/nt246/NTRES-6100-data-science/blob/main/misc/student_presentations.md) and please indicate in the google sheet shared in class and on Slack whether you'll be giving a presentation (required for students taking the course for credit, encouraged for auditors)
 
 <br>
 <br>
