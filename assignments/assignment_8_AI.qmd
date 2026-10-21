@@ -1,0 +1,296 @@
+---
+title: "Assignment 8: Iteration and conditional execution"
+format: gfm
+execute:
+  echo: true
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+## Instructions: Please read through this before you begin
+
+- **Due: 10pm Tuesday, October 27, 2026.**
+- Download this `.qmd` file, save it as `assignment_8.qmd` in your personal GitHub repository, and **work directly in it**.
+- Write code in the provided chunks and replace *Write your response here* with your answers. Render to `assignment_8.md` and commit and push **both files**.
+- Show your code and relevant results. You may suppress uninformative messages or warnings after inspecting them.
+- **Question 2.5 is optional.**
+
+<br>
+
+### Use of AI
+
+This assignment combines independent coding with intentional AI use. The goal is to strengthen your understanding of **vectorization, for loops, and conditional execution**, not to outsource these skills.
+
+- **Code yourself:** Work without generative AI. You may consult course notes, R help, and package documentation.
+- **Use AI intentionally:** Write and submit your prompt, examine the response, test suggestions, and explain what you kept or changed.
+- **Evaluate AI:** Predict, diagnose, and correct a supplied AI-generated solution before asking an AI tool for an explanation.
+
+For AI-designated questions, document the prompt and your evaluation **in this file**. You do not need a separate AI log. You are responsible for understanding every line of code you submit. If you use AI beyond the designated activities, briefly disclose where and why.
+
+---
+
+Load the required package:
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+**Acknowledgements:** Exercise 1 was adapted (with permission) from the [Data Carpentry for Biologists semester course](https://datacarpentry.org/semester-biology/exercises/Functions-use-and-modify-Python/) and Exercise 2 from Iain Carmichael's [STOR 390: Introduction to Data Science](https://idc9.github.io/stor390/#course_material).
+
+**Note:** Some loops below grow an output object using `c()` or `bind_rows()`. This is intuitive for learning but may be less efficient than pre-allocating storage. See [R for Data Science: Iteration](https://r4ds.hadley.nz/iteration.html).
+
+<br>
+
+# Exercise 1: Body mass estimation using vectorization vs. for loop
+
+Vectorization and loops can perform repeated operations in R. For example, `x + y` adds corresponding elements of two vectors. A loop can produce the same result one element at a time:
+
+```{r}
+x <- c(1, 2, 3)
+y <- c(4, 5, 6)
+
+z <- NULL
+for (i in seq_along(x)) {
+  z <- c(z, x[i] + y[i])
+}
+z
+```
+
+<br>
+
+## 1.1 A single operation — **Code yourself**
+
+An organism's mass can be estimated from its length using the allometric relationship `mass = a * length ^ b`. For *Spinosaurus*, use `a = 0.73`, `b = 3.63`, and length `16` m. Calculate its estimated mass.
+
+```{r}
+# Write your code here
+```
+
+<br>
+<br>
+
+## 1.2 Multiple operations — **Code yourself**
+
+The vectors below contain lengths and corresponding `a` and `b` values for 200 dinosaurs. Calculate the estimated mass of every dinosaur **twice**:
+
+1. **With a single vectorized expression** (i.e., perform the calculation on all 200 dinosaurs at once by applying the formula directly to the three vectors, without using a loop).
+2. **With a `for` loop that builds a result vector** (i.e., calculate the mass of one dinosaur at a time and add each result to a vector that stores the masses of all the dinosaurs). 
+
+Store the results as `mass_vectorized` and `mass_loop`. Show only the first six values of each result (not all 200).
+
+```{r}
+dinosaur_lengths <- c(25.31, 16.7, 25.22, 24.08, 13.85, 24.57, 18.61, 17.79, 26.31, 15.02, 13.42, 16.4, 22.75, 23.68, 21.93, 17.33, 14.74, 21.52, 30.51, 10.98, 20.2, 16.1, 19.1, 13.65, 14.23, 26.76, 25.51, 26.03, 24.89, 18.49, 18.93, 25.46, 23.54, 11.81, 10.66, 30.36, 14.2, 21.34, 21.3, 23.46, 20.77, 17.27, 31, 17.66, 26.02, 16.02, 15.1, 26.05, 22.6, 23.22, 10.35, 21.14, 17.91, 15.35, 13.91, 26.17, 24.89, 16.86, 22.11, 27.07, 14.31, 12.02, 9.82, 19.85, 28.61, 22.57, 13.43, 10.41, 23.26, 22.65, 18.91, 26.58, 12.71, 9.34, 23.97, 22.89, 24.71, 10.73, 20.88, 18.67, 13.26, 16.38, 21.24, 13.39, 21.2, 21.36, 16.49, 26.13, 20.04, 18.9, 16.71, 24.74, 19.98, 18.05, 12.95, 22.64, 16.03, 11.21, 22.48, 20.48, 25.76, 12.01, 17.86, 17.12, 25.34, 22.18, 20.95, 21.17, 14.52, 20.82, 17.87, 27.45, 29.99, 31.3, 24.68, 22.55, 18.13, 18.97, 23.3, 18.66, 19.9, 25.52, 19.89, 24.7, 18.25, 24.53, 23.47, 16.26, 15.08, 19.67, 24.12, 26.03, 29.29, 16.65, 21.55, 22.44, 17.65, 24.67, 23.38, 18.18, 20.5, 25.62, 18.99, 13.3, 16.55, 29.76, 13.74, 25.04, 19.42, 26.29, 10.71, 22.19, 20.03, 23.14, 14.28, 18.93, 27.57, 16.3, 16.05, 23.26, 25.09, 16.97, 22.75, 16.62, 28.7, 20.82, 26.79, 20.75, 28.74, 19.59, 22.94, 24.51, 18.09, 16.91, 16.53, 20.89, 29.85, 12.89, 21.01, 19.41, 23.43, 21.13, 24.58, 23.22, 11.93, 22.36, 22.04, 27.25, 24.24, 11.39, 22.62, 24.38, 21.95, 17, 30.64, 29.53, 25.13, 20.21, 17.51, 26.25)
+
+a_values <- c(0.61, 0.74, 0.82, 0.78, 0.85, 0.72, 0.84, 0.65, 0.58, 0.82, 0.78, 0.8, 0.69, 0.65, 0.75, 0.72, 0.7, 0.7, 0.65, 0.77, 0.67, 0.86, 0.63, 0.6, 0.67, 0.57, 0.63, 0.72, 0.78, 0.91, 0.67, 0.81, 0.73, 0.8, 0.54, 0.77, 0.86, 0.81, 0.9, 0.68, 0.58, 0.8, 0.72, 0.67, 0.84, 0.63, 0.82, 0.61, 0.74, 0.83, 0.88, 0.66, 0.8, 0.72, 0.75, 0.58, 0.78, 0.76, 0.76, 0.77, 0.91, 0.57, 0.73, 0.87, 0.78, 0.72, 0.73, 0.89, 0.52, 0.87, 0.7, 0.67, 0.7, 0.81, 0.75, 0.7, 0.79, 0.83, 0.57, 0.88, 0.79, 0.77, 0.83, 0.69, 0.69, 0.91, 0.86, 0.66, 0.67, 0.88, 0.78, 0.82, 0.72, 0.86, 0.8, 0.69, 0.7, 0.68, 0.71, 0.83, 0.8, 0.64, 0.68, 0.51, 0.78, 0.8, 0.71, 0.73, 0.88, 0.83, 0.76, 0.95, 0.84, 0.75, 0.85, 0.79, 0.64, 0.94, 0.83, 0.64, 0.83, 0.8, 0.62, 0.79, 0.72, 0.8, 0.63, 0.79, 0.88, 0.64, 0.77, 0.85, 0.93, 0.85, 0.9, 0.83, 0.88, 0.95, 0.64, 0.78, 0.82, 0.77, 0.53, 0.96, 0.78, 0.66, 0.76, 0.69, 0.74, 0.64, 0.79, 1.05, 0.59, 0.82, 0.73, 0.64, 0.8, 0.86, 0.95, 0.95, 0.64, 0.87, 0.75, 0.59, 0.73, 0.7, 0.7, 0.8, 0.79, 0.75, 0.76, 0.64, 0.77, 0.64, 0.78, 0.75, 0.85, 0.75, 0.87, 0.72, 0.7, 0.62, 0.64, 0.79, 0.63, 0.71, 0.79, 0.66, 0.86, 0.93, 0.39, 0.62, 0.73, 0.7, 0.69, 0.7, 0.72, 0.81, 0.77, 0.57)
+
+b_values <- c(3.63, 3.57, 3.51, 3.5, 3.65, 3.64, 3.6, 3.59, 3.58, 3.61, 3.55, 3.61, 3.57, 3.61, 3.62, 3.62, 3.57, 3.6, 3.56, 3.59, 3.63, 3.61, 3.59, 3.66, 3.54, 3.59, 3.56, 3.65, 3.58, 3.6, 3.66, 3.58, 3.64, 3.62, 3.59, 3.65, 3.56, 3.64, 3.6, 3.52, 3.56, 3.63, 3.59, 3.63, 3.68, 3.65, 3.47, 3.49, 3.64, 3.65, 3.64, 3.6, 3.61, 3.66, 3.62, 3.6, 3.67, 3.62, 3.65, 3.57, 3.53, 3.55, 3.66, 3.51, 3.51, 3.64, 3.62, 3.65, 3.59, 3.68, 3.51, 3.63, 3.59, 3.56, 3.57, 3.66, 3.56, 3.63, 3.61, 3.62, 3.7, 3.63, 3.57, 3.58, 3.6, 3.57, 3.58, 3.58, 3.55, 3.49, 3.71, 3.56, 3.6, 3.59, 3.56, 3.65, 3.65, 3.65, 3.58, 3.57, 3.57, 3.57, 3.52, 3.53, 3.75, 3.68, 3.56, 3.71, 3.57, 3.58, 3.58, 3.57, 3.64, 3.56, 3.63, 3.53, 3.6, 3.7, 3.64, 3.62, 3.59, 3.59, 3.57, 3.58, 3.56, 3.61, 3.6, 3.59, 3.63, 3.63, 3.61, 3.62, 3.59, 3.49, 3.53, 3.58, 3.66, 3.59, 3.69, 3.65, 3.59, 3.67, 3.59, 3.64, 3.61, 3.53, 3.54, 3.49, 3.68, 3.63, 3.64, 3.62, 3.7, 3.69, 3.59, 3.58, 3.61, 3.56, 3.72, 3.58, 3.64, 3.57, 3.72, 3.6, 3.49, 3.63, 3.55, 3.58, 3.62, 3.63, 3.65, 3.57, 3.7, 3.59, 3.64, 3.59, 3.69, 3.5, 3.6, 3.61, 3.56, 3.64, 3.58, 3.62, 3.63, 3.56, 3.66, 3.63, 3.49, 3.54, 3.73, 3.61, 3.47, 3.53, 3.68, 3.63, 3.63, 3.59, 3.52, 3.62)
+```
+
+**Vectorized solution:**
+Hint: Remember that R can perform arithmetic on entire vectors. For example, x * y multiplies the corresponding elements of two vectors without requiring a loop.
+
+```{r}
+# Write your code here
+```
+
+**Loop solution:**
+
+```{r}
+# Write your code here
+```
+
+Check that the two approaches produce the same results by comparing the two vectors using ==. What does the output tell you?
+
+```{r}
+# Write your code here
+```
+
+Explain what changes between iterations of your loop and what stays the same.
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 1.3 Runtime comparison — **Code yourself**
+
+Use `system.time()` to time the vectorized calculation and the full loop from 1.2. Timing 200 elements may be too fast to show a consistent difference; if the reported times are zero or very similar, explain why that does not establish that the approaches are equally efficient.
+
+```{r}
+# Time the vectorized calculation here
+```
+
+```{r}
+# Time the loop here
+```
+
+What did you observe? Why might the results vary between runs?
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 1.4 Review an AI claim about loops — **Evaluate AI**
+
+An AI assistant makes the following claim:
+
+> "A `for` loop always gives different results from a vectorized calculation because a loop processes values one at a time."
+
+Is this correct? Use your results from 1.2 and 1.3 to distinguish **correctness** from **runtime**. Explain whether a faster calculation necessarily produces different answers.
+
+*Write your response here.*
+
+
+---
+
+# Exercise 2: Reading and wrangling buoy data in batches
+
+We will use a loop to process yearly files from [buoy 44013](https://github.com/nt246/NTRES-6100-data-science/tree/master/datasets/buoydata).
+
+<br>
+
+## 2.1 Identify the pattern — **Code yourself**
+
+Look at the following code. Which parts stay the same across lines, and which parts change?
+
+```{r}
+buoy_1987 <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/buoydata/44013_1987.csv", na = c("99", "999", "99.00", "999.0"))
+buoy_1988 <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/buoydata/44013_1988.csv", na = c("99", "999", "99.00", "999.0"))
+buoy_1989 <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/buoydata/44013_1989.csv", na = c("99", "999", "99.00", "999.0"))
+buoy_1990 <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/buoydata/44013_1990.csv", na = c("99", "999", "99.00", "999.0"))
+```
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 2.2 Construct file paths with a loop — **Code yourself**
+
+Complete the skeleton so it prints the URL for each year from 1987 through 1992. Use `str_c()` and the loop variable `year`.
+
+```{r}
+start <- 1987
+end <- 1992
+
+for (year in start:end) {
+  path <- str_c( # Complete this expression
+  )
+  print(path)
+}
+```
+
+Before running your code, predict the first and last URL. Then check your prediction.
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 2.3 Read and combine files — **Code yourself**
+
+Complete the loop so it reads the files for 1987–1992 and combines them into `df_combined` using `bind_rows()`. Keep the original missing-value codes from 2.1. Check the dimensions; the original assignment's reference result was **49,775 rows and 16 columns**.
+
+```{r}
+start <- 1987
+end <- 1992
+df_combined <- NULL
+
+for (year in start:end) {
+  path <- # Construct the URL
+  df <- # Read the CSV file
+  df_combined <- # Add this year's rows to the combined data
+}
+
+dim(df_combined)
+```
+
+Explain what `df_combined` contains after the first iteration and after the final iteration.
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 2.4 Summarize monthly buoy measurements — **Use AI intentionally, after a first attempt**
+
+Build on 2.1–2.3 to process buoy data from **1987 through 1992**. For each year, read the file, retain `YY` (year), `MM` (month), `WVHT` (wave height), and `WTMP` (water temperature), rename them clearly, and calculate monthly mean wave height and temperature. Combine the yearly summaries and plot both monthly time series.
+
+**First, write your own loop and test it on just 1987–1988.** It does not need to be perfect, but it should show a genuine attempt.
+
+```{r}
+# Your initial code (before AI)
+```
+
+If you encounter a problem, ask AI a **specific debugging or code-review question**. Ask it to identify the likely issue and explain it, rather than to replace your entire solution.
+
+**Exact AI prompt (or write "I did not need AI"):**
+
+*Write your prompt here.*
+
+**What did AI suggest, and how did you evaluate that suggestion?**
+
+*Write your response here.*
+
+Now provide your final solution for 1987–1992. Verify that your output has one row per year-month combination and inspect missing values before interpreting the averages.
+
+```{r}
+# Your final loop and monthly summary
+```
+
+```{r}
+# Plot monthly mean wave height through time
+```
+
+```{r}
+# Plot monthly mean water temperature through time
+```
+
+Explain one check you performed to verify that your summaries and plots are correct.
+
+*Write your response here.*
+
+<br>
+<br>
+
+## 2.5 Generalize across changing file formats — **Use AI as a planning partner** *(OPTIONAL)*
+
+Extend the workflow to any year from **1987 to 2013**. File formats change across years:
+
+- The first three columns consistently describe year, month, and date, but their names vary.
+- Years use two digits through 1998 and four digits starting in 1999.
+- Starting in 2007, a units row appears after the header and must be excluded.
+- There is substantial missing temperature data in the mid-1990s.
+
+**Before asking AI**, outline which conditional checks you think the loop will need.
+
+*Write your response here.*
+
+Ask AI to critique your plan and identify possible edge cases **without writing the complete solution**.
+
+**Exact AI prompt:**
+
+*Write your prompt here.*
+
+Which suggestions were useful? What would you need to test to make sure your code works across different years?
+
+*Write your response here.*
+
+```{r}
+# Your generalized loop and plots
+```
+
+<br>
+<br>
+
+# Final reflection
+
+1. When is vectorization preferable to loops in R, and when are loops the right choice? Use two examples from this assignment.
+2. What did you learn about debugging or verifying a loop by working on a small subset first?
+3. Where was AI most helpful (if used), and what did you have to understand yourself to evaluate its advice?
+4. Identify one piece of loop code from this assignment that you could now write again without AI or notes.
+
+*Write your response here.*
