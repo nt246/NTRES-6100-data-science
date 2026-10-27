@@ -481,13 +481,13 @@ for Data Science (2e)</li>
 <div id="announcements" class="section level2">
 <h2>Announcements</h2>
 <p>If you haven’t already, please indicate in the signup sheet linked in
-the <code>General</code> channel on Slack whether you will be giving a
-final class presentation</p>
+the <code>Announcement</code> channel on Slack whether you will be
+giving a final class presentation</p>
 <ul>
 <li>Show us how you either already have or could think of applying any
 part of the course material to your own work</li>
 <li>Be as specific as possible</li>
-<li>Very short ~2 mins</li>
+<li>Very short ~3 mins</li>
 <li>Required of students taking the course for credit</li>
 <li>Auditors are highly encouraged to share as well!</li>
 </ul>
@@ -508,9 +508,10 @@ functions</li>
 </div>
 <div id="getting-started-with-functions" class="section level2">
 <h2>Getting started with functions</h2>
-<p>As always, we’ll need the tidyverse, so let’s start by loading that
-in</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<p>As always, we’ll need the tidyverse and we’ll also need the gapminder
+dataset again today, so let’s start by loading those in</p>
+<pre class="r"><code>library(tidyverse)
+library(gapminder)</code></pre>
 <p><br> <br></p>
 <p>We will first introduce functions with <a
 href="https://github.com/nt246/NTRES-6100-data-science/blob/main/slides/slides_functions.pdf">these
@@ -566,14 +567,22 @@ pounds.</p>
 </div>
 <div id="objects-defined-within-functions" class="section level3">
 <h3>Objects defined within functions</h3>
-<p>It is important to note that even after we’ve defined and run a
-function, we can’t access variables created inside the function. For
+<p>Variables and arguments defined inside a function are generally local
+to that function. This means they can be used while the function runs,
+but they aren’t automatically available in the environment outside the
+function. The function can make a result available by returning it. For
 example</p>
 <pre class="r"><code>volume
 &gt; object &#39;volume&#39; not found
 
 width
 &gt; object &#39;width&#39; not found</code></pre>
+<p><br></p>
+<p>Functions can also access variables defined outside the function, in
+the environment where the function was created. However, it’s generally
+good practice to pass the values a function needs as arguments rather
+than relying on external variables. This makes functions easier to
+understand, reuse, and troubleshoot.</p>
 <p><br> <br></p>
 </div>
 <div id="default-arguments" class="section level3">
@@ -618,8 +627,9 @@ be assigned to length, the second to width, and the third to height. If
 the order is hard to remember, name your arguments.</p>
 <p>In many cases there are a lot of optional arguments (arguments that
 have defaults defined so that they don’t need to be specified for the
-function to run). Convention to always name optional arguments. So, in
-our case, the most common approach would be</p>
+function to run). It’s good practice to name optional arguments,
+especially when this improves readability. So, in our case, the most
+common approach would be</p>
 <pre class="r"><code>calc_shrub_vol(0.8, 1.6, height = 2.0)</code></pre>
 <pre><code>## [1] 2.56</code></pre>
 <p><br> <br></p>
@@ -650,12 +660,46 @@ shrub_mass &lt;- calc_shrub_vol(0.8, 1.6, 2.0) |&gt;
 <p>We can also call functions from inside other functions. This allows
 organizing function calls into logical groups, like this:</p>
 <pre class="r"><code>est_shrub_mass_from_raw &lt;- function(length, width, height){
-  volume = calc_shrub_vol(length, width, height)
+  volume &lt;- calc_shrub_vol(length, width, height)
   mass &lt;- est_shrub_mass(volume)
   return(mass)
 }
 
 est_shrub_mass_from_raw(0.8, 1.6, 2.0)</code></pre>
+<p><br> <br></p>
+</div>
+<div id="writing-functions-that-operate-on-vectors"
+class="section level3">
+<h3>Writing functions that operate on vectors</h3>
+<p>Functions can also take an entire vector as an argument, rather than
+just a single value. For example, we can write a function that
+calculates the <strong>coefficient of variation (CV)</strong>, which
+measures the standard deviation relative to the mean:</p>
+<pre class="r"><code>calc_cv &lt;- function(x) {
+  cv &lt;- sd(x, na.rm = TRUE) / mean(x, na.rm = TRUE)
+  return(cv)
+}</code></pre>
+<p>We can then apply this function to any numeric vector:</p>
+<pre class="r"><code>calc_cv(c(12, 15, 18, 20, 25))</code></pre>
+<pre><code>## [1] 0.274986</code></pre>
+<p><br></p>
+<p>Because the function operates on a vector, we can also use it within
+<code>summarize()</code> to calculate the CV for different groups in a
+dataset:</p>
+<pre class="r"><code>gapminder |&gt;
+  group_by(continent) |&gt;
+  summarize(cv_lifeExp = calc_cv(lifeExp))</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   continent cv_lifeExp
+##   &lt;fct&gt;          &lt;dbl&gt;
+## 1 Africa        0.187 
+## 2 Americas      0.145 
+## 3 Asia          0.198 
+## 4 Europe        0.0756
+## 5 Oceania       0.0511</code></pre>
+<p>This illustrates how functions we write ourselves can be used within
+familiar <code>dplyr</code> operations, just like built-in R
+functions.</p>
 <p><br> <br></p>
 </div>
 </div>
@@ -672,8 +716,9 @@ gapminder</code></pre>
 <p><br></p>
 <p>To simplify the code, let’s go back to what our loop looked like
 before we added the conditional statements:</p>
-<pre class="r"><code>dir.create(&quot;figures&quot;) 
-dir.create(&quot;figures/Europe&quot;) 
+<pre class="r"><code>dir.create(&quot;figures/Europe&quot;,
+           recursive = TRUE,
+           showWarnings = FALSE)
 
 ## create a list of countries. Calculations go here, not in the for loop
 gap_europe &lt;- gapminder |&gt;
@@ -689,23 +734,24 @@ for (cntry in country_list) { # (cntry = country_list[1])
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
-  print(paste(&quot;Plotting&quot;, cntry))
+  print(str_c(&quot;Plotting&quot;, cntry, sep = &quot; &quot;))
   
   ## plot
   my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+    labs(title = str_c(cntry, &quot;Total GDP&quot;, sep = &quot; &quot;))
   
-  ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
+  ggsave(filename = str_c(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
 } </code></pre>
 <p><br> <br></p>
 <p>Now, we can change this into a function in the following way:</p>
 <p><img src="assets/for_loop_to_function.png" /></p>
 <p><br></p>
 <p>Here is our function:</p>
-<pre class="r"><code>dir.create(&quot;figures&quot;) 
-dir.create(&quot;figures/Europe&quot;) 
+<pre class="r"><code>dir.create(&quot;figures/Europe&quot;,
+           recursive = TRUE,
+           showWarnings = FALSE)
 
 ## We still keep our calculation outside the function because we can do this as a single step for all countries outside the function. But we could also build this step into our function if we prefer.
 gap_europe &lt;- gapminder |&gt;
@@ -720,13 +766,13 @@ save_plot &lt;- function(cntry) {
     filter(country == cntry)
   
   ## add a print message to see what&#39;s plotting
-  print(paste(&quot;Plotting&quot;, cntry))
+  print(str_c(&quot;Plotting&quot;, cntry, sep = &quot; &quot;))
   
   ## plot
   my_plot &lt;- ggplot(data = gap_to_plot, aes(x = year, y = gdpTot)) + 
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, &quot;GDP per capita&quot;, sep = &quot; &quot;))
+    labs(title = str_c(cntry, &quot;Total GDP&quot;, sep = &quot; &quot;))
   
   ggsave(filename = paste(&quot;figures/Europe/&quot;, cntry, &quot;_gdpTot.png&quot;, sep = &quot;&quot;), plot = my_plot)
 } </code></pre>
@@ -866,7 +912,7 @@ gap_europe &lt;- gapminder |&gt;
   mutate(gdpTot = gdpPercap * pop)
 
 #define our function
-save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;pdf&quot;) {   # Here I&#39;m adding additional arguments to the function, which we&#39;ll use to specify what statistic we want plotted and what filetype we want
+save_plot &lt;- function(cntry, stat = &quot;gdpPercap&quot;, filetype = &quot;png&quot;) {   # Here I&#39;m adding additional arguments to the function, which we&#39;ll use to specify what statistic we want plotted and what filetype we want
   
   ## filter the country to plot
   gap_to_plot &lt;- gap_europe |&gt;
