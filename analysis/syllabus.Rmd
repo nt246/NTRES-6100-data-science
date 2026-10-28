@@ -147,7 +147,7 @@ This semester, the course is offered fully in-person and we expect you to show u
 | 17 | Thu | 10/22 | [Iteration (for loops) and conditional execution part 2](https://nt246.github.io/NTRES-6100-data-science/lesson17-for-loops-part2.html) |  |
 | 18 | Tue | 10/27 | [Functions](https://nt246.github.io/NTRES-6100-data-science/lesson18-functions.html) | [Assignment 8](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_8_AI.qmd) |
 | 19 | Thu | 10/29 | Best practices for data archiving and sharing | |
-| 20 | Tue | 11/3 | Student presentations and [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) | [Assignment 9]  |
+| 20 | Tue | 11/3 | Student presentations and [Wrapping up and resources for learning more](https://nt246.github.io/NTRES-6100-data-science/lesson18-wrapup.html) | [Assignment 9](https://github.com/nt246/NTRES-6100-data-science/blob/main/assignments/assignment_9_AI.qmd)  |
 
 | Lab# | Date (Thu) | Date (Fri) | Topic |
 |:----------------|:----------------|:----------------|:-------------------|
