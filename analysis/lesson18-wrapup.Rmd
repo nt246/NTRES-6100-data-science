@@ -29,7 +29,7 @@ This course is continuously under active development, so I would really value ev
 
 Please share your candid thoughts and suggestions in the evaluation. Remember that all comments are completely anonymous and I only get to see it after S/U decisions have been submitted. 
 
-If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! You can either private message, email, or post in the `feedback` channel on Slack. 
+If anyone has feedback or suggestions they would like to share right away, we would be happy to hear your thoughts! 
 
 <br>
 <br>
@@ -40,14 +40,13 @@ If anyone has feedback or suggestions they would like to share right away, we wo
 * Continued access to the course material
 * Important take-home messages and a review of good practices
 * Where to learn more and connect with the R user community
-* Other applications
 
 
 <br>
 <br>
 
 ## Continued access to the course material
-* The course website will stay up, but will get updated next time we teach the course (probably Fall 2026)
+* The course website will stay up, but will get updated next time we teach the course (probably Fall 2027)
 * [Fork or clone](https://www.toolsqa.com/git/difference-between-git-clone-and-git-fork/#:~:text=When%20you%20fork%20a%20repository,with%20the%20help%20of%20Git) a copy of our [course repo](https://github.com/nt246/NTRES-6100-data-science) if you want a permanent copy of the course notes
 * Zoom recordings stay on Canvas for 120 days
 
@@ -188,12 +187,6 @@ And for getting help, check out the [slide deck](https://resources.rstudio.com/r
 * Check out and follow developments at [Openscapes](https://www.openscapes.org/), an awesome organization led by Julia Stewart Lowndes aimed at empowering environmental scientists to do better science in less time through open and collaborative practices.
 
 <br>
-
-#### Learn to leverage chatGPT and other AI applications
-Can help write code and troubleshoot. But always important to check for accuracy.
-Can also help you learn R better (see e.g. [here](https://pyoflife.com/tips-to-learn-r-using-chatgpt/))
-
-<br>
 <br>
 
 
@@ -207,7 +200,7 @@ Dashboards can also be made interactive with dynamic and user-controlled display
 
 For an example, check out [this dynamic visualization](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1) of the gapminder dataset we worked with in our last class (make sure to check out the [cool video](https://www.youtube.com/watch?v=jbkSRLYSojo) with Hans Rosling) 
 
-Shiny let's you create similar interactive displays. See for example a very simple example [here](https://rebjoh.shinyapps.io/Gapminder-app/), and materials for building a more advanced version [here](https://uomresearchit.github.io/r-shiny-course/)
+Shiny let's you create similar interactive displays. See for example a very simple example [here](https://rebjoh.shinyapps.io/Gapminder-app/).
 
 For more examples, check out the [RStudio Flexdashboard website](https://rmarkdown.rstudio.com/flexdashboard/). And check out [Mastering shiny](https://mastering-shiny.org/) by Hadley Wickham
 
@@ -219,14 +212,17 @@ For more examples, check out the [RStudio Flexdashboard website](https://rmarkdo
 R has lots of functionality for making maps. See some examples of a beautiful application to illustrate the distribution patterns of birdpopulations through the [Bird Genoscape Project](https://www.birdgenoscape.org/american-redstart/)
 
 Some example code for making similar maps:
-https://github.com/eriqande/make-a-BGP-map?tab=readme-ov-file
-https://eriqande.github.io/rep-res-eeb-2017/plotting-spatial-data-with-ggplot.html
-https://eriqande.github.io/rep-res-eeb-2017/a-tidy-approach-to-spatial-data-simple-features.html
+https://github.com/eriqande/make-a-BGP-map?tab=readme-ov-file  
+
+https://eriqande.github.io/rep-res-eeb-2017/plotting-spatial-data-with-ggplot.html 
+
+https://eriqande.github.io/rep-res-eeb-2017/a-tidy-approach-to-spatial-data-simple-features.html  
+
 
 <br>
 
-Here are some other useful tutorials:
-https://www.andrewheiss.com/blog/2023/07/28/gradient-map-fills-r-sf/index.html
+Here are some other useful tutorials:  
+https://www.andrewheiss.com/blog/2023/07/28/gradient-map-fills-r-sf/index.html  
 https://learning.nceas.ucsb.edu/2023-04-coreR/session_15.html
 
 Here's the cheatsheet for the very useful package sf
@@ -243,25 +239,6 @@ If you need to use Python for part of your analysis, check out the [reticulate p
 <br>
 <br>
 
-
-
-## Connecting with the R stats community 
-
-* [Tips on how to start engaging on twitter](https://rstudio-conf-2020.github.io/r-for-excel/collaborating.html#r-communities) from R for Excel Users by Julia Lowndes and Allison Horst 
-
-* [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) by Thomas Mock
-
-<br>
-
-### Exercise
-
-Go to the RStudio Tips twitter account (https://twitter.com/rstudiotips) and find one tip that looks interesting. Practice using it!
-
-[Here](https://twitter.com/kc_analytics/status/1378770803454529538) is an example of a very useful thread, listing RStudio shortcuts
-
-
-<br>
-<br>
 
 
 ## Take-home messages
